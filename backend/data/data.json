@@ -1,0 +1,58 @@
+{
+  "slides": [
+    {
+      "id": 1,
+      "image": "assets/images/hero/slider-1.webp",
+      "subtitle": "GRATAFY IT SERVICES.",
+      "title": "Innovation begins with imagination.",
+      "description": "Specialize in delivering high-tech AI-powered solutions to revolutionize your business with pink-accented precision."
+    },
+    {
+      "id": 2,
+      "image": "assets/images/hero/slider-2.webp",
+      "subtitle": "AI TRANSFORMS EVERYTHING.",
+      "title": "Future-Proof Your Brand Identity",
+      "description": "Sophisticated dark themes and vibrant highlights designed for the next generation of digital excellence."
+    }
+  ],
+  "services": [
+    { "id": 1, "num": "01", "title": "Gratafy Web Design", "desc": "Custom dark-themed web experiences with glassmorphism and high-performance animations.", "image": "service-1" },
+    { "id": 2, "num": "02", "title": "AI Integration", "desc": "Seamlessly integrate artificial intelligence into your existing workflow with cyan-highlighted efficiency.", "image": "service-2" },
+    { "id": 3, "num": "03", "title": "Enterprise Solutions", "desc": "Scalable ERP and CRM platforms tailored for the Gratafy ecosystem.", "image": "service-3" }
+  ],
+  "projects": [
+    { "id": 1, "title": "Gratafy Portal", "category": "Web Design", "image": "project-1" },
+    { "id": 2, "title": "Cyan Analytics", "category": "AI Technology", "image": "project-2" },
+    { "id": 3, "title": "Pink Matrix", "category": "Future Tech", "image": "project-3" }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "quote": "The Gratafy redesign transformed our administrative workflow. The high-tech dark theme is both beautiful and functional.",
+      "author": "Alex Rivera",
+      "designation": "CTO, TechFlow",
+      "image": "assets/images/testimonial/testi-1.webp"
+    }
+  ],
+  "blogs": [
+    { "id": 1, "title": "The Rise of High-Tech Dark Themes", "category": "Design", "date": "Jan 22, 2026", "image": "blog-1" },
+    { "id": 2, "title": "Implementing Cyan Highlights in UI", "category": "Development", "date": "Jan 21, 2026", "image": "blog-2" }
+  ],
+  "clients": [
+    { "id": 1, "image": "assets/images/brands/brand-1.webp" },
+    { "id": 2, "image": "assets/images/brands/brand-2.webp" },
+    { "id": 3, "image": "assets/images/brands/brand-3.webp" }
+  ],
+  "workingProcess": [
+    { "id": 1, "step": "01", "title": "Vision & Discovery", "icon": "tji-discovery", "desc": "We align your business goals with the Gratafy high-tech aesthetic." },
+    { "id": 2, "step": "02", "title": "Design & Code", "icon": "tji-development", "desc": "Implementing vibrant accents and dark-mode sophistication." }
+  ],
+  "achievements": [
+    { "id": 1, "num": "01", "title": "Best Tech Redesign 2026", "year": "2026" },
+    { "id": 2, "num": "02", "title": "Excellence in UI/UX Design", "year": "2025" }
+  ],
+  "team": [
+    { "id": 1, "num": 1, "name": "Sarah Chen", "position": "Lead Designer" },
+    { "id": 2, "num": 2, "name": "Marcus Vane", "position": "Senior Developer" }
+  ]
+}
