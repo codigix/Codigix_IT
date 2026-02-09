@@ -93,7 +93,7 @@ const AdminLogin = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#E9F0FE] border-none p-2 mb-3 text-slate-900 text-sm  placeholder:text-slate-500 uppercase tracking-wider outline-none transition-all border-b border-slate-200"
+                className="w-full bg-[#E9F0FE] border-none p-2 mb-3 text-slate-900 text-sm  placeholder:text-slate-500   outline-none transition-all border-b border-slate-200"
                 placeholder="ADMIN@GRATAFY.COM"
                 required
               />

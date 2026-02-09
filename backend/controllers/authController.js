@@ -1,13 +1,20 @@
 const jwt = require('jsonwebtoken');
-const { SECRET_KEY } = require('../config/config');
+const { JWT_SECRET } = require('../config/config');
+const db = require('../config/db');
 
-exports.login = (req, res) => {
+exports.login = async (req, res) => {
   const { email, password } = req.body;
-  // In a real app, you would check against a database
-  if (email === 'admin@codigix.com' && password === 'admin123') {
-    const token = jwt.sign({ email, role: 'admin' }, SECRET_KEY, { expiresIn: '1h' });
-    res.json({ success: true, token, message: 'Login successful' });
-  } else {
-    res.status(401).json({ success: false, message: 'Invalid credentials' });
+  try {
+    const [rows] = await db.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password]);
+    
+    if (rows.length > 0) {
+      const user = rows[0];
+      const token = jwt.sign({ email: user.email, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
+      res.json({ success: true, token, message: 'Login successful' });
+    } else {
+      res.status(401).json({ success: false, message: 'Invalid credentials' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };

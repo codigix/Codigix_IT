@@ -1,85 +1,62 @@
-const fs = require('fs');
-const { DATA_FILE } = require('../config/config');
+const db = require('../config/db');
 
-const readData = () => {
-  const data = fs.readFileSync(DATA_FILE);
-  return JSON.parse(data);
-};
-
-const writeData = (data) => {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
-};
-
-exports.getAll = (req, res) => {
+exports.getAll = async (req, res) => {
   const { entity } = req.params;
-  const data = readData();
-  if (data[entity]) {
-    res.json(data[entity]);
-  } else {
-    res.status(404).json({ error: 'Entity not found' });
+  try {
+    const [rows] = await db.query(`SELECT * FROM \`${entity}\``);
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
-exports.getById = (req, res) => {
+exports.getById = async (req, res) => {
   const { entity, id } = req.params;
-  const data = readData();
-  if (data[entity]) {
-    const item = data[entity].find(i => i.id === parseInt(id));
-    if (item) {
-      res.json(item);
+  try {
+    const [rows] = await db.query(`SELECT * FROM \`${entity}\` WHERE id = ?`, [id]);
+    if (rows.length > 0) {
+      res.json(rows[0]);
     } else {
       res.status(404).json({ error: 'Item not found' });
     }
-  } else {
-    res.status(404).json({ error: 'Entity not found' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   const { entity } = req.params;
   const newItem = req.body;
-  const data = readData();
-  if (data[entity]) {
-    newItem.id = data[entity].length > 0 ? Math.max(...data[entity].map(i => i.id)) + 1 : 1;
-    data[entity].push(newItem);
-    writeData(data);
-    res.status(201).json(newItem);
-  } else {
-    res.status(404).json({ error: 'Entity not found' });
+  try {
+    const [result] = await db.query(`INSERT INTO \`${entity}\` SET ?`, [newItem]);
+    res.status(201).json({ id: result.insertId, ...newItem });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
   const { entity, id } = req.params;
   const updatedItem = req.body;
-  const data = readData();
-  if (data[entity]) {
-    const index = data[entity].findIndex(i => i.id === parseInt(id));
-    if (index !== -1) {
-      data[entity][index] = { ...data[entity][index], ...updatedItem, id: parseInt(id) };
-      writeData(data);
-      res.json(data[entity][index]);
-    } else {
-      res.status(404).json({ error: 'Item not found' });
-    }
-  } else {
-    res.status(404).json({ error: 'Entity not found' });
+  try {
+    await db.query(`UPDATE \`${entity}\` SET ? WHERE id = ?`, [updatedItem, id]);
+    res.json({ id: parseInt(id), ...updatedItem });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
   const { entity, id } = req.params;
-  const data = readData();
-  if (data[entity]) {
-    const index = data[entity].findIndex(i => i.id === parseInt(id));
-    if (index !== -1) {
-      const deletedItem = data[entity].splice(index, 1);
-      writeData(data);
-      res.json(deletedItem);
+  try {
+    const [rows] = await db.query(`SELECT * FROM \`${entity}\` WHERE id = ?`, [id]);
+    if (rows.length > 0) {
+      await db.query(`DELETE FROM \`${entity}\` WHERE id = ?`, [id]);
+      res.json(rows[0]);
     } else {
       res.status(404).json({ error: 'Item not found' });
     }
-  } else {
-    res.status(404).json({ error: 'Entity not found' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
