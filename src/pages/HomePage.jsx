@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import Swiper from 'swiper';
 import { Pagination, Navigation, EffectFade, Autoplay, FreeMode } from 'swiper/modules';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+import config from '../config';
+
+const API_BASE_URL = config.API_BASE_URL;
 
 export default function HomePage() {
   const [slides, setSlides] = useState([]);
