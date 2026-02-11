@@ -171,7 +171,7 @@ export default function HomePage() {
           <div className="row">
             <div className="col-12">
               <div className="client-content wow fadeInUp" data-wow-delay=".3s">
-                <h5 className="sec-title bg-amber-50"><span className="client-numbers">2000+</span> Trusted Client over the World</h5>
+                <h5 className="sec-title bg-amber-50 text-black"><span className="client-numbers">2000+</span> Trusted Client over the World</h5>
               </div>
               <div className="swiper client-slider">
                 <div className="swiper-wrapper">
