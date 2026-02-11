@@ -349,7 +349,7 @@ export default function HomePage() {
       </section>
 
       {/* Service Section */}
-      <section className="tj-service-section section-gap section-gap-x">
+       <section className="tj-service-section section-gap section-gap-x">
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -407,7 +407,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> 
 
       {/* Project Section */}
       <section className="tj-project-section section-gap">
@@ -669,6 +669,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+     
     </>
   );
 }

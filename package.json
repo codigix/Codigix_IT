@@ -13,10 +13,12 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
-    "framer-motion": "^12.26.2",
+    "framer-motion": "^12.34.0",
+    "gsap": "^3.14.2",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-intersection-observer": "^10.0.2",
     "react-router-dom": "^7.12.0",
     "swiper": "^12.0.3"
   },
