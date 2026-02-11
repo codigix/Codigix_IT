@@ -25103,3 +25103,13 @@ START: Theme Header CSS
       -ms-transform: rotate(0);
           transform: rotate(0);
 }
+.home-button{
+background: transparent !important;
+}
+.home-list-style{
+  columns: 1 !important;
+  margin-bottom: 0 !important;
+}
+.home-list-style li{
+  margin-bottom: 6px !important;
+}

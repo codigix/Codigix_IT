@@ -161,7 +161,7 @@ export default function HomePage() {
                     </div>
                     <div className="slider-desc">{slide.description}</div>
                     <div className="slider-btn">
-                      <Link className="tj-primary-btn" to="/contact">
+                      <Link className="tj-primary-btn home-button"  to="/contact">
                         <div className="btn-inner">
                           <span className="btn-icon h-icon">
                             <i className="tji-arrow-right"></i>
@@ -298,7 +298,7 @@ export default function HomePage() {
                       deliver custom AI-driven tools and services empower
                       transformation.
                     </p>
-                    <ul className="list-style-1 text-white">
+                    <ul className="list-style-1 home-list-style text-white">
                       <li>Artificial Intelligence</li>
                       <li>Identity Management</li>
                       <li>Local Insights</li>
