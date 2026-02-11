@@ -18,7 +18,9 @@ import {
   ArrowDownRight
 } from 'lucide-react';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+import config from '../../config';
+
+const API_BASE_URL = config.API_BASE_URL;
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({

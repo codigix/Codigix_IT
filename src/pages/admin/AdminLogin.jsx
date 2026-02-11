@@ -10,6 +10,8 @@ import {
   Plus
 } from 'lucide-react';
 
+import config from '../../config';
+
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,7 +24,7 @@ const AdminLogin = () => {
     setIsLoading(true);
     setError('');
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch(`${config.API_BASE_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
