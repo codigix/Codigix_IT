@@ -11,10 +11,13 @@ app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    if (CLIENT_URL.indexOf(origin) !== -1 || (Array.isArray(CLIENT_URL) && CLIENT_URL.includes(origin))) {
+    
+    const allowedOrigins = Array.isArray(CLIENT_URL) ? CLIENT_URL : [CLIENT_URL];
+    
+    if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      console.log('Blocked by CORS:', origin);
+      console.error(`CORS Error: Origin "${origin}" not allowed. Allowed origins: ${allowedOrigins.join(', ')}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
