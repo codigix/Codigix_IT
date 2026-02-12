@@ -22,6 +22,6 @@ module.exports = {
   DB_NAME: process.env.DB_NAME || 'codigix_admin',
   DB_PORT: process.env.DB_PORT || 3306,
   JWT_SECRET: process.env.JWT_SECRET || 'codigix_admin_secret_key_2026',
-  CLIENT_URL: process.env.CLIENT_URL || 'http://localhost:5173',
+  CLIENT_URL: process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',') : ['http://localhost:5173'],
   DATA_FILE: path.join(__dirname, '../data/data.json')
 }; 
