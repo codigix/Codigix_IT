@@ -3700,19 +3700,19 @@ START: Preloader CSS
   display: flex;
 } */
 
-.preloader  .loading-container,
-.preloader  .loading {
+.loading-container,
+ .loading {
   height: 100px;
   position: relative;
   width: 100px;
   border-radius: 100%;
 }
 
-.preloader  .loading-container {
+ .loading-container {
   margin: 40px auto;
 }
 
-.preloader  .loading {
+  .loading {
   border: 1px solid transparent;
   border-color: transparent var(--tj-color-common-white) transparent var(--tj-color-common-white);
   -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
@@ -3722,13 +3722,13 @@ START: Preloader CSS
           transform-origin: 50% 50%;
 }
 
-.preloader  .loading-container:hover .loading,
-.preloader .loading-container .loading {
+  .loading-container:hover .loading,
+ .loading-container .loading {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
 
-.preloader  #loading-icon {
+  #loading-icon {
   position: absolute;
   top: 50%;
   left: 50%;
