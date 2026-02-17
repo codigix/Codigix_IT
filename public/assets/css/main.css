@@ -729,7 +729,7 @@ body:has(.sticky) .sticky-lg-top {
   background: linear-gradient(135deg, #ff007f 0%, #ff1493 100%);
   font-size: 16px;
   font-weight: var(--tj-fw-sbold);
-  padding: 6px 6px 6px 24px;
+  padding: 4px;
   text-align: center;
   border-radius: 50px;
   line-height: 1;
@@ -5792,6 +5792,24 @@ START: Client CSS
   position: relative;
   z-index: 1;
 }
+/* .client-slider .swiper-slide {
+  width: 230px !important;
+} */
+.client-slider {
+  overflow: hidden;
+}
+
+.client-slider .swiper-slide {
+  width: 230px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.client-slider .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
 .client-slider::before, .client-slider::after {
   content: "";
   position: absolute;
@@ -5803,6 +5821,7 @@ START: Client CSS
   left: 0;
   z-index: 2;
 }
+
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
   .client-slider::before, .client-slider::after {
     width: 300px;
@@ -5839,7 +5858,7 @@ START: Client CSS
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-right: 30px;
+ 
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .client-item {
@@ -5848,8 +5867,8 @@ START: Client CSS
 }
 
 .client-logo {
-  width: 195px;
-  height: 74px;
+  width: 100%;
+  height: 70px;
   background-color: var(--tj-color-theme-bg);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -6086,7 +6105,7 @@ START: About CSS
   margin-bottom: 20px;
 }
 .about-bottom-area-3 .about-content .tj-primary-btn {
-  margin-top: 26px;
+  margin-top: 20px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .about-bottom-area-3 .about-content {
@@ -25249,4 +25268,37 @@ background: transparent !important;
 .service-wrapper {
   position: relative;
   overflow: visible !important;
+}
+.title-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.title-highlight .word {
+  display: inline-block;
+}
+
+.title-highlight .line {
+  display: inline-block;
+  position: relative;
+  padding: 5px 0;
+  --line-width: 0%;
+}
+
+/* Yellow highlight background (marker style) */
+.title-highlight .line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  height: 18px;
+  width: var(--line-width);
+  background: #ffc107;   /* yellow highlight */
+  z-index: -1;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+.title-highlight {
+  position: relative;
+  z-index: 2;
 }

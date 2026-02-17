@@ -9,23 +9,38 @@ import HamburgerMenu from "./HamburgerMenu";
 export default function Layout({ children }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+
   const [loading, setLoading] = useState(true);
+  const [showLoader, setShowLoader] = useState(false);
 
+  // Loader timing control
   useEffect(() => {
-    // Loader for every page change
     setLoading(true);
+    setShowLoader(false);
 
-    const timer = setTimeout(() => {
+    // Start loader after small delay (prevents logo flash issue)
+    const startTimer = setTimeout(() => {
+      setShowLoader(true);
+    }, 200);
+
+    // Stop loader after total time
+    const endTimer = setTimeout(() => {
       setLoading(false);
-    }, 1500); // loader time
+    }, 1800);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(startTimer);
+      clearTimeout(endTimer);
+    };
   }, [location.pathname]);
 
+  // Run animations after loader is removed
   useEffect(() => {
     if (!loading) {
       if (window.jQuery) {
-        window.jQuery(document).trigger("reset");
+        window.jQuery(document).ready(function () {
+          window.jQuery(document).trigger("reset");
+        });
       }
 
       if (window.jQuery && window.jQuery.fn.counterUp) {
@@ -45,19 +60,21 @@ export default function Layout({ children }) {
 
   return (
     <>
-      {/* SHOW ONLY LOADER FIRST */}
+      {/* LOADER FIRST */}
       {loading ? (
-        <div className="preloader">
-          <div className="loading-container">
-            <div className="loading"></div>
-            <div id="loading-icon">
-              <img
-                src="/assets/images/logos/logo.png"
-                alt="Loading"
-              />
+        showLoader ? (
+          <div className="preloader">
+            <div className="loading-container">
+              <div className="loading"></div>
+              <div id="loading-icon">
+                <img
+                  src="/assets/images/logos/logo.png"
+                  alt="Loading"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        ) : null
       ) : (
         <>
           <div className="body-overlay"></div>
@@ -82,6 +99,7 @@ export default function Layout({ children }) {
             {children}
           </main>
 
+          {/* FOOTER LOGIC */}
           {isHomePage ? <Footer /> : <NewFooter />}
         </>
       )}

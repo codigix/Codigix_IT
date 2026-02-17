@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef  } from "react";
 import { Link } from "react-router-dom";
 import Swiper from "swiper";
 import {
@@ -10,6 +10,10 @@ import {
 } from "swiper/modules";
 
 import config from "../config";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const API_BASE_URL = config.API_BASE_URL;
 export default function HomePage() {
@@ -62,6 +66,68 @@ export default function HomePage() {
 
     fetchData();
   }, []);
+useEffect(() => {
+  setTimeout(() => {
+    if (window.SplitText && document.querySelector(".title-highlight")) {
+
+      const highlightText = new window.SplitText(".title-highlight", {
+        type: "lines",
+        linesClass: "line",
+      });
+
+      const tl = window.gsap.timeline({
+        scrollTrigger: {
+          trigger: ".title-highlight",
+          scrub: 1,
+          start: "top 80%",
+          end: "bottom center",
+        },
+      });
+
+      tl.to(".line", {
+        "--highlight-offset": "100%",
+        stagger: 0.4,
+      });
+
+      window.ScrollTrigger.refresh();
+
+      return () => {
+        highlightText.revert();
+      };
+    }
+  }, 500);
+}, []);
+
+ 
+  useEffect(() => {
+    const device_width = window.innerWidth;
+    const serviceStack = gsap.utils.toArray(".service-stack, .project-stack-2");
+
+    if (serviceStack.length > 0 && device_width > 992) {
+      serviceStack.forEach((item) => {
+        gsap.to(item, {
+          opacity: 0,
+          scale: 0.9,
+          y: 50,
+          scrollTrigger: {
+            trigger: item,
+            scrub: true,
+            start: "top 70px",
+            pin: true,
+            pinSpacing: false,
+            markers: false,
+            anticipatePin: 1,
+          },
+        });
+      });
+    }
+
+    ScrollTrigger.refresh();
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, []);
 
   useEffect(() => {
     if (loading || slides.length === 0) return;
@@ -91,16 +157,18 @@ export default function HomePage() {
       },
     });
 
-    const clientSlider = new Swiper(".client-slider", {
-      modules: [Autoplay],
-      slidesPerView: "auto",
-      spaceBetween: 0,
-      loop: true,
-      speed: 10000,
-      allowTouchMove: false,
-      autoplay: {
-        delay: 1,
-        disableOnInteraction: false,
+  const clientSlider = new Swiper(".client-slider", {
+  modules: [Autoplay, FreeMode],
+  slidesPerView: "auto",
+  spaceBetween: 30,
+  loop: true,
+  speed: 8000,
+  freeMode: true,
+  freeModeMomentum: false,
+  allowTouchMove: false,
+  autoplay: {
+    delay: 0,
+    disableOnInteraction: false,
       },
     });
 
@@ -128,9 +196,10 @@ export default function HomePage() {
   }, [loading, slides, clients]);
 
 
+
   if (loading) {
     return (
-      <div className="react-preloader">
+      <div className="preloader">
         <div className="loading-container">
           <div className="loading"></div>
         </div>
@@ -206,7 +275,7 @@ export default function HomePage() {
           <div className="row">
             <div className="col-12">
               <div className="client-content wow fadeInUp" data-wow-delay=".3s">
-                <h5 className="sec-title bg-black">
+                <h5 className="sec-title ">
                   <span className="client-numbers">2000+</span> Trusted Client
                   over the World
                 </h5>
@@ -276,11 +345,20 @@ export default function HomePage() {
           <div className="row align-items-center">
             <div className="col-lg-7">
               <div className="about-content-area style-3">
+                
                 <div className="sec-heading style-3">
-                  <h2 className="sec-title title-highlight">
+                   <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
+                  <i className="tji-subtitle-2"></i>About our Company
+                </span>
+                 <h2 className="sec-title title-highlight" >
                     Driving Innovations Through Our and Technology, Delivering
                     Our Expert Solutions are Best that Transform Businesses.
-                  </h2>
+                  </h2> 
+               {/* <TitleHighlight>
+  Driving Innovations Through Our and Technology, Delivering Our Expert
+  Solutions are Best that Transform Businesses.
+</TitleHighlight> */}
+
                 </div>
                 <div className="about-bottom-area-3">
                   <div className="experience-wrap">
