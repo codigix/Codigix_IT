@@ -30,28 +30,28 @@ GSAP Registration
 	"use strict";
 
 	// Preloader js
-// Preloader js
-// $(window).on("load", function () {
-//   const tjPreloader = $("#first-loader");
+	// Preloader js
+	// $(window).on("load", function () {
+	//   const tjPreloader = $("#first-loader");
 
-//   if (tjPreloader.length) {
-//     setTimeout(function () {
-//       tjPreloader.removeClass("is-loading").addClass("is-loaded");
+	//   if (tjPreloader.length) {
+	//     setTimeout(function () {
+	//       tjPreloader.removeClass("is-loading").addClass("is-loaded");
 
-//       setTimeout(function () {
-//         tjPreloader.fadeOut(600);
-//         wowController();
-//         gsapController();
-//         counterController();
-//       }, 300);
+	//       setTimeout(function () {
+	//         tjPreloader.fadeOut(600);
+	//         wowController();
+	//         gsapController();
+	//         counterController();
+	//       }, 300);
 
-//     }, 500);
-//   } else {
-//     wowController();
-//     gsapController();
-//     counterController();
-//   }
-// });
+	//     }, 500);
+	//   } else {
+	//     wowController();
+	//     gsapController();
+	//     counterController();
+	//   }
+	// });
 
 
 	////////////////////////////////////////////////////
@@ -190,21 +190,21 @@ GSAP Registration
 
 	////////////////////////////////////////////////////
 	// Client-slider Js
-	if ($(".client-slider").length > 0) {
-		var client = new Swiper(".client-slider", {
-			slidesPerView: "auto",
-			spaceBetween: 0,
-			freemode: true,
-			centeredSlides: true,
-			loop: true,
-			speed: 5000,
-			allowTouchMove: false,
-			autoplay: {
-				delay: 1,
-				disableOnInteraction: true,
-			},
-		});
-	}
+	// if ($(".client-slider").length > 0) {
+	// 	var client = new Swiper(".client-slider", {
+	// 		slidesPerView: "auto",
+	// 		spaceBetween: 0,
+	// 		freemode: true,
+	// 		centeredSlides: true,
+	// 		loop: true,
+	// 		speed: 5000,
+	// 		allowTouchMove: false,
+	// 		autoplay: {
+	// 			delay: 1,
+	// 			disableOnInteraction: true,
+	// 		},
+	// 	});
+	// }
 
 	////////////////////////////////////////////////////
 	// Marquee slider Js
@@ -1190,45 +1190,7 @@ GSAP Registration
 		// 		});
 		// 	}
 		// }
-		gsap.registerPlugin(ScrollTrigger);
-
-window.addEventListener("load", () => {
-
-  let device_width = window.innerWidth;
-  const serviceStack = gsap.utils.toArray(".service-stack, .project-stack-2");
-
-  if (serviceStack.length > 0 && device_width > 992) {
-
-    serviceStack.forEach((item) => {
-
-      // Performance Optimization
-      gsap.set(item, { willChange: "transform, opacity" });
-
-      gsap.to(item, {
-        opacity: 0,
-        scale: 0.9,
-        y: 50,
-        ease: "none",
-        scrollTrigger: {
-          trigger: item,
-          start: "top 70px",
-          end: "bottom 70px",
-          scrub: 1,               // 🔥 smooth scrub
-          pin: true,
-          pinSpacing: false,
-          anticipatePin: 1,       // 🔥 main smooth pin fix
-          fastScrollEnd: true,    // 🔥 smooth on fast scroll
-          invalidateOnRefresh: true,
-          markers: false,
-        },
-      });
-
-    });
-
-    ScrollTrigger.refresh();
-  }
-});
-
+		// gsap.registerPlugin(ScrollTrigger);
 
 		// right swipe
 		document.querySelectorAll(".rightSwipeWrap").forEach((wrap, i) => {
@@ -1300,25 +1262,25 @@ window.addEventListener("load", () => {
 		}
 
 		// Text Highlight
-		if ($(".title-highlight").length) {
-			const highlightText = new SplitText(".title-highlight", {
-				type: "lines",
-				linesClass: "line",
-			});
+		// if ($(".title-highlight").length) {
+		// 	const highlightText = new SplitText(".title-highlight", {
+		// 		type: "lines",
+		// 		linesClass: "line",
+		// 	});
 
-			const tl = gsap.timeline({
-				scrollTrigger: {
-					trigger: ".title-highlight",
-					scrub: 1,
-					start: "top 80%",
-					end: "bottom center",
-				},
-			});
-			tl.to(".line", {
-				"--highlight-offset": "100%",
-				stagger: 0.4,
-			});
-		}
+		// 	const tl = gsap.timeline({
+		// 		scrollTrigger: {
+		// 			trigger: ".title-highlight",
+		// 			scrub: 1,
+		// 			start: "top 80%",
+		// 			end: "bottom center",
+		// 		},
+		// 	});
+		// 	tl.to(".line", {
+		// 		"--highlight-offset": "100%",
+		// 		stagger: 0.4,
+		// 	});
+		// }
 
 		// button move hover animation
 		var hoverBtns = gsap.utils.toArray(".btn-hover-wrapper");
