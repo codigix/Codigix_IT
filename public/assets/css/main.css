@@ -3654,38 +3654,65 @@ START: Theme Footer CSS
 /**----------------------------------------
 START: Preloader CSS
 ----------------------------------------*/
-.preloader {
-  position: fixed;
+/* #first-loader {
+   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 99999;
-  background-color: var(--tj-color-theme-primary);
-  display: -webkit-box;
-  display: -ms-flexbox;
+  bottom:0;
+  right:0;
+  width: 100%;
+  height: 100vh;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  background-color: var(--tj-color-theme-primary) !important;
+  display: flex;
+} */
+.preloader {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  bottom:0;
+  right:0;
+  width: 100%;
+  height: 100vh;
+  background: #ff007f !important;
+  z-index: 999999999 !important;
+   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.loading-container,
-.loading {
+/* .react-preloader {
+     position: fixed;
+  top: 0;
+  left: 0;
+  bottom:0;
+  right:0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  background-color: var(--tj-color-theme-primary) !important;
+  display: flex;
+} */
+
+.preloader  .loading-container,
+.preloader  .loading {
   height: 100px;
   position: relative;
   width: 100px;
   border-radius: 100%;
 }
 
-.loading-container {
+.preloader  .loading-container {
   margin: 40px auto;
 }
 
-.loading {
+.preloader  .loading {
   border: 1px solid transparent;
   border-color: transparent var(--tj-color-common-white) transparent var(--tj-color-common-white);
   -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
@@ -3695,13 +3722,13 @@ START: Preloader CSS
           transform-origin: 50% 50%;
 }
 
-.loading-container:hover .loading,
-.loading-container .loading {
+.preloader  .loading-container:hover .loading,
+.preloader .loading-container .loading {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
 
-#loading-icon {
+.preloader  #loading-icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -3731,7 +3758,7 @@ START: Preloader CSS
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
-}
+}   
 /* !END: Preloader CSS */
 /**----------------------------------------
 START: Back to top CSS
@@ -25215,4 +25242,11 @@ background: transparent !important;
 .ainex-btn:hover .btn-icon {
   transform: translateX(6px);
   background: rgba(255, 255, 255, 0.25);
+}
+
+
+
+.service-wrapper {
+  position: relative;
+  overflow: visible !important;
 }

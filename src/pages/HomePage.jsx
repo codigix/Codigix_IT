@@ -12,7 +12,6 @@ import {
 import config from "../config";
 
 const API_BASE_URL = config.API_BASE_URL;
-
 export default function HomePage() {
   const [slides, setSlides] = useState([]);
   const [clients, setClients] = useState([]);
@@ -128,9 +127,10 @@ export default function HomePage() {
     };
   }, [loading, slides, clients]);
 
+
   if (loading) {
     return (
-      <div className="preloader">
+      <div className="react-preloader">
         <div className="loading-container">
           <div className="loading"></div>
         </div>
@@ -369,12 +369,11 @@ export default function HomePage() {
                   data-wow-delay=".4s"
                   key={service.id}
                 >
-                  <div className="service-item style-3 service-stack">
+                    <div className= "service-item style-3 service-stack">
                     <div className="service-inner">
                       <div className="service-content">
                         <h3 className="title">
-                          <Link to="/services/details">{service.title}</Link>
-                        </h3>
+                          <Link to="/services/details">{service.title}</Link> </h3>
                         <p className="desc">{service.desc}</p>
                         <ul className="list-style-2">
                           <li>Personalized Experience</li>
@@ -402,7 +401,7 @@ export default function HomePage() {
                     </div>
                     <span className="item-count">{service.num}.</span>
                   </div>
-                </div>
+                 </div>
               ))}
             </div>
           </div>
@@ -669,7 +668,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-     
+
     </>
   );
 }

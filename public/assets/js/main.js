@@ -30,24 +30,29 @@ GSAP Registration
 	"use strict";
 
 	// Preloader js
-	$(window).on("load", function () {
-		const tjPreloader = $(".preloader");
-		if (tjPreloader?.length) {
-			setTimeout(function () {
-				tjPreloader.removeClass("is-loading").addClass("is-loaded");
-				setTimeout(function () {
-					tjPreloader.fadeOut(600);
-					wowController();
-					gsapController();
-					counterController();
-				});
-			}, 1000);
-		} else {
-			wowController();
-			gsapController();
-			counterController();
-		}
-	});
+// Preloader js
+// $(window).on("load", function () {
+//   const tjPreloader = $("#first-loader");
+
+//   if (tjPreloader.length) {
+//     setTimeout(function () {
+//       tjPreloader.removeClass("is-loading").addClass("is-loaded");
+
+//       setTimeout(function () {
+//         tjPreloader.fadeOut(600);
+//         wowController();
+//         gsapController();
+//         counterController();
+//       }, 300);
+
+//     }, 500);
+//   } else {
+//     wowController();
+//     gsapController();
+//     counterController();
+//   }
+// });
+
 
 	////////////////////////////////////////////////////
 	// Data js
@@ -1164,27 +1169,66 @@ GSAP Registration
 		}
 
 		/* Service js */
-		let device_width = window.innerWidth;
-		const serviceStack = gsap.utils.toArray(".service-stack, .project-stack-2");
-		if (serviceStack.length > 0) {
-			if (device_width > 992) {
-				serviceStack.forEach(item => {
-					gsap.to(item, {
-						opacity: 0,
-						scale: 0.9,
-						y: 50,
-						scrollTrigger: {
-							trigger: item,
-							scrub: true,
-							start: "top 70px",
-							pin: true,
-							pinSpacing: false,
-							markers: false,
-						},
-					});
-				});
-			}
-		}
+		// let device_width = window.innerWidth;
+		// const serviceStack = gsap.utils.toArray(".service-stack, .project-stack-2");
+		// if (serviceStack.length > 0) {
+		// 	if (device_width > 992) {
+		// 		serviceStack.forEach(item => {
+		// 			gsap.to(item, {
+		// 				opacity: 0,
+		// 				scale: 0.9,
+		// 				y: 50,
+		// 				scrollTrigger: {
+		// 					trigger: item,
+		// 					scrub: true,
+		// 					start: "top 70px",
+		// 					pin: true,
+		// 					pinSpacing: false,
+		// 					markers: false,
+		// 				},
+		// 			});
+		// 		});
+		// 	}
+		// }
+		gsap.registerPlugin(ScrollTrigger);
+
+window.addEventListener("load", () => {
+
+  let device_width = window.innerWidth;
+  const serviceStack = gsap.utils.toArray(".service-stack, .project-stack-2");
+
+  if (serviceStack.length > 0 && device_width > 992) {
+
+    serviceStack.forEach((item) => {
+
+      // Performance Optimization
+      gsap.set(item, { willChange: "transform, opacity" });
+
+      gsap.to(item, {
+        opacity: 0,
+        scale: 0.9,
+        y: 50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 70px",
+          end: "bottom 70px",
+          scrub: 1,               // 🔥 smooth scrub
+          pin: true,
+          pinSpacing: false,
+          anticipatePin: 1,       // 🔥 main smooth pin fix
+          fastScrollEnd: true,    // 🔥 smooth on fast scroll
+          invalidateOnRefresh: true,
+          markers: false,
+        },
+      });
+
+    });
+
+    ScrollTrigger.refresh();
+  }
+});
+
 
 		// right swipe
 		document.querySelectorAll(".rightSwipeWrap").forEach((wrap, i) => {

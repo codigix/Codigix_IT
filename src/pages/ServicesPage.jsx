@@ -26,7 +26,7 @@ export default function ServicesPage() {
   }, []);
 
   if (loading) {
-    return <div className="preloader"><div className="loading-container"><div className="loading"></div></div></div>;
+    return <div className="react-preloader"><div className="loading-container"><div className="loading"></div></div></div>;
   }
 
   return (
