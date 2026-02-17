@@ -51,10 +51,10 @@ export default function Layout({ children }) {
           <div className="loading-container">
             <div className="loading"></div>
             <div id="loading-icon">
-              <img
+             <img
                 src="/assets/images/logos/logo.png"
                 alt="Loading"
-              />
+              /> 
             </div>
           </div>
         </div>
