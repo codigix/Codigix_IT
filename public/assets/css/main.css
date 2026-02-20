@@ -2812,12 +2812,13 @@ START: Theme Footer CSS
 }
 .footer-cta .sec-heading .sec-title {
   font-size: 76px;
-  
-  
+
 }
 .footer-cta .sec-heading .sec-title-1{
   display:flex;
   gap:3px;
+  text-align: center;
+  justify-content: center;
 }
 .footer-cta .sec-heading .main-sec{
 display:flex;
@@ -25268,4 +25269,30 @@ background: transparent !important;
 } */
 .project-content .title a{
   text-transform: capitalize !important;
+}
+.service-wrapper-main {
+  position: relative;
+  /* Ensure the container itself doesn't hide the overflow of the cards */
+  overflow: visible !important;
+}
+
+.service-stack {
+  transform-origin: center top; 
+  /* The space between cards during scroll */
+  margin-bottom: 150px; 
+  position: relative;
+  z-index: 1;
+}
+
+/* IMPORTANT: The last card needs a massive margin-bottom 
+   to act as the 'spacer' for the next section of the page */
+.service-stack:last-child {
+  margin-bottom: 100px; 
+}
+
+/* Ensure subsequent sections have a solid background so 
+   pinned cards don't show through them if they go too far */
+.tj-project-section {
+  position: relative;
+  z-index: 10;
 }

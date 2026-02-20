@@ -10,7 +10,11 @@ import {
 } from "swiper/modules";
 
 import config from "../config";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
+// Register right after imports
+gsap.registerPlugin(ScrollTrigger);
 
 const API_BASE_URL = config.API_BASE_URL;
 export default function HomePage() {
@@ -165,6 +169,47 @@ export default function HomePage() {
   //     ScrollTrigger.getAll().forEach((t) => t.kill());
   //   };
   // }, [services]);
+  const containerRef = useRef(null);
+useGSAP(() => {
+  if (loading || services.length === 0 || !containerRef.current) return;
+
+  const cards = gsap.utils.toArray(".service-stack");
+  
+  if (window.innerWidth > 992) {
+    cards.forEach((card, index) => {
+      // PINNING: Pin every card EXCEPT the last one
+      if (index < cards.length - 1) {
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top 100px", 
+          // Each card stays pinned until the LAST card reaches the top
+          endTrigger: cards[cards.length - 1],
+          end: "top 100px", 
+          pin: true,
+          pinSpacing: false, // Allows cards to stack
+          invalidateOnRefresh: true,
+          markers: false,
+
+        });
+
+        // STACKING EFFECT: Shrink & Fade
+        gsap.to(card, {
+          scale: 0.92 - (index * 0.01), // Slightly more shrink for deeper cards
+          opacity: 0.3,
+          y:50,
+          scrollTrigger: {
+            trigger: cards[index + 1], 
+            start: "top ${100 + index * 40}px",
+            end: "top 100px",          
+            scrub: 1.5,
+          }
+        });
+      }
+    });
+  }
+
+  ScrollTrigger.refresh();
+}, { scope: containerRef, dependencies: [services, loading] });
 
 
   useEffect(() => {
@@ -481,10 +526,10 @@ export default function HomePage() {
             <div className="col-12">
 
               <div className="service-wrapper-main mb-40 wow fadeInUp "
-                  data-wow-delay=".4s">
-                   
-                  {services.map((service, idx) => (
-                    <div className= "service-item style-3 service-stack " key={service.id} >
+                data-wow-delay=".4s" ref={containerRef}>
+
+                {services.map((service, idx) => (
+                  <div className="service-item style-3 service-stack " key={service.id} >
                     <div className="service-inner">
                       <div className="service-content">
                         <h3 className="title">
@@ -516,9 +561,9 @@ export default function HomePage() {
                     </div>
                     <span className="item-count">{service.num}.</span>
                   </div>
-                
-                    ))}
-                 </div> 
+
+                ))}
+              </div>
 
               {/* <div className="service-wrapper-main"
                 style={{
@@ -629,14 +674,14 @@ export default function HomePage() {
                     <div className="project-desc">
                       <span className="category">{project.category}</span>
                       <h4 className="title">
-                        <Link to="/projects/details" style={{textTransform:'capitalize'}}>{project.title}</Link>
+                        <Link to="/projects/details" style={{ textTransform: 'capitalize' }}>{project.title}</Link>
                       </h4>
                     </div>
                     <Link className="icon-btn" to="/projects/details">
                       <i className="tji-arrow-right"></i>
                     </Link>
                   </div>
-              
+
                 </div>
               </div>
             ))}
