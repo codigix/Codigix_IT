@@ -10,13 +10,12 @@ import {
 } from "swiper/modules";
 
 import config from "../config";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
 
 const API_BASE_URL = config.API_BASE_URL;
 export default function HomePage() {
+  
+
   const [slides, setSlides] = useState([]);
   const [clients, setClients] = useState([]);
   const [workingProcess, setWorkingProcess] = useState([]);
@@ -97,37 +96,77 @@ useEffect(() => {
     }
   }, 500);
 }, []);
-
  
-  useEffect(() => {
-    const device_width = window.innerWidth;
-    const serviceStack = gsap.utils.toArray(".service-stack, .project-stack-2");
 
-    if (serviceStack.length > 0 && device_width > 992) {
-      serviceStack.forEach((item) => {
-        gsap.to(item, {
-          opacity: 0,
-          scale: 0.9,
-          y: 50,
-          scrollTrigger: {
-            trigger: item,
-            scrub: true,
-            start: "top 70px",
-            pin: true,
-            pinSpacing: false,
-            markers: false,
-            anticipatePin: 1,
-          },
-        });
+///Service-stack
+
+  // ---------------------------
+  // GSAP SERVICE STACK EFFECT
+  // ---------------------------
+useEffect(() => {
+  if (!window.gsap || !window.ScrollTrigger) return;
+
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const cards = gsap.utils.toArray(".service-stack");
+  const container = document.querySelector(".service-wrapper-main");
+
+  if (!container || cards.length === 0 || window.innerWidth <= 992) return;
+
+  // reset positions
+  cards.forEach((card, i) => {
+    gsap.set(card, {
+      position: "absolute",
+      left: 0,
+      top: 0,
+      width: "100%",
+      scale: 1,
+      opacity: 1,
+      y: 0,
+      zIndex: cards.length - i,
+    });
+  });
+
+  // master timeline
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: container,
+      start: "top top",
+      end: `+=${cards.length * 500}`, // scroll length
+      scrub: true,
+      pin: true,
+      pinSpacing: true,
+    },
+  });
+
+  // step-by-step animations
+  cards.forEach((card, i) => {
+    if (i < cards.length - 1) {
+      // animate this card backward
+      tl.to(card, {
+        scale: 0.93,
+        opacity: 0.35,
+        y: -200,   // moves upward out of view
+        ease: "none",
+        duration: 1,
       });
+
+      // lower its z-index so next card comes above
+      tl.set(card, { zIndex: 0 });
     }
+  });
 
-    ScrollTrigger.refresh();
+  ScrollTrigger.refresh();
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
+  return () => {
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+  };
+}, [services]);
+
+
 
   useEffect(() => {
     if (loading || slides.length === 0) return;
@@ -427,7 +466,7 @@ useEffect(() => {
       </section>
 
       {/* Service Section */}
-       <section className="tj-service-section section-gap section-gap-x">
+       <section className="tj-service-section section-gap section-gap-x" >
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -441,13 +480,12 @@ useEffect(() => {
           </div>
           <div className="row">
             <div className="col-12">
-              {services.map((service, idx) => (
-                <div
-                  className="service-wrapper mb-40 wow fadeInUp"
-                  data-wow-delay=".4s"
-                  key={service.id}
-                >
-                    <div className= "service-item style-3 service-stack">
+    
+                <div className="service-wrapper-main mb-40 wow fadeInUp "
+                  data-wow-delay=".4s">
+                   
+                  {services.map((service, idx) => (
+                    <div className= "service-item style-3 service-stack " key={service.id}>
                     <div className="service-inner">
                       <div className="service-content">
                         <h3 className="title">
@@ -479,11 +517,18 @@ useEffect(() => {
                     </div>
                     <span className="item-count">{service.num}.</span>
                   </div>
+                
+                    ))}
                  </div>
-              ))}
-            </div>
-          </div>
+              </div>
+                 </div>
         </div>
+         <div class="service-bottom-btn">
+        <a class="text-btn" href="service.html">
+          <span class="btn-text"><span>More Services</span></span>
+          <span class="btn-icon"><span><i class="tji-arrow-down"></i></span></span>
+        </a>
+      </div>
       </section> 
 
       {/* Project Section */}

@@ -1169,11 +1169,62 @@ GSAP Registration
 		}
 
 		/* Service js */
+// 	(function () {
+//   console.log("✅ main.js loaded successfully");
+
+//   window.homePageAnimation = function () {
+//     console.log("🔥 homePageAnimation called");
+
+//     if (!window.gsap) {
+//       console.log("❌ GSAP not loaded");
+//       return;
+//     }
+
+//     if (!window.ScrollTrigger) {
+//       console.log("❌ ScrollTrigger not loaded");
+//       return;
+//     }
+
+//     const gsap = window.gsap;
+//     const ScrollTrigger = window.ScrollTrigger;
+
+//     gsap.registerPlugin(ScrollTrigger);
+
+//     const device_width = window.innerWidth;
+//     const serviceStack = gsap.utils.toArray(".service-stack, .project-stack-2");
+
+//     console.log("✅ Elements found:", serviceStack.length);
+
+//     if (serviceStack.length > 0) {
+//       if (device_width > 992) {
+//         serviceStack.forEach((item, index) => {
+//           gsap.to(item, {
+//             opacity: 0,
+//             scale: 0.9,
+//             y: 200,
+//             scrollTrigger: {
+//               trigger: item,
+//               scrub: true,
+//               start: `top ${100 + index * 40}px`,
+//               pin: true,
+//               pinSpacing: false,
+//               markers: false,
+//             },
+//           });
+//         });
+//       }
+//     }
+//   };
+// })();
+
+
+
 		// let device_width = window.innerWidth;
 		// const serviceStack = gsap.utils.toArray(".service-stack, .project-stack-2");
+
 		// if (serviceStack.length > 0) {
 		// 	if (device_width > 992) {
-		// 		serviceStack.forEach(item => {
+		// 		serviceStack.forEach((item, index) => {
 		// 			gsap.to(item, {
 		// 				opacity: 0,
 		// 				scale: 0.9,
@@ -1181,7 +1232,7 @@ GSAP Registration
 		// 				scrollTrigger: {
 		// 					trigger: item,
 		// 					scrub: true,
-		// 					start: "top 70px",
+		// 					start: `top ${100 + index * 40}px`,
 		// 					pin: true,
 		// 					pinSpacing: false,
 		// 					markers: false,
@@ -1190,7 +1241,6 @@ GSAP Registration
 		// 		});
 		// 	}
 		// }
-		// gsap.registerPlugin(ScrollTrigger);
 
 		// right swipe
 		document.querySelectorAll(".rightSwipeWrap").forEach((wrap, i) => {
