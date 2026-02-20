@@ -13,7 +13,7 @@ export default function Footer() {
                 <span className="sub-title"><i className="tji-subtitle-2"></i>Get Started</span>
                 <div className='main-sec'>
                 <h2 className="sec-title">Let’s Launch AI-Powered </h2>
-                <h2 className="sec-title-1"> Project <img src="assets/images/shape/hand.webp" alt=""/>
+                <h2 className="sec-title-1 sec-title" > Project <img src="assets/images/shape/hand.webp" alt=""/>
                   Here.
                 </h2>
                 </div>
