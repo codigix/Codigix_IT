@@ -10,9 +10,14 @@ export default function Footer() {
             <div className="col-12">
               <div className="footer-cta">
                 <div className="sec-heading style-3 wow fadeInUp" data-wow-delay=".5s">
-                  <span className="sub-title"><i className="tji-subtitle-2"></i>Get Started</span>
-                  <h2 className="sec-title">Let's Launch AI-Powered Project <img src="assets/images/shape/hand.webp" alt="" /> Here.</h2>
+                <span className="sub-title"><i className="tji-subtitle-2"></i>Get Started</span>
+                <div className='main-sec'>
+                <h2 className="sec-title">Let’s Launch AI-Powered </h2>
+                <h2 className="sec-title-1"> Project <img src="assets/images/shape/hand.webp" alt=""/>
+                  Here.
+                </h2>
                 </div>
+              </div>
                 <div className="circle-text-wrap wow fadeInUp" data-wow-delay=".7s">
                   <span className="circle-text" style={{backgroundImage: "url(assets/images/cta/circle-text.webp)"}}></span>
                   <Link className="circle-icon" to="/contact"><span><i className="tji-plane-2"></i></span></Link>
