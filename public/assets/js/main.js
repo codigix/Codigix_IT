@@ -1219,28 +1219,28 @@ GSAP Registration
 
 
 
-		// let device_width = window.innerWidth;
-		// const serviceStack = gsap.utils.toArray(".service-stack, .project-stack-2");
+		let device_width = window.innerWidth;
+		const serviceStack = gsap.utils.toArray(".service-stack, .project-stack-2");
 
-		// if (serviceStack.length > 0) {
-		// 	if (device_width > 992) {
-		// 		serviceStack.forEach((item, index) => {
-		// 			gsap.to(item, {
-		// 				opacity: 0,
-		// 				scale: 0.9,
-		// 				y: 50,
-		// 				scrollTrigger: {
-		// 					trigger: item,
-		// 					scrub: true,
-		// 					start: `top ${100 + index * 40}px`,
-		// 					pin: true,
-		// 					pinSpacing: false,
-		// 					markers: false,
-		// 				},
-		// 			});
-		// 		});
-		// 	}
-		// }
+		if (serviceStack.length > 0) {
+			if (device_width > 992) {
+				serviceStack.forEach((item, index) => {
+					gsap.to(item, {
+						opacity: 0,
+						scale: 0.9,
+						y: 50,
+						scrollTrigger: {
+							trigger: item,
+							scrub: true,
+							start: `top ${100 + index * 40}px`,
+							pin: true,
+							pinSpacing: false,
+							markers: false,
+						},
+					});
+				});
+			}
+		}
 
 		// right swipe
 		document.querySelectorAll(".rightSwipeWrap").forEach((wrap, i) => {

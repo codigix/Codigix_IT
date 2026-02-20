@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Swiper from "swiper";
 import {
@@ -14,7 +14,7 @@ import config from "../config";
 
 const API_BASE_URL = config.API_BASE_URL;
 export default function HomePage() {
-  
+
 
   const [slides, setSlides] = useState([]);
   const [clients, setClients] = useState([]);
@@ -65,107 +65,106 @@ export default function HomePage() {
 
     fetchData();
   }, []);
-useEffect(() => {
-  setTimeout(() => {
-    if (window.SplitText && document.querySelector(".title-highlight")) {
+  useEffect(() => {
+    setTimeout(() => {
+      if (window.SplitText && document.querySelector(".title-highlight")) {
 
-      const highlightText = new window.SplitText(".title-highlight", {
-        type: "lines",
-        linesClass: "line",
-      });
+        const highlightText = new window.SplitText(".title-highlight", {
+          type: "lines",
+          linesClass: "line",
+        });
 
-      const tl = window.gsap.timeline({
-        scrollTrigger: {
-          trigger: ".title-highlight",
-          scrub: 1,
-          start: "top 80%",
-          end: "bottom center",
-        },
-      });
+        const tl = window.gsap.timeline({
+          scrollTrigger: {
+            trigger: ".title-highlight",
+            scrub: 1,
+            start: "top 80%",
+            end: "bottom center",
+          },
+        });
 
-      tl.to(".line", {
-        "--highlight-offset": "100%",
-        stagger: 0.4,
-      });
+        tl.to(".line", {
+          "--highlight-offset": "100%",
+          stagger: 0.4,
+        });
 
-      window.ScrollTrigger.refresh();
+        window.ScrollTrigger.refresh();
 
-      return () => {
-        highlightText.revert();
-      };
-    }
-  }, 500);
-}, []);
- 
+        return () => {
+          highlightText.revert();
+        };
+      }
+    }, 500);
+  }, []);
 
-///Service-stack
 
-  // ---------------------------
-  // GSAP SERVICE STACK EFFECT
-  // ---------------------------
-useEffect(() => {
-  if (!window.gsap || !window.ScrollTrigger) return;
+  ///Service-stack
 
-  const gsap = window.gsap;
-  const ScrollTrigger = window.ScrollTrigger;
+  // // ---------------------------
+  // // GSAP SERVICE STACK EFFECT
+  // // ---------------------------
+  // useEffect(() => {
+  //   if (!window.gsap || !window.ScrollTrigger) return;
 
-  gsap.registerPlugin(ScrollTrigger);
+  //   const gsap = window.gsap;
+  //   const ScrollTrigger = window.ScrollTrigger;
 
-  const cards = gsap.utils.toArray(".service-stack");
-  const container = document.querySelector(".service-wrapper-main");
+  //   gsap.registerPlugin(ScrollTrigger);
 
-  if (!container || cards.length === 0 || window.innerWidth <= 992) return;
+  //   const cards = gsap.utils.toArray(".service-stack");
+  //   const container = document.querySelector(".service-wrapper-main");
 
-  // reset positions
-  cards.forEach((card, i) => {
-    gsap.set(card, {
-      position: "absolute",
-      left: 0,
-      top: 0,
-      width: "100%",
-      scale: 1,
-      opacity: 1,
-      y: 0,
-      zIndex: cards.length - i,
-    });
-  });
+  //   if (!container || cards.length === 0 || window.innerWidth <= 992) return;
 
-  // master timeline
-  let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: container,
-      start: "top top",
-      end: `+=${cards.length * 500}`, // scroll length
-      scrub: true,
-      pin: true,
-      pinSpacing: true,
-    },
-  });
+  //   // reset positions
+  //   cards.forEach((card, i) => {
+  //     gsap.set(card, {
+  //       position: "absolute",
+  //       left: 0,
+  //       top: 70,
+  //       width: "100%",
+  //       scale: 1,
+  //       opacity: 1,
+  //       y: 0,
+  //       zIndex: cards.length - i,
+  //     });
+  //   });
 
-  // step-by-step animations
-  cards.forEach((card, i) => {
-    if (i < cards.length - 1) {
-      // animate this card backward
-      tl.to(card, {
-        scale: 0.93,
-        opacity: 0.35,
-        y: -200,   // moves upward out of view
-        ease: "none",
-        duration: 1,
-      });
+  //   // master timeline
+  //   let tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: container,
+  //       start: "top top",
+  //       end: `+=${cards.length * 500}`, // scroll length
+  //       scrub: true,
+  //       pin: true,
+  //       pinSpacing: true,
+  //     },
+  //   });
 
-      // lower its z-index so next card comes above
-      tl.set(card, { zIndex: 0 });
-    }
-  });
+  //   // step-by-step animations
+  //   cards.forEach((card, i) => {
+  //     if (i < cards.length - 1) {
+  //       // animate this card backward
+  //       tl.to(card, {
+  //         scale: 0.93,
+  //         opacity: 0.35,
+  //         y: -200,   // moves upward out of view
+  //         ease: "none",
+  //         duration: 1,
+  //       });
 
-  ScrollTrigger.refresh();
+  //       // lower its z-index so next card comes above
+  //       tl.set(card, { zIndex: 0 });
+  //     }
+  //   });
 
-  return () => {
-    ScrollTrigger.getAll().forEach((t) => t.kill());
-  };
-}, [services]);
+  //   ScrollTrigger.refresh();
 
+  //   return () => {
+  //     ScrollTrigger.getAll().forEach((t) => t.kill());
+  //   };
+  // }, [services]);
 
 
   useEffect(() => {
@@ -196,18 +195,18 @@ useEffect(() => {
       },
     });
 
-  const clientSlider = new Swiper(".client-slider", {
-  modules: [Autoplay, FreeMode],
-  slidesPerView: "auto",
-  spaceBetween: 30,
-  loop: true,
-  speed: 8000,
-  freeMode: true,
-  freeModeMomentum: false,
-  allowTouchMove: false,
-  autoplay: {
-    delay: 0,
-    disableOnInteraction: false,
+    const clientSlider = new Swiper(".client-slider", {
+      modules: [Autoplay, FreeMode],
+      slidesPerView: "auto",
+      spaceBetween: 30,
+      loop: true,
+      speed: 8000,
+      freeMode: true,
+      freeModeMomentum: false,
+      allowTouchMove: false,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
       },
     });
 
@@ -269,7 +268,7 @@ useEffect(() => {
                     </div>
                     <div className="slider-desc">{slide.description}</div>
                     <div className="slider-btn">
-                      <Link className="tj-primary-btn home-button"  to="/contact">
+                      <Link className="tj-primary-btn home-button" to="/contact">
                         <div className="btn-inner">
                           <span className="btn-icon h-icon">
                             <i className="tji-arrow-right"></i>
@@ -384,16 +383,16 @@ useEffect(() => {
           <div className="row align-items-center">
             <div className="col-lg-7">
               <div className="about-content-area style-3">
-                
+
                 <div className="sec-heading style-3">
-                   <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
-                  <i className="tji-subtitle-2"></i>About our Company
-                </span>
-                 <h2 className="sec-title title-highlight" >
+                  <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
+                    <i className="tji-subtitle-2"></i>About our Company
+                  </span>
+                  <h2 className="sec-title title-highlight" >
                     Driving Innovations Through Our and Technology, Delivering
                     Our Expert Solutions are Best that Transform Businesses.
-                  </h2> 
-               {/* <TitleHighlight>
+                  </h2>
+                  {/* <TitleHighlight>
   Driving Innovations Through Our and Technology, Delivering Our Expert
   Solutions are Best that Transform Businesses.
 </TitleHighlight> */}
@@ -466,7 +465,7 @@ useEffect(() => {
       </section>
 
       {/* Service Section */}
-       <section className="tj-service-section section-gap section-gap-x" >
+      <section className="tj-service-section section-gap section-gap-x">
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -480,12 +479,12 @@ useEffect(() => {
           </div>
           <div className="row">
             <div className="col-12">
-    
-                <div className="service-wrapper-main mb-40 wow fadeInUp "
+
+              <div className="service-wrapper-main mb-40 wow fadeInUp "
                   data-wow-delay=".4s">
                    
                   {services.map((service, idx) => (
-                    <div className= "service-item style-3 service-stack " key={service.id}>
+                    <div className= "service-item style-3 service-stack " key={service.id} >
                     <div className="service-inner">
                       <div className="service-content">
                         <h3 className="title">
@@ -519,17 +518,62 @@ useEffect(() => {
                   </div>
                 
                     ))}
-                 </div>
-              </div>
-                 </div>
+                 </div> 
+
+              {/* <div className="service-wrapper-main"
+                style={{
+                  position: "relative",
+                  height: "500px",
+                  maxWidth: "900px",
+                  margin: "0 auto",
+                }}
+              >
+                {services.map((service, idx) => (
+                  <div className="service-item style-3 service-stack " key={service.id}>
+                    <div className="service-inner">
+                      <div className="service-content">
+                        <h3 className="title">
+                          <Link to="/services/details">{service.title}</Link> </h3>
+                        <p className="desc">{service.desc}</p>
+                        <ul className="list-style-2">
+                          <li>Personalized Experience</li>
+                          <li>Process Automation</li>
+                          <li>Predictive Analytics</li>
+                        </ul>
+                        <Link className="tj-primary-btn" to="/services/details">
+                          <div className="btn-inner">
+                            <span className="btn-icon h-icon">
+                              <i className="tji-arrow-right"></i>
+                            </span>
+                            <span className="btn-text">Learn More</span>
+                            <span className="btn-icon">
+                              <i className="tji-arrow-right"></i>
+                            </span>
+                          </div>
+                        </Link>
+                      </div>
+                      <div className="service-img">
+                        <img
+                          src={`assets/images/service/${service.image}.jpg`}
+                          alt={service.title}
+                        />
+                      </div>
+                    </div>
+                    <span className="item-count">{service.num}.</span>
+                  </div>
+
+                ))}
+              </div> */}
+            </div>
+          </div>
         </div>
-         <div class="service-bottom-btn">
-        <a class="text-btn" href="service.html">
-          <span class="btn-text"><span>More Services</span></span>
-          <span class="btn-icon"><span><i class="tji-arrow-down"></i></span></span>
-        </a>
-      </div>
-      </section> 
+        <div className="service-bottom-btn">
+          <a className="text-btn" href="service.html">
+            <span className="btn-text"><span>More Services</span></span>
+            <span className="btn-icon"><span><i className="tji-arrow-down"></i></span></span>
+          </a>
+        </div>
+      </section>
 
       {/* Project Section */}
       <section className="tj-project-section section-gap">
@@ -585,13 +629,14 @@ useEffect(() => {
                     <div className="project-desc">
                       <span className="category">{project.category}</span>
                       <h4 className="title">
-                        <Link to="/projects/details">{project.title}</Link>
+                        <Link to="/projects/details" style={{textTransform:'capitalize'}}>{project.title}</Link>
                       </h4>
                     </div>
                     <Link className="icon-btn" to="/projects/details">
                       <i className="tji-arrow-right"></i>
                     </Link>
                   </div>
+              
                 </div>
               </div>
             ))}
@@ -600,7 +645,7 @@ useEffect(() => {
       </section>
 
       {/* Pricing Section */}
-      <section className="tj-pricing-section-2 section-gap">
+      <section className="tj-pricing-section-2 section-gap section-gap-x section-separator">
         <div className="container">
           <div className="row row-gap-4">
             <div className="col-lg-5">
@@ -791,6 +836,7 @@ useEffect(() => {
           </div>
         </div>
       </section>
+
 
     </>
   );

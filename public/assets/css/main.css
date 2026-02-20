@@ -2812,6 +2812,17 @@ START: Theme Footer CSS
 }
 .footer-cta .sec-heading .sec-title {
   font-size: 76px;
+  
+  
+}
+.footer-cta .sec-heading .sec-title-1{
+  display:flex;
+  gap:3px;
+}
+.footer-cta .sec-heading .main-sec{
+display:flex;
+  text-align: center;
+  flex-direction: column;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .footer-cta .sec-heading .sec-title {
@@ -7745,6 +7756,7 @@ START: Project CSS
 }
 .project-item .title a {
   display: inline-block;
+  text-transform: capitalize !important;
 }
 .project-item .title a:hover {
   color: var(--tj-color-theme-primary);
@@ -7905,8 +7917,8 @@ START: Project CSS
 .project-item.style-3 .project-content {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
@@ -7995,9 +8007,9 @@ START: Project CSS
   }
 }
 .project-item.style-3:hover .icon-btn i {
-  -webkit-transform: translateX(45px);
-      -ms-transform: translateX(45px);
-          transform: translateX(45px);
+  -webkit-transform: translateX(0px);
+      -ms-transform: translateX(0px);
+          transform: translateX(0px);
 }
 
 .categories {
@@ -25244,20 +25256,15 @@ background: transparent !important;
   background: rgba(255, 255, 255, 0.25);
 }
 
-
-
-.service-wrapper {
+/* .service-wrapper-main {
   position: relative;
-  overflow: visible !important;
-}
-/* .service-stack {
-  position: relative;
-   overflow: hidden;
-} */
-.service-wrapper-main {
-  position: relative;
+  height: 600px; 
 }
 
 .service-stack {
-  margin-bottom: 30px;
+  position: absolute;
+  width: 100%;
+} */
+.project-content .title a{
+  text-transform: capitalize !important;
 }
