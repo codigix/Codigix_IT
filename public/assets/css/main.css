@@ -25311,18 +25311,7 @@ background: transparent !important;
 }
 .header-wrapper .logo{
   margin-top: 4px;
-}
-.hamburger-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(6px);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 9998;
-}
-
-.tj-offcanvas-area {
+}.tj-offcanvas-area {
   position: fixed;
   top: 0;
   right: 0;
@@ -25330,6 +25319,29 @@ background: transparent !important;
   height: 100%;
   background: #111;
   transform: translateX(100%);
+  will-change: transform, opacity;
   z-index: 9999;
   overflow-y: auto;
+}
+
+.hamburger-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+  z-index: 9998;
+}
+.tj-offcanvas-area {
+  transition: transform 0.5s ease;
+}
+
+.tj-offcanvas-area.open {
+  transform: translateX(0);
+}
+
+.tj-offcanvas-area.closed {
+  transform: translateX(100%);
 }

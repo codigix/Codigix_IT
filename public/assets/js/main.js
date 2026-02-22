@@ -100,65 +100,65 @@ GSAP Registration
 	});
 
 	// Hamburger Menu Js
-	$(".mobile_menu_bar").on("click", function () {
-		$(".hamburger-area").addClass("opened");
-		$(".body-overlay").addClass("opened");
-		$("body").toggleClass("overflow-hidden");
-	});
+	// $(".mobile_menu_bar").on("click", function () {
+	// 	$(".hamburger-area").addClass("opened");
+	// 	$(".body-overlay").addClass("opened");
+	// 	$("body").toggleClass("overflow-hidden");
+	// });
 
 	// Offcanvas js
-	$(".menu_offcanvas").on("click", function () {
-		$(".tj-offcanvas-area").toggleClass("opened");
-		$(".body-overlay").addClass("opened");
-		$("body").toggleClass("overflow-hidden");
-	});
-	$(".hamburger_close_btn").on("click", function () {
-		$(".tj-offcanvas-area").removeClass("opened");
-		$(".hamburger-area").removeClass("opened");
-		$(".body-overlay").removeClass("opened");
-		$("body").toggleClass("overflow-hidden");
-	});
-	$(".body-overlay").on("click", function () {
-		$(".tj-offcanvas-area").removeClass("opened");
-		$(".hamburger-area").removeClass("opened");
-		$(".body-overlay").removeClass("opened");
-		$("body").toggleClass("overflow-hidden");
-	});
+	// $(".menu_offcanvas").on("click", function () {
+	// 	$(".tj-offcanvas-area").toggleClass("opened");
+	// 	$(".body-overlay").addClass("opened");
+	// 	$("body").toggleClass("overflow-hidden");
+	// });
+	// $(".hamburger_close_btn").on("click", function () {
+	// 	$(".tj-offcanvas-area").removeClass("opened");
+	// 	$(".hamburger-area").removeClass("opened");
+	// 	$(".body-overlay").removeClass("opened");
+	// 	$("body").toggleClass("overflow-hidden");
+	// });
+	// $(".body-overlay").on("click", function () {
+	// 	$(".tj-offcanvas-area").removeClass("opened");
+	// 	$(".hamburger-area").removeClass("opened");
+	// 	$(".body-overlay").removeClass("opened");
+	// 	$("body").toggleClass("overflow-hidden");
+	// });
 
 	// Offcanvas 2 js
-	$(".menu_offcanvas_2").on("click", function () {
-		if ($(this).hasClass("opened")) {
-			$(this).removeClass("opened");
-		} else {
-			$(this).addClass("opened");
-		}
-		$(this)
-			.parents()
-			.find(".tj-offcanvas-area-2")
-			.slideToggle(600)
-			.toggleClass("opened");
-		$("body").toggleClass("overflow-hidden");
-	});
+	// $(".menu_offcanvas_2").on("click", function () {
+	// 	if ($(this).hasClass("opened")) {
+	// 		$(this).removeClass("opened");
+	// 	} else {
+	// 		$(this).addClass("opened");
+	// 	}
+	// 	$(this)
+	// 		.parents()
+	// 		.find(".tj-offcanvas-area-2")
+	// 		.slideToggle(600)
+	// 		.toggleClass("opened");
+	// 	$("body").toggleClass("overflow-hidden");
+	// });
 
-	// Offcanvas submenu js
-	$(".offcanvas-nav > ul > .has-dropdown > a").on("click", function (e) {
-		e.preventDefault();
-		if ($(this).parent(".has-dropdown").hasClass("opened")) {
-			$(this).parent(".has-dropdown").removeClass("opened");
-		} else {
-			$(this).parent(".has-dropdown").addClass("opened");
-		}
-	});
+	// // Offcanvas submenu js
+	// $(".offcanvas-nav > ul > .has-dropdown > a").on("click", function (e) {
+	// 	e.preventDefault();
+	// 	if ($(this).parent(".has-dropdown").hasClass("opened")) {
+	// 		$(this).parent(".has-dropdown").removeClass("opened");
+	// 	} else {
+	// 		$(this).parent(".has-dropdown").addClass("opened");
+	// 	}
+	// });
 
 	// Active all parent menu by default
-	$(".offcanvas-nav > ul > li")
-		.on("mouseenter", function () {
-			$(this).addClass("active").siblings().removeClass("active");
-		})
-		.on("mouseleave", function () {
-			$(this).siblings().addClass("active");
-		})
-		.addClass("active");
+	// $(".offcanvas-nav > ul > li")
+	// 	.on("mouseenter", function () {
+	// 		$(this).addClass("active").siblings().removeClass("active");
+	// 	})
+	// 	.on("mouseleave", function () {
+	// 		$(this).siblings().addClass("active");
+	// 	})
+	// 	.addClass("active");
 
 	////////////////////////////////////////////////////
 	// Search Bar Js
