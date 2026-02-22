@@ -25270,16 +25270,16 @@ background: transparent !important;
 .project-content .title a{
   text-transform: capitalize !important;
 }
-.service-wrapper-main {
-  position: relative;
-  /* Ensure the container itself doesn't hide the overflow of the cards */
-  overflow: visible !important;
-}
 
 .service-stack {
+    /* DISABLE all CSS transitions - GSAP must have 100% control */
+  transition: none !important; 
+   /* Hardware acceleration: tells the GPU to handle this element */
+  will-change: transform, opacity; 
   transform-origin: center top; 
   /* The space between cards during scroll */
-  margin-bottom: 150px; 
+  margin-bottom: 0 !important; /* Spacing is handled by the GSAP Timeline now */
+  width: 100%;
   position: relative;
   z-index: 1;
 }
@@ -25295,4 +25295,41 @@ background: transparent !important;
 .tj-project-section {
   position: relative;
   z-index: 10;
+}
+.service-wrapper-main {
+  /* Essential: hide overflow so cards don't "peak" out 
+     from the bottom of the section during the pin */
+  position: relative;   
+  overflow: hidden; 
+  background: transparent;
+}
+.top-gap-75{
+  height:70px !important;
+}
+.header-wrapper .menu-area{
+  margin-top: 4px !important;
+}
+.header-wrapper .logo{
+  margin-top: 4px;
+}
+.hamburger-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.tj-offcanvas-area {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  height: 100%;
+  background: #111;
+  transform: translateX(100%);
+  z-index: 9999;
+  overflow-y: auto;
 }
