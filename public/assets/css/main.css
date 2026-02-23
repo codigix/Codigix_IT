@@ -729,7 +729,8 @@ body:has(.sticky) .sticky-lg-top {
   background: linear-gradient(135deg, #ff007f 0%, #ff1493 100%);
   font-size: 16px;
   font-weight: var(--tj-fw-sbold);
-  padding: 6px 6px 6px 24px;
+  /* padding: 6px 6px 6px 24px; */
+  padding: 4px !important;
   text-align: center;
   border-radius: 50px;
   line-height: 1;
@@ -25344,4 +25345,9 @@ background: transparent !important;
 
 .tj-offcanvas-area.closed {
   transform: translateX(100%);
+}
+.page-numbers {
+  background: none;
+  border: none;
+  cursor: pointer;
 }

@@ -8,6 +8,25 @@ const API_BASE_URL = config.API_BASE_URL;
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  // pagination
+const [currentPage, setCurrentPage] = useState(1);
+const projectsPerPage = 4;
+//  logic of pagination
+const totalPages = Math.ceil(projects.length / projectsPerPage);
+
+const indexOfLastProject = currentPage * projectsPerPage;
+const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+
+const currentProjects = projects.slice(
+  indexOfFirstProject,
+  indexOfLastProject
+);
+
+const handlePageChange = (pageNumber) => {
+  setCurrentPage(pageNumber);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+// end
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -60,11 +79,21 @@ export default function ProjectsPage() {
             </div>
           </div>
           <div className="row row-gap-4">
-            {projects.map((project, idx) => (
+{currentProjects?.length > 0 &&
+  currentProjects.map((project, idx) => (
               <div className="col-lg-6 col-md-6" key={project.id}>
                 <div className="project-item wow fadeInUp" data-wow-delay={`.${3 + idx}s`}>
                   <div className="project-img">
-                    <img src={project.image.startsWith('assets') ? project.image : `assets/images/project/${project.image}.webp`} alt={project.title} />
+                    {/* <img src={project.image.startsWith('assets') ? project.image : `assets/images/project/${project.image}.webp`} alt={project.title} /> */
+                    }
+                    <img
+  src={
+    typeof project.image === "string" && project.image.startsWith("assets")
+      ? project.image
+      : `assets/images/project/${project.image || "default"}.webp`
+  }
+  alt={project.title || "project"}
+/>
                   </div>
 
                   <span className="project-no"><span>0{idx + 1}</span></span>
@@ -82,14 +111,44 @@ export default function ProjectsPage() {
             ))}
           </div>
 
-          <div className="tj-pagination d-flex justify-content-center">
+          {/* <div className="tj-pagination d-flex justify-content-center">
             <ul>
               <li><span aria-current="page" className="page-numbers current">1</span></li>
               <li><a className="page-numbers" href="#">2</a></li>
               <li><a className="page-numbers" href="#">3</a></li>
               <li><a className="next page-numbers" href="#"><i className="tji-arrow-right"></i></a></li>
             </ul>
-          </div>
+          </div> */}
+          {totalPages > 1 && (
+  <div className="tj-pagination d-flex justify-content-center">
+    <ul>
+      {[...Array(totalPages)].map((_, index) => (
+        <li key={index}>
+          <button
+            className={`page-numbers ${
+              currentPage === index + 1 ? "current" : ""
+            }`}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            {index + 1}
+          </button>
+        </li>
+      ))}
+
+      {/* Next Button */}
+      {currentPage < totalPages && (
+        <li>
+          <button
+            className="next page-numbers"
+            onClick={() => handlePageChange(currentPage + 1)}
+          >
+            <i className="tji-arrow-right"></i>
+          </button>
+        </li>
+      )}
+    </ul>
+  </div>
+)}
         </div>
       </section>
 {/* 

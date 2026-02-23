@@ -613,10 +613,10 @@ useGSAP(() => {
           </div>
         </div>
         <div className="service-bottom-btn">
-          <a className="text-btn" href="service.html">
+          <Link className="text-btn" to="/services">
             <span className="btn-text"><span>More Services</span></span>
             <span className="btn-icon"><span><i className="tji-arrow-down"></i></span></span>
-          </a>
+          </Link>
         </div>
       </section>
 
