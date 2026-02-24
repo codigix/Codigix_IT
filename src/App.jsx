@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
 import ExternalStyles from './components/ExternalStyles';
@@ -62,6 +62,7 @@ function AppRoutes() {
     <>
       <ExternalStyles />
       <Layout>
+        
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -81,7 +82,9 @@ function AppRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
+ <Suspense fallback={<div>Loading...</div>}>
       <AppRoutes />
+      </Suspense>
     </BrowserRouter>
   );
 }

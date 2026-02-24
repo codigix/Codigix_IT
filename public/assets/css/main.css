@@ -25351,3 +25351,19 @@ background: transparent !important;
   border: none;
   cursor: pointer;
 }
+.tj-slider-item {
+  position: relative;
+  height: 100vh; /* FIXED HEIGHT */
+  overflow: hidden;
+}
+
+.slider-bg-image {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

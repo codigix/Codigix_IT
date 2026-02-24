@@ -300,8 +300,15 @@ useGSAP(() => {
               <div className="swiper-slide tj-slider-item" key={slide.id}>
                 <div
                   className="slider-bg-image"
-                  style={{ backgroundImage: `url(${slide.image})` }}
-                ></div>
+                  // style={{ backgroundImage: `url(${slide.image})` }}
+                >
+                    <img
+    src={slide.image}
+    alt="Hero"
+    className="hero-image"
+    loading={slide.id === 1 ? "eager" : "lazy"}
+  />
+                </div>
                 <div className="slider-wrapper">
                   <div className="slider-content">
                     <div className="slider-title-area">
