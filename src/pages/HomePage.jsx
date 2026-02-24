@@ -104,111 +104,54 @@ export default function HomePage() {
 
   ///Service-stack
 
-  // // ---------------------------
-  // // GSAP SERVICE STACK EFFECT
-  // // ---------------------------
-  // useEffect(() => {
-  //   if (!window.gsap || !window.ScrollTrigger) return;
-
-  //   const gsap = window.gsap;
-  //   const ScrollTrigger = window.ScrollTrigger;
-
-  //   gsap.registerPlugin(ScrollTrigger);
-
-  //   const cards = gsap.utils.toArray(".service-stack");
-  //   const container = document.querySelector(".service-wrapper-main");
-
-  //   if (!container || cards.length === 0 || window.innerWidth <= 992) return;
-
-  //   // reset positions
-  //   cards.forEach((card, i) => {
-  //     gsap.set(card, {
-  //       position: "absolute",
-  //       left: 0,
-  //       top: 70,
-  //       width: "100%",
-  //       scale: 1,
-  //       opacity: 1,
-  //       y: 0,
-  //       zIndex: cards.length - i,
-  //     });
-  //   });
-
-  //   // master timeline
-  //   let tl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: container,
-  //       start: "top top",
-  //       end: `+=${cards.length * 500}`, // scroll length
-  //       scrub: true,
-  //       pin: true,
-  //       pinSpacing: true,
-  //     },
-  //   });
-
-  //   // step-by-step animations
-  //   cards.forEach((card, i) => {
-  //     if (i < cards.length - 1) {
-  //       // animate this card backward
-  //       tl.to(card, {
-  //         scale: 0.93,
-  //         opacity: 0.35,
-  //         y: -200,   // moves upward out of view
-  //         ease: "none",
-  //         duration: 1,
-  //       });
-
-  //       // lower its z-index so next card comes above
-  //       tl.set(card, { zIndex: 0 });
-  //     }
-  //   });
-
-  //   ScrollTrigger.refresh();
-
-  //   return () => {
-  //     ScrollTrigger.getAll().forEach((t) => t.kill());
-  //   };
-  // }, [services]);
   const containerRef = useRef(null);
-useGSAP(() => {
+ useGSAP(() => {
   if (loading || services.length === 0 || !containerRef.current) return;
 
   const cards = gsap.utils.toArray(".service-stack");
-  
-  if (window.innerWidth > 992) {
+  let mm = gsap.matchMedia();
+
+  mm.add("(min-width: 1025px)", () => {
     cards.forEach((card, index) => {
-      // PINNING: Pin every card EXCEPT the last one
       if (index < cards.length - 1) {
         ScrollTrigger.create({
           trigger: card,
-          start: "top 100px", 
-          // Each card stays pinned until the LAST card reaches the top
+          start: "top 100px",
           endTrigger: cards[cards.length - 1],
-          end: "top 100px", 
+          end: "top 100px",
           pin: true,
-          pinSpacing: false, // Allows cards to stack
+          pinSpacing: false,
           invalidateOnRefresh: true,
-          markers: false,
-
+          // 1. ADD THIS: Anticipate the pin to prevent the jump
+          anticipatePin: 1, 
+          // 2. ADD THIS: Priority ensures this trigger calculates before others
+          refreshPriority: 1, 
         });
 
-        // STACKING EFFECT: Shrink & Fade
         gsap.to(card, {
-          scale: 0.92 - (index * 0.01), // Slightly more shrink for deeper cards
+          scale: 0.92 - index * 0.01,
           opacity: 0.3,
-          y:50,
           scrollTrigger: {
-            trigger: cards[index + 1], 
-            start: "top ${100 + index * 40}px",
-            end: "top 100px",          
+            trigger: cards[index + 1],
+            start: `top ${100 + index * 40}px`,
+            end: "top 100px",
             scrub: 1.5,
-          }
+          },
         });
       }
     });
-  }
+  });
 
-  ScrollTrigger.refresh();
+  // 3. THE MAGIC FIX: Forced Refresh
+  // We wait 100ms for React to finish rendering, then force GSAP to calculate everything
+  const timer = setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 100);
+
+  return () => {
+    mm.revert();
+    clearTimeout(timer);
+  };
 }, { scope: containerRef, dependencies: [services, loading] });
 
 
@@ -222,9 +165,10 @@ useGSAP(() => {
       effect: "fade",
       loop: true,
       speed: 1400,
-      autoplay: {
-        delay: 4000,
-      },
+      // autoplay: {
+      //   delay: 4000,
+      // },
+      autoplay :false,
       navigation: {
         nextEl: ".slider-next",
         prevEl: ".slider-prev",

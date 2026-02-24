@@ -11083,16 +11083,29 @@ START: Theme Slider CSS
   .tj-slider-item .slider-content .slider-title {
     font-size: 75px;
   }
+  .service-item{
+    margin-bottom: 20px;
+  }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .tj-slider-item .slider-content .slider-title {
-    font-size: 70px;
+    font-size: 55px;
+    margin-bottom: 20px;
+  }
+   .service-item{
     margin-bottom: 20px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .tj-slider-item .slider-content .slider-title {
-    font-size: 50px;
+    font-size:32px;
+    margin-bottom: 20px;
+    line-height: 40px;
+  }
+  .tj-slider-item .slider-content .sub-title{
+     font-size:12px;
+  }
+   .service-item{
     margin-bottom: 20px;
   }
 }

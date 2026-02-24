@@ -13,7 +13,7 @@ export default function Header() {
     return (
       <>
         <header className="header-area header-3 header-absolute">
-          <div className='top-gap-75'>
+          {/* <div className='top-gap-75'> */}
             <div className="header-top style-2">
               <div className="container-fluid">
                 <div className="row">
@@ -45,7 +45,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
-          </div>
+          {/* </div> */}
           <div className="header-bottom">
             <div className="container-fluid">
               <div className="row">
