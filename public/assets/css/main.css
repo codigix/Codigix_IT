@@ -6555,7 +6555,7 @@ START: About CSS
 
 .about-img-area-2 {
   position: relative;
-  height: 100%;
+  height: 700px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .about-img-area-2 {
@@ -11079,9 +11079,19 @@ START: Theme Slider CSS
     font-size: 82px;
   }
 }
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 992px) and (max-width: 1085px) {
   .tj-slider-item .slider-content .slider-title {
-    font-size: 75px;
+    font-size:58px;
+    line-height: 60px;
+  }
+  .service-item{
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (min-width:1086px) and (max-width: 1200px) {
+  .tj-slider-item .slider-content .slider-title {
+    font-size:65px;
+    line-height: 70px;
   }
   .service-item{
     margin-bottom: 20px;
