@@ -25380,3 +25380,47 @@ background: transparent !important;
   height: 100%;
   object-fit: cover;
 }
+.hamburger-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+@media (max-width: 991px) {
+  .tj-offcanvas-area {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .mobile-header,
+  .mobile-menu-wrapper {
+    display: none;
+  }
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.mobile-menu li {
+  padding: 12px 0;
+  border-bottom: 1px solid #222;
+}
+
+.submenu {
+  padding-left: 15px;
+  background: #1a1a1a;
+}
+@media only screen and  (max-width:768px) and (min-width:320px){
+  .about-img-area-2,.about-img-area{
+    display: none;
+  }
+  .about-content-area{
+    margin-bottom: 0 !important;
+  }
+}

@@ -14,30 +14,29 @@ export default function Header() {
       <>
         <header className="header-area header-3 header-absolute">
           {/* <div className='top-gap-75'> */}
-            <div className="header-top style-2">
-              <div className="container-fluid">
-                <div className="row">
-                  <div className="col-12">
-                    <div className="header-top-content">
-                      <p className="topbar-text"><i className="tji-idea"></i>Innovating Tomorrow, Today <Link to="/contact">Click here</Link></p>
-                      <div className="header-info">
-                        <div className="info-item">
-                          <span><i className="tji-envelop-2"></i></span>
-                          <a href="mailto:hello@codigix.com">hello@codigix.com</a>
-                        </div>
-                        <div className="info-item">
-                          <span><i className="tji-phone-2"></i></span>
-                          <a href="tel:8089091313">808-909-1313</a>
-                        </div>
-                        <div className="info-item">
-                          <div className="social-links">
-                            <ul>
-                              <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">FB</a></li>
-                              <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">IN</a></li>
-                              <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LN</a></li>
-                              <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer">TW</a></li>
-                            </ul>
-                          </div>
+          <div className="header-top style-2">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-12">
+                  <div className="header-top-content">
+                    <p className="topbar-text"><i className="tji-idea"></i>Innovating Tomorrow, Today <Link to="/contact">Click here</Link></p>
+                    <div className="header-info">
+                      <div className="info-item">
+                        <span><i className="tji-envelop-2"></i></span>
+                        <a href="mailto:hello@codigix.com">hello@codigix.com</a>
+                      </div>
+                      <div className="info-item">
+                        <span><i className="tji-phone-2"></i></span>
+                        <a href="tel:8089091313">808-909-1313</a>
+                      </div>
+                      <div className="info-item">
+                        <div className="social-links">
+                          <ul>
+                            <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">FB</a></li>
+                            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">IN</a></li>
+                            <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LN</a></li>
+                            <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer">TW</a></li>
+                          </ul>
                         </div>
                       </div>
                     </div>
@@ -45,6 +44,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
+          </div>
           {/* </div> */}
           <div className="header-bottom">
             <div className="container-fluid">
@@ -68,7 +68,7 @@ export default function Header() {
                             </ul> */}
                           </li>
                           {/* <li className="has-dropdown"><Link to="/projects">Projects</Link> */}
-                                <li><Link to="/projects">Projects</Link>
+                          <li><Link to="/projects">Projects</Link>
                             {/* <ul className="sub-menu">
                               <li><Link to="/projects">Projects</Link></li>
                               <li><Link to="/projects/details">Project Details</Link></li>
@@ -136,8 +136,8 @@ export default function Header() {
                             <li><Link to="/services/details">Services DServicesetails</Link></li>
                           </ul>
                         </li> */}
-                          <li><Link to="/services">Services</Link></li>
-                          <li><Link to="/projects">Projects</Link></li>
+                        <li><Link to="/services">Services</Link></li>
+                        <li><Link to="/projects">Projects</Link></li>
                         {/* <li className="has-dropdown"><Link to="/projects">Projects</Link>
                           <ul className="sub-menu">
                             <li><Link to="/projects">Projects</Link></li>
@@ -164,17 +164,18 @@ export default function Header() {
                         <i className="tji-search"></i> Search
                       </button>
                     </div>
-              
-                  <div
-                    className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
-                    onClick={() => setMenuOpen(true)}
-                  >
+
+                    <div
+                      className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
+                      onClick={() => setMenuOpen(true)}
+                    >
                       <span></span>
                       <span></span>
                     </div>
                   </div>
 
-                  <div className="menu_bar mobile_menu_bar d-lg-none">
+                  <div className="menu_bar mobile_menu_bar d-lg-none"
+                  onClick={() => setMenuOpen(true)}>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -227,8 +228,8 @@ export default function Header() {
                             <li><Link to="/projects/details">Project Details</Link></li>
                           </ul>
                         </li> */}
-                         <li><Link to="/services">Services</Link></li>
-                          <li><Link to="/projects">Projects</Link></li>
+                        <li><Link to="/services">Services</Link></li>
+                        <li><Link to="/projects">Projects</Link></li>
                         <li className="has-dropdown"><Link to="/blog">Blog</Link>
                           <ul className="sub-menu">
                             <li><Link to="/blog">Blog</Link></li>
@@ -260,7 +261,8 @@ export default function Header() {
                     </div>
                   </div>
 
-                  <div className="menu_bar mobile_menu_bar d-lg-none">
+                  <div className="menu_bar mobile_menu_bar d-lg-none"
+                  onClick={() => setMenuOpen(true)}>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -297,7 +299,7 @@ export default function Header() {
                             <li><a href="#">Home 08</a></li>
                           </ul>
                         </li> */}
-                         <li><Link to="/">Home</Link></li>
+                        <li><Link to="/">Home</Link></li>
                         <li><Link to="/about">About Us</Link></li>
                         {/* <li className="has-dropdown"><Link to="/about">Pages</Link>
                           <ul className="sub-menu">
@@ -322,7 +324,7 @@ export default function Header() {
                           </ul>
                         </li> */}
                         <li><Link to="/services">Services</Link></li>
-                          <li><Link to="/projects">Projects</Link></li>
+                        <li><Link to="/projects">Projects</Link></li>
                         <li className="has-dropdown"><Link to="/blog">Blog</Link>
                           <ul className="sub-menu">
                             <li><Link to="/blog">Blog</Link></li>
@@ -336,7 +338,7 @@ export default function Header() {
 
                   <div className="header-right-item d-none d-lg-inline-flex">
                     <div className="header-search">
-                        <button
+                      <button
                         className="search"
                         onClick={() => setSearchOpen(true)}
                       >
