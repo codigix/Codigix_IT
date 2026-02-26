@@ -170,46 +170,46 @@ export default function HomePage() {
   //   };
   // }, [services]);
   const containerRef = useRef(null);
-useGSAP(() => {
-  if (loading || services.length === 0 || !containerRef.current) return;
+  useGSAP(() => {
+    if (loading || services.length === 0 || !containerRef.current) return;
 
-  const cards = gsap.utils.toArray(".service-stack");
-  
-  if (window.innerWidth > 992) {
-    cards.forEach((card, index) => {
-      // PINNING: Pin every card EXCEPT the last one
-      if (index < cards.length - 1) {
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top 100px", 
-          // Each card stays pinned until the LAST card reaches the top
-          endTrigger: cards[cards.length - 1],
-          end: "top 100px", 
-          pin: true,
-          pinSpacing: false, // Allows cards to stack
-          invalidateOnRefresh: true,
-          markers: false,
+    const cards = gsap.utils.toArray(".service-stack");
 
-        });
+    if (window.innerWidth > 992) {
+      cards.forEach((card, index) => {
+        // PINNING: Pin every card EXCEPT the last one
+        if (index < cards.length - 1) {
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 100px",
+            // Each card stays pinned until the LAST card reaches the top
+            endTrigger: cards[cards.length - 1],
+            end: "top 100px",
+            pin: true,
+            pinSpacing: false, // Allows cards to stack
+            invalidateOnRefresh: true,
+            markers: false,
 
-        // STACKING EFFECT: Shrink & Fade
-        gsap.to(card, {
-          scale: 0.92 - (index * 0.01), // Slightly more shrink for deeper cards
-          opacity: 0.3,
-          y:50,
-          scrollTrigger: {
-            trigger: cards[index + 1], 
-            start: "top ${100 + index * 40}px",
-            end: "top 100px",          
-            scrub: 1.5,
-          }
-        });
-      }
-    });
-  }
+          });
 
-  ScrollTrigger.refresh();
-}, { scope: containerRef, dependencies: [services, loading] });
+          // STACKING EFFECT: Shrink & Fade
+          gsap.to(card, {
+            scale: 0.92 - (index * 0.01), // Slightly more shrink for deeper cards
+            opacity: 0.3,
+            y: 50,
+            scrollTrigger: {
+              trigger: cards[index + 1],
+              start: "top ${100 + index * 40}px",
+              end: "top 100px",
+              scrub: 1.5,
+            }
+          });
+        }
+      });
+    }
+
+    ScrollTrigger.refresh();
+  }, { scope: containerRef, dependencies: [services, loading] });
 
 
   useEffect(() => {
@@ -524,7 +524,7 @@ useGSAP(() => {
           </div>
           <div className="row">
             <div className="col-12">
-
+              {/* Desktop view */}
               <div className="service-wrapper-main mb-40 wow fadeInUp "
                 data-wow-delay=".4s" ref={containerRef}>
 
@@ -564,17 +564,12 @@ useGSAP(() => {
 
                 ))}
               </div>
+              {/* Mobile view */}
+              <div className="service-wrapper-main-1 mb-40 wow fadeInUp "
+                data-wow-delay=".4s">
 
-              {/* <div className="service-wrapper-main"
-                style={{
-                  position: "relative",
-                  height: "500px",
-                  maxWidth: "900px",
-                  margin: "0 auto",
-                }}
-              >
                 {services.map((service, idx) => (
-                  <div className="service-item style-3 service-stack " key={service.id}>
+                  <div className="service-item style-3 service-stack " key={service.id} >
                     <div className="service-inner">
                       <div className="service-content">
                         <h3 className="title">
@@ -606,9 +601,8 @@ useGSAP(() => {
                     </div>
                     <span className="item-count">{service.num}.</span>
                   </div>
-
                 ))}
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
