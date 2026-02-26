@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import SearchPopup from './SearchPopup';
+import HamburgerMenu from './HamburgerMenu';
 
 export default function Header() {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
   const isHome = pathname === '/';
 
@@ -9,6 +13,7 @@ export default function Header() {
     return (
       <>
         <header className="header-area header-3 header-absolute">
+          {/* <div className='top-gap-75'> */}
           <div className="header-top style-2">
             <div className="container-fluid">
               <div className="row">
@@ -40,6 +45,7 @@ export default function Header() {
               </div>
             </div>
           </div>
+          {/* </div> */}
           <div className="header-bottom">
             <div className="container-fluid">
               <div className="row">
@@ -54,17 +60,19 @@ export default function Header() {
                         <ul>
                           <li className="current-menu-ancestor"><Link to="/">Home</Link></li>
                           <li><Link to="/about">About Us</Link></li>
-                          <li className="has-dropdown"><Link to="/services">Services</Link>
-                            <ul className="sub-menu">
+                          {/* <li className="has-dropdown"><Link to="/services">Services</Link> */}
+                          <li ><Link to="/services">Services</Link>
+                            {/* <ul className="sub-menu">
                               <li><Link to="/services">Services</Link></li>
                               <li><Link to="/services/details">Services Details</Link></li>
-                            </ul>
+                            </ul> */}
                           </li>
-                          <li className="has-dropdown"><Link to="/projects">Projects</Link>
-                            <ul className="sub-menu">
+                          {/* <li className="has-dropdown"><Link to="/projects">Projects</Link> */}
+                          <li><Link to="/projects">Projects</Link>
+                            {/* <ul className="sub-menu">
                               <li><Link to="/projects">Projects</Link></li>
                               <li><Link to="/projects/details">Project Details</Link></li>
-                            </ul>
+                            </ul> */}
                           </li>
                           <li className="has-dropdown"><Link to="/blog">Blog</Link>
                             <ul className="sub-menu">
@@ -79,17 +87,24 @@ export default function Header() {
 
                     <div className="header-right-item d-lg-inline-flex d-none">
                       <div className="header-search">
-                        <button className="search">
+                        <button className="search"
+                          onClick={() => setSearchOpen(true)} >
                           <i className="tji-search"></i> Search
                         </button>
                       </div>
-                      <div className="menu_bar menu_offcanvas d-lg-inline-flex d-none">
+                      <div
+                        className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
+                        onClick={() => setMenuOpen(true)}
+                      >
                         <span></span>
                         <span></span>
                       </div>
                     </div>
 
-                    <div className="menu_bar mobile_menu_bar d-lg-none">
+                    <div
+                      className="menu_bar mobile_menu_bar d-lg-none"
+                      onClick={() => setMenuOpen(true)}
+                    >
                       <span></span>
                       <span></span>
                       <span></span>
@@ -113,20 +128,22 @@ export default function Header() {
                   <div className="menu-area d-none d-lg-inline-flex align-items-center">
                     <nav className="mainmenu">
                       <ul>
-                     <li className="current-menu-ancestor"><Link to="/">Home</Link></li>
-                      <li><Link to="/about">About Us</Link></li>
-                        <li className="has-dropdown"><Link to="/services">Services</Link>
+                        <li className="current-menu-ancestor"><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About Us</Link></li>
+                        {/* <li className="has-dropdown"><Link to="/services"></Link>
                           <ul className="sub-menu">
                             <li><Link to="/services">Services</Link></li>
-                            <li><Link to="/services/details">Services Details</Link></li>
+                            <li><Link to="/services/details">Services DServicesetails</Link></li>
                           </ul>
-                        </li>
-                        <li className="has-dropdown"><Link to="/projects">Projects</Link>
+                        </li> */}
+                        <li><Link to="/services">Services</Link></li>
+                        <li><Link to="/projects">Projects</Link></li>
+                        {/* <li className="has-dropdown"><Link to="/projects">Projects</Link>
                           <ul className="sub-menu">
                             <li><Link to="/projects">Projects</Link></li>
                             <li><Link to="/projects/details">Project Details</Link></li>
                           </ul>
-                        </li>
+                        </li> */}
                         <li className="has-dropdown"><Link to="/blog">Blog</Link>
                           <ul className="sub-menu">
                             <li><Link to="/blog">Blog</Link></li>
@@ -140,17 +157,25 @@ export default function Header() {
 
                   <div className="header-right-item d-none d-lg-inline-flex">
                     <div className="header-search">
-                      <button className="search">
+                      <button
+                        className="search"
+                        onClick={() => setSearchOpen(true)}
+                      >
                         <i className="tji-search"></i> Search
                       </button>
                     </div>
-                    <div className="menu_bar menu_offcanvas d-lg-inline-flex d-none">
+
+                    <div
+                      className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
+                      onClick={() => setMenuOpen(true)}
+                    >
                       <span></span>
                       <span></span>
                     </div>
                   </div>
 
-                  <div className="menu_bar mobile_menu_bar d-lg-none">
+                  <div className="menu_bar mobile_menu_bar d-lg-none"
+                  onClick={() => setMenuOpen(true)}>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -160,7 +185,17 @@ export default function Header() {
             </div>
           </div>
         </header>
+        {/* ===== SEARCH POPUP ===== */}
+        <SearchPopup
+          isOpen={searchOpen}
+          onClose={() => setSearchOpen(false)}
+        />
+        <HamburgerMenu
+          isOpen={menuOpen}
+          onClose={() => setMenuOpen(false)}
+        />
       </>
+
     );
   }
 
@@ -181,18 +216,20 @@ export default function Header() {
                       <ul>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/about">About Us</Link></li>
-                        <li className="has-dropdown"><Link to="/services">Services</Link>
+                        {/* <li className="has-dropdown"><Link to="/services">Services</Link>
                           <ul className="sub-menu">
                             <li><Link to="/services">Services</Link></li>
                             <li><Link to="/services/details">Services Details</Link></li>
                           </ul>
-                        </li>
-                        <li className="has-dropdown"><Link to="/projects">Projects</Link>
+                        </li> */}
+                        {/* <li className="has-dropdown"><Link to="/projects">Projects</Link>
                           <ul className="sub-menu">
                             <li><Link to="/projects">Projects</Link></li>
                             <li><Link to="/projects/details">Project Details</Link></li>
                           </ul>
-                        </li>
+                        </li> */}
+                        <li><Link to="/services">Services</Link></li>
+                        <li><Link to="/projects">Projects</Link></li>
                         <li className="has-dropdown"><Link to="/blog">Blog</Link>
                           <ul className="sub-menu">
                             <li><Link to="/blog">Blog</Link></li>
@@ -206,7 +243,10 @@ export default function Header() {
 
                   <div className="header-right-item d-none d-lg-inline-flex">
                     <div className="header-search">
-                      <button className="search">
+                      <button
+                        className="search"
+                        onClick={() => setSearchOpen(true)}
+                      >
                         <i className="tji-search"></i> Search
                       </button>
                     </div>
@@ -221,7 +261,8 @@ export default function Header() {
                     </div>
                   </div>
 
-                  <div className="menu_bar mobile_menu_bar d-lg-none">
+                  <div className="menu_bar mobile_menu_bar d-lg-none"
+                  onClick={() => setMenuOpen(true)}>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -246,7 +287,7 @@ export default function Header() {
                   <div className="menu-area d-none d-lg-inline-flex align-items-center">
                     <nav className="mainmenu">
                       <ul>
-                        <li className="has-dropdown"><Link to="/">Home</Link>
+                        {/* <li className="has-dropdown"><Link to="/">Home</Link>
                           <ul className="sub-menu">
                             <li><Link to="/">Home 01</Link></li>
                             <li><a href="#">Home 02</a></li>
@@ -257,8 +298,10 @@ export default function Header() {
                             <li><a href="#">Home 07</a></li>
                             <li><a href="#">Home 08</a></li>
                           </ul>
-                        </li>
-                        <li className="has-dropdown"><Link to="/about">Pages</Link>
+                        </li> */}
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About Us</Link></li>
+                        {/* <li className="has-dropdown"><Link to="/about">Pages</Link>
                           <ul className="sub-menu">
                             <li><Link to="/about">About Us</Link></li>
                             <li><a href="#">Team</a></li>
@@ -279,7 +322,9 @@ export default function Header() {
                             <li><Link to="/projects">Projects</Link></li>
                             <li><Link to="/projects/details">Project Details</Link></li>
                           </ul>
-                        </li>
+                        </li> */}
+                        <li><Link to="/services">Services</Link></li>
+                        <li><Link to="/projects">Projects</Link></li>
                         <li className="has-dropdown"><Link to="/blog">Blog</Link>
                           <ul className="sub-menu">
                             <li><Link to="/blog">Blog</Link></li>
@@ -293,7 +338,10 @@ export default function Header() {
 
                   <div className="header-right-item d-none d-lg-inline-flex">
                     <div className="header-search">
-                      <button className="search">
+                      <button
+                        className="search"
+                        onClick={() => setSearchOpen(true)}
+                      >
                         <i className="tji-search"></i> Search
                       </button>
                     </div>
@@ -308,17 +356,28 @@ export default function Header() {
                     </div>
                   </div>
 
-                  <div className="menu_bar mobile_menu_bar d-lg-none">
+                  {/* <div
+                    className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
+                    onClick={() => setMenuOpen(true)}
+                  >
                     <span></span>
                     <span></span>
-                    <span></span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </header>
+      {/* ===== SEARCH POPUP ===== */}
+      <SearchPopup
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
+      <HamburgerMenu
+        isOpen={menuOpen}
+        onClose={() => setMenuOpen(false)}
+      />
     </>
   );
 }

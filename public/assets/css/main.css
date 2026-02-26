@@ -729,7 +729,8 @@ body:has(.sticky) .sticky-lg-top {
   background: linear-gradient(135deg, #ff007f 0%, #ff1493 100%);
   font-size: 16px;
   font-weight: var(--tj-fw-sbold);
-  padding: 6px 6px 6px 24px;
+  /* padding: 6px 6px 6px 24px; */
+  padding: 4px !important;
   text-align: center;
   border-radius: 50px;
   line-height: 1;
@@ -3744,11 +3745,12 @@ START: Preloader CSS
   position: absolute;
   top: 50%;
   left: 50%;
-  max-width: 66px;
+  max-width: 100%;
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
+
 
 @-webkit-keyframes rotate-loading {
   0% {
@@ -6553,7 +6555,7 @@ START: About CSS
 
 .about-img-area-2 {
   position: relative;
-  height: 100%;
+  height: 700px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .about-img-area-2 {
@@ -11077,20 +11079,43 @@ START: Theme Slider CSS
     font-size: 82px;
   }
 }
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 992px) and (max-width: 1085px) {
   .tj-slider-item .slider-content .slider-title {
-    font-size: 75px;
+    font-size:58px;
+    line-height: 60px;
+  }
+  .service-item{
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (min-width:1086px) and (max-width: 1200px) {
+  .tj-slider-item .slider-content .slider-title {
+    font-size:65px;
+    line-height: 70px;
+  }
+  .service-item{
+    margin-bottom: 20px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .tj-slider-item .slider-content .slider-title {
-    font-size: 70px;
+    font-size: 55px;
+    margin-bottom: 20px;
+  }
+   .service-item{
     margin-bottom: 20px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .tj-slider-item .slider-content .slider-title {
-    font-size: 50px;
+    font-size:32px;
+    margin-bottom: 20px;
+    line-height: 40px;
+  }
+  .tj-slider-item .slider-content .sub-title{
+     font-size:12px;
+  }
+   .service-item{
     margin-bottom: 20px;
   }
 }
@@ -25269,16 +25294,16 @@ background: transparent !important;
 .project-content .title a{
   text-transform: capitalize !important;
 }
-.service-wrapper-main {
-  position: relative;
-  /* Ensure the container itself doesn't hide the overflow of the cards */
-  overflow: visible !important;
-}
 
 .service-stack {
+    /* DISABLE all CSS transitions - GSAP must have 100% control */
+  transition: none !important; 
+   /* Hardware acceleration: tells the GPU to handle this element */
+  will-change: transform, opacity; 
   transform-origin: center top; 
   /* The space between cards during scroll */
-  margin-bottom: 150px; 
+  margin-bottom: 0 !important; /* Spacing is handled by the GSAP Timeline now */
+  width: 100%;
   position: relative;
   z-index: 1;
 }
@@ -25294,4 +25319,118 @@ background: transparent !important;
 .tj-project-section {
   position: relative;
   z-index: 10;
+}
+.service-wrapper-main {
+  /* Essential: hide overflow so cards don't "peak" out 
+     from the bottom of the section during the pin */
+  position: relative;   
+  overflow: hidden; 
+  background: transparent;
+}
+.top-gap-75{
+  height:70px !important;
+}
+.header-wrapper .menu-area{
+  margin-top: 4px !important;
+}
+.header-wrapper .logo{
+  margin-top: 4px;
+}.tj-offcanvas-area {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  height: 100%;
+  background: #111;
+  transform: translateX(100%);
+  will-change: transform, opacity;
+  z-index: 9999;
+  overflow-y: auto;
+}
+
+.hamburger-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+  z-index: 9998;
+}
+.tj-offcanvas-area {
+  transition: transform 0.5s ease;
+}
+
+.tj-offcanvas-area.open {
+  transform: translateX(0);
+}
+
+.tj-offcanvas-area.closed {
+  transform: translateX(100%);
+}
+.page-numbers {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.tj-slider-item {
+  position: relative;
+  height: 100vh; /* FIXED HEIGHT */
+  overflow: hidden;
+}
+
+.slider-bg-image {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hamburger-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+@media (max-width: 991px) {
+  .tj-offcanvas-area {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .mobile-header,
+  .mobile-menu-wrapper {
+    display: none;
+  }
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.mobile-menu li {
+  padding: 12px 0;
+  border-bottom: 1px solid #222;
+}
+
+.submenu {
+  padding-left: 15px;
+  background: #1a1a1a;
+}
+@media only screen and  (max-width:768px) and (min-width:320px){
+  .about-img-area-2,.about-img-area{
+    display: none;
+  }
+  .about-content-area{
+    margin-bottom: 0 !important;
+  }
 }

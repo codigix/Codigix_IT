@@ -73,7 +73,7 @@ export default function ServicesPage() {
               </div>
             ))}
           </div>
-
+{/* 
           <div className="tj-pagination d-flex justify-content-center">
             <ul>
               <li><span aria-current="page" className="page-numbers current">1</span></li>
@@ -81,7 +81,7 @@ export default function ServicesPage() {
               <li><a className="page-numbers" href="#">3</a></li>
               <li><a className="next page-numbers" href="#"><i className="tji-arrow-right"></i></a></li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </section>
 
