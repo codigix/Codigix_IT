@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import Swiper from "swiper";
+import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   Pagination,
   Navigation,
@@ -8,11 +8,18 @@ import {
   Autoplay,
   FreeMode,
 } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+
+import "swiper/css/free-mode";
+
 
 import config from "../config";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 // Register right after imports
 gsap.registerPlugin(ScrollTrigger);
 
@@ -101,104 +108,75 @@ export default function HomePage() {
     }, 500);
   }, []);
 
-
-  ///Service-stack
-
   const containerRef = useRef(null);
- useGSAP(() => {
-  if (loading || services.length === 0 || !containerRef.current) return;
+  const [isDesktop, setIsDesktop] = useState(false);
 
-  const cards = gsap.utils.toArray(".service-stack");
-  let mm = gsap.matchMedia();
+  // Safe screen detection (No window error)
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsDesktop(window.innerWidth > 1024);
+    };
 
-  mm.add("(min-width: 1025px)", () => {
-    cards.forEach((card, index) => {
-      if (index < cards.length - 1) {
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top 100px",
-          endTrigger: cards[cards.length - 1],
-          end: "top 100px",
-          pin: true,
-          pinSpacing: false,
-          invalidateOnRefresh: true,
-          // 1. ADD THIS: Anticipate the pin to prevent the jump
-          anticipatePin: 1, 
-          // 2. ADD THIS: Priority ensures this trigger calculates before others
-          refreshPriority: 1, 
-        });
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
 
-        gsap.to(card, {
-          scale: 0.92 - index * 0.01,
-          opacity: 0.3,
-          scrollTrigger: {
-            trigger: cards[index + 1],
-            start: `top ${100 + index * 40}px`,
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+  ///Service-stack
+  // old code
+  //   const containerRef = useRef(null);
+  useGSAP(() => {
+    if (!isDesktop || loading || services.length === 0 || !containerRef.current)
+      return;
+
+    const cards = gsap.utils.toArray(".service-stack");
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1025px)", () => {
+      cards.forEach((card, index) => {
+        if (index < cards.length - 1) {
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 100px",
+            endTrigger: cards[cards.length - 1],
             end: "top 100px",
-            scrub: 1.5,
-          },
-        });
-      }
+            pin: true,
+            pinSpacing: false,
+            anticipatePin: 1,
+            refreshPriority: 1,
+          });
+
+          gsap.to(card, {
+            scale: 0.92 - index * 0.01,
+            opacity: 0.3,
+            scrollTrigger: {
+              trigger: cards[index + 1],
+              start: `top ${100 + index * 40}px`,
+              end: "top 100px",
+              scrub: 1.5,
+            },
+          });
+        }
+      });
     });
-  });
 
-  // 3. THE MAGIC FIX: Forced Refresh
-  // We wait 100ms for React to finish rendering, then force GSAP to calculate everything
-  const timer = setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 100);
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 400);
 
-  return () => {
-    mm.revert();
-    clearTimeout(timer);
-  };
-}, { scope: containerRef, dependencies: [services, loading] });
+    return () => {
+      mm.revert();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      clearTimeout(refreshTimer);
+    };
+  }, { dependencies: [services, loading, isDesktop] });
 
+  
 
   useEffect(() => {
     if (loading || slides.length === 0) return;
 
-    const heroSlider = new Swiper(".hero-slider", {
-      modules: [Pagination, Navigation, EffectFade, Autoplay],
-      slidesPerView: 1,
-      spaceBetween: 0,
-      effect: "fade",
-      loop: true,
-      speed: 1400,
-      // autoplay: {
-      //   delay: 4000,
-      // },
-      autoplay :false,
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prev",
-      },
-      pagination: {
-        el: ".hero-pagination",
-        clickable: true,
-        renderBullet: function (index, className) {
-          return (
-            '<span class="' + className + '">' + "0" + (index + 1) + "</span>"
-          );
-        },
-      },
-    });
-
-    const clientSlider = new Swiper(".client-slider", {
-      modules: [Autoplay, FreeMode],
-      slidesPerView: "auto",
-      spaceBetween: 30,
-      loop: true,
-      speed: 8000,
-      freeMode: true,
-      freeModeMomentum: false,
-      allowTouchMove: false,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-      },
-    });
-
+ 
     const initCounter = () => {
       if (window.jQuery && window.jQuery.fn.counterUp) {
         const counters = window.jQuery(".counter");
@@ -217,11 +195,23 @@ export default function HomePage() {
 
     return () => {
       clearTimeout(timer);
-      heroSlider.destroy();
-      clientSlider.destroy();
+      // heroSlider.destroy();
+      // clientSlider.destroy();
     };
   }, [loading, slides, clients]);
 
+const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 768); // mobile breakpoint
+  };
+
+  handleResize(); // check on load
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
 
 
   if (loading) {
@@ -233,26 +223,134 @@ export default function HomePage() {
       </div>
     );
   }
+  // Common Card Component to keep code DRY
+  const ServiceCard = ({ service }) => (
+    <div className="service-inner">
+      <div className="service-content">
+        <h3 className="title">
+          <Link to="/services/details">{service.title}</Link>
+        </h3>
 
+        <p className="desc">{service.desc}</p>
+
+        <ul className="list-style-2">
+          <li>Personalized Experience</li>
+          <li>Process Automation</li>
+          <li>Predictive Analytics</li>
+        </ul>
+
+        <Link className="tj-primary-btn" to="/services/details">
+          <div className="btn-inner">
+            <span className="btn-icon h-icon">
+              <i className="tji-arrow-right"></i>
+            </span>
+            <span className="btn-text">Learn More</span>
+            <span className="btn-icon">
+              <i className="tji-arrow-right"></i>
+            </span>
+          </div>
+        </Link>
+      </div>
+
+      <div className="service-img">
+        <img
+          src={`assets/images/service/${service.image}.jpg`}
+          alt={service.title}
+        />
+      </div>
+
+      <span className="item-count">{service.num}.</span>
+    </div>
+  );
+const PricingCard = ({ pricing, idx }) => (
+  <div
+    className={`pricing-box style-2 ${pricing.active ? "active" : ""}`}
+  >
+    <div className="pricing-box-inner">
+      <div className="pricing-badge">
+        <span>
+          <span>{pricing.badge}</span>
+        </span>
+      </div>
+
+      <div className="pricing-header">
+        <h6 className="package-name">{pricing.name}</h6>
+
+        <div className="package-price">
+          <span className="package-currency">$</span>
+          <span className="price-number">{pricing.price}</span>
+          <span className="package-period">/month</span>
+        </div>
+
+        <div className="package-desc">
+          <p>{pricing.desc}</p>
+        </div>
+
+        <div className="pricing-btn">
+          <Link className="text-btn" to="/contact">
+            <span className="btn-text">
+              <span>Choose Package</span>
+            </span>
+            <span className="btn-icon">
+              <i className="tji-arrow-right"></i>
+            </span>
+          </Link>
+        </div>
+      </div>
+
+      <div className="list-style-3">
+        <h6 className="title">Included:</h6>
+        <ul>
+          <li><i className="tji-check"></i>AI-powered tools</li>
+          <li><i className="tji-check"></i>10 hours support</li>
+          <li><i className="tji-check"></i>Basic data analysis</li>
+          <li><i className="tji-check"></i>Email support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+);
   return (
     <>
       {/* Banner Slider */}
+
       <section className="tj-slider-section">
-        <div className="swiper hero-slider">
-          <div className="swiper-wrapper">
-            {slides.map((slide) => (
-              <div className="swiper-slide tj-slider-item" key={slide.id}>
-                <div
-                  className="slider-bg-image"
-                  // style={{ backgroundImage: `url(${slide.image})` }}
-                >
-                    <img
-    src={slide.image}
-    alt="Hero"
-    className="hero-image"
-    loading={slide.id === 1 ? "eager" : "lazy"}
-  />
+       
+        <Swiper
+          modules={[Pagination, Navigation, EffectFade, Autoplay]}
+            freeMode={true}
+          freeModeMomentum={false}
+          slidesPerView={1}
+          spaceBetween={0}
+          effect="fade"
+          loop={true}
+          speed={1400}
+          autoplay={false}
+          navigation={{
+            nextEl: ".slider-next",
+            prevEl: ".slider-prev",
+          }}
+          pagination={{
+            el: ".hero-pagination",
+            clickable: true,
+            renderBullet: (index, className) => {
+              return `<span class="${className}">0${index + 1}</span>`;
+            },
+          }}
+          className="hero-slider"
+        >
+          {slides.map((slide) => (
+            <SwiperSlide key={slide.id}>
+              <div className="tj-slider-item">
+                <div className="slider-bg-image">
+                  <img
+                    src={slide.image}
+                    alt="Hero"
+                    className="hero-image"
+                    loading={slide.id === 1 ? "eager" : "lazy"}
+                  />
                 </div>
+
                 <div className="slider-wrapper">
                   <div className="slider-content">
                     <div className="slider-title-area">
@@ -260,11 +358,17 @@ export default function HomePage() {
                         <i className="tji-subtitle-2"></i>
                         {slide.subtitle}
                       </span>
+
                       <h1 className="slider-title">{slide.title}</h1>
                     </div>
+
                     <div className="slider-desc">{slide.description}</div>
+
                     <div className="slider-btn">
-                      <Link className="tj-primary-btn home-button" to="/contact">
+                      <Link
+                        className="tj-primary-btn home-button"
+                        to="/contact"
+                      >
                         <div className="btn-inner">
                           <span className="btn-icon h-icon">
                             <i className="tji-arrow-right"></i>
@@ -279,8 +383,10 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </SwiperSlide>
+          ))}
+
+          {/* Navigation */}
           <div className="hero-navigation">
             <div className="slider-prev">
               <span className="anim-icon">
@@ -288,6 +394,7 @@ export default function HomePage() {
                 <i className="tji-arrow-left-long"></i>
               </span>
             </div>
+
             <div className="slider-next">
               <span className="anim-icon">
                 <i className="tji-arrow-right-long"></i>
@@ -295,9 +402,13 @@ export default function HomePage() {
               </span>
             </div>
           </div>
+
+          {/* Pagination */}
           <div className="swiper-pagination hero-pagination"></div>
-        </div>
+        </Swiper>
       </section>
+
+
 
       {/* Client Section */}
       <section
@@ -308,23 +419,42 @@ export default function HomePage() {
         <div className="container">
           <div className="row">
             <div className="col-12">
+
               <div className="client-content wow fadeInUp" data-wow-delay=".3s">
-                <h5 className="sec-title ">
+                <h5 className="sec-title">
                   <span className="client-numbers">2000+</span> Trusted Client
                   over the World
                 </h5>
               </div>
-              <div className="swiper client-slider">
-                <div className="swiper-wrapper">
-                  {clients.map((client) => (
-                    <div className="swiper-slide client-item" key={client.id}>
-                      <div className="client-logo">
-                        <img src={client.image} alt="Brand" />
-                      </div>
+
+              <Swiper
+                modules={[Autoplay, FreeMode]}
+                  slidesPerView="auto"
+                spaceBetween={30}
+                loop={true}
+                speed={8000}
+                freeMode={true}
+                freeModeMomentum={false}
+                allowTouchMove={false}
+                autoplay={{
+                  delay: 0,
+                  disableOnInteraction: false,
+                }}
+                className="client-slider"
+              >
+                {clients.map((client) => (
+                  <SwiperSlide
+                    key={client.id}
+                    className="client-item"
+                    style={{ width: "auto" }}
+                  >
+                    <div className="client-logo">
+                      <img src={client.image} alt="Brand" />
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
             </div>
           </div>
         </div>
@@ -466,101 +596,90 @@ export default function HomePage() {
           <div className="row">
             <div className="col-12">
               <div className="sec-heading sec-heading-centered style-3">
-                <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
+                <span className="sub-title">
                   <i className="tji-subtitle-2"></i>Our Best Services
                 </span>
-                <h2 className="sec-title text-anim">Explore Our Services</h2>
+                <h2 className="sec-title">Explore Our Services</h2>
               </div>
             </div>
           </div>
+
           <div className="row">
             <div className="col-12">
-              {/* Desktop view */}
-              <div className="service-wrapper-main mb-40 wow fadeInUp "
-                data-wow-delay=".4s" ref={containerRef}>
+              <div className="service-wrapper-main mb-40" ref={containerRef}>
 
-                {services.map((service, idx) => (
-                  <div className="service-item style-3 service-stack " key={service.id} >
-                    <div className="service-inner">
-                      <div className="service-content">
-                        <h3 className="title">
-                          <Link to="/services/details">{service.title}</Link> </h3>
-                        <p className="desc">{service.desc}</p>
-                        <ul className="list-style-2">
-                          <li>Personalized Experience</li>
-                          <li>Process Automation</li>
-                          <li>Predictive Analytics</li>
-                        </ul>
-                        <Link className="tj-primary-btn" to="/services/details">
-                          <div className="btn-inner">
-                            <span className="btn-icon h-icon">
-                              <i className="tji-arrow-right"></i>
-                            </span>
-                            <span className="btn-text">Learn More</span>
-                            <span className="btn-icon">
-                              <i className="tji-arrow-right"></i>
-                            </span>
+                {isDesktop ? (
+                  //  DESKTOP – GSAP STACK
+                  services.map((service) => (
+                    <div
+                      className="service-item style-3 service-stack"
+                      key={service.id}
+                    >
+                      <ServiceCard service={service} />
+                    </div>
+                  ))
+                ) : (
+                  //  MOBILE/TABLET – SWIPER
+                  <div className="swiper-container-wrapper">
+                    <Swiper
+                      modules={[Pagination, Navigation, Autoplay]}
+                      spaceBetween={20}
+                      slidesPerView={1}
+                      loop={true}
+                      autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
+                      }}
+                      pagination={{
+                        clickable: true,
+                        el: ".swiper-pagination-custom",
+                      }}
+                      navigation={{
+                        nextEl: ".swiper-button-next-custom",
+                        prevEl: ".swiper-button-prev-custom",
+                      }}
+                      breakpoints={{
+                        768: { slidesPerView: 2 },
+                      }}
+                      className="service-swiper"
+                    >
+                      {services.map((service) => (
+                        <SwiperSlide key={service.id}>
+                          <div className="service-item style-3">
+                            <ServiceCard service={service} />
                           </div>
-                        </Link>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+
+                    <div className="swiper-controls">
+                      <div className="swiper-button-prev-custom">
+                        <i className="tji-arrow-left"></i>
                       </div>
-                      <div className="service-img">
-                        <img
-                          src={`assets/images/service/${service.image}.jpg`}
-                          alt={service.title}
-                        />
+                      <div className="swiper-pagination-custom"></div>
+                      <div className="swiper-button-next-custom">
+                        <i className="tji-arrow-right"></i>
                       </div>
                     </div>
-                    <span className="item-count">{service.num}.</span>
                   </div>
+                )}
 
-                ))}
-              </div>
-              {/* Mobile view */}
-              <div className="service-wrapper-main-1 mb-40 wow fadeInUp "
-                data-wow-delay=".4s">
-
-                {services.map((service, idx) => (
-                  <div className="service-item style-3 service-stack " key={service.id} >
-                    <div className="service-inner">
-                      <div className="service-content">
-                        <h3 className="title">
-                          <Link to="/services/details">{service.title}</Link> </h3>
-                        <p className="desc">{service.desc}</p>
-                        <ul className="list-style-2">
-                          <li>Personalized Experience</li>
-                          <li>Process Automation</li>
-                          <li>Predictive Analytics</li>
-                        </ul>
-                        <Link className="tj-primary-btn" to="/services/details">
-                          <div className="btn-inner">
-                            <span className="btn-icon h-icon">
-                              <i className="tji-arrow-right"></i>
-                            </span>
-                            <span className="btn-text">Learn More</span>
-                            <span className="btn-icon">
-                              <i className="tji-arrow-right"></i>
-                            </span>
-                          </div>
-                        </Link>
-                      </div>
-                      <div className="service-img">
-                        <img
-                          src={`assets/images/service/${service.image}.jpg`}
-                          alt={service.title}
-                        />
-                      </div>
-                    </div>
-                    <span className="item-count">{service.num}.</span>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
         </div>
+
         <div className="service-bottom-btn">
           <Link className="text-btn" to="/services">
-            <span className="btn-text"><span>More Services</span></span>
-            <span className="btn-icon"><span><i className="tji-arrow-down"></i></span></span>
+            <span className="btn-text">
+              <span>More Services</span>
+            </span>
+            <span className="btn-icon">
+              <span>
+                <i className="tji-arrow-down"></i>
+              </span>
+            </span>
           </Link>
         </div>
       </section>
@@ -662,7 +781,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="col-lg-7">
-              {[
+              {/* {[
                 {
                   name: "Basic",
                   price: "20",
@@ -757,7 +876,75 @@ export default function HomePage() {
                     </div>
                   </div>
                 </div>
-              ))}
+              ))} */}
+         {isMobile ? (
+  <Swiper
+    modules={[Pagination]}
+    slidesPerView={1}
+    spaceBetween={20}
+    pagination={{ clickable: true }}
+  >{[
+                {
+                  name: "Basic",
+                  price: "20",
+                  yearPrice: "30",
+                  badge: "50% off",
+                  desc: "Specialize in delivering AI-powered solution revolutionize.",
+                },
+                {
+                  name: "Pro Plan",
+                  price: "60",
+                  yearPrice: "90",
+                  badge: "Popular",
+                  desc: "Specialize in delivering AI-powered solution revolutionize.",
+                  active: true,
+                },
+                {
+                  name: "Premium",
+                  price: "90",
+                  yearPrice: "120",
+                  badge: "Essential",
+                  desc: "Specialize in delivering AI-powered solution revolutionize.",
+                },
+              ].map((pricing, idx) => (
+      <SwiperSlide key={idx}>
+        <PricingCard pricing={pricing} idx={idx} />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+) : (
+  <div>
+    {[
+                {
+                  name: "Basic",
+                  price: "20",
+                  yearPrice: "30",
+                  badge: "50% off",
+                  desc: "Specialize in delivering AI-powered solution revolutionize.",
+                },
+                {
+                  name: "Pro Plan",
+                  price: "60",
+                  yearPrice: "90",
+                  badge: "Popular",
+                  desc: "Specialize in delivering AI-powered solution revolutionize.",
+                  active: true,
+                },
+                {
+                  name: "Premium",
+                  price: "90",
+                  yearPrice: "120",
+                  badge: "Essential",
+                  desc: "Specialize in delivering AI-powered solution revolutionize.",
+                },
+              ].map((pricing, idx) => (
+    
+      <div key={idx} className="mb-4">
+        <PricingCard pricing={pricing} idx={idx} />
+      </div>
+    ))}
+  </div>
+)}
             </div>
           </div>
         </div>

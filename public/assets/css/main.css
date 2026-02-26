@@ -183,8 +183,14 @@ h3 {
   line-height: 1.188;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+  .service-img{
+    display: none;
+  }
   h3 {
     font-size: 28px;
+  }
+  .service-content .title{
+       font-size: 20px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
@@ -6540,7 +6546,7 @@ START: About CSS
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .experience-year {
-    font-size: 170px;
+    font-size: 100px;
     margin-bottom: 0;
   }
 }
@@ -25427,10 +25433,46 @@ background: transparent !important;
   background: #1a1a1a;
 }
 @media only screen and  (max-width:768px) and (min-width:320px){
+  .package-price {
+           font-size: 40px;
+}
+.list-style-3 ul li{
+  gap: 9px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.list-style-3 .title {
+    margin-bottom: 10px;
+}
+  .service-img{
+    display: none;
+  }
   .about-img-area-2,.about-img-area{
     display: none;
   }
   .about-content-area{
     margin-bottom: 0 !important;
   }
+}
+/* Ensure Swiper doesn't break your layout */
+.service-swiper {
+  padding-bottom: 50px !important; /* Space for pagination dots */
+}
+
+.service-swiper .service-item {
+  height: auto;
+  margin-bottom: 0; /* Swiper handles spacing via spaceBetween */
+}
+
+@media (max-width: 1024px) {
+  .service-stack {
+    position: relative !important;
+    transform: none !important;
+  }
+}
+.swiper-pagination-custom{
+  display: none;
+}
+.service-wrapper-main .swiper-button-next-custom,.service-wrapper-main .swiper-button-prev-custom{
+  display: none;
 }
