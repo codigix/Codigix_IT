@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SearchPopup from './SearchPopup';
 import HamburgerMenu from './HamburgerMenu';
@@ -6,8 +6,13 @@ import HamburgerMenu from './HamburgerMenu';
 export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { pathname } = useLocation();
-  const isHome = pathname === '/';
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
+  useEffect(() => {
+    setMenuOpen(false);
+    setSearchOpen(false);
+  }, [location.pathname]);
 
   if (isHome) {
     return (
@@ -23,19 +28,19 @@ export default function Header() {
                     <div className="header-info">
                       <div className="info-item">
                         <span><i className="tji-envelop-2"></i></span>
-                        <a href="mailto:hello@codigix.com">hello@codigix.com</a>
+                        <a href="mailto:info@codigix.co">info@codigix.co</a>
                       </div>
                       <div className="info-item">
                         <span><i className="tji-phone-2"></i></span>
-                        <a href="tel:8089091313">808-909-1313</a>
+                        <a href="tel:70665 56768">70665 56768</a>
                       </div>
                       <div className="info-item">
                         <div className="social-links">
                           <ul>
-                            <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">FB</a></li>
-                            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">IN</a></li>
-                            <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LN</a></li>
-                            <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer">TW</a></li>
+                            <li><a href="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer">FB</a></li>
+                            <li><a href="https://www.instagram.com/codigix?igsh=ZnphZnA5NWJjZnp1" target="_blank" rel="noopener noreferrer">IN</a></li>
+                            <li><a href="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer">LN</a></li>
+                            <li><a href="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer">TW</a></li>
                           </ul>
                         </div>
                       </div>

@@ -69,7 +69,7 @@ export default function AboutPage() {
                     </div>
                     <div className="about-bottom-area-2">
                       <div className="company-logo wow fadeInLeft" data-wow-delay=".3s">
-                        <img src="assets/images/logos/logo-2.webp" alt="Codigix Logo" />
+                        <img src="/assets/images/logos/logo.png" alt="Codigix Logo" />
                       </div>
                       <div className="mission-vision-wrap">
                         <div className="mission-vision-box wow fadeInRight" data-wow-delay=".5s">

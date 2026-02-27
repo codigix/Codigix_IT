@@ -41,10 +41,10 @@ export default function Footer() {
                 </div>
                 <div className="social-links style-2">
                   <ul>
-                    <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i className="tji-facebook"></i></a></li>
-                    <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><i className="tji-linkedin"></i></a></li>
-                    <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><i className="tji-instagram"></i></a></li>
-                    <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer"><i className="tji-x-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer"><i className="tji-facebook"></i></a></li>
+                    <li><a href="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer"><i className="tji-linkedin"></i></a></li>
+                    <li><a href="https://www.instagram.com/codigix?igsh=ZnphZnA5NWJjZnp1" target="_blank" rel="noopener noreferrer"><i className="tji-instagram"></i></a></li>
+                    <li><a href="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer"><i className="tji-x-twitter"></i></a></li>
                   </ul>
                 </div>
               </div>

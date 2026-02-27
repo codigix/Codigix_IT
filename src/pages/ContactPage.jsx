@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 export default function ContactPage() {
   const contactInfo = [
-    { icon: 'tji-location', title: 'Our Location', content: '993 Renner Burg, West Rond, MT 94251-030' },
+    { icon: 'tji-location', title: 'Our Location', content: 'Office No: 514, 3rd Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18' },
     { icon: 'tji-envelop', title: 'Email us', links: [{ label: 'support@codigix.com', href: 'mailto:support@codigix.com' }, { label: 'info@codigix.com', href: 'mailto:info@codigix.com' }] },
-    { icon: 'tji-phone', title: 'Call us', links: [{ label: '+1 (009) 544-7818', href: 'tel:10095447818' }, { label: '+1 (009) 880-1810', href: 'tel:10098801810' }] },
+    { icon: 'tji-phone', title: 'Call us', links: [{ label: '  70665 56768', href: 'tel:  70665 56768' }]},
     { icon: 'tji-chat', title: 'Live chat', links: [{ label: 'livechat@codigix.com', href: 'mailto:livechat@codigix.com' }, { label: 'Need help?', href: '#' }] }
   ];
 
@@ -124,13 +124,17 @@ export default function ContactPage() {
             <div className="col-lg-6">
               <div className="map-area">
                 <iframe
+                 src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d12621.027783472839!2d73.73581225!3d18.64597255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x3bc2b95ac32be0ad%3A0x79aa58776507f0a9!2sCodigix%20Infotech%20-%20Marketing%20Agency%20in%20Pune%20%7C%20Digital%20Marketing%20for%20Hospitals%20%26%20Clinics%20%7C%20Healthcare%20Marketing%20Agency%2C%20Office%20No%3A%20514%2C%205th%20Floor%2C%20JRG3%2BPQG%2C%20Brahma%20Sky%20Uzuri%2C%20MIDC%2C%20Pimpri%20Colony%2C%20Pimpri-Chinchwad%2C%20Maharashtra%20411018!3m2!1d18.6268125!2d73.80443749999999!5e1!3m2!1sen!2sin!4v1772190821998!5m2!1sen!2sin"
+                 style={{width: '100%', height: '100%', border: 0}}
+                  allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                {/* <iframe
                   title="Google Maps"
-                  src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d316440.5712687838!2d-74.01091796224334!3d40.67186885683901!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1745918398047!5m2!1sen!2sbd"
+                  src="https://maps.app.goo.gl/fvaiSihLMs6peDR87"
                   style={{width: '100%', height: '100%', border: 0}}
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade">
-                </iframe>
+                </iframe> */}
               </div>
             </div>
           </div>

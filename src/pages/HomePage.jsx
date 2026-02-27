@@ -687,7 +687,7 @@ const PricingCard = ({ pricing, idx }) => (
       {/* Project Section */}
       <section className="tj-project-section section-gap">
         <div className="container">
-          <div className="row align-items-center mb-15">
+          <div className="row align-items-center mb-5">
             <div className="col-lg-7">
               <div className="sec-heading style-3">
                 <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">

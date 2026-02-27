@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 
@@ -7,105 +7,84 @@ export default function HamburgerMenu({ isOpen, onClose }) {
   const mobileRef = useRef(null);
   const overlayRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 991);
+  const menuClass = isOpen ? "is-open" : "";
 
-  // Detect screen
+  // 1. Detect screen resize
   useEffect(() => {
-    const resizeHandler = () => {
-      setIsMobile(window.innerWidth <= 991);
-    };
+    const resizeHandler = () => setIsMobile(window.innerWidth <= 991);
     window.addEventListener("resize", resizeHandler);
     return () => window.removeEventListener("resize", resizeHandler);
   }, []);
 
-  // Set initial position only once
-  useEffect(() => {
-    if (desktopRef.current)
-      gsap.set(desktopRef.current, { x: "100%" });
-
-    if (mobileRef.current)
-      gsap.set(mobileRef.current, { x: "100%" });
-
-    if (overlayRef.current)
-      gsap.set(overlayRef.current, { opacity: 0, pointerEvents: "none" });
+  // 2. Initial Setup: Use useLayoutEffect to prevent visual glitches on mount
+  useLayoutEffect(() => {
+    gsap.set([desktopRef.current, mobileRef.current], { x: "100%" });
+    gsap.set(overlayRef.current, { opacity: 0, pointerEvents: "none" });
   }, []);
 
-  // Animation controller
-useEffect(() => {
-  const menu = isMobile ? mobileRef.current : desktopRef.current;
-  if (!menu || !overlayRef.current) return;
+  // 3. Animation Controller: This manages the show/hide behavior
+  useEffect(() => {
+    const menu = isMobile ? mobileRef.current : desktopRef.current;
+    const inactiveMenu = isMobile ? desktopRef.current : mobileRef.current;
 
-  gsap.killTweensOf(menu);
-  gsap.killTweensOf(overlayRef.current);
+    if (!menu || !overlayRef.current) return;
 
-  if (isOpen) {
-    // Overlay fade (quick)
-    gsap.to(overlayRef.current, {
-      opacity: 1,
-      duration: 0.25,
-      pointerEvents: "auto",
-      ease: "power2.out",
-    });
+    gsap.killTweensOf([menu, inactiveMenu, overlayRef.current]);
 
-    // Panel slide (smooth + fast)
-    gsap.to(menu, {
-      x: 0,
-      duration: 0.55,
-      ease: "expo.out",
-    });
+    // Force hide the other menu just in case of resize
+    gsap.set(inactiveMenu, { x: "100%" });
 
-    document.body.style.overflow = "hidden";
-  } else {
-    // Panel close
-    gsap.to(menu, {
-      x: "100%",
-      duration: 0.45,
-      ease: "expo.inOut",
-    });
+    if (isOpen) {
+      gsap.to(overlayRef.current, {
+        opacity: 1,
+        duration: 0.3,
+        pointerEvents: "auto",
+        ease: "power2.out",
+      });
 
-    // Overlay fade out
-    gsap.to(overlayRef.current, {
-      opacity: 0,
-      duration: 0.2,
-      pointerEvents: "none",
-    });
+      gsap.to(menu, {
+        x: 0,
+        duration: 0.5,
+        ease: "expo.out",
+      });
 
-    document.body.style.overflow = "auto";
-  }
-}, [isOpen, isMobile]);
+      document.body.style.overflow = "hidden";
+    } else {
+      gsap.to(menu, {
+        x: "100%",
+        duration: 0.4,
+        ease: "power2.inOut", // Fixed typo: was "power2.inIn"
+      });
+
+      gsap.to(overlayRef.current, {
+        opacity: 0,
+        duration: 0.2,
+        pointerEvents: "none",
+      });
+
+      document.body.style.overflow = "auto";
+    }
+  }, [isOpen, isMobile]);
+
 
   return (
     <>
-      {/* Overlay */}
+      {/* Overlay - Removed the conditional {isOpen &&} to allow GSAP to animate it out */}
       <div
-        className="hamburger-overlay"
         ref={overlayRef}
+        className={`hamburger-overlay ${menuClass}`}
         onClick={onClose}
-      // style={{
-      //   position: "fixed",
-      //   inset: 0,
-      //   background: "rgba(0,0,0,0.5)",
-      //   opacity: 0,
-      //   pointerEvents: "none",
-      //   zIndex: 9998,
-      //   backdropFilter: "blur(4px)",
-      // }}
+        style={{
+          position: "fixed",
+          inset: 0,
+          backgroundColor: "rgba(0,0,0,0.5)",
+          zIndex: 9998,
+        }}
       />
 
-      {/* ================= DESKTOP MENU ================= */}
-      <div
-        ref={desktopRef}
-        className="tj-offcanvas-area"
-      // style={{
-      //   position: "fixed",
-      //   top: 0,
-      //   right: 0,
-      //   height: "100vh",
-      //   width: "420px",
-      //   zIndex: 9999,
-      // }}
-      >
-
-        <div className="hamburger_bg"
+      {/* DESKTOP MENU */}
+      <div ref={desktopRef} className={`tj-offcanvas-area ${menuClass}`} style={{ zIndex: 9999 }}>
+          <div className="hamburger_bg"
           style={{ backgroundImage: "url(assets/images/funfact/bg-funfact.webp)" }}>
         </div>
         <div className="hamburger_wrapper">
@@ -176,22 +155,22 @@ useEffect(() => {
 
                 <div className="contact-item">
                   <span className="subtitle">Phone</span>
-                  <Link className="contact-link" to="tel:+10095447818">
-                    +1 (009) 544-7818
+                  <Link className="contact-link" to="tel:70665 56768">
+                   70665 56768
                   </Link>
                 </div>
 
                 <div className="contact-item">
                   <span className="subtitle">Email</span>
-                  <Link className="contact-link" to="mailto:info@ainex.com">
-                    info@ainex.com
+                  <Link className="contact-link" to="mailto:info@codigix.co">
+                   info@codigix.co
                   </Link>
                 </div>
 
                 <div className="contact-item">
                   <span className="subtitle">Location</span>
                   <span className="contact-link">
-                    993 Renner Burg, West Rond, MT 94251-030
+                   Office No: 514, 3rd Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18
                   </span>
                 </div>
 
@@ -201,10 +180,11 @@ useEffect(() => {
               <h5 className="hamburger-title">Follow Us</h5>
               <div className="social-links style-2">
                 <ul>
-                  <li><Link to="https://www.facebook.com/" target="_blank"><i className="tji-facebook"></i></Link></li>
-                  <li><Link to="https://www.linkedin.com/" target="_blank"><i className="tji-linkedin"></i></Link></li>
-                  <li><Link to="https://www.instagram.com/" target="_blank"><i className="tji-instagram"></i></Link></li>
-                  <li><Link to="https://x.com/" target="_blank"><i className="tji-x-twitter"></i></Link></li>
+                 <li><Link to="https://www.facebook.com/codigix.infotech" target="_blank"><i className="tji-facebook"></i></Link></li>
+                <li><Link to="https://www.linkedin.com/company/codigix-infotech" target="_blank"><i className="tji-linkedin"></i></Link></li>
+                <li><Link to="https://www.instagram.com/codigix?igsh=ZnphZnA5NWJjZnp1" target="_blank"><i className="tji-instagram"></i></Link></li>
+                <li><Link to="https://x.com/CodigixI2994" target="_blank"><i className="tji-x-twitter"></i></Link></li>
+                  
                 </ul>
               </div>
             </div>
@@ -212,10 +192,10 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* ================= MOBILE MENU ================= */}
+      {/* MOBILE MENU */}
       <div
         ref={mobileRef}
-        className="hamburger-area"
+        className={`hamburger-area ${menuClass}`} 
         style={{
           position: "fixed",
           top: 0,
@@ -226,7 +206,8 @@ useEffect(() => {
           zIndex: 9999,
         }}
       >
-        <div className="hamburger_bg"
+        {/* ... your mobile menu inner content ... */}
+         <div className="hamburger_bg"
           style={{ backgroundImage: "url(assets/images/funfact/bg-funfact.webp)" }}>
         </div>
         <div className="hamburger_wrapper">
@@ -283,15 +264,15 @@ useEffect(() => {
               <div className="contact-info">
                 <div className="contact-item">
                   <span className="subtitle">Phone</span>
-                  <a className="contact-link" href="tel:8089091313">808-909-1313</a>
+                  <a className="contact-link" href="tel:70665 56768">70665 56768</a>
                 </div>
                 <div className="contact-item">
                   <span className="subtitle">Email</span>
-                  <a className="contact-link" href="mailto:info@Ainex.com">info@ainex.com</a>
+                  <a className="contact-link" href="mailto:info@codigix.co">info@codigix.co</a>
                 </div>
                 <div className="contact-item">
                   <span className="subtitle">Location</span>
-                  <span className="contact-link">993 Renner Burg, West Rond, MT 94251-030</span>
+                  <span className="contact-link">Office No: 514, 3rd Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18</span>
                 </div>
               </div>
             </div>
@@ -300,10 +281,11 @@ useEffect(() => {
             <h5 className="hamburger-title">Follow Us</h5>
             <div className="social-links style-2">
               <ul>
-                <li><Link to="https://www.facebook.com/" target="_blank"><i className="tji-facebook"></i></Link></li>
-                <li><Link to="https://www.linkedin.com/" target="_blank"><i className="tji-linkedin"></i></Link></li>
-                <li><Link to="https://www.instagram.com/" target="_blank"><i className="tji-instagram"></i></Link></li>
-                <li><Link to="https://x.com/" target="_blank"><i className="tji-x-twitter"></i></Link></li>
+                <li><Link to="https://www.facebook.com/codigix.infotech" target="_blank"><i className="tji-facebook"></i></Link></li>
+                <li><Link to="https://www.linkedin.com/company/codigix-infotech" target="_blank"><i className="tji-linkedin"></i></Link></li>
+                <li><Link to="https://www.instagram.com/codigix?igsh=ZnphZnA5NWJjZnp1" target="_blank"><i className="tji-instagram"></i></Link></li>
+                <li><Link to="https://x.com/CodigixI2994" target="_blank"><i className="tji-x-twitter"></i></Link></li>
+                  
               </ul>
             </div>
           </div>
@@ -311,7 +293,7 @@ useEffect(() => {
 
         </div>
       </div>
-
     </>
   );
 }
+
