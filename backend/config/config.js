@@ -15,7 +15,7 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
 module.exports = {
   NODE_ENV: process.env.NODE_ENV || 'development',
-  PORT: process.env.PORT || 5012,
+  PORT: process.env.PORT || 5000,
   DB_HOST: process.env.DB_HOST || 'localhost',
   DB_USER: process.env.DB_USER || 'appuser',
   DB_PASSWORD: process.env.DB_PASSWORD || 'Appuser@123',
@@ -24,6 +24,9 @@ module.exports = {
   JWT_SECRET: process.env.JWT_SECRET || 'codigix_admin_secret_key_2026',
   CLIENT_URL: [
     'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost:5175',
+    'http://127.0.0.1:5175',
     'https://codigixinfotech.codigix.co',
     'http://codigixinfotech.codigix.co',
     ...(process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',').map(url => url.trim()) : [])
