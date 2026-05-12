@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from "../components/SEO";
 
 import config from '../config';
 
 const API_BASE_URL = config.API_BASE_URL;
+const getImageUrl = config.getImageUrl;
 
 export default function BlogPage() {
   const [blogs, setBlogs] = useState([]);
@@ -31,7 +33,12 @@ export default function BlogPage() {
 
   return (
     <>
-      <section className="tj-page-header section-gap-x" style={{backgroundImage: "url(assets/images/bg/pheader-bg.webp)"}}>
+      <SEO 
+        title="Blog" 
+        description="Stay updated with the latest AI trends, technology insights, and articles from our team of experts at Codigix."
+        keywords="blog, AI trends, technology insights, software articles, Codigix news"
+      />
+      <section className="tj-page-header section-gap-x" style={{backgroundImage: `url(${getImageUrl("assets/images/bg/pheader-bg.webp")})`}}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -64,7 +71,7 @@ export default function BlogPage() {
               <div className="col-xl-4 col-md-6" key={blog.id}>
                 <div className="blog-item style-3 wow fadeInUp" data-wow-delay={`.${3 + idx}s`}>
                   <div className="blog-thumb">
-                    <Link to="/blog/details"><img src={blog.image.startsWith('assets') ? blog.image : `assets/images/blog/blog-${(idx % 3) + 1}.webp`} alt="Blog" /></Link>
+                    <Link to="/blog/details"><img src={getImageUrl(blog.image, "assets/images/blog")} alt="Blog" /></Link>
                     <span className="categories"><Link to="/blog/details">{blog.category}</Link></span>
                   </div>
                   <div className="blog-content">

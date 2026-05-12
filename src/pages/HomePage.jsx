@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import SEO from "../components/SEO";
 import {
   Pagination,
   Navigation,
@@ -15,6 +16,7 @@ import "swiper/css/free-mode";
 
 
 import config from "../config";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 // Import Swiper styles
@@ -24,6 +26,8 @@ import 'swiper/css/pagination';
 gsap.registerPlugin(ScrollTrigger);
 
 const API_BASE_URL = config.API_BASE_URL;
+const getImageUrl = config.getImageUrl;
+
 export default function HomePage() {
 
 
@@ -62,7 +66,15 @@ export default function HomePage() {
         const blogsData = blogsRes.ok ? await blogsRes.json() : [];
 
         setSlides(Array.isArray(slidesData) ? slidesData : []);
-        setClients(Array.isArray(clientsData) ? clientsData : []);
+
+        // Use only logos from projects table as requested (remove locally fetched images)
+        const projectClients = Array.isArray(projectsData)
+          ? projectsData
+            .filter(p => p.client_logo)
+            .map(p => ({ id: `p-${p.id}`, image: p.client_logo }))
+          : [];
+
+        setClients(projectClients);
         setWorkingProcess(Array.isArray(processData) ? processData : []);
         setServices(Array.isArray(servicesData) ? servicesData : []);
         setProjects(Array.isArray(projectsData) ? projectsData : []);
@@ -147,13 +159,13 @@ export default function HomePage() {
           });
 
           gsap.to(card, {
-            scale: 0.92 - index * 0.01,
-            opacity: 0.3,
+            scale: 0.95 - index * 0.01,
+            opacity: 1,
             scrollTrigger: {
               trigger: cards[index + 1],
-              start: `top ${100 + index * 40}px`,
+              start: `top ${120 + index * 40}px`,
               end: "top 100px",
-              scrub: 1.5,
+              scrub: 1,
             },
           });
         }
@@ -171,12 +183,12 @@ export default function HomePage() {
     };
   }, { dependencies: [services, loading, isDesktop] });
 
-  
+
 
   useEffect(() => {
     if (loading || slides.length === 0) return;
 
- 
+
     const initCounter = () => {
       if (window.jQuery && window.jQuery.fn.counterUp) {
         const counters = window.jQuery(".counter");
@@ -200,19 +212,191 @@ export default function HomePage() {
     };
   }, [loading, slides, clients]);
 
-const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-useEffect(() => {
-  const handleResize = () => {
-    setIsMobile(window.innerWidth < 768); // mobile breakpoint
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // mobile breakpoint
+    };
 
-  handleResize(); // check on load
-  window.addEventListener("resize", handleResize);
+    handleResize(); // check on load
+    window.addEventListener("resize", handleResize);
 
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
+  const [activeQuarter, setActiveQuarter] = useState("roadmap-2023-Q1");
+  const roadmapRef = useRef(null);
+  const cardsParentRef = useRef(null);
+
+  useGSAP(() => {
+    if (loading || !roadmapRef.current || isMobile) return;
+
+    const cards = gsap.utils.toArray(".roadmap-card");
+
+    // Pin the left side content
+    ScrollTrigger.create({
+      trigger: ".content-wrap",
+      start: "top 100px",
+      endTrigger: ".roadmap-scroll-content",
+      end: "bottom 100%",
+      pin: true,
+      pinSpacing: false,
+    });
+
+    // Animate progress line
+    gsap.to(".timeline-progress-line", {
+      height: "100%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".roadmap-timeline-nav",
+        start: "top 100px",
+        endTrigger: ".roadmap-scroll-content",
+        end: "bottom 100%",
+        scrub: true,
+      }
+    });
+
+    // Track which card is active and sync nav
+    cards.forEach((card, index) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 25%",
+        end: "bottom 25%",
+        onToggle: (self) => {
+          if (self.isActive) {
+            setActiveQuarter(card.id);
+
+            const navItems = document.querySelectorAll(".quarter-pill");
+            const targetNav = navItems[index];
+            const navContainer = document.querySelector(".roadmap-timeline-nav");
+            const navInner = document.querySelector(".roadmap-nav-inner");
+            const parentGroup = targetNav?.closest('.year-nav-group');
+
+            if (parentGroup && navContainer && navInner) {
+              const groupRect = parentGroup.getBoundingClientRect();
+              const innerRect = navInner.getBoundingClientRect();
+
+              // Distance of the YEAR GROUP from top of inner container
+              const relativeOffset = groupRect.top - innerRect.top;
+
+              const targetY = -relativeOffset;
+              navInner.style.transform = `translateY(${targetY}px)`;
+            }
+          }
+        }
+      });
+    });
+
+    ScrollTrigger.refresh();
+
+  }, { dependencies: [loading, isMobile] });
+
+  const roadmapData = [
+    {
+      year: "2023",
+      quarters: [
+        { q: "Q1", title: "Company Launch & Web Services", items: ["Started company operations with Website Design & Development services", "Developed responsive websites using HTML, CSS, JavaScript, and Bootstrap", "Focused on modern UI/UX and business branding websites", "Built foundational development and support team"], icon: "tji-target", counter: "1", plus: "st", dates: "Jan - Mar 2023", color: "blue" },
+        { q: "Q2", title: "CMS & WordPress Development", items: ["Expanded services into WordPress and CMS Development", "Developed dynamic business and portfolio websites", "Started eCommerce website development solutions", "Improved hosting, domain, and website maintenance support"], icon: "tji-development", counter: "10", plus: "+", dates: "Apr - Jun 2023", color: "teal" },
+        { q: "Q3", title: "UI/UX & Custom Web Solutions", items: ["Added professional UI/UX Designing services", "Built interactive and mobile-friendly web interfaces", "Enhanced frontend performance and responsive architecture", "Started custom website functionality development"], icon: "tji-innovation", counter: "25", plus: "+", dates: "Jul - Sep 2023", color: "yellow" },
+        { q: "Q4", title: "eCommerce & Advanced Web Platforms", items: ["Delivered eCommerce and business management websites", "Implemented payment gateway and API integrations", "Strengthened website security and optimization", "Prepared transition toward enterprise software solutions"], icon: "tji-add-cart", counter: "50", plus: "+", dates: "Oct - Dec 2023", color: "purple" }
+      ]
+    },
+    {
+      year: "2024",
+      quarters: [
+        { q: "Q1", title: "ERP Development Journey", items: ["Started ERP Solution Development using React JS and Node.js", "Developed Admin, Sales, Inventory, and HR modules", "Improved backend APIs and database architecture", "Team upgraded skills in MERN stack technologies"], icon: "tji-technology", counter: "100", plus: "+", dates: "Jan - Mar 2024", color: "blue" },
+        { q: "Q2", title: "CRM & Business Automation", items: ["Entered CRM Development and workflow automation", "Built customer management and lead tracking systems", "Integrated role-based access and dashboard analytics", "Improved cloud deployment and server management"], icon: "tji-integration", counter: "15", plus: "+", dates: "Apr - Jun 2024", color: "teal" },
+        { q: "Q3", title: "Mobile Application Development", items: ["Started Android and iOS Mobile Application Development", "Developed scalable APIs for mobile ecosystems", "Enhanced cross-platform application architecture", "Improved real-time reporting and notification systems"], icon: "tji-phone", counter: "25", plus: "+", dates: "Jul - Sep 2024", color: "yellow" },
+        { q: "Q4", title: "Enterprise Software Expansion", items: ["Expanded ERP into Procurement and Production systems", "Developed customized business management solutions", "Strengthened QA testing and DevOps deployment", "Started AI research for automation solutions"], icon: "tji-home", counter: "50", plus: "+", dates: "Oct - Dec 2024", color: "purple" }
+      ]
+    },
+    {
+      year: "2025",
+      quarters: [
+        { q: "Q1", title: "AI-Based Module Development", items: ["Introduced AI-powered business modules", "Developed intelligent analytics and reporting systems", "Implemented automation-based workflows", "Enhanced data-driven decision systems"], icon: "tji-ai", counter: "5", plus: "+", dates: "Jan - Mar 2025", color: "blue" },
+        { q: "Q2", title: "Smart CRM & Automation", items: ["Added AI-powered CRM intelligence systems", "Built chatbot and smart customer engagement platforms", "Developed automated document and process management", "Team upgraded skills in AI/ML technologies"], icon: "tji-chat", counter: "10", plus: "+", dates: "Apr - Jun 2025", color: "teal" },
+        { q: "Q3", title: "IoT & Smart Device Integration", items: ["Started IoT Device-Based Solution Development", "Integrated ERP systems with smart sensors and devices", "Developed real-time monitoring dashboards", "Implemented smart automation systems"], icon: "tji-signal", counter: "2", plus: "+", dates: "Jul - Sep 2025", color: "yellow" },
+        { q: "Q4", title: "AI + IoT Ecosystem", items: ["Combined AI and IoT technologies for intelligent business solutions", "Developed smart manufacturing and tracking systems", "Improved predictive analytics and automation", "Expanded R&D and innovation department"], icon: "tji-innovation", counter: "100", plus: "%", dates: "Oct - Dec 2025", color: "purple" }
+      ]
+    },
+    {
+      year: "2026",
+      quarters: [
+        { q: "Q1", title: "Intelligent Enterprise Platforms", items: ["Advanced AI-integrated ERP ecosystem", "Smart workflow automation systems", "Real-time business intelligence dashboards", "Cloud-native scalable application architecture"], icon: "tji-plane-3", counter: "200", plus: "+", dates: "Jan - Mar 2026", color: "blue" },
+        { q: "Q2", title: "SaaS & Enterprise Expansion", items: ["Development of scalable SaaS platforms", "AI-driven enterprise automation solutions", "Multi-platform mobile and web ecosystems", "Advanced cybersecurity and DevOps implementation"], icon: "tji-plane", counter: "15", plus: "K+", dates: "Apr - Jun 2026", color: "teal" },
+        { q: "Q3", title: "Future Technology Solutions", items: ["AI Agents for business process automation", "Intelligent ERP and CRM ecosystems", "Industry-specific smart technology solutions", "Advanced cloud and microservice infrastructure"], icon: "tji-robot", counter: "50", plus: "+", dates: "Jul - Sep 2026", color: "yellow", upcoming: true },
+        { q: "Q4", title: "Global Digital Transformation Vision", items: ["Expansion into global IT solution markets", "Next-generation AI-powered platforms", "Smart automation and digital transformation services", "Innovation-driven enterprise technology ecosystem"], icon: "tji-rocket", counter: "100", plus: "%", dates: "Oct - Dec 2026", color: "purple", upcoming: true }
+      ]
+    }
+  ];
+
+  const futureScopeData = [
+    {
+      title: "Website & Digital Experience",
+      items: [
+        "Advanced interactive business websites",
+        "Progressive Web Applications (PWA)",
+        "High-performance enterprise portals"
+      ],
+      icon: "tji-desktop"
+    },
+    {
+      title: "ERP & CRM Solutions",
+      items: [
+        "Industry-specific ERP ecosystems",
+        "AI-powered CRM intelligence systems",
+        "Fully automated business workflow platforms"
+      ],
+      icon: "tji-gear"
+    },
+    {
+      title: "Mobile & Application Development",
+      items: [
+        "Enterprise mobile ecosystems",
+        "Cross-platform scalable applications",
+        "Cloud-integrated mobile architecture"
+      ],
+      icon: "tji-mobile"
+    },
+    {
+      title: "AI & Smart Automation",
+      items: [
+        "Generative AI integrations",
+        "AI Agents and intelligent assistants",
+        "Predictive analytics and smart recommendations",
+        "Intelligent business process automation"
+      ],
+      icon: "tji-brain"
+    },
+    {
+      title: "IoT & Smart Technology",
+      items: [
+        "Smart factory and manufacturing solutions",
+        "IoT-integrated ERP systems",
+        "Real-time monitoring and tracking systems",
+        "Sensor-based automation ecosystems"
+      ],
+      icon: "tji-lightbulb"
+    },
+    {
+      title: "Team & Technology Growth",
+      items: [
+        "Continuous technical skill enhancement",
+        "AI/ML and cloud certification programs",
+        "Innovation-focused development culture",
+        "Vertical and horizontal technology expansion"
+      ],
+      icon: "tji-team"
+    }
+  ];
+
+  const longTermVision = [
+    "Become a leading AI-driven IT solutions company",
+    "Deliver scalable digital transformation solutions",
+    "Build intelligent enterprise ecosystems",
+    "Create innovative platforms for global industries"
+  ];
 
   if (loading) {
     return (
@@ -223,23 +407,24 @@ useEffect(() => {
       </div>
     );
   }
+
   // Common Card Component to keep code DRY
   const ServiceCard = ({ service }) => (
-    <div className="service-inner">
+    <div className="service-inner bg-white dark:bg-[#18133b]">
       <div className="service-content">
         <h3 className="title">
-          <Link to="/services/details">{service.title}</Link>
+          <Link to={`/services/details/${service.id}`} className="text-gray-900 text-lg dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 font-bold">{service.title}</Link>
         </h3>
 
-        <p className="desc">{service.desc}</p>
+        <p className="desc text-gray-700 dark:text-gray-300 font-medium">{service.desc}</p>
 
-        <ul className="list-style-2">
+        <ul className="list-style-2 text-gray-800 dark:text-gray-200">
           <li>Personalized Experience</li>
           <li>Process Automation</li>
           <li>Predictive Analytics</li>
         </ul>
 
-        <Link className="tj-primary-btn" to="/services/details">
+        <Link className="tj-primary-btn" to={`/services/details/${service.id}`}>
           <div className="btn-inner">
             <span className="btn-icon h-icon">
               <i className="tji-arrow-right"></i>
@@ -252,74 +437,107 @@ useEffect(() => {
         </Link>
       </div>
 
-      <div className="service-img">
+      <div className="service-img rounded-xl overflow-hidden shadow-lg ">
         <img
-          src={`assets/images/service/${service.image}.jpg`}
+          src={getImageUrl(service.image, "assets/images/service")}
           alt={service.title}
+          className="w-full h-64 object-cover"
         />
       </div>
 
-      <span className="item-count">{service.num}.</span>
+      <span className="item-count text-gray-400 dark:text-gray-500">{service.num}.</span>
     </div>
   );
-const PricingCard = ({ pricing, idx }) => (
-  <div
-    className={`pricing-box style-2 ${pricing.active ? "active" : ""}`}
-  >
-    <div className="pricing-box-inner">
-      <div className="pricing-badge">
-        <span>
-          <span>{pricing.badge}</span>
-        </span>
-      </div>
-
-      <div className="pricing-header">
-        <h6 className="package-name">{pricing.name}</h6>
-
-        <div className="package-price">
-          <span className="package-currency">$</span>
-          <span className="price-number">{pricing.price}</span>
-          <span className="package-period">/month</span>
+  const PricingCard = ({ pricing, idx }) => (
+    <div
+      className={`pricing-box style-2 ${pricing.active ? "active" : ""}`}
+    >
+      <div className="pricing-box-inner">
+        <div className="pricing-badge">
+          <span>
+            <span>{pricing.badge}</span>
+          </span>
         </div>
 
-        <div className="package-desc">
-          <p>{pricing.desc}</p>
+        <div className="pricing-header">
+          <h6 className="package-name">{pricing.name}</h6>
+
+          <div className="package-price">
+            <span className="package-currency">$</span>
+            <span className="price-number">{pricing.price}</span>
+            <span className="package-period">/month</span>
+          </div>
+
+          <div className="package-desc">
+            <p>{pricing.desc}</p>
+          </div>
+
+          <div className="pricing-btn">
+            <Link className="text-btn" to="/contact">
+              <span className="btn-text">
+                <span>Choose Package</span>
+              </span>
+              <span className="btn-icon">
+                <i className="tji-arrow-right"></i>
+              </span>
+            </Link>
+          </div>
         </div>
 
-        <div className="pricing-btn">
-          <Link className="text-btn" to="/contact">
-            <span className="btn-text">
-              <span>Choose Package</span>
-            </span>
-            <span className="btn-icon">
-              <i className="tji-arrow-right"></i>
-            </span>
-          </Link>
+        <div className="list-style-3">
+          <h6 className="title">Included:</h6>
+          <ul>
+            <li><i className="tji-check"></i>AI-powered tools</li>
+            <li><i className="tji-check"></i>10 hours support</li>
+            <li><i className="tji-check"></i>Basic data analysis</li>
+            <li><i className="tji-check"></i>Email support</li>
+          </ul>
         </div>
-      </div>
-
-      <div className="list-style-3">
-        <h6 className="title">Included:</h6>
-        <ul>
-          <li><i className="tji-check"></i>AI-powered tools</li>
-          <li><i className="tji-check"></i>10 hours support</li>
-          <li><i className="tji-check"></i>Basic data analysis</li>
-          <li><i className="tji-check"></i>Email support</li>
-        </ul>
       </div>
     </div>
-  </div>
-);
+  );
   return (
     <>
+      <SEO
+        title="Home"
+        description="Empowering businesses with AI-powered solutions. Codigix offers custom software engineering, machine learning, and predictive analytics."
+        keywords="home, AI solutions, software engineering, digital transformation"
+      />
+      <style>
+        {`
+          .service-item.style-3 .service-inner {
+            background-color: #ffffff !important;
+          }
+          .dark .service-item.style-3 .service-inner {
+            background-color: #07022a !important;
+          }
+          .list-style-2 li {
+            color: var(--tj-color-text-body) !important;
+            opacity: 1 !important;
+            font-weight: 500;
+          }
+          .list-style-2 li::before {
+            background-color: var(--tj-color-theme-primary) !important;
+            opacity: 1 !important;
+          }
+          .service-item.style-3 .item-count {
+            background-color: #f8f7ff !important;
+            color: #6c56b6 !important;
+           
+            font-weight: bold;
+          }
+          .dark .service-item.style-3 .item-count {
+            background-color: #18133b !important;
+            color: #6c56b6 !important;
+          }
+        `}
+      </style>
       {/* Banner Slider */}
 
       <section className="tj-slider-section">
-       
+
         <Swiper
           modules={[Pagination, Navigation, EffectFade, Autoplay]}
-            freeMode={true}
-          freeModeMomentum={false}
           slidesPerView={1}
           spaceBetween={0}
           effect="fade"
@@ -344,7 +562,7 @@ const PricingCard = ({ pricing, idx }) => (
               <div className="tj-slider-item">
                 <div className="slider-bg-image">
                   <img
-                    src={slide.image}
+                    src={getImageUrl(slide.image)}
                     alt="Hero"
                     className="hero-image"
                     loading={slide.id === 1 ? "eager" : "lazy"}
@@ -352,33 +570,35 @@ const PricingCard = ({ pricing, idx }) => (
                 </div>
 
                 <div className="slider-wrapper">
-                  <div className="slider-content">
-                    <div className="slider-title-area">
-                      <span className="sub-title">
-                        <i className="tji-subtitle-2"></i>
-                        {slide.subtitle}
-                      </span>
+                  <div className="slider-content grid grid-cols-3">
+                    <div className="col-span-3">
+                      <div className="slider-title-area text-center ">
+                        <span className="sub-title">
+                          <i className="tji-subtitle-2"></i>
+                          {slide.subtitle}
+                        </span>
 
-                      <h1 className="slider-title">{slide.title}</h1>
-                    </div>
+                        <h1 className="slider-title text-center">{slide.title}</h1>
+                      </div>
 
-                    <div className="slider-desc">{slide.description}</div>
+                      <div className="slider-desc text-center">{slide.description}</div>
 
-                    <div className="slider-btn">
-                      <Link
-                        className="tj-primary-btn home-button"
-                        to="/contact"
-                      >
-                        <div className="btn-inner">
-                          <span className="btn-icon h-icon">
-                            <i className="tji-arrow-right"></i>
-                          </span>
-                          <span className="btn-text">Learn More</span>
-                          <span className="btn-icon">
-                            <i className="tji-arrow-right"></i>
-                          </span>
-                        </div>
-                      </Link>
+                      <div className="slider-btn text-center">
+                        <Link
+                          className="tj-primary-btn home-button"
+                          to="/contact"
+                        >
+                          <div className="btn-inner">
+                            <span className="btn-icon h-icon">
+                              <i className="tji-arrow-right"></i>
+                            </span>
+                            <span className="btn-text">Learn More</span>
+                            <span className="btn-icon">
+                              <i className="tji-arrow-right"></i>
+                            </span>
+                          </div>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -422,34 +642,40 @@ const PricingCard = ({ pricing, idx }) => (
 
               <div className="client-content wow fadeInUp" data-wow-delay=".3s">
                 <h5 className="sec-title">
-                  <span className="client-numbers">2000+</span> Trusted Client
+                  <span className="client-numbers">10+</span> Trusted Client
                   over the World
                 </h5>
               </div>
 
               <Swiper
                 modules={[Autoplay, FreeMode]}
-                  slidesPerView="auto"
+                slidesPerView="auto"
                 spaceBetween={30}
                 loop={true}
                 speed={8000}
                 freeMode={true}
                 freeModeMomentum={false}
-                allowTouchMove={false}
+                allowTouchMove={true}
+                grabCursor={true}
+                watchSlidesProgress={true}
                 autoplay={{
                   delay: 0,
                   disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
                 }}
                 className="client-slider"
               >
-                {clients.map((client) => (
+                {[...clients, ...clients, ...clients].map((client, index) => (
                   <SwiperSlide
-                    key={client.id}
+                    key={`${client.id}-${index}`}
                     className="client-item"
                     style={{ width: "auto" }}
                   >
                     <div className="client-logo">
-                      <img src={client.image} alt="Brand" />
+                      <img
+                        src={getImageUrl(client.image)}
+                        alt="Brand"
+                      />
                     </div>
                   </SwiperSlide>
                 ))}
@@ -527,11 +753,11 @@ const PricingCard = ({ pricing, idx }) => (
                 <div className="about-bottom-area-3">
                   <div className="experience-wrap">
                     <div className="experience-year">
-                      <span className="counter">13</span>
+                      <span className="counter">3</span>
                       <sup>+</sup>
                     </div>
                     <h6 className="experience-text">
-                      We have 10+ Years of working Experiences.
+                      We have 3+ Years of working Experiences.
                     </h6>
                   </div>
                   <div className="about-content">
@@ -568,7 +794,7 @@ const PricingCard = ({ pricing, idx }) => (
                   data-wow-delay=".3s"
                   data-wow-duration="0.8s"
                 >
-                  <img src="assets/images/about/about-img-3.webp" alt="About" />
+                  <img src="https://res.cloudinary.com/foodfantacy/image/upload/v1778322898/person-working-with-ai-robot_ytu1wo.jpg" alt="About" />
                 </div>
                 <div className="video-wrap">
                   <a
@@ -685,8 +911,8 @@ const PricingCard = ({ pricing, idx }) => (
       </section>
 
       {/* Project Section */}
-      <section className="tj-project-section section-gap">
-        <div className="container">
+      <section className="tj-project-section section-gap ">
+        <div className="">
           <div className="row align-items-center mb-5">
             <div className="col-lg-7">
               <div className="sec-heading style-3">
@@ -717,238 +943,220 @@ const PricingCard = ({ pricing, idx }) => (
               </div>
             </div>
           </div>
-          <div className="row row-gap-4">
-            {projects.slice(0, 4).map((project, idx) => (
-              <div className="col-lg-6" key={project.id}>
-                <div
-                  className="project-item style-3 wow fadeInUp"
-                  data-wow-delay={`.${3 + idx}s`}
-                >
-                  <div className="project-img">
+          <Swiper
+            modules={[Autoplay, FreeMode]}
+            spaceBetween={30}
+            slidesPerView={1}
+            loop={true}
+            speed={6000}
+            freeMode={true}
+            freeModeMomentum={false}
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            breakpoints={{
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+            className="project-slider pb-50"
+          >
+            {[...projects, ...projects, ...projects].map((project, idx) => (
+              <SwiperSlide key={`${project.id}-${idx}`}>
+                <div class="project-item">
+                  <div class="project-img">
                     <img
-                      src={
-                        project.image.startsWith("assets")
-                          ? project.image
-                          : `assets/images/project/${project.image}.webp`
-                      }
+                      src={getImageUrl(project.image, "assets/images/project")}
                       alt={project.title}
+                      className="w-full h-[250px] object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
-                  <div className="project-content">
-                    <div className="project-desc">
-                      <span className="category">{project.category}</span>
-                      <h4 className="title">
-                        <Link to="/projects/details" style={{ textTransform: 'capitalize' }}>{project.title}</Link>
-                      </h4>
-                    </div>
-                    <Link className="icon-btn" to="/projects/details">
-                      <i className="tji-arrow-right"></i>
+                  <div class="project-content">
+                    <h4 class="title">
+                      <Link to={`/projects/details/${project.id}`}>{project.title}</Link>
+                    </h4>
+                    <p className="line-clamp-2">
+                      {project.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
+                    </p>
+                    <Link to={`/projects/details/${project.id}`} class="icon-btn" >
+                      <i class="tji-arrow-right-long"></i>
                     </Link>
                   </div>
-
+                  <span class="categories">
+                    <Link to={`/projects/details/${project.id}`}>{project.category || 'Software'}</Link>
+                  </span>
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="tj-pricing-section-2 section-gap section-gap-x section-separator">
+      {/* Roadmap Section */}
+      <section ref={roadmapRef} className="tj-roadmap-section section-gap section-gap-x section-separator">
         <div className="container">
-          <div className="row row-gap-4">
-            <div className="col-lg-5">
-              <div className="content-wrap sticky-lg-top">
-                <div className="sec-heading style-3">
-                  <span
-                    className="sub-title wow fadeInUp"
-                    data-wow-delay="0.3s"
-                  >
-                    <i className="tji-subtitle-2"></i>Our Pricing
-                  </span>
-                  <h2 className="sec-title text-anim">
-                    Flexible Pricing, Powerful Tangible Results
-                  </h2>
-                </div>
-                <p className="desc">
-                  Specialize in delivering AI-powered solution <br />{" "}
-                  revolutionize the businesses.
-                </p>
-                <div className="pricing-tab wow fadeInUp" data-wow-delay="0.3s">
-                  <button className="nav-link monthly active">monthly</button>
-                  <button className="nav-link yearly">yearly</button>
+          <div className="row">
+            <div className="col-12">
+              <div className="sec-heading sec-heading-centered style-3 mb-10">
+                <span
+                  className="sub-title wow fadeInUp"
+                  data-wow-delay="0.3s"
+                >
+                  <i className="tji-subtitle-2"></i>Our Roadmap
+                </span>
+                <h2 className="sec-title text-anim">
+                  Evolution of Excellence: Our Journey
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-5">
+            <div className="col-span-2">
+              <div className="content-wrap">
+                <div className="roadmap-timeline-nav wow fadeInUp" data-wow-delay="0.4s">
+                  <div className="timeline-progress-line"></div>
+                  <div className="roadmap-nav-inner">
+                    {roadmapData.map((yearGroup) => (
+                      <div key={yearGroup.year} className="year-nav-group relative ">
+                        <div className="year-badge-wrap flex items-center mb-6">
+                          <div className={`year-badge-circle ${['2024', '2026'].includes(yearGroup.year) ? 'teal' : 'blue'} border-1 border mb-3 text-xl flex items-center justify-center rounded w-20 h-20 bg-white dark:bg-gray-900 z-10`}>
+                            {yearGroup.year}
+                          </div>
+                          {/* <div className="year-line-horizontal h-[2px] w-8 bg-gray-200 dark:bg-gray-700 ml-[-2px]"></div> */}
+                        </div>
+
+                        <div className="quarter-nav-list flex flex-col gap-7 relative">
+                          <div className="year-line-vertical absolute left-[39px] top-[-30px] bottom-[-20px] w-[3px] bg-[#312e81]"></div>
+
+                          {yearGroup.quarters.map((q) => (
+                            <div key={`${yearGroup.year}-${q.q}`} className="pill-item-wrap relative flex items-center">
+                              {/* <div className="pill-connector-line h-[2px] w-10 bg-[#312e81] absolute left-[40px]"></div> */}
+                              <a
+                                href={`#roadmap-${yearGroup.year}-${q.q}`}
+                                className={`quarter-pill relative flex items-center gap-3 p-1 pr-6 rounded transition-all duration-300 ml-20 ${activeQuarter === `roadmap-${yearGroup.year}-${q.q}` ? 'active' : ''}`}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  const cardId = `roadmap-${yearGroup.year}-${q.q}`;
+                                  setActiveQuarter(cardId);
+                                  const target = document.getElementById(cardId);
+                                  if (target) {
+                                    const bodyRect = document.body.getBoundingClientRect().top;
+                                    const elementRect = target.getBoundingClientRect().top;
+                                    const elementPosition = elementRect - bodyRect;
+                                    const offsetPosition = elementPosition - 100;
+
+                                    window.scrollTo({
+                                      top: offsetPosition,
+                                      behavior: 'smooth'
+                                    });
+                                  }
+                                }}
+                              >
+                                <div className="pill-q-circle w-12 h-12 rounded flex items-center justify-center transition-transform duration-300">
+                                  {q.q}
+                                </div>
+                                <div className="pill-text flex flex-col">
+                                  <span className="pill-title leading-tight">{q.dates}</span>
+                                  <span className="pill-dates text-xs opacity-70"> Quarter {q.q.replace('Q', '')}</span>
+                                </div>
+                              </a>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="col-lg-7">
-              {/* {[
-                {
-                  name: "Basic",
-                  price: "20",
-                  yearPrice: "30",
-                  badge: "50% off",
-                  desc: "Specialize in delivering AI-powered solution revolutionize.",
-                },
-                {
-                  name: "Pro Plan",
-                  price: "60",
-                  yearPrice: "90",
-                  badge: "Popular",
-                  desc: "Specialize in delivering AI-powered solution revolutionize.",
-                  active: true,
-                },
-                {
-                  name: "Premium",
-                  price: "90",
-                  yearPrice: "120",
-                  badge: "Essential",
-                  desc: "Specialize in delivering AI-powered solution revolutionize.",
-                },
-              ].map((pricing, idx) => (
-                <div
-                  className={`pricing-box style-2 ${pricing.active ? "active" : ""} wow fadeInUp`}
-                  data-wow-delay={`.${3 + idx}s`}
-                  key={idx}
-                >
-                  <div className="pricing-box-inner">
-                    <div className="pricing-badge">
-                      <span>
-                        <span>{pricing.badge}</span>
-                      </span>
-                    </div>
-                    <div className="pricing-header">
-                      <h6 className="package-name">{pricing.name}</h6>
-                      <div className="package-price">
-                        <span className="package-currency">$</span>
-                        <span
-                          className="price-number"
-                          data-year-price={pricing.yearPrice}
-                          data-month-price={pricing.price}
-                        >
-                          {pricing.price}
-                        </span>
-                        <span
-                          className="package-period"
-                          data-year-period="/year"
-                          data-month-period="/month"
-                        >
-                          /month
-                        </span>
-                      </div>
-                      <div className="package-desc">
-                        <p>{pricing.desc}</p>
-                      </div>
-                      <div className="pricing-btn">
-                        <Link className="text-btn" to="/contact">
-                          <span className="btn-text">
-                            <span>Chose Package</span>
+            <div className="col-span-3">
+              <div className="roadmap-scroll-content">
+                {roadmapData.map((yearGroup) => (
+                  <div key={yearGroup.year} className="year-content-group mb-4">
+                    {yearGroup.quarters.map((q) => (
+                      <div
+                        key={`${yearGroup.year}-${q.q}`}
+                        id={`roadmap-${yearGroup.year}-${q.q}`}
+                        className={`roadmap-card grid grid-cols-1 gap-5  countup-item-wrap style-2 ${activeQuarter === `roadmap-${yearGroup.year}-${q.q}` ? 'active' : ''}`}
+                      >
+                        <div className="countup-item style-1 relative">
+                          {q.upcoming && (
+                            <div className="upcoming-badge absolute top-4 left-4 w-fit right-4 bg-indigo-600 text-white text-[10px] uppercase font-bold px-2 py-1 rounded">
+                              Upcoming
+                            </div>
+                          )}
+                          <div className="inline-content">
+                            <span className="counter">{q.counter}</span>
+                            <span className="count-plus">{q.plus}</span>
+                          </div>
+                          <span className="count-text">{q.title}</span>
+
+                          {q.items && (
+                            <ul className="roadmap-specs-list space-y-2 mt-4 text-left">
+                              {q.items.map((item, i) => (
+                                <li key={i} className="text-sm text-gray-600 dark:text-gray-400 flex items-start gap-2">
+                                  <i className="tji-check text-indigo-500 mt-1 flex-shrink-0"></i>
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+
+                          <span className="count-icon">
+                            <i className={q.icon}></i>
                           </span>
-                          <span className="btn-icon">
-                            <i className="tji-arrow-right"></i>
-                          </span>
-                        </Link>
+                        </div>
                       </div>
-                    </div>
-                    <div className="list-style-3">
-                      <h6 className="title">Included:</h6>
-                      <ul>
-                        <li>
-                          <i className="tji-check"></i>AI-powered tools for
-                          businesses
-                        </li>
-                        <li>
-                          <i className="tji-check"></i>10 hours of tech support
-                        </li>
-                        <li>
-                          <i className="tji-check"></i>Basic data analysis
-                        </li>
-                        <li>
-                          <i className="tji-check"></i>Email support
-                        </li>
-                        <li>
-                          <i className="tji-check"></i>Access to online
-                          resources
-                        </li>
-                        <li>
-                          <i className="tji-check"></i>Reporting & Tutorials
-                        </li>
-                      </ul>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+           <div className="row">
+            <div className="col-12">
+              <div className="sec-heading sec-heading-centered style-3 mb-50">
+                <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
+                  <i className="tji-subtitle-2"></i>Future Scope & Vision
+                </span>
+                <h2 className="sec-title text-anim">
+                  Innovating for Tomorrow
+                </h2>
+              </div>
+            </div>
+          </div>
+
+          <div className="row mt-50">
+            <div className="col-12">
+              <div className="vision-box-wrap wow fadeInUp" data-wow-delay="0.4s">
+                <div className="vision-box-inner">
+                  <div className="vision-left-content">
+                    <div className="vision-label">Our Philosophy</div>
+                    <h3 className="vision-title">Long-Term Vision</h3>
+                    <p className="vision-subtitle">Pioneering the future of digital intelligence with sustainable and scalable innovation.</p>
+                  </div>
+                  <div className="vision-right-items">
+                    <div className="vision-items-grid">
+                      {longTermVision.map((vision, idx) => (
+                        <div key={idx} className="vision-card">
+                          <div className="vision-card-icon">
+                            <i className="tji-stars"></i>
+                          </div>
+                          <span className="vision-card-text">{vision}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
-              ))} */}
-         {isMobile ? (
-  <Swiper
-    modules={[Pagination]}
-    slidesPerView={1}
-    spaceBetween={20}
-    pagination={{ clickable: true }}
-  >{[
-                {
-                  name: "Basic",
-                  price: "20",
-                  yearPrice: "30",
-                  badge: "50% off",
-                  desc: "Specialize in delivering AI-powered solution revolutionize.",
-                },
-                {
-                  name: "Pro Plan",
-                  price: "60",
-                  yearPrice: "90",
-                  badge: "Popular",
-                  desc: "Specialize in delivering AI-powered solution revolutionize.",
-                  active: true,
-                },
-                {
-                  name: "Premium",
-                  price: "90",
-                  yearPrice: "120",
-                  badge: "Essential",
-                  desc: "Specialize in delivering AI-powered solution revolutionize.",
-                },
-              ].map((pricing, idx) => (
-      <SwiperSlide key={idx}>
-        <PricingCard pricing={pricing} idx={idx} />
-      </SwiperSlide>
-    ))}
-  </Swiper>
-) : (
-  <div>
-    {[
-                {
-                  name: "Basic",
-                  price: "20",
-                  yearPrice: "30",
-                  badge: "50% off",
-                  desc: "Specialize in delivering AI-powered solution revolutionize.",
-                },
-                {
-                  name: "Pro Plan",
-                  price: "60",
-                  yearPrice: "90",
-                  badge: "Popular",
-                  desc: "Specialize in delivering AI-powered solution revolutionize.",
-                  active: true,
-                },
-                {
-                  name: "Premium",
-                  price: "90",
-                  yearPrice: "120",
-                  badge: "Essential",
-                  desc: "Specialize in delivering AI-powered solution revolutionize.",
-                },
-              ].map((pricing, idx) => (
-    
-      <div key={idx} className="mb-4">
-        <PricingCard pricing={pricing} idx={idx} />
-      </div>
-    ))}
-  </div>
-)}
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Future Scope & Vision Section */}
+      
 
       {/* Blog Section */}
       <section className="tj-blog-section-3 section-gap section-separator">
@@ -973,11 +1181,7 @@ const PricingCard = ({ pricing, idx }) => (
                   <div className="blog-thumb">
                     <Link to="/blog/details">
                       <img
-                        src={
-                          blog.image.startsWith("assets")
-                            ? blog.image
-                            : `assets/images/blog/${blog.image}.webp`
-                        }
+                        src={getImageUrl(blog.image, "assets/images/blog")}
                         alt="Blog"
                       />
                     </Link>

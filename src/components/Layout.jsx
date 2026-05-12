@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "./Header";
 import Footer from "./Footer";
 import NewFooter from "./NewFooter";
@@ -60,6 +61,61 @@ export default function Layout({ children }) {
 
   return (
     <>
+      <Helmet>
+        <title>Codigix - AI-Powered Solutions & Custom Technology</title>
+        <meta name="description" content="Codigix provides cutting-edge AI-powered solutions, custom technology development, and predictive analytics to help businesses grow." />
+        <link rel="canonical" href={`https://codigixinfotech.com${location.pathname}`} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://codigixinfotech.com${location.pathname}`} />
+        <meta property="og:title" content="Codigix - AI-Powered Solutions & Custom Technology" />
+        <meta property="og:description" content="Innovating Tomorrow, Today. Expert AI and Custom Technology Solutions for your Business." />
+        <meta property="og:image" content="https://codigixinfotech.com/assets/images/logos/logo.png" />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={`https://codigixinfotech.com${location.pathname}`} />
+        <meta property="twitter:title" content="Codigix - AI-Powered Solutions & Custom Technology" />
+        <meta property="twitter:description" content="Innovating Tomorrow, Today. Expert AI and Custom Technology Solutions for your Business." />
+        <meta property="twitter:image" content="https://codigixinfotech.com/assets/images/logos/logo.png" />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Codigix",
+            "url": "https://codigixinfotech.com",
+            "logo": "https://codigixinfotech.com/assets/images/logos/logo.png",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91-7066556768",
+              "contactType": "customer service",
+              "areaServed": "IN",
+              "availableLanguage": "en"
+            },
+            "sameAs": [
+              "https://www.facebook.com/codigix.infotech",
+              "https://www.linkedin.com/company/codigix-infotech",
+              "https://www.instagram.com/codigix",
+              "https://x.com/CodigixI2994"
+            ]
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Codigix",
+            "url": "https://codigixinfotech.com",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://codigixinfotech.com/search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          })}
+        </script>
+      </Helmet>
       {/* LOADER FIRST */}
       {loading ? (
         showLoader ? (

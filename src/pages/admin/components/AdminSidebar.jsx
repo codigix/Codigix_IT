@@ -37,6 +37,8 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
         { path: '/admin/projects', icon: FileText, label: 'Projects' },
         { path: '/admin/blogs', icon: MessageSquare, label: 'Blog Posts' },
         { path: '/admin/team', icon: Users2, label: 'Team Members' },
+        { path: '/admin/jobs', icon: Briefcase, label: 'Job Openings' },
+        { path: '/admin/applications', icon: FileText, label: 'Applications' },
       ]
     },
     {

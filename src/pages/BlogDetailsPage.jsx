@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SEO from "../components/SEO";
 
 export default function BlogDetailsPage() {
   return (
     <>
-      <section className="tj-page-header section-gap-x" style={{ backgroundImage: "url(/assets/images/bg/pheader-bg.webp)" }}>
+      <SEO 
+        title="Unlocking the Power of Data for Business Success"
+        description="Learn how data analytics and AI are revolutionizing the business landscape and driving success for modern organizations."
+        keywords="data analytics, AI for business, digital transformation, machine learning insights"
+        ogImage="/assets/images/blog/blog-1.webp"
+      />
+      <section className="tj-page-header section-gap-x" style={{ backgroundImage: "url(https://res.cloudinary.com/foodfantacy/image/upload/v1778340863/0015_lf398t.jpg)" }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">

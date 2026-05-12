@@ -48,6 +48,7 @@ export default function SearchPopup({ isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen) {
+      if (!popupRef.current || !overlayRef.current) return;
       document.body.style.overflow = "hidden";
 
       gsap.set([popupRef.current, overlayRef.current], {
@@ -66,15 +67,18 @@ export default function SearchPopup({ isOpen, onClose }) {
         { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }
       );
     } else {
+      if (!popupRef.current || !overlayRef.current) return;
       document.body.style.overflow = "auto";
 
       gsap.to([popupRef.current, overlayRef.current], {
         opacity: 0,
         duration: 0.3,
         onComplete: () => {
-          gsap.set([popupRef.current, overlayRef.current], {
-            display: "none",
-          });
+          if (popupRef.current && overlayRef.current) {
+            gsap.set([popupRef.current, overlayRef.current], {
+              display: "none",
+            });
+          }
         },
       });
     }

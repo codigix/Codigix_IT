@@ -24,7 +24,7 @@ const ClientSection = () => {
           className="mb-12 text-center"
         >
           <h5 className="sec-title inline">
-            <span className="text-orange-500 font-bold text-4xl">2000+</span> Trusted Client over the World
+            <span className="text-orange-500 font-bold text-4xl">10+</span> Trusted Client over the World
           </h5>
         </motion.div>
 
@@ -49,6 +49,7 @@ const ClientSection = () => {
                 <img 
                   src={brand.image} 
                   alt="Brand Logo" 
+                  loading="lazy"
                   className="h-16 object-contain"
                 />
               </motion.div>

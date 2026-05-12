@@ -212,7 +212,7 @@ GSAP Registration
 		var marquee = new Swiper(".marquee-slider", {
 			slidesPerView: "auto",
 			spaceBetween: 0,
-			freemode: true,
+			freeMode: true,
 			centeredSlides: true,
 			loop: true,
 			speed: 7000,
@@ -847,7 +847,7 @@ GSAP Registration
 		var gallery = new Swiper(".gallery-slider", {
 			slidesPerView: "auto",
 			spaceBetween: 0,
-			freemode: true,
+			freeMode: true,
 			centeredSlides: true,
 			loop: true,
 			speed: 5000,

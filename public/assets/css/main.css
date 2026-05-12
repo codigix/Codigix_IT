@@ -70,7 +70,7 @@ START: Theme Default CSS
   /**
      @Font-Size Declaration
    */
-  --tj-fs-body: 16px;
+  /* --tj-fs-body: 16px; */
   --tj-fs-p: 16px;
   --tj-fs-h1: 76px;
   --tj-fs-h2: 48px;
@@ -82,15 +82,15 @@ START: Theme Default CSS
      @Color Declaration
    */
   --tj-color-common-white: #ffffff;
-  --tj-color-common-black: #000000;
+  --tj-color-common-black: #230f62;
   --tj-color-heading-primary: #ffffff;
   --tj-color-text-body: #9692b2;
   --tj-color-text-body-2: #524f66;
-  --tj-color-theme-primary: #ff007f;
+  --tj-color-theme-primary: #6c56b6;
   --tj-color-theme-bg: #18133b;
   --tj-color-theme-dark: #060129;
   --tj-color-theme-dark-2: #65627a;
-  --tj-color-white-2: rgba(255, 255, 255, 0.8);
+  --tj-color-white-2: #f9f9f9;
   --tj-color-grey-1: #9692b2;
   --tj-color-grey-2: #78758f;
   --tj-color-grey-3: rgba(150, 146, 178, 0.8);
@@ -111,7 +111,7 @@ html {
 
 body {
   font-family: var(--tj-ff-body);
-  font-size: var(--tj-fs-body);
+  /* font-size: var(--tj-fs-body); */
   font-weight: normal;
   color: var(--tj-color-text-body);
   background-color: var(--tj-color-theme-dark);
@@ -178,10 +178,7 @@ h2 {
   }
 }
 
-h3 {
-  font-size: var(--tj-fs-h3);
-  line-height: 1.188;
-}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .service-img{
     display: none;
@@ -230,8 +227,6 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-  font-size: inherit;
-  color: inherit;
   font-weight: inherit;
   line-height: inherit;
   display: block;
@@ -732,8 +727,8 @@ body:has(.sticky) .sticky-lg-top {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  background: linear-gradient(135deg, #ff007f 0%, #ff1493 100%);
-  font-size: 16px;
+  border: 1px solid var(--tj-color-theme-primary);
+  font-size: 14px;
   font-weight: var(--tj-fw-sbold);
   /* padding: 6px 6px 6px 24px; */
   padding: 4px !important;
@@ -770,14 +765,15 @@ body:has(.sticky) .sticky-lg-top {
   width: 0;
   height: 0;
   right: 0;
-  background-color: transparent;
+ background-color: var(--tj-color-theme-primary);
   border-radius: 50px;
   z-index: -1;
   -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
 }
 .tj-primary-btn .btn-text {
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-heading-primary);
   overflow: visible;
   -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -803,7 +799,7 @@ body:has(.sticky) .sticky-lg-top {
   width: 48px;
   height: 48px;
   overflow: hidden;
-  background-color: #060129;
+ background-color: var(--tj-color-theme-primary);
   border-radius: 50%;
   -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -825,9 +821,10 @@ body:has(.sticky) .sticky-lg-top {
   padding-right: 18px;
 }
 .tj-primary-btn:hover .btn-inner::before {
-  width: 0;
+  width: 100%;
 }
 .tj-primary-btn:hover .btn-text {
+  color: var(--tj-color-common-white);
   -webkit-transform: translateX(-8px);
       -ms-transform: translateX(-8px);
           transform: translateX(-8px);
@@ -1196,7 +1193,8 @@ START: Theme Header CSS
 }
 .header-area.header-4 .header-wrapper, .header-area.header-3 .header-wrapper {
   padding: 0 18px;
-  border-radius: 16px 16px 0 0;
+  border-radius: 0 0 16px 16px;
+  /* background-color: var(--tj-color-common-white); */
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .header-area.header-4 .header-wrapper, .header-area.header-3 .header-wrapper {
@@ -1267,7 +1265,7 @@ START: Theme Header CSS
 }
 .header-top-content .topbar-text {
   color: var(--tj-color-common-white);
-  padding: 15px 0;
+  padding: 5px 0;
   margin: 0;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -1276,6 +1274,7 @@ START: Theme Header CSS
       -ms-flex-align: center;
           align-items: center;
   gap: 8px;
+  font-size: 12px;
 }
 .header-top-content .topbar-text i {
   color: var(--tj-color-theme-primary);
@@ -1333,6 +1332,7 @@ START: Theme Header CSS
   padding: 0 21px;
   border-left: 1px solid var(--tj-color-border-1);
   line-height: 1;
+  font-size: 12px;
 }
 .header-top-content .header-info .info-item:first-child {
   border: 0;
@@ -1405,7 +1405,7 @@ START: Theme Header CSS
 }
 @media only screen and (min-width: 1400px) and (max-width: 1600px), only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
   .header-top.style-2 {
-    margin-bottom: 15px;
+    margin-bottom: 14px;
   }
 }
 .header-top.style-2 .header-top-content .topbar-text a,
@@ -1494,7 +1494,7 @@ START: Theme Header CSS
   color: var(--tj-color-text-body);
   display: block;
   padding: 37px 0;
-  font-weight: var(--tj-fw-medium);
+  font-weight: var(--tj-fw-light);
   line-height: 1;
 }
 .mainmenu ul > li.menu-item-has-children > a, .mainmenu ul > li.has-dropdown > a {
@@ -1769,7 +1769,7 @@ START: Theme Header CSS
   background-color: var(--tj-color-theme-dark);
   padding: 0 36px;
   border-radius: 0 0 24px 24px;
-  border: 1px solid #364068;
+  border: 1px solid var(--tj-color-border-2);
   border-top-color: transparent;
   position: relative;
 }
@@ -1784,8 +1784,8 @@ START: Theme Header CSS
   -webkit-box-shadow: 24px 0 0 0 var(--tj-color-theme-dark);
           box-shadow: 24px 0 0 0 var(--tj-color-theme-dark);
   border-radius: 0 24px 0 0;
-  border-top: 1px solid #364068;
-  border-right: 1px solid #364068;
+  border-top: 1px solid var(--tj-color-border-2);
+  border-right: 1px solid var(--tj-color-border-2);
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .header-3.header-absolute .menu-area::before, .header-3.header-absolute .menu-area::after {
@@ -1807,13 +1807,17 @@ START: Theme Header CSS
 .header-3.header-absolute .mainmenu > ul > li > a {
   padding-top: 25px;
   padding-bottom: 25px;
+  color: var(--tj-color-theme-dark);
 }
 .header-3.header-absolute .mainmenu > ul > li.menu-item-has-children > a::after, .header-3.header-absolute .mainmenu > ul > li.has-dropdown > a::after {
-  color: currentColor;
+  color: var(--tj-color-theme-dark);
   top: 29px;
 }
 .header-3 .header-search .search {
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-theme-dark);
+}
+.header-3 .menu_bar span {
+  background-color: var(--tj-color-theme-dark);
 }
 
 .header-4.header-absolute .menu-area {
@@ -3696,7 +3700,7 @@ START: Preloader CSS
   right:0;
   width: 100%;
   height: 100vh;
-  background: #ff007f !important;
+  background: #6c56b6 !important;
   z-index: 999999999 !important;
    display: flex;
   justify-content: center;
@@ -3949,7 +3953,7 @@ START: Heading CSS
   margin-bottom: 52px;
 }
 .sec-heading-centered {
-  max-width: 550px;
+
   text-align: center;
 }
 .sec-heading-inner {
@@ -5163,7 +5167,7 @@ START: Hero CSS
   font-size: 15px;
   font-weight: var(--tj-fw-sbold);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -5765,7 +5769,6 @@ START: Client CSS
 }
 
 .client-content {
-  max-width: 500px;
   margin: 0 auto 50px;
   padding: 15px 15px 0 15px;
   text-align: center;
@@ -5817,8 +5820,8 @@ START: Client CSS
   position: absolute;
   width: 308px;
   height: 100%;
-  background-image: -webkit-gradient(linear, left top, right top, from(rgb(6, 1, 41)), to(rgba(6, 1, 41, 0)));
-  background-image: linear-gradient(90deg, rgb(6, 1, 41) 0%, rgba(6, 1, 41, 0) 100%);
+  /* background-image: -webkit-gradient(linear, left top, right top, from(rgb(6, 1, 41)), to(rgba(6, 1, 41, 0)));
+  background-image: linear-gradient(90deg, rgb(6, 1, 41) 0%, rgba(6, 1, 41, 0) 100%); */
   top: 0;
   left: 0;
   z-index: 2;
@@ -5841,8 +5844,8 @@ START: Client CSS
 .client-slider::after {
   left: auto;
   right: 0;
-  background-image: -webkit-gradient(linear, right top, left top, from(rgb(6, 1, 41)), to(rgba(6, 1, 41, 0)));
-  background-image: linear-gradient(-90deg, rgb(6, 1, 41) 0%, rgba(6, 1, 41, 0) 100%);
+  /* background-image: -webkit-gradient(linear, right top, left top, from(rgb(6, 1, 41)), to(rgba(6, 1, 41, 0)));
+  background-image: linear-gradient(-90deg, rgb(6, 1, 41) 0%, rgba(6, 1, 41, 0) 100%); */
 }
 .client-slider .swiper-wrapper {
   -webkit-transition-timing-function: linear;
@@ -6720,19 +6723,19 @@ START: Services CSS
   border-bottom: 2px solid transparent;
 }
 .service-item .item-count::before, .service-item .item-count::after {
-  content: "";
-  position: absolute;
-  background-color: transparent;
-  top: 0px;
-  left: -25px;
-  width: 25px;
-  height: 12px;
-  -webkit-box-shadow: 12px 0 0 0 var(--tj-color-theme-dark);
-          box-shadow: 12px 0 0 0 var(--tj-color-theme-dark);
-  border-top-right-radius: 12px;
-  z-index: -1;
-  border-top: 2px solid transparent;
-  border-right: 2px solid transparent;
+ content: "";
+    position: absolute;
+    background-color: transparent;
+    top: 1px;
+    left: -27px;
+    width: 25px;
+    height: 12px;
+    -webkit-box-shadow: 12px 0 0 0 var(--tj-color-theme-dark);
+    box-shadow: 12px 0 0 0 var(--tj-color-theme-dark);
+    border-top-right-radius: 12px;
+    z-index: -1;
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
 }
 .service-item .item-count::after {
   top: auto;
@@ -7054,18 +7057,18 @@ START: Services CSS
 }
 .service-item.style-3::before {
   content: "";
-  position: absolute;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, rgb(255, 0, 127)), color-stop(90%, rgba(255, 0, 127, 0)));
-  background-image: linear-gradient(rgb(255, 0, 127) 20%, rgba(255, 0, 127, 0) 90%);
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
-  border-radius: 12px;
+    position: absolute;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, var(--tj-color-theme-primary)), color-stop(90%, rgba(255, 0, 127, 0)));
+    background-image: linear-gradient(var(--tj-color-theme-primary) 20%, rgba(255, 0, 127, 0) 90%);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+    border-radius: 12px;
 }
 .service-item.style-3:hover::before {
   opacity: 1;
@@ -7081,24 +7084,26 @@ START: Services CSS
 }
 .service-item.style-3 .item-count {
   background-color: var(--tj-color-theme-bg);
-  left: 0;
-  right: auto;
-  border-left: 0;
-  border-right: 2px solid transparent;
-  border-radius: 0 0 12px 0;
+  left: -3px;
+    right: auto;
+    border-left: 0;
+    border-right: 2px solid transparent;
+    border-radius: 0 0 12px 0;
+    top: -3px;
 }
 .service-item.style-3 .item-count::before, .service-item.style-3 .item-count::after {
+ 
   -webkit-box-shadow: 12px 0 0 0 var(--tj-color-theme-bg);
-          box-shadow: 12px 0 0 0 var(--tj-color-theme-bg);
-  -webkit-transform: scaleX(-1);
-      -ms-transform: scaleX(-1);
-          transform: scaleX(-1);
-  left: auto;
-  right: -25px;
+    box-shadow: 12px 0 0 0 var(--tj-color-theme-bg);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+    left: auto;
+    right: -25px;
 }
 .service-item.style-3 .item-count::after {
   right: auto;
-  left: 0;
+  left: 1px;
 }
 .service-item.style-3 .service-inner {
   padding: 30px;
@@ -7511,7 +7516,7 @@ START: Theme Marquee CSS
 }
 .marquee-item .marquee-text {
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 2px var(--tj-color-common-white);
+  -webkit-text-stroke: 2px var(--tj-color-theme-primary);
   font-size: 160px;
   font-weight: var(--tj-fw-sbold);
   font-family: var(--tj-ff-heading);
@@ -7686,9 +7691,14 @@ START: Project CSS
     max-width: 100%;
   }
 }
-
+:focus-visible{
+  outline: none !important;
+}
+.long-term-vision {
+    background: var(--tj-color-theme-primary) !important;
+}
 .project-slider {
-  overflow: inherit;
+  overflow-x:hidden ;
 }
 
 .project-wrapper-2 {
@@ -7739,17 +7749,7 @@ START: Project CSS
   }
 }
 .project-item .project-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  
   padding: 25px 15px 10px;
 }
 @media (max-width: 575px) {
@@ -7758,11 +7758,16 @@ START: Project CSS
   }
 }
 .project-item .title {
-  color: var(--tj-color-common-white);
-  max-width: 350px;
-  width: 100%;
+  color: var(--tj-color-theme-bg);
+  
   margin-bottom: 0;
 }
+.dark .project-item .title {
+  color: var(--tj-color-heading-primary);
+  
+  margin-bottom: 0;
+}
+
 .project-item .title a {
   display: inline-block;
   text-transform: capitalize !important;
@@ -7770,22 +7775,9 @@ START: Project CSS
 .project-item .title a:hover {
   color: var(--tj-color-theme-primary);
 }
-@media only screen and (min-width: 1400px) and (max-width: 1600px) {
-  .project-item .title {
-    width: calc(100% - 60px);
-  }
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
-  .project-item .title {
-    max-width: 100%;
-    width: calc(100% - 60px);
-  }
-}
-@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
-  .project-item .title {
-    width: calc(100% - 50px);
-  }
-}
+
+
+
 .project-item .categories {
   position: absolute;
   top: 15px;
@@ -7911,7 +7903,7 @@ START: Project CSS
   }
 }
 .project-item.style-3 {
-  padding: 30px 30px 25px 30px;
+  padding:10px;
   border-radius: 16px;
 }
 .project-item.style-3 .categories {
@@ -8038,7 +8030,7 @@ START: Project CSS
   position: absolute;
   background-color: transparent;
   top: 0px;
-  right: -25px;
+  right: -9px;
   width: 25px;
   height: 12px;
   -webkit-box-shadow: 12px 0 0 0 var(--tj-color-theme-bg);
@@ -9783,16 +9775,16 @@ START: Countup CSS
 }
 .countup-item.style-1 .desc {
   margin: 0;
-  padding-top: 114px;
+  padding-top: 14px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .countup-item.style-1 .desc {
-    padding-top: 80px;
+    padding-top: 20px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .countup-item.style-1 .desc {
-    padding-top: 60px;
+    padding-top: 20px;
   }
 }
 .countup-item.style-1 .count-icon {
@@ -9904,7 +9896,7 @@ START: Countup CSS
   font-size: 76px;
   line-height: 1;
   font-weight: var(--tj-fw-medium);
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-theme-primary);
   font-family: var(--tj-ff-heading);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -10906,11 +10898,11 @@ START: Theme Slider CSS
 .tj-slider-section {
   position: relative;
   z-index: 1;
-  margin: 75px 30px 0 30px;
+  margin: 50px 30px 0 30px;
 }
 @media only screen and (min-width: 1400px) and (max-width: 1600px), only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
   .tj-slider-section {
-    margin: 75px 15px 0 15px;
+    margin: 50px 15px 0 15px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
@@ -10923,7 +10915,7 @@ START: Theme Slider CSS
 .tj-slider-item {
   height: 89.6vh;
   background-color: var(--tj-color-theme-dark);
-  border: 1px solid #364068;
+  border: 1px solid var(--tj-color-border-2);
   border-radius: 24px;
   overflow: hidden;
   position: relative;
@@ -10937,13 +10929,12 @@ START: Theme Slider CSS
   width: 100%;
   height: 100%;
   z-index: 2;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 2, 51, 0.15)), to(rgb(0, 2, 51)));
-  background: linear-gradient(rgba(0, 2, 51, 0.15) 0%, rgb(0, 2, 51) 100%);
+ 
 }
 .tj-slider-item .slider-wrapper {
   max-width: 1480px;
   margin: 0 auto;
-  padding: 200px 0 140px 0;
+  padding: 150px 0 100px 0;
   position: relative;
   z-index: 3;
   display: -webkit-box;
@@ -10953,9 +10944,9 @@ START: Theme Slider CSS
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 100%;
 }
 @media only screen and (min-width: 1601px) and (max-width: 1700px) {
@@ -10978,44 +10969,28 @@ START: Theme Slider CSS
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
   .tj-slider-item .slider-wrapper {
-    padding: 150px 50px 120px 50px;
+    padding:20px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .tj-slider-item .slider-wrapper {
-    padding: 150px 15px 120px 15px;
+    padding: 20px;
   }
 }
 .tj-slider-item .slider-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: end;
+ 
 }
 .tj-slider-item .slider-content .slider-title-area {
-  max-width: 730px;
+
   width: 100%;
 }
 @media only screen and (min-width: 1400px) and (max-width: 1600px) {
   .tj-slider-item .slider-content .slider-title-area {
-    max-width: 660px;
+
   }
 }
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {
-  .tj-slider-item .slider-content .slider-title-area {
-    max-width: 530px;
-  }
-}
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .tj-slider-item .slider-content .slider-title-area {
-    max-width: 490px;
-  }
-}
+
+
 .tj-slider-item .slider-content .sub-title {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -11025,26 +11000,30 @@ START: Theme Slider CSS
           align-items: center;
   gap: 4px;
   color: var(--tj-color-common-white);
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1;
-  letter-spacing: 0.1em;
+  
   text-transform: uppercase;
   font-weight: var(--tj-fw-sbold);
   padding: 7px 8px;
   margin-bottom: 10px;
   border: 1px solid var(--tj-color-theme-primary);
+  background-color: var(--tj-color-theme-primary);
   border-radius: 6px;
 }
 .tj-slider-item .slider-content .sub-title i {
   font-size: 15px;
-  color: var(--tj-color-theme-primary);
+  color: var(--tj-color-common-white);
 }
 .tj-slider-item .slider-content .slider-title {
   color: var(--tj-color-common-white);
-  font-size: 112px;
+  font-size: 80px;
   line-height: 1;
   font-weight: var(--tj-fw-regular);
   margin-bottom: 10px;
+  background: linear-gradient(to right, #ebe9f2 0%, #ffffff 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .tj-slider-item .slider-content .slider-title span {
   color: var(--tj-color-text-body-2);
@@ -11126,7 +11105,7 @@ START: Theme Slider CSS
   }
 }
 .tj-slider-item .slider-content .slider-desc {
-  max-width: 350px;
+  
   width: 100%;
   font-size: 18px;
   line-height: 1.444;
@@ -11134,13 +11113,13 @@ START: Theme Slider CSS
   margin-bottom: 25px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-  .tj-slider-item .slider-content .slider-desc {
-    max-width: 305px;
-  }
+  /* .tj-slider-item .slider-content .slider-desc {
+    max-width: 550px;
+  } */
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .tj-slider-item .slider-content .slider-desc {
-    max-width: 270px;
+    /* max-width: 450px; */
     font-size: 16px;
   }
 }
@@ -11150,7 +11129,7 @@ START: Theme Slider CSS
 .tj-slider-item .slider-content .slider-btn .tj-primary-btn {
   background-color: transparent;
   border: 2px solid var(--tj-color-common-white);
-  height: 88px;
+  height: 55px;
   padding: 10px 20px;
 }
 .tj-slider-item .slider-content .slider-btn .tj-primary-btn .btn-inner::before {
@@ -11167,7 +11146,7 @@ START: Theme Slider CSS
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .tj-slider-item .slider-content .slider-btn .tj-primary-btn {
-    height: 75px;
+    height: 55px;
     padding: 10px 15px;
   }
 }
@@ -11179,7 +11158,7 @@ START: Theme Slider CSS
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .tj-slider-item .slider-content .slider-btn .tj-primary-btn {
-    height: 65px;
+    height: 55px;
     padding: 10px 15px;
   }
 }
@@ -11296,7 +11275,7 @@ START: Theme Slider CSS
   font-size: 34px;
   background-color: var(--tj-color-theme-dark);
   margin-top: -60px;
-  border: 1px solid #364068;
+  border: 1px solid var(--tj-color-border-2);
   position: relative;
   z-index: 1;
 }
@@ -11314,8 +11293,8 @@ START: Theme Slider CSS
           box-shadow: 20px 0 0 0 var(--tj-color-theme-dark);
   border-radius: 0 0 24px 0;
   z-index: -1;
-  border-bottom: 1px solid #364068;
-  border-right: 1px solid #364068;
+  border-bottom: 1px solid var(--tj-color-border-2);
+  border-right: 1px solid var(--tj-color-border-2);
   pointer-events: none;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
@@ -11332,7 +11311,7 @@ START: Theme Slider CSS
   top: auto;
   bottom: -24px;
   border-radius: 0 24px 0 0;
-  border-top: 1px solid #364068;
+  border-top: 1px solid var(--tj-color-border-2);
   border-bottom: 0;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
@@ -11402,7 +11381,7 @@ START: Theme Slider CSS
   right: 0;
   bottom: 0 !important;
   border-radius: 24px 24px 0 0;
-  border: 1px solid #364068;
+  border: 1px solid var(--tj-color-border-2);
   border-bottom: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11425,8 +11404,8 @@ START: Theme Slider CSS
   -webkit-box-shadow: 0 20px 0 0 var(--tj-color-theme-dark);
           box-shadow: 0 20px 0 0 var(--tj-color-theme-dark);
   border-radius: 0 0 24px 0;
-  border-bottom: 1px solid #364068;
-  border-right: 1px solid #364068;
+  border-bottom: 1px solid var(--tj-color-border-2);
+  border-right: 1px solid var(--tj-color-border-2);
   z-index: -1;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
@@ -11439,7 +11418,7 @@ START: Theme Slider CSS
   right: -24px;
   border-radius: 0 0 0 24px;
   border-right: 0;
-  border-left: 1px solid #364068;
+  border-left: 1px solid var(--tj-color-border-2);
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .hero-pagination::after {
@@ -12137,8 +12116,11 @@ START: Breadcrumb CSS
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-color: var(--tj-color-theme-dark);
-  opacity: 0.6;
+  background: radial-gradient(rgb(235 230 253) 0%, rgb(108 86 182 / 46%) 100%);
+  /* opacity: 0.6; */
+}
+.dark .tj-page-header::before{
+background:linear-gradient(rgba(0, 2, 51, 0.15) 0%, rgb(0, 2, 51) 100%);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .tj-page-header {
@@ -17296,7 +17278,7 @@ START: Theme Footer CSS
   width: auto;
   height: auto;
   top: 7px;
-  right: 7px;
+  
 }
 .h6-widget-subscribe .subscribe-form button i {
   font-size: 20px;
@@ -17467,7 +17449,7 @@ START: Hero CSS
   line-height: 1.4;
   font-weight: var(--tj-fw-sbold);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  
   background-color: var(--tj-color-theme-dark);
   border-radius: 4px;
   padding: 4px 8px;
@@ -17768,7 +17750,7 @@ START: Hero CSS
 .search-qst-form {
   position: relative;
   padding: 3px;
-  background-image: linear-gradient(84deg, #ff007f, #667aff);
+  background-image: linear-gradient(84deg, #6c56b6, #667aff);
   border-radius: 16px;
   -webkit-box-shadow: 0 0 40px rgba(62, 36, 135, 0.8);
           box-shadow: 0 0 40px rgba(62, 36, 135, 0.8);
@@ -20244,7 +20226,7 @@ START: Hero CSS
   line-height: 1.4;
   font-weight: var(--tj-fw-sbold);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  
   background-color: var(--tj-color-theme-dark);
   border-radius: 4px;
   padding: 4px 8px;
@@ -22451,7 +22433,7 @@ START: Hero CSS
   line-height: 1.4;
   font-weight: var(--tj-fw-sbold);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  
   margin-bottom: 15px;
   position: relative;
 }
@@ -24755,7 +24737,7 @@ START: Theme Header CSS
     margin-top: 3px;
     font-weight: 400;
     color: #FFF;
-    background: #ff007f;
+    background: #6c56b6;
     border-radius: 50%;
 }
  .image-box  {
@@ -24799,7 +24781,7 @@ START: Theme Header CSS
     background-color: #060129;
     font-size: 16px;
     line-height: 1;
-    color: #ff007f;
+    color: #6c56b6;
     font-weight: 500;
     padding: 5px 10px 6px;
     display: -webkit-inline-box;
@@ -24809,12 +24791,10 @@ START: Theme Header CSS
     border-radius: 8px;
 }
 .project-item .project-no span:hover {
-    background-color: #ff007f;
+    background-color: #6c56b6;
     color: #fff;
 }
-.project-desc{
-  width:85%;
-}
+
 /* !END: Theme Header CSS *//*# sourceMappingURL=main.css.map */
 **
   Buttons CSS
@@ -24824,7 +24804,7 @@ START: Theme Header CSS
   display: -ms-inline-flexbox;
   display: inline-flex;
   background-color: var(--tj-color-theme-primary);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: var(--tj-fw-sbold);
   padding: 4px;
   text-align: center;
@@ -24858,12 +24838,13 @@ START: Theme Header CSS
   width: 42px;
   height: 42px;
   right: 0;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--tj-color-theme-primary);
   border-radius: 50px;
   z-index: -1;
+   
 }
 .tj-primary-btn .btn-text {
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-heading-primary);
   overflow: hidden;
 }
 .tj-primary-btn .btn-text span {
@@ -24887,8 +24868,10 @@ START: Theme Header CSS
   width: 42px;
   height: 42px;
   overflow: hidden;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--tj-color-theme-primary);
   border-radius: 50%;
+  position: relative;
+  right: -8px;
 }
 .tj-primary-btn .btn-icon.h-icon {
   position: absolute;
@@ -24909,9 +24892,9 @@ START: Theme Header CSS
           transform: translateX(36px);
 }
 .tj-primary-btn:hover .btn-icon {
-  -webkit-transform: translateX(42px);
-      -ms-transform: translateX(42px);
-          transform: translateX(42px);
+  -webkit-transform: translateX(48px);
+      -ms-transform: translateX(48px);
+          transform: translateX(48px);
 }
 .tj-primary-btn:hover .btn-icon i {
   -webkit-transform: rotate(0);
@@ -25337,7 +25320,7 @@ background: transparent !important;
   height:70px !important;
 }
 .header-wrapper .menu-area{
-  margin-top: 4px !important;
+  margin-top: 3px !important;
 }
 .header-wrapper .logo{
   margin-top: 4px;

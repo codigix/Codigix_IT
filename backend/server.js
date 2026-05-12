@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 const { PORT, CLIENT_URL, NODE_ENV } = require('./config/config');
 const apiRoutes = require('./routes/api');
 const db = require('./config/db');
@@ -14,6 +15,7 @@ app.use(cors({
   credentials: true
 }));
 app.use(bodyParser.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Request logger
 app.use((req, res, next) => {

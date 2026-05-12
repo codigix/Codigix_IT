@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import config from '../config';
+
+const getImageUrl = config.getImageUrl;
 
 export default function Footer() {
   return (
@@ -13,16 +16,16 @@ export default function Footer() {
                 <span className="sub-title"><i className="tji-subtitle-2"></i>Get Started</span>
                 <div className='main-sec'>
                 <h2 className="sec-title">Let’s Launch AI-Powered </h2>
-                <h2 className="sec-title-1 sec-title" > Project <img src="assets/images/shape/hand.webp" alt=""/>
+                <h2 className="sec-title-1 sec-title" > Project <img src={getImageUrl("assets/images/shape/hand.webp")} alt="Project Hand Icon"/>
                   Here.
                 </h2>
                 </div>
               </div>
                 <div className="circle-text-wrap wow fadeInUp" data-wow-delay=".7s">
-                  <span className="circle-text" style={{backgroundImage: "url(assets/images/cta/circle-text.webp)"}}></span>
+                  <span className="circle-text" style={{backgroundImage: `url(${getImageUrl("assets/images/cta/circle-text.webp")})`}}></span>
                   <Link className="circle-icon" to="/contact"><span><i className="tji-plane-2"></i></span></Link>
                 </div>
-                <div className="cta-bg wow fadeIn" data-wow-delay=".3s"><img src="assets/images/cta/line-pattern.webp" alt="" /></div>
+                <div className="cta-bg wow fadeIn" data-wow-delay=".3s"><img src={getImageUrl("assets/images/cta/line-pattern.webp")} alt="CTA Line Pattern" /></div>
               </div>
             </div>
           </div>
@@ -34,7 +37,7 @@ export default function Footer() {
             <div className="col-xl-3 col-md-6">
               <div className="footer-widget footer-col-1">
                 <div className="footer-logo">
-                  <Link to="/"><img src="assets/images/logos/logo.png" alt="Codigix Logo" /></Link>
+                  <Link to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Codigix Logo" /></Link>
                 </div>
                 <div className="footer-text">
                   <p>Understanding client needs, defining goals, and designing tailored AI crafting's solutions.</p>
@@ -57,6 +60,7 @@ export default function Footer() {
                   <li><Link to="/about">About Us</Link></li>
                   <li><Link to="/services">Services</Link></li>
                   <li><Link to="/blog">Blog</Link></li>
+                  <li><Link to="/careers">Careers</Link></li>
                   <li><Link to="/projects">Portfolio</Link></li>
                   <li><Link to="/contact">Contact Us</Link></li>
                 </ul>

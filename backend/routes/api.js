@@ -2,10 +2,18 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
 const entityController = require('../controllers/entityController');
+const jobController = require('../controllers/jobController');
+const contactController = require('../controllers/contactController');
 const authenticateToken = require('../middleware/auth');
+
+// Public Contact route (Must be before dynamic routes)
+router.post('/contact', contactController.sendContactMessage);
 
 // Auth routes
 router.post('/login', authController.login);
+
+// Job application route (public)
+router.post('/jobs/apply', jobController.applyForJob);
 
 // Public entity routes (GET)
 router.get('/:entity', entityController.getAll);

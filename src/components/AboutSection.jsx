@@ -13,7 +13,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section className="section-gap bg-white">
+    <section className="section-gap bg-white dark:bg-[#060129] transition-colors duration-300">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -22,11 +22,11 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="sub-title mb-4">
+            <p className="sub-title mb-4 dark:text-gray-400">
               <span>💡</span>
               About our Company
             </p>
-            <h2 className="sec-title mb-8">
+            <h2 className="sec-title mb-8 dark:text-white">
               Driving Innovations Through Our and Technology, Delivering Our Expert Solutions are Best that Transform Businesses.
             </h2>
 
@@ -35,11 +35,11 @@ const AboutSection = () => {
               <div className="text-5xl font-bold text-orange-500">
                 13<sup className="text-2xl">+</sup>
               </div>
-              <p className="text-lg text-gray-700">We have 10+ Years of working Experiences.</p>
+              <p className="text-lg text-gray-700 dark:text-gray-300">We have 3+ Years of working Experiences.</p>
             </div>
 
             {/* Description */}
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 dark:text-gray-400">
               Our team of experts combines innovation, and strategy to deliver custom AI-driven tools and services empower transformation.
             </p>
 
@@ -48,7 +48,7 @@ const AboutSection = () => {
               {features.map((feature, index) => (
                 <li key={index} className="flex items-center gap-3">
                   <span className="text-orange-500">✓</span>
-                  <span className="text-gray-700">{feature}</span>
+                  <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                 </li>
               ))}
             </ul>

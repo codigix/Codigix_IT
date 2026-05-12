@@ -1,11 +1,13 @@
-require('dotenv').config();
 const mysql = require('mysql2/promise');
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 async function initializeDatabase() {
   const connection = await mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || 'Ruchita@12345'
+    password: process.env.DB_PASSWORD || 'Ruchita@12345',
+    port: parseInt(process.env.DB_PORT || '3306')
   });
 
   const dbName = process.env.DB_NAME || 'codigix_admin';
@@ -36,7 +38,15 @@ async function initializeDatabase() {
         id INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255),
         category VARCHAR(255),
-        image VARCHAR(255)
+        image VARCHAR(255),
+        overview TEXT,
+        goals TEXT,
+        technology_stack TEXT,
+        results TEXT,
+        client VARCHAR(255),
+        budget VARCHAR(255),
+        gallery TEXT,
+        client_logo VARCHAR(255)
       )`,
       `CREATE TABLE IF NOT EXISTS testimonials (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -80,6 +90,26 @@ async function initializeDatabase() {
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         role VARCHAR(50) DEFAULT 'admin'
+      )`,
+      `CREATE TABLE IF NOT EXISTS jobs (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        location VARCHAR(255),
+        type VARCHAR(100),
+        description TEXT,
+        requirements TEXT,
+        date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )`,
+      `CREATE TABLE IF NOT EXISTS applications (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        job_id INT,
+        name VARCHAR(255),
+        email VARCHAR(255),
+        phone VARCHAR(50),
+        resume_url VARCHAR(255),
+        cover_letter TEXT,
+        applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE SET NULL
       )`
     ];
 

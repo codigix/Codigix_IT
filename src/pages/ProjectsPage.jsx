@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from "../components/SEO";
 
 import config from '../config';
 
 const API_BASE_URL = config.API_BASE_URL;
+const getImageUrl = config.getImageUrl;
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
@@ -50,7 +52,12 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <section className="tj-page-header section-gap-x" style={{ backgroundImage: "url(assets/images/bg/pheader-bg.webp)" }}>
+      <SEO 
+        title="Our Projects" 
+        description="Check out our portfolio of successful AI-driven projects and software engineering solutions that have helped businesses transform."
+        keywords="projects, portfolio, AI projects, software development, case studies"
+      />
+      <section className="tj-page-header section-gap-x" style={{ backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778412464/samples/codigix%20infotech/people-with-watercolor-technology-interfaces-laptops-concept-as-group-people-interacting-wi_akioev.jpg")})` }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -68,8 +75,8 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="tj-project-section section-gap">
-        <div className="container">
+      <section className="tj-project-section section-gap ">
+        <div className="">
           <div className="row">
             <div className="col-12">
               <div className="sec-heading sec-heading-centered d-none">
@@ -78,41 +85,31 @@ export default function ProjectsPage() {
               </div>
             </div>
           </div>
-          <div className="row row-gap-4">
-            {currentProjects?.length > 0 &&
-              currentProjects.map((project, idx) => (
-                <div className="col-lg-6 col-md-6" key={project.id}>
-                  <div className="project-item wow fadeInUp" data-wow-delay={`.${3 + idx}s`}>
-                    <div className="project-img">
-                      {/* <img src={project.image.startsWith('assets') ? project.image : `assets/images/project/${project.image}.webp`} alt={project.title} /> */
-                      }
-                      <img
-                        src={
-                          typeof project.image === "string" && project.image.startsWith("assets")
-                            ? project.image
-                            : `assets/images/project/${project.image || "default"}.webp`
-                        }
-                        alt={project.title || "project"}
-                      />
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {projects.slice(0, 4).map((project, idx) => (
+                        <div className="col-span-1" key={project.id}>
+                          
+                          <div class="project-item">
+                            <div class="project-img">
+                              <img
+                                src={getImageUrl(project.image, "assets/images/project")}
+                                alt={project.title}
+                                className="w-full h-[150px] object-cover  transition-transform duration-500 group-hover:scale-110"
+                              />
+                            </div>
+                            <div class="project-content">
+                              <h4 class="title"><Link to={`/projects/details/${project.id}`}>{project.title}</Link></h4>
+                              <p className="line-clamp-2">{project.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
+                              </p>
+                              <Link to={`/projects/details/${project.id}`} class="icon-btn" >
+                                <i class="tji-arrow-right-long"></i>
+                              </Link>
+                            </div>
+                            <span class="categories"><Link to={`/projects/details/${project.id}`}>{project.category || 'Software'}</Link></span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <span className="project-no">
-                      <span>
-                        {String(indexOfFirstProject + idx + 1).padStart(2, "0")}
-                      </span>
-                    </span>
-                    <div className="project-content">
-                      <div className='project-desc'>
-                        <h4 className="title  mb-2"><Link to="/projects/details">{project.title}</Link></h4>
-                        <p className="desc">{project.category || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}</p>
-                      </div>
-                      <Link className="icon-btn" to="/projects/details">
-                        <i className="tji-arrow-right-long"></i>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div>
 
           {/* <div className="tj-pagination d-flex justify-content-center">
             <ul>

@@ -2,6 +2,10 @@ import React, { useState ,useEffect} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SearchPopup from './SearchPopup';
 import HamburgerMenu from './HamburgerMenu';
+import ThemeToggle from './ThemeToggle';
+import config from '../config';
+
+const getImageUrl = config.getImageUrl;
 
 export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -57,7 +61,7 @@ export default function Header() {
                 <div className="col-12">
                   <div className="header-wrapper">
                     <div className="site_logo">
-                      <Link className="logo" to="/"><img src="assets/images/logos/logo.png" alt="Codigix Logo" /></Link>
+                      <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Codigix Logo" /></Link>
                     </div>
 
                     <div className="menu-area d-none d-lg-inline-flex align-items-center">
@@ -85,12 +89,14 @@ export default function Header() {
                               <li><Link to="/blog/details">Blog Details</Link></li>
                             </ul>
                           </li>
+                          <li><Link to="/careers">Careers</Link></li>
                           <li><Link to="/contact">Contact</Link></li>
                         </ul>
                       </nav>
                     </div>
 
                     <div className="header-right-item d-lg-inline-flex d-none">
+                      <ThemeToggle className="mr-3" />
                       <div className="header-search">
                         <button className="search"
                           onClick={() => setSearchOpen(true)} >
@@ -106,6 +112,7 @@ export default function Header() {
                       </div>
                     </div>
 
+                    <ThemeToggle className="d-lg-none mr-2" />
                     <div
                       className="menu_bar mobile_menu_bar d-lg-none"
                       onClick={() => setMenuOpen(true)}
@@ -127,7 +134,7 @@ export default function Header() {
               <div className="col-12">
                 <div className="header-wrapper">
                   <div className="site_logo">
-                    <Link className="logo" to="/"><img src="/assets/images/logos/logo.png" alt="Logo" /></Link>
+                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" /></Link>
                   </div>
 
                   <div className="menu-area d-none d-lg-inline-flex align-items-center">
@@ -155,12 +162,14 @@ export default function Header() {
                             <li><Link to="/blog/details">Blog Details</Link></li>
                           </ul>
                         </li>
+                        <li><Link to="/careers">Careers</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                       </ul>
                     </nav>
                   </div>
 
                   <div className="header-right-item d-none d-lg-inline-flex">
+                    <ThemeToggle className="mr-3" />
                     <div className="header-search">
                       <button
                         className="search"
@@ -213,7 +222,7 @@ export default function Header() {
               <div className="col-12">
                 <div className="header-wrapper">
                   <div className="site_logo">
-                    <Link className="logo" to="/"><img src="/assets/images/logos/logo.png" alt="Logo" /></Link>
+                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" /></Link>
                   </div>
 
                   <div className="menu-area d-none d-lg-inline-flex align-items-center">
@@ -241,12 +250,14 @@ export default function Header() {
                             <li><Link to="/blog/details">Blog Details</Link></li>
                           </ul>
                         </li>
+                        <li><Link to="/careers">Careers</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                       </ul>
                     </nav>
                   </div>
 
                   <div className="header-right-item d-none d-lg-inline-flex">
+                    <ThemeToggle className="mr-3" />
                     <div className="header-search">
                       <button
                         className="search"
@@ -336,12 +347,14 @@ export default function Header() {
                             <li><Link to="/blog/details">Blog Details</Link></li>
                           </ul>
                         </li>
+                        <li><Link to="/careers">Careers</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                       </ul>
                     </nav>
                   </div>
 
                   <div className="header-right-item d-none d-lg-inline-flex">
+                    <ThemeToggle className="mr-3" />
                     <div className="header-search">
                       <button
                         className="search"

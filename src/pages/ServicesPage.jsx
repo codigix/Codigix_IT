@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from "../components/SEO";
 
 import config from '../config';
 
 const API_BASE_URL = config.API_BASE_URL;
+const getImageUrl = config.getImageUrl;
 
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
@@ -31,7 +33,12 @@ export default function ServicesPage() {
 
   return (
     <>
-      <section className="tj-page-header section-gap-x" style={{backgroundImage: "url(assets/images/bg/pheader-bg.webp)"}}>
+      <SEO 
+        title="Our Services" 
+        description="Explore our range of AI-powered services including custom technology solutions, predictive analytics, machine learning, and more."
+        keywords="services, AI solutions, machine learning, data analysis, custom technology"
+      />
+      <section className="tj-page-header section-gap-x" style={{ backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778412018/samples/codigix%20infotech/businessman-typing-laptop-keyboard-late-evening_ldtqu3.jpg")})` }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -49,31 +56,38 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="tj-service-section-2 section-gap">
+      <section className="tj-service-section-2 section-gap ">
         <div className="container">
-          <div className="row row-gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, idx) => (
-              <div className="col-lg-4 col-md-6" key={idx}>
-                <div className="service-item style-2 wow fadeInUp" data-wow-delay={service.delay}>
-                  <div className="service-inner">
-                    <div className="service-content">
-                      <h4 className="title"><Link to="/services/details">{service.title}</Link></h4>
-                      <p className="desc">{service.desc}</p>
-                    </div>
-                    <div className="service-img">
-                      <img src={`assets/images/service/${service.image}.jpg`} alt={service.title} />
-                      <Link className="text-btn" to="/services/details">
-                        <span className="btn-text"><span>Learn More</span></span>
-                        <span className="btn-icon"><span><i className="tji-arrow-right"></i></span></span>
-                      </Link>
-                    </div>
+              <div class="service-item style-2 wow fadeInUp" data-wow-delay=".1s" key={idx}>
+                <div class="service-inner">
+                  <div class="service-content">
+                    <h4 class="title"><Link to={`/services/details/${service.id}`}>{service.title}</Link></h4>
+                    <p class="desc">                      {service.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
+                    </p>
                   </div>
-                  <span className="item-count">{service.num}.</span>
+                  <div class="service-img">
+                    <img
+                      src={getImageUrl(service.image, "assets/images/service")}
+                      alt={service.title}
+                      className="w-fit h-[150px] object-cover  transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <Link to={`/services/details/${service.id}`} class="text-btn" >
+                      <span class="btn-text"><span>Learn More</span></span>
+                      <span class="btn-icon"><span><i class="tji-arrow-right"></i></span></span>
+                    </Link>
+                  </div>
                 </div>
+                <span class="item-count">01.</span>
               </div>
+
+
             ))}
+            
           </div>
-{/* 
+
+          {/* 
           <div className="tj-pagination d-flex justify-content-center">
             <ul>
               <li><span aria-current="page" className="page-numbers current">1</span></li>

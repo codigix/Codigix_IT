@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from "../components/SEO";
 
 import config from '../config';
 
 const API_BASE_URL = config.API_BASE_URL;
+const getImageUrl = config.getImageUrl;
 
 export default function AboutPage() {
   const [achievements, setAchievements] = useState([]);
@@ -21,8 +23,8 @@ export default function AboutPage() {
           achRes.json(),
           teamRes.json(),
         ]);
-        setAchievements(achData);
-        setTeam(teamData);
+        setAchievements(Array.isArray(achData) ? achData : []);
+        setTeam(Array.isArray(teamData) ? teamData : []);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching about data:', error);
@@ -32,13 +34,36 @@ export default function AboutPage() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (!loading && window.Swiper) {
+      new window.Swiper(".marquee-slider", {
+        slidesPerView: "auto",
+        spaceBetween: 0,
+        freeMode: true,
+        centeredSlides: true,
+        loop: true,
+        speed: 7000,
+        allowTouchMove: false,
+        autoplay: {
+          delay: 1,
+          disableOnInteraction: false,
+        },
+      });
+    }
+  }, [loading]);
+
   if (loading) {
     return <div className="preloader"><div className="loading-container"><div className="loading"></div></div></div>;
   }
 
   return (
     <>
-      <section className="tj-page-header section-gap-x" style={{backgroundImage: "url(assets/images/bg/pheader-bg.webp)"}}>
+      <SEO 
+        title="About Us" 
+        description="Learn more about Codigix, our mission, vision, and the passionate innovators behind our AI-driven software solutions."
+        keywords="about us, team, mission, vision, innovators, AI company"
+      />
+      <section className="tj-page-header section-gap-x" style={{backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778342361/0015_lf398t.jpg")})`}}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -69,7 +94,7 @@ export default function AboutPage() {
                     </div>
                     <div className="about-bottom-area-2">
                       <div className="company-logo wow fadeInLeft" data-wow-delay=".3s">
-                        <img src="/assets/images/logos/logo.png" alt="Codigix Logo" />
+                        <img src={getImageUrl("assets/images/logos/logo.png")} alt="Codigix Logo" />
                       </div>
                       <div className="mission-vision-wrap">
                         <div className="mission-vision-box wow fadeInRight" data-wow-delay=".5s">
@@ -95,14 +120,14 @@ export default function AboutPage() {
             </div>
             <div className="about-img-area">
               <div className="about-img wow fadeInLeft" data-wow-delay=".3s" data-wow-duration="0.8s">
-                <img src="assets/images/about/about-img-2.webp" alt="About" />
+                <img src={getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778344039/doctor-from-future-concept_qvzulo.jpg")} alt="About" />
               </div>
             </div>
           </div>
           <div className="marquee-area">
             <div className="swiper marquee-slider">
               <div className="swiper-wrapper">
-                {['Redefining', 'Revolution', 'Intelligence', 'Redefining', 'Revolution', 'Intelligence'].map((text, idx) => (
+                {['Redefining', 'Revolution', 'Intelligence', 'Redefining', 'Revolution', 'Intelligence', 'Redefining', 'Revolution', 'Intelligence', 'Redefining', 'Revolution', 'Intelligence'].map((text, idx) => (
                   <div className="swiper-slide marquee-item" key={idx}>
                     <h4 className="marquee-text">{text}</h4>
                     <div className="marquee-icon"><i className="tji-marquee-icon"></i></div>
@@ -132,7 +157,7 @@ export default function AboutPage() {
           <div className="row row-gap-4">
             <div className="col-lg-6 order-2 order-lg-1">
               <div className="achievement-img wow fadeInLeft" data-wow-delay=".3s">
-                <img src="assets/images/achievement/achievement.webp" alt="Achievement" />
+                <img src={getImageUrl("assets/images/achievement/achievement.webp")} alt="Achievement" />
               </div>
             </div>
             <div className="col-lg-6 order-1 order-lg-2">
@@ -167,7 +192,7 @@ export default function AboutPage() {
               <div className="col-lg-3 col-sm-6" key={member.id}>
                 <div className="team-item wow fadeInUp" data-wow-delay={`.${3 + idx}s`}>
                   <div className="team-img">
-                    <img src={member.image && member.image.startsWith('assets') ? member.image : `assets/images/team/team-${member.num}.webp`} alt={member.name} />
+                    <img src={getImageUrl(member.image, "assets/images/team")} alt={member.name} />
                   </div>
                   <div className="team-content">
                     <h5 className="title"><a href="#">{member.name}</a></h5>

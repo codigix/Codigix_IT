@@ -3,16 +3,23 @@
     {
       "id": 1,
       "image": "assets/images/hero/slider-1.webp",
-      "subtitle": "GRATAFY IT SERVICES.",
-      "title": "Innovation begins with imagination.",
-      "description": "Specialize in delivering high-tech AI-powered solutions to revolutionize your business with pink-accented precision."
+      "subtitle": "AI BASED ERP SOFTWARE",
+      "title": "ERP Software Development",
+      "description": "Streamline your business operations with our AI-powered ERP solutions, designed for maximum efficiency and growth."
     },
     {
       "id": 2,
       "image": "assets/images/hero/slider-2.webp",
-      "subtitle": "AI TRANSFORMS EVERYTHING.",
-      "title": "Future-Proof Your Brand Identity",
-      "description": "Sophisticated dark themes and vibrant highlights designed for the next generation of digital excellence."
+      "subtitle": "CRM SOFTWARE SOLUTIONS",
+      "title": "CRM Software Development",
+      "description": "Enhance customer relationships and drive sales with our sophisticated CRM platforms tailored for your business needs."
+    },
+    {
+      "id": 3,
+      "image": "assets/images/hero/slider-1.webp",
+      "subtitle": "WEB DEVELOPMENT SERVICES",
+      "title": "Customise Website Development",
+      "description": "Get a unique, high-performance website that stands out and reflects your brand identity perfectly."
     }
   ],
   "services": [
@@ -38,14 +45,11 @@
     { "id": 1, "title": "The Rise of High-Tech Dark Themes", "category": "Design", "date": "Jan 22, 2026", "image": "blog-1" },
     { "id": 2, "title": "Implementing Cyan Highlights in UI", "category": "Development", "date": "Jan 21, 2026", "image": "blog-2" }
   ],
-  "clients": [
-    { "id": 1, "image": "assets/images/brands/brand-1.webp" },
-    { "id": 2, "image": "assets/images/brands/brand-2.webp" },
-    { "id": 3, "image": "assets/images/brands/brand-3.webp" }
-  ],
+  
   "workingProcess": [
-    { "id": 1, "step": "01", "title": "Vision & Discovery", "icon": "tji-discovery", "desc": "We align your business goals with the Gratafy high-tech aesthetic." },
-    { "id": 2, "step": "02", "title": "Design & Code", "icon": "tji-development", "desc": "Implementing vibrant accents and dark-mode sophistication." }
+    { "id": 1, "step": "01", "title": "Discovery & Strategy", "icon": "tji-discovery", "desc": "Understanding client needs, defining goals, and designing tailored our AI solutions. Building, training deploying into existing." },
+    { "id": 2, "step": "02", "title": "Development & Integration", "icon": "tji-development", "desc": "Implementing vibrant accents and dark-mode sophistication." },
+    { "id": 3, "step": "03", "title": "Optimization & Support", "icon": "tji-support", "desc": "Ensuring a smooth launch and continuous optimization." }
   ],
   "achievements": [
     { "id": 1, "num": "01", "title": "Best Tech Redesign 2026", "year": "2026" },

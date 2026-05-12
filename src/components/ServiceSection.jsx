@@ -77,7 +77,7 @@ const ServiceSection = () => {
             >
               <div className="flex-1">
                 <h3 className="text-3xl font-bold mb-4">
-                  <Link to="/services/details" className="hover:text-orange-500">
+                  <Link to={`/services/details/${service.id}`} className="hover:text-orange-500">
                     {service.title}
                   </Link>
                 </h3>
@@ -91,7 +91,7 @@ const ServiceSection = () => {
                   ))}
                 </ul>
                 <Link 
-                  to="/services/details"
+                  to={`/services/details/${service.id}`}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
                 >
                   <span>→</span>
@@ -103,6 +103,7 @@ const ServiceSection = () => {
                 <img 
                   src={service.image} 
                   alt={service.title}
+                  loading="lazy"
                   className="rounded-lg shadow-lg w-full"
                 />
               </div>

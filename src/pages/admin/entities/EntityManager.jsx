@@ -270,7 +270,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                         value={formData[field.name] || ''}
                         onChange={handleInputChange}
                         placeholder={`ENTER ${field.label || field.name.toUpperCase()}...`}
-                        className="w-full bg-[#1A1C2E] border border-slate-800/30 rounded-xl px-4 py-4 text-[11px] font-bold text-white focus:border-[#FF1F8B]/40 focus:outline-none transition-all uppercase tracking-wide"
+                        className="w-full bg-[#1A1C2E] border border-slate-800/30 rounded-xl px-4 py-4 text-[11px] font-bold text-white focus:border-[#FF1F8B]/40 focus:outline-none transition-all  tracking-wide"
                         required={field.required !== false}
                       />
                     )}

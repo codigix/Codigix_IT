@@ -73,6 +73,7 @@ const TestimonialSection = () => {
                   <img 
                     src={testimonial.image && testimonial.image.startsWith('assets') ? testimonial.image : testimonial.image} 
                     alt={testimonial.author}
+                    loading="lazy"
                     className="w-16 h-16 rounded-full object-cover"
                   />
                   <div>

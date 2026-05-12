@@ -31,5 +31,13 @@ module.exports = {
     'http://codigixinfotech.codigix.co',
     ...(process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',').map(url => url.trim()) : [])
   ],
-  DATA_FILE: path.join(__dirname, '../data/data.json')
-}; 
+  DATA_FILE: path.join(__dirname, '../data/data.json'),
+  
+  // SMTP settings
+  SMTP_HOST: process.env.SMTP_HOST || 'smtp.gmail.com',
+  SMTP_PORT: parseInt(process.env.SMTP_PORT) || 587,
+  SMTP_USER: process.env.SMTP_USER,
+  SMTP_PASS: process.env.SMTP_PASS,
+  SMTP_FROM: process.env.SMTP_FROM
+};
+ 

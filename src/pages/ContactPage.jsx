@@ -1,7 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from "../components/SEO";
+import config from '../config';
+
+const API_BASE_URL = config.API_BASE_URL;
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    cfName: '',
+    cfEmail: '',
+    cfPhone: '',
+    cfSubject: '0',
+    cfMessage: ''
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess(true);
+        setFormData({
+          cfName: '',
+          cfEmail: '',
+          cfPhone: '',
+          cfSubject: '0',
+          cfMessage: ''
+        });
+      } else {
+        setError(data.error || 'Failed to send message');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again later.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   const contactInfo = [
     { icon: 'tji-location', title: 'Our Location', content: 'Office No: 514, 3rd Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18' },
     { icon: 'tji-envelop', title: 'Email us', links: [{ label: 'support@codigix.com', href: 'mailto:support@codigix.com' }, { label: 'info@codigix.com', href: 'mailto:info@codigix.com' }] },
@@ -11,6 +66,11 @@ export default function ContactPage() {
 
   return (
     <>
+      <SEO 
+        title="Contact Us" 
+        description="Get in touch with Codigix for AI-powered solutions, software engineering services, or to visit our location in Pune, India."
+        keywords="contact, reach out, office location, support, AI solutions"
+      />
       <section className="tj-page-header section-gap-x" style={{backgroundImage: "url(assets/images/bg/pheader-bg.webp)"}}>
         <div className="container">
           <div className="row">
@@ -69,28 +129,30 @@ export default function ContactPage() {
             <div className="col-lg-6">
               <div className="contact-form">
                 <h3 className="title">Feel Free to Get in Touch or Visit our Location.</h3>
-                <form id="contact-form">
+                {success && <div className="alert alert-success mb-4 p-3 rounded" style={{ backgroundColor: '#d4edda', color: '#155724', border: '1px solid #c3e6cb' }}>Message sent successfully! We will get back to you soon.</div>}
+                {error && <div className="alert alert-danger mb-4 p-3 rounded" style={{ backgroundColor: '#f8d7da', color: '#721c24', border: '1px solid #f5c6cb' }}>{error}</div>}
+                <form id="contact-form" onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="col-sm-6">
                       <div className="form-input">
-                        <input type="text" name="cfName" placeholder="Full Name *" />
+                        <input type="text" name="cfName" placeholder="Full Name *" value={formData.cfName} onChange={handleChange} required />
                       </div>
                     </div>
                     <div className="col-sm-6">
                       <div className="form-input">
-                        <input type="email" name="cfEmail" placeholder="Email Address *" />
+                        <input type="email" name="cfEmail" placeholder="Email Address *" value={formData.cfEmail} onChange={handleChange} required />
                       </div>
                     </div>
                     <div className="col-sm-6">
                       <div className="form-input">
-                        <input type="tel" name="cfPhone" placeholder="Phone number *" />
+                        <input type="tel" name="cfPhone" placeholder="Phone number" value={formData.cfPhone} onChange={handleChange} />
                       </div>
                     </div>
                     <div className="col-sm-6">
                       <div className="form-input">
                         <div className="tj-nice-select-box">
                           <div className="tj-select">
-                            <select name="cfSubject">
+                            <select name="cfSubject" value={formData.cfSubject} onChange={handleChange}>
                               <option value="0">Chose a option</option>
                               <option value="1">Custom Technology</option>
                               <option value="2">AI-Powered Solutions</option>
@@ -105,14 +167,14 @@ export default function ContactPage() {
                     </div>
                     <div className="col-sm-12">
                       <div className="form-input message-input">
-                        <textarea name="cfMessage" id="message" placeholder="Type message *"></textarea>
+                        <textarea name="cfMessage" id="message" placeholder="Type message *" value={formData.cfMessage} onChange={handleChange} required></textarea>
                       </div>
                     </div>
                     <div className="submit-btn">
-                      <button className="tj-primary-btn" type="submit">
+                      <button className="tj-primary-btn" type="submit" disabled={submitting}>
                         <div className="btn-inner">
                           <span className="btn-icon h-icon"><i className="tji-arrow-right"></i></span>
-                          <span className="btn-text">Submit Now</span>
+                          <span className="btn-text">{submitting ? 'Sending...' : 'Submit Now'}</span>
                           <span className="btn-icon"><i className="tji-arrow-right"></i></span>
                         </div>
                       </button>

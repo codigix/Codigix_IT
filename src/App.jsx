@@ -12,6 +12,7 @@ import ProjectDetailsPage from './pages/ProjectDetailsPage';
 import BlogPage from './pages/BlogPage';
 import BlogDetailsPage from './pages/BlogDetailsPage';
 import ContactPage from './pages/ContactPage';
+import CareerPage from './pages/CareerPage';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import HeroSlides from './pages/admin/entities/HeroSlides';
@@ -23,6 +24,8 @@ import ClientsAdmin from './pages/admin/entities/ClientsAdmin';
 import WorkingProcessAdmin from './pages/admin/entities/WorkingProcessAdmin';
 import AchievementsAdmin from './pages/admin/entities/AchievementsAdmin';
 import TeamAdmin from './pages/admin/entities/TeamAdmin';
+import JobsAdmin from './pages/admin/entities/JobsAdmin';
+import ApplicationsAdmin from './pages/admin/entities/ApplicationsAdmin';
 
 import AdminLayout from './pages/admin/components/AdminLayout';
 
@@ -51,6 +54,8 @@ function AppRoutes() {
           <Route path="/admin/workingProcess" element={<WorkingProcessAdmin />} />
           <Route path="/admin/achievements" element={<AchievementsAdmin />} />
           <Route path="/admin/team" element={<TeamAdmin />} />
+          <Route path="/admin/jobs" element={<JobsAdmin />} />
+          <Route path="/admin/applications" element={<ApplicationsAdmin />} />
         </Route>
 
         <Route path="/admin" element={<AdminLogin />} />
@@ -65,14 +70,16 @@ function AppRoutes() {
         
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/banner" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
-          <Route path="/services/details" element={<ServiceDetailsPage />} />
+          <Route path="/services/details/:id?" element={<ServiceDetailsPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/projects/details" element={<ProjectDetailsPage />} />
+          <Route path="/projects/details/:id" element={<ProjectDetailsPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/details" element={<BlogDetailsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/careers" element={<CareerPage />} />
         </Routes>
       </Layout>
     </>
