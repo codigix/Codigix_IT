@@ -13,12 +13,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Deploy to VPS via SSH (Password)
+      - name: Deploy to VPS via SSH (Private Key)
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: 31.97.206.36
-          username: root
-          password: ${{ secrets.VPS_PASSWORD }}
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
             echo "Connected to VPS"
@@ -28,5 +28,5 @@ jobs:
             npm run build
             cd backend
             npm install
-            pm2 restart codigix-backend
+            pm2 restart codigixinfotech-backend
             echo "Deployment Completed Successfully"
