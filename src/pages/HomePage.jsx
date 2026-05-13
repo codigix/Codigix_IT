@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SEO from "../components/SEO";
+import TestimonialSection from "../components/TestimonialSection";
 import {
   Pagination,
   Navigation,
@@ -273,15 +274,21 @@ export default function HomePage() {
             const navInner = document.querySelector(".roadmap-nav-inner");
             const parentGroup = targetNav?.closest('.year-nav-group');
 
-            if (parentGroup && navContainer && navInner) {
-              const groupRect = parentGroup.getBoundingClientRect();
+            if (targetNav && navContainer && navInner) {
+              const navRect = navContainer.getBoundingClientRect();
+              const targetRect = targetNav.getBoundingClientRect();
               const innerRect = navInner.getBoundingClientRect();
-
-              // Distance of the YEAR GROUP from top of inner container
-              const relativeOffset = groupRect.top - innerRect.top;
-
-              const targetY = -relativeOffset;
-              navInner.style.transform = `translateY(${targetY}px)`;
+              
+              // Calculate relative offset of the pill from the top of the inner container
+              const relativeOffset = targetRect.top - innerRect.top;
+              
+              // Center the pill in the container:
+              // targetY = -(relativeOffset - containerHeight/2 + pillHeight/2)
+              const targetY = -(relativeOffset - (navRect.height / 2) + (targetRect.height / 2));
+              
+              // Don't scroll beyond the top
+              const finalY = Math.min(0, targetY);
+              navInner.style.transform = `translateY(${finalY}px)`;
             }
           }
         }
@@ -913,7 +920,7 @@ export default function HomePage() {
       {/* Project Section */}
       <section className="tj-project-section section-gap ">
         <div className="">
-          <div className="row align-items-center mb-5">
+          <div className="row align-items-center mb-5 container m-auto">
             <div className="col-lg-7">
               <div className="sec-heading style-3">
                 <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
@@ -1154,9 +1161,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Future Scope & Vision Section */}
       
+      {/* Testimonial Section */}
+      <TestimonialSection />
 
       {/* Blog Section */}
       <section className="tj-blog-section-3 section-gap section-separator">

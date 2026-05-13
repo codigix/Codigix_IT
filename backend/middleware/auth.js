@@ -2,6 +2,11 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config/config');
 
 const authenticateToken = (req, res, next) => {
+  // Always allow GET requests to proceed without token check
+  if (req.method === 'GET') {
+    return next();
+  }
+
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 

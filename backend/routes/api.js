@@ -15,9 +15,30 @@ router.post('/login', authController.login);
 // Job application route (public)
 router.post('/jobs/apply', jobController.applyForJob);
 
-// Public entity routes (GET)
-router.get('/:entity', entityController.getAll);
-router.get('/:entity/:id', entityController.getById);
+// Explicit Public GET routes to avoid issues with dynamic matching
+const publicEntities = [
+    'slides', 
+    'services', 
+    'projects', 
+    'testimonials', 
+    'blogs', 
+    'clients', 
+    'workingProcess', 
+    'achievements', 
+    'team', 
+    'jobs'
+];
+
+publicEntities.forEach(entity => {
+    router.get(`/${entity}`, (req, res) => {
+        req.params.entity = entity;
+        return entityController.getAll(req, res);
+    });
+    router.get(`/${entity}/:id`, (req, res) => {
+        req.params.entity = entity;
+        return entityController.getById(req, res);
+    });
+});
 
 // Protected entity routes (POST, PUT, DELETE)
 router.post('/:entity', authenticateToken, entityController.create);

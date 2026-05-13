@@ -9,17 +9,22 @@ const getImageUrl = config.getImageUrl;
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState([]);
+  const [categories, setCategories] = useState(["All"]);
+  const [activeCategory, setActiveCategory] = useState("All");
   const [loading, setLoading] = useState(true);
+  
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const projectsPerPage = 4;
+  const projectsPerPage = 6;
+  
   //  logic of pagination
-  const totalPages = Math.ceil(projects.length / projectsPerPage);
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
 
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
 
-  const currentProjects = projects.slice(
+  const currentProjects = filteredProjects.slice(
     indexOfFirstProject,
     indexOfLastProject
   );
@@ -28,7 +33,6 @@ export default function ProjectsPage() {
     setCurrentPage(pageNumber);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  // end
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -36,6 +40,12 @@ export default function ProjectsPage() {
         const response = await fetch(`${API_BASE_URL}/projects`);
         const data = await response.json();
         setProjects(data);
+        setFilteredProjects(data);
+        
+        // Extract unique categories
+        const uniqueCategories = ["All", ...new Set(data.map(project => project.category || "Software"))];
+        setCategories(uniqueCategories);
+        
         setLoading(false);
       } catch (error) {
         console.error('Error fetching projects:', error);
@@ -45,6 +55,16 @@ export default function ProjectsPage() {
 
     fetchProjects();
   }, []);
+
+  const handleCategoryFilter = (category) => {
+    setActiveCategory(category);
+    setCurrentPage(1); // Reset to first page
+    if (category === "All") {
+      setFilteredProjects(projects);
+    } else {
+      setFilteredProjects(projects.filter(project => (project.category || "Software") === category));
+    }
+  };
 
   if (loading) {
     return <div className="preloader"><div className="loading-container"><div className="loading"></div></div></div>;
@@ -76,7 +96,7 @@ export default function ProjectsPage() {
       </section>
 
       <section className="tj-project-section section-gap ">
-        <div className="">
+        <div className="container">
           <div className="row">
             <div className="col-12">
               <div className="sec-heading sec-heading-centered d-none">
@@ -85,8 +105,25 @@ export default function ProjectsPage() {
               </div>
             </div>
           </div>
+
+          <div className="row mb-50">
+            <div className="col-12">
+              <div className="project-filter-tabs flex flex-wrap justify-center gap-4">
+                {categories.map((category, idx) => (
+                  <button
+                    key={idx}
+                    className={`filter-tab-btn ${activeCategory === category ? 'active' : ''}`}
+                    onClick={() => handleCategoryFilter(category)}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {projects.slice(0, 4).map((project, idx) => (
+                      {currentProjects.map((project, idx) => (
                         <div className="col-span-1" key={project.id}>
                           
                           <div class="project-item">
@@ -94,7 +131,7 @@ export default function ProjectsPage() {
                               <img
                                 src={getImageUrl(project.image, "assets/images/project")}
                                 alt={project.title}
-                                className="w-full h-[150px] object-cover  transition-transform duration-500 group-hover:scale-110"
+                                className="w-full h-[250px] object-cover  transition-transform duration-500 group-hover:scale-110"
                               />
                             </div>
                             <div class="project-content">
