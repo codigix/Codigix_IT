@@ -72,12 +72,12 @@ START: Theme Default CSS
    */
   /* --tj-fs-body: 16px; */
   --tj-fs-p: 16px;
-  --tj-fs-h1: 76px;
-  --tj-fs-h2: 48px;
-  --tj-fs-h3: 32px;
-  --tj-fs-h4: 24px;
-  --tj-fs-h5: 20px;
-  --tj-fs-h6: 18px;
+  --tj-fs-h1: 48px;
+  --tj-fs-h2: 36px;
+  --tj-fs-h3: 24px;
+  --tj-fs-h4: 20px;
+  --tj-fs-h5: 18px;
+  --tj-fs-h6: 16px;
   /**
      @Color Declaration
    */
@@ -142,19 +142,19 @@ h1 {
   font-size: var(--tj-fs-h1);
   line-height: 1.053;
 }
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+@media only screen and (max-width: 1399px) {
   h1 {
-    font-size: 60px;
+    font-size: 42px;
   }
 }
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (max-width: 1199px) {
   h1 {
-    font-size: 50px;
+    font-size: 38px;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
+@media only screen and (max-width: 991px) {
   h1 {
-    font-size: 45px;
+    font-size: 32px;
   }
 }
 
@@ -162,37 +162,34 @@ h2 {
   font-size: var(--tj-fs-h2);
   line-height: 1.125;
 }
-@media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (max-width: 1199px) {
   h2 {
-    font-size: 40px;
+    font-size: 32px;
   }
 }
-@media only screen and (min-width: 576px) and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   h2 {
-    font-size: 36px;
+    font-size: 28px;
   }
 }
 @media (max-width: 575px) {
   h2 {
-    font-size: 30px;
+    font-size: 24px;
   }
 }
 
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .service-img{
-    display: none;
-  }
+@media only screen and (max-width: 991px) {
   h3 {
-    font-size: 28px;
+    font-size: 22px;
   }
   .service-content .title{
-       font-size: 20px;
+       font-size: 18px;
   }
 }
-@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
+@media only screen and (max-width: 767px) {
   h3 {
-    font-size: 25px;
+    font-size: 20px;
   }
 }
 
@@ -200,14 +197,14 @@ h4 {
   font-size: var(--tj-fs-h4);
   line-height: 1.25;
 }
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (max-width: 991px) {
   h4 {
-    font-size: 22px;
+    font-size: 18px;
   }
 }
-@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
+@media only screen and (max-width: 767px) {
   h4 {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
@@ -287,7 +284,7 @@ a:hover {
 
 a,
 button {
-  color: var(--tj-color-theme-primary);
+  /* color: var(--tj-color-theme-primary); */
   outline: none;
   border: none;
   background: transparent;
@@ -3980,7 +3977,7 @@ START: Heading CSS
           margin-inline-end: 0;
 }
 .sec-heading.big-heading .sec-title {
-  font-size: 106px;
+  font-size: 64px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3990,24 +3987,19 @@ START: Heading CSS
       -ms-flex-align: center;
           align-items: center;
 }
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+@media only screen and (max-width: 1399px) {
   .sec-heading.big-heading .sec-title {
-    font-size: 90px;
+    font-size: 54px;
   }
 }
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (max-width: 991px) {
   .sec-heading.big-heading .sec-title {
-    font-size: 70px;
+    font-size: 42px;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (max-width: 575px) {
   .sec-heading.big-heading .sec-title {
-    font-size: 60px;
-  }
-}
-@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
-  .sec-heading.big-heading .sec-title {
-    font-size: 46px;
+    font-size: 32px;
   }
 }
 .sec-heading.big-heading .sec-title span {
@@ -5188,9 +5180,9 @@ START: Hero CSS
   display: inline-flex;
 }
 .h4-banner-area .banner-content .banner-title {
-  font-size: 96px;
-  line-height: 1;
-  margin-bottom: 0;
+  font-size: 64px;
+  line-height: 1.1;
+  margin-bottom: 20px;
 }
 .h4-banner-area .banner-content .banner-title span {
   top: 10px;
@@ -5223,30 +5215,19 @@ START: Hero CSS
     max-width: 165px;
   }
 }
-@media only screen and (min-width: 1400px) and (max-width: 1600px) {
+@media only screen and (max-width: 1399px) {
   .h4-banner-area .banner-content .banner-title {
-    font-size: 92px;
+    font-size: 54px;
   }
 }
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+@media only screen and (max-width: 991px) {
   .h4-banner-area .banner-content .banner-title {
-    font-size: 76px;
+    font-size: 42px;
   }
 }
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (max-width: 575px) {
   .h4-banner-area .banner-content .banner-title {
-    font-size: 68px;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .h4-banner-area .banner-content .banner-title {
-    font-size: 52px;
-  }
-}
-@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
-  .h4-banner-area .banner-content .banner-title {
-    font-size: 45px;
-    line-height: 1.15;
+    font-size: 32px;
   }
 }
 .h4-banner-area .banner-content .banner-btn-area {
@@ -6727,7 +6708,7 @@ START: Services CSS
     position: absolute;
     background-color: transparent;
     top: 1px;
-    left: -27px;
+    left: -25px;
     width: 25px;
     height: 12px;
     -webkit-box-shadow: 12px 0 0 0 var(--tj-color-theme-dark);
@@ -6947,8 +6928,7 @@ START: Services CSS
 .service-item.style-2::before {
   content: "";
   position: absolute;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, rgb(255, 0, 127)), color-stop(90%, rgba(255, 0, 127, 0)));
-  background-image: linear-gradient(rgb(255, 0, 127) 20%, rgba(255, 0, 127, 0) 90%);
+  background: rgb(108 86 182);
   width: 100%;
   height: 100%;
   top: 0;
@@ -7002,6 +6982,12 @@ START: Services CSS
 .service-item.style-2 .title {
   padding-right: 30px;
   margin-bottom: 18px;
+  color: #ffff;
+ 
+  
+}
+.service-item.style-2 .title a{
+  color: #ffff !important;
 }
 .service-item.style-2 .title a:hover {
   color: var(--tj-color-theme-primary);
@@ -7522,10 +7508,12 @@ START: Theme Marquee CSS
   font-family: var(--tj-ff-heading);
   line-height: 1.2;
   margin: 0;
-  opacity: 0.2;
+  opacity: 0.8;
+  text-transform: uppercase;
 }
 .marquee-item .marquee-text:hover {
-  opacity: 0.8;
+   -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px #ffff;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
   .marquee-item .marquee-text {
@@ -7763,7 +7751,7 @@ START: Project CSS
   margin-bottom: 0;
 }
 .dark .project-item .title {
-  color: var(--tj-color-heading-primary);
+  color: var(--tj-color-heading-primary) !important;
   
   margin-bottom: 0;
 }
@@ -9893,7 +9881,7 @@ START: Countup CSS
 }
 
 .inline-content {
-  font-size: 76px;
+  font-size: 50px;
   line-height: 1;
   font-weight: var(--tj-fw-medium);
   color: var(--tj-color-theme-primary);
@@ -11017,13 +11005,29 @@ START: Theme Slider CSS
 }
 .tj-slider-item .slider-content .slider-title {
   color: var(--tj-color-common-white);
-  font-size: 80px;
-  line-height: 1;
-  font-weight: var(--tj-fw-regular);
-  margin-bottom: 10px;
-  background: linear-gradient(to right, #ebe9f2 0%, #ffffff 50%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 56px;
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: currentColor;
+}
+@media only screen and (max-width: 1399px) {
+  .tj-slider-item .slider-content .slider-title {
+    font-size: 48px;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .tj-slider-item .slider-content .slider-title {
+    font-size: 38px;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .tj-slider-item .slider-content .slider-title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
 }
 .tj-slider-item .slider-content .slider-title span {
   color: var(--tj-color-text-body-2);
@@ -11054,56 +11058,7 @@ START: Theme Slider CSS
     max-width: 105px;
   }
 }
-@media only screen and (min-width: 1400px) and (max-width: 1600px) {
-  .tj-slider-item .slider-content .slider-title {
-    font-size: 100px;
-  }
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {
-  .tj-slider-item .slider-content .slider-title {
-    font-size: 82px;
-  }
-}
-@media only screen and (min-width: 992px) and (max-width: 1085px) {
-  .tj-slider-item .slider-content .slider-title {
-    font-size:58px;
-    line-height: 60px;
-  }
-  .service-item{
-    margin-bottom: 20px;
-  }
-}
-@media only screen and (min-width:1086px) and (max-width: 1200px) {
-  .tj-slider-item .slider-content .slider-title {
-    font-size:65px;
-    line-height: 70px;
-  }
-  .service-item{
-    margin-bottom: 20px;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .tj-slider-item .slider-content .slider-title {
-    font-size: 55px;
-    margin-bottom: 20px;
-  }
-   .service-item{
-    margin-bottom: 20px;
-  }
-}
-@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
-  .tj-slider-item .slider-content .slider-title {
-    font-size:32px;
-    margin-bottom: 20px;
-    line-height: 40px;
-  }
-  .tj-slider-item .slider-content .sub-title{
-     font-size:12px;
-  }
-   .service-item{
-    margin-bottom: 20px;
-  }
-}
+
 .tj-slider-item .slider-content .slider-desc {
   
   width: 100%;

@@ -177,7 +177,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="tj-team-section-2 section-gap section-gap-x">
+      <section className="tj-team-section-2 section-gap section-gap-x mb-5">
         <div className="container">
           <div className="row">
             <div className="col-12">

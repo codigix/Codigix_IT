@@ -420,7 +420,7 @@ export default function HomePage() {
     <div className="service-inner bg-white dark:bg-[#18133b]">
       <div className="service-content">
         <h3 className="title">
-          <Link to={`/services/details/${service.id}`} className="text-gray-900 text-lg dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 font-bold">{service.title}</Link>
+          <Link to={`/services/details/${service.id}`} className="font-bold">{service.title}</Link>
         </h3>
 
         <p className="desc text-gray-700 dark:text-gray-300 font-medium">{service.desc}</p>
@@ -1027,7 +1027,7 @@ export default function HomePage() {
                     {roadmapData.map((yearGroup) => (
                       <div key={yearGroup.year} className="year-nav-group relative ">
                         <div className="year-badge-wrap flex items-center mb-6">
-                          <div className={`year-badge-circle ${['2024', '2026'].includes(yearGroup.year) ? 'teal' : 'blue'} border-1 border mb-3 text-xl flex items-center justify-center rounded w-20 h-20 bg-white dark:bg-gray-900 z-10`}>
+                          <div className={`year-badge-circle ${['2024', '2026'].includes(yearGroup.year) ? 'teal' : 'blue'}  mb-3 text-xl flex items-center justify-center rounded w-20 h-20 bg-white dark:bg-gray-900 z-10`}>
                             {yearGroup.year}
                           </div>
                           {/* <div className="year-line-horizontal h-[2px] w-8 bg-gray-200 dark:bg-gray-700 ml-[-2px]"></div> */}
@@ -1102,7 +1102,7 @@ export default function HomePage() {
                           {q.items && (
                             <ul className="roadmap-specs-list space-y-2 mt-4 text-left">
                               {q.items.map((item, i) => (
-                                <li key={i} className="text-sm text-gray-600 dark:text-gray-400 flex items-start gap-2">
+                                <li key={i} className="text-sm dark:text-gray-400 flex items-start gap-2">
                                   <i className="tji-check text-indigo-500 mt-1 flex-shrink-0"></i>
                                   <span>{item}</span>
                                 </li>
