@@ -131,7 +131,7 @@ const AdminLogin = () => {
         </div>
 
         <div className="text-center mt-6">
-          <a href="#" className="text-[10px]  text-[#FF1F8B] uppercase tracking-[0.2em] hover:text-[#FF1F8B]/80 transition-colors bg-red-500">
+          <a href="#" className="text-[10px]  text-[#FF1F8B] uppercase tracking-[0.2em] hover:text-[#FF1F8B]/80 transition-colors">
             Forgot your password?
           </a>
         </div>
