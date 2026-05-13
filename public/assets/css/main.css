@@ -6987,6 +6987,9 @@ START: Services CSS
   
 }
 .service-item.style-2 .title a{
+  color: var(--tj-color-theme-primary) !important;
+}
+.dark .service-item.style-2 .title a{
   color: #ffff !important;
 }
 .service-item.style-2 .title a:hover {
