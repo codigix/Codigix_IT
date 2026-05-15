@@ -26,14 +26,14 @@ const TestimonialSection = () => {
               content: "The Gratafy redesign transformed our administrative workflow. The high-tech dark theme is both beautiful and functional.",
               author: "Alex Rivera",
               designation: "CTO, TechFlow",
-              image: "author-1.webp"
+              image: "client-2.webp"
             },
             {
               id: 2,
               content: "Working with this team has been a game-changer for our digital presence. Their AI solutions are top-notch.",
               author: "Sarah Johnson",
               designation: "Product Manager, AI-Corp",
-              image: "author-2.webp"
+              image: "client-3.webp"
             }
           ]);
         } else {
@@ -44,14 +44,14 @@ const TestimonialSection = () => {
               content: "The Gratafy redesign transformed our administrative workflow. The high-tech dark theme is both beautiful and functional.",
               author: "Alex Rivera",
               designation: "CTO, TechFlow",
-              image: "author-1.webp"
+              image: "client-2.webp"
             },
             {
               id: 2,
               content: "Working with this team has been a game-changer for our digital presence. Their AI solutions are top-notch.",
               author: "Sarah Johnson",
               designation: "Product Manager, AI-Corp",
-              image: "author-2.webp"
+              image: "client-3.webp"
             }
           ]);
         }
@@ -65,14 +65,14 @@ const TestimonialSection = () => {
             content: "The Gratafy redesign transformed our administrative workflow. The high-tech dark theme is both beautiful and functional.",
             author: "Alex Rivera",
             designation: "CTO, TechFlow",
-            image: "author-1.webp"
+            image: "client-2.webp"
           },
           {
             id: 2,
             content: "Working with this team has been a game-changer for our digital presence. Their AI solutions are top-notch.",
             author: "Sarah Johnson",
             designation: "Product Manager, AI-Corp",
-            image: "author-2.webp"
+            image: "client-3.webp"
           }
         ]);
         setLoading(false);
