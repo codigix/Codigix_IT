@@ -31,7 +31,7 @@ export default function NewFooter() {
                 <div className="cta-img">
                   <img
                     src="/assets/images/cta/cta-bg.webp"
-                    alt="CTA"
+                    alt="AI Technology and Business Transformation"
                   />
                 </div>
               </div>

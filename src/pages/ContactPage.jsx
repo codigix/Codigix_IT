@@ -67,9 +67,9 @@ export default function ContactPage() {
   return (
     <>
       <SEO 
-        title="Contact Us" 
-        description="Get in touch with Codigix for AI-powered solutions, software engineering services, or to visit our location in Pune, India."
-        keywords="contact, reach out, office location, support, AI solutions"
+        title="Contact Codigix Infotech | AI Solutions & IT Support" 
+        description="Get in touch with Codigix Infotech for AI-powered solutions, custom software engineering, or technical support. Visit our office in Pune or contact us online."
+        keywords="contact Codigix, AI support, software engineering Pune, IT consultation, tech support, business automation contact"
       />
       <section className="tj-page-header section-gap-x" style={{backgroundImage: "url(assets/images/bg/pheader-bg.webp)"}}>
         <div className="container">

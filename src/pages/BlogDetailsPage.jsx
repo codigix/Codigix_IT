@@ -6,9 +6,9 @@ export default function BlogDetailsPage() {
   return (
     <>
       <SEO 
-        title="Unlocking the Power of Data for Business Success"
-        description="Learn how data analytics and AI are revolutionizing the business landscape and driving success for modern organizations."
-        keywords="data analytics, AI for business, digital transformation, machine learning insights"
+        title="Unlocking the Power of Data for Business Success | Codigix Infotech Blog"
+        description="Learn how data analytics and AI are revolutionizing the business landscape and driving success for modern organizations. Insights from Codigix Infotech experts."
+        keywords="data analytics, AI for business, digital transformation, machine learning insights, Codigix Infotech, business success with data"
         ogImage="/assets/images/blog/blog-1.webp"
       />
       <section className="tj-page-header section-gap-x" style={{ backgroundImage: "url(https://res.cloudinary.com/foodfantacy/image/upload/v1778340863/0015_lf398t.jpg)" }}>
@@ -35,14 +35,14 @@ export default function BlogDetailsPage() {
             <div className="col-lg-8">
               <div className="blog-details-content post-details-wrapper">
                 <div className="blog-details-img blog-images">
-                  <img src="/assets/images/blog/blog-1.webp" alt="Blog Post" />
+                  <img src="/assets/images/blog/blog-1.webp" alt="Unlocking the Power of Data for Business Success" />
                 </div>
                <h2 className="title">Unlocking the Power of Data for Business Success</h2>
                 <div className="blog-category-two ">
 
                   <div className="category-item">
                     <div class="cate-images">
-                      <img src="assets/images/blog/author.webp" alt="Images" />
+                      <img src="assets/images/blog/author.webp" alt="Author" />
                     </div>
                     <div class="cate-text">
                       <span class="degination">Authored by</span>
@@ -155,7 +155,7 @@ export default function BlogDetailsPage() {
                    <ul>
                   <li>
                     <div class="post-thumb">
-                      <a href="blog-details.html"> <img src="/assets/images/blog/post-1.webp" alt="Blog"/></a>
+                      <a href="blog-details.html"> <img src="/assets/images/blog/post-1.webp" alt="How Custom Technology is Redefining Tomorrow"/></a>
                     </div>
                     <div class="post-content">
                       <h6 class="post-title">
@@ -170,7 +170,7 @@ export default function BlogDetailsPage() {
                   </li>
                   <li>
                     <div class="post-thumb">
-                      <a href="blog-details.html"> <img src="/assets/images/blog/post-2.webp" alt="Blog"/></a>
+                      <a href="blog-details.html"> <img src="/assets/images/blog/post-2.webp" alt="Revolutionizing Business Solutions for the Next Era"/></a>
                     </div>
                     <div class="post-content">
                       <h6 class="post-title">
@@ -185,7 +185,7 @@ export default function BlogDetailsPage() {
                   </li>
                   <li>
                     <div class="post-thumb">
-                      <a href="blog-details.html"> <img src="/assets/images/blog/post-3.webp" alt="Blog"/></a>
+                      <a href="blog-details.html"> <img src="/assets/images/blog/post-3.webp" alt="The Journey of Creating Smarter Future"/></a>
                     </div>
                     <div class="post-content">
                       <h6 class="post-title">

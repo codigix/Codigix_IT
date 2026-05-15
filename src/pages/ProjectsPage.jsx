@@ -73,9 +73,9 @@ export default function ProjectsPage() {
   return (
     <>
       <SEO 
-        title="Our Projects" 
-        description="Check out our portfolio of successful AI-driven projects and software engineering solutions that have helped businesses transform."
-        keywords="projects, portfolio, AI projects, software development, case studies"
+        title="Our Projects Portfolio | AI-Powered Innovation" 
+        description="Explore Codigix Infotech's portfolio of successful AI-driven projects, custom software development, and digital transformation case studies across various industries."
+        keywords="projects portfolio, AI case studies, software development projects, IT solutions portfolio, tech innovation"
       />
       <section className="tj-page-header section-gap-x" style={{ backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778412464/samples/codigix%20infotech/people-with-watercolor-technology-interfaces-laptops-concept-as-group-people-interacting-wi_akioev.jpg")})` }}>
         <div className="container">

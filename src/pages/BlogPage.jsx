@@ -34,9 +34,9 @@ export default function BlogPage() {
   return (
     <>
       <SEO 
-        title="Blog" 
-        description="Stay updated with the latest AI trends, technology insights, and articles from our team of experts at Codigix."
-        keywords="blog, AI trends, technology insights, software articles, Codigix news"
+        title="Blog & Insights | AI & Technology Trends | Codigix Infotech" 
+        description="Stay updated with the latest AI trends, technology insights, and professional articles from the team of experts at Codigix Infotech."
+        keywords="AI blog, technology insights, software engineering articles, tech trends 2024, AI news, Codigix Infotech blog"
       />
       <section className="tj-page-header section-gap-x" style={{backgroundImage: `url(${getImageUrl("assets/images/bg/pheader-bg.webp")})`}}>
         <div className="container">
@@ -71,7 +71,7 @@ export default function BlogPage() {
               <div className="col-xl-4 col-md-6" key={blog.id}>
                 <div className="blog-item style-3 wow fadeInUp" data-wow-delay={`.${3 + idx}s`}>
                   <div className="blog-thumb">
-                    <Link to="/blog/details"><img src={getImageUrl(blog.image, "assets/images/blog")} alt="Blog" /></Link>
+                    <Link to="/blog/details"><img src={getImageUrl(blog.image, "assets/images/blog")} alt={blog.title} /></Link>
                     <span className="categories"><Link to="/blog/details">{blog.category}</Link></span>
                   </div>
                   <div className="blog-content">

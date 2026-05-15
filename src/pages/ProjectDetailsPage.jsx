@@ -46,9 +46,9 @@ export default function ProjectDetailsPage() {
   return (
     <>
       <SEO 
-        title={project.title}
-        description={project.overview || `Case study: ${project.title}. Discover how Codigix delivered this successful project using advanced technologies.`}
-        keywords={`${project.title}, project case study, AI development, software portfolio, ${project.category}`}
+        title={`${project.title} | Codigix Infotech Case Study`}
+        description={project.overview || `Case study: ${project.title}. Discover how Codigix Infotech delivered this successful project using advanced technologies and AI solutions.`}
+        keywords={`${project.title}, project case study, AI development, software portfolio, ${project.category}, Codigix Infotech`}
         ogImage={getImageUrl(project.image, "assets/images/project")}
       />
       <style>

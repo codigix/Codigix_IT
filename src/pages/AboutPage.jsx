@@ -59,9 +59,9 @@ export default function AboutPage() {
   return (
     <>
       <SEO 
-        title="About Us" 
-        description="Learn more about Codigix, our mission, vision, and the passionate innovators behind our AI-driven software solutions."
-        keywords="about us, team, mission, vision, innovators, AI company"
+        title="About Codigix Infotech | Our Mission, Vision & Team" 
+        description="Discover the story of Codigix Infotech. Learn about our mission to revolutionize industries through AI-driven software and meet our team of passionate innovators."
+        keywords="about Codigix, AI software company, software engineering team, IT mission and vision, tech innovators"
       />
       <section className="tj-page-header section-gap-x" style={{backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778342361/0015_lf398t.jpg")})`}}>
         <div className="container">
@@ -120,7 +120,7 @@ export default function AboutPage() {
             </div>
             <div className="about-img-area">
               <div className="about-img wow fadeInLeft" data-wow-delay=".3s" data-wow-duration="0.8s">
-                <img src={getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778344039/doctor-from-future-concept_qvzulo.jpg")} alt="About" />
+                <img src={getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778344039/doctor-from-future-concept_qvzulo.jpg")} alt="Innovation and Future Technology" />
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@ export default function AboutPage() {
           <div className="row row-gap-4">
             <div className="col-lg-6 order-2 order-lg-1">
               <div className="achievement-img wow fadeInLeft" data-wow-delay=".3s">
-                <img src={getImageUrl("assets/images/achievement/achievement.webp")} alt="Achievement" />
+                <img src={getImageUrl("assets/images/achievement/achievement.webp")} alt="Codigix Achievements and Milestones" />
               </div>
             </div>
             <div className="col-lg-6 order-1 order-lg-2">

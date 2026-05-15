@@ -16,7 +16,7 @@ export default function Footer() {
                 <span className="sub-title"><i className="tji-subtitle-2"></i>Get Started</span>
                 <div className='main-sec'>
                 <h2 className="sec-title">Let’s Launch AI-Powered </h2>
-                <h2 className="sec-title-1 sec-title" > Project <img src={getImageUrl("assets/images/shape/hand.webp")} alt="Project Hand Icon"/>
+                <h2 className="sec-title-1 sec-title" > Project <img src={getImageUrl("assets/images/shape/hand.webp")} alt="Start your AI project with Codigix Infotech"/>
                   Here.
                 </h2>
                 </div>
@@ -25,7 +25,7 @@ export default function Footer() {
                   <span className="circle-text" style={{backgroundImage: `url(${getImageUrl("assets/images/cta/circle-text.webp")})`}}></span>
                   <Link className="circle-icon" to="/contact"><span><i className="tji-plane-2"></i></span></Link>
                 </div>
-                <div className="cta-bg wow fadeIn" data-wow-delay=".3s"><img src={getImageUrl("assets/images/cta/line-pattern.webp")} alt="CTA Line Pattern" /></div>
+                <div className="cta-bg wow fadeIn" data-wow-delay=".3s"><img src={getImageUrl("assets/images/cta/line-pattern.webp")} alt="Abstract background pattern" /></div>
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@ export default function Footer() {
             <div className="col-xl-3 col-md-6">
               <div className="footer-widget footer-col-1">
                 <div className="footer-logo">
-                  <Link to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Codigix Logo" /></Link>
+                  <Link to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Codigix Infotech - AI & Software Solutions Logo" /></Link>
                 </div>
                 <div className="footer-text">
                   <p>Understanding client needs, defining goals, and designing tailored AI crafting's solutions.</p>

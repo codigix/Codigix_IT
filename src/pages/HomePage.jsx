@@ -506,9 +506,9 @@ export default function HomePage() {
   return (
     <>
       <SEO
-        title="Home"
-        description="Empowering businesses with AI-powered solutions. Codigix offers custom software engineering, machine learning, and predictive analytics."
-        keywords="home, AI solutions, software engineering, digital transformation"
+        title="Codigix Infotech | AI-Powered IT Solutions & Software Engineering"
+        description="Codigix Infotech delivers cutting-edge AI-powered solutions, custom software engineering, machine learning, and predictive analytics to transform your business globally."
+        keywords="AI solutions, software engineering, machine learning, digital transformation, ERP development, CRM solutions, Codigix Infotech"
       />
       <style>
         {`
@@ -570,7 +570,7 @@ export default function HomePage() {
                 <div className="slider-bg-image">
                   <img
                     src={getImageUrl(slide.image)}
-                    alt="Hero"
+                    alt={slide.title}
                     className="hero-image"
                     loading={slide.id === 1 ? "eager" : "lazy"}
                   />
@@ -681,7 +681,7 @@ export default function HomePage() {
                     <div className="client-logo">
                       <img
                         src={getImageUrl(client.image)}
-                        alt="Brand"
+                        alt={`Client Logo ${index + 1}`}
                       />
                     </div>
                   </SwiperSlide>
@@ -801,7 +801,7 @@ export default function HomePage() {
                   data-wow-delay=".3s"
                   data-wow-duration="0.8s"
                 >
-                  <img src="https://res.cloudinary.com/foodfantacy/image/upload/v1778322898/person-working-with-ai-robot_ytu1wo.jpg" alt="About" />
+                  <img src="https://res.cloudinary.com/foodfantacy/image/upload/v1778322898/person-working-with-ai-robot_ytu1wo.jpg" alt="AI and Technology Solutions for Business" />
                 </div>
                 <div className="video-wrap">
                   <a
@@ -1189,7 +1189,7 @@ export default function HomePage() {
                     <Link to="/blog/details">
                       <img
                         src={getImageUrl(blog.image, "assets/images/blog")}
-                        alt="Blog"
+                        alt={blog.title}
                       />
                     </Link>
                     <span className="categories">

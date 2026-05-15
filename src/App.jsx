@@ -13,6 +13,7 @@ import BlogPage from './pages/BlogPage';
 import BlogDetailsPage from './pages/BlogDetailsPage';
 import ContactPage from './pages/ContactPage';
 import CareerPage from './pages/CareerPage';
+import NotFoundPage from './pages/NotFoundPage';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import HeroSlides from './pages/admin/entities/HeroSlides';
@@ -80,6 +81,7 @@ function AppRoutes() {
           <Route path="/blog/details" element={<BlogDetailsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/careers" element={<CareerPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
     </>

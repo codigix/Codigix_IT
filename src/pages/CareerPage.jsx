@@ -94,9 +94,9 @@ export default function CareerPage() {
   return (
     <>
       <SEO 
-        title="Careers" 
-        description="Join the Codigix team! Explore our current job openings and career opportunities in AI, software engineering, and technology."
-        keywords="careers, jobs, AI jobs, software engineering careers, hiring, join the team"
+        title="Careers at Codigix Infotech | Join Our Innovation Team" 
+        description="Join Codigix Infotech and build the future of AI. Explore job openings for software engineers, AI researchers, and tech professionals in a dynamic environment."
+        keywords="Codigix careers, AI jobs, software engineering opportunities, tech recruitment, join Codigix team, IT job openings"
       />
       <style>
         {`

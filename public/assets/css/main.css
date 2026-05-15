@@ -918,7 +918,7 @@ body:has(.sticky) .sticky-lg-top {
   z-index: 2;
 }
 .text-btn .btn-text {
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-heading-primary);
   overflow: hidden;
 }
 .text-btn .btn-text span {
@@ -936,7 +936,7 @@ body:has(.sticky) .sticky-lg-top {
   transition: 0.4s ease-in-out;
 }
 .text-btn .btn-icon {
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-heading-primary);
   font-size: 20px;
   line-height: 1;
   display: -webkit-inline-box;
@@ -2092,8 +2092,12 @@ START: Theme Footer CSS
           padding-inline-start: 75px;
 }
 .widget-nav-menu.footer-col-3 .title, .widget-nav-menu.footer-col-2 .title {
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-theme-primary);
+
 }
+/* .dark .widget-nav-menu.footer-col-3 .title, .widget-nav-menu.footer-col-2 .title {
+color: var(--tj-color-common-white);
+} */
 .widget-nav-menu.footer-col-3 ul li a:hover, .widget-nav-menu.footer-col-2 ul li a:hover {
   color: var(--tj-color-theme-primary);
 }
@@ -7506,7 +7510,7 @@ START: Theme Marquee CSS
 .marquee-item .marquee-text {
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 2px var(--tj-color-theme-primary);
-  font-size: 160px;
+  font-size: 160px !important;
   font-weight: var(--tj-fw-sbold);
   font-family: var(--tj-ff-heading);
   line-height: 1.2;
@@ -7520,18 +7524,18 @@ START: Theme Marquee CSS
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
   .marquee-item .marquee-text {
-    font-size: 100px;
+    font-size: 140px !important;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .marquee-item .marquee-text {
-    font-size: 80px;
+    font-size: 100px !important;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .marquee-item .marquee-text {
-    font-size: 50px;
-    -webkit-text-stroke: 1px var(--tj-color-common-white);
+    font-size: 80px !important;
+    -webkit-text-stroke: 1px var(--tj-color-theme-primary);
   }
 }
 .marquee-item .marquee-icon {
@@ -8308,7 +8312,7 @@ START: Testimonial CSS
 }
 .testimonial-item .desc {
   font-size: 22px;
-  color: var(--tj-color-white-2);
+  color: var(--tj-color-text-body);
   line-height: 1.5;
   padding-bottom: 22px;
 }
@@ -8550,7 +8554,7 @@ START: Testimonial CSS
   text-align: center;
 }
 .testimonial-item.style-3 .desc {
-  color: var(--tj-color-white-2);
+  color: var(--tj-color-text-body);
   font-size: 22px;
   text-align: center;
   padding-bottom: 0;
@@ -8787,7 +8791,7 @@ START: Testimonial CSS
           flex-direction: column;
 }
 .rating-box .title {
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-heading-primary);
   font-size: 76px;
   line-height: 1;
   margin-bottom: 0;
@@ -8880,7 +8884,7 @@ START: Testimonial CSS
 .slider-prev .anim-icon i {
   position: relative;
   top: 0;
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-heading-primary);
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -8890,7 +8894,7 @@ START: Testimonial CSS
   -webkit-transform: translateX(150%);
       -ms-transform: translateX(150%);
           transform: translateX(150%);
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-heading-primary);
 }
 .slider-next:hover,
 .slider-prev:hover {
@@ -8945,7 +8949,7 @@ START: Testimonial CSS
 .swiper-pagination-bullet {
   width: 10px;
   height: 10px;
-  background-color: var(--tj-color-common-white);
+  background-color: var(--tj-color-heading-primary);
   border-radius: 50%;
   opacity: 0.15;
   position: relative;
@@ -9052,7 +9056,7 @@ START: Faq CSS
 }
 .tj-faq .accordion-item .accordion-body {
   padding: 5px 0 30px;
-  color: var(--tj-color-white-2);
+  color: var(--tj-color-text-body);
 }
 .tj-faq .accordion-item .accordion-body p:last-child {
   margin-bottom: 0;
@@ -10229,8 +10233,8 @@ START: Working process CSS
 }
 
 .process-item {
-  background-color: var(--tj-color-theme-dark);
   padding: 28px;
+  background-color: var(--tj-color-theme-bg);
   position: relative;
   border-radius: 12px;
   display: -webkit-box;
@@ -10322,7 +10326,10 @@ START: Working process CSS
 .process-step {
   font-size: 16px;
   color: var(--tj-color-theme-primary);
-  background-color: var(--tj-color-theme-bg);
+
+  background-color: var(--tj-color-theme-dark);
+
+  
   font-weight: var(--tj-fw-medium);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -24636,6 +24643,10 @@ START: Theme Header CSS
      width: 100% !important;
  
 }
+.categories li a.active,.project-list li a.active ,.service-list li a.active,
+.categories li a:hover,.project-list li a:hover ,.service-list li a:hover{
+    background: var(--tj-color-theme-primary);
+}
 .categories li ,.project-list li,.service-list li {
  width: 100% !important;
   margin-bottom: 8px !important;
@@ -24941,7 +24952,7 @@ START: Theme Header CSS
   z-index: 2;
 }
 .text-btn .btn-text {
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-heading-primary);
   overflow: hidden;
 }
 .text-btn .btn-text span {
@@ -24959,7 +24970,7 @@ START: Theme Header CSS
   transition: 0.4s ease-in-out;
 }
 .text-btn .btn-icon {
-  color: var(--tj-color-common-white);
+  color: var(--tj-color-heading-primary);
   font-size: 20px;
   line-height: 1;
   display: -webkit-inline-box;

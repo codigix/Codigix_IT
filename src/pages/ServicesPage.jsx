@@ -34,9 +34,9 @@ export default function ServicesPage() {
   return (
     <>
       <SEO 
-        title="Our Services" 
-        description="Explore our range of AI-powered services including custom technology solutions, predictive analytics, machine learning, and more."
-        keywords="services, AI solutions, machine learning, data analysis, custom technology"
+        title="Our Services | AI-Powered IT & Software Solutions" 
+        description="Explore Codigix Infotech's comprehensive range of AI-powered services: ERP/CRM development, machine learning, predictive analytics, and custom technology solutions."
+        keywords="AI services, software development, ERP solutions, CRM development, machine learning services, custom IT solutions"
       />
       <section className="tj-page-header section-gap-x" style={{ backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778412018/samples/codigix%20infotech/businessman-typing-laptop-keyboard-late-evening_ldtqu3.jpg")})` }}>
         <div className="container">
