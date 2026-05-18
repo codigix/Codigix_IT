@@ -103,7 +103,7 @@ const getEmailTemplate = (contentTitle, details) => {
                 <div style="text-align: right;">
                   <a href="https://www.facebook.com/codigix.infotech" style="text-decoration: none; margin-left: 5px;"><img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" width="24"></a>
                   <a href="https://www.linkedin.com/company/codigix-infotech" style="text-decoration: none; margin-left: 5px;"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" width="24"></a>
-                  <a href="https://www.instagram.com/codigix?igsh=ZnphZnA5NWJjZnp1" style="text-decoration: none; margin-left: 5px;"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" width="24"></a>
+                  <a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" style="text-decoration: none; margin-left: 5px;"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" width="24"></a>
                   <a href="https://x.com/CodigixI2994" style="text-decoration: none; margin-left: 5px;"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" width="24"></a>
                 </div>
               </td>
@@ -211,7 +211,7 @@ const getThankYouTemplate = () => {
           <div style="margin-bottom: 25px;">
             <a href="https://www.facebook.com/codigix.infotech" style="text-decoration: none; margin: 0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" width="32" style="filter: brightness(0) invert(1);"></a>
             <a href="https://www.linkedin.com/company/codigix-infotech" style="text-decoration: none; margin: 0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" width="32" style="filter: brightness(0) invert(1);"></a>
-            <a href="https://www.instagram.com/codigix?igsh=ZnphZnA5NWJjZnp1" style="text-decoration: none; margin: 0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" width="32" style="filter: brightness(0) invert(1);"></a>
+            <a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" style="text-decoration: none; margin: 0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" width="32" style="filter: brightness(0) invert(1);"></a>
             <a href="https://x.com/CodigixI2994" style="text-decoration: none; margin: 0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" width="32" style="filter: brightness(0) invert(1);"></a>
           </div>
           

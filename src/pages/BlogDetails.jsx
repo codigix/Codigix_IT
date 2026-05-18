@@ -35,7 +35,7 @@ const BlogDetails = () => {
 
             <div className="flex items-center gap-6 mb-8 pb-8 border-b border-gray-300">
               <span className="text-gray-600">By Brandon</span>
-              <span className="text-gray-600">Jan 10, 2025</span>
+              <span className="text-gray-600">Jan 10, 2026</span>
               <span className="px-4 py-2 bg-orange-500 text-white text-sm font-semibold rounded-lg">
                 Quantum
               </span>

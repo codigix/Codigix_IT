@@ -3,8 +3,8 @@
     {
       "id": 1,
       "image": "assets/images/hero/slider-1.webp",
-      "subtitle": "AI BASED ERP SOFTWARE",
-      "title": "ERP Software Development",
+      "subtitle": "AI BASED ERP MANAGEMENT",
+      "title": "ERP Management Solutions",
       "description": "Streamline your business operations with our AI-powered ERP solutions, designed for maximum efficiency and growth."
     },
     {
@@ -53,7 +53,7 @@
   ],
   "achievements": [
     { "id": 1, "num": "01", "title": "Best Tech Redesign 2026", "year": "2026" },
-    { "id": 2, "num": "02", "title": "Excellence in UI/UX Design", "year": "2025" }
+    { "id": 2, "num": "02", "title": "Excellence in UI/UX Design", "year": "2026" }
   ],
   "team": [
     { "id": 1, "num": 1, "name": "Sarah Chen", "position": "Lead Designer" },

@@ -126,6 +126,63 @@ export default function ServiceDetailsPage() {
         keywords={`${service.title}, AI solutions, IT services, Codigix Infotech, ${service.title} services`}
         ogImage={getImageUrl(service.image, "assets/images/service")}
       />
+
+      <style>
+        {`
+          .tj-faq .accordion-item {
+            background-color: var(--tj-color-theme-dark) !important;
+            border: 1px solid var(--tj-color-border-1) !important;
+            transition: all 0.3s ease !important;
+          }
+          .tj-faq .accordion-item .faq-title {
+            color: var(--tj-color-heading-primary) !important;
+          }
+          .tj-faq .accordion-item .accordion-body p {
+            color: var(--tj-color-text-body) !important;
+          }
+          .tj-faq .accordion-item.active {
+            background-image: linear-gradient(to bottom, var(--tj-color-theme-primary) 0%, #4a3a8c 100%) !important;
+            border-color: var(--tj-color-theme-primary) !important;
+          }
+          .tj-faq .accordion-item.active .faq-title,
+          .tj-faq .accordion-item.active .accordion-body p {
+            color: var(--tj-color-common-white) !important;
+          }
+          .tj-faq .accordion-item.active .faq-title::after {
+            color: var(--tj-color-common-white) !important;
+          }
+          .dark .tj-faq .accordion-item {
+            background-color: #161039 !important;
+            border-color: #312c52 !important;
+          }
+          .dark .tj-faq .accordion-item .faq-title {
+            color: #ffffff !important;
+          }
+          .dark .tj-faq .accordion-item.active {
+             background-image: linear-gradient(to bottom, var(--tj-color-theme-primary) 0%, var(--tj-color-theme-dark) 100%) !important;
+             border-color: var(--tj-color-theme-primary) !important;
+          }
+          .faq-section .title {
+            color: var(--tj-color-heading-primary) !important;
+          }
+          .process-item-wrap.style-2 {
+            background-color: var(--tj-color-theme-bg) !important;
+          }
+          .process-item-wrap.style-2 .title {
+            color: var(--tj-color-heading-primary) !important;
+          }
+          .process-item-wrap.style-2 .text-body {
+            color: var(--tj-color-text-body) !important;
+          }
+          .dark .process-item-wrap.style-2 {
+            background-color: var(--tj-color-theme-dark) !important;
+           
+          }
+          .dark .process-item-wrap.style-2 .text-body {
+            color: #9692b2 !important;
+          }
+        `}
+      </style>
       
       <section className="tj-page-header section-gap-x" style={{backgroundImage: `url(${getImageUrl(service.image, "assets/images/service")})`}}>
         <div className="container">
@@ -198,14 +255,14 @@ export default function ServiceDetailsPage() {
                 <div className="row mb-12">
                   {maintenanceServices.map((m, idx) => (
                     <div key={idx} className="col-lg-4 col-md-6 mb-6">
-                      <div className="process-item-wrap style-2 bg-theme-dark p-8 rounded-2xl h-full transition-all duration-300 hover:border-[#6c56b6]">
+                      <div className="process-item-wrap style-2 p-8 rounded-2xl h-full transition-all duration-300 hover:border-[#6c56b6]">
                         <div className="process-item relative">
                           <div className="process-step mb-6">
                             <span className="text-white bg-[#e91e63] w-10 h-10 flex items-center justify-center rounded-full font-bold text-sm">
                               {m.step}
                             </span>
                           </div>
-                          <h4 className="title text-heading mb-4">{m.title}</h4>
+                          <h4 className="title mb-4">{m.title}</h4>
                           <p className="text-body">{m.desc}</p>
                         </div>
                       </div>
@@ -234,9 +291,9 @@ export default function ServiceDetailsPage() {
                   </div>
                 </div>
 
-                <div className="tj-post__navigation mt-12 pt-8 border-t border-border-1 mb-12">
-                  <div className="row items-center justify-between">
-                    <div className="col-4">
+                <div className="tj-post__navigation flex gap-3 items-center justify-between mt-4 pt-8 justify-between border-t border-border-1 mb-12">
+                  
+                    <div className="">
                       {prevService && (
                         <div className="tj-nav-post__nav prev_post">
                           <Link to={`/services/details/${prevService.id}`} className="flex items-center gap-2 text-heading hover:text-[#6c56b6]">
@@ -248,14 +305,14 @@ export default function ServiceDetailsPage() {
                         </div>
                       )}
                     </div>
-                    <div className="col-4 text-center">
+                    <div className=" text-center">
                       <div className="tj-nav-post__grid">
                         <Link to="/services" className="text-heading hover:text-[#6c56b6] text-2xl">
                           <i className="tji-window"></i>
                         </Link>
                       </div>
                     </div>
-                    <div className="col-4 text-right">
+                    <div className=" text-right">
                       {nextService && (
                         <div className="tj-nav-post__nav next_post">
                           <Link to={`/services/details/${nextService.id}`} className="flex items-center justify-end gap-2 text-heading hover:text-[#6c56b6] ml-auto">
@@ -267,7 +324,7 @@ export default function ServiceDetailsPage() {
                         </div>
                       )}
                     </div>
-                  </div>
+                 
                 </div>
 
                 <section className="tj-cta-section pb-12">

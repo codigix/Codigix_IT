@@ -250,44 +250,49 @@ onClick={() => handleApply(job)}
       {showModal && (
         <div className="modal-overlay" style={{
           position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
-          backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 9999, display: 'flex',
+          backgroundColor: 'rgb(255 255 255 / 14%)', backdropFilter: 'blur(8px)', zIndex: 9999, display: 'flex',
           alignItems: 'center', justifyContent: 'center', padding: '20px'
         }}>
-          <div className="modal-content-custom p-4 rounded shadow-lg position-relative" style={{ maxWidth: '600px', width: '100%', maxHeight: '90vh', overflowY: 'auto' }}>
-            <button className="position-absolute border-0 bg-transparent modal-close-btn" style={{ top: '20px', right: '20px', fontSize: '24px' }} onClick={() => setShowModal(false)}>×</button>
+          <div className="modal-content-custom p-4 p-md-5 rounded-4 shadow-lg position-relative" style={{ 
+            maxWidth: '700px', 
+            width: '100%', 
+            maxHeight: '90vh', 
+            overflowY: 'auto',
+          }}>
+            <button className="position-absolute border-0 bg-transparent modal-close-btn" style={{ top: '25px', right: '25px', fontSize: '24px' }} onClick={() => setShowModal(false)}>×</button>
 
-            <h2 className="h4 mb-4">Apply for {selectedJob?.title}</h2>
+            <h2 className="h3 mb-4 job-label-text">Apply for {selectedJob?.title}</h2>
 
-            <div className="job-details-mini mb-4 pb-4 border-bottom">
-              <div className="row mb-3">
+            <div className="job-details-mini mb-5 pb-4 border-bottom">
+              <div className="row mb-4">
                 <div className="col-6">
-                  <span className="text-muted small d-block">Experience</span>
-                  <span className="job-meta-text">{selectedJob?.experience || 'N/A'}</span>
+                  <span className="text-muted small d-block mb-1">Experience</span>
+                  <span className="job-meta-text fw-medium">{selectedJob?.experience || 'N/A'}</span>
                 </div>
                 <div className="col-6">
-                  <span className="text-muted small d-block">Location</span>
-                  <span className="job-meta-text">{selectedJob?.location}</span>
+                  <span className="text-muted small d-block mb-1">Location</span>
+                  <span className="job-meta-text fw-medium">{selectedJob?.location}</span>
                 </div>
               </div>
 
               {selectedJob?.responsibilities && (
-                <div className="mb-3">
-                  <h6 className="small tracking-wider job-label-text">Key Responsibilities:</h6>
-                  <p className="small text-xs job-desc-text" style={{ whiteSpace: 'pre-line' }}>{selectedJob.responsibilities}</p>
+                <div className="mb-4">
+                  <h6 className="small fw-bold text-uppercase tracking-wider job-label-text mb-2">Key Responsibilities:</h6>
+                  <div className="small job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.responsibilities}</div>
                 </div>
               )}
 
               {selectedJob?.skills && (
-                <div className="mb-3">
-                  <h6 className="small tracking-wider job-label-text">Required Skills:</h6>
-                  <p className="small text-xs job-desc-text" style={{ whiteSpace: 'pre-line' }}>{selectedJob.skills}</p>
+                <div className="mb-4">
+                  <h6 className="small fw-bold text-uppercase tracking-wider job-label-text mb-2">Required Skills:</h6>
+                  <div className="small job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.skills}</div>
                 </div>
               )}
 
               {selectedJob?.qualifications && (
                 <div className="mb-0">
-                  <h6 className="small tracking-wider job-label-text">Qualifications:</h6>
-                  <p className="small job-desc-text" style={{ whiteSpace: 'pre-line' }}>{selectedJob.qualifications}</p>
+                  <h6 className="small fw-bold text-uppercase tracking-wider job-label-text mb-2">Qualifications:</h6>
+                  <div className="small job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.qualifications}</div>
                 </div>
               )}
             </div>
@@ -334,7 +339,32 @@ onClick={() => handleApply(job)}
 
       <style>{`
         .modal-overlay { animation: fadeIn 0.3s ease-out; }
-        .modal-content-custom { animation: slideUp 0.3s ease-out; color: #1a1c2e; }
+        .modal-content-custom { 
+          animation: slideUp 0.3s ease-out; 
+          color: #1a1c2e; 
+          background-color: #ffffff;
+          scrollbar-width: thin;
+          scrollbar-color: var(--tj-color-theme-primary) #f1f1f1;
+        }
+        
+        .modal-content-custom::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        .modal-content-custom::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 10px;
+        }
+        
+        .modal-content-custom::-webkit-scrollbar-thumb {
+          background: var(--tj-color-theme-primary);
+          border-radius: 10px;
+        }
+
+        .modal-content-custom::-webkit-scrollbar-thumb:hover {
+          background: #5a44a3;
+        }
+
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
@@ -398,6 +428,11 @@ onClick={() => handleApply(job)}
         .dark .modal-content-custom {
           background-color: #1a133d !important;
           color: #ffffff !important;
+          scrollbar-color: var(--tj-color-theme-primary) #060129;
+          border: 1px solid #312c52 !important;
+        }
+        .dark .modal-content-custom::-webkit-scrollbar-track {
+          background: #060129;
         }
         .dark .modal-content-custom .text-muted {
           color: #9692b2 !important;

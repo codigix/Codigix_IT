@@ -234,17 +234,6 @@ export default function ProjectDetailsPage() {
                     </div>
                   )}
 
-                  {project.budget && (
-                    <div className="infos-item flex items-center gap-3 mb-4">
-                      <div className="project-icons w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-                        <i className="tji-dollar"></i>
-                      </div>
-                      <div className="project-text">
-                        <span className="text-[10px] uppercase tracking-wider text-gray-500 dark:text-gray-400">Budget</span>
-                        <h6 className="title text-sm font-bold text-gray-900 dark:text-white leading-none mt-1">{project.budget}</h6>
-                      </div>
-                    </div>
-                  )}
 
                   {project.category && (
                     <div className="infos-item flex items-center gap-3">

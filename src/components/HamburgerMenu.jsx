@@ -85,7 +85,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
       {/* DESKTOP MENU */}
       <div ref={desktopRef} className={`tj-offcanvas-area ${menuClass}`} style={{ zIndex: 9999 }}>
           <div className="hamburger_bg"
-          style={{ backgroundImage: "url(assets/images/funfact/bg-funfact.webp)" }}>
+          >
         </div>
         <div className="hamburger_wrapper">
           <div className="hamburger_inner">
@@ -131,23 +131,6 @@ export default function HamburgerMenu({ isOpen, onClose }) {
               </p>
             </div>
 
-            <div className="hamburger-search-area">
-              <h5 className="hamburger-title">Search Now!</h5>
-              <div className="hamburger_search">
-                <form method="get" action="index.html">
-                  <button type="submit">
-                    <i className="tji-search"></i>
-                  </button>
-                  <input
-                    type="search"
-                    name="search"
-                    placeholder="Search here..."
-                    autoComplete="off"
-                  />
-                </form>
-              </div>
-            </div>
-
             <div className="hamburger-infos">
               <h5 className="hamburger-title">Contact Info</h5>
 
@@ -155,8 +138,8 @@ export default function HamburgerMenu({ isOpen, onClose }) {
 
                 <div className="contact-item">
                   <span className="subtitle">Phone</span>
-                  <Link className="contact-link" to="tel:70665 56768">
-                   70665 56768
+                  <Link className="contact-link" to="tel:+91 70665 56768">
+                   +91 70665 56768
                   </Link>
                 </div>
 
@@ -170,7 +153,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
                 <div className="contact-item">
                   <span className="subtitle">Location</span>
                   <span className="contact-link">
-                   Office No: 514, 3rd Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18
+                   Office No: 514, 5th Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18
                   </span>
                 </div>
 
@@ -182,7 +165,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
                 <ul>
                  <li><Link to="https://www.facebook.com/codigix.infotech" target="_blank"><i className="tji-facebook"></i></Link></li>
                 <li><Link to="https://www.linkedin.com/company/codigix-infotech" target="_blank"><i className="tji-linkedin"></i></Link></li>
-                <li><Link to="https://www.instagram.com/codigix?igsh=ZnphZnA5NWJjZnp1" target="_blank"><i className="tji-instagram"></i></Link></li>
+                <li><Link to="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank"><i className="tji-instagram"></i></Link></li>
                 <li><Link to="https://x.com/CodigixI2994" target="_blank"><i className="tji-x-twitter"></i></Link></li>
                   
                 </ul>
@@ -264,7 +247,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
               <div className="contact-info">
                 <div className="contact-item">
                   <span className="subtitle">Phone</span>
-                  <a className="contact-link" href="tel:70665 56768">70665 56768</a>
+                  <a className="contact-link" href="tel:+91 70665 56768">+91 70665 56768</a>
                 </div>
                 <div className="contact-item">
                   <span className="subtitle">Email</span>
@@ -272,7 +255,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
                 </div>
                 <div className="contact-item">
                   <span className="subtitle">Location</span>
-                  <span className="contact-link">Office No: 514, 3rd Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18</span>
+                  <span className="contact-link">Office No: 514, 5th Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18</span>
                 </div>
               </div>
             </div>
@@ -283,7 +266,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
               <ul>
                 <li><Link to="https://www.facebook.com/codigix.infotech" target="_blank"><i className="tji-facebook"></i></Link></li>
                 <li><Link to="https://www.linkedin.com/company/codigix-infotech" target="_blank"><i className="tji-linkedin"></i></Link></li>
-                <li><Link to="https://www.instagram.com/codigix?igsh=ZnphZnA5NWJjZnp1" target="_blank"><i className="tji-instagram"></i></Link></li>
+                <li><Link to="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank"><i className="tji-instagram"></i></Link></li>
                 <li><Link to="https://x.com/CodigixI2994" target="_blank"><i className="tji-x-twitter"></i></Link></li>
                   
               </ul>

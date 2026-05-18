@@ -9,7 +9,7 @@ const BlogSection = () => {
       title: 'Unlocking the Power of Data for Business Success.',
       category: 'Quantum',
       author: 'Brandon',
-      date: 'Jan 10, 2025',
+      date: 'Jan 10, 2026',
       image: 'https://via.placeholder.com/400x300?text=Blog+1',
     },
     {
@@ -17,7 +17,7 @@ const BlogSection = () => {
       title: 'The Future of Work: Embracing Digital Transformation.',
       category: 'Innovate',
       author: 'Brandon',
-      date: 'Jan 10, 2025',
+      date: 'Jan 10, 2026',
       image: 'https://via.placeholder.com/400x300?text=Blog+2',
     },
     {
@@ -25,7 +25,7 @@ const BlogSection = () => {
       title: 'How AI is Revolutionizing Business and Industry Today.',
       category: 'Smart',
       author: 'Brandon',
-      date: 'Jan 10, 2025',
+      date: 'Jan 10, 2026',
       image: 'https://via.placeholder.com/400x300?text=Blog+3',
     },
   ];

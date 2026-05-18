@@ -58,10 +58,9 @@ export default function ContactPage() {
   };
 
   const contactInfo = [
-    { icon: 'tji-location', title: 'Our Location', content: 'Office No: 514, 3rd Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18' },
+    { icon: 'tji-location', title: 'Our Location', content: 'Office No: 514, 5th Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18' },
     { icon: 'tji-envelop', title: 'Email us', links: [{ label: 'support@codigix.com', href: 'mailto:support@codigix.com' }, { label: 'info@codigix.com', href: 'mailto:info@codigix.com' }] },
-    { icon: 'tji-phone', title: 'Call us', links: [{ label: '  70665 56768', href: 'tel:  70665 56768' }]},
-    { icon: 'tji-chat', title: 'Live chat', links: [{ label: 'livechat@codigix.com', href: 'mailto:livechat@codigix.com' }, { label: 'Need help?', href: '#' }] }
+    { icon: 'tji-phone', title: 'Call us', links: [{ label: '  +91 70665 56768', href: 'tel:  +91 70665 56768' }]}
   ];
 
   return (
@@ -101,7 +100,7 @@ export default function ContactPage() {
           </div>
           <div className="row row-gap-4">
             {contactInfo.map((info, idx) => (
-              <div className="col-xl-3 col-lg-6 col-sm-6" key={idx}>
+              <div className="col-xl-4 col-lg-6 col-sm-6" key={idx}>
                 <div className="contact-item style-2">
                   <div className="contact-icon">
                     <i className={info.icon}></i>

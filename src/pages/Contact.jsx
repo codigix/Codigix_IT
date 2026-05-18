@@ -82,7 +82,7 @@ const Contact = () => {
                        className="w-10 h-10 flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
                       in
                     </a>
-                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer"
                        className="w-10 h-10 flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
                       ig
                     </a>

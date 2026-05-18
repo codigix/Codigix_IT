@@ -19,8 +19,8 @@ async function updateBanners() {
     const slides = [
       [
         'assets/images/hero/slider-1.webp',
-        'AI BASED ERP SOFTWARE',
-        'ERP Software Development',
+        'AI BASED ERP MANAGEMENT',
+        'ERP Management Solutions',
         'Streamline your business operations with our AI-powered ERP solutions, designed for maximum efficiency and growth.'
       ],
       [

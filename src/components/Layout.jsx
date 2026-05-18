@@ -82,7 +82,7 @@ export default function Layout({ children }) {
             "sameAs": [
               "https://www.facebook.com/codigix.infotech",
               "https://www.linkedin.com/company/codigix-infotech",
-              "https://www.instagram.com/codigix",
+              "https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==",
               "https://x.com/CodigixI2994"
             ]
           })}

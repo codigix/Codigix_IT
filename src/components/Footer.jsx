@@ -46,7 +46,7 @@ export default function Footer() {
                   <ul>
                     <li><a href="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer"><i className="tji-facebook"></i></a></li>
                     <li><a href="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer"><i className="tji-linkedin"></i></a></li>
-                    <li><a href="https://www.instagram.com/codigix?igsh=ZnphZnA5NWJjZnp1" target="_blank" rel="noopener noreferrer"><i className="tji-instagram"></i></a></li>
+                    <li><a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer"><i className="tji-instagram"></i></a></li>
                     <li><a href="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer"><i className="tji-x-twitter"></i></a></li>
                   </ul>
                 </div>
@@ -100,7 +100,7 @@ export default function Footer() {
             <div className="col-12">
               <div className="copyright-content-area">
                 <div className="copyright-text">
-                  <p>&copy; 2025 <a href="https://themeforest.net/user/theme-junction/portfolio" target="_blank" rel="noopener noreferrer">Codigix</a> All right reserved</p>
+                  <p>&copy; 2026 <a href="https://themeforest.net/user/theme-junction/portfolio" target="_blank" rel="noopener noreferrer">Codigix</a> All right reserved</p>
                 </div>
                 <div className="copyright-menu">
                   <ul>

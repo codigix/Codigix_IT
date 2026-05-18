@@ -36,13 +36,13 @@ export default function Header() {
                       </div>
                       <div className="info-item">
                         <span><i className="tji-phone-2"></i></span>
-                        <a href="tel:70665 56768">70665 56768</a>
+                        <a href="tel:+91 70665 56768">+91 70665 56768</a>
                       </div>
                       <div className="info-item">
                         <div className="social-links">
                           <ul>
                             <li><a href="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer">FB</a></li>
-                            <li><a href="https://www.instagram.com/codigix?igsh=ZnphZnA5NWJjZnp1" target="_blank" rel="noopener noreferrer">IN</a></li>
+                            <li><a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer">IN</a></li>
                             <li><a href="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer">LN</a></li>
                             <li><a href="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer">TW</a></li>
                           </ul>
@@ -97,12 +97,6 @@ export default function Header() {
 
                     <div className="header-right-item d-lg-inline-flex d-none">
                       <ThemeToggle className="mr-3" />
-                      <div className="header-search">
-                        <button className="search"
-                          onClick={() => setSearchOpen(true)} >
-                          <i className="tji-search"></i> Search
-                        </button>
-                      </div>
                       <div
                         className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
                         onClick={() => setMenuOpen(true)}
@@ -170,14 +164,6 @@ export default function Header() {
 
                   <div className="header-right-item d-none d-lg-inline-flex">
                     <ThemeToggle className="mr-3" />
-                    <div className="header-search">
-                      <button
-                        className="search"
-                        onClick={() => setSearchOpen(true)}
-                      >
-                        <i className="tji-search"></i> Search
-                      </button>
-                    </div>
 
                     <div
                       className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
@@ -258,14 +244,6 @@ export default function Header() {
 
                   <div className="header-right-item d-none d-lg-inline-flex">
                     <ThemeToggle className="mr-3" />
-                    <div className="header-search">
-                      <button
-                        className="search"
-                        onClick={() => setSearchOpen(true)}
-                      >
-                        <i className="tji-search"></i> Search
-                      </button>
-                    </div>
                     <div className="header-button">
                       <Link className="tj-primary-btn" to="/contact">
                         <div className="btn-inner">
@@ -355,14 +333,6 @@ export default function Header() {
 
                   <div className="header-right-item d-none d-lg-inline-flex">
                     <ThemeToggle className="mr-3" />
-                    <div className="header-search">
-                      <button
-                        className="search"
-                        onClick={() => setSearchOpen(true)}
-                      >
-                        <i className="tji-search"></i> Search
-                      </button>
-                    </div>
                     <div className="header-button">
                       <Link className="tj-primary-btn" to="/contact">
                         <div className="btn-inner">

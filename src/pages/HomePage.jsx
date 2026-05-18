@@ -66,7 +66,20 @@ export default function HomePage() {
         const projectsData = projectsRes.ok ? await projectsRes.json() : [];
         const blogsData = blogsRes.ok ? await blogsRes.json() : [];
 
-        setSlides(Array.isArray(slidesData) ? slidesData : []);
+        let processedSlides = Array.isArray(slidesData) ? slidesData : [];
+        
+        // Ensure ERP slide is first
+        const erpIndex = processedSlides.findIndex(s => 
+          s.title?.toLowerCase().includes('erp') || 
+          s.subtitle?.toLowerCase().includes('erp')
+        );
+        
+        if (erpIndex > 0) {
+          const erpSlide = processedSlides.splice(erpIndex, 1)[0];
+          processedSlides.unshift(erpSlide);
+        }
+
+        setSlides(processedSlides);
 
         // Use only logos from projects table as requested (remove locally fetched images)
         const projectClients = Array.isArray(projectsData)

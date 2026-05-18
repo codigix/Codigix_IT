@@ -3276,7 +3276,7 @@ display:flex;
   width: 100%;
   height: 100%;
   background: var(--tj-color-theme-dark);
-  opacity: 0.6;
+  opacity: 1;
   z-index: -1;
 }
 .hamburger_wrapper {
@@ -3518,9 +3518,7 @@ display:flex;
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: scroll;
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-  border-radius: 12px;
+ 
 }
 .tj-offcanvas-area::-webkit-scrollbar {
   display: none;
@@ -10247,7 +10245,7 @@ START: Working process CSS
 }
 .process-item-wrap {
   border-radius: 12px;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--tj-color-theme-dark);
   overflow: hidden;
   padding: 2px;
   position: relative;
@@ -10288,7 +10286,7 @@ START: Working process CSS
           animation: flip 0.5s ease-in-out;
 }
 .process-item-wrap.style-2::before {
-  background-image: linear-gradient(-125deg, rgb(255, 0, 127) 12%, rgba(255, 0, 127, 0) 35%);
+  background-image: linear-gradient(-125deg, rgb(108 86 182) 12%, rgba(255, 0, 127, 0) 35%);
 }
 .process-item-wrap.style-2 .process-item {
   -webkit-box-orient: vertical;
@@ -10326,10 +10324,7 @@ START: Working process CSS
 .process-step {
   font-size: 16px;
   color: var(--tj-color-theme-primary);
-
-  background-color: var(--tj-color-theme-dark);
-
-  
+  background-color: #ffff;
   font-weight: var(--tj-fw-medium);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -10389,7 +10384,7 @@ START: Working process CSS
 .process-icon {
   width: 98px;
   height: 98px;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--tj-color-theme-dark);
   border-radius: 14px;
   font-size: 48px;
   color: var(--tj-color-theme-primary);
@@ -10834,7 +10829,7 @@ START: Contact CSS
 }
 .contact-item.style-2 p {
   margin-bottom: 0;
-  max-width: 224px;
+  /* max-width: 224px; */
   margin: 0 auto;
 }
 .contact-item.style-2:hover .contact-icon {
@@ -13122,8 +13117,7 @@ blockquote cite::before {
   border-radius: 12px;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
-  gap: 25px;
+ 
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;

@@ -55,7 +55,7 @@ export default function BlogDetailsPage() {
                     </div>
                     <div class="cate-text">
                       <span class="degination">Date Released</span>
-                      <h6 class="text">29 December, 2025</h6>
+                      <h6 class="text">29 December, 2026</h6>
                     </div>
                   </div>
                   <div className="category-item">
@@ -163,7 +163,7 @@ export default function BlogDetailsPage() {
                       </h6>
                       <div class="blog-meta">
                         <ul>
-                          <li>04 SEP 2025</li>
+                          <li>04 SEP 2026</li>
                         </ul>
                       </div>
                     </div>
@@ -178,7 +178,7 @@ export default function BlogDetailsPage() {
                       </h6>
                       <div class="blog-meta">
                         <ul>
-                          <li>02 JAN 2025</li>
+                          <li>02 JAN 2026</li>
                         </ul>
                       </div>
                     </div>
@@ -193,7 +193,7 @@ export default function BlogDetailsPage() {
                       </h6>
                       <div class="blog-meta">
                         <ul>
-                          <li>24 FEB 2025</li>
+                          <li>24 FEB 2026</li>
                         </ul>
                       </div>
                     </div>
