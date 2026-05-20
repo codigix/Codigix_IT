@@ -98,7 +98,7 @@ export default function AboutPage() {
                     </div>
                     <div className="about-bottom-area-2">
                       <div className="company-logo wow fadeInLeft" data-wow-delay=".3s">
-                        <img src={getImageUrl("/assets/images/logos/logo.png")} alt="Codigix Logo" loading="lazy" />
+                        <img src={getImageUrl("/assets/images/logos/logo.png")} alt="Codigix Logo" width="160" height="60" loading="lazy" />
                       </div>
                       <div className="mission-vision-wrap">
                         <div className="mission-vision-box wow fadeInRight" data-wow-delay=".5s">
@@ -124,7 +124,7 @@ export default function AboutPage() {
             </div>
             <div className="about-img-area">
               <div className="about-img wow fadeInLeft" data-wow-delay=".3s" data-wow-duration="0.8s">
-                <img src={getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778344039/doctor-from-future-concept_qvzulo.jpg")} alt="Innovation and Future Technology" loading="lazy" />
+                <img src={getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778344039/doctor-from-future-concept_qvzulo.jpg")} alt="Innovation and Future Technology" width="600" height="500" loading="lazy" />
               </div>
             </div>
           </div>
@@ -161,12 +161,12 @@ export default function AboutPage() {
           <div className="row row-gap-4">
             <div className="col-lg-6 order-2 order-lg-1">
               <div className="achievement-img wow fadeInLeft" data-wow-delay=".3s">
-                <img src={getImageUrl("assets/images/achievement/achievement.webp")} alt="Codigix Achievements and Milestones" loading="lazy" />
+                <img src={getImageUrl("assets/images/achievement/achievement.webp")} alt="Codigix Achievements and Milestones" width="600" height="400" loading="lazy" />
               </div>
             </div>
             <div className="col-lg-6 order-1 order-lg-2">
               <div className="achievement-area wow fadeInRight" data-wow-delay=".3s">
-                {achievements.map((achievement, idx) => (
+                {achievements.map((achievement) => (
                   <div className="achievement-item" key={achievement.id}>
                     <div className="content">
                       <span className="no">{achievement.num}</span>
@@ -196,19 +196,19 @@ export default function AboutPage() {
               <div className="col-lg-3 col-sm-6" key={member.id}>
                 <div className="team-item wow fadeInUp" data-wow-delay={`.${3 + idx}s`}>
                   <div className="team-img">
-                    <img src={getImageUrl(member.image, "assets/images/team")} alt={member.name} loading="lazy" />
+                    <img src={getImageUrl(member.image, "assets/images/team")} alt={member.name} width="300" height="350" loading="lazy" />
                   </div>
                   <div className="team-content">
                     <h5 className="title"><a href="#">{member.name}</a></h5>
                     <span className="designation">{member.position}</span>
                   </div>
                   <div className="social-links style-2">
-                    <span className="share-icon"><i className="tji-share"></i></span>
+                    <span className="share-icon" aria-hidden="true"><i className="tji-share"></i></span>
                     <ul>
-                      <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i className="tji-facebook"></i></a></li>
-                      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><i className="tji-linkedin"></i></a></li>
-                      <li><a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer"><i className="tji-instagram"></i></a></li>
-                      <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer"><i className="tji-x-twitter"></i></a></li>
+                      <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook"><i className="tji-facebook"></i></a></li>
+                      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><i className="tji-linkedin"></i></a></li>
+                      <li><a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"><i className="tji-instagram"></i></a></li>
+                      <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X (Twitter)"><i className="tji-x-twitter"></i></a></li>
                     </ul>
                   </div>
                 </div>

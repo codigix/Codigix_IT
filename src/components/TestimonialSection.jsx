@@ -115,13 +115,13 @@ const TestimonialSection = () => {
               </div>
 
               <div className="slider-navigation d-lg-inline-flex d-none wow fadeInUp" data-wow-delay=".3s">
-                <div className="slider-prev">
+                <div className="slider-prev" role="button" aria-label="Previous testimonial">
                   <span className="anim-icon">
                     <i className="tji-arrow-left"></i>
                     <i className="tji-arrow-left"></i>
                   </span>
                 </div>
-                <div className="slider-next">
+                <div className="slider-next" role="button" aria-label="Next testimonial">
                   <span className="anim-icon">
                     <i className="tji-arrow-right"></i>
                     <i className="tji-arrow-right"></i>
@@ -166,6 +166,8 @@ const TestimonialSection = () => {
                               src={getImageUrl(testimonial.image, 'assets/images/testimonial')} 
                               alt={testimonial.author || testimonial.name} 
                               loading="lazy"
+                              width="60"
+                              height="60"
                             />
                           </div>
                           <div className="author-header">
@@ -184,13 +186,13 @@ const TestimonialSection = () => {
 
             <div className="mobile-navigation">
               <div className="slider-navigation d-inline-flex d-lg-none">
-                <div className="slider-prev">
+                <div className="slider-prev" role="button" aria-label="Previous testimonial">
                   <span className="anim-icon">
                     <i className="tji-arrow-left"></i>
                     <i className="tji-arrow-left"></i>
                   </span>
                 </div>
-                <div className="slider-next">
+                <div className="slider-next" role="button" aria-label="Next testimonial">
                   <span className="anim-icon">
                     <i className="tji-arrow-right"></i>
                     <i className="tji-arrow-right"></i>

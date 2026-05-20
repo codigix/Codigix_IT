@@ -110,6 +110,17 @@ async function initializeDatabase() {
         cover_letter TEXT,
         applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE SET NULL
+      )`,
+      `CREATE TABLE IF NOT EXISTS purchase_orders (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        po_number VARCHAR(100) UNIQUE NOT NULL,
+        client_name VARCHAR(255) NOT NULL,
+        client_email VARCHAR(255),
+        items TEXT,
+        total_amount DECIMAL(10, 2),
+        status VARCHAR(50) DEFAULT 'pending',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )`
     ];
 

@@ -93,6 +93,8 @@ const ProjectSection = () => {
                   src={project.image} 
                   alt={project.title}
                   loading="lazy"
+                  width="500"
+                  height="320"
                   className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>

@@ -29,6 +29,13 @@ gsap.registerPlugin(ScrollTrigger);
 const API_BASE_URL = config.API_BASE_URL;
 const getImageUrl = config.getImageUrl;
 
+const longTermVision = [
+  "AI-Powered Automation for Businesses",
+  "Global Expansion of Digital Services",
+  "Sustainable and Scalable Tech Ecosystems",
+  "Pioneering Web 3.0 Integration"
+];
+
 export default function HomePage() {
 
 
@@ -60,7 +67,7 @@ export default function HomePage() {
         ]);
 
         const slidesData = slidesRes.ok ? await slidesRes.json() : [];
-        const clientsData = clientsRes.ok ? await clientsRes.json() : [];
+        if (clientsRes.ok) await clientsRes.json(); // Clear stream but ignore results
         const processData = processRes.ok ? await processRes.json() : [];
         const servicesData = servicesRes.ok ? await servicesRes.json() : [];
         const projectsData = projectsRes.ok ? await projectsRes.json() : [];
@@ -241,7 +248,6 @@ export default function HomePage() {
 
   const [activeQuarter, setActiveQuarter] = useState("roadmap-2023-Q1");
   const roadmapRef = useRef(null);
-  const cardsParentRef = useRef(null);
 
   useGSAP(() => {
     if (loading || !roadmapRef.current || isMobile) return;
@@ -285,7 +291,6 @@ export default function HomePage() {
             const targetNav = navItems[index];
             const navContainer = document.querySelector(".roadmap-timeline-nav");
             const navInner = document.querySelector(".roadmap-nav-inner");
-            const parentGroup = targetNav?.closest('.year-nav-group');
 
             if (targetNav && navContainer && navInner) {
               const navRect = navContainer.getBoundingClientRect();
@@ -351,73 +356,6 @@ export default function HomePage() {
     }
   ];
 
-  const futureScopeData = [
-    {
-      title: "Website & Digital Experience",
-      items: [
-        "Advanced interactive business websites",
-        "Progressive Web Applications (PWA)",
-        "High-performance enterprise portals"
-      ],
-      icon: "tji-desktop"
-    },
-    {
-      title: "ERP & CRM Solutions",
-      items: [
-        "Industry-specific ERP ecosystems",
-        "AI-powered CRM intelligence systems",
-        "Fully automated business workflow platforms"
-      ],
-      icon: "tji-gear"
-    },
-    {
-      title: "Mobile & Application Development",
-      items: [
-        "Enterprise mobile ecosystems",
-        "Cross-platform scalable applications",
-        "Cloud-integrated mobile architecture"
-      ],
-      icon: "tji-mobile"
-    },
-    {
-      title: "AI & Smart Automation",
-      items: [
-        "Generative AI integrations",
-        "AI Agents and intelligent assistants",
-        "Predictive analytics and smart recommendations",
-        "Intelligent business process automation"
-      ],
-      icon: "tji-brain"
-    },
-    {
-      title: "IoT & Smart Technology",
-      items: [
-        "Smart factory and manufacturing solutions",
-        "IoT-integrated ERP systems",
-        "Real-time monitoring and tracking systems",
-        "Sensor-based automation ecosystems"
-      ],
-      icon: "tji-lightbulb"
-    },
-    {
-      title: "Team & Technology Growth",
-      items: [
-        "Continuous technical skill enhancement",
-        "AI/ML and cloud certification programs",
-        "Innovation-focused development culture",
-        "Vertical and horizontal technology expansion"
-      ],
-      icon: "tji-team"
-    }
-  ];
-
-  const longTermVision = [
-    "Become a leading AI-driven IT solutions company",
-    "Deliver scalable digital transformation solutions",
-    "Build intelligent enterprise ecosystems",
-    "Create innovative platforms for global industries"
-  ];
-
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -460,13 +398,15 @@ export default function HomePage() {
           src={getImageUrl(service.image, "assets/images/service")}
           alt={service.title}
           className="w-full h-64 object-cover"
+          width="600"
+          height="400"
         />
       </div>
 
       <span className="item-count text-gray-400 dark:text-gray-500">{service.num}.</span>
     </div>
   );
-  const PricingCard = ({ pricing, idx }) => (
+  const PricingCard = ({ pricing }) => (
     <div
       className={`pricing-box style-2 ${pricing.active ? "active" : ""}`}
     >
@@ -491,7 +431,7 @@ export default function HomePage() {
           </div>
 
           <div className="pricing-btn">
-            <Link className="text-btn" to="/contact">
+            <Link className="text-btn" to="/contact" aria-label={`Choose ${pricing.name} Package`}>
               <span className="btn-text">
                 <span>Choose Package</span>
               </span>
@@ -584,6 +524,8 @@ export default function HomePage() {
                     alt={slide.title}
                     className="hero-image"
                     loading={slide.id === 1 ? "eager" : "lazy"}
+                    width="1920"
+                    height="1080"
                   />
                 </div>
 
@@ -601,17 +543,18 @@ export default function HomePage() {
 
                       <div className="slider-desc text-center">{slide.description}</div>
 
-                      <div className="slider-btn text-center">
+                    <div className="slider-btn text-center">
                         <Link
                           className="tj-primary-btn home-button"
                           to="/contact"
+                          aria-label={`Learn More about ${slide.title}`}
                         >
                           <div className="btn-inner">
-                            <span className="btn-icon h-icon">
+                            <span className="btn-icon h-icon" aria-hidden="true">
                               <i className="tji-arrow-right"></i>
                             </span>
                             <span className="btn-text">Learn More</span>
-                            <span className="btn-icon">
+                            <span className="btn-icon" aria-hidden="true">
                               <i className="tji-arrow-right"></i>
                             </span>
                           </div>
@@ -626,14 +569,14 @@ export default function HomePage() {
 
           {/* Navigation */}
           <div className="hero-navigation">
-            <div className="slider-prev">
+            <div className="slider-prev" role="button" aria-label="Previous slide">
               <span className="anim-icon">
                 <i className="tji-arrow-left-long"></i>
                 <i className="tji-arrow-left-long"></i>
               </span>
             </div>
 
-            <div className="slider-next">
+            <div className="slider-next" role="button" aria-label="Next slide">
               <span className="anim-icon">
                 <i className="tji-arrow-right-long"></i>
                 <i className="tji-arrow-right-long"></i>
@@ -693,6 +636,8 @@ export default function HomePage() {
                       <img
                         src={getImageUrl(client.image)}
                         alt={`Client Logo ${index + 1}`}
+                        width="195"
+                        height="74"
                       />
                     </div>
                   </SwiperSlide>
@@ -812,7 +757,7 @@ export default function HomePage() {
                   data-wow-delay=".3s"
                   data-wow-duration="0.8s"
                 >
-                  <img src="https://res.cloudinary.com/foodfantacy/image/upload/v1778322898/person-working-with-ai-robot_ytu1wo.jpg" alt="AI and Technology Solutions for Business" loading="lazy" />
+                  <img src="https://res.cloudinary.com/foodfantacy/image/upload/v1778322898/person-working-with-ai-robot_ytu1wo.jpg" alt="AI and Technology Solutions for Business" loading="lazy" width="600" height="500" />
                 </div>
                 <div className="video-wrap">
                   <a
@@ -821,6 +766,7 @@ export default function HomePage() {
                     data-vbtype="video"
                     data-maxwidth="1200px"
                     href="https://www.youtube.com/watch?v=MLpWrANjFbI&ab_channel=eidelchteinadvogados"
+                    aria-label="Watch video about our technology solutions"
                   >
                     <span className="video-text">Let's See How we did it.</span>
                     <span className="video-icon">
@@ -898,11 +844,11 @@ export default function HomePage() {
                     </Swiper>
 
                     <div className="swiper-controls">
-                      <div className="swiper-button-prev-custom">
+                      <div className="swiper-button-prev-custom" role="button" aria-label="Previous service">
                         <i className="tji-arrow-left"></i>
                       </div>
                       <div className="swiper-pagination-custom"></div>
-                      <div className="swiper-button-next-custom">
+                      <div className="swiper-button-next-custom" role="button" aria-label="Next service">
                         <i className="tji-arrow-right"></i>
                       </div>
                     </div>
@@ -989,6 +935,8 @@ export default function HomePage() {
                       alt={project.title}
                       className="w-full h-[250px] object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
+                      width="600"
+                      height="400"
                     />
                   </div>
                   <div className="project-content">
@@ -998,7 +946,7 @@ export default function HomePage() {
                     <p className="line-clamp-2">
                       {project.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
                     </p>
-                    <Link to={`/projects/details/${project.id}`} className="icon-btn" >
+                    <Link to={`/projects/details/${project.id}`} className="icon-btn" aria-label={`View Details for ${project.title}`}>
                       <i className="tji-arrow-right-long"></i>
                     </Link>
                   </div>
@@ -1203,6 +1151,8 @@ export default function HomePage() {
                         src={getImageUrl(blog.image, "assets/images/blog")}
                         alt={blog.title}
                         loading="lazy"
+                        width="600"
+                        height="400"
                       />
                     </Link>
                     <span className="categories">
@@ -1220,7 +1170,7 @@ export default function HomePage() {
                     <h4 className="title">
                       <Link to="/blog/details">{blog.title}</Link>
                     </h4>
-                    <Link className="text-btn" to="/blog/details">
+                    <Link className="text-btn" to="/blog/details" aria-label={`Read More about ${blog.title}`}>
                       <span className="btn-text">
                         <span>Read More</span>
                       </span>

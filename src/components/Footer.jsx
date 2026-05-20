@@ -16,16 +16,16 @@ export default function Footer() {
                 <span className="sub-title"><i className="tji-subtitle-2"></i>Get Started</span>
                 <div className='main-sec'>
                 <h2 className="sec-title">Let’s Launch AI-Powered </h2>
-                <h2 className="sec-title-1 sec-title" > Project <img src={getImageUrl("assets/images/shape/hand.webp")} alt="Start your AI project with Codigix Infotech" loading="lazy" />
+                <h2 className="sec-title-1 sec-title" > Project <img src={getImageUrl("assets/images/shape/hand.webp")} alt="Start your AI project with Codigix Infotech" width="40" height="40" loading="lazy" />
                   Here.
                 </h2>
                 </div>
               </div>
                 <div className="circle-text-wrap wow fadeInUp" data-wow-delay=".7s">
                   <span className="circle-text" style={{backgroundImage: `url(${getImageUrl("assets/images/cta/circle-text.webp")})`}}></span>
-                  <Link className="circle-icon" to="/contact"><span><i className="tji-plane-2"></i></span></Link>
+                  <Link className="circle-icon" to="/contact" aria-label="Contact us to start your project"><span><i className="tji-plane-2"></i></span></Link>
                 </div>
-                <div className="cta-bg wow fadeIn" data-wow-delay=".3s"><img src={getImageUrl("assets/images/cta/line-pattern.webp")} alt="Abstract background pattern" loading="lazy" /></div>
+                <div className="cta-bg wow fadeIn" data-wow-delay=".3s"><img src={getImageUrl("assets/images/cta/line-pattern.webp")} alt="Abstract background pattern" width="500" height="200" loading="lazy" /></div>
               </div>
             </div>
           </div>
@@ -37,17 +37,17 @@ export default function Footer() {
             <div className="col-xl-3 col-md-6">
               <div className="footer-widget footer-col-1">
                 <div className="footer-logo">
-                  <Link to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Codigix Infotech - AI & Software Solutions Logo" loading="lazy" /></Link>
+                  <Link to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Codigix Infotech - AI & Software Solutions Logo" width="160" height="60" loading="lazy" /></Link>
                 </div>
                 <div className="footer-text">
                   <p>Understanding client needs, defining goals, and designing tailored AI crafting's solutions.</p>
                 </div>
                 <div className="social-links style-2">
                   <ul>
-                    <li><a href="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer"><i className="tji-facebook"></i></a></li>
-                    <li><a href="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer"><i className="tji-linkedin"></i></a></li>
-                    <li><a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer"><i className="tji-instagram"></i></a></li>
-                    <li><a href="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer"><i className="tji-x-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook"><i className="tji-facebook"></i></a></li>
+                    <li><a href="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><i className="tji-linkedin"></i></a></li>
+                    <li><a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"><i className="tji-instagram"></i></a></li>
+                    <li><a href="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X (Twitter)"><i className="tji-x-twitter"></i></a></li>
                   </ul>
                 </div>
               </div>
@@ -84,9 +84,9 @@ export default function Footer() {
                 <h3 className="title">Subscribe to Our Newsletter.</h3>
                 <div className="subscribe-form">
                   <form action="#">
-                    <input type="email" name="email" placeholder="Enter email*" />
-                    <button type="submit"><i className="tji-plane"></i></button>
-                    <label htmlFor="agree"><input id="agree" type="checkbox" />Agree to our <a href="#">Terms & Condition?</a></label>
+                    <input type="email" name="email" placeholder="Enter email*" aria-label="Email for newsletter" required />
+                    <button type="submit" aria-label="Subscribe to newsletter"><i className="tji-plane"></i></button>
+                    <label htmlFor="agree"><input id="agree" type="checkbox" required />Agree to our <a href="#">Terms & Condition?</a></label>
                   </form>
                 </div>
               </div>

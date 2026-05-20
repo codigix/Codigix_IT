@@ -50,6 +50,8 @@ const ClientSection = () => {
                   src={brand.image} 
                   alt="Brand Logo" 
                   loading="lazy"
+                  width="180"
+                  height="80"
                   className="h-16 object-contain"
                 />
               </motion.div>

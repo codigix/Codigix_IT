@@ -139,13 +139,15 @@ export default function ProjectsPage() {
                                 alt={project.title}
                                 className="w-full h-[250px] object-cover  transition-transform duration-500 group-hover:scale-110"
                                 loading="lazy"
+                                width="600"
+                                height="400"
                               />
                             </div>
                             <div className="project-content">
                               <h4 className="title"><Link to={`/projects/details/${project.id}`}>{project.title}</Link></h4>
                               <p className="line-clamp-2">{project.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
                               </p>
-                              <Link to={`/projects/details/${project.id}`} className="icon-btn" >
+                              <Link to={`/projects/details/${project.id}`} className="icon-btn" aria-label={`View Details for ${project.title}`}>
                                 <i className="tji-arrow-right-long"></i>
                               </Link>
                             </div>

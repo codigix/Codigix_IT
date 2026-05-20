@@ -75,16 +75,16 @@ export default function BlogPage() {
               <div className="col-xl-4 col-md-6" key={blog.id}>
                 <div className="blog-item style-3 wow fadeInUp" data-wow-delay={`.${3 + idx}s`}>
                   <div className="blog-thumb">
-                    <Link to="/blog/details"><img src={getImageUrl(blog.image, "assets/images/blog")} alt={blog.title} loading="lazy" /></Link>
-                    <span className="categories"><Link to="/blog/details">{blog.category}</Link></span>
+                    <Link to={`/blog/details/${blog.id}`}><img src={getImageUrl(blog.image, "assets/images/blog")} alt={blog.title} loading="lazy" width="600" height="400" /></Link>
+                    <span className="categories"><Link to={`/blog/details/${blog.id}`}>{blog.category}</Link></span>
                   </div>
                   <div className="blog-content">
                     <div className="blog-meta">
-                      <span>By <Link to="/blog/details">{blog.author || 'Admin'}</Link></span>
+                      <span>By <Link to={`/blog/details/${blog.id}`}>{blog.author || 'Admin'}</Link></span>
                       <span>{blog.date}</span>
                     </div>
-                    <h4 className="title"><Link to="/blog/details">{blog.title}</Link></h4>
-                    <Link className="text-btn" to="/blog/details">
+                    <h4 className="title"><Link to={`/blog/details/${blog.id}`}>{blog.title}</Link></h4>
+                    <Link className="text-btn" to={`/blog/details/${blog.id}`} aria-label={`Read More about ${blog.title}`}>
                       <span className="btn-text"><span>Read More</span></span>
                       <span className="btn-icon"><span><i className="tji-arrow-right"></i></span></span>
                     </Link>

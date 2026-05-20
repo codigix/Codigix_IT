@@ -75,6 +75,8 @@ const AboutSection = () => {
               alt="About Us"
               className="rounded-lg shadow-lg w-full"
               loading="lazy"
+              width="500"
+              height="400"
             />
             
             {/* Video Button */}
@@ -82,6 +84,7 @@ const AboutSection = () => {
               <button
                 onClick={() => setShowVideo(true)}
                 className="absolute inset-0 flex items-center justify-center bg-black/30 rounded-lg hover:bg-black/50 transition-colors"
+                aria-label="Play introduction video"
               >
                 <motion.div
                   whileHover={{ scale: 1.1 }}

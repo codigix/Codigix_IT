@@ -3,32 +3,35 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
 import ExternalStyles from './components/ExternalStyles';
 import Layout from './components/Layout';
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ServicesPage from './pages/ServicesPage';
-import ServiceDetailsPage from './pages/ServiceDetailsPage';
-import ProjectsPage from './pages/ProjectsPage';
-import ProjectDetailsPage from './pages/ProjectDetailsPage';
-import BlogPage from './pages/BlogPage';
-import BlogDetailsPage from './pages/BlogDetailsPage';
-import ContactPage from './pages/ContactPage';
-import CareerPage from './pages/CareerPage';
-import NotFoundPage from './pages/NotFoundPage';
-import AdminLogin from './pages/admin/AdminLogin';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import HeroSlides from './pages/admin/entities/HeroSlides';
-import ServicesAdmin from './pages/admin/entities/ServicesAdmin';
-import ProjectsAdmin from './pages/admin/entities/ProjectsAdmin';
-import BlogsAdmin from './pages/admin/entities/BlogsAdmin';
-import TestimonialsAdmin from './pages/admin/entities/TestimonialsAdmin';
-import ClientsAdmin from './pages/admin/entities/ClientsAdmin';
-import WorkingProcessAdmin from './pages/admin/entities/WorkingProcessAdmin';
-import AchievementsAdmin from './pages/admin/entities/AchievementsAdmin';
-import TeamAdmin from './pages/admin/entities/TeamAdmin';
-import JobsAdmin from './pages/admin/entities/JobsAdmin';
-import ApplicationsAdmin from './pages/admin/entities/ApplicationsAdmin';
 
-import AdminLayout from './pages/admin/components/AdminLayout';
+// Lazy load pages
+const HomePage = lazy(() => import('./pages/HomePage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const ServiceDetailsPage = lazy(() => import('./pages/ServiceDetailsPage'));
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
+const ProjectDetailsPage = lazy(() => import('./pages/ProjectDetailsPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogDetailsPage = lazy(() => import('./pages/BlogDetailsPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const CareerPage = lazy(() => import('./pages/CareerPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+
+// Lazy load admin components
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
+const HeroSlides = lazy(() => import('./pages/admin/entities/HeroSlides'));
+const ServicesAdmin = lazy(() => import('./pages/admin/entities/ServicesAdmin'));
+const ProjectsAdmin = lazy(() => import('./pages/admin/entities/ProjectsAdmin'));
+const BlogsAdmin = lazy(() => import('./pages/admin/entities/BlogsAdmin'));
+const TestimonialsAdmin = lazy(() => import('./pages/admin/entities/TestimonialsAdmin'));
+const ClientsAdmin = lazy(() => import('./pages/admin/entities/ClientsAdmin'));
+const WorkingProcessAdmin = lazy(() => import('./pages/admin/entities/WorkingProcessAdmin'));
+const AchievementsAdmin = lazy(() => import('./pages/admin/entities/AchievementsAdmin'));
+const TeamAdmin = lazy(() => import('./pages/admin/entities/TeamAdmin'));
+const JobsAdmin = lazy(() => import('./pages/admin/entities/JobsAdmin'));
+const ApplicationsAdmin = lazy(() => import('./pages/admin/entities/ApplicationsAdmin'));
+const AdminLayout = lazy(() => import('./pages/admin/components/AdminLayout'));
 
 function AppRoutes() {
   const location = useLocation();
@@ -78,7 +81,7 @@ function AppRoutes() {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/details/:id" element={<ProjectDetailsPage />} />
           <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/details" element={<BlogDetailsPage />} />
+          <Route path="/blog/details/:id" element={<BlogDetailsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/careers" element={<CareerPage />} />
           <Route path="*" element={<NotFoundPage />} />

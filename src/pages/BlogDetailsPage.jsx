@@ -1,15 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import SEO from "../components/SEO";
+import config from '../config';
+
+const API_BASE_URL = config.API_BASE_URL;
+const getImageUrl = config.getImageUrl;
 
 export default function BlogDetailsPage() {
+  const { id } = useParams();
+  const [blog, setBlog] = useState(null);
+  const [recentBlogs, setRecentBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      try {
+        setLoading(true);
+        // Fetch current blog
+        const response = await fetch(`${API_BASE_URL}/blogs/${id}`);
+        const data = await response.json();
+        setBlog(data);
+
+        // Fetch recent blogs for sidebar
+        const recentResponse = await fetch(`${API_BASE_URL}/blogs`);
+        const recentData = await recentResponse.json();
+        setRecentBlogs(Array.isArray(recentData) ? recentData.slice(0, 3) : []);
+
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching blog details:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchBlogData();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!blog) {
+    return (
+      <div className="container section-gap text-center">
+        <h2>Blog post not found</h2>
+        <Link to="/blog" className="tj-primary-btn">Back to Blog</Link>
+      </div>
+    );
+  }
+
   return (
     <>
       <SEO 
-        title="Unlocking the Power of Data for Business Success | Codigix Infotech Blog"
-        description="Learn how data analytics and AI are revolutionizing the business landscape and driving success for modern organizations. Insights from Codigix Infotech experts."
-        keywords="data analytics, AI for business, digital transformation, machine learning insights, Codigix Infotech, business success with data"
-        ogImage="/assets/images/blog/blog-1.webp"
+        title={`${blog.title} | Codigix Infotech Blog`}
+        description={blog.summary || blog.content?.substring(0, 160) || "Read the latest insights and trends in AI and technology from Codigix Infotech."}
+        keywords={`${blog.category}, AI, technology, Codigix, ${blog.title}`}
+        ogImage={getImageUrl(blog.image, "assets/images/blog")}
       />
       <section className="tj-page-header section-gap-x" style={{ backgroundImage: "url(https://res.cloudinary.com/foodfantacy/image/upload/v1778340863/0015_lf398t.jpg)" }}>
         <div className="container">
@@ -35,18 +85,17 @@ export default function BlogDetailsPage() {
             <div className="col-lg-8">
               <div className="blog-details-content post-details-wrapper">
                 <div className="blog-details-img blog-images">
-                  <img src="/assets/images/blog/blog-1.webp" alt="Unlocking the Power of Data for Business Success" loading="lazy" />
+                  <img src={getImageUrl(blog.image, "assets/images/blog")} alt={blog.title} loading="lazy" />
                 </div>
-               <h2 className="title">Unlocking the Power of Data for Business Success</h2>
+                <h2 className="title">{blog.title}</h2>
                 <div className="blog-category-two ">
-
                   <div className="category-item">
                     <div className="cate-images">
-                      <img src="assets/images/blog/author.webp" alt="Author" loading="lazy" />
+                      <img src={getImageUrl("assets/images/blog/author.webp")} alt="Author" loading="lazy" />
                     </div>
                     <div className="cate-text">
                       <span className="degination">Authored by</span>
-                      <h6 className="title"><a href="blog-details.html">Burdee Nicolas</a></h6>
+                      <h6 className="title">{blog.author || 'Admin'}</h6>
                     </div>
                   </div>
                   <div className="category-item">
@@ -55,7 +104,7 @@ export default function BlogDetailsPage() {
                     </div>
                     <div className="cate-text">
                       <span className="degination">Date Released</span>
-                      <h6 className="text">29 December, 2026</h6>
+                      <h6 className="text">{blog.date}</h6>
                     </div>
                   </div>
                   <div className="category-item">
@@ -63,171 +112,65 @@ export default function BlogDetailsPage() {
                       <i className="tji-comment"></i>
                     </div>
                     <div className="cate-text">
-                      <span className="degination">Comments</span>
-                      <h6 className="text">03 Comments</h6>
+                      <span className="degination">Category</span>
+                      <h6 className="text">{blog.category}</h6>
                     </div>
                   </div>
-
                 </div>
-                <div className='blog-text'>
-                  <p>In today's digital landscape, data has become the most valuable asset for businesses of all sizes. The ability to collect, analyze, and derive actionable insights from data is what separates industry leaders from their competitors. This is where artificial intelligence and machine learning come into play.</p>
-
-                  <h3>The Data Revolution</h3>
-                  <p>Over the past decade, the volume of data generated globally has increased exponentially. Every transaction, customer interaction, and business process now generates valuable data points that can be leveraged to improve decision-making and drive business growth. However, managing and analyzing this data manually is virtually impossible.</p>
-
-                  <p>That's where AI-powered analytics solutions come in. By automating the data analysis process, businesses can uncover hidden patterns, predict future trends, and make informed decisions in real-time.</p>
-
-                  <h3>Key Benefits of Data-Driven Decision Making</h3>
-                  <ul className="list-style-1">
-                    {/* <li><strong>Improved Efficiency:</strong> Automated data processing reduces manual work and increases operational efficiency</li>
-                  <li><strong>Better Predictions:</strong> Machine learning models can forecast trends with high accuracy</li>
-                  <li><strong>Cost Savings:</strong> Optimized processes lead to significant cost reductions</li>
-                  <li><strong>Competitive Advantage:</strong> Data-driven insights help you stay ahead of competitors</li>
-                  <li><strong>Enhanced Customer Experience:</strong> Understanding customer behavior leads to better personalization</li> */}
-                    <li>Discover our expertise</li>
-                    <li>Discover our expertise</li>
-                    <li>Discover our expertise</li>
-                    <li>Discover our expertise</li>
-                    <li>Discover our expertise</li>
-                    <li>Discover our expertise</li>
-
-                  </ul>
-
-                  <h3>Real-World Examples</h3>
-                  <p>Many leading companies have already embraced data-driven strategies. E-commerce giants use AI to recommend products, financial institutions use machine learning for fraud detection, and healthcare providers leverage predictive analytics to improve patient outcomes.</p>
-
-                  <h3>Getting Started with AI</h3>
-                  <p>If you're looking to harness the power of data for your business, now is the perfect time to implement AI solutions. Start by identifying key business challenges that could be solved with data insights, then partner with experienced AI experts to develop a tailored solution.</p>
-
-                  <p>The future of business is data-driven, and those who adapt quickly will gain a significant competitive advantage in their industry.</p>
-
-                  <div className="blog-tags tj-tags-post" >
-                    {/* <div className='tagcloud'>
-                    <h4>Tags:</h4>
-                    </div>
-                    <ul>
-                      <li><a href="#">Artificial Intelligence</a></li>
-                      <li><a href="#">Data Analytics</a></li>
-                      <li><a href="#">Machine Learning</a></li>
-                      <li><a href="#">Business Strategy</a></li>
-                    </ul> */}
-                    <div className="tagcloud">
-                  <span>Tags:</span>
-                  <a href="blog.html">Artificial Intelligence</a>
-                  <a href="blog.html">SmartData AnalyticsHome</a>
-                  <a href="blog.html">Machine Learning</a>
-                      <a href="blog.html">Business Strategy</a>
+                <div className='blog-text' dangerouslySetInnerHTML={{ __html: blog.content }}>
                 </div>
+                
+                <div className="blog-tags tj-tags-post" >
+                  <div className="tagcloud">
+                    <span>Tags:</span>
+                    <Link to="/blog">{blog.category}</Link>
+                    <Link to="/blog">AI</Link>
+                    <Link to="/blog">Technology</Link>
                   </div>
                 </div>
-                  {/* 
-                <div className="blog-navigation">
-                  <Link className="prev-post" to="/blog">
-                    <i className="tji-arrow-left"></i>
-                    <span>Previous Post</span>
-                  </Link>
-                  <Link className="next-post" to="/blog">
-                    <span>Next Post</span>
-                    <i className="tji-arrow-right"></i>
-                  </Link>
-                </div> */}
-                <div className="tj-post__navigation">
-                <div className="tj-nav__post previous">
-                  <div className="tj-nav-post__nav prev_post">
-                    <a href="blog-details.html"><span><i className="tji-arrow-left"></i></span>Previous</a>
-                  </div>
-                </div>
-                <div className="tj-nav-post__grid">
-                  <a href="blog.html"><i className="tji-window"></i></a>
-                </div>
-              <div className="tj-nav__post next">
-                  <div className="tj-nav-post__nav next_post">
-                    <a href="blog-details.html">Next<span><i className="tji-arrow-right"></i></span></a>
-                  </div>
-                </div>
-              </div>
               </div>
             </div>
-              <div className="col-lg-4">
-                <div className="blog-sidebar">
-               <div className="blog-sidebar-box">
-                    <h3 className="title">Recent Posts</h3>
-                   <ul>
-                  <li>
-                    <div className="post-thumb">
-                      <a href="blog-details.html"> <img src="/assets/images/blog/post-1.webp" alt="How Custom Technology is Redefining Tomorrow" loading="lazy" /></a>
-                    </div>
-                    <div className="post-content">
-                      <h6 className="post-title">
-                        <a href="blog-details.html">How Custom Technology is Redefining Tomorrow’s</a>
-                      </h6>
-                      <div className="blog-meta">
-                        <ul>
-                          <li>04 SEP 2026</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="post-thumb">
-                      <a href="blog-details.html"> <img src="/assets/images/blog/post-2.webp" alt="Revolutionizing Business Solutions for the Next Era" loading="lazy" /></a>
-                    </div>
-                    <div className="post-content">
-                      <h6 className="post-title">
-                        <a href="blog-details.html">Revolutionizing Business Solutions for the Next.</a>
-                      </h6>
-                      <div className="blog-meta">
-                        <ul>
-                          <li>02 JAN 2026</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="post-thumb">
-                      <a href="blog-details.html"> <img src="/assets/images/blog/post-3.webp" alt="The Journey of Creating Smarter Future" loading="lazy" /></a>
-                    </div>
-                    <div className="post-content">
-                      <h6 className="post-title">
-                        <a href="blog-details.html">The Journey of Creating Smarter Future.</a>
-                      </h6>
-                      <div className="blog-meta">
-                        <ul>
-                          <li>24 FEB 2026</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-                  </div> 
-                
-                  <div className="blog-sidebar-box">
-                    <h3 className="title">Categories</h3>
-                    <ul className="categories">
-                      <li><a href="#">Artificial Intelligence (5)</a></li>
-                      <li><a href="#">Machine Learning (3)</a></li>
-                      <li><a href="#">Data Analytics (4)</a></li>
-                      <li><a href="#">Business (6)</a></li>
-                      <li><a href="#">Technology (8)</a></li>
-                    </ul>
-                  </div>
+            <div className="col-lg-4">
+              <div className="blog-sidebar">
+                <div className="blog-sidebar-box">
+                  <h3 className="title">Recent Posts</h3>
+                  <ul>
+                    {recentBlogs.map((recent) => (
+                      <li key={recent.id}>
+                        <div className="post-thumb">
+                          <Link to={`/blog/details/${recent.id}`}> 
+                            <img src={getImageUrl(recent.image, "assets/images/blog")} alt={recent.title} loading="lazy" />
+                          </Link>
+                        </div>
+                        <div className="post-content">
+                          <h6 className="post-title">
+                            <Link to={`/blog/details/${recent.id}`}>{recent.title}</Link>
+                          </h6>
+                          <div className="blog-meta">
+                            <ul>
+                              <li>{recent.date}</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div> 
 
-                  <div className="blog-sidebar-box hidden d-none">
-                    <h3 className="title">Newsletter</h3>
-                    <p>Subscribe to our newsletter to get the latest AI insights and updates.</p>
-                    <form>
-                      <input type="email" placeholder="Your email address" />
-                      <button type="submit" className="tj-primary-btn">
-                        Subscribe
-                      </button>
-                    </form>
-                  </div>
+                <div className="blog-sidebar-box">
+                  <h3 className="title">Categories</h3>
+                  <ul className="categories">
+                    <li><Link to="/blog">Artificial Intelligence</Link></li>
+                    <li><Link to="/blog">Machine Learning</Link></li>
+                    <li><Link to="/blog">Data Analytics</Link></li>
+                    <li><Link to="/blog">Business</Link></li>
+                    <li><Link to="/blog">Technology</Link></li>
+                  </ul>
                 </div>
-             
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-        
       </section>
     </>
   );

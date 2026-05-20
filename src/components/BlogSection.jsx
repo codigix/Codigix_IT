@@ -83,6 +83,8 @@ const BlogSection = () => {
                   src={blog.image} 
                   alt={blog.title}
                   loading="lazy"
+                  width="400"
+                  height="200"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <span className="absolute top-4 right-4 px-4 py-2 bg-orange-500 text-white text-sm font-semibold rounded-lg">

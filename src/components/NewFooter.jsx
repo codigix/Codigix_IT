@@ -32,6 +32,8 @@ export default function NewFooter() {
                   <img
                     src="/assets/images/cta/cta-bg.webp"
                     alt="AI Technology and Business Transformation"
+                    width="500"
+                    height="300"
                     loading="lazy"
                   />
                 </div>
@@ -57,6 +59,8 @@ export default function NewFooter() {
                       <img
                         src="/assets/images/logos/logo.png"
                         alt="Codigix Logo"
+                        width="160"
+                        height="60"
                         loading="lazy"
                       />
                     </Link>
@@ -71,10 +75,10 @@ export default function NewFooter() {
 
                   <div className="social-links style-2">
                     <ul>
-                      <li><a href="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer"><i className="tji-facebook"></i></a></li>
-                      <li><a href="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer"><i className="tji-linkedin"></i></a></li>
-                      <li><a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer"><i className="tji-instagram"></i></a></li>
-                      <li><a href="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer"><i className="tji-x-twitter"></i></a></li>
+                      <li><a href="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook"><i className="tji-facebook"></i></a></li>
+                      <li><a href="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><i className="tji-linkedin"></i></a></li>
+                      <li><a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"><i className="tji-instagram"></i></a></li>
+                      <li><a href="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X (Twitter)"><i className="tji-x-twitter"></i></a></li>
                     </ul>
                   </div>
                 </div>
@@ -116,13 +120,13 @@ export default function NewFooter() {
                   <h3 className="title">Subscribe to Our Newsletter</h3>
 
                   <form className="subscribe-form">
-                    <input type="email" placeholder="Enter email*" />
-                    <button type="submit">
+                    <input type="email" placeholder="Enter email*" aria-label="Email for newsletter" required />
+                    <button type="submit" aria-label="Subscribe to newsletter">
                       <i className="tji-plane"></i>
                     </button>
 
                     <label htmlFor="agree">
-                      <input id="agree" type="checkbox" /> Agree to our{" "}
+                      <input id="agree" type="checkbox" required /> Agree to our{" "}
                       <Link to="/terms">Terms & Condition</Link>
                     </label>
                   </form>

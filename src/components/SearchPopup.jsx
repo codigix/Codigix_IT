@@ -102,6 +102,7 @@ export default function SearchPopup({ isOpen, onClose }) {
             type="button"
             className="search_close_btn"
             onClick={onClose}
+            aria-label="Close search popup"
           >
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path d="M17 1L1 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -127,8 +128,9 @@ export default function SearchPopup({ isOpen, onClose }) {
                           placeholder="Search here..."
                           autoFocus
                           required
+                          aria-label="Search site content"
                         />
-                        <button type="submit">
+                        <button type="submit" aria-label="Perform search">
                           <i className="tji-search"></i>
                         </button>
                       </div>

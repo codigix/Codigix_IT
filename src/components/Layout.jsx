@@ -117,6 +117,7 @@ export default function Layout({ children }) {
               id="back_to_top"
               type="button"
               className="back-to-top-btn"
+              aria-label="Back to top"
             >
               <span>
                 <i className="tji-rocket"></i>

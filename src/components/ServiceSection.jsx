@@ -104,6 +104,8 @@ const ServiceSection = () => {
                   src={service.image} 
                   alt={service.title}
                   loading="lazy"
+                  width="400"
+                  height="300"
                   className="rounded-lg shadow-lg w-full"
                 />
               </div>

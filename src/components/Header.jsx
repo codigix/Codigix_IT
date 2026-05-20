@@ -28,23 +28,23 @@ export default function Header() {
               <div className="row">
                 <div className="col-12">
                   <div className="header-top-content">
-                    <p className="topbar-text"><i className="tji-idea"></i>Innovating Tomorrow, Today <Link to="/contact">Click here</Link></p>
+                    <p className="topbar-text"><i className="tji-idea"></i>Innovating Tomorrow, Today <Link to="/contact" aria-label="Contact us to learn more about our innovations">Contact Us</Link></p>
                     <div className="header-info">
                       <div className="info-item">
                         <span><i className="tji-envelop-2"></i></span>
-                        <a href="mailto:info@codigix.co">info@codigix.co</a>
+                        <a href="mailto:info@codigix.co" aria-label="Send us an email at info@codigix.co">info@codigix.co</a>
                       </div>
                       <div className="info-item">
                         <span><i className="tji-phone-2"></i></span>
-                        <a href="tel:+91 70665 56768">+91 70665 56768</a>
+                        <a href="tel:+91 70665 56768" aria-label="Call us at +91 70665 56768">+91 70665 56768</a>
                       </div>
                       <div className="info-item">
                         <div className="social-links">
                           <ul>
-                            <li><a href="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer">FB</a></li>
-                            <li><a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer">IN</a></li>
-                            <li><a href="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer">LN</a></li>
-                            <li><a href="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer">TW</a></li>
+                            <li><a href="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">FB</a></li>
+                            <li><a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">IN</a></li>
+                            <li><a href="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn">LN</a></li>
+                            <li><a href="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X (Twitter)">TW</a></li>
                           </ul>
                         </div>
                       </div>
@@ -61,7 +61,7 @@ export default function Header() {
                 <div className="col-12">
                   <div className="header-wrapper">
                     <div className="site_logo">
-                      <Link className="logo" to="/"><img src={getImageUrl("/assets/images/logos/logo.png")} alt="Codigix Logo" loading="lazy" /></Link>
+                      <Link className="logo" to="/"><img src={getImageUrl("/assets/images/logos/logo.png")} alt="Codigix Logo" width="160" height="60" loading="lazy" /></Link>
                     </div>
 
                     <div className="menu-area d-none d-lg-inline-flex align-items-center">
@@ -100,6 +100,9 @@ export default function Header() {
                       <div
                         className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
                         onClick={() => setMenuOpen(true)}
+                        aria-label="Open offcanvas menu"
+                        role="button"
+                        tabIndex="0"
                       >
                         <span></span>
                         <span></span>
@@ -110,6 +113,9 @@ export default function Header() {
                     <div
                       className="menu_bar mobile_menu_bar d-lg-none"
                       onClick={() => setMenuOpen(true)}
+                      aria-label="Open mobile menu"
+                      role="button"
+                      tabIndex="0"
                     >
                       <span></span>
                       <span></span>
@@ -128,7 +134,7 @@ export default function Header() {
               <div className="col-12">
                 <div className="header-wrapper">
                   <div className="site_logo">
-                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" loading="lazy" /></Link>
+                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" width="160" height="60" loading="lazy" /></Link>
                   </div>
 
                   <div className="menu-area d-none d-lg-inline-flex align-items-center">
@@ -168,6 +174,9 @@ export default function Header() {
                     <div
                       className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
                       onClick={() => setMenuOpen(true)}
+                      aria-label="Open offcanvas menu"
+                      role="button"
+                      tabIndex="0"
                     >
                       <span></span>
                       <span></span>
@@ -175,7 +184,10 @@ export default function Header() {
                   </div>
 
                   <div className="menu_bar mobile_menu_bar d-lg-none"
-                  onClick={() => setMenuOpen(true)}>
+                  onClick={() => setMenuOpen(true)}
+                  aria-label="Open mobile menu"
+                  role="button"
+                  tabIndex="0">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -208,7 +220,7 @@ export default function Header() {
               <div className="col-12">
                 <div className="header-wrapper">
                   <div className="site_logo">
-                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" loading="lazy" /></Link>
+                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" width="160" height="60" loading="lazy" /></Link>
                   </div>
 
                   <div className="menu-area d-none d-lg-inline-flex align-items-center">
@@ -256,7 +268,10 @@ export default function Header() {
                   </div>
 
                   <div className="menu_bar mobile_menu_bar d-lg-none"
-                  onClick={() => setMenuOpen(true)}>
+                  onClick={() => setMenuOpen(true)}
+                  aria-label="Open mobile menu"
+                  role="button"
+                  tabIndex="0">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -275,7 +290,7 @@ export default function Header() {
               <div className="col-12">
                 <div className="header-wrapper">
                   <div className="site_logo">
-                    <Link className="logo" to="/"><img src="/assets/images/logos/logo.png" alt="Codigix Logo" loading="lazy" /></Link>
+                    <Link className="logo" to="/"><img src="/assets/images/logos/logo.png" alt="Codigix Logo" width="160" height="60" loading="lazy" /></Link>
                   </div>
 
                   <div className="menu-area d-none d-lg-inline-flex align-items-center">

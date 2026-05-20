@@ -77,8 +77,10 @@ export default function ServicesPage() {
                       alt={service.title}
                       loading="lazy"
                       className="w-fit h-[150px] object-cover  transition-transform duration-500 group-hover:scale-110"
+                      width="400"
+                      height="150"
                     />
-                    <Link to={`/services/details/${service.id}`} className="text-btn" >
+                    <Link to={`/services/details/${service.id}`} className="text-btn" aria-label={`Learn More about ${service.title}`}>
                       <span className="btn-text"><span>Learn More</span></span>
                       <span className="btn-icon"><span><i className="tji-arrow-right"></i></span></span>
                     </Link>

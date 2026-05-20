@@ -26,7 +26,8 @@ const publicEntities = [
     'workingProcess', 
     'achievements', 
     'team', 
-    'jobs'
+    'jobs',
+    'purchase_orders'
 ];
 
 publicEntities.forEach(entity => {
