@@ -420,10 +420,8 @@ export default function HomePage() {
 
   if (loading) {
     return (
-      <div className="preloader">
-        <div className="loading-container">
-          <div className="loading"></div>
-        </div>
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -572,7 +570,7 @@ export default function HomePage() {
             el: ".hero-pagination",
             clickable: true,
             renderBullet: (index, className) => {
-              return `<span class="${className}">0${index + 1}</span>`;
+              return `<span className="${className}">0${index + 1}</span>`;
             },
           }}
           className="hero-slider"
@@ -814,7 +812,7 @@ export default function HomePage() {
                   data-wow-delay=".3s"
                   data-wow-duration="0.8s"
                 >
-                  <img src="https://res.cloudinary.com/foodfantacy/image/upload/v1778322898/person-working-with-ai-robot_ytu1wo.jpg" alt="AI and Technology Solutions for Business" />
+                  <img src="https://res.cloudinary.com/foodfantacy/image/upload/v1778322898/person-working-with-ai-robot_ytu1wo.jpg" alt="AI and Technology Solutions for Business" loading="lazy" />
                 </div>
                 <div className="video-wrap">
                   <a
@@ -984,26 +982,27 @@ export default function HomePage() {
           >
             {[...projects, ...projects, ...projects].map((project, idx) => (
               <SwiperSlide key={`${project.id}-${idx}`}>
-                <div class="project-item">
-                  <div class="project-img">
+                <div className="project-item">
+                  <div className="project-img">
                     <img
                       src={getImageUrl(project.image, "assets/images/project")}
                       alt={project.title}
                       className="w-full h-[250px] object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
                     />
                   </div>
-                  <div class="project-content">
-                    <h4 class="title">
+                  <div className="project-content">
+                    <h4 className="title">
                       <Link to={`/projects/details/${project.id}`}>{project.title}</Link>
                     </h4>
                     <p className="line-clamp-2">
                       {project.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
                     </p>
-                    <Link to={`/projects/details/${project.id}`} class="icon-btn" >
-                      <i class="tji-arrow-right-long"></i>
+                    <Link to={`/projects/details/${project.id}`} className="icon-btn" >
+                      <i className="tji-arrow-right-long"></i>
                     </Link>
                   </div>
-                  <span class="categories">
+                  <span className="categories">
                     <Link to={`/projects/details/${project.id}`}>{project.category || 'Software'}</Link>
                   </span>
                 </div>
@@ -1203,6 +1202,7 @@ export default function HomePage() {
                       <img
                         src={getImageUrl(blog.image, "assets/images/blog")}
                         alt={blog.title}
+                        loading="lazy"
                       />
                     </Link>
                     <span className="categories">

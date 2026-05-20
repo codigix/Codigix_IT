@@ -74,6 +74,7 @@ const AboutSection = () => {
               src="https://via.placeholder.com/500x400?text=About+Image" 
               alt="About Us"
               className="rounded-lg shadow-lg w-full"
+              loading="lazy"
             />
             
             {/* Video Button */}

@@ -1257,34 +1257,74 @@ START: Countup CSS
     }
 }
 
-/* Project Filter Tabs */
+/* Project Filter Tabs - Modern Minimalist Chips */
+.project-filter-wrap {
+    text-align: center;
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+.project-filter-tabs {
+    display: inline-flex;
+    padding: 10px 20px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 12px;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.project-filter-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .project-filter-tabs {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
 .filter-tab-btn {
-    padding: 10px 25px;
+    padding: 12px 30px;
     background: #ffffff;
-    border: 1px solid var(--tj-color-border-1);
-    border-radius: 50px;
+    border: 1px solid rgba(108, 86, 182, 0.1);
+    border-radius: 12px;
     color: var(--tj-color-heading-primary);
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 15px;
     transition: all 0.3s ease;
     cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
 .dark .filter-tab-btn {
     background: #1e1b4b;
-    border-color: #312c52;
+    border-color: rgba(255, 255, 255, 0.05);
     color: #ffffff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
 .filter-tab-btn:hover {
+    transform: translateY(-2px);
     border-color: var(--tj-color-theme-primary);
     color: var(--tj-color-theme-primary);
+    box-shadow: 0 10px 15px -3px rgba(108, 86, 182, 0.1);
 }
 
 .filter-tab-btn.active {
     background: var(--tj-color-theme-primary);
     border-color: var(--tj-color-theme-primary);
     color: #ffffff !important;
-    box-shadow: 0 10px 20px rgba(108, 86, 182, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(108, 86, 182, 0.25);
+}
+
+.dark .filter-tab-btn.active {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* !START: Testimonial CSS */

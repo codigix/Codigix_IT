@@ -67,7 +67,11 @@ export default function ProjectsPage() {
   };
 
   if (loading) {
-    return <div className="preloader"><div className="loading-container"><div className="loading"></div></div></div>;
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   return (
@@ -108,16 +112,18 @@ export default function ProjectsPage() {
 
           <div className="row mb-50">
             <div className="col-12">
-              <div className="project-filter-tabs flex flex-wrap justify-center gap-4">
-                {categories.map((category, idx) => (
-                  <button
-                    key={idx}
-                    className={`filter-tab-btn ${activeCategory === category ? 'active' : ''}`}
-                    onClick={() => handleCategoryFilter(category)}
-                  >
-                    {category}
-                  </button>
-                ))}
+              <div className="project-filter-wrap">
+                <div className="project-filter-tabs flex flex-wrap justify-center gap-3">
+                  {categories.map((category, idx) => (
+                    <button
+                      key={idx}
+                      className={`filter-tab-btn ${activeCategory === category ? 'active' : ''}`}
+                      onClick={() => handleCategoryFilter(category)}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -126,23 +132,24 @@ export default function ProjectsPage() {
                       {currentProjects.map((project, idx) => (
                         <div className="col-span-1" key={project.id}>
                           
-                          <div class="project-item">
-                            <div class="project-img">
+                          <div className="project-item">
+                            <div className="project-img">
                               <img
                                 src={getImageUrl(project.image, "assets/images/project")}
                                 alt={project.title}
                                 className="w-full h-[250px] object-cover  transition-transform duration-500 group-hover:scale-110"
+                                loading="lazy"
                               />
                             </div>
-                            <div class="project-content">
-                              <h4 class="title"><Link to={`/projects/details/${project.id}`}>{project.title}</Link></h4>
+                            <div className="project-content">
+                              <h4 className="title"><Link to={`/projects/details/${project.id}`}>{project.title}</Link></h4>
                               <p className="line-clamp-2">{project.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
                               </p>
-                              <Link to={`/projects/details/${project.id}`} class="icon-btn" >
-                                <i class="tji-arrow-right-long"></i>
+                              <Link to={`/projects/details/${project.id}`} className="icon-btn" >
+                                <i className="tji-arrow-right-long"></i>
                               </Link>
                             </div>
-                            <span class="categories"><Link to={`/projects/details/${project.id}`}>{project.category || 'Software'}</Link></span>
+                            <span className="categories"><Link to={`/projects/details/${project.id}`}>{project.category || 'Software'}</Link></span>
                           </div>
                         </div>
                       ))}

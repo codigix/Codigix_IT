@@ -28,7 +28,11 @@ export default function BlogPage() {
   }, []);
 
   if (loading) {
-    return <div className="preloader"><div className="loading-container"><div className="loading"></div></div></div>;
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   return (
@@ -71,7 +75,7 @@ export default function BlogPage() {
               <div className="col-xl-4 col-md-6" key={blog.id}>
                 <div className="blog-item style-3 wow fadeInUp" data-wow-delay={`.${3 + idx}s`}>
                   <div className="blog-thumb">
-                    <Link to="/blog/details"><img src={getImageUrl(blog.image, "assets/images/blog")} alt={blog.title} /></Link>
+                    <Link to="/blog/details"><img src={getImageUrl(blog.image, "assets/images/blog")} alt={blog.title} loading="lazy" /></Link>
                     <span className="categories"><Link to="/blog/details">{blog.category}</Link></span>
                   </div>
                   <div className="blog-content">

@@ -65,6 +65,208 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handlePaste = async (e, fieldName) => {
+    const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+    for (const item of items) {
+      if (item.type.indexOf('image') !== -1) {
+        const file = item.getAsFile();
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          setFormData(prev => ({ ...prev, [fieldName]: event.target.result }));
+          setNotification({ type: 'success', message: 'Image pasted successfully!' });
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  };
+
+  const handleMultiImagePaste = async (e, fieldName) => {
+    const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+    let imagesAdded = 0;
+    
+    // Get existing images
+    let existingImages = [];
+    try {
+      const currentVal = formData[fieldName];
+      if (currentVal) {
+        if (typeof currentVal === 'string' && currentVal.startsWith('[')) {
+          existingImages = JSON.parse(currentVal);
+        } else if (Array.isArray(currentVal)) {
+          existingImages = currentVal;
+        } else if (typeof currentVal === 'string' && currentVal.includes(',')) {
+          existingImages = currentVal.split(',').map(s => s.trim());
+        } else {
+          existingImages = [currentVal];
+        }
+      }
+    } catch (err) {
+      console.error("Error parsing existing images:", err);
+    }
+
+    const newImages = [...existingImages];
+
+    for (const item of items) {
+      if (item.type.indexOf('image') !== -1) {
+        const file = item.getAsFile();
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          newImages.push(event.target.result);
+          setFormData(prev => ({ ...prev, [fieldName]: JSON.stringify(newImages) }));
+          imagesAdded++;
+          if (imagesAdded === 1) {
+             setNotification({ type: 'success', message: 'Image(s) added to gallery!' });
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  };
+
+  const handleRemoveMultiImage = (fieldName, index) => {
+    try {
+      let images = [];
+      const currentVal = formData[fieldName];
+      if (typeof currentVal === 'string' && currentVal.startsWith('[')) {
+        images = JSON.parse(currentVal);
+      } else if (Array.isArray(currentVal)) {
+        images = currentVal;
+      }
+      
+      const newImages = images.filter((_, i) => i !== index);
+      setFormData(prev => ({ ...prev, [fieldName]: JSON.stringify(newImages) }));
+    } catch (err) {
+      console.error("Error removing image:", err);
+    }
+  };
+
+  const handleFileChange = (e, fieldName) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setFormData(prev => ({ ...prev, [fieldName]: event.target.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleMultiFileChange = (e, fieldName) => {
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
+
+    // Get existing images
+    let existingImages = [];
+    try {
+      const currentVal = formData[fieldName];
+      if (currentVal) {
+        if (typeof currentVal === 'string' && currentVal.startsWith('[')) {
+          existingImages = JSON.parse(currentVal);
+        } else if (Array.isArray(currentVal)) {
+          existingImages = currentVal;
+        } else if (typeof currentVal === 'string' && currentVal.includes(',')) {
+          existingImages = currentVal.split(',').map(s => s.trim());
+        } else {
+          existingImages = [currentVal];
+        }
+      }
+    } catch (err) {
+      console.error("Error parsing existing images:", err);
+    }
+
+    const newImages = [...existingImages];
+    let loadedCount = 0;
+
+    files.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        newImages.push(event.target.result);
+        loadedCount++;
+        if (loadedCount === files.length) {
+          setFormData(prev => ({ ...prev, [fieldName]: JSON.stringify(newImages) }));
+          setNotification({ type: 'success', message: `${files.length} image(s) added to gallery!` });
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const parseTechList = (value) => {
+    if (!value) return [];
+    try {
+      if (typeof value === 'string' && value.trim().startsWith('[')) {
+        return JSON.parse(value);
+      }
+    } catch (e) {
+      console.error("Failed to parse tech list:", e);
+    }
+    
+    // Fallback: If it's not JSON, it might be the old line-based format
+    // Let's try to convert it to the new format for the UI
+    if (typeof value === 'string') {
+      const lines = value.split('\n').filter(l => l.trim());
+      const categories = [];
+      let currentCategory = null;
+
+      lines.forEach(line => {
+        if (line.includes(':')) {
+          currentCategory = {
+            name: line.replace(':', '').trim(),
+            items: []
+          };
+          categories.push(currentCategory);
+        } else if (currentCategory) {
+          currentCategory.items.push(line.trim());
+        } else {
+          currentCategory = { name: "Technologies", items: [line.trim()] };
+          categories.push(currentCategory);
+        }
+      });
+      return categories;
+    }
+    
+    return [];
+  };
+
+  const handleTechListChange = (fieldName, techGroups) => {
+    setFormData(prev => ({ ...prev, [fieldName]: JSON.stringify(techGroups) }));
+  };
+
+  const handleAddTechGroup = (fieldName) => {
+    const currentVal = parseTechList(formData[fieldName]);
+    const newVal = [...currentVal, { name: '', items: [] }];
+    handleTechListChange(fieldName, newVal);
+  };
+
+  const handleUpdateTechGroupName = (fieldName, groupIndex, name) => {
+    const currentVal = parseTechList(formData[fieldName]);
+    currentVal[groupIndex].name = name;
+    handleTechListChange(fieldName, currentVal);
+  };
+
+  const handleAddTechItem = (fieldName, groupIndex) => {
+    const currentVal = parseTechList(formData[fieldName]);
+    currentVal[groupIndex].items.push('');
+    handleTechListChange(fieldName, currentVal);
+  };
+
+  const handleUpdateTechItem = (fieldName, groupIndex, itemIndex, value) => {
+    const currentVal = parseTechList(formData[fieldName]);
+    currentVal[groupIndex].items[itemIndex] = value;
+    handleTechListChange(fieldName, currentVal);
+  };
+
+  const handleRemoveTechGroup = (fieldName, groupIndex) => {
+    const currentVal = parseTechList(formData[fieldName]);
+    const newVal = currentVal.filter((_, i) => i !== groupIndex);
+    handleTechListChange(fieldName, newVal);
+  };
+
+  const handleRemoveTechItem = (fieldName, groupIndex, itemIndex) => {
+    const currentVal = parseTechList(formData[fieldName]);
+    currentVal[groupIndex].items = currentVal[groupIndex].items.filter((_, i) => i !== itemIndex);
+    handleTechListChange(fieldName, currentVal);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSaving(true);
@@ -263,6 +465,169 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                         className="w-full bg-[#1A1C2E] border border-slate-800/30 rounded-xl px-4 py-4 text-[11px] font-bold text-white focus:border-[#FF1F8B]/40 focus:outline-none transition-all min-h-[120px] resize-none uppercase tracking-wide"
                         required={field.required !== false}
                       />
+                    ) : field.type === 'tech-list' ? (
+                      <div className="space-y-4">
+                        {parseTechList(formData[field.name]).map((group, groupIndex) => (
+                          <div key={groupIndex} className="bg-[#1A1C2E] border border-slate-800/30 rounded-xl p-4 space-y-4">
+                            <div className="flex items-center gap-4">
+                              <input
+                                type="text"
+                                value={group.name}
+                                onChange={(e) => handleUpdateTechGroupName(field.name, groupIndex, e.target.value)}
+                                placeholder="CATEGORY NAME (E.G. FRONTEND)"
+                                className="flex-1 bg-[#252841] border border-slate-800/30 rounded-lg px-4 py-2 text-[10px] font-bold text-white uppercase tracking-wider focus:border-[#FF1F8B]/40 outline-none"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveTechGroup(field.name, groupIndex)}
+                                className="p-2 text-slate-500 hover:text-red-500 transition-colors"
+                              >
+                                <Trash2 size={16} />
+                              </button>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                              {group.items.map((item, itemIndex) => (
+                                <div key={itemIndex} className="relative group">
+                                  <input
+                                    type="text"
+                                    value={item}
+                                    onChange={(e) => handleUpdateTechItem(field.name, groupIndex, itemIndex, e.target.value)}
+                                    placeholder="ITEM NAME"
+                                    className="w-full bg-[#252841] border border-slate-800/30 rounded-lg pl-4 pr-10 py-2 text-[10px] font-bold text-white uppercase tracking-wider focus:border-[#FF1F8B]/40 outline-none"
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() => handleRemoveTechItem(field.name, groupIndex, itemIndex)}
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-slate-600 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all"
+                                  >
+                                    <X size={14} />
+                                  </button>
+                                </div>
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => handleAddTechItem(field.name, groupIndex)}
+                                className="border border-dashed border-slate-800/30 rounded-lg py-2 text-[9px] uppercase tracking-widest text-slate-500 hover:text-white hover:border-[#FF1F8B]/40 transition-all flex items-center justify-center gap-2"
+                              >
+                                <Plus size={12} /> Add Item
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                        <button
+                          type="button"
+                          onClick={() => handleAddTechGroup(field.name)}
+                          className="w-full bg-[#FF1F8B]/10 border border-dashed border-[#FF1F8B]/30 rounded-xl py-3 text-[10px] uppercase tracking-[0.2em] text-[#FF1F8B] hover:bg-[#FF1F8B]/20 transition-all flex items-center justify-center gap-2"
+                        >
+                          <Plus size={14} /> Add Technology Category
+                        </button>
+                      </div>
+                    ) : field.type === 'image' ? (
+                      <div className="space-y-4">
+                        <div className="relative group">
+                          <input
+                            type="text"
+                            name={field.name}
+                            value={formData[field.name] || ''}
+                            onChange={handleInputChange}
+                            onPaste={(e) => handlePaste(e, field.name)}
+                            placeholder="PASTE IMAGE OR TYPE URL/NAME..."
+                            className="w-full bg-[#1A1C2E] border border-slate-800/30 rounded-xl px-4 py-4 text-[11px] font-bold text-white focus:border-[#FF1F8B]/40 focus:outline-none transition-all tracking-wide pr-12"
+                          />
+                          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                            <label className="cursor-pointer p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-[#FF1F8B] transition-all">
+                              <ImageIcon className="w-4 h-4" />
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={(e) => handleFileChange(e, field.name)}
+                              />
+                            </label>
+                          </div>
+                        </div>
+                        {formData[field.name] && (
+                          <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800/30 bg-[#1A1C2E]">
+                            <img 
+                              src={formData[field.name].startsWith('data:') || formData[field.name].startsWith('http') 
+                                ? formData[field.name] 
+                                : `/assets/images/${field.folder || (entity === 'services' ? 'service' : entity)}/${formData[field.name]}${formData[field.name].includes('.') ? '' : '.jpg'}`}
+                              alt="Preview" 
+                              className="w-full h-full object-contain"
+                            />
+                            <button 
+                              type="button"
+                              onClick={() => setFormData(prev => ({ ...prev, [field.name]: '' }))}
+                              className="absolute top-2 right-2 p-2 bg-black/60 hover:bg-black/80 text-white rounded-lg backdrop-blur-md transition-all"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ) : field.type === 'multi-image' ? (
+                      <div className="space-y-4">
+                        <div className="relative group">
+                          <input
+                            type="text"
+                            placeholder="PASTE IMAGES OR USE UPLOAD BUTTON..."
+                            onPaste={(e) => handleMultiImagePaste(e, field.name)}
+                            className="w-full bg-[#1A1C2E] border border-slate-800/30 rounded-xl px-4 py-4 text-[11px] font-bold text-white focus:border-[#FF1F8B]/40 focus:outline-none transition-all tracking-wide pr-12"
+                          />
+                          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                            <label className="cursor-pointer p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-[#FF1F8B] transition-all">
+                              <ImageIcon className="w-4 h-4" />
+                              <input
+                                type="file"
+                                accept="image/*"
+                                multiple
+                                className="hidden"
+                                onChange={(e) => handleMultiFileChange(e, field.name)}
+                              />
+                            </label>
+                          </div>
+                          <p className="text-[8px] text-slate-500 mt-2 uppercase tracking-widest px-1">Tip: Paste images or use the icon to upload individually</p>
+                        </div>
+                        
+                        {formData[field.name] && (
+                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                            {(() => {
+                              try {
+                                let images = [];
+                                const val = formData[field.name];
+                                if (typeof val === 'string' && val.startsWith('[')) {
+                                  images = JSON.parse(val);
+                                } else if (Array.isArray(val)) {
+                                  images = val;
+                                } else if (typeof val === 'string' && val.trim()) {
+                                  images = val.split(',').map(s => s.trim());
+                                }
+                                
+                                return images.map((img, idx) => (
+                                  <div key={idx} className="relative aspect-square rounded-xl overflow-hidden border border-slate-800/30 bg-[#1A1C2E] group/img">
+                                    <img 
+                                      src={img.startsWith('data:') || img.startsWith('http') 
+                                        ? img 
+                                        : `/assets/images/${field.folder || (entity === 'services' ? 'service' : entity)}/${img}${img.includes('.') ? '' : '.jpg'}`}
+                                      alt={`Gallery ${idx}`}
+                                      className="w-full h-full object-cover"
+                                    />
+                                    <button 
+                                      type="button"
+                                      onClick={() => handleRemoveMultiImage(field.name, idx)}
+                                      className="absolute top-1 right-1 p-1.5 bg-black/60 hover:bg-rose-600 text-white rounded-lg backdrop-blur-md opacity-0 group-hover/img:opacity-100 transition-all"
+                                    >
+                                      <X className="w-3 h-3" />
+                                    </button>
+                                  </div>
+                                ));
+                              } catch (e) {
+                                return <p className="text-rose-500 text-[10px]">Error loading gallery</p>;
+                              }
+                            })()}
+                          </div>
+                        )}
+                      </div>
                     ) : (
                       <input
                         type={field.type || 'text'}
@@ -359,6 +724,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                       src={getImageUrl(item)} 
                       alt="" 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-slate-700">
@@ -440,9 +806,10 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                               src={getImageUrl(item)} 
                               alt="" 
                               className="w-full h-full object-cover group-hover/row:scale-110 transition-transform duration-500"
+                              loading="lazy"
                               onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full w-full"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image w-5 h-5"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>';
+                                e.target.parentElement.innerHTML = '<div className="flex items-center justify-center h-full w-full"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-image w-5 h-5"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>';
                               }}
                             />
                           ) : (

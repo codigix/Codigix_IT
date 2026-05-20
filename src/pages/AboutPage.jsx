@@ -53,7 +53,11 @@ export default function AboutPage() {
   }, [loading]);
 
   if (loading) {
-    return <div className="preloader"><div className="loading-container"><div className="loading"></div></div></div>;
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   return (
@@ -94,7 +98,7 @@ export default function AboutPage() {
                     </div>
                     <div className="about-bottom-area-2">
                       <div className="company-logo wow fadeInLeft" data-wow-delay=".3s">
-                        <img src={getImageUrl("assets/images/logos/logo.png")} alt="Codigix Logo" />
+                        <img src={getImageUrl("/assets/images/logos/logo.png")} alt="Codigix Logo" loading="lazy" />
                       </div>
                       <div className="mission-vision-wrap">
                         <div className="mission-vision-box wow fadeInRight" data-wow-delay=".5s">
@@ -120,7 +124,7 @@ export default function AboutPage() {
             </div>
             <div className="about-img-area">
               <div className="about-img wow fadeInLeft" data-wow-delay=".3s" data-wow-duration="0.8s">
-                <img src={getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778344039/doctor-from-future-concept_qvzulo.jpg")} alt="Innovation and Future Technology" />
+                <img src={getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778344039/doctor-from-future-concept_qvzulo.jpg")} alt="Innovation and Future Technology" loading="lazy" />
               </div>
             </div>
           </div>
@@ -157,7 +161,7 @@ export default function AboutPage() {
           <div className="row row-gap-4">
             <div className="col-lg-6 order-2 order-lg-1">
               <div className="achievement-img wow fadeInLeft" data-wow-delay=".3s">
-                <img src={getImageUrl("assets/images/achievement/achievement.webp")} alt="Codigix Achievements and Milestones" />
+                <img src={getImageUrl("assets/images/achievement/achievement.webp")} alt="Codigix Achievements and Milestones" loading="lazy" />
               </div>
             </div>
             <div className="col-lg-6 order-1 order-lg-2">
@@ -192,7 +196,7 @@ export default function AboutPage() {
               <div className="col-lg-3 col-sm-6" key={member.id}>
                 <div className="team-item wow fadeInUp" data-wow-delay={`.${3 + idx}s`}>
                   <div className="team-img">
-                    <img src={getImageUrl(member.image, "assets/images/team")} alt={member.name} />
+                    <img src={getImageUrl(member.image, "assets/images/team")} alt={member.name} loading="lazy" />
                   </div>
                   <div className="team-content">
                     <h5 className="title"><a href="#">{member.name}</a></h5>

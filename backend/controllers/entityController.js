@@ -3,7 +3,19 @@ const db = require('../config/db');
 exports.getAll = async (req, res) => {
   const { entity } = req.params;
   try {
-    const [rows] = await db.query(`SELECT * FROM \`${entity}\``);
+    // Get valid columns for the table
+    const [columns] = await db.query(`DESCRIBE \`${entity}\``);
+    const validColumns = columns.map(c => c.Field);
+    
+    // Define heavy columns to exclude in list view to improve performance
+    const heavyColumns = ['gallery', 'maintenance_items', 'faqs', 'key_features'];
+    
+    const selectColumns = validColumns
+      .filter(col => !heavyColumns.includes(col))
+      .map(col => `\`${col}\``)
+      .join(', ');
+
+    const [rows] = await db.query(`SELECT ${selectColumns} FROM \`${entity}\``);
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: err.message });

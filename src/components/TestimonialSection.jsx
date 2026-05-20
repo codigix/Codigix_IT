@@ -165,6 +165,7 @@ const TestimonialSection = () => {
                             <img 
                               src={getImageUrl(testimonial.image, 'assets/images/testimonial')} 
                               alt={testimonial.author || testimonial.name} 
+                              loading="lazy"
                             />
                           </div>
                           <div className="author-header">

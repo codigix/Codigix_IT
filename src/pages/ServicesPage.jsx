@@ -28,7 +28,11 @@ export default function ServicesPage() {
   }, []);
 
   if (loading) {
-    return <div className="react-preloader"><div className="loading-container"><div className="loading"></div></div></div>;
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   return (
@@ -60,26 +64,27 @@ export default function ServicesPage() {
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, idx) => (
-              <div class="service-item style-2 wow fadeInUp" data-wow-delay=".1s" key={idx}>
-                <div class="service-inner">
-                  <div class="service-content">
-                    <h4 class="title"><Link to={`/services/details/${service.id}`}>{service.title}</Link></h4>
-                    <p class="desc">                      {service.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
+              <div className="service-item style-2 wow fadeInUp" data-wow-delay=".1s" key={idx}>
+                <div className="service-inner">
+                  <div className="service-content">
+                    <h4 className="title"><Link to={`/services/details/${service.id}`}>{service.title}</Link></h4>
+                    <p className="desc">                      {service.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
                     </p>
                   </div>
-                  <div class="service-img">
+                  <div className="service-img">
                     <img
                       src={getImageUrl(service.image, "assets/images/service")}
                       alt={service.title}
+                      loading="lazy"
                       className="w-fit h-[150px] object-cover  transition-transform duration-500 group-hover:scale-110"
                     />
-                    <Link to={`/services/details/${service.id}`} class="text-btn" >
-                      <span class="btn-text"><span>Learn More</span></span>
-                      <span class="btn-icon"><span><i class="tji-arrow-right"></i></span></span>
+                    <Link to={`/services/details/${service.id}`} className="text-btn" >
+                      <span className="btn-text"><span>Learn More</span></span>
+                      <span className="btn-icon"><span><i className="tji-arrow-right"></i></span></span>
                     </Link>
                   </div>
                 </div>
-                <span class="item-count">01.</span>
+                <span className="item-count">01.</span>
               </div>
 
 

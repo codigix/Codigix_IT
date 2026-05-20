@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import SEO from "../components/SEO";
 import config from '../config';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const API_BASE_URL = config.API_BASE_URL;
 const getImageUrl = config.getImageUrl;
@@ -28,7 +35,11 @@ export default function ProjectDetailsPage() {
   }, [id]);
 
   if (loading) {
-    return <div className="react-preloader"><div className="loading-container"><div className="loading"></div></div></div>;
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   if (!project) {
@@ -40,7 +51,17 @@ export default function ProjectDetailsPage() {
     );
   }
 
-  const galleryImages = project.gallery ? project.gallery.split(',').map(img => img.trim()) : [];
+  const galleryImages = (() => {
+    if (!project.gallery) return [];
+    try {
+      if (typeof project.gallery === 'string' && project.gallery.trim().startsWith('[')) {
+        return JSON.parse(project.gallery);
+      }
+    } catch (e) {
+      console.error("Gallery JSON parse error:", e);
+    }
+    return project.gallery.split(',').map(img => img.trim()).filter(img => img !== '');
+  })();
   const goals = project.goals ? project.goals.split('\n').filter(goal => goal.trim() !== '') : [];
 
   return (
@@ -109,6 +130,7 @@ export default function ProjectDetailsPage() {
           }
           .tj-post__navigation {
              border-top: 1px solid var(--tj-color-border-1) !important;
+             background: var(--tj-color-theme-bg) !important;
           }
           .tj-nav-post__nav a, .tj-nav-post__grid a i {
             color: var(--tj-color-heading-primary) !important;
@@ -117,6 +139,34 @@ export default function ProjectDetailsPage() {
             background-color: var(--tj-color-theme-bg) !important;
             color: var(--tj-color-theme-primary) !important;
             border: 1px solid var(--tj-color-border-1) !important;
+          }
+          
+          /* Swiper Custom Styles */
+          .project-gallery-swiper {
+            padding-bottom: 50px !important;
+          }
+          .project-gallery-swiper .swiper-pagination-bullet {
+            background: var(--tj-color-theme-primary) !important;
+          }
+          .project-gallery-swiper .swiper-button-next,
+          .project-gallery-swiper .swiper-button-prev {
+            color: var(--tj-color-theme-primary) !important;
+            background: rgba(255, 255, 255, 0.9);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            after {
+              font-size: 18px;
+            }
+          }
+          .dark .project-gallery-swiper .swiper-button-next,
+          .dark .project-gallery-swiper .swiper-button-prev {
+            background: rgba(22, 16, 57, 0.8);
+          }
+          .project-gallery-swiper .swiper-button-next:after, 
+          .project-gallery-swiper .swiper-button-prev:after {
+            font-size: 16px !important;
+            font-weight: bold;
           }
         `}
       </style>
@@ -144,7 +194,7 @@ export default function ProjectDetailsPage() {
             <div className="col-lg-8">
               <div className="project-details-content">
                 <div className="project-details-img">
-                  <img src={getImageUrl(project.image, "assets/images/project")} alt={project.title} />
+                  <img src={getImageUrl(project.image, "assets/images/project")} alt={project.title} loading="lazy" />
                 </div>
                 <h2 className="title text-gray-900 dark:text-white">{project.title}</h2>
                 
@@ -182,16 +232,34 @@ export default function ProjectDetailsPage() {
               </div>
 
               {galleryImages.length > 0 && (
-                <>
-                  <h3 className="mb-3 text-gray-900 dark:text-white">Project Gallery</h3>
-                  <div className="row row-gap-3">
+                <div className="mt-10">
+                  <h3 className="mb-6 text-gray-900 dark:text-white">Project Gallery</h3>
+                  <Swiper
+                    modules={[Autoplay, Pagination, Navigation]}
+                    spaceBetween={20}
+                    slidesPerView={1}
+                    autoplay={{
+                      delay: 3000,
+                      disableOnInteraction: false,
+                    }}
+                    pagination={{ clickable: true }}
+                    navigation={true}
+                    className="project-gallery-swiper"
+                  >
                     {galleryImages.map((img, index) => (
-                      <div key={index} className={index === 0 ? "col-md-6 col-lg-12" : "col-md-6 col-lg-6"}>
-                        <img src={getImageUrl(img, "assets/images/project")} alt={`Gallery ${index + 1}`} className="img-fluid image-box rounded-xl" />
-                      </div>
+                      <SwiperSlide key={index}>
+                        <div className="image-box rounded-xl overflow-hidden shadow-lg border border-gray-100 dark:border-slate-800/30">
+                          <img 
+                            src={getImageUrl(img, "assets/images/project")} 
+                            alt={`Gallery ${index + 1}`} 
+                            className="w-full h-auto object-contain" 
+                            loading="lazy" 
+                          />
+                        </div>
+                      </SwiperSlide>
                     ))}
-                  </div>
-                </>
+                  </Swiper>
+                </div>
               )}
 
               <div className="tj-post__navigation mt-4 border-t border-gray-100 dark:border-gray-800 pt-4">

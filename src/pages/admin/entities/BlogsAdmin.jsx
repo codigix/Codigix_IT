@@ -6,7 +6,7 @@ const BlogsAdmin = () => {
     { name: 'title', label: 'Blog Title', type: 'text' },
     { name: 'category', label: 'Category', type: 'text' },
     { name: 'date', label: 'Date', type: 'text' },
-    { name: 'image', label: 'Image Name', type: 'text' },
+    { name: 'image', label: 'Image', type: 'image' },
   ];
 
   return <EntityManager entity="blogs" title="Blogs" fields={fields} viewType="grid" />;

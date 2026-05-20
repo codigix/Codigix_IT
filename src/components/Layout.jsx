@@ -104,16 +104,8 @@ export default function Layout({ children }) {
       {/* LOADER FIRST */}
       {loading ? (
         showLoader ? (
-          <div className="preloader">
-            <div className="loading-container">
-              <div className="loading"></div>
-              <div id="loading-icon">
-                <img
-                  src="/assets/images/logos/logo.png"
-                  alt="Loading"
-                />
-              </div>
-            </div>
+          <div className="flex items-center justify-center min-h-screen bg-white dark:bg-[#0F0721]">
+            <div className="w-12 h-12 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
           </div>
         ) : null
       ) : (

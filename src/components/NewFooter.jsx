@@ -32,6 +32,7 @@ export default function NewFooter() {
                   <img
                     src="/assets/images/cta/cta-bg.webp"
                     alt="AI Technology and Business Transformation"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -56,6 +57,7 @@ export default function NewFooter() {
                       <img
                         src="/assets/images/logos/logo.png"
                         alt="Codigix Logo"
+                        loading="lazy"
                       />
                     </Link>
                   </div>

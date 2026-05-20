@@ -61,7 +61,7 @@ export default function Header() {
                 <div className="col-12">
                   <div className="header-wrapper">
                     <div className="site_logo">
-                      <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Codigix Logo" /></Link>
+                      <Link className="logo" to="/"><img src={getImageUrl("/assets/images/logos/logo.png")} alt="Codigix Logo" loading="lazy" /></Link>
                     </div>
 
                     <div className="menu-area d-none d-lg-inline-flex align-items-center">
@@ -128,7 +128,7 @@ export default function Header() {
               <div className="col-12">
                 <div className="header-wrapper">
                   <div className="site_logo">
-                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" /></Link>
+                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" loading="lazy" /></Link>
                   </div>
 
                   <div className="menu-area d-none d-lg-inline-flex align-items-center">
@@ -208,7 +208,7 @@ export default function Header() {
               <div className="col-12">
                 <div className="header-wrapper">
                   <div className="site_logo">
-                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" /></Link>
+                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" loading="lazy" /></Link>
                   </div>
 
                   <div className="menu-area d-none d-lg-inline-flex align-items-center">
@@ -275,7 +275,7 @@ export default function Header() {
               <div className="col-12">
                 <div className="header-wrapper">
                   <div className="site_logo">
-                    <Link className="logo" to="/"><img src="assets/images/logos/logo.png" alt="Codigix Logo" /></Link>
+                    <Link className="logo" to="/"><img src="/assets/images/logos/logo.png" alt="Codigix Logo" loading="lazy" /></Link>
                   </div>
 
                   <div className="menu-area d-none d-lg-inline-flex align-items-center">

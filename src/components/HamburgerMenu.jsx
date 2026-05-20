@@ -93,7 +93,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
             <div className="hamburger_top d-flex align-items-center justify-content-between">
               <div className="hamburger_logo">
                 <Link className="mobile_logo" to="/">
-                  <img src="assets/images/logos/logo.png" alt="Codigix Logo" />
+                  <img src="assets/images/logos/logo.png" alt="Codigix Logo" loading="lazy" />
                 </Link>
               </div>
 
@@ -198,7 +198,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
             <div className="hamburger_top d-flex align-items-center justify-content-between">
               <div className="hamburger_logo">
                 <Link to="/" className="mobile_logo">
-                  <img src="/assets/images/logos/logo.png" alt="Logo" />
+                  <img src="/assets/images/logos/logo.png" alt="Logo" loading="lazy" />
                 </Link>
               </div>
               <div className="hamburger_close">

@@ -35,36 +35,36 @@ export default function BlogDetailsPage() {
             <div className="col-lg-8">
               <div className="blog-details-content post-details-wrapper">
                 <div className="blog-details-img blog-images">
-                  <img src="/assets/images/blog/blog-1.webp" alt="Unlocking the Power of Data for Business Success" />
+                  <img src="/assets/images/blog/blog-1.webp" alt="Unlocking the Power of Data for Business Success" loading="lazy" />
                 </div>
                <h2 className="title">Unlocking the Power of Data for Business Success</h2>
                 <div className="blog-category-two ">
 
                   <div className="category-item">
-                    <div class="cate-images">
-                      <img src="assets/images/blog/author.webp" alt="Author" />
+                    <div className="cate-images">
+                      <img src="assets/images/blog/author.webp" alt="Author" loading="lazy" />
                     </div>
-                    <div class="cate-text">
-                      <span class="degination">Authored by</span>
-                      <h6 class="title"><a href="blog-details.html">Burdee Nicolas</a></h6>
-                    </div>
-                  </div>
-                  <div className="category-item">
-                    <div class="cate-icons">
-                      <i class="tji-calendar"></i>
-                    </div>
-                    <div class="cate-text">
-                      <span class="degination">Date Released</span>
-                      <h6 class="text">29 December, 2026</h6>
+                    <div className="cate-text">
+                      <span className="degination">Authored by</span>
+                      <h6 className="title"><a href="blog-details.html">Burdee Nicolas</a></h6>
                     </div>
                   </div>
                   <div className="category-item">
-                    <div class="cate-icons">
-                      <i class="tji-comment"></i>
+                    <div className="cate-icons">
+                      <i className="tji-calendar"></i>
                     </div>
-                    <div class="cate-text">
-                      <span class="degination">Comments</span>
-                      <h6 class="text">03 Comments</h6>
+                    <div className="cate-text">
+                      <span className="degination">Date Released</span>
+                      <h6 className="text">29 December, 2026</h6>
+                    </div>
+                  </div>
+                  <div className="category-item">
+                    <div className="cate-icons">
+                      <i className="tji-comment"></i>
+                    </div>
+                    <div className="cate-text">
+                      <span className="degination">Comments</span>
+                      <h6 className="text">03 Comments</h6>
                     </div>
                   </div>
 
@@ -111,7 +111,7 @@ export default function BlogDetailsPage() {
                       <li><a href="#">Machine Learning</a></li>
                       <li><a href="#">Business Strategy</a></li>
                     </ul> */}
-                    <div class="tagcloud">
+                    <div className="tagcloud">
                   <span>Tags:</span>
                   <a href="blog.html">Artificial Intelligence</a>
                   <a href="blog.html">SmartData AnalyticsHome</a>
@@ -131,18 +131,18 @@ export default function BlogDetailsPage() {
                     <i className="tji-arrow-right"></i>
                   </Link>
                 </div> */}
-                <div class="tj-post__navigation">
-                <div class="tj-nav__post previous">
-                  <div class="tj-nav-post__nav prev_post">
-                    <a href="blog-details.html"><span><i class="tji-arrow-left"></i></span>Previous</a>
+                <div className="tj-post__navigation">
+                <div className="tj-nav__post previous">
+                  <div className="tj-nav-post__nav prev_post">
+                    <a href="blog-details.html"><span><i className="tji-arrow-left"></i></span>Previous</a>
                   </div>
                 </div>
-                <div class="tj-nav-post__grid">
-                  <a href="blog.html"><i class="tji-window"></i></a>
+                <div className="tj-nav-post__grid">
+                  <a href="blog.html"><i className="tji-window"></i></a>
                 </div>
-              <div class="tj-nav__post next">
-                  <div class="tj-nav-post__nav next_post">
-                    <a href="blog-details.html">Next<span><i class="tji-arrow-right"></i></span></a>
+              <div className="tj-nav__post next">
+                  <div className="tj-nav-post__nav next_post">
+                    <a href="blog-details.html">Next<span><i className="tji-arrow-right"></i></span></a>
                   </div>
                 </div>
               </div>
@@ -154,14 +154,14 @@ export default function BlogDetailsPage() {
                     <h3 className="title">Recent Posts</h3>
                    <ul>
                   <li>
-                    <div class="post-thumb">
-                      <a href="blog-details.html"> <img src="/assets/images/blog/post-1.webp" alt="How Custom Technology is Redefining Tomorrow"/></a>
+                    <div className="post-thumb">
+                      <a href="blog-details.html"> <img src="/assets/images/blog/post-1.webp" alt="How Custom Technology is Redefining Tomorrow" loading="lazy" /></a>
                     </div>
-                    <div class="post-content">
-                      <h6 class="post-title">
+                    <div className="post-content">
+                      <h6 className="post-title">
                         <a href="blog-details.html">How Custom Technology is Redefining Tomorrow’s</a>
                       </h6>
-                      <div class="blog-meta">
+                      <div className="blog-meta">
                         <ul>
                           <li>04 SEP 2026</li>
                         </ul>
@@ -169,14 +169,14 @@ export default function BlogDetailsPage() {
                     </div>
                   </li>
                   <li>
-                    <div class="post-thumb">
-                      <a href="blog-details.html"> <img src="/assets/images/blog/post-2.webp" alt="Revolutionizing Business Solutions for the Next Era"/></a>
+                    <div className="post-thumb">
+                      <a href="blog-details.html"> <img src="/assets/images/blog/post-2.webp" alt="Revolutionizing Business Solutions for the Next Era" loading="lazy" /></a>
                     </div>
-                    <div class="post-content">
-                      <h6 class="post-title">
+                    <div className="post-content">
+                      <h6 className="post-title">
                         <a href="blog-details.html">Revolutionizing Business Solutions for the Next.</a>
                       </h6>
-                      <div class="blog-meta">
+                      <div className="blog-meta">
                         <ul>
                           <li>02 JAN 2026</li>
                         </ul>
@@ -184,14 +184,14 @@ export default function BlogDetailsPage() {
                     </div>
                   </li>
                   <li>
-                    <div class="post-thumb">
-                      <a href="blog-details.html"> <img src="/assets/images/blog/post-3.webp" alt="The Journey of Creating Smarter Future"/></a>
+                    <div className="post-thumb">
+                      <a href="blog-details.html"> <img src="/assets/images/blog/post-3.webp" alt="The Journey of Creating Smarter Future" loading="lazy" /></a>
                     </div>
-                    <div class="post-content">
-                      <h6 class="post-title">
+                    <div className="post-content">
+                      <h6 className="post-title">
                         <a href="blog-details.html">The Journey of Creating Smarter Future.</a>
                       </h6>
-                      <div class="blog-meta">
+                      <div className="blog-meta">
                         <ul>
                           <li>24 FEB 2026</li>
                         </ul>

@@ -22,13 +22,14 @@ async function migrateProjectsTable() {
     const existingColumns = columns.map(c => c.Field);
 
     const columnsToAdd = [
+      { name: 'image', type: 'LONGTEXT' },
       { name: 'overview', type: 'TEXT' },
       { name: 'goals', type: 'TEXT' },
       { name: 'technology_stack', type: 'TEXT' },
       { name: 'results', type: 'TEXT' },
       { name: 'client', type: 'VARCHAR(255)' },
       { name: 'budget', type: 'VARCHAR(255)' },
-      { name: 'gallery', type: 'TEXT' },
+      { name: 'gallery', type: 'LONGTEXT' },
       { name: 'client_logo', type: 'VARCHAR(255)' }
     ];
 
@@ -36,6 +37,10 @@ async function migrateProjectsTable() {
       if (!existingColumns.includes(col.name)) {
         await connection.query(`ALTER TABLE projects ADD COLUMN ${col.name} ${col.type}`);
         console.log(`Added column ${col.name}`);
+      } else {
+        // Ensure column type is correct (e.g. upgrade TEXT to LONGTEXT)
+        await connection.query(`ALTER TABLE projects MODIFY COLUMN ${col.name} ${col.type}`);
+        console.log(`Modified column ${col.name} to ${col.type}`);
       }
     }
 
