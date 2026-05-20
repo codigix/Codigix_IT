@@ -524,6 +524,7 @@ export default function HomePage() {
                     alt={slide.title}
                     className="hero-image"
                     loading={slide.id === 1 ? "eager" : "lazy"}
+                    fetchpriority={slide.id === 1 ? "high" : "auto"}
                     width="1920"
                     height="1080"
                   />
@@ -638,6 +639,7 @@ export default function HomePage() {
                         alt={`Client Logo ${index + 1}`}
                         width="195"
                         height="74"
+                        loading="lazy"
                       />
                     </div>
                   </SwiperSlide>

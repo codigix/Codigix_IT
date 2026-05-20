@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
-import ExternalStyles from './components/ExternalStyles';
 import Layout from './components/Layout';
 
 // Lazy load pages
@@ -68,12 +67,9 @@ function AppRoutes() {
   }
 
   return (
-    <>
-      <ExternalStyles />
-      <Layout>
-        
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
           <Route path="/banner" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />

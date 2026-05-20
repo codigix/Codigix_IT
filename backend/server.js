@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const compression = require('compression');
 const path = require('path');
 const { PORT, CLIENT_URL, NODE_ENV } = require('./config/config');
 const apiRoutes = require('./routes/api');
@@ -8,6 +9,7 @@ const db = require('./config/db');
 
 const app = express();
 
+app.use(compression());
 app.use(cors({
   origin: true, // Reflect request origin back (allows all)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -16,7 +18,12 @@ app.use(cors({
 }));
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Serve uploads with cache control (1 year)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
+  maxAge: '1y',
+  immutable: true
+}));
 
 // Request logger
 app.use((req, res, next) => {
@@ -24,12 +31,30 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
+// API Routes
+app.use('/api', apiRoutes);
+
+// Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-app.use('/api', apiRoutes);
+// Serve frontend static files in production
+if (NODE_ENV === 'production') {
+  const distPath = path.join(__dirname, '../dist');
+  app.use(express.static(distPath, {
+    maxAge: '1y',
+    setHeaders: (res, path) => {
+      if (path.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'no-cache');
+      }
+    }
+  }));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
 
 // Verify database connection and start server
 const startServer = async () => {
