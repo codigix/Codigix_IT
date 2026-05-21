@@ -6882,12 +6882,12 @@ START: Services CSS
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
   .service-item.style-2 .service-img {
-    height: 260px;
+    height: 155px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .service-item.style-2 .service-img {
-    height: 220px;
+    height: 155px;
   }
 }
 .service-item.style-2 .title {

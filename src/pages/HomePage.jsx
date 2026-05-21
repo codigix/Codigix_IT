@@ -986,109 +986,164 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-5">
-            <div className="col-span-2">
-              <div className="content-wrap">
-                <div className="roadmap-timeline-nav wow fadeInUp" data-wow-delay="0.4s">
-                  <div className="timeline-progress-line"></div>
-                  <div className="roadmap-nav-inner">
-                    {roadmapData.map((yearGroup) => (
-                      <div key={yearGroup.year} className="year-nav-group relative ">
-                        <div className="year-badge-wrap flex items-center mb-12">
-                          <div className={`year-badge-circle ${['2024', '2026'].includes(yearGroup.year) ? 'teal' : 'blue'}  mb-4 text-xl flex items-center justify-center rounded w-20 h-20 bg-white dark:bg-gray-900 z-10`}>
-                            {yearGroup.year}
-                          </div>
-                          {/* <div className="year-line-horizontal h-[2px] w-8 bg-gray-200 dark:bg-gray-700 ml-[-2px]"></div> */}
-                        </div>
-
-                        <div className="quarter-nav-list flex flex-col gap-7 relative">
-                          <div className="year-line-vertical absolute left-[39px] top-[-30px] bottom-[-20px] w-[3px] bg-[#312e81]"></div>
-
-                          {yearGroup.quarters.map((q) => (
-                            <div key={`${yearGroup.year}-${q.q}`} className="pill-item-wrap relative flex items-center">
-                              {/* <div className="pill-connector-line h-[2px] w-10 bg-[#312e81] absolute left-[40px]"></div> */}
-                              <a
-                                href={`#roadmap-${yearGroup.year}-${q.q}`}
-                                className={`quarter-pill relative flex items-center gap-3 p-1 pr-6 rounded transition-all duration-300 ml-20 ${activeQuarter === `roadmap-${yearGroup.year}-${q.q}` ? 'active' : ''}`}
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  const cardId = `roadmap-${yearGroup.year}-${q.q}`;
-                                  setActiveQuarter(cardId);
-                                  const target = document.getElementById(cardId);
-                                  if (target) {
-                                    const bodyRect = document.body.getBoundingClientRect().top;
-                                    const elementRect = target.getBoundingClientRect().top;
-                                    const elementPosition = elementRect - bodyRect;
-                                    const offsetPosition = elementPosition - 100;
-
-                                    window.scrollTo({
-                                      top: offsetPosition,
-                                      behavior: 'smooth'
-                                    });
-                                  }
-                                }}
-                              >
-                                <div className="pill-q-circle w-12 h-12 rounded flex items-center justify-center transition-transform duration-300">
-                                  {q.q}
-                                </div>
-                                <div className="pill-text flex flex-col">
-                                  <span className="pill-title leading-tight">{q.dates}</span>
-                                  <span className="pill-dates text-xs opacity-70"> Quarter {q.q.replace('Q', '')}</span>
-                                </div>
-                              </a>
+          {isMobile ? (
+            /* MOBILE VIEW - Vertical Timeline */
+            <div className="roadmap-mobile-view space-y-12">
+              {roadmapData.map((yearGroup) => (
+                <div key={yearGroup.year} className="mobile-year-group">
+                  <div className="mobile-year-header flex items-center mb-8">
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ${['2024', '2026'].includes(yearGroup.year) ? 'bg-teal-500' : 'bg-indigo-600'} text-white shadow-lg`}>
+                      {yearGroup.year}
+                    </div>
+                    <div className="h-[2px] flex-grow bg-gray-200 dark:bg-gray-800 ml-4"></div>
+                  </div>
+                  
+                  <div className="mobile-quarters space-y-8 pl-6 border-l-2 border-gray-100 dark:border-gray-800 ml-6">
+                    {yearGroup.quarters.map((q) => (
+                      <div key={`${yearGroup.year}-${q.q}`} className="mobile-quarter-card relative">
+                        <div className="absolute -left-[35px] top-0 w-4 h-4 rounded-full bg-white dark:bg-[#18133b] border-2 border-indigo-600"></div>
+                        <div className="bg-white dark:bg-gray-900/50 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
+                          <div className="flex justify-between items-start mb-4">
+                            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                              Quarter {q.q.replace('Q', '')} • {q.dates}
+                            </span>
+                            <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                              <i className={q.icon}></i>
                             </div>
-                          ))}
+                          </div>
+                          
+                          <h4 className="text-lg font-bold mb-2 dark:text-white">{q.title}</h4>
+                          
+                          <div className="flex items-center gap-1 mb-4">
+                            <span className="text-2xl font-black text-indigo-600 dark:text-indigo-400">{q.counter}</span>
+                            <span className="text-sm font-bold text-gray-500">{q.plus}</span>
+                          </div>
+
+                          <ul className="space-y-2">
+                            {q.items.map((item, i) => (
+                              <li key={i} className="text-sm text-gray-600 dark:text-gray-400 flex items-start gap-2">
+                                <i className="tji-check text-indigo-500 mt-1 flex-shrink-0"></i>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          
+                          {q.upcoming && (
+                            <div className="mt-4 inline-block bg-indigo-600 text-white text-[10px] uppercase font-bold px-2 py-1 rounded">
+                              Upcoming
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-            <div className="col-span-3">
-              <div className="roadmap-scroll-content">
-                {roadmapData.map((yearGroup) => (
-                  <div key={yearGroup.year} className="year-content-group mb-12">
-                    {yearGroup.quarters.map((q) => (
-                      <div
-                        key={`${yearGroup.year}-${q.q}`}
-                        id={`roadmap-${yearGroup.year}-${q.q}`}
-                        className={`roadmap-card grid grid-cols-1 gap-5  countup-item-wrap style-2 ${activeQuarter === `roadmap-${yearGroup.year}-${q.q}` ? 'active' : ''}`}
-                      >
-                        <div className="countup-item style-1 relative">
-                          {q.upcoming && (
-                            <div className="upcoming-badge absolute top-4 left-4 w-fit right-4 bg-indigo-600 text-white text-[10px] uppercase font-bold px-2 py-1 rounded">
-                              Upcoming
+          ) : (
+            /* DESKTOP VIEW */
+            <div className="grid grid-cols-5">
+              <div className="col-span-2">
+                <div className="content-wrap">
+                  <div className="roadmap-timeline-nav wow fadeInUp" data-wow-delay="0.4s">
+                    <div className="timeline-progress-line"></div>
+                    <div className="roadmap-nav-inner">
+                      {roadmapData.map((yearGroup) => (
+                        <div key={yearGroup.year} className="year-nav-group relative ">
+                          <div className="year-badge-wrap flex items-center mb-12">
+                            <div className={`year-badge-circle ${['2024', '2026'].includes(yearGroup.year) ? 'teal' : 'blue'}  mb-4 text-xl flex items-center justify-center rounded w-20 h-20 bg-white dark:bg-gray-900 z-10`}>
+                              {yearGroup.year}
                             </div>
-                          )}
-                          <div className="inline-content">
-                            <span className="counter">{q.counter}</span>
-                            <span className="count-plus">{q.plus}</span>
                           </div>
-                          <span className="count-text">{q.title}</span>
 
-                          {q.items && (
-                            <ul className="roadmap-specs-list space-y-2 mt-12 text-left">
-                              {q.items.map((item, i) => (
-                                <li key={i} className="text-sm dark:text-gray-400 flex items-start gap-2">
-                                  <i className="tji-check text-indigo-500 mt-1 flex-shrink-0"></i>
-                                  <span>{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
+                          <div className="quarter-nav-list flex flex-col gap-7 relative">
+                            <div className="year-line-vertical absolute left-[39px] top-[-30px] bottom-[-20px] w-[3px] bg-[#312e81]"></div>
 
-                          <span className="count-icon">
-                            <i className={q.icon}></i>
-                          </span>
+                            {yearGroup.quarters.map((q) => (
+                              <div key={`${yearGroup.year}-${q.q}`} className="pill-item-wrap relative flex items-center">
+                                <a
+                                  href={`#roadmap-${yearGroup.year}-${q.q}`}
+                                  className={`quarter-pill relative flex items-center gap-3 p-1 pr-6 rounded transition-all duration-300 ml-20 ${activeQuarter === `roadmap-${yearGroup.year}-${q.q}` ? 'active' : ''}`}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    const cardId = `roadmap-${yearGroup.year}-${q.q}`;
+                                    setActiveQuarter(cardId);
+                                    const target = document.getElementById(cardId);
+                                    if (target) {
+                                      const bodyRect = document.body.getBoundingClientRect().top;
+                                      const elementRect = target.getBoundingClientRect().top;
+                                      const elementPosition = elementRect - bodyRect;
+                                      const offsetPosition = elementPosition - 100;
+
+                                      window.scrollTo({
+                                        top: offsetPosition,
+                                        behavior: 'smooth'
+                                      });
+                                    }
+                                  }}
+                                >
+                                  <div className="pill-q-circle w-12 h-12 rounded flex items-center justify-center transition-transform duration-300">
+                                    {q.q}
+                                  </div>
+                                  <div className="pill-text flex flex-col">
+                                    <span className="pill-title leading-tight">{q.dates}</span>
+                                    <span className="pill-dates text-xs opacity-70"> Quarter {q.q.replace('Q', '')}</span>
+                                  </div>
+                                </a>
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                ))}
+                </div>
+              </div>
+              <div className="col-span-3">
+                <div className="roadmap-scroll-content">
+                  {roadmapData.map((yearGroup) => (
+                    <div key={yearGroup.year} className="year-content-group mb-12">
+                      {yearGroup.quarters.map((q) => (
+                        <div
+                          key={`${yearGroup.year}-${q.q}`}
+                          id={`roadmap-${yearGroup.year}-${q.q}`}
+                          className={`roadmap-card grid grid-cols-1 gap-5  countup-item-wrap style-2 ${activeQuarter === `roadmap-${yearGroup.year}-${q.q}` ? 'active' : ''}`}
+                        >
+                          <div className="countup-item style-1 relative">
+                            {q.upcoming && (
+                              <div className="upcoming-badge absolute top-4 left-4 w-fit right-4 bg-indigo-600 text-white text-[10px] uppercase font-bold px-2 py-1 rounded">
+                                Upcoming
+                              </div>
+                            )}
+                            <div className="inline-content">
+                              <span className="counter">{q.counter}</span>
+                              <span className="count-plus">{q.plus}</span>
+                            </div>
+                            <span className="count-text">{q.title}</span>
+
+                            {q.items && (
+                              <ul className="roadmap-specs-list space-y-2 mt-12 text-left">
+                                {q.items.map((item, i) => (
+                                  <li key={i} className="text-sm dark:text-gray-400 flex items-start gap-2">
+                                    <i className="tji-check text-indigo-500 mt-1 flex-shrink-0"></i>
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+
+                            <span className="count-icon">
+                              <i className={q.icon}></i>
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          )}
            <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4">
               <div className="sec-heading sec-heading-centered style-3 mb-12">

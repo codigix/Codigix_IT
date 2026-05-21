@@ -1,19 +1,30 @@
 const db = require('../config/db');
 
+// Cache for table columns to avoid repeated DESCRIBE queries
+const columnCache = {};
+
+const getColumns = async (entity) => {
+  if (columnCache[entity]) return columnCache[entity];
+  
+  const [columns] = await db.query(`DESCRIBE \`${entity}\``);
+  const validColumns = columns.map(c => c.Field);
+  columnCache[entity] = validColumns;
+  return validColumns;
+};
+
 exports.getAll = async (req, res) => {
   const { entity } = req.params;
+  const start = Date.now();
   try {
-    // Get valid columns for the table
-    const [columns] = await db.query(`DESCRIBE \`${entity}\``);
-    const validColumns = columns.map(c => c.Field);
+    const validColumns = await getColumns(entity);
     
     // Define heavy columns to exclude in list view to improve performance
+    // We removed 'overview' from here because it's needed by the frontend list view
     const heavyColumns = [
       'gallery', 
       'maintenance_items', 
       'faqs', 
       'key_features',
-      'overview',
       'goals',
       'technology_stack',
       'results',
@@ -27,6 +38,8 @@ exports.getAll = async (req, res) => {
       .join(', ');
 
     const [rows] = await db.query(`SELECT ${selectColumns} FROM \`${entity}\``);
+    const duration = Date.now() - start;
+    console.log(`Fetch ${entity} took ${duration}ms (size: ${JSON.stringify(rows).length} bytes)`);
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: err.message });

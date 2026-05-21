@@ -83,12 +83,7 @@ export default function Header() {
                               <li><Link to="/projects/details">Project Details</Link></li>
                             </ul> */}
                           </li>
-                          <li className="has-dropdown"><Link to="/blog">Blog</Link>
-                            <ul className="sub-menu">
-                              <li><Link to="/blog">Blog</Link></li>
-                              <li><Link to="/blog/details">Blog Details</Link></li>
-                            </ul>
-                          </li>
+                          <li><Link to="/blog">Blog</Link></li>
                           <li><Link to="/careers">Careers</Link></li>
                           <li><Link to="/contact">Contact</Link></li>
                         </ul>
@@ -156,12 +151,7 @@ export default function Header() {
                             <li><Link to="/projects/details">Project Details</Link></li>
                           </ul>
                         </li> */}
-                        <li className="has-dropdown"><Link to="/blog">Blog</Link>
-                          <ul className="sub-menu">
-                            <li><Link to="/blog">Blog</Link></li>
-                            <li><Link to="/blog/details">Blog Details</Link></li>
-                          </ul>
-                        </li>
+                        <li><Link to="/blog">Blog</Link></li>
                         <li><Link to="/careers">Careers</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                       </ul>
@@ -242,12 +232,7 @@ export default function Header() {
                         </li> */}
                         <li><Link to="/services">Services</Link></li>
                         <li><Link to="/projects">Projects</Link></li>
-                        <li className="has-dropdown"><Link to="/blog">Blog</Link>
-                          <ul className="sub-menu">
-                            <li><Link to="/blog">Blog</Link></li>
-                            <li><Link to="/blog/details">Blog Details</Link></li>
-                          </ul>
-                        </li>
+                       <li><Link to="/blog">Blog</Link></li>
                         <li><Link to="/careers">Careers</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                       </ul>
@@ -334,12 +319,8 @@ export default function Header() {
                         </li> */}
                         <li><Link to="/services">Services</Link></li>
                         <li><Link to="/projects">Projects</Link></li>
-                        <li className="has-dropdown"><Link to="/blog">Blog</Link>
-                          <ul className="sub-menu">
-                            <li><Link to="/blog">Blog</Link></li>
-                            <li><Link to="/blog/details">Blog Details</Link></li>
-                          </ul>
-                        </li>
+                        <li><Link to="/blog">Blog</Link></li>
+                        
                         <li><Link to="/careers">Careers</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                       </ul>

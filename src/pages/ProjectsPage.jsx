@@ -113,7 +113,7 @@ export default function ProjectsPage() {
           <div className="flex flex-wrap -mx-4 mb-12">
             <div className="w-full px-4">
               <div className="project-filter-wrap">
-                <div className="project-filter-tabs flex flex-wrap justify-center gap-3">
+                <div className="project-filter-tabs flex flex-wrap justify-center">
                   {categories.map((category, idx) => (
                     <button
                       key={idx}

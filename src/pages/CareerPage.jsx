@@ -191,16 +191,16 @@ export default function CareerPage() {
                       <div className="col-span-2">
                         <div className="flex items-center gap-2 mb-2">
                           <h3 className=" mb-0 text-lg job-label-text">{job.title}</h3>
-                          <span className="inline-block px-2 py-1 text-xs font-semibold bg-primary bg-opacity-10 text-primary rounded-full px-3 text-sm">New</span>
+                          <span className="inline-block px-2 py-1 text-xs font-semibold bg-opacity-10 text-primary rounded-full px-3 text-sm">New</span>
                         </div>
 
 
 
                         {job.experience && (
-                          <p className="mb-12 text-sm job-meta-text">{job.experience}</p>
+                          <p className="mb-5 text-sm job-meta-text">{job.experience}</p>
                         )}
 
-                        <p className="line-clamp-2 text-xs job-desc-text mb-12" style={{ maxWidth: '90%' }}>
+                        <p className="line-clamp-2 text-xs job-desc-text mb-5" style={{ maxWidth: '90%' }}>
                           {job.description}
                         </p>
 
