@@ -56,6 +56,7 @@ const ServiceSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
@@ -77,7 +78,7 @@ const ServiceSection = () => {
             <motion.div
               key={service.id}
               variants={itemVariants}
-              className={`flex flex-col lg:flex-row gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
+              className={`relative flex flex-col lg:flex-row gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
             >
               <div className="flex-1">
                 <h3 className="text-3xl font-bold mb-12">
@@ -113,8 +114,8 @@ const ServiceSection = () => {
                   className="rounded-lg shadow-lg w-full"
                 />
               </div>
-              <div className="absolute text-6xl font-bold text-gray-200 opacity-50">
-                {String(service.id).padStart(2, '0')}.
+              <div className="absolute -top-6 left-0 text-8xl font-bold text-gray-200/50 -z-10 select-none pointer-events-none">
+                {String(service.id).padStart(2, '0')}
               </div>
             </motion.div>
           ))}

@@ -1636,9 +1636,9 @@ START: Countup CSS
     position: absolute;
     transform: translateX(150%);
 }
-.slider-prev:hover, .slider-next:hover {
+/* .slider-prev:hover, .slider-next:hover {
     background-color: var(--tj-color-theme-primary);
-}
+} */
 .slider-prev:hover .anim-icon i:first-child {
     transform: translateX(-150%);
 }

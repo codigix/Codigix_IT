@@ -167,19 +167,6 @@ export default function HomePage() {
 
     mm.add("(min-width: 1025px)", () => {
       cards.forEach((card, index) => {
-        // Entrance animation for each card
-        gsap.from(card, {
-          y: 80,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 90%",
-            toggleActions: "play none none none"
-          }
-        });
-
         if (index < cards.length - 1) {
           ScrollTrigger.create({
             trigger: card,
@@ -189,19 +176,20 @@ export default function HomePage() {
             pin: true,
             pinSpacing: false,
             anticipatePin: 1,
+            fastScrollEnd: true,
             refreshPriority: 1,
           });
 
           gsap.to(card, {
             scale: 0.95 - index * 0.02,
-            opacity: 1, // Keep opacity high for readability
-            y: -20 * index, // Slight lift for depth
+            opacity: 1,
+            force3D: true,
             scrollTrigger: {
               trigger: cards[index + 1],
-              start: "top 90%", // Start scaling when next card is near bottom
-              end: "top 100px", // End exactly when next card hits the pin point
+              start: "top bottom",
+              end: "top 120px",
               scrub: 1,
-              ease: "none", // Linear mapping to scroll position
+              ease: "power2.inOut"
             },
           });
         }
@@ -478,6 +466,9 @@ export default function HomePage() {
       />
       <style>
         {`
+          .service-item.style-3.service-stack {
+            will-change: transform, opacity;
+          }
           .service-item.style-3 .service-inner {
             background-color: #ffffff !important;
           }
@@ -813,7 +804,7 @@ export default function HomePage() {
 
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4">
-              <div className="service-wrapper-main mb-12" ref={containerRef}>
+              <div className="service-wrapper-main mb-12 relative" ref={containerRef}>
 
                 {isDesktop ? (
                   //  DESKTOP – GSAP STACK
@@ -941,7 +932,7 @@ export default function HomePage() {
               768: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
             }}
-            className="project-slider pb-50"
+            className="project-slider"
           >
             {[...projects, ...projects, ...projects].map((project, idx) => (
               <SwiperSlide key={`${project.id}-${idx}`}>

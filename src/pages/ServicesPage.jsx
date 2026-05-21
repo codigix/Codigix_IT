@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import SEO from "../components/SEO";
 
 import config from '../config';
@@ -62,9 +63,22 @@ export default function ServicesPage() {
 
       <section className="tj-service-section-2 section-gap ">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ staggerChildren: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {services.map((service, idx) => (
-              <div className="service-item style-2 wow fadeInUp" data-wow-delay=".1s" key={idx}>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="service-item style-2" 
+                key={idx}
+              >
                 <div className="service-inner">
                   <div className="service-content">
                     <h4 className="title"><Link to={`/services/details/${service.id}`}>{service.title}</Link></h4>
@@ -76,7 +90,7 @@ export default function ServicesPage() {
                       src={getImageUrl(service.image, "assets/images/service")}
                       alt={service.title}
                       loading="lazy"
-                      className="w-fit h-[150px] object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-[150px] object-cover transition-transform duration-500 group-hover:scale-110"
                       width="400"
                       height="150"
                     />
@@ -87,12 +101,9 @@ export default function ServicesPage() {
                   </div>
                 </div>
                 <span className="item-count">01.</span>
-              </div>
-
-
+              </motion.div>
             ))}
-            
-          </div>
+          </motion.div>
 
           {/* 
           <div className="tj-pagination flex justify-center">
