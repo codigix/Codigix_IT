@@ -44,7 +44,7 @@ export default function ProjectDetailsPage() {
 
   if (!project) {
     return (
-      <div className="container section-gap text-center">
+      <div className="container mx-auto px-4 section-gap text-center">
         <h2>Project not found</h2>
         <Link to="/projects" className="tj-primary-btn">Back to Projects</Link>
       </div>
@@ -171,9 +171,9 @@ export default function ProjectDetailsPage() {
         `}
       </style>
       <section className="tj-page-header section-gap-x" style={{backgroundImage: `url(${getImageUrl(project.image, "assets/images/project")})`}}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full lg:w-full px-4">
               <div className="tj-page-header-content text-center">
                 <h1 className="tj-page-title">Project Details</h1>
                 <div className="tj-page-link">
@@ -189,9 +189,9 @@ export default function ProjectDetailsPage() {
       </section>
 
       <section className="tj-project-details-section section-gap bg-white dark:bg-[#18133b]">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-8">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full lg:w-2/3 px-4">
               <div className="project-details-content">
                 <div className="project-details-img">
                   <img src={getImageUrl(project.image, "assets/images/project")} alt={project.title} loading="lazy" />
@@ -232,8 +232,8 @@ export default function ProjectDetailsPage() {
               </div>
 
               {galleryImages.length > 0 && (
-                <div className="mt-10">
-                  <h3 className="mb-6 text-gray-900 dark:text-white">Project Gallery</h3>
+                <div className="mt-12">
+                  <h3 className="mb-12 text-gray-900 dark:text-white">Project Gallery</h3>
                   <Swiper
                     modules={[Autoplay, Pagination, Navigation]}
                     spaceBetween={20}
@@ -262,7 +262,7 @@ export default function ProjectDetailsPage() {
                 </div>
               )}
 
-              <div className="tj-post__navigation mt-4 border-t border-gray-100 dark:border-gray-800 pt-4">
+              <div className="tj-post__navigation mt-12 border-t border-gray-100 dark:border-gray-800 pt-4">
                 <div className="tj-nav__post previous">
                   <div className="tj-nav-post__nav prev_post">
                     <Link to="/projects" className="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400">
@@ -285,13 +285,13 @@ export default function ProjectDetailsPage() {
               </div>
             </div>
 
-            <div className="col-lg-4">
+            <div className="w-full lg:w-1/3 px-4">
               <div className="project-sidebar">
-                <div className="project-sidebar-box bg-gray-50 dark:bg-[#252841]/60 border border-gray-100 dark:border-slate-800/30 rounded-2xl p-6">
-                  <h4 className="title text-gray-900 dark:text-white mb-4">Project Details</h4>
+                <div className="project-sidebar-box bg-gray-50 dark:bg-[#252841]/60 border border-gray-100 dark:border-slate-800/30 rounded-2xl p-12">
+                  <h4 className="title text-gray-900 dark:text-white mb-12">Project Details</h4>
                   
                   {project.client && (
-                    <div className="infos-item flex items-center gap-3 mb-4">
+                    <div className="infos-item flex items-center gap-3 mb-12">
                       <div className="project-icons w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
                         <i className="tji-user"></i>
                       </div>
@@ -316,9 +316,9 @@ export default function ProjectDetailsPage() {
                   )}
                 </div>
 
-                <div className="project-sidebar-box project-cta-box bg-indigo-600 rounded-2xl p-6 text-white mt-6">
+                <div className="project-sidebar-box project-cta-box bg-indigo-600 rounded-2xl p-12 text-white mt-12">
                   <h4 className="title text-white mb-2">Start Your Project</h4>
-                  <p className="text-white/80 text-sm mb-4">Ready to build your own AI solution?</p>
+                  <p className="text-white/80 text-sm mb-12">Ready to build your own AI solution?</p>
                   <Link className="tj-primary-btn btn-light" to="/contact">
                     <div className="btn-inner flex items-center justify-center gap-2">
                       <span className="btn-text">Get Started</span>

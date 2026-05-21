@@ -82,9 +82,9 @@ export default function ProjectsPage() {
         keywords="projects portfolio, AI case studies, software development projects, IT solutions portfolio, tech innovation"
       />
       <section className="tj-page-header section-gap-x" style={{ backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778412464/samples/codigix%20infotech/people-with-watercolor-technology-interfaces-laptops-concept-as-group-people-interacting-wi_akioev.jpg")})` }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full lg:w-full px-4">
               <div className="tj-page-header-content text-center">
                 <h1 className="tj-page-title">Projects</h1>
                 <div className="tj-page-link">
@@ -100,18 +100,18 @@ export default function ProjectsPage() {
       </section>
 
       <section className="tj-project-section section-gap ">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="sec-heading sec-heading-centered d-none">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
+              <div className="sec-heading sec-heading-centered hidden">
                 <span className="sub-title wow fadeInUp" data-wow-delay="0.3s"><i className="tji-subtitle-2"></i>Featured Work</span>
                 <h2 className="sec-title text-anim">Award Winning Projects</h2>
               </div>
             </div>
           </div>
 
-          <div className="row mb-50">
-            <div className="col-12">
+          <div className="flex flex-wrap -mx-4 mb-12">
+            <div className="w-full px-4">
               <div className="project-filter-wrap">
                 <div className="project-filter-tabs flex flex-wrap justify-center gap-3">
                   {categories.map((category, idx) => (
@@ -137,7 +137,7 @@ export default function ProjectsPage() {
                               <img
                                 src={getImageUrl(project.image, "assets/images/project")}
                                 alt={project.title}
-                                className="w-full h-[250px] object-cover  transition-transform duration-500 group-hover:scale-110"
+                                className="w-full h-[250px] object-cover transition-transform duration-500 group-hover:scale-110"
                                 loading="lazy"
                                 width="600"
                                 height="400"
@@ -157,7 +157,7 @@ export default function ProjectsPage() {
                       ))}
                     </div>
 
-          {/* <div className="tj-pagination d-flex justify-content-center">
+          {/* <div className="tj-pagination flex justify-center">
             <ul>
               <li><span aria-current="page" className="page-numbers current">1</span></li>
               <li><a className="page-numbers" href="#">2</a></li>
@@ -166,7 +166,7 @@ export default function ProjectsPage() {
             </ul>
           </div> */}
           {totalPages > 1 && (
-            <div className="tj-pagination d-flex justify-content-center">
+            <div className="tj-pagination flex justify-center">
               <ul>
                 {[...Array(totalPages)].map((_, index) => (
                   <li key={index}>
@@ -198,9 +198,9 @@ export default function ProjectsPage() {
       </section>
       {/* 
       <section className="tj-cta-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="cta-area wow fadeInUp" data-wow-delay=".3s">
                 <div className="cta-content">
                   <h2 className="title">Ready to Transform Your Ideas Into Success?</h2>

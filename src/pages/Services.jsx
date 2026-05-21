@@ -15,14 +15,14 @@ const Services = () => {
   return (
     <main className="pt-20">
       <section className="section-gap py-24 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-        <div className="container">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Services</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-12">Our Services</h1>
             <p className="text-xl text-gray-300">
               Comprehensive solutions tailored to your business needs.
             </p>
@@ -31,7 +31,7 @@ const Services = () => {
       </section>
 
       <section className="section-gap">
-        <div className="container">
+        <div className="container mx-auto px-4">
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
@@ -42,11 +42,11 @@ const Services = () => {
               <motion.div
                 key={i}
                 whileHover={{ y: -10 }}
-                className="p-8 bg-white rounded-lg shadow-lg border border-gray-200 hover:border-orange-500 transition-all"
+                className="p-12 bg-white rounded-lg shadow-lg border border-gray-200 hover:border-orange-500 transition-all"
               >
-                <div className="text-5xl mb-4">{service.icon}</div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.desc}</p>
+                <div className="text-5xl mb-12">{service.icon}</div>
+                <h3 className="text-2xl font-bold mb-12">{service.title}</h3>
+                <p className="text-gray-600 mb-12">{service.desc}</p>
                 <Link to="/services/details" className="text-orange-500 font-semibold hover:gap-4 inline-flex items-center gap-2">
                   Learn More <span>→</span>
                 </Link>
@@ -54,7 +54,7 @@ const Services = () => {
             ))}
           </motion.div>
 
-          <div className="text-center mt-16">
+          <div className="text-center mt-12">
             <Link 
               to="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"

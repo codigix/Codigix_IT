@@ -71,9 +71,9 @@ export default function ContactPage() {
         keywords="contact Codigix, AI support, software engineering Pune, IT consultation, tech support, business automation contact"
       />
       <section className="tj-page-header section-gap-x" style={{backgroundImage: "url(assets/images/bg/pheader-bg.webp)"}}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full lg:w-full px-4">
               <div className="tj-page-header-content text-center">
                 <h1 className="tj-page-title">Contact Us</h1>
                 <div className="tj-page-link">
@@ -89,18 +89,18 @@ export default function ContactPage() {
       </section>
 
       <div className="tj-contact-area section-gap">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="sec-heading text-center">
                 <span className="sub-title"><i className="tji-subtitle"></i>Contact info</span>
                 <h2 className="sec-title">Reach Out To Us</h2>
               </div>
             </div>
           </div>
-          <div className="row row-gap-4">
+          <div className="flex flex-wrap -mx-4 gap-y-4">
             {contactInfo.map((info, idx) => (
-              <div className="col-xl-4 col-lg-6 col-sm-6" key={idx}>
+              <div className="xl:w-1/3 px-4 lg:w-1/2 sm:w-1/2" key={idx}>
                 <div className="contact-item style-2">
                   <div className="contact-icon">
                     <i className={info.icon}></i>
@@ -123,31 +123,31 @@ export default function ContactPage() {
       </div>
 
       <section className="tj-contact-section-2 section-gap-bottom">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full lg:w-1/2 px-4">
               <div className="contact-form">
                 <h3 className="title">Feel Free to Get in Touch or Visit our Location.</h3>
-                {success && <div className="alert alert-success mb-4 p-3 rounded" style={{ backgroundColor: '#d4edda', color: '#155724', border: '1px solid #c3e6cb' }}>Message sent successfully! We will get back to you soon.</div>}
-                {error && <div className="alert alert-danger mb-4 p-3 rounded" style={{ backgroundColor: '#f8d7da', color: '#721c24', border: '1px solid #f5c6cb' }}>{error}</div>}
+                {success && <div className="p-4 rounded-lg bg-green-100 text-green-800 mb-12 rounded" style={{ backgroundColor: '#d4edda', color: '#155724', border: '1px solid #c3e6cb' }}>Message sent successfully! We will get back to you soon.</div>}
+                {error && <div className="p-4 rounded-lg bg-red-100 text-red-800 mb-12 rounded" style={{ backgroundColor: '#f8d7da', color: '#721c24', border: '1px solid #f5c6cb' }}>{error}</div>}
                 <form id="contact-form" onSubmit={handleSubmit}>
-                  <div className="row">
-                    <div className="col-sm-6">
+                  <div className="flex flex-wrap -mx-4">
+                    <div className="w-full sm:w-1/2 px-4">
                       <div className="form-input">
                         <input type="text" name="cfName" placeholder="Full Name *" value={formData.cfName} onChange={handleChange} required />
                       </div>
                     </div>
-                    <div className="col-sm-6">
+                    <div className="w-full sm:w-1/2 px-4">
                       <div className="form-input">
                         <input type="email" name="cfEmail" placeholder="Email Address *" value={formData.cfEmail} onChange={handleChange} required />
                       </div>
                     </div>
-                    <div className="col-sm-6">
+                    <div className="w-full sm:w-1/2 px-4">
                       <div className="form-input">
                         <input type="tel" name="cfPhone" placeholder="Phone number" value={formData.cfPhone} onChange={handleChange} />
                       </div>
                     </div>
-                    <div className="col-sm-6">
+                    <div className="w-full sm:w-1/2 px-4">
                       <div className="form-input">
                         <div className="tj-nice-select-box">
                           <div className="tj-select">
@@ -164,7 +164,7 @@ export default function ContactPage() {
                         </div>
                       </div>
                     </div>
-                    <div className="col-sm-12">
+                    <div className="sm:w-full px-4">
                       <div className="form-input message-input">
                         <textarea name="cfMessage" id="message" placeholder="Type message *" value={formData.cfMessage} onChange={handleChange} required></textarea>
                       </div>
@@ -182,7 +182,7 @@ export default function ContactPage() {
                 </form>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="w-full lg:w-1/2 px-4">
               <div className="map-area">
                 <iframe
                  src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d12621.027783472839!2d73.73581225!3d18.64597255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x3bc2b95ac32be0ad%3A0x79aa58776507f0a9!2sCodigix%20Infotech%20-%20Marketing%20Agency%20in%20Pune%20%7C%20Digital%20Marketing%20for%20Hospitals%20%26%20Clinics%20%7C%20Healthcare%20Marketing%20Agency%2C%20Office%20No%3A%20514%2C%205th%20Floor%2C%20JRG3%2BPQG%2C%20Brahma%20Sky%20Uzuri%2C%20MIDC%2C%20Pimpri%20Colony%2C%20Pimpri-Chinchwad%2C%20Maharashtra%20411018!3m2!1d18.6268125!2d73.80443749999999!5e1!3m2!1sen!2sin!4v1772190821998!5m2!1sen!2sin"
@@ -203,9 +203,9 @@ export default function ContactPage() {
       </section>
 {/* 
       <section className="tj-cta-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="cta-area wow fadeInUp" data-wow-delay=".3s">
                 <div className="cta-content">
                   <h2 className="title">Ready to Elevate Your Business with AI?</h2>

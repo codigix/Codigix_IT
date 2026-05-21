@@ -48,14 +48,14 @@ const WorkingProcess = () => {
 
   return (
     <section className="section-gap bg-gradient-to-b from-gray-50 to-white">
-      <div className="container">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <p className="sub-title justify-center mb-4">
+          <p className="sub-title justify-center mb-12">
             <span>💡</span>
             How Its Work
           </p>
@@ -72,11 +72,11 @@ const WorkingProcess = () => {
             <motion.div
               key={process.id}
               variants={itemVariants}
-              className="relative bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+              className="relative bg-white p-12 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
             >
-              <div className="mb-6">
-                <div className="text-5xl mb-4">{process.icon}</div>
-                <h4 className="text-2xl font-bold mb-4">{process.title}</h4>
+              <div className="mb-12">
+                <div className="text-5xl mb-12">{process.icon}</div>
+                <h4 className="text-2xl font-bold mb-12">{process.title}</h4>
                 <p className="text-gray-600">{process.description}</p>
               </div>
               <div className="absolute top-6 right-6 text-4xl font-bold text-gray-200">

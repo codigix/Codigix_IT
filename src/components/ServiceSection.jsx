@@ -39,24 +39,27 @@ const ServiceSection = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 },
+      transition: { 
+        duration: 0.8,
+        ease: [0.25, 0.1, 0.25, 1.0] // smooth cubic-bezier
+      },
     },
   };
 
   return (
     <section className="section-gap bg-gray-50">
-      <div className="container">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <p className="sub-title justify-center mb-4">
+          <p className="sub-title justify-center mb-12">
             <span>💡</span>
             Our Best Services
           </p>
@@ -67,6 +70,7 @@ const ServiceSection = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
           className="space-y-8"
         >
           {services.map((service, index) => (
@@ -76,13 +80,13 @@ const ServiceSection = () => {
               className={`flex flex-col lg:flex-row gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
             >
               <div className="flex-1">
-                <h3 className="text-3xl font-bold mb-4">
+                <h3 className="text-3xl font-bold mb-12">
                   <Link to={`/services/details/${service.id}`} className="hover:text-orange-500">
                     {service.title}
                   </Link>
                 </h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
-                <ul className="mb-8 space-y-2">
+                <p className="text-gray-600 mb-12">{service.description}</p>
+                <ul className="mb-12 space-y-2">
                   {service.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-3 text-gray-700">
                       <span className="text-orange-500">✓</span>

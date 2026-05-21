@@ -46,7 +46,7 @@ export default function BlogDetailsPage() {
 
   if (!blog) {
     return (
-      <div className="container section-gap text-center">
+      <div className="container mx-auto px-4 section-gap text-center">
         <h2>Blog post not found</h2>
         <Link to="/blog" className="tj-primary-btn">Back to Blog</Link>
       </div>
@@ -62,9 +62,9 @@ export default function BlogDetailsPage() {
         ogImage={getImageUrl(blog.image, "assets/images/blog")}
       />
       <section className="tj-page-header section-gap-x" style={{ backgroundImage: "url(https://res.cloudinary.com/foodfantacy/image/upload/v1778340863/0015_lf398t.jpg)" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full lg:w-full px-4">
               <div className="tj-page-header-content text-center">
                 <h1 className="tj-page-title">Blog Details</h1>
                 <div className="tj-page-link">
@@ -80,9 +80,9 @@ export default function BlogDetailsPage() {
       </section>
 
       <section className="tj-blog-details-section section-gap">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-8">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full lg:w-2/3 px-4">
               <div className="blog-details-content post-details-wrapper">
                 <div className="blog-details-img blog-images">
                   <img src={getImageUrl(blog.image, "assets/images/blog")} alt={blog.title} loading="lazy" />
@@ -130,7 +130,7 @@ export default function BlogDetailsPage() {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="w-full lg:w-1/3 px-4">
               <div className="blog-sidebar">
                 <div className="blog-sidebar-box">
                   <h3 className="title">Recent Posts</h3>

@@ -55,7 +55,7 @@ const AdminLayout = () => {
   };
 
   return (
-    <div className="flex w-full min-h-screen bg-[#1A1C2E] text-slate-300 font-admin selection:bg-[#FF1F8B]/30">
+    <div className=" flex w-full min-h-screen bg-[#1A1C2E] text-slate-300 font-admin selection:bg-[#FF1F8B]/30">
       {/* Sidebar */}
       <AdminSidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
       
@@ -94,8 +94,8 @@ const AdminLayout = () => {
             
             <div className="flex items-center gap-3 pl-1">
               <div className="hidden sm:flex flex-col items-end">
-                <span className="text-[10px]  text-white leading-none uppercase tracking-widest">Administrator</span>
-                <span className="text-[8px] text-[#FF1F8B]  uppercase tracking-tighter mt-1">Superuser</span>
+                <span className="text-[10px] text-white leading-none uppercase tracking-widest">Administrator</span>
+                <span className="text-[8px] text-[#FF1F8B] uppercase tracking-tighter mt-1">Superuser</span>
               </div>
               <div className="w-9 h-9 rounded-full bg-white/5 border border-slate-800/30 flex items-center justify-center text-white">
                  <User className="w-4 h-4" />
@@ -105,7 +105,7 @@ const AdminLayout = () => {
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 flex flex-col relative overflow-hidden">
+        <div className=" flex-1 flex flex-col relative overflow-hidden">
           {/* Background Decorative Elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
              <div className="absolute top-[10%] left-[-5%] w-[40%] h-[80%] bg-[#252841] -rotate-[35deg] rounded-[4rem] opacity-30 shadow-[0_0_100px_rgba(255,31,139,0.05)]"></div>
@@ -119,12 +119,12 @@ const AdminLayout = () => {
           {/* Breadcrumb / Page Title */}
           <div className="px-6 py-6 lg:px-10 lg:py-8 relative z-10">
             <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-2 text-[9px]  text-slate-500 uppercase tracking-[0.2em]">
+              <div className="flex items-center gap-2 text-[9px] text-slate-500 uppercase tracking-[0.2em]">
                 <span>PORTAL</span>
                 <ChevronRight className="w-3 h-3" />
                 <span className="text-[#FF1F8B]">{getTitle().split(' ')[0]}</span>
               </div>
-              <h1 className="text-xl  text-white">{getTitle()}</h1>
+              <h1 className="text-xl text-white">{getTitle()}</h1>
             </div>
           </div>
 
@@ -136,7 +136,7 @@ const AdminLayout = () => {
           </main>
           
           {/* Footer */}
-          <footer className="h-14 border-t border-slate-800/30 flex items-center justify-between px-6 text-[9px]  text-slate-500 bg-[#1A1C2E]/50 relative z-10">
+          <footer className="h-14 border-t border-slate-800/30 flex items-center justify-between px-6 text-[9px] text-slate-500 bg-[#1A1C2E]/50 relative z-10">
             <div className="uppercase tracking-[0.2em] opacity-60">
               © {new Date().getFullYear()} <span className="text-slate-400">GRATAFY</span>
             </div>

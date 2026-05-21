@@ -150,9 +150,9 @@ export default function CareerPage() {
         `}
       </style>
       <section className="tj-page-header section-gap-x" style={{ backgroundImage: "url(https://res.cloudinary.com/foodfantacy/image/upload/v1778340863/0015_lf398t.jpg)" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full lg:w-full px-4">
               <div className="tj-page-header-content text-center">
                 <h1 className="tj-page-title">Career Opportunities</h1>
                 <div className="tj-page-link">
@@ -168,9 +168,9 @@ export default function CareerPage() {
       </section>
 
       <section className="tj-career-section section-gap section-gap-x">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="sec-heading sec-heading-centered">
                 <span className="sub-title"><i className="tji-subtitle-2"></i>Join Our Team</span>
                 <h2 className="sec-title">Exciting Job Openings</h2>
@@ -178,36 +178,36 @@ export default function CareerPage() {
             </div>
           </div>
 
-          <div className="row row-gap-4 mt-5">
+          <div className="flex flex-wrap -mx-4 gap-y-4 mt-12">
             {jobs.length === 0 ? (
-              <div className="col-12 text-center">
+              <div className="w-full px-4 text-center">
                 <p>No job openings at the moment. Please check back later!</p>
               </div>
             ) : (
               jobs.map((job) => (
-                <div className="col-12" key={job.id}>
-                  <div className="career-item-horizontal shadow-sm transition-all p-3 rounded-4">
+                <div className="w-full px-4" key={job.id}>
+                  <div className="career-item-horizontal shadow-sm transition-all p-4 rounded-2xl">
                     <div className="grid grid-cols-3">
                       <div className="col-span-2">
-                        <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="flex items-center gap-2 mb-2">
                           <h3 className=" mb-0 text-lg job-label-text">{job.title}</h3>
-                          <span className="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-1 small">New</span>
+                          <span className="inline-block px-2 py-1 text-xs font-semibold bg-primary bg-opacity-10 text-primary rounded-full px-3 text-sm">New</span>
                         </div>
 
 
 
                         {job.experience && (
-                          <p className="mb-3 text-sm job-meta-text">{job.experience}</p>
+                          <p className="mb-12 text-sm job-meta-text">{job.experience}</p>
                         )}
 
-                        <p className="line-clamp-2 text-xs job-desc-text mb-3" style={{ maxWidth: '90%' }}>
+                        <p className="line-clamp-2 text-xs job-desc-text mb-12" style={{ maxWidth: '90%' }}>
                           {job.description}
                         </p>
 
                         {job.skills && (
                           <div className="skills-container mb-0">
-                            <h6 className="small mb-2 job-label-text">Key Skills:</h6>
-                            <div className="d-flex flex-wrap gap-2">
+                            <h6 className="text-sm mb-2 job-label-text">Key Skills:</h6>
+                            <div className="flex flex-wrap gap-2">
                               {job.skills.split(/[,\n•]/).filter(s => s.trim()).slice(0, 8).map((skill, i) => (
                                 <span key={i} className="skill-tag-alt">
                                   {skill.trim()}
@@ -218,11 +218,11 @@ export default function CareerPage() {
                         )}
                       </div>
 
-                      <div className="col-span-1 text-lg-end mt-4 mt-lg-0">
-                        <div className="d-flex flex-wrap justify-end gap-2 job-meta-text small mb-3">
-                          <span className="d-flex gap-1 text-xs align-items-center"><i className="tji-home mr-2 text-primary"></i>{job.company || 'Codigix Infotech Pvt. Ltd.'}</span>
-                          <span className="d-flex gap-1 text-xs align-items-center"><i className="tji-location mr-2 text-primary"></i>{job.location}</span>
-                          <span className="d-flex gap-1 text-xs align-items-center"><i className="tji-clock mr-2 text-primary"></i>{job.type}</span>
+                      <div className="col-span-1 lg:text-right mt-12 lg:mt-0">
+                        <div className="flex flex-wrap justify-end gap-2 job-meta-text text-sm mb-12">
+                          <span className="flex gap-1 text-xs items-center"><i className="tji-home mr-2 text-primary"></i>{job.company || 'Codigix Infotech Pvt. Ltd.'}</span>
+                          <span className="flex gap-1 text-xs items-center"><i className="tji-location mr-2 text-primary"></i>{job.location}</span>
+                          <span className="flex gap-1 text-xs items-center"><i className="tji-clock mr-2 text-primary"></i>{job.type}</span>
                         </div>
                         
                         <Link
@@ -257,77 +257,77 @@ onClick={() => handleApply(job)}
           backgroundColor: 'rgb(255 255 255 / 14%)', backdropFilter: 'blur(8px)', zIndex: 9999, display: 'flex',
           alignItems: 'center', justifyContent: 'center', padding: '20px'
         }}>
-          <div className="modal-content-custom p-4 p-md-5 rounded-4 shadow-lg position-relative" style={{ 
+          <div className="modal-content-custom p-8 md:p-12 rounded-2xl shadow-lg relative" style={{ 
             maxWidth: '700px', 
             width: '100%', 
             maxHeight: '90vh', 
             overflowY: 'auto',
           }}>
-            <button className="position-absolute border-0 bg-transparent modal-close-btn" style={{ top: '25px', right: '25px', fontSize: '24px' }} onClick={() => setShowModal(false)}>×</button>
+            <button className="absolute border-0 bg-transparent modal-close-btn" style={{ top: '25px', right: '25px', fontSize: '24px' }} onClick={() => setShowModal(false)}>×</button>
 
-            <h2 className="h3 mb-4 job-label-text">Apply for {selectedJob?.title}</h2>
+            <h2 className="h3 mb-12 job-label-text">Apply for {selectedJob?.title}</h2>
 
-            <div className="job-details-mini mb-5 pb-4 border-bottom">
-              <div className="row mb-4">
-                <div className="col-6">
-                  <span className="text-muted small d-block mb-1">Experience</span>
-                  <span className="job-meta-text fw-medium">{selectedJob?.experience || 'N/A'}</span>
+            <div className="job-details-mini mb-12 pb-4 border-b">
+              <div className="flex flex-wrap -mx-4 mb-12">
+                <div className="w-1/2 px-4">
+                  <span className="text-gray-500 text-sm block mb-1">Experience</span>
+                  <span className="job-meta-text font-medium">{selectedJob?.experience || 'N/A'}</span>
                 </div>
-                <div className="col-6">
-                  <span className="text-muted small d-block mb-1">Location</span>
-                  <span className="job-meta-text fw-medium">{selectedJob?.location}</span>
+                <div className="w-1/2 px-4">
+                  <span className="text-gray-500 text-sm block mb-1">Location</span>
+                  <span className="job-meta-text font-medium">{selectedJob?.location}</span>
                 </div>
               </div>
 
               {selectedJob?.responsibilities && (
-                <div className="mb-4">
-                  <h6 className="small fw-bold text-uppercase tracking-wider job-label-text mb-2">Key Responsibilities:</h6>
-                  <div className="small job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.responsibilities}</div>
+                <div className="mb-12">
+                  <h6 className="text-sm font-bold uppercase tracking-wider job-label-text mb-2">Key Responsibilities:</h6>
+                  <div className="text-sm job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.responsibilities}</div>
                 </div>
               )}
 
               {selectedJob?.skills && (
-                <div className="mb-4">
-                  <h6 className="small fw-bold text-uppercase tracking-wider job-label-text mb-2">Required Skills:</h6>
-                  <div className="small job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.skills}</div>
+                <div className="mb-12">
+                  <h6 className="text-sm font-bold uppercase tracking-wider job-label-text mb-2">Required Skills:</h6>
+                  <div className="text-sm job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.skills}</div>
                 </div>
               )}
 
               {selectedJob?.qualifications && (
                 <div className="mb-0">
-                  <h6 className="small fw-bold text-uppercase tracking-wider job-label-text mb-2">Qualifications:</h6>
-                  <div className="small job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.qualifications}</div>
+                  <h6 className="text-sm font-bold uppercase tracking-wider job-label-text mb-2">Qualifications:</h6>
+                  <div className="text-sm job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.qualifications}</div>
                 </div>
               )}
             </div>
 
             {success ? (
-              <div className="alert alert-success">
+              <div className="p-4 rounded-lg bg-green-100 text-green-800">
                 Your application has been submitted successfully! We will get back to you soon.
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label className="form-label small job-label-text">Full Name</label>
-                  <input type="text" name="name" className="form-control p-2" value={formData.name} onChange={handleChange} required />
+                <div className="mb-12">
+                  <label className="block mb-2 text-sm font-medium job-label-text">Full Name</label>
+                  <input type="text" name="name" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" value={formData.name} onChange={handleChange} required />
                 </div>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label className="form-label small job-label-text">Email Address</label>
-                    <input type="email" name="email" className="form-control p-2" value={formData.email} onChange={handleChange} required />
+                <div className="flex flex-wrap -mx-4">
+                  <div className="w-full md:w-1/2 px-4 mb-12">
+                    <label className="block mb-2 text-sm font-medium job-label-text">Email Address</label>
+                    <input type="email" name="email" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" value={formData.email} onChange={handleChange} required />
                   </div>
-                  <div className="col-md-6 mb-3">
-                    <label className="form-label small job-label-text">Phone Number</label>
-                    <input type="tel" name="phone" className="form-control p-2" value={formData.phone} onChange={handleChange} required />
+                  <div className="w-full md:w-1/2 px-4 mb-12">
+                    <label className="block mb-2 text-sm font-medium job-label-text">Phone Number</label>
+                    <input type="tel" name="phone" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" value={formData.phone} onChange={handleChange} required />
                   </div>
                 </div>
                
-                <div className="mb-4">
-                  <label className="form-label small job-label-text">Resume (PDF, DOC, DOCX)</label>
-                  <input type="file" name="resume" className="form-control p-2" onChange={handleChange} accept=".pdf,.doc,.docx" required />
+                <div className="mb-12">
+                  <label className="block mb-2 text-sm font-medium job-label-text">Resume (PDF, DOC, DOCX)</label>
+                  <input type="file" name="resume" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" onChange={handleChange} accept=".pdf,.doc,.docx" required />
                 </div>
 
-                {error && <div className="alert alert-danger mb-4 small">{error}</div>}
+                {error && <div className="p-4 rounded-lg bg-red-100 text-red-800 mb-12 text-sm">{error}</div>}
 
                 <button type="submit" className="tj-primary-btn text-center" disabled={submitting}>
                   <div className="btn-inner">

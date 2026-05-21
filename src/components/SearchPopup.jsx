@@ -12,9 +12,9 @@
 //             </svg>
 //           </button>
 //         </div>
-//         <div className="container">
-//           <div className="row">
-//             <div className="col-xxl-12">
+//         <div className="container mx-auto px-4">
+//           <div className="flex flex-wrap -mx-4">
+//             <div className="2xl:w-full px-4">
 //               <div className="tj_search_wrapper">
 //                 <div className="search_form">
 //                   <form action="#">
@@ -111,9 +111,9 @@ export default function SearchPopup({ isOpen, onClose }) {
           </button>
         </div>
 
-        <div className="container">
-          <div className="row">
-            <div className="col-xxl-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="2xl:w-full px-4">
               <div className="tj_search_wrapper">
                 <div className="search_form">
                   <form action="#">

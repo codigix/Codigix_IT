@@ -26,14 +26,14 @@ const Contact = () => {
   return (
     <main className="pt-20">
       <section className="section-gap py-24 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-        <div className="container">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Get In Touch</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-12">Get In Touch</h1>
             <p className="text-xl text-gray-300">
               Have a question or project in mind? We'd love to hear from you.
             </p>
@@ -42,7 +42,7 @@ const Contact = () => {
       </section>
 
       <section className="section-gap">
-        <div className="container">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Info */}
             <motion.div
@@ -50,7 +50,7 @@ const Contact = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="sec-title mb-8">Contact Information</h2>
+              <h2 className="sec-title mb-12">Contact Information</h2>
               <div className="space-y-8">
                 <div>
                   <h4 className="text-xl font-bold mb-2">Phone</h4>
@@ -72,7 +72,7 @@ const Contact = () => {
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold mb-4">Follow Us</h4>
+                  <h4 className="text-xl font-bold mb-12">Follow Us</h4>
                   <div className="flex gap-4">
                     <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" 
                        className="w-10 h-10 flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
@@ -100,9 +100,9 @@ const Contact = () => {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-gray-50 p-8 rounded-lg shadow-lg"
+              className="bg-gray-50 p-12 rounded-lg shadow-lg"
             >
-              <h2 className="sec-title mb-8">Send us a Message</h2>
+              <h2 className="sec-title mb-12">Send us a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="block text-sm font-semibold mb-2">Name</label>

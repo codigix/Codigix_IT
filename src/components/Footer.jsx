@@ -8,9 +8,9 @@ export default function Footer() {
   return (
     <footer className="tj-footer-section footer-3 section-gap-top section-gap-x">
       <div className="footer-top-area">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="footer-cta">
                 <div className="sec-heading style-3 wow fadeInUp" data-wow-delay=".5s">
                 <span className="sub-title"><i className="tji-subtitle-2"></i>Get Started</span>
@@ -32,9 +32,9 @@ export default function Footer() {
         </div>
       </div> 
       <div className="footer-main-area style-2">
-        <div className="container">
-          <div className="row justify-content-between">
-            <div className="col-xl-3 col-md-6">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4 justify-between">
+            <div className="xl:w-1/4 px-4 md:w-1/2">
               <div className="footer-widget footer-col-1">
                 <div className="footer-logo">
                   <Link to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Codigix Infotech - AI & Software Solutions Logo" width="160" height="60" loading="lazy" /></Link>
@@ -52,7 +52,7 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            <div className="col-xxl-2 col-xl-3 col-md-6">
+            <div className="2xl:w-1/6 px-4 xl:w-1/4 md:w-1/2">
               <div className="footer-widget widget-nav-menu footer-col-2">
                 <h5 className="title">Quick Links</h5>
                 <ul>
@@ -66,7 +66,7 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-            <div className="col-xl-3 col-md-6">
+            <div className="xl:w-1/4 px-4 md:w-1/2">
               <div className="footer-widget widget-nav-menu footer-col-3">
                 <h5 className="title">Our Services</h5>
                 <ul>
@@ -79,7 +79,7 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-            <div className="col-xxl-4 col-xl-3 col-md-6">
+            <div className="2xl:w-1/3 px-4 xl:w-1/4 md:w-1/2">
               <div className="footer-widget widget-subscribe footer-col-4">
                 <h3 className="title">Subscribe to Our Newsletter.</h3>
                 <div className="subscribe-form">
@@ -95,9 +95,9 @@ export default function Footer() {
         </div>
       </div>
       <div className="tj-copyright-area-2">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="copyright-content-area">
                 <div className="copyright-text">
                   <p>&copy; 2026 <a href="https://themeforest.net/user/theme-junction/portfolio" target="_blank" rel="noopener noreferrer">Codigix</a> All right reserved</p>

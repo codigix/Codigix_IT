@@ -51,15 +51,15 @@ const ProjectSection = () => {
 
   return (
     <section className="section-gap bg-white">
-      <div className="container">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row justify-between items-center mb-16"
+          className="flex flex-col lg:flex-row justify-between items-center mb-12"
         >
           <div>
-            <p className="sub-title mb-4">
+            <p className="sub-title mb-12">
               <span>💡</span>
               Proud Projects
             </p>
@@ -98,8 +98,8 @@ const ProjectSection = () => {
                   className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
-              <div className="p-6 bg-white relative z-10">
-                <h4 className="text-xl font-bold mb-4">
+              <div className="p-12 bg-white relative z-10">
+                <h4 className="text-xl font-bold mb-12">
                   <Link to="/projects/details" className="hover:text-orange-500 transition-colors">
                     {project.title}
                   </Link>

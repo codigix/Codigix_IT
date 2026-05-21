@@ -72,7 +72,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
       {/* Brand Logo */}
       <div className="h-20 px-6 flex items-center justify-between flex-shrink-0">
         <Link to="/admin/dashboard" className="flex items-center gap-2 group">
-          <span className="text-2xl font-bold text-white tracking-tight italic">gratafy<span className="text-[10px] align-top ml-0.5">TM</span></span>
+          <img src="/assets/images/logos/logo.png" alt="Codigix Logo" className="h-10 w-auto" />
         </Link>
         <button 
           onClick={() => setIsOpen(false)}
@@ -87,7 +87,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
         {menuItems.map((section, idx) => (
           <div key={idx} className="space-y-1">
             <div className="px-4 mb-2">
-              <span className="text-[9px]  text-slate-500 uppercase tracking-[0.2em]">{section.title}</span>
+              <span className="text-[9px] text-slate-500 uppercase tracking-[0.2em]">{section.title}</span>
             </div>
             
             <div className="space-y-1">
@@ -125,7 +125,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
       </nav>
 
       {/* Logout */}
-      <div className="p-4 border-t border-slate-800/30">
+      <div className="p-8 border-t border-slate-800/30">
         <button 
           onClick={handleLogout}
           className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-white/5 text-slate-400 font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-red-500/10 hover:text-red-500 transition-all border border-transparent"

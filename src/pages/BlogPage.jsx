@@ -43,9 +43,9 @@ export default function BlogPage() {
         keywords="AI blog, technology insights, software engineering articles, tech trends 2024, AI news, Codigix Infotech blog"
       />
       <section className="tj-page-header section-gap-x" style={{backgroundImage: `url(${getImageUrl("assets/images/bg/pheader-bg.webp")})`}}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full lg:w-full px-4">
               <div className="tj-page-header-content text-center">
                 <h1 className="tj-page-title">Blog</h1>
                 <div className="tj-page-link">
@@ -61,18 +61,18 @@ export default function BlogPage() {
       </section>
 
       <section className="tj-blog-section section-gap">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="sec-heading sec-heading-centered">
                 <span className="sub-title wow fadeInUp" data-wow-delay="0.3s"><i className="tji-subtitle-2"></i>Our Latest Articles</span>
                 <h2 className="sec-title text-anim">AI & Technology Insights</h2>
               </div>
             </div>
           </div>
-          <div className="row row-gap-4">
+          <div className="flex flex-wrap -mx-4 gap-y-4">
             {blogs.map((blog, idx) => (
-              <div className="col-xl-4 col-md-6" key={blog.id}>
+              <div className="xl:w-1/3 px-4 md:w-1/2" key={blog.id}>
                 <div className="blog-item style-3 wow fadeInUp" data-wow-delay={`.${3 + idx}s`}>
                   <div className="blog-thumb">
                     <Link to={`/blog/details/${blog.id}`}><img src={getImageUrl(blog.image, "assets/images/blog")} alt={blog.title} loading="lazy" width="600" height="400" /></Link>
@@ -94,7 +94,7 @@ export default function BlogPage() {
             ))}
           </div>
 
-          <div className="tj-pagination d-flex justify-content-center">
+          <div className="tj-pagination flex justify-center">
             <ul>
               <li><span aria-current="page" className="page-numbers current">1</span></li>
               <li><a className="page-numbers" href="#">2</a></li>
@@ -106,9 +106,9 @@ export default function BlogPage() {
       </section>
 
       {/* <section className="tj-cta-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="cta-area wow fadeInUp" data-wow-delay=".3s">
                 <div className="cta-content">
                   <h2 className="title">Stay Updated with Latest AI Trends</h2>

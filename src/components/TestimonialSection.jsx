@@ -85,9 +85,9 @@ const TestimonialSection = () => {
 
   return (
     <section className="tj-testimonial-section section-gap section-gap-x">
-      <div className="container">
-        <div className="row justify-content-between">
-          <div className="col-lg-6">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-wrap -mx-4 justify-between">
+          <div className="w-full lg:w-1/2 px-4">
             <div className="content-wrap">
               <div className="sec-heading">
                 <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
@@ -114,7 +114,7 @@ const TestimonialSection = () => {
                 </div>
               </div>
 
-              <div className="slider-navigation d-lg-inline-flex d-none wow fadeInUp" data-wow-delay=".3s">
+              <div className="slider-navigation lg:inline-flex hidden wow fadeInUp" data-wow-delay=".3s">
                 <div className="slider-prev" role="button" aria-label="Previous testimonial">
                   <span className="anim-icon">
                     <i className="tji-arrow-left"></i>
@@ -131,7 +131,7 @@ const TestimonialSection = () => {
             </div>
           </div>
 
-          <div className="col-lg-6">
+          <div className="w-full lg:w-1/2 px-4">
             <div className="testimonial-wrapper wow fadeInUp" data-wow-delay=".5s">
               <Swiper
                 modules={[Pagination, Navigation, Autoplay]}
@@ -185,7 +185,7 @@ const TestimonialSection = () => {
             </div>
 
             <div className="mobile-navigation">
-              <div className="slider-navigation d-inline-flex d-lg-none">
+              <div className="slider-navigation inline-flex lg:hidden">
                 <div className="slider-prev" role="button" aria-label="Previous testimonial">
                   <span className="anim-icon">
                     <i className="tji-arrow-left"></i>

@@ -68,9 +68,9 @@ export default function AboutPage() {
         keywords="about Codigix, AI software company, software engineering team, IT mission and vision, tech innovators"
       />
       <section className="tj-page-header section-gap-x" style={{backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778342361/0015_lf398t.jpg")})`}}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full lg:w-full px-4">
               <div className="tj-page-header-content text-center">
                 <h1 className="tj-page-title">About Us</h1>
                 <div className="tj-page-link">
@@ -88,9 +88,9 @@ export default function AboutPage() {
       <section className="tj-about-section-2 section-gap-top section-gap-x">
         <div className="about-wrapper">
           <div className="about-area">
-            <div className="container">
-              <div className="row">
-                <div className="col-12">
+            <div className="container mx-auto px-4">
+              <div className="flex flex-wrap -mx-4">
+                <div className="w-full px-4">
                   <div className="about-content-area style-2">
                     <div className="sec-heading style-2">
                       <span className="sub-title wow fadeInUp" data-wow-delay=".3s">Explore Our Services</span>
@@ -144,9 +144,9 @@ export default function AboutPage() {
       </section>
 
       <section className="tj-achievement-section section-gap">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="sec-heading-wrap">
                 <span className="sub-title wow fadeInUp" data-wow-delay=".3s"><i className="tji-subtitle-2"></i>Our Achievements</span>
                 <div className="heading-wrap-content">
@@ -158,13 +158,13 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-          <div className="row row-gap-4">
-            <div className="col-lg-6 order-2 order-lg-1">
+          <div className="flex flex-wrap -mx-4 gap-y-4">
+            <div className="w-full lg:w-1/2 px-4 order-2 lg:order-1">
               <div className="achievement-img wow fadeInLeft" data-wow-delay=".3s">
                 <img src={getImageUrl("assets/images/achievement/achievement.webp")} alt="Codigix Achievements and Milestones" width="600" height="400" loading="lazy" />
               </div>
             </div>
-            <div className="col-lg-6 order-1 order-lg-2">
+            <div className="w-full lg:w-1/2 px-4 order-1 lg:order-2">
               <div className="achievement-area wow fadeInRight" data-wow-delay=".3s">
                 {achievements.map((achievement) => (
                   <div className="achievement-item" key={achievement.id}>
@@ -181,19 +181,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="tj-team-section-2 section-gap section-gap-x mb-5">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+      <section className="tj-team-section-2 section-gap section-gap-x mb-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="sec-heading sec-heading-centered">
                 <span className="sub-title wow fadeInUp" data-wow-delay=".3s"><i className="tji-subtitle-2"></i>Passionate Innovators</span>
                 <h2 className="sec-title text-anim">The Minds Behind the Innovation</h2>
               </div>
             </div>
           </div>
-          <div className="row row-gap-4">
+          <div className="flex flex-wrap -mx-4 gap-y-4">
             {team.map((member, idx) => (
-              <div className="col-lg-3 col-sm-6" key={member.id}>
+              <div className="w-full lg:w-1/4 px-4 sm:w-1/2" key={member.id}>
                 <div className="team-item wow fadeInUp" data-wow-delay={`.${3 + idx}s`}>
                   <div className="team-img">
                     <img src={getImageUrl(member.image, "assets/images/team")} alt={member.name} width="300" height="350" loading="lazy" />

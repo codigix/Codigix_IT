@@ -1,14 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
+@config "../tailwind.config.js";
+@plugin "tailwindcss-animate";
+@source "../src/**/*.{js,jsx,ts,tsx}";
+@source "../index.html";
 
 @theme {
   --color-primary: var(--tj-color-theme-primary);
+  --color-secondary: #FF6B35;
   --color-heading: var(--tj-color-heading-primary);
   --color-body: var(--tj-color-text-body);
+  --color-body-2: var(--tj-color-text-body-2);
   --color-theme-bg: var(--tj-color-theme-bg);
   --color-theme-dark: var(--tj-color-theme-dark);
   --color-border-1: var(--tj-color-border-1);
+  --color-dark: #0F1419;
+  
+  --font-sans: "Poppins", sans-serif;
+  --font-admin: "Roboto", "Roboto Fallback", sans-serif;
+
+  --animate-fadeInUp: fadeInUp 0.6s ease-out;
+  --animate-fadeInLeft: fadeInLeft 0.8s ease-out;
+  --animate-slideInDown: slideInDown 0.5s ease-out;
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInLeft {
+    0% { opacity: 0; transform: translateX(-30px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInDown {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
 }
 
 body {
@@ -1399,13 +1426,13 @@ START: Countup CSS
     left: 0 !important;
 }
 .testimonial-slider .pagination-1 {
-    width: 120px;
+    width: 120px !important;
     background-color: var(--tj-color-theme-bg);
     border-top-left-radius: 12px;
     position: absolute;
-    left: auto;
-    right: 0;
-    bottom: 0;
+   left: auto !important;
+  right: 0;
+  bottom: 0 !important;
     margin: 0;
     padding: 15px 10px;
     z-index: 10;

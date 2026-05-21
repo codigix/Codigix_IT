@@ -36,14 +36,14 @@ const Blog = () => {
   return (
     <main className="pt-20">
       <section className="section-gap py-24 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-        <div className="container">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Blog & News</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-12">Blog & News</h1>
             <p className="text-xl text-gray-300">
               Stay updated with the latest insights and trends in technology.
             </p>
@@ -52,7 +52,7 @@ const Blog = () => {
       </section>
 
       <section className="section-gap">
-        <div className="container">
+        <div className="container mx-auto px-4">
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
@@ -76,19 +76,19 @@ const Blog = () => {
                   </span>
                 </div>
 
-                <div className="p-6">
-                  <div className="flex items-center gap-4 mb-4 text-sm text-gray-600 border-b pb-4">
+                <div className="p-12">
+                  <div className="flex items-center gap-4 mb-12 text-sm text-gray-600 border-b pb-4">
                     <span>By {blog.author}</span>
                     <span>{blog.date}</span>
                   </div>
 
-                  <h3 className="text-xl font-bold mb-4 line-clamp-2">
+                  <h3 className="text-xl font-bold mb-12 line-clamp-2">
                     <Link to="/blog/details" className="hover:text-orange-500 transition-colors">
                       {blog.title}
                     </Link>
                   </h3>
 
-                  <p className="text-gray-600 text-sm mb-6">{blog.excerpt}</p>
+                  <p className="text-gray-600 text-sm mb-12">{blog.excerpt}</p>
 
                   <Link 
                     to="/blog/details"

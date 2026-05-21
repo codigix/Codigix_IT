@@ -305,11 +305,25 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
     }
   };
 
-  const handleEdit = (item) => {
-    setEditingItem(item);
-    setFormData(item);
-    setShowForm(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleEdit = async (item) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_BASE_URL}/${entity}/${item.id}`);
+      if (response.ok) {
+        const fullItem = await response.json();
+        setEditingItem(fullItem);
+        setFormData(fullItem);
+        setShowForm(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        setNotification({ type: 'error', message: 'Failed to fetch full record details.' });
+      }
+    } catch (error) {
+      console.error('Error fetching full item:', error);
+      setNotification({ type: 'error', message: 'An error occurred while fetching details.' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleDelete = async (id) => {
@@ -390,7 +404,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
               {notification.type === 'success' ? <CheckCircle className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
             </div>
             <div className="flex-1">
-               <p className="text-[10px]  uppercase tracking-[0.1em]">{notification.message}</p>
+               <p className="text-[10px] uppercase tracking-[0.1em]">{notification.message}</p>
             </div>
             <button onClick={() => setNotification(null)} className="p-2 hover:bg-white/10 rounded-xl transition-colors">
               <X className="w-4 h-4" />
@@ -400,14 +414,14 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
       </AnimatePresence>
 
       {/* Header Actions */}
-      <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center bg-[#252841]/60 backdrop-blur-md p-6 rounded-2xl border border-slate-800/30 gap-6">
+      <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center bg-[#252841]/60 backdrop-blur-md p-12 rounded-2xl border border-slate-800/30 gap-6">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-[#FF1F8B]/10 flex items-center justify-center text-[#FF1F8B] border border-[#FF1F8B]/20">
             <Database className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl  text-white tracking-tight uppercase">{title}</h2>
-            <p className="text-slate-500 text-[9px]  uppercase tracking-[0.2em] mt-1">{data.length} Total Records</p>
+            <h2 className="text-xl text-white tracking-tight uppercase">{title}</h2>
+            <p className="text-slate-500 text-[9px] uppercase tracking-[0.2em] mt-1">{data.length} Total Records</p>
           </div>
         </div>
         
@@ -447,13 +461,13 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="bg-[#252841]/60 backdrop-blur-md border border-slate-800/30 rounded-2xl p-6 lg:p-8"
+            className="bg-[#252841]/60 backdrop-blur-md border border-slate-800/30 rounded-2xl p-12 lg:p-8"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {fields.map((field) => (
                   <div key={field.name} className={`space-y-2 ${field.type === 'textarea' ? 'md:col-span-2' : ''}`}>
-                    <label className="block text-[9px]  text-slate-500 uppercase tracking-[0.2em] px-1">
+                    <label className="block text-[9px] text-slate-500 uppercase tracking-[0.2em] px-1">
                       {field.label || field.name}
                     </label>
                     {field.type === 'textarea' ? (
@@ -468,7 +482,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                     ) : field.type === 'tech-list' ? (
                       <div className="space-y-4">
                         {parseTechList(formData[field.name]).map((group, groupIndex) => (
-                          <div key={groupIndex} className="bg-[#1A1C2E] border border-slate-800/30 rounded-xl p-4 space-y-4">
+                          <div key={groupIndex} className="bg-[#1A1C2E] border border-slate-800/30 rounded-xl p-8 space-y-4">
                             <div className="flex items-center gap-4">
                               <input
                                 type="text"
@@ -615,7 +629,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                                     <button 
                                       type="button"
                                       onClick={() => handleRemoveMultiImage(field.name, idx)}
-                                      className="absolute top-1 right-1 p-1.5 bg-black/60 hover:bg-rose-600 text-white rounded-lg backdrop-blur-md opacity-0 group-hover/img:opacity-100 transition-all"
+                                      className="absolute top-1 right-1 p-1 bg-black/60 hover:bg-rose-600 text-white rounded-lg backdrop-blur-md opacity-0 group-hover/img:opacity-100 transition-all"
                                     >
                                       <X className="w-3 h-3" />
                                     </button>
@@ -635,7 +649,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                         value={formData[field.name] || ''}
                         onChange={handleInputChange}
                         placeholder={`ENTER ${field.label || field.name.toUpperCase()}...`}
-                        className="w-full bg-[#1A1C2E] border border-slate-800/30 rounded-xl px-4 py-4 text-[11px] font-bold text-white focus:border-[#FF1F8B]/40 focus:outline-none transition-all  tracking-wide"
+                        className="w-full bg-[#1A1C2E] border border-slate-800/30 rounded-xl px-4 py-4 text-[11px] font-bold text-white focus:border-[#FF1F8B]/40 focus:outline-none transition-all tracking-wide"
                         required={field.required !== false}
                       />
                     )}
@@ -646,14 +660,14 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}
-                  className="px-5 py-2 rounded-xl  text-[10px] uppercase tracking-[0.2em] text-slate-500 hover:text-white transition-all"
+                  className="px-5 py-2 rounded-xl text-[10px] uppercase tracking-[0.2em] text-slate-500 hover:text-white transition-all"
                 >
                   Discard
                 </button>
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="bg-[#FF1F8B] text-white px-8 py-3 rounded-xl  text-[10px] uppercase tracking-[0.2em] hover:bg-[#FF1F8B]/90 shadow-lg shadow-[#FF1F8B]/20 transition-all disabled:opacity-50 flex items-center gap-2"
+                  className="bg-[#FF1F8B] text-white px-8 py-3 rounded-xl text-[10px] uppercase tracking-[0.2em] hover:bg-[#FF1F8B]/90 shadow-lg shadow-[#FF1F8B]/20 transition-all disabled:opacity-50 flex items-center gap-2"
                 >
                   {isSaving ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : null}
                   {editingItem ? 'Update Record' : 'Create Entry'}
@@ -666,10 +680,10 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
 
       {/* Table Section */}
       <div className="bg-[#252841]/40 backdrop-blur-md border border-slate-800/30 rounded-2xl overflow-hidden mb-12">
-        <div className="p-6 border-b border-slate-800/30 bg-[#252841]/20 flex items-center justify-between">
+        <div className="p-12 border-b border-slate-800/30 bg-[#252841]/20 flex items-center justify-between">
            <div className="flex items-center gap-3">
               <Filter className="w-4 h-4 text-[#00D1FF]" />
-              <span className="text-[10px]  text-white uppercase tracking-[0.2em]">Records List</span>
+              <span className="text-[10px] text-white uppercase tracking-[0.2em]">Records List</span>
            </div>
            <div className="flex items-center gap-2">
               <div className="flex bg-[#1A1C2E] p-1 rounded-xl border border-slate-800/30 mr-2">
@@ -692,23 +706,23 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
         </div>
         
         {loading ? (
-          <div className="p-24 text-center">
-            <div className="w-12 h-12 border-4 border-[#FF1F8B]/20 border-t-[#FF1F8B] rounded-full animate-spin mx-auto mb-6"></div>
-            <p className="text-slate-400  text-[10px] uppercase tracking-[0.2em]">Synchronizing Database Cloud...</p>
+          <div className="p-12 text-center">
+            <div className="w-12 h-12 border-4 border-[#FF1F8B]/20 border-t-[#FF1F8B] rounded-full animate-spin mx-auto mb-12"></div>
+            <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em]">Synchronizing Database Cloud...</p>
           </div>
         ) : filteredData.length === 0 ? (
-          <div className="p-24 text-center flex flex-col items-center gap-6">
+          <div className="p-12 text-center flex flex-col items-center gap-6">
             <div className="w-20 h-20 rounded-3xl bg-[#1A1C2E] flex items-center justify-center text-slate-700 text-3xl border border-slate-800/30 rotate-3">
               <FileText className="w-10 h-10" />
             </div>
             <div className="max-w-xs mx-auto">
-              <p className="text-white  text-lg tracking-tight uppercase">No matching records</p>
+              <p className="text-white text-lg tracking-tight uppercase">No matching records</p>
               <p className="text-slate-500 text-[10px] mt-2 font-bold uppercase tracking-wider">We couldn't find any entries matching your current filter criteria.</p>
             </div>
-            <button onClick={() => setSearchQuery('')} className="text-[#FF1F8B] text-[10px]  uppercase tracking-[0.2em] hover:underline">Clear all filters</button>
+            <button onClick={() => setSearchQuery('')} className="text-[#FF1F8B] text-[10px] uppercase tracking-[0.2em] hover:underline">Clear all filters</button>
           </div>
         ) : currentView === 'grid' ? (
-          <div className="p-6 lg:p-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div className="p-12 lg:p-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredData.map((item) => (
               <motion.div
                 key={item.id}
@@ -750,7 +764,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                   </div>
 
                   <div className="absolute bottom-4 left-6">
-                    <div className="flex items-center gap-2 text-[8px]  uppercase tracking-[0.2em] text-[#00D1FF] bg-[#00D1FF]/10 backdrop-blur-md px-2.5 py-1.5 rounded-lg border border-[#00D1FF]/20">
+                    <div className="flex items-center gap-2 text-[8px] uppercase tracking-[0.2em] text-[#00D1FF] bg-[#00D1FF]/10 backdrop-blur-md px-2.5 py-1.5 rounded-lg border border-[#00D1FF]/20">
                       <div className="w-1.5 h-1.5 rounded-full bg-[#00D1FF] animate-pulse"></div>
                       Live Preview
                     </div>
@@ -758,12 +772,12 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 space-y-4">
+                <div className="p-12 space-y-4">
                   <div>
-                    <span className="text-[9px] text-[#FF1F8B]  uppercase tracking-[0.2em] block mb-1">
+                    <span className="text-[9px] text-[#FF1F8B] uppercase tracking-[0.2em] block mb-1">
                       {item.subtitle || 'ENTITY RECORD'}
                     </span>
-                    <h3 className="text-lg  text-white uppercase tracking-tight line-clamp-1 group-hover:text-[#FF1F8B] transition-colors">
+                    <h3 className="text-lg text-white uppercase tracking-tight line-clamp-1 group-hover:text-[#FF1F8B] transition-colors">
                       {item.title || item.name || 'Untitled Entry'}
                     </h3>
                   </div>
@@ -773,7 +787,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                   </p>
 
                   <div className="pt-4 border-t border-slate-800/30 flex items-center justify-between">
-                    <span className="text-[9px] text-slate-500  uppercase tracking-[0.2em]">ID: #{item.id}</span>
+                    <span className="text-[9px] text-slate-500 uppercase tracking-[0.2em]">ID: #{item.id}</span>
                     <div className="flex -space-x-2">
                        <div className="w-6 h-6 rounded-full bg-slate-800 border-2 border-[#1A1C2E] flex items-center justify-center text-[8px] font-bold text-slate-500">
                          {item.id % 9}
@@ -789,10 +803,10 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
             <table className="w-full text-left min-w-[800px]">
               <thead>
                 <tr className="bg-[#1A1C2E]/50 border-b border-slate-800/30">
-                  <th className="pl-8 pr-6 py-5 text-[9px]  text-slate-500 uppercase tracking-[0.2em]">Resource Preview</th>
-                  <th className="px-6 py-5 text-[9px]  text-slate-500 uppercase tracking-[0.2em]">Entry Details</th>
-                  <th className="px-6 py-5 text-[9px]  text-slate-500 uppercase tracking-[0.2em]">Status</th>
-                  <th className="pl-6 pr-8 py-5 text-[9px]  text-slate-500 uppercase tracking-[0.2em] text-right">Operations</th>
+                  <th className="pl-8 pr-6 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em]">Resource Preview</th>
+                  <th className="px-6 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em]">Entry Details</th>
+                  <th className="px-6 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em]">Status</th>
+                  <th className="pl-6 pr-8 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em] text-right">Operations</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/20">
@@ -817,10 +831,10 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                           )}
                         </div>
                         <div className="flex flex-col gap-1">
-                           <span className="text-white  text-xs uppercase tracking-wide group-hover/row:text-[#FF1F8B] transition-colors">
+                           <span className="text-white text-xs uppercase tracking-wide group-hover/row:text-[#FF1F8B] transition-colors">
                             {item.title || item.author || item.name || 'Untitled Entry'}
                            </span>
-                           <span className="text-[9px] text-slate-500  uppercase tracking-[0.2em]">ID: #{item.id}</span>
+                           <span className="text-[9px] text-slate-500 uppercase tracking-[0.2em]">ID: #{item.id}</span>
                         </div>
                       </div>
                     </td>
@@ -832,7 +846,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                       </div>
                     </td>
                     <td className="px-6 py-6">
-                       <div className="flex items-center gap-2 text-[8px]  uppercase tracking-[0.2em] text-[#00D1FF] bg-[#00D1FF]/5 px-2.5 py-1.5 rounded-lg w-fit border border-[#00D1FF]/10">
+                       <div className="flex items-center gap-2 text-[8px] uppercase tracking-[0.2em] text-[#00D1FF] bg-[#00D1FF]/5 px-2.5 py-1.5 rounded-lg w-fit border border-[#00D1FF]/10">
                           <div className="w-1.5 h-1.5 rounded-full bg-[#00D1FF] animate-pulse"></div>
                           Verified
                        </div>
@@ -865,7 +879,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
       {/* Delete Confirmation Modal */}
       <AnimatePresence>
         {deleteConfirmId && (
-          <div className="fixed inset-0 z-[110] flex items-center justify-center p-6">
+          <div className="fixed inset-0 z-[110] flex items-center justify-center p-12">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -877,29 +891,29 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="relative bg-[#1A1C2E] border border-slate-800/30 p-8 rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden"
+              className="relative bg-[#1A1C2E] border border-slate-800/30 p-12 rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-rose-500 to-transparent opacity-50" />
               
-              <div className="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-500 mb-6 border border-rose-500/20">
+              <div className="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-500 mb-12 border border-rose-500/20">
                 <AlertCircle className="w-7 h-7" />
               </div>
               
-              <h3 className="text-xl  text-white mb-2 tracking-tight uppercase">Confirm Deletion</h3>
-              <p className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-8 leading-relaxed">
+              <h3 className="text-xl text-white mb-2 tracking-tight uppercase">Confirm Deletion</h3>
+              <p className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-12 leading-relaxed">
                 This action is irreversible. The selected record will be permanently purged from the production database.
               </p>
               
               <div className="flex gap-3">
                 <button
                   onClick={() => setDeleteConfirmId(null)}
-                  className="flex-1 px-4 py-3 rounded-xl  text-[10px] uppercase tracking-[0.2em] text-slate-500 hover:text-white hover:bg-white/5 transition-all"
+                  className="flex-1 px-4 py-3 rounded-xl text-[10px] uppercase tracking-[0.2em] text-slate-500 hover:text-white hover:bg-white/5 transition-all"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={() => handleDelete(deleteConfirmId)}
-                  className="flex-1 bg-rose-600 text-white px-4 py-3 rounded-xl  text-[10px] uppercase tracking-[0.2em] transition-all active:scale-95 shadow-lg shadow-rose-600/20 hover:bg-rose-500"
+                  className="flex-1 bg-rose-600 text-white px-4 py-3 rounded-xl text-[10px] uppercase tracking-[0.2em] transition-all active:scale-95 shadow-lg shadow-rose-600/20 hover:bg-rose-500"
                 >
                   Delete
                 </button>

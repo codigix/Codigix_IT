@@ -43,9 +43,9 @@ export default function ServicesPage() {
         keywords="AI services, software development, ERP solutions, CRM development, machine learning services, custom IT solutions"
       />
       <section className="tj-page-header section-gap-x" style={{ backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778412018/samples/codigix%20infotech/businessman-typing-laptop-keyboard-late-evening_ldtqu3.jpg")})` }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full lg:w-full px-4">
               <div className="tj-page-header-content text-center">
                 <h1 className="tj-page-title">Services</h1>
                 <div className="tj-page-link">
@@ -61,7 +61,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="tj-service-section-2 section-gap ">
-        <div className="container">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, idx) => (
               <div className="service-item style-2 wow fadeInUp" data-wow-delay=".1s" key={idx}>
@@ -76,7 +76,7 @@ export default function ServicesPage() {
                       src={getImageUrl(service.image, "assets/images/service")}
                       alt={service.title}
                       loading="lazy"
-                      className="w-fit h-[150px] object-cover  transition-transform duration-500 group-hover:scale-110"
+                      className="w-fit h-[150px] object-cover transition-transform duration-500 group-hover:scale-110"
                       width="400"
                       height="150"
                     />
@@ -95,7 +95,7 @@ export default function ServicesPage() {
           </div>
 
           {/* 
-          <div className="tj-pagination d-flex justify-content-center">
+          <div className="tj-pagination flex justify-center">
             <ul>
               <li><span aria-current="page" className="page-numbers current">1</span></li>
               <li><a className="page-numbers" href="#">2</a></li>
@@ -107,9 +107,9 @@ export default function ServicesPage() {
       </section>
 
       {/* <section className="tj-cta-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="cta-area wow fadeInUp" data-wow-delay=".3s">
                 <div className="cta-content">
                   <h2 className="title">Ready to Elevate Your Business with AI?</h2>

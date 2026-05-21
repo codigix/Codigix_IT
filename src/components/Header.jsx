@@ -24,9 +24,9 @@ export default function Header() {
         <header className="header-area header-3 header-absolute">
           {/* <div className='top-gap-75'> */}
           <div className="header-top style-2">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-12">
+            <div className="w-full px-4">
+              <div className="flex flex-wrap -mx-4">
+                <div className="w-full px-4">
                   <div className="header-top-content">
                     <p className="topbar-text"><i className="tji-idea"></i>Innovating Tomorrow, Today <Link to="/contact" aria-label="Contact us to learn more about our innovations">Contact Us</Link></p>
                     <div className="header-info">
@@ -56,15 +56,15 @@ export default function Header() {
           </div>
           {/* </div> */}
           <div className="header-bottom">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-12">
+            <div className="w-full px-4">
+              <div className="flex flex-wrap -mx-4">
+                <div className="w-full px-4">
                   <div className="header-wrapper">
                     <div className="site_logo">
                       <Link className="logo" to="/"><img src={getImageUrl("/assets/images/logos/logo.png")} alt="Codigix Logo" width="160" height="60" loading="lazy" /></Link>
                     </div>
 
-                    <div className="menu-area d-none d-lg-inline-flex align-items-center">
+                    <div className="menu-area hidden lg:inline-flex items-center">
                       <nav id="mobile-menu" className="mainmenu">
                         <ul>
                           <li className="current-menu-ancestor"><Link to="/">Home</Link></li>
@@ -95,10 +95,10 @@ export default function Header() {
                       </nav>
                     </div>
 
-                    <div className="header-right-item d-lg-inline-flex d-none">
+                    <div className="header-right-item lg:inline-flex hidden">
                       <ThemeToggle className="mr-3" />
                       <div
-                        className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
+                        className="menu_bar menu_offcanvas lg:inline-flex hidden"
                         onClick={() => setMenuOpen(true)}
                         aria-label="Open offcanvas menu"
                         role="button"
@@ -109,9 +109,9 @@ export default function Header() {
                       </div>
                     </div>
 
-                    <ThemeToggle className="d-lg-none mr-2" />
+                    <ThemeToggle className="lg:hidden mr-2" />
                     <div
-                      className="menu_bar mobile_menu_bar d-lg-none"
+                      className="menu_bar mobile_menu_bar lg:hidden"
                       onClick={() => setMenuOpen(true)}
                       aria-label="Open mobile menu"
                       role="button"
@@ -129,15 +129,15 @@ export default function Header() {
         </header>
 
         <header className="header-area header-3 header-duplicate header-sticky">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-12">
+          <div className="w-full px-4">
+            <div className="flex flex-wrap -mx-4">
+              <div className="w-full px-4">
                 <div className="header-wrapper">
                   <div className="site_logo">
                     <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" width="160" height="60" loading="lazy" /></Link>
                   </div>
 
-                  <div className="menu-area d-none d-lg-inline-flex align-items-center">
+                  <div className="menu-area hidden lg:inline-flex items-center">
                     <nav className="mainmenu">
                       <ul>
                         <li className="current-menu-ancestor"><Link to="/">Home</Link></li>
@@ -168,11 +168,11 @@ export default function Header() {
                     </nav>
                   </div>
 
-                  <div className="header-right-item d-none d-lg-inline-flex">
+                  <div className="header-right-item hidden lg:inline-flex">
                     <ThemeToggle className="mr-3" />
 
                     <div
-                      className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
+                      className="menu_bar menu_offcanvas lg:inline-flex hidden"
                       onClick={() => setMenuOpen(true)}
                       aria-label="Open offcanvas menu"
                       role="button"
@@ -183,7 +183,7 @@ export default function Header() {
                     </div>
                   </div>
 
-                  <div className="menu_bar mobile_menu_bar d-lg-none"
+                  <div className="menu_bar mobile_menu_bar lg:hidden"
                   onClick={() => setMenuOpen(true)}
                   aria-label="Open mobile menu"
                   role="button"
@@ -215,15 +215,15 @@ export default function Header() {
     <>
       <header className="header-area header-2">
         <div className="header-bottom">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-12">
+          <div className="w-full px-4">
+            <div className="flex flex-wrap -mx-4">
+              <div className="w-full px-4">
                 <div className="header-wrapper">
                   <div className="site_logo">
                     <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" width="160" height="60" loading="lazy" /></Link>
                   </div>
 
-                  <div className="menu-area d-none d-lg-inline-flex align-items-center">
+                  <div className="menu-area hidden lg:inline-flex items-center">
                     <nav id="mobile-menu" className="mainmenu">
                       <ul>
                         <li><Link to="/">Home</Link></li>
@@ -254,7 +254,7 @@ export default function Header() {
                     </nav>
                   </div>
 
-                  <div className="header-right-item d-none d-lg-inline-flex">
+                  <div className="header-right-item hidden lg:inline-flex">
                     <ThemeToggle className="mr-3" />
                     <div className="header-button">
                       <Link className="tj-primary-btn" to="/contact">
@@ -267,7 +267,7 @@ export default function Header() {
                     </div>
                   </div>
 
-                  <div className="menu_bar mobile_menu_bar d-lg-none"
+                  <div className="menu_bar mobile_menu_bar lg:hidden"
                   onClick={() => setMenuOpen(true)}
                   aria-label="Open mobile menu"
                   role="button"
@@ -285,15 +285,15 @@ export default function Header() {
 
       <header className="header-area header-2 header-duplicate header-sticky">
         <div className="header-bottom">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-12">
+          <div className="w-full px-4">
+            <div className="flex flex-wrap -mx-4">
+              <div className="w-full px-4">
                 <div className="header-wrapper">
                   <div className="site_logo">
                     <Link className="logo" to="/"><img src="/assets/images/logos/logo.png" alt="Codigix Logo" width="160" height="60" loading="lazy" /></Link>
                   </div>
 
-                  <div className="menu-area d-none d-lg-inline-flex align-items-center">
+                  <div className="menu-area hidden lg:inline-flex items-center">
                     <nav className="mainmenu">
                       <ul>
                         {/* <li className="has-dropdown"><Link to="/">Home</Link>
@@ -346,7 +346,7 @@ export default function Header() {
                     </nav>
                   </div>
 
-                  <div className="header-right-item d-none d-lg-inline-flex">
+                  <div className="header-right-item hidden lg:inline-flex">
                     <ThemeToggle className="mr-3" />
                     <div className="header-button">
                       <Link className="tj-primary-btn" to="/contact">
@@ -360,7 +360,7 @@ export default function Header() {
                   </div>
 
                   {/* <div
-                    className="menu_bar menu_offcanvas d-lg-inline-flex d-none"
+                    className="menu_bar menu_offcanvas lg:inline-flex hidden"
                     onClick={() => setMenuOpen(true)}
                   >
                     <span></span>

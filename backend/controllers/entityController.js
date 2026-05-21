@@ -8,7 +8,18 @@ exports.getAll = async (req, res) => {
     const validColumns = columns.map(c => c.Field);
     
     // Define heavy columns to exclude in list view to improve performance
-    const heavyColumns = ['gallery', 'maintenance_items', 'faqs', 'key_features'];
+    const heavyColumns = [
+      'gallery', 
+      'maintenance_items', 
+      'faqs', 
+      'key_features',
+      'overview',
+      'goals',
+      'technology_stack',
+      'results',
+      'long_description',
+      'content'
+    ];
     
     const selectColumns = validColumns
       .filter(col => !heavyColumns.includes(col))

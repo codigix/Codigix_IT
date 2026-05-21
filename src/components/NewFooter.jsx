@@ -6,9 +6,9 @@ export default function NewFooter() {
     <footer>
       {/* CTA SECTION */}
       <section className="tj-cta-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="cta-area wow fadeInUp" data-wow-delay=".3s">
                 <div className="cta-content">
                   <h2 className="title">
@@ -48,11 +48,11 @@ export default function NewFooter() {
         <div className="footer-top-shape"></div>
 
         <div className="footer-main-area">
-          <div className="container">
-            <div className="row justify-content-between">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap -mx-4 justify-between">
 
               {/* Logo & About */}
-              <div className="col-xl-3 col-md-6">
+              <div className="xl:w-1/4 px-4 md:w-1/2">
                 <div className="footer-widget footer-col-1">
                   <div className="footer-logo">
                     <Link to="/">
@@ -85,7 +85,7 @@ export default function NewFooter() {
               </div>
 
               {/* Quick Links */}
-              <div className="col-xxl-2 col-xl-3 col-md-6">
+              <div className="2xl:w-1/6 px-4 xl:w-1/4 md:w-1/2">
                 <div className="footer-widget widget-nav-menu footer-col-2">
                   <h5 className="title">Quick Links</h5>
                   <ul>
@@ -100,7 +100,7 @@ export default function NewFooter() {
               </div>
 
               {/* Services */}
-              <div className="col-xl-3 col-md-6">
+              <div className="xl:w-1/4 px-4 md:w-1/2">
                 <div className="footer-widget widget-nav-menu footer-col-3">
                   <h5 className="title">Our Services</h5>
                   <ul>
@@ -115,7 +115,7 @@ export default function NewFooter() {
               </div>
 
               {/* Newsletter */}
-              <div className="col-xxl-4 col-xl-3 col-md-6">
+              <div className="2xl:w-1/3 px-4 xl:w-1/4 md:w-1/2">
                 <div className="footer-widget widget-subscribe footer-col-4">
                   <h3 className="title">Subscribe to Our Newsletter</h3>
 
@@ -139,7 +139,7 @@ export default function NewFooter() {
 
         {/* Copyright */}
         <div className="tj-copyright-area">
-          <div className="container">
+          <div className="container mx-auto px-4">
             <div className="copyright-content-area">
               <p>
                 © 2026 Codigix. All rights reserved.

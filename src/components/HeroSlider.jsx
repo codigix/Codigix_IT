@@ -51,22 +51,22 @@ const HeroSlider = () => {
               }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
-                <div className="container max-w-4xl">
+                <div className="container mx-auto px-4 max-w-4xl">
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     className="text-white"
                   >
-                    <div className="mb-6">
-                      <p className="text-lg md:text-xl font-semibold flex items-center gap-2 mb-4">
+                    <div className="mb-12">
+                      <p className="text-lg md:text-xl font-semibold flex items-center gap-2 mb-12">
                         <span>💡</span>
                         {slide.subtitle}
                       </p>
-                      <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                      <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-12">
                         {slide.title}
                       </h1>
-                      <p className="text-lg md:text-xl text-gray-200 mb-8">
+                      <p className="text-lg md:text-xl text-gray-200 mb-12">
                         {slide.description}
                       </p>
                     </div>

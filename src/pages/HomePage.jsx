@@ -167,6 +167,19 @@ export default function HomePage() {
 
     mm.add("(min-width: 1025px)", () => {
       cards.forEach((card, index) => {
+        // Entrance animation for each card
+        gsap.from(card, {
+          y: 80,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            toggleActions: "play none none none"
+          }
+        });
+
         if (index < cards.length - 1) {
           ScrollTrigger.create({
             trigger: card,
@@ -180,13 +193,15 @@ export default function HomePage() {
           });
 
           gsap.to(card, {
-            scale: 0.95 - index * 0.01,
-            opacity: 1,
+            scale: 0.95 - index * 0.02,
+            opacity: 1, // Keep opacity high for readability
+            y: -20 * index, // Slight lift for depth
             scrollTrigger: {
               trigger: cards[index + 1],
-              start: `top ${120 + index * 40}px`,
-              end: "top 100px",
+              start: "top 90%", // Start scaling when next card is near bottom
+              end: "top 100px", // End exactly when next card hits the pin point
               scrub: 1,
+              ease: "none", // Linear mapping to scroll position
             },
           });
         }
@@ -598,9 +613,9 @@ export default function HomePage() {
         className="tj-client-section section-gap wow fadeInUp"
         data-wow-delay=".4s"
       >
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
 
               <div className="client-content wow fadeInUp" data-wow-delay=".3s">
                 <h5 className="sec-title">
@@ -653,9 +668,9 @@ export default function HomePage() {
 
       {/* Working Process Section */}
       <div className="tj-working-process-2 section-gap section-gap-x">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="sec-heading sec-heading-centered style-3">
                 <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
                   <i className="tji-subtitle-2"></i>How Its Work
@@ -666,9 +681,9 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="row row-gap-4">
+          <div className="flex flex-wrap -mx-4 gap-y-4">
             {workingProcess.map((process, idx) => (
-              <div className="col-lg-4" key={process.id}>
+              <div className="w-full lg:w-1/3 px-4" key={process.id}>
                 <div
                   className="process-item-wrap style-2 wow fadeInUp"
                   data-wow-delay={`${0.3 + idx * 0.1}s`}
@@ -696,9 +711,9 @@ export default function HomePage() {
 
       {/* About Section */}
       <section className="tj-about-section-3 section-gap">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-7">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4 items-center">
+            <div className="lg:w-7/12 px-4">
               <div className="about-content-area style-3">
 
                 <div className="sec-heading style-3">
@@ -752,7 +767,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="col-lg-5">
+            <div className="lg:w-5/12 px-4">
               <div className="about-img-area-2">
                 <div
                   className="about-img wow fadeInLeft"
@@ -784,9 +799,9 @@ export default function HomePage() {
 
       {/* Service Section */}
       <section className="tj-service-section section-gap section-gap-x">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="sec-heading sec-heading-centered style-3">
                 <span className="sub-title">
                   <i className="tji-subtitle-2"></i>Our Best Services
@@ -796,9 +811,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="row">
-            <div className="col-12">
-              <div className="service-wrapper-main mb-40" ref={containerRef}>
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
+              <div className="service-wrapper-main mb-12" ref={containerRef}>
 
                 {isDesktop ? (
                   //  DESKTOP – GSAP STACK
@@ -879,8 +894,8 @@ export default function HomePage() {
       {/* Project Section */}
       <section className="tj-project-section section-gap ">
         <div className="">
-          <div className="row align-items-center mb-5 container m-auto">
-            <div className="col-lg-7">
+          <div className="flex flex-wrap -mx-4 items-center mb-12 container mx-auto px-4 m-auto">
+            <div className="lg:w-7/12 px-4">
               <div className="sec-heading style-3">
                 <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
                   <i className="tji-subtitle-2"></i>PROUD PROJECTS
@@ -890,9 +905,9 @@ export default function HomePage() {
                 </h2>
               </div>
             </div>
-            <div className="col-lg-5">
+            <div className="lg:w-5/12 px-4">
               <div
-                className="slider-btn text-lg-end wow fadeInUp"
+                className="slider-btn lg:text-right wow fadeInUp"
                 data-wow-delay="0.4s"
               >
                 <Link className="tj-primary-btn" to="/projects">
@@ -964,10 +979,10 @@ export default function HomePage() {
 
       {/* Roadmap Section */}
       <section ref={roadmapRef} className="tj-roadmap-section section-gap section-gap-x section-separator">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="sec-heading sec-heading-centered style-3 mb-10">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
+              <div className="sec-heading sec-heading-centered style-3 mb-12">
                 <span
                   className="sub-title wow fadeInUp"
                   data-wow-delay="0.3s"
@@ -988,8 +1003,8 @@ export default function HomePage() {
                   <div className="roadmap-nav-inner">
                     {roadmapData.map((yearGroup) => (
                       <div key={yearGroup.year} className="year-nav-group relative ">
-                        <div className="year-badge-wrap flex items-center mb-6">
-                          <div className={`year-badge-circle ${['2024', '2026'].includes(yearGroup.year) ? 'teal' : 'blue'}  mb-3 text-xl flex items-center justify-center rounded w-20 h-20 bg-white dark:bg-gray-900 z-10`}>
+                        <div className="year-badge-wrap flex items-center mb-12">
+                          <div className={`year-badge-circle ${['2024', '2026'].includes(yearGroup.year) ? 'teal' : 'blue'}  mb-4 text-xl flex items-center justify-center rounded w-20 h-20 bg-white dark:bg-gray-900 z-10`}>
                             {yearGroup.year}
                           </div>
                           {/* <div className="year-line-horizontal h-[2px] w-8 bg-gray-200 dark:bg-gray-700 ml-[-2px]"></div> */}
@@ -1042,7 +1057,7 @@ export default function HomePage() {
             <div className="col-span-3">
               <div className="roadmap-scroll-content">
                 {roadmapData.map((yearGroup) => (
-                  <div key={yearGroup.year} className="year-content-group mb-4">
+                  <div key={yearGroup.year} className="year-content-group mb-12">
                     {yearGroup.quarters.map((q) => (
                       <div
                         key={`${yearGroup.year}-${q.q}`}
@@ -1062,7 +1077,7 @@ export default function HomePage() {
                           <span className="count-text">{q.title}</span>
 
                           {q.items && (
-                            <ul className="roadmap-specs-list space-y-2 mt-4 text-left">
+                            <ul className="roadmap-specs-list space-y-2 mt-12 text-left">
                               {q.items.map((item, i) => (
                                 <li key={i} className="text-sm dark:text-gray-400 flex items-start gap-2">
                                   <i className="tji-check text-indigo-500 mt-1 flex-shrink-0"></i>
@@ -1083,9 +1098,9 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-           <div className="row">
-            <div className="col-12">
-              <div className="sec-heading sec-heading-centered style-3 mb-50">
+           <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
+              <div className="sec-heading sec-heading-centered style-3 mb-12">
                 <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
                   <i className="tji-subtitle-2"></i>Future Scope & Vision
                 </span>
@@ -1096,8 +1111,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="row mt-50">
-            <div className="col-12">
+          <div className="flex flex-wrap -mx-4 mt-12">
+            <div className="w-full px-4">
               <div className="vision-box-wrap wow fadeInUp" data-wow-delay="0.4s">
                 <div className="vision-box-inner">
                   <div className="vision-left-content">
@@ -1129,9 +1144,9 @@ export default function HomePage() {
 
       {/* Blog Section */}
       <section className="tj-blog-section-3 section-gap section-separator">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
               <div className="sec-heading sec-heading-centered style-3">
                 <span className="sub-title">
                   <i className="tji-subtitle-2"></i>Recent Blogs
@@ -1140,9 +1155,9 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="row row-gap-4">
+          <div className="flex flex-wrap -mx-4 gap-y-4">
             {blogs.map((blog, idx) => (
-              <div className="col-xl-4 col-md-6" key={blog.id}>
+              <div className="xl:w-1/3 px-4 md:w-1/2" key={blog.id}>
                 <div
                   className="blog-item style-3 wow fadeInUp"
                   data-wow-delay={`.${3 + idx}s`}

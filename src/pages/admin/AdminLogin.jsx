@@ -49,7 +49,7 @@ const AdminLogin = () => {
   };
 
   return (
-    <section className="min-h-screen bg-[#1A1C2E] flex items-center justify-center p-4 font-admin relative overflow-hidden">
+    <section className="min-h-screen bg-[#1A1C2E] flex items-center justify-center p-8 font-admin relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         {/* Abstract Shapes */}
@@ -73,16 +73,16 @@ const AdminLogin = () => {
         transition={{ duration: 0.6 }}
         className="w-full max-w-[400px] relative z-10"
       >
-        <div className="text-center mb-8">
+        <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-white tracking-tight italic">gratafy<span className="text-xs align-top ml-0.5">TM</span></h1>
         </div>
 
-        <div className="bg-[#2A2D45]/80 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden p-6">
+        <div className="bg-[#2A2D45]/80 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden p-12">
           {error && (
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="flex items-center gap-3 p-3 mb-6 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs" 
+              className="flex items-center gap-3 p-4 mb-12 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs" 
             >
               <AlertCircle className="w-4 h-4 shrink-0" />
               <p className="font-medium">{error}</p>
@@ -95,7 +95,7 @@ const AdminLogin = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#E9F0FE] border-none p-2 mb-3 text-slate-900 text-sm  placeholder:text-slate-500   outline-none transition-all border-b border-slate-200"
+                className="w-full bg-[#E9F0FE] border-none p-2 mb-12 text-slate-900 text-sm placeholder:text-slate-500 outline-none transition-all border-b border-slate-200"
                 placeholder="ADMIN@GRATAFY.COM"
                 required
               />
@@ -103,7 +103,7 @@ const AdminLogin = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-[#E9F0FE] border-none p-2 text-slate-900 text-sm  placeholder:text-slate-500 uppercase tracking-wider outline-none transition-all"
+                className="w-full bg-[#E9F0FE] border-none p-2 text-slate-900 text-sm placeholder:text-slate-500 uppercase tracking-wider outline-none transition-all"
                 placeholder="••••••••"
                 required
               />
@@ -113,14 +113,14 @@ const AdminLogin = () => {
               <button 
                 type="submit" 
                 disabled={isLoading}
-                className="w-full bg-white text-[#FF1F8B] py-4 rounded-xl  text-sm uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-slate-100 active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-white text-[#FF1F8B] py-4 rounded-xl text-sm uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-slate-100 active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
                 ) : (
                   <>
                     <span>Log In</span>
-                    <div className="bg-[#00D1FF] rounded-full p-0.5">
+                    <div className="bg-[#00D1FF] rounded-full p-0">
                       <ArrowRight className="w-3 h-3 text-white stroke-[4]" />
                     </div>
                   </>
@@ -130,8 +130,8 @@ const AdminLogin = () => {
           </form>
         </div>
 
-        <div className="text-center mt-6">
-          <a href="#" className="text-[10px]  text-[#FF1F8B] uppercase tracking-[0.2em] hover:text-[#FF1F8B]/80 transition-colors">
+        <div className="text-center mt-12">
+          <a href="#" className="text-[10px] text-[#FF1F8B] uppercase tracking-[0.2em] hover:text-[#FF1F8B]/80 transition-colors">
             Forgot your password?
           </a>
         </div>

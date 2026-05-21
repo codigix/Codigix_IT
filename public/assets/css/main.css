@@ -138,15 +138,7 @@ h6 {
   transition: all 0.3s ease-in-out 0s;
 }
 
-h1 {
-  font-size: var(--tj-fs-h1);
-  line-height: 1.053;
-}
-@media only screen and (max-width: 1399px) {
-  h1 {
-    font-size: 42px;
-  }
-}
+
 @media only screen and (max-width: 1199px) {
   h1 {
     font-size: 38px;
@@ -246,7 +238,6 @@ ul {
 }
 
 a,
-.btn,
 button,
 span,
 p,
@@ -407,70 +398,6 @@ img {
 
 .fix {
   overflow: hidden;
-}
-
-.rg-30 {
-  row-gap: 30px;
-}
-
-.rg-40 {
-  row-gap: 40px;
-}
-
-.rg-50 {
-  row-gap: 50px;
-}
-
-.rg-60 {
-  row-gap: 60px;
-}
-
-.rg-70 {
-  row-gap: 70px;
-}
-
-.rg-80 {
-  row-gap: 80px;
-}
-
-.mt-20 {
-  margin-top: 20px;
-}
-
-.mb-20 {
-  margin-bottom: 20px;
-}
-
-.mt-30 {
-  margin-top: 30px;
-}
-
-.mb-30 {
-  margin-bottom: 30px;
-}
-
-.mt-40 {
-  margin-top: 40px;
-}
-
-.mb-40 {
-  margin-bottom: 40px;
-}
-
-.mt-50 {
-  margin-top: 50px;
-}
-
-.mb-50 {
-  margin-bottom: 50px;
-}
-
-.mt-60 {
-  margin-top: 60px;
-}
-
-.mb-60 {
-  margin-bottom: 60px;
 }
 
 .section-gap {
@@ -2647,12 +2574,7 @@ color: var(--tj-color-common-white);
     font-size: 60px;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .widget-subscribe-2 .title {
-    max-width: 335px;
-    font-size: 42px;
-  }
-}
+
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .widget-subscribe-2 .title {
     max-width: 330px;
@@ -3994,11 +3916,7 @@ START: Heading CSS
     font-size: 54px;
   }
 }
-@media only screen and (max-width: 991px) {
-  .sec-heading.big-heading .sec-title {
-    font-size: 42px;
-  }
-}
+
 @media only screen and (max-width: 575px) {
   .sec-heading.big-heading .sec-title {
     font-size: 32px;
@@ -5222,16 +5140,7 @@ START: Hero CSS
     font-size: 54px;
   }
 }
-@media only screen and (max-width: 991px) {
-  .h4-banner-area .banner-content .banner-title {
-    font-size: 42px;
-  }
-}
-@media only screen and (max-width: 575px) {
-  .h4-banner-area .banner-content .banner-title {
-    font-size: 32px;
-  }
-}
+
 .h4-banner-area .banner-content .banner-btn-area {
   margin-top: 25px;
 }
@@ -8148,9 +8057,9 @@ START: Testimonial CSS
   background-color: var(--tj-color-theme-bg);
   border-top-left-radius: 12px;
   position: absolute;
-  left: auto;
+  left: auto !important;
   right: 0;
-  bottom: 0;
+  bottom: 0 !important;
   margin: 0;
   padding: 20px 10px;
   z-index: 2;
@@ -15218,12 +15127,7 @@ START: Hero CSS
     font-size: 55px;
   }
 }
-@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
-  .h5-banner-area .banner-content .banner-title {
-    font-size: 42px;
-    margin-bottom: 30px;
-  }
-}
+
 @media only screen and (min-width: 1601px) and (max-width: 1700px), only screen and (min-width: 1400px) and (max-width: 1600px) {
   .h5-banner-area .banner-content {
     -webkit-margin-start: 100px;
