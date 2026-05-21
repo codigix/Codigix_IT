@@ -38,12 +38,12 @@ const AdminDashboard = () => {
     try {
       const entities = ['slides', 'services', 'projects', 'blogs', 'testimonials', 'clients'];
       const results = await Promise.all(
-        entities.map(entity => fetch(`${API_BASE_URL}/${entity}`).then(res => res.json()))
+        entities.map(entity => fetch(`${API_BASE_URL}/${entity}/count`).then(res => res.json()))
       );
       
       const newStats = {};
       entities.forEach((entity, index) => {
-        newStats[entity] = Array.isArray(results[index]) ? results[index].length : 0;
+        newStats[entity] = results[index] ? results[index].count : 0;
       });
       setStats(newStats);
     } catch (error) {

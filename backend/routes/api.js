@@ -31,6 +31,10 @@ const publicEntities = [
 ];
 
 publicEntities.forEach(entity => {
+    router.get(`/${entity}/count`, (req, res) => {
+        req.params.entity = entity;
+        return entityController.getCount(req, res);
+    });
     router.get(`/${entity}`, (req, res) => {
         req.params.entity = entity;
         return entityController.getAll(req, res);

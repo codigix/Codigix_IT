@@ -56,9 +56,9 @@ const BlogSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-5"
         >
-          <p className="sub-title justify-center mb-12">
+          <p className="sub-title justify-center mb-5">
             <span>💡</span>
             Recent Blogs
           </p>
@@ -93,12 +93,12 @@ const BlogSection = () => {
               </div>
 
               <div className="p-12">
-                <div className="flex items-center gap-4 mb-12 text-sm text-gray-600 border-b pb-4">
+                <div className="flex items-center gap-4 mb-5 text-sm text-gray-600 border-b pb-4">
                   <span>By <a href="/blog" className="hover:text-orange-500">{blog.author}</a></span>
                   <span>{blog.date}</span>
                 </div>
 
-                <h4 className="text-xl font-bold mb-12 line-clamp-2">
+                <h4 className="text-xl font-bold mb-5 line-clamp-2">
                   <Link to="/blog/details" className="hover:text-orange-500 transition-colors">
                     {blog.title}
                   </Link>

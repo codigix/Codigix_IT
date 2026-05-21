@@ -21,7 +21,7 @@ const ClientSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
+          className="mb-5 text-center"
         >
           <h5 className="sec-title inline">
             <span className="text-orange-500 font-bold text-4xl">10+</span> Trusted Client over the World

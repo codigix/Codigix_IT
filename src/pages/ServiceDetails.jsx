@@ -12,7 +12,7 @@ const ServiceDetails = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-12">Service Details</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-5">Service Details</h1>
             <p className="text-xl text-gray-300">
               Comprehensive information about our service offerings.
             </p>
@@ -30,19 +30,19 @@ const ServiceDetails = () => {
             <img 
               src="https://via.placeholder.com/800x400?text=Service+Details" 
               alt="Service"
-              className="w-full rounded-lg shadow-lg mb-12"
+              className="w-full rounded-lg shadow-lg mb-5"
             />
 
-            <h2 className="sec-title mb-12">AI-Powered Solutions</h2>
+            <h2 className="sec-title mb-5">AI-Powered Solutions</h2>
             
-            <div className="prose prose-lg max-w-none mb-12">
-              <p className="text-gray-600 mb-12">
+            <div className="prose prose-lg max-w-none mb-5">
+              <p className="text-gray-600 mb-5">
                 Our AI-powered solutions are designed to transform your business operations and unlock new opportunities 
                 for growth and innovation.
               </p>
 
-              <h3 className="text-3xl font-bold mt-12 mb-12">Key Features</h3>
-              <ul className="space-y-3 mb-12">
+              <h3 className="text-3xl font-bold mt-12 mb-5">Key Features</h3>
+              <ul className="space-y-3 mb-5">
                 <li className="flex items-center gap-3 text-gray-700">
                   <span className="text-orange-500 font-bold">✓</span>
                   Advanced Machine Learning Algorithms
@@ -61,8 +61,8 @@ const ServiceDetails = () => {
                 </li>
               </ul>
 
-              <h3 className="text-3xl font-bold mt-12 mb-12">Benefits</h3>
-              <p className="text-gray-600 mb-12">
+              <h3 className="text-3xl font-bold mt-12 mb-5">Benefits</h3>
+              <p className="text-gray-600 mb-5">
                 Experience significant improvements in efficiency, cost reduction, and decision-making with our 
                 comprehensive AI solutions.
               </p>

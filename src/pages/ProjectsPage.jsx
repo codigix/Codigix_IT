@@ -110,7 +110,7 @@ export default function ProjectsPage() {
             </div>
           </div>
 
-          <div className="flex flex-wrap -mx-4 mb-12">
+          <div className="flex flex-wrap -mx-4 mb-5">
             <div className="w-full px-4">
               <div className="project-filter-wrap">
                 <div className="project-filter-tabs flex flex-wrap justify-center">

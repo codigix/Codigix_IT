@@ -12,7 +12,7 @@ const BlogDetails = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-12">Blog Article</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-5">Blog Article</h1>
             <p className="text-xl text-gray-300">
               Insights and perspectives on technology and innovation.
             </p>
@@ -30,10 +30,10 @@ const BlogDetails = () => {
             <img 
               src="https://via.placeholder.com/800x400?text=Blog+Article" 
               alt="Blog"
-              className="w-full rounded-lg shadow-lg mb-12"
+              className="w-full rounded-lg shadow-lg mb-5"
             />
 
-            <div className="flex items-center gap-6 mb-12 pb-8 border-b border-gray-300">
+            <div className="flex items-center gap-6 mb-5 pb-8 border-b border-gray-300">
               <span className="text-gray-600">By Brandon</span>
               <span className="text-gray-600">Jan 10, 2026</span>
               <span className="px-4 py-2 bg-orange-500 text-white text-sm font-semibold rounded-lg">
@@ -41,24 +41,24 @@ const BlogDetails = () => {
               </span>
             </div>
 
-            <h2 className="sec-title mb-12">Unlocking the Power of Data for Business Success</h2>
+            <h2 className="sec-title mb-5">Unlocking the Power of Data for Business Success</h2>
             
             <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed">
-              <p className="mb-12">
+              <p className="mb-5">
                 In today's digital-first world, data has become the most valuable asset for businesses of all sizes. 
                 Organizations that effectively leverage their data are seeing unprecedented growth, improved decision-making, 
                 and enhanced customer experiences.
               </p>
 
-              <h3 className="text-2xl font-bold text-gray-900 mt-12 mb-12">The Data Revolution</h3>
-              <p className="mb-12">
+              <h3 className="text-2xl font-bold text-gray-900 mt-12 mb-5">The Data Revolution</h3>
+              <p className="mb-5">
                 The amount of data generated globally continues to grow exponentially. Companies now have access to vast amounts 
                 of information about their operations, customers, and markets. However, raw data alone is not valuable—it's what 
                 you do with that data that matters.
               </p>
 
-              <h3 className="text-2xl font-bold text-gray-900 mt-12 mb-12">Key Insights</h3>
-              <ul className="space-y-4 mb-12">
+              <h3 className="text-2xl font-bold text-gray-900 mt-12 mb-5">Key Insights</h3>
+              <ul className="space-y-4 mb-5">
                 <li className="flex gap-4">
                   <span className="text-orange-500 font-bold">1.</span>
                   <span>Data-driven organizations are 5% more productive than their competitors</span>
@@ -73,7 +73,7 @@ const BlogDetails = () => {
                 </li>
               </ul>
 
-              <h3 className="text-2xl font-bold text-gray-900 mt-12 mb-12">Getting Started</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mt-12 mb-5">Getting Started</h3>
               <p>
                 To unlock the power of data for your business, start by assessing your current data infrastructure, 
                 identifying key metrics, and investing in the right tools and talent. Consider partnering with a 

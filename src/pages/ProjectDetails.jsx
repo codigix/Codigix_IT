@@ -12,7 +12,7 @@ const ProjectDetails = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-12">Project Details</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-5">Project Details</h1>
             <p className="text-xl text-gray-300">
               Detailed information about our latest successful projects.
             </p>
@@ -30,12 +30,12 @@ const ProjectDetails = () => {
             <img 
               src="https://via.placeholder.com/800x400?text=Project+Details" 
               alt="Project"
-              className="w-full rounded-lg shadow-lg mb-12"
+              className="w-full rounded-lg shadow-lg mb-5"
             />
 
-            <h2 className="sec-title mb-12">Redefining Intelligence for Tomorrow Tech</h2>
+            <h2 className="sec-title mb-5">Redefining Intelligence for Tomorrow Tech</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-5">
               <div className="bg-gray-50 p-12 rounded-lg">
                 <h4 className="font-bold text-lg mb-2">Category</h4>
                 <p className="text-gray-600">AI Horizon</p>
@@ -51,14 +51,14 @@ const ProjectDetails = () => {
             </div>
 
             <div className="prose prose-lg max-w-none">
-              <h3 className="text-3xl font-bold mb-12">Project Overview</h3>
-              <p className="text-gray-600 mb-12">
+              <h3 className="text-3xl font-bold mb-5">Project Overview</h3>
+              <p className="text-gray-600 mb-5">
                 This groundbreaking project involved implementing an advanced AI system to streamline operations 
                 and enhance decision-making processes for a leading technology company.
               </p>
 
-              <h3 className="text-3xl font-bold mt-12 mb-12">Challenges & Solutions</h3>
-              <ul className="space-y-3 mb-12">
+              <h3 className="text-3xl font-bold mt-12 mb-5">Challenges & Solutions</h3>
+              <ul className="space-y-3 mb-5">
                 <li className="text-gray-700">
                   <strong>Challenge:</strong> Integration with legacy systems
                 </li>
@@ -67,8 +67,8 @@ const ProjectDetails = () => {
                 </li>
               </ul>
 
-              <h3 className="text-3xl font-bold mt-12 mb-12">Results</h3>
-              <ul className="space-y-2 mb-12">
+              <h3 className="text-3xl font-bold mt-12 mb-5">Results</h3>
+              <ul className="space-y-2 mb-5">
                 <li className="flex items-center gap-3 text-gray-700">
                   <span className="text-orange-500">✓</span>
                   40% improvement in processing speed

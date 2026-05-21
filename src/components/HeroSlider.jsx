@@ -58,15 +58,15 @@ const HeroSlider = () => {
                     transition={{ duration: 0.8 }}
                     className="text-white"
                   >
-                    <div className="mb-12">
-                      <p className="text-lg md:text-xl font-semibold flex items-center gap-2 mb-12">
+                    <div className="mb-5">
+                      <p className="text-lg md:text-xl font-semibold flex items-center gap-2 mb-5">
                         <span>💡</span>
                         {slide.subtitle}
                       </p>
-                      <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-12">
+                      <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-5">
                         {slide.title}
                       </h1>
-                      <p className="text-lg md:text-xl text-gray-200 mb-12">
+                      <p className="text-lg md:text-xl text-gray-200 mb-5">
                         {slide.description}
                       </p>
                     </div>

@@ -43,7 +43,7 @@ const Blog = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-12">Blog & News</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-5">Blog & News</h1>
             <p className="text-xl text-gray-300">
               Stay updated with the latest insights and trends in technology.
             </p>
@@ -77,18 +77,18 @@ const Blog = () => {
                 </div>
 
                 <div className="p-12">
-                  <div className="flex items-center gap-4 mb-12 text-sm text-gray-600 border-b pb-4">
+                  <div className="flex items-center gap-4 mb-5 text-sm text-gray-600 border-b pb-4">
                     <span>By {blog.author}</span>
                     <span>{blog.date}</span>
                   </div>
 
-                  <h3 className="text-xl font-bold mb-12 line-clamp-2">
+                  <h3 className="text-xl font-bold mb-5 line-clamp-2">
                     <Link to="/blog/details" className="hover:text-orange-500 transition-colors">
                       {blog.title}
                     </Link>
                   </h3>
 
-                  <p className="text-gray-600 text-sm mb-12">{blog.excerpt}</p>
+                  <p className="text-gray-600 text-sm mb-5">{blog.excerpt}</p>
 
                   <Link 
                     to="/blog/details"

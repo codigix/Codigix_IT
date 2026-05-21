@@ -219,7 +219,7 @@ export default function CareerPage() {
                       </div>
 
                       <div className="col-span-1 lg:text-right mt-12 lg:mt-0">
-                        <div className="flex flex-wrap justify-end gap-2 job-meta-text text-sm mb-12">
+                        <div className="flex flex-wrap justify-end gap-2 job-meta-text text-sm mb-5">
                           <span className="flex gap-1 text-xs items-center"><i className="tji-home mr-2 text-primary"></i>{job.company || 'Codigix Infotech Pvt. Ltd.'}</span>
                           <span className="flex gap-1 text-xs items-center"><i className="tji-location mr-2 text-primary"></i>{job.location}</span>
                           <span className="flex gap-1 text-xs items-center"><i className="tji-clock mr-2 text-primary"></i>{job.type}</span>
@@ -265,10 +265,10 @@ onClick={() => handleApply(job)}
           }}>
             <button className="absolute border-0 bg-transparent modal-close-btn" style={{ top: '25px', right: '25px', fontSize: '24px' }} onClick={() => setShowModal(false)}>×</button>
 
-            <h2 className="h3 mb-12 job-label-text">Apply for {selectedJob?.title}</h2>
+            <h2 className="h3 mb-5 job-label-text">Apply for {selectedJob?.title}</h2>
 
-            <div className="job-details-mini mb-12 pb-4 border-b">
-              <div className="flex flex-wrap -mx-4 mb-12">
+            <div className="job-details-mini mb-5 pb-4 border-b">
+              <div className="flex flex-wrap -mx-4 mb-5">
                 <div className="w-1/2 px-4">
                   <span className="text-gray-500 text-sm block mb-1">Experience</span>
                   <span className="job-meta-text font-medium">{selectedJob?.experience || 'N/A'}</span>
@@ -280,14 +280,14 @@ onClick={() => handleApply(job)}
               </div>
 
               {selectedJob?.responsibilities && (
-                <div className="mb-12">
+                <div className="mb-5">
                   <h6 className="text-sm font-bold uppercase tracking-wider job-label-text mb-2">Key Responsibilities:</h6>
                   <div className="text-sm job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.responsibilities}</div>
                 </div>
               )}
 
               {selectedJob?.skills && (
-                <div className="mb-12">
+                <div className="mb-5">
                   <h6 className="text-sm font-bold uppercase tracking-wider job-label-text mb-2">Required Skills:</h6>
                   <div className="text-sm job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.skills}</div>
                 </div>
@@ -307,27 +307,27 @@ onClick={() => handleApply(job)}
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div className="mb-12">
+                <div className="mb-5">
                   <label className="block mb-2 text-sm font-medium job-label-text">Full Name</label>
                   <input type="text" name="name" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" value={formData.name} onChange={handleChange} required />
                 </div>
                 <div className="flex flex-wrap -mx-4">
-                  <div className="w-full md:w-1/2 px-4 mb-12">
+                  <div className="w-full md:w-1/2 px-4 mb-5">
                     <label className="block mb-2 text-sm font-medium job-label-text">Email Address</label>
                     <input type="email" name="email" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" value={formData.email} onChange={handleChange} required />
                   </div>
-                  <div className="w-full md:w-1/2 px-4 mb-12">
+                  <div className="w-full md:w-1/2 px-4 mb-5">
                     <label className="block mb-2 text-sm font-medium job-label-text">Phone Number</label>
                     <input type="tel" name="phone" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" value={formData.phone} onChange={handleChange} required />
                   </div>
                 </div>
                
-                <div className="mb-12">
+                <div className="mb-5">
                   <label className="block mb-2 text-sm font-medium job-label-text">Resume (PDF, DOC, DOCX)</label>
                   <input type="file" name="resume" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" onChange={handleChange} accept=".pdf,.doc,.docx" required />
                 </div>
 
-                {error && <div className="p-4 rounded-lg bg-red-100 text-red-800 mb-12 text-sm">{error}</div>}
+                {error && <div className="p-4 rounded-lg bg-red-100 text-red-800 mb-5 text-sm">{error}</div>}
 
                 <button type="submit" className="tj-primary-btn text-center" disabled={submitting}>
                   <div className="btn-inner">

@@ -679,7 +679,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
       </AnimatePresence>
 
       {/* Table Section */}
-      <div className="bg-[#252841]/40 backdrop-blur-md border border-slate-800/30 rounded-2xl overflow-hidden mb-12">
+      <div className="bg-[#252841]/40 backdrop-blur-md border border-slate-800/30 rounded-2xl overflow-hidden mb-5">
         <div className="p-12 border-b border-slate-800/30 bg-[#252841]/20 flex items-center justify-between">
            <div className="flex items-center gap-3">
               <Filter className="w-4 h-4 text-[#00D1FF]" />
@@ -707,7 +707,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
         
         {loading ? (
           <div className="p-12 text-center">
-            <div className="w-12 h-12 border-4 border-[#FF1F8B]/20 border-t-[#FF1F8B] rounded-full animate-spin mx-auto mb-12"></div>
+            <div className="w-12 h-12 border-4 border-[#FF1F8B]/20 border-t-[#FF1F8B] rounded-full animate-spin mx-auto mb-5"></div>
             <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em]">Synchronizing Database Cloud...</p>
           </div>
         ) : filteredData.length === 0 ? (
@@ -895,12 +895,12 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-rose-500 to-transparent opacity-50" />
               
-              <div className="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-500 mb-12 border border-rose-500/20">
+              <div className="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-500 mb-5 border border-rose-500/20">
                 <AlertCircle className="w-7 h-7" />
               </div>
               
               <h3 className="text-xl text-white mb-2 tracking-tight uppercase">Confirm Deletion</h3>
-              <p className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-12 leading-relaxed">
+              <p className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-5 leading-relaxed">
                 This action is irreversible. The selected record will be permanently purged from the production database.
               </p>
               

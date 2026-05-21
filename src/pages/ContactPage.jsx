@@ -128,8 +128,8 @@ export default function ContactPage() {
             <div className="w-full lg:w-1/2 px-4">
               <div className="contact-form">
                 <h3 className="title">Feel Free to Get in Touch or Visit our Location.</h3>
-                {success && <div className="p-4 rounded-lg bg-green-100 text-green-800 mb-12 rounded" style={{ backgroundColor: '#d4edda', color: '#155724', border: '1px solid #c3e6cb' }}>Message sent successfully! We will get back to you soon.</div>}
-                {error && <div className="p-4 rounded-lg bg-red-100 text-red-800 mb-12 rounded" style={{ backgroundColor: '#f8d7da', color: '#721c24', border: '1px solid #f5c6cb' }}>{error}</div>}
+                {success && <div className="p-4 rounded-lg bg-green-100 text-green-800 mb-5 rounded" style={{ backgroundColor: '#d4edda', color: '#155724', border: '1px solid #c3e6cb' }}>Message sent successfully! We will get back to you soon.</div>}
+                {error && <div className="p-4 rounded-lg bg-red-100 text-red-800 mb-5 rounded" style={{ backgroundColor: '#f8d7da', color: '#721c24', border: '1px solid #f5c6cb' }}>{error}</div>}
                 <form id="contact-form" onSubmit={handleSubmit}>
                   <div className="flex flex-wrap -mx-4">
                     <div className="w-full sm:w-1/2 px-4">

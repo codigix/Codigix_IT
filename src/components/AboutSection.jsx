@@ -22,16 +22,16 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="sub-title mb-12 dark:text-gray-400">
+            <p className="sub-title mb-5 dark:text-gray-400">
               <span>💡</span>
               About our Company
             </p>
-            <h2 className="sec-title mb-12 dark:text-white">
+            <h2 className="sec-title mb-5 dark:text-white">
               Driving Innovations Through Our and Technology, Delivering Our Expert Solutions are Best that Transform Businesses.
             </h2>
 
             {/* Experience */}
-            <div className="mb-12 flex items-start gap-6">
+            <div className="mb-5 flex items-start gap-6">
               <div className="text-5xl font-bold text-orange-500">
                 13<sup className="text-2xl">+</sup>
               </div>
@@ -39,12 +39,12 @@ const AboutSection = () => {
             </div>
 
             {/* Description */}
-            <p className="text-gray-600 mb-12 dark:text-gray-400">
+            <p className="text-gray-600 mb-5 dark:text-gray-400">
               Our team of experts combines innovation, and strategy to deliver custom AI-driven tools and services empower transformation.
             </p>
 
             {/* Features */}
-            <ul className="mb-12 space-y-3">
+            <ul className="mb-5 space-y-3">
               {features.map((feature, index) => (
                 <li key={index} className="flex items-center gap-3">
                   <span className="text-orange-500">✓</span>

@@ -608,7 +608,7 @@ export default function ServiceDetailsPage() {
           <div className="flex flex-wrap -mx-4">
             <div className="w-full lg:w-2/3 px-4">
               <div className="service-details-content">
-                <div className="service-details-img mb-12">
+                <div className="service-details-img mb-5">
                   <img
                     src={getImageUrl(service.image, "assets/images/service")}
                     alt={service.title}
@@ -617,8 +617,8 @@ export default function ServiceDetailsPage() {
                   />
                 </div>
 
-                <h2 className="title mb-12">{service.overview_title || "Empowering Innovation with Custom Technology Solutions."}</h2>
-                <div className="desc mb-12" style={{ whiteSpace: 'pre-line' }}>
+                <h2 className="title mb-5">{service.overview_title || "Empowering Innovation with Custom Technology Solutions."}</h2>
+                <div className="desc mb-5" style={{ whiteSpace: 'pre-line' }}>
                   {service.overview_desc || service.desc || "We specialize in crafting bespoke technology solutions tailored to the unique needs of your business. From custom software development and IoT integration to AI-powered tools and cloud computing, we provide innovative systems that streamline processes, enhance productivity, and drive growth."}
                 </div>
 
@@ -647,7 +647,7 @@ export default function ServiceDetailsPage() {
                 </div>
 
                 <div className="flex flex-wrap -mx-4 my-5">
-                  <div className="w-full md:w-1/2 px-4 mb-12 md:mb-0">
+                  <div className="w-full md:w-1/2 px-4 mb-5 md:mb-0">
                     <img
                       src={getImageUrl(service.secondary_image_1 || "service-details", "assets/images/service")}
                       alt="Service detail 1"
@@ -667,12 +667,12 @@ export default function ServiceDetailsPage() {
 
 
 
-                <h2 className="title mb-12">{service.maintenance_title || "Our Range of Maintenance Services"}</h2>
-                <div className="desc mb-12" style={{ whiteSpace: 'pre-line' }}>
+                <h2 className="title mb-5">{service.maintenance_title || "Our Range of Maintenance Services"}</h2>
+                <div className="desc mb-5" style={{ whiteSpace: 'pre-line' }}>
                   {service.maintenance_desc || "We specialize in crafting bespoke technology solutions tailored to the unique needs of your business. From custom software development and IoT integration to AI-powered tools and cloud computing, we provide innovative systems that streamline processes, enhance productivity, and drive growth."}
                 </div>
 
-                <div className="flex flex-wrap -mx-4 mb-12">
+                <div className="flex flex-wrap -mx-4 mb-5">
                   {maintenanceServices.map((m, idx) => (
                     <div key={idx} className="w-full lg:w-1/3 px-4 md:w-1/2 mb-2">
                       <motion.div
@@ -683,7 +683,7 @@ export default function ServiceDetailsPage() {
                         transition={{ delay: idx * 0.1, duration: 0.5 }}
                       >
                         <span className="step-number">{m.step}</span>
-                        <h4 className="title mb-12 font-bold text-xl">{m.title}</h4>
+                        <h4 className="title mb-5 font-bold text-xl">{m.title}</h4>
                         <p className="desc leading-relaxed">{m.desc}</p>
                       </motion.div>
                     </div>
@@ -691,7 +691,7 @@ export default function ServiceDetailsPage() {
                 </div>
 
                 <div className="faq-section my-2">
-                  <h2 className="title mb-12 text-3xl font-bold">Frequently Asked Questions</h2>
+                  <h2 className="title mb-5 text-3xl font-bold">Frequently Asked Questions</h2>
                   <div className="tj-faq">
                     {faqs.map((faq, index) => (
                       <div key={index} className={`accordion-item ${activeFaq === index ? 'active' : ''}`}>
@@ -763,7 +763,7 @@ export default function ServiceDetailsPage() {
             <div className="w-full lg:w-1/3 px-4">
               <div className=" tj-main-sidebar sticky-lg-top">
                 <div className="service-sidebar-box">
-                  <h3 className="title mb-12">Our Services</h3>
+                  <h3 className="title mb-5">Our Services</h3>
                   <ul className="service-list">
                     {services.map((s) => (
                       <li key={s.id}>
@@ -787,10 +787,10 @@ export default function ServiceDetailsPage() {
             <div className="md:w-full px-4">
               {technologies.length > 0 && (
                   <div className="tech-section my-5">
-                    <h2 className="title mb-12">Technologies We Use</h2>
+                    <h2 className="title mb-5">Technologies We Use</h2>
                     <div className="flex flex-wrap -mx-4">
                       {technologies.map((cat, idx) => (
-                        <div key={idx} className="w-full lg:w-1/4 px-4 md:w-1/4 mb-12">
+                        <div key={idx} className="w-full lg:w-1/4 px-4 md:w-1/4 mb-5">
                           <motion.div 
                             className="tech-category-card"
                             initial={{ opacity: 0, y: 20 }}
@@ -801,7 +801,7 @@ export default function ServiceDetailsPage() {
                             <div className="category-icon-wrap">
                               {getCategoryIcon(cat.name)}
                             </div>
-                            <h5 className="text-lg font-bold mb-12">{cat.name}</h5>
+                            <h5 className="text-lg font-bold mb-5">{cat.name}</h5>
                             <div className="flex flex-wrap gap-2">
                               {cat.items.map((item, i) => (
                                 <span key={i} className="tech-badge">

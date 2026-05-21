@@ -14,11 +14,11 @@ export default function NotFoundPage() {
           <div className="flex flex-wrap -mx-4 justify-center">
             <div className="w-full lg:w-2/3 px-4">
               <div className="tj-error-content text-center">
-                <div className="error-img mb-12">
+                <div className="error-img mb-5">
                   <h1 style={{ fontSize: '150px', fontWeight: 'bold', color: 'var(--tj-color-theme-primary)' }}>404</h1>
                 </div>
-                <h2 className="title mb-12">Oops! Page Not Found</h2>
-                <p className="desc mb-12">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+                <h2 className="title mb-5">Oops! Page Not Found</h2>
+                <p className="desc mb-5">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
                 <Link to="/" className="tj-primary-btn">
                   <div className="btn-inner">
                     <span className="btn-icon h-icon"><i className="tji-arrow-right"></i></span>

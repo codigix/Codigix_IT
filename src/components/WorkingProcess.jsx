@@ -53,9 +53,9 @@ const WorkingProcess = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-5"
         >
-          <p className="sub-title justify-center mb-12">
+          <p className="sub-title justify-center mb-5">
             <span>💡</span>
             How Its Work
           </p>
@@ -74,9 +74,9 @@ const WorkingProcess = () => {
               variants={itemVariants}
               className="relative bg-white p-12 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
             >
-              <div className="mb-12">
-                <div className="text-5xl mb-12">{process.icon}</div>
-                <h4 className="text-2xl font-bold mb-12">{process.title}</h4>
+              <div className="mb-5">
+                <div className="text-5xl mb-5">{process.icon}</div>
+                <h4 className="text-2xl font-bold mb-5">{process.title}</h4>
                 <p className="text-gray-600">{process.description}</p>
               </div>
               <div className="absolute top-6 right-6 text-4xl font-bold text-gray-200">

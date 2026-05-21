@@ -181,7 +181,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="tj-team-section-2 section-gap section-gap-x mb-12">
+      <section className="tj-team-section-2 section-gap section-gap-x mb-5">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4">

@@ -56,10 +56,10 @@ const ProjectSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row justify-between items-center mb-12"
+          className="flex flex-col lg:flex-row justify-between items-center mb-5"
         >
           <div>
-            <p className="sub-title mb-12">
+            <p className="sub-title mb-5">
               <span>💡</span>
               Proud Projects
             </p>
@@ -99,7 +99,7 @@ const ProjectSection = () => {
                 />
               </div>
               <div className="p-12 bg-white relative z-10">
-                <h4 className="text-xl font-bold mb-12">
+                <h4 className="text-xl font-bold mb-5">
                   <Link to="/projects/details" className="hover:text-orange-500 transition-colors">
                     {project.title}
                   </Link>

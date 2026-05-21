@@ -52,14 +52,12 @@ export default function HomePage() {
       try {
         const [
           slidesRes,
-          clientsRes,
           processRes,
           servicesRes,
           projectsRes,
           blogsRes,
         ] = await Promise.all([
           fetch(`${API_BASE_URL}/slides`),
-          fetch(`${API_BASE_URL}/clients`),
           fetch(`${API_BASE_URL}/workingProcess`),
           fetch(`${API_BASE_URL}/services`),
           fetch(`${API_BASE_URL}/projects`),
@@ -67,7 +65,6 @@ export default function HomePage() {
         ]);
 
         const slidesData = slidesRes.ok ? await slidesRes.json() : [];
-        if (clientsRes.ok) await clientsRes.json(); // Clear stream but ignore results
         const processData = processRes.ok ? await processRes.json() : [];
         const servicesData = servicesRes.ok ? await servicesRes.json() : [];
         const projectsData = projectsRes.ok ? await projectsRes.json() : [];
@@ -804,7 +801,7 @@ export default function HomePage() {
 
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4">
-              <div className="service-wrapper-main mb-12 relative" ref={containerRef}>
+              <div className="service-wrapper-main mb-5 relative" ref={containerRef}>
 
                 {isDesktop ? (
                   //  DESKTOP – GSAP STACK
@@ -885,7 +882,7 @@ export default function HomePage() {
       {/* Project Section */}
       <section className="tj-project-section section-gap ">
         <div className="">
-          <div className="flex flex-wrap -mx-4 items-center mb-12 container mx-auto px-4 m-auto">
+          <div className="flex flex-wrap -mx-4 items-center mb-5 container mx-auto px-4 m-auto">
             <div className="lg:w-7/12 px-4">
               <div className="sec-heading style-3">
                 <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
@@ -973,7 +970,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4">
-              <div className="sec-heading sec-heading-centered style-3 mb-12">
+              <div className="sec-heading sec-heading-centered style-3 mb-5">
                 <span
                   className="sub-title wow fadeInUp"
                   data-wow-delay="0.3s"
@@ -1004,10 +1001,10 @@ export default function HomePage() {
                         <div className="absolute -left-[35px] top-0 w-4 h-4 rounded-full bg-white dark:bg-[#18133b] border-2 border-indigo-600"></div>
                         <div className="bg-white dark:bg-gray-900/50 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
                           <div className="flex justify-between items-start mb-4">
-                            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                            <span className="text-xs font-bold uppercase tracking-wider ">
                               Quarter {q.q.replace('Q', '')} • {q.dates}
                             </span>
-                            <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                            <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center ">
                               <i className={q.icon}></i>
                             </div>
                           </div>
@@ -1015,7 +1012,7 @@ export default function HomePage() {
                           <h4 className="text-lg font-bold mb-2 dark:text-white">{q.title}</h4>
                           
                           <div className="flex items-center gap-1 mb-4">
-                            <span className="text-2xl font-black text-indigo-600 dark:text-indigo-400">{q.counter}</span>
+                            <span className="text-2xl font-black ">{q.counter}</span>
                             <span className="text-sm font-bold text-gray-500">{q.plus}</span>
                           </div>
 
@@ -1050,7 +1047,7 @@ export default function HomePage() {
                     <div className="roadmap-nav-inner">
                       {roadmapData.map((yearGroup) => (
                         <div key={yearGroup.year} className="year-nav-group relative ">
-                          <div className="year-badge-wrap flex items-center mb-12">
+                          <div className="year-badge-wrap flex items-center mb-5">
                             <div className={`year-badge-circle ${['2024', '2026'].includes(yearGroup.year) ? 'teal' : 'blue'}  mb-4 text-xl flex items-center justify-center rounded w-20 h-20 bg-white dark:bg-gray-900 z-10`}>
                               {yearGroup.year}
                             </div>
@@ -1102,7 +1099,7 @@ export default function HomePage() {
               <div className="col-span-3">
                 <div className="roadmap-scroll-content">
                   {roadmapData.map((yearGroup) => (
-                    <div key={yearGroup.year} className="year-content-group mb-12">
+                    <div key={yearGroup.year} className="year-content-group mb-5">
                       {yearGroup.quarters.map((q) => (
                         <div
                           key={`${yearGroup.year}-${q.q}`}
@@ -1146,7 +1143,7 @@ export default function HomePage() {
           )}
            <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4">
-              <div className="sec-heading sec-heading-centered style-3 mb-12">
+              <div className="sec-heading sec-heading-centered style-3 mb-5">
                 <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
                   <i className="tji-subtitle-2"></i>Future Scope & Vision
                 </span>

@@ -22,7 +22,7 @@ const Projects = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-12">Our Projects</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-5">Our Projects</h1>
             <p className="text-xl text-gray-300">
               Explore the innovative projects we've delivered for our clients.
             </p>
@@ -52,7 +52,7 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-12">
                   <div className="text-white">
                     <p className="text-sm text-gray-300 mb-2">{project.category}</p>
-                    <h3 className="text-xl font-bold mb-12">{project.title}</h3>
+                    <h3 className="text-xl font-bold mb-5">{project.title}</h3>
                     <Link to="/projects/details" className="inline-flex items-center gap-2 text-orange-500 font-semibold hover:gap-4 transition-all">
                       View Project <span>→</span>
                     </Link>

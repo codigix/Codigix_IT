@@ -13,7 +13,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-12">About Ainex</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-5">About Ainex</h1>
             <p className="text-xl text-gray-300">
               We are a team of AI experts dedicated to transforming businesses through innovative technology solutions.
             </p>
@@ -29,13 +29,13 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <h2 className="sec-title mb-12">Our Mission</h2>
-            <p className="text-gray-600 text-lg mb-12 leading-relaxed">
+            <h2 className="sec-title mb-5">Our Mission</h2>
+            <p className="text-gray-600 text-lg mb-5 leading-relaxed">
               At Ainex, we believe that artificial intelligence has the power to transform businesses and society. 
               Our mission is to make advanced AI solutions accessible, affordable, and impactful for companies of all sizes.
             </p>
 
-            <h2 className="sec-title mb-12 mt-12">Our Values</h2>
+            <h2 className="sec-title mb-5 mt-12">Our Values</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 { title: 'Innovation', desc: 'We constantly push the boundaries of what is possible.' },
@@ -47,7 +47,7 @@ const About = () => {
                   whileHover={{ y: -10 }}
                   className="p-12 bg-gray-50 rounded-lg shadow-lg"
                 >
-                  <h4 className="text-2xl font-bold mb-12">{value.title}</h4>
+                  <h4 className="text-2xl font-bold mb-5">{value.title}</h4>
                   <p className="text-gray-600">{value.desc}</p>
                 </motion.div>
               ))}

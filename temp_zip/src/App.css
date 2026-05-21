@@ -1,0 +1,20 @@
+/* Global CSS - All styles are handled by the original CSS files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* React root container */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}

@@ -22,7 +22,7 @@ const Services = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-12">Our Services</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-5">Our Services</h1>
             <p className="text-xl text-gray-300">
               Comprehensive solutions tailored to your business needs.
             </p>
@@ -44,9 +44,9 @@ const Services = () => {
                 whileHover={{ y: -10 }}
                 className="p-12 bg-white rounded-lg shadow-lg border border-gray-200 hover:border-orange-500 transition-all"
               >
-                <div className="text-5xl mb-12">{service.icon}</div>
-                <h3 className="text-2xl font-bold mb-12">{service.title}</h3>
-                <p className="text-gray-600 mb-12">{service.desc}</p>
+                <div className="text-5xl mb-5">{service.icon}</div>
+                <h3 className="text-2xl font-bold mb-5">{service.title}</h3>
+                <p className="text-gray-600 mb-5">{service.desc}</p>
                 <Link to="/services/details" className="text-orange-500 font-semibold hover:gap-4 inline-flex items-center gap-2">
                   Learn More <span>→</span>
                 </Link>

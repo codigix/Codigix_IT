@@ -65,7 +65,7 @@ export default function ProjectDetailsPage() {
   const goals = project.goals ? project.goals.split('\n').filter(goal => goal.trim() !== '') : [];
 
   return (
-    <>
+    <div key={id}>
       <SEO 
         title={`${project.title} | Codigix Infotech Case Study`}
         description={project.overview || `Case study: ${project.title}. Discover how Codigix Infotech delivered this successful project using advanced technologies and AI solutions.`}
@@ -210,7 +210,7 @@ export default function ProjectDetailsPage() {
                     <h3 className="text-gray-900 dark:text-white">Project Goals</h3>
                     <ul className="text-gray-600 dark:text-gray-400">
                       {goals.map((goal, index) => (
-                        <li key={index}><span className="text-indigo-600 dark:text-indigo-400"><i className="tji-check-2"></i></span>{goal}</li>
+                        <li key={index}><span className=""><i className="tji-check-2"></i></span>{goal}</li>
                       ))}
                     </ul>
                   </>
@@ -233,7 +233,7 @@ export default function ProjectDetailsPage() {
 
               {galleryImages.length > 0 && (
                 <div className="mt-12">
-                  <h3 className="mb-12 text-gray-900 dark:text-white">Project Gallery</h3>
+                  <h3 className="mb-5 text-gray-900 dark:text-white">Project Gallery</h3>
                   <Swiper
                     modules={[Autoplay, Pagination, Navigation]}
                     spaceBetween={20}
@@ -288,11 +288,11 @@ export default function ProjectDetailsPage() {
             <div className="w-full lg:w-1/3 px-4">
               <div className="project-sidebar">
                 <div className="project-sidebar-box bg-gray-50 dark:bg-[#252841]/60 border border-gray-100 dark:border-slate-800/30 rounded-2xl p-12">
-                  <h4 className="title text-gray-900 dark:text-white mb-12">Project Details</h4>
+                  <h4 className="title text-gray-900 dark:text-white mb-5">Project Details</h4>
                   
                   {project.client && (
-                    <div className="infos-item flex items-center gap-3 mb-12">
-                      <div className="project-icons w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                    <div className="infos-item flex items-center gap-3 mb-5">
+                      <div className="project-icons w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center ">
                         <i className="tji-user"></i>
                       </div>
                       <div className="project-text">
@@ -305,7 +305,7 @@ export default function ProjectDetailsPage() {
 
                   {project.category && (
                     <div className="infos-item flex items-center gap-3">
-                      <div className="project-icons w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                      <div className="project-icons w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center ">
                         <i className="tji-tag"></i>
                       </div>
                       <div className="project-text">
@@ -316,9 +316,9 @@ export default function ProjectDetailsPage() {
                   )}
                 </div>
 
-                <div className="project-sidebar-box project-cta-box bg-indigo-600 rounded-2xl p-12 text-white mt-12">
+                <div className="project-sidebar-box project-cta-box  rounded-2xl p-12 text-white mt-12">
                   <h4 className="title text-white mb-2">Start Your Project</h4>
-                  <p className="text-white/80 text-sm mb-12">Ready to build your own AI solution?</p>
+                  <p className="text-white/80 text-sm mb-5">Ready to build your own AI solution?</p>
                   <Link className="tj-primary-btn btn-light" to="/contact">
                     <div className="btn-inner flex items-center justify-center gap-2">
                       <span className="btn-text">Get Started</span>
@@ -332,6 +332,6 @@ export default function ProjectDetailsPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

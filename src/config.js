@@ -14,7 +14,11 @@ const getImageUrl = (image, defaultFolder = "") => {
       return image;
     }
     if (defaultFolder && !image.startsWith("assets")) {
-      return `/${defaultFolder}/${image}${image.includes('.') ? '' : '.webp'}`;
+      // Don't append .webp if it's already a base64 or has a dot
+      if (image.startsWith("data:") || image.includes('.')) {
+          return `/${defaultFolder}/${image}`;
+      }
+      return `/${defaultFolder}/${image}.webp`;
     }
     return `/${image}`;
 };

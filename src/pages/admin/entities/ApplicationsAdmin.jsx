@@ -69,7 +69,7 @@ const ApplicationsAdmin = () => {
       <div className="bg-[#252841]/40 backdrop-blur-md border border-slate-800/30 rounded-2xl overflow-hidden">
         {loading ? (
           <div className="p-12 text-center">
-            <RefreshCw className="w-10 h-10 animate-spin text-[#00D1FF] mx-auto mb-12" />
+            <RefreshCw className="w-10 h-10 animate-spin text-[#00D1FF] mx-auto mb-5" />
             <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em]">Loading Applications...</p>
           </div>
         ) : filteredApplications.length === 0 ? (

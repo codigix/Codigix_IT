@@ -70,19 +70,19 @@ const PricingSection = () => {
             transition={{ duration: 0.8 }}
             className="flex flex-col justify-center"
           >
-            <p className="sub-title mb-12">
+            <p className="sub-title mb-5">
               <span>💡</span>
               Our Pricing
             </p>
-            <h2 className="sec-title mb-12">
+            <h2 className="sec-title mb-5">
               Flexible Pricing, Powerful Tangible Results
             </h2>
-            <p className="text-gray-600 mb-12">
+            <p className="text-gray-600 mb-5">
               Specialize in delivering AI-powered solution <br /> revolutionize the businesses.
             </p>
 
             {/* Toggle */}
-            <div className="flex items-center gap-4 mb-12">
+            <div className="flex items-center gap-4 mb-5">
               <button
                 onClick={() => setIsYearly(false)}
                 className={`px-6 py-2 rounded-lg font-semibold transition-colors ${
@@ -130,7 +130,7 @@ const PricingSection = () => {
                 )}
 
                 <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
-                <div className="mb-12">
+                <div className="mb-5">
                   <div className="text-4xl font-bold">
                     ${isYearly ? plan.yearlyPrice : plan.monthlyPrice}
                     <span className="text-lg font-normal text-gray-600">
@@ -142,13 +142,13 @@ const PricingSection = () => {
 
                 <Link
                   to="/contact"
-                  className="block text-center w-full mb-12 px-6 py-2 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+                  className="block text-center w-full mb-5 px-6 py-2 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
                 >
                   Choose Package
                 </Link>
 
                 <div className="border-t pt-6">
-                  <h6 className="font-bold mb-12">Included:</h6>
+                  <h6 className="font-bold mb-5">Included:</h6>
                   <ul className="space-y-3">
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3 text-gray-700 text-sm">

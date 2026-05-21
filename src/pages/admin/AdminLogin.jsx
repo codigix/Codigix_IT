@@ -73,7 +73,7 @@ const AdminLogin = () => {
         transition={{ duration: 0.6 }}
         className="w-full max-w-[400px] relative z-10"
       >
-        <div className="text-center mb-12">
+        <div className="text-center mb-5">
           <h1 className="text-5xl font-bold text-white tracking-tight italic">gratafy<span className="text-xs align-top ml-0.5">TM</span></h1>
         </div>
 
@@ -82,7 +82,7 @@ const AdminLogin = () => {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="flex items-center gap-3 p-4 mb-12 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs" 
+              className="flex items-center gap-3 p-4 mb-5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs" 
             >
               <AlertCircle className="w-4 h-4 shrink-0" />
               <p className="font-medium">{error}</p>
@@ -95,7 +95,7 @@ const AdminLogin = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#E9F0FE] border-none p-2 mb-12 text-slate-900 text-sm placeholder:text-slate-500 outline-none transition-all border-b border-slate-200"
+                className="w-full bg-[#E9F0FE] border-none p-2 mb-5 text-slate-900 text-sm placeholder:text-slate-500 outline-none transition-all border-b border-slate-200"
                 placeholder="ADMIN@GRATAFY.COM"
                 required
               />

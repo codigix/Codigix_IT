@@ -58,9 +58,9 @@ const ServiceSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-5"
         >
-          <p className="sub-title justify-center mb-12">
+          <p className="sub-title justify-center mb-5">
             <span>💡</span>
             Our Best Services
           </p>
@@ -81,13 +81,13 @@ const ServiceSection = () => {
               className={`relative flex flex-col lg:flex-row gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
             >
               <div className="flex-1">
-                <h3 className="text-3xl font-bold mb-12">
+                <h3 className="text-3xl font-bold mb-5">
                   <Link to={`/services/details/${service.id}`} className="hover:text-orange-500">
                     {service.title}
                   </Link>
                 </h3>
-                <p className="text-gray-600 mb-12">{service.description}</p>
-                <ul className="mb-12 space-y-2">
+                <p className="text-gray-600 mb-5">{service.description}</p>
+                <ul className="mb-5 space-y-2">
                   {service.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-3 text-gray-700">
                       <span className="text-orange-500">✓</span>
