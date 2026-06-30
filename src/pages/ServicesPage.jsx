@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { generateSlug } from '../utils/slugify';
 import { motion } from 'framer-motion';
 import SEO from "../components/SEO";
 
@@ -81,7 +82,7 @@ export default function ServicesPage() {
               >
                 <div className="service-inner">
                   <div className="service-content">
-                    <h4 className="title"><Link to={`/services/details/${service.id}`}>{service.title}</Link></h4>
+                    <h4 className="title"><Link to={`/${generateSlug(service.title)}`}>{service.title}</Link></h4>
                     <p className="desc">                      {service.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
                     </p>
                   </div>
@@ -94,7 +95,7 @@ export default function ServicesPage() {
                       width="400"
                       height="150"
                     />
-                    <Link to={`/services/details/${service.id}`} className="text-btn" aria-label={`Learn More about ${service.title}`}>
+                    <Link to={`/${generateSlug(service.title)}`} className="text-btn" aria-label={`Learn More about ${service.title}`}>
                       <span className="btn-text"><span>Learn More</span></span>
                       <span className="btn-icon"><span><i className="tji-arrow-right"></i></span></span>
                     </Link>

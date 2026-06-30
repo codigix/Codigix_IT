@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { generateSlug } from "../utils/slugify";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SEO from "../components/SEO";
 import TestimonialSection from "../components/TestimonialSection";
@@ -369,7 +370,7 @@ export default function HomePage() {
     <div className="service-inner bg-white dark:bg-[#18133b]">
       <div className="service-content">
         <h3 className="title">
-          <Link to={`/services/details/${service.id}`} className="font-bold">{service.title}</Link>
+          <Link to={`/${generateSlug(service.title)}`} className="font-bold">{service.title}</Link>
         </h3>
 
         <p className="desc text-gray-700 dark:text-gray-300 font-medium">{service.desc}</p>
@@ -380,7 +381,7 @@ export default function HomePage() {
           <li>Predictive Analytics</li>
         </ul>
 
-        <Link className="tj-primary-btn" to={`/services/details/${service.id}`}>
+        <Link className="tj-primary-btn" to={`/${generateSlug(service.title)}`}>
           <div className="btn-inner">
             <span className="btn-icon h-icon">
               <i className="tji-arrow-right"></i>
@@ -457,10 +458,92 @@ export default function HomePage() {
   return (
     <>
       <SEO
-        title="Codigix Infotech | AI-Powered IT Solutions & Software Engineering"
-        description="Codigix Infotech delivers cutting-edge AI-powered solutions, custom software engineering, machine learning, and predictive analytics to transform your business globally."
-        keywords="AI solutions, software engineering, machine learning, digital transformation, ERP development, CRM solutions, Codigix Infotech"
-      />
+        exactTitle={true}
+        title="AI ERP, CRM & Web Development - Codigix Infotech "
+        metaTitle="Codigix Infotech | Codigix Infotech | AI ERP, CRM Software & Web Development"
+        ogTitle="Codigix Infotech | AI ERP, CRM Software & Web Development"
+        description="Codigix Infotech delivers AI-based ERP, IoT ERP, multifunctional CRM software, and custom web development solutions to automate, innovate, and grow. ."
+        keywords="AI ERP, AI-Based ERP System, IoT ERP, IoT-Based ERP System, CRM Software, Multifunctional CRM, ERP Software Development, Custom ERP Development, Web Development, Custom Web Development, Software Development Company, Business Automation, Enterprise Software, Digital Transformation"
+        canonical="https://codigixinfotech.com/"
+      >
+        <meta name="author" content="Codigix Infotech" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="language" content="English" />
+        <meta property="og:site_name" content="Codigix Infotech" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://codigixinfotech.com/#organization",
+                "name": "Codigix Infotech",
+                "url": "https://codigixinfotech.com/",
+                "logo": "https://codigixinfotech.com/assets/images/logo.png",
+                "description": "Codigix Infotech delivers AI-based ERP, IoT ERP, multifunctional CRM software, and custom web development solutions.",
+                "email": "info@codigixinfotech.com",
+                "telephone": "+91-70665 56768 ",
+                "sameAs": [
+                  "https://www.linkedin.com/company/codigix-infotech-pvt-ltd",
+                  "https://www.facebook.com/codigix.infotech",
+                  "https://www.instagram.com/codigixerp_crm"
+                ]
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://codigixinfotech.com/#website",
+                "url": "https://codigixinfotech.com/",
+                "name": "Codigix Infotech",
+                "publisher": {
+                  "@id": "https://codigixinfotech.com/#organization"
+                },
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": "https://codigixinfotech.com/?s={search_term_string}",
+                  "query-input": "required name=search_term_string"
+                }
+              },
+              {
+                "@type": "Service",
+                "serviceType": "AI-Based ERP System",
+                "provider": {
+                  "@id": "https://codigixinfotech.com/#organization"
+                },
+                "areaServed": "Pimpri Cinchwad , Pune ",
+                "url": "https://codigixinfotech.com/"
+              },
+              {
+                "@type": "Service",
+                "serviceType": "IoT-Based ERP System",
+                "provider": {
+                  "@id": "https://codigixinfotech.com/#organization"
+                },
+                "areaServed": "Worldwide",
+                "url": "https://codigixinfotech.com/"
+              },
+              {
+                "@type": "Service",
+                "serviceType": "Multifunctional CRM Software",
+                "provider": {
+                  "@id": "https://codigixinfotech.com/#organization"
+                },
+                "areaServed": "Worldwide",
+                "url": "https://codigixinfotech.com/"
+              },
+              {
+                "@type": "Service",
+                "serviceType": "Custom Web Development",
+                "provider": {
+                  "@id": "https://codigixinfotech.com/#organization"
+                },
+                "areaServed": "Worldwide",
+                "url": "https://codigixinfotech.com/"
+              }
+            ]
+          })}
+        </script>
+      </SEO>
       <style>
         {`
           .service-item.style-3.service-stack {
@@ -527,7 +610,7 @@ export default function HomePage() {
                     alt={slide.title}
                     className="hero-image"
                     loading={slide.id === 1 ? "eager" : "lazy"}
-                    fetchpriority={slide.id === 1 ? "high" : "auto"}
+                    fetchPriority={slide.id === 1 ? "high" : "auto"}
                     width="1920"
                     height="1080"
                   />
@@ -618,8 +701,7 @@ export default function HomePage() {
                 spaceBetween={30}
                 loop={true}
                 speed={8000}
-                freeMode={true}
-                freeModeMomentum={false}
+                freeMode={{ momentum: false }}
                 allowTouchMove={true}
                 grabCursor={true}
                 watchSlidesProgress={true}
@@ -918,8 +1000,7 @@ export default function HomePage() {
             slidesPerView={1}
             loop={true}
             speed={6000}
-            freeMode={true}
-            freeModeMomentum={false}
+            freeMode={{ momentum: false }}
             autoplay={{
               delay: 0,
               disableOnInteraction: false,

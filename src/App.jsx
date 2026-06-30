@@ -80,6 +80,7 @@ function AppRoutes() {
           <Route path="/blog/details/:id" element={<BlogDetailsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/careers" element={<CareerPage />} />
+          <Route path="/:slug" element={<ServiceDetailsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>

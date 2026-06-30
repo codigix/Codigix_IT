@@ -63,10 +63,35 @@ export default function AboutPage() {
   return (
     <>
       <SEO 
-        title="About Codigix Infotech | Our Mission, Vision & Team" 
-        description="Discover the story of Codigix Infotech. Learn about our mission to revolutionize industries through AI-driven software and meet our team of passionate innovators."
-        keywords="about Codigix, AI software company, software engineering team, IT mission and vision, tech innovators"
-      />
+        exactTitle={true}
+        title="About Codigix Infotech | Software Company in Pune & PCMC" 
+        ogTitle="About Software Company in Pune | Codigix Infotech"
+        description="Codigix Infotech is a Pune-based software development company in PCMC delivering AI ERP systems, CRM software, IoT solutions, custom web development services."
+        keywords="software company in Pune, IT company PCMC, software development company Pimpri Chinchwad, ERP company Pune, CRM software company Pune, custom software company Pune, IT services Pune Hinjewadi"
+        canonical="https://codigixinfotech.com/about"
+        ogType="website"
+      >
+        <meta property="og:description" content="Learn about Codigix Infotech, a trusted software development company serving Pune, PCMC, Hinjewadi, Wakad & Baner." />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "@id": "https://codigixinfotech.com/about#page",
+            "url": "https://codigixinfotech.com/about",
+            "name": "About Codigix Infotech",
+            "description": "Learn about Codigix Infotech, a software development company in Pune & PCMC specializing in AI ERP, CRM software, IoT solutions, and web development.",
+            "isPartOf": {
+              "@type": "WebSite",
+              "@id": "https://codigixinfotech.com/#website"
+            },
+            "about": {
+              "@type": "Organization",
+              "name": "Codigix Infotech",
+              "url": "https://codigixinfotech.com/"
+            }
+          })}
+        </script>
+      </SEO>
       <section className="tj-page-header section-gap-x" style={{backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778342361/0015_lf398t.jpg")})`}}>
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { generateSlug } from '../utils/slugify';
 
 const ServiceSection = () => {
   const services = [
@@ -82,7 +83,7 @@ const ServiceSection = () => {
             >
               <div className="flex-1">
                 <h3 className="text-3xl font-bold mb-5">
-                  <Link to={`/services/details/${service.id}`} className="hover:text-orange-500">
+                  <Link to={`/${generateSlug(service.title)}`} className="hover:text-orange-500">
                     {service.title}
                   </Link>
                 </h3>
@@ -96,7 +97,7 @@ const ServiceSection = () => {
                   ))}
                 </ul>
                 <Link 
-                  to={`/services/details/${service.id}`}
+                  to={`/${generateSlug(service.title)}`}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
                 >
                   <span>→</span>

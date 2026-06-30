@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { generateSlug } from '../utils/slugify';
+const NotFoundPage = React.lazy(() => import('./NotFoundPage'));
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   CheckCircle2,
@@ -25,7 +27,7 @@ const API_BASE_URL = config.API_BASE_URL;
 const getImageUrl = config.getImageUrl;
 
 export default function ServiceDetailsPage() {
-  const { id } = useParams();
+  const { id, slug } = useParams();
   const [service, setService] = useState(null);
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,7 +49,15 @@ export default function ServiceDetailsPage() {
         setServices(Array.isArray(allServicesData) ? allServicesData : []);
 
         let serviceId = id;
-        if (!serviceId && Array.isArray(allServicesData) && allServicesData.length > 0) {
+
+        if (slug && Array.isArray(allServicesData)) {
+          const matchedService = allServicesData.find(s => generateSlug(s.title) === slug);
+          if (matchedService) {
+            serviceId = matchedService.id;
+          } else {
+            serviceId = null;
+          }
+        } else if (!serviceId && !slug && Array.isArray(allServicesData) && allServicesData.length > 0) {
           serviceId = allServicesData[0].id;
         }
 
@@ -82,6 +92,13 @@ export default function ServiceDetailsPage() {
   }
 
   if (!service) {
+    if (slug) {
+      return (
+        <React.Suspense fallback={<div className="text-center py-20">Loading...</div>}>
+          <NotFoundPage />
+        </React.Suspense>
+      );
+    }
     return <div className="text-center py-20">Service not found</div>;
   }
 
@@ -272,12 +289,74 @@ export default function ServiceDetailsPage() {
 
   return (
     <>
-      <SEO
-        title={`${service.title} | Codigix Infotech`}
-        description={service.overview || service.desc || `Expert ${service.title} services at Codigix Infotech. We provide specialized AI-powered solutions to transform your business.`}
-        keywords={`${service.title}, AI solutions, IT services, Codigix Infotech, ${service.title} services`}
-        ogImage={getImageUrl(service.image, "assets/images/service")}
-      />
+      {generateSlug(service.title) === 'web-development-design' ? (
+        <SEO 
+          exactTitle={true}
+          title="Web Development Pune PCMC | UI/UX & Custom Websites "
+          ogTitle="Web Development & Design Company in Pune & PCMC"
+          description="Top web development & design company in Pune & PCMC. We build custom websites, UI/UX designs & responsive web apps for businesses in Hinjewadi, Wakad & Baner. ."
+          keywords="web development company Pune, website design company Pune, web development PCMC, UI UX design Pune, custom website development Pune, website developer Hinjewadi, web design Wakad, responsive web design Pune, frontend developer Pune, backend development India"
+          canonical="https://codigixinfotech.com/web-development-design"
+          ogType="website"
+          ogImage={getImageUrl(service.image, "assets/images/service")}
+        >
+          <meta name="robots" content="index, follow" />
+          <meta property="og:description" content="Custom websites, UI/UX design, and web development services in Pune, PCMC, Hinjewadi, Wakad & Baner." />
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "WebPage",
+                  "@id": "https://codigixinfotech.com/web-development-design#webpage",
+                  "url": "https://codigixinfotech.com/web-development-design",
+                  "name": "Web Development & Design Services in Pune & PCMC",
+                  "description": "Top web development & design company in Pune & PCMC. We build custom websites, UI/UX designs & responsive web apps for businesses in Hinjewadi, Wakad & Baner. ",
+                  "isPartOf": {
+                    "@type": "WebSite",
+                    "@id": "https://codigixinfotech.com/#website"
+                  }
+                },
+                {
+                  "@type": "Service",
+                  "@id": "https://codigixinfotech.com/web-development-design#service",
+                  "name": "Web Development & Design Services",
+                  "serviceType": "Web Development & UI/UX Design",
+                  "description": "Custom website development, UI/UX design, frontend and backend development services in Pune & PCMC.",
+                  "provider": {
+                    "@type": "Organization",
+                    "name": "Codigix Infotech",
+                    "url": "https://codigixinfotech.com/"
+                  },
+                  "areaServed": [
+                    { "@type": "City", "name": "Pune" },
+                    { "@type": "Place", "name": "PCMC" },
+                    { "@type": "Place", "name": "Hinjewadi" },
+                    { "@type": "Place", "name": "Wakad" },
+                    { "@type": "Place", "name": "Baner" }
+                  ],
+                  "category": "Software Development"
+                },
+                {
+                  "@type": "Organization",
+                  "@id": "https://codigixinfotech.com/#organization",
+                  "name": "Codigix Infotech",
+                  "url": "https://codigixinfotech.com/",
+                  "logo": "https://codigixinfotech.com/assets/images/logo.png",
+                  "sameAs": []
+                }
+              ]
+            })}
+          </script>
+        </SEO>
+      ) : (
+        <SEO
+          title={`${service.title} | Codigix Infotech`}
+          description={service.overview || service.desc || `Expert ${service.title} services at Codigix Infotech. We provide specialized AI-powered solutions to transform your business.`}
+          keywords={`${service.title}, AI solutions, IT services, Codigix Infotech, ${service.title} services`}
+          ogImage={getImageUrl(service.image, "assets/images/service")}
+        />
+      )}
 
       <style>
         {`
@@ -591,7 +670,7 @@ export default function ServiceDetailsPage() {
             <div className="w-full lg:w-full px-4">
               <div className="tj-page-header-content text-center">
                 <h1 className="tj-page-title">{service.title}</h1>
-                <div className="tj-page-link flex items-center justify-center gap-2">
+                <div className="tj-page-link flex items-centery w-fit mx-auto my-3   justify-center gap-2">
                   <span className="flex items-center"><Globe size={16} className="mr-1" /></span>
                   <span><Link to="/" className="hover:text-[#6c56b6] transition-colors">Home</Link></span>
                   <span className="text-gray-400">/</span>
@@ -730,7 +809,7 @@ export default function ServiceDetailsPage() {
                   <div className="tj-nav__post previous">
                     <div className="tj-nav-post__nav prev_post">
                       {prevService && (
-                        <Link to={`/services/details/${prevService.id}`} className="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400">
+                        <Link to={`/${generateSlug(prevService.title)}`} className="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400">
                           <span><i className="tji-arrow-left"></i></span>Previous
                         </Link>
                       )}
@@ -744,7 +823,7 @@ export default function ServiceDetailsPage() {
                   <div className="tj-nav__post next">
                     <div className="tj-nav-post__nav next_post">
                       {nextService && (
-                        <Link to={`/services/details/${nextService.id}`} className="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400">
+                        <Link to={`/${generateSlug(nextService.title)}`} className="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400">
                           Next<span><i className="tji-arrow-right"></i></span>
                         </Link>
                       )}
@@ -752,7 +831,7 @@ export default function ServiceDetailsPage() {
                   </div>
                 </div>
 
-               
+
 
 
 
@@ -769,7 +848,7 @@ export default function ServiceDetailsPage() {
                       <li key={s.id}>
                         <Link
                           className={service && service.id === s.id ? 'active' : ''}
-                          to={`/services/details/${s.id}`}
+                          to={`/${generateSlug(s.title)}`}
                         >
                           <span>{s.title}</span>
                           <span className="icon-box">
@@ -786,35 +865,35 @@ export default function ServiceDetailsPage() {
           <div className="flex flex-wrap -mx-4">
             <div className="md:w-full px-4">
               {technologies.length > 0 && (
-                  <div className="tech-section my-5">
-                    <h2 className="title mb-5">Technologies We Use</h2>
-                    <div className="flex flex-wrap -mx-4">
-                      {technologies.map((cat, idx) => (
-                        <div key={idx} className="w-full lg:w-1/4 px-4 md:w-1/4 mb-5">
-                          <motion.div 
-                            className="tech-category-card"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
-                          >
-                            <div className="category-icon-wrap">
-                              {getCategoryIcon(cat.name)}
-                            </div>
-                            <h5 className="text-lg font-bold mb-5">{cat.name}</h5>
-                            <div className="flex flex-wrap gap-2">
-                              {cat.items.map((item, i) => (
-                                <span key={i} className="tech-badge">
-                                  {item}
-                                </span>
-                              ))}
-                            </div>
-                          </motion.div>
-                        </div>
-                      ))}
-                    </div>
+                <div className="tech-section my-5">
+                  <h2 className="title mb-5">Technologies We Use</h2>
+                  <div className="flex flex-wrap -mx-4">
+                    {technologies.map((cat, idx) => (
+                      <div key={idx} className="w-full lg:w-1/4 px-4 md:w-1/4 mb-5">
+                        <motion.div
+                          className="tech-category-card"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.1 }}
+                        >
+                          <div className="category-icon-wrap">
+                            {getCategoryIcon(cat.name)}
+                          </div>
+                          <h5 className="text-lg font-bold mb-5">{cat.name}</h5>
+                          <div className="flex flex-wrap gap-2">
+                            {cat.items.map((item, i) => (
+                              <span key={i} className="tech-badge">
+                                {item}
+                              </span>
+                            ))}
+                          </div>
+                        </motion.div>
+                      </div>
+                    ))}
                   </div>
-                )}
+                </div>
+              )}
             </div>
           </div>
         </div>
