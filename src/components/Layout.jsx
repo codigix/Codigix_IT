@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "./Header";
-import Footer from "./Footer";
-import NewFooter from "./NewFooter";
+const Footer = React.lazy(() => import('./Footer'));
+const NewFooter = React.lazy(() => import('./NewFooter'));
 import SearchPopup from "./SearchPopup";
 import HamburgerMenu from "./HamburgerMenu";
 import config from "../config";
@@ -14,53 +14,38 @@ export default function Layout({ children }) {
   const siteUrl = config.SITE_URL;
   const siteName = config.SITE_NAME;
 
-  const [loading, setLoading] = useState(true);
-  const [showLoader, setShowLoader] = useState(false);
-
-  // Loader timing control
+  // Run animations on route change
   useEffect(() => {
-    setLoading(true);
-    setShowLoader(false);
+    // A small delay to ensure DOM is updated before running WOW animations
+    const timer = setTimeout(() => {
+      const wowElements = document.querySelectorAll('.wow');
+      if (wowElements.length > 0 && window.IntersectionObserver) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              el.style.visibility = 'visible';
+              el.classList.add('animated');
+              if (el.getAttribute('data-wow-delay')) {
+                el.style.animationDelay = el.getAttribute('data-wow-delay');
+              }
+              if (el.getAttribute('data-wow-duration')) {
+                el.style.animationDuration = el.getAttribute('data-wow-duration');
+              }
+              obs.unobserve(el);
+            }
+          });
+        }, { threshold: 0.1 });
 
-    // Start loader after small delay (prevents logo flash issue)
-    const startTimer = setTimeout(() => {
-      setShowLoader(true);
-    }, 200);
-
-    // Stop loader after total time
-    const endTimer = setTimeout(() => {
-      setLoading(false);
-    }, 1800);
-
-    return () => {
-      clearTimeout(startTimer);
-      clearTimeout(endTimer);
-    };
-  }, [location.pathname]);
-
-  // Run animations after loader is removed
-  useEffect(() => {
-    if (!loading) {
-      if (window.jQuery) {
-        window.jQuery(document).ready(function () {
-          window.jQuery(document).trigger("reset");
+        wowElements.forEach((el) => {
+          el.style.visibility = 'hidden';
+          observer.observe(el);
         });
       }
+    }, 100);
 
-      if (window.jQuery && window.jQuery.fn.counterUp) {
-        setTimeout(() => {
-          window.jQuery(".counter").counterUp({
-            delay: 10,
-            time: 1000,
-          });
-        }, 100);
-      }
-
-      if (window.WOW) {
-        new window.WOW().init();
-      }
-    }
-  }, [loading]);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   return (
     <>
@@ -101,42 +86,33 @@ export default function Layout({ children }) {
           })}
         </script>
       </Helmet>
-      {/* LOADER FIRST */}
-      {loading ? (
-        showLoader ? (
-          <div className="flex items-center justify-center min-h-screen bg-white dark:bg-[#0F0721]">
-            <div className="w-12 h-12 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
-          </div>
-        ) : null
-      ) : (
-        <>
-          <div className="body-overlay"></div>
+      <div className="body-overlay"></div>
 
-          <div className="back-to-top-wrapper">
-            <button
-              id="back_to_top"
-              type="button"
-              className="back-to-top-btn"
-              aria-label="Back to top"
-            >
-              <span>
-                <i className="tji-rocket"></i>
-              </span>
-            </button>
-          </div>
+      <div className="back-to-top-wrapper">
+        <button
+          id="back_to_top"
+          type="button"
+          className="back-to-top-btn"
+          aria-label="Back to top"
+        >
+          <span>
+            <i className="tji-rocket"></i>
+          </span>
+        </button>
+      </div>
 
-          <SearchPopup />
-          <HamburgerMenu />
-          <Header />
+      <SearchPopup />
+      <HamburgerMenu />
+      <Header />
 
-          <main id="primary" className="site-main">
-            {children}
-          </main>
+      <main id="primary" className="site-main">
+        {children}
+      </main>
 
-          {/* FOOTER LOGIC */}
-          {isHomePage ? <Footer /> : <NewFooter />}
-        </>
-      )}
+      {/* FOOTER LOGIC */}
+      <React.Suspense fallback={<div className="h-64"></div>}>
+        {isHomePage ? <Footer /> : <NewFooter />}
+      </React.Suspense>
     </>
   );
 }

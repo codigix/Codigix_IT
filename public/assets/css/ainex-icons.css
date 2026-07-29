@@ -10,39 +10,26 @@
 	font-display: block;
 }
 
-[class^="tji-"],
-[class*=" tji-"] {
-	/* use !important to prevent issues with browser extensions that change fonts */
-	font-family: "ainex-icons" !important;
-	speak: never;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+[class^="tji-"], [class*=" tji-"] {
+  font-family: 'ainex-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .tji-idea:before {
 	content: "\e901";
-}
-.tji-arrow-right-2:before {
-	content: "\e902";
-}
-.tji-arrow-menu:before {
-	content: "\e903";
 }
 .tji-arrow-left:before {
 	content: "\e904";
 }
 .tji-arrow-right:before {
 	content: "\e905";
-}
-.tji-arrow-right-3:before {
-	content: "\e906";
 }
 .tji-arrow-left-long:before {
 	content: "\e907";
@@ -52,9 +39,6 @@
 }
 .tji-arrow-down:before {
 	content: "\e909";
-}
-.tji-arrow-down-long:before {
-	content: "\e910";
 }
 .tji-search:before {
 	content: "\e911";
@@ -77,9 +61,6 @@
 .tji-location:before {
 	content: "\e917";
 }
-.tji-location-2:before {
-	content: "\e918";
-}
 .tji-plane:before {
 	content: "\e919";
 }
@@ -89,26 +70,11 @@
 .tji-ai:before {
 	content: "\e921";
 }
-.tji-cheer-up:before {
-	content: "\e922";
-}
-.tji-hand:before {
-	content: "\e923";
-}
-.tji-trophy:before {
-	content: "\e924";
-}
-.tji-team:before {
-	content: "\e925";
-}
 .tji-discovery:before {
 	content: "\e926";
 }
 .tji-development:before {
 	content: "\e927";
-}
-.tji-support:before {
-	content: "\e928";
 }
 .tji-innovation:before {
 	content: "\e929";
@@ -119,20 +85,11 @@
 .tji-technology:before {
 	content: "\e931";
 }
-.tji-support-2:before {
-	content: "\e932";
-}
 .tji-play:before {
 	content: "\e933";
 }
 .tji-quote:before {
 	content: "\e934";
-}
-.tji-plus:before {
-	content: "\e935";
-}
-.tji-minus:before {
-	content: "\e936";
 }
 .tji-stars:before {
 	content: "\e937";
@@ -148,12 +105,6 @@
 }
 .tji-user:before {
 	content: "\e941";
-}
-.tji-budget:before {
-	content: "\e942";
-}
-.tji-chart:before {
-	content: "\e943";
 }
 .tji-calendar:before {
 	content: "\e944";
@@ -194,42 +145,6 @@
 .tji-x-twitter:before {
 	content: "\e956";
 }
-.tji-whatsapp:before {
-	content: "\e957";
-}
-.tji-telegram:before {
-	content: "\e958";
-}
-.tji-messenger:before {
-	content: "\e959";
-}
-.tji-youtube:before {
-	content: "\e960";
-}
-.tji-vimeo:before {
-	content: "\e961";
-}
-.tji-pinterest:before {
-	content: "\e962";
-}
-.tji-spotify:before {
-	content: "\e963";
-}
-.tji-threads:before {
-	content: "\e964";
-}
-.tji-tumblr:before {
-	content: "\e965";
-}
-.tji-github:before {
-	content: "\e966";
-}
-.tji-google:before {
-	content: "\e967";
-}
-.tji-apple:before {
-	content: "\e968";
-}
 .tji-signal:before {
 	content: "\e969";
 }
@@ -239,39 +154,6 @@
 .tji-robot:before {
 	content: "\e971";
 }
-.tji-service-1:before {
-	content: "\e972";
-}
-.tji-service-2:before {
-	content: "\e973";
-}
-.tji-service-3:before {
-	content: "\e974";
-}
-.tji-service-4:before {
-	content: "\e975";
-}
-.tji-x-mark:before {
-	content: "\e976";
-}
-.tji-search-2:before {
-	content: "\e977";
-}
 .tji-plane-3:before {
 	content: "\e978";
-}
-.tji-message:before {
-	content: "\e979";
-}
-.tji-list:before {
-	content: "\e980";
-}
-.tji-clock-2:before {
-	content: "\e981";
-}
-.tji-folder:before {
-	content: "\e982";
-}
-.tji-power:before {
-	content: "\e983";
 }

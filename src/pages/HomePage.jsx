@@ -13,7 +13,8 @@ import {
 } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-
+import "swiper/css/navigation";
+import "swiper/css/effect-fade";
 import "swiper/css/free-mode";
 
 
@@ -577,17 +578,19 @@ export default function HomePage() {
         `}
       </style>
       {/* Banner Slider */}
-
       <section className="tj-slider-section">
-
-        <Swiper
+        {slides && slides.length > 0 && (
+          <Swiper
           modules={[Pagination, Navigation, EffectFade, Autoplay]}
           slidesPerView={1}
           spaceBetween={0}
           effect="fade"
           loop={true}
           speed={1400}
-          autoplay={false}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
           navigation={{
             nextEl: ".slider-next",
             prevEl: ".slider-prev",
@@ -674,6 +677,7 @@ export default function HomePage() {
           {/* Pagination */}
           <div className="swiper-pagination hero-pagination"></div>
         </Swiper>
+        )}
       </section>
 
 

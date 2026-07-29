@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @import "tailwindcss";
 @config "../tailwind.config.js";
 @plugin "tailwindcss-animate";
@@ -36,6 +35,31 @@
     0% { opacity: 0; transform: translateY(-20px); }
     100% { opacity: 1; transform: translateY(0); }
   }
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+.fadeInLeft {
+  animation-name: fadeInLeft;
+}
+.fadeInRight {
+  animation-name: fadeInRight;
+}
+.fadeIn {
+  animation-name: fadeIn;
+}
+@keyframes fadeInRight {
+  0% { opacity: 0; transform: translateX(30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 body {
@@ -1668,3 +1692,35 @@ START: Countup CSS
 }
 /* !END: Testimonial CSS */
 
+/* Fix slider animation */
+.swiper-slide .slider-content .sub-title,
+.swiper-slide .slider-content .slider-title,
+.swiper-slide .slider-content .slider-desc,
+.swiper-slide .slider-content .slider-btn {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.swiper-slide.swiper-slide-active .slider-content .sub-title,
+.swiper-slide.swiper-slide-active .slider-content .slider-title,
+.swiper-slide.swiper-slide-active .slider-content .slider-desc,
+.swiper-slide.swiper-slide-active .slider-content .slider-btn {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.swiper-slide.swiper-slide-active .slider-content .sub-title {
+  transition-delay: 0.2s;
+}
+.swiper-slide.swiper-slide-active .slider-content .slider-title {
+  transition-delay: 0.4s;
+}
+.swiper-slide.swiper-slide-active .slider-content .slider-desc {
+  transition-delay: 0.6s;
+}
+.swiper-slide.swiper-slide-active .slider-content .slider-btn {
+  transition-delay: 0.8s;
+}

@@ -55,7 +55,11 @@ exports.getAll = async (req, res) => {
       'technology_stack',
       'results',
       'long_description',
-      'content'
+      'content',
+      'description',
+      'overview',
+      'challenge',
+      'solution'
     ];
     
     const selectColumns = validColumns

@@ -10,6 +10,8 @@
   <meta name="google-site-verification" content="d1ERlnSguO0KTgfkyfozYtnmWCOnPA2K8NS5aH0c90c" />
 
   <!-- Google Analytics -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWZETZDMWP"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -27,31 +29,21 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://codigixinfotech.com" />
 
-  <!-- External CSS Files (Pre-loaded for better FCP) -->
-  <link rel="stylesheet" href="/assets/css/animate.min.css">
-  <link rel="stylesheet" href="/assets/css/ainex-icons.css">
-  <link rel="stylesheet" href="/assets/css/nice-select.css">
-  <link rel="stylesheet" href="/assets/css/swiper.min.css">
-  <link rel="stylesheet" href="/assets/css/venobox.min.css">
-  <link rel="stylesheet" href="/assets/css/meanmenu.css">
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <!-- Preload and load Google Fonts asynchronously -->
 
-  <!-- External JS Files (Deferred to avoid render-blocking) -->
-  <script src="/assets/js/jquery.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="/assets/js/gsap-scroll-to-plugin.min.js" defer></script>
-  <script src="/assets/js/gsap-split-text.min.js" defer></script>
-  <script src="/assets/js/smooth-scroll.min.js" defer></script>
-  <script src="/assets/js/jquery.nice-select.min.js" defer></script>
-  <script src="/assets/js/swiper.min.js" defer></script>
-  <script src="/assets/js/waypoints.min.js" defer></script>
-  <script src="/assets/js/counterup.min.js" defer></script>
-  <script src="/assets/js/venobox.min.js" defer></script>
-  <script src="/assets/js/appear.min.js" defer></script>
-  <script src="/assets/js/wow.min.js" defer></script>
-  <script src="/assets/js/meanmenu.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap">
+  </noscript>
+
+  <!-- External CSS Files (Deferred for better FCP/LCP) -->
+
+  <link rel="preload" href="/assets/css/ainex-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/css/ainex-icons.css"></noscript>
+
+  <!-- Main stylesheet moved to main.jsx for Vite bundling -->
+
+  <!-- External JS Files -->
 </head>
 
 <body>

@@ -72,6 +72,16 @@ export default function NewFooter() {
                       tailored AI crafting solutions.
                     </p>
                   </div>
+                  <div className="footer-contact" style={{marginTop: '20px', marginBottom: '20px'}}>
+                    <p style={{color: '#a3a3a3', marginBottom: '10px'}}>
+                      <i className="tji-envelop-2" style={{marginRight: '10px'}}></i> 
+                      <a href="mailto:info@codigixinfotech.com" style={{color: '#a3a3a3'}}>info@codigixinfotech.com</a>
+                    </p>
+                    <p style={{color: '#a3a3a3'}}>
+                      <i className="tji-phone-2" style={{marginRight: '10px'}}></i> 
+                      <a href="tel:+919112706604" style={{color: '#a3a3a3'}}>+91 9112706604</a>
+                    </p>
+                  </div>
 
                   <div className="social-links style-2">
                     <ul>
@@ -104,12 +114,12 @@ export default function NewFooter() {
                 <div className="footer-widget widget-nav-menu footer-col-3">
                   <h5 className="title">Our Services</h5>
                   <ul>
-                    <li><Link to="/services/details">AI-Powered Solutions</Link></li>
-                    <li><Link to="/services/details">Custom Technology</Link></li>
-                    <li><Link to="/services/details">Predictive Analytics</Link></li>
-                    <li><Link to="/services/details">Machine Learning</Link></li>
-                    <li><Link to="/services/details">Language Processing</Link></li>
-                    <li><Link to="/services/details">Computer Vision</Link></li>
+                    <li><Link to="/ai-powered-solutions">AI-Powered Solutions</Link></li>
+                    <li><Link to="/custom-technology">Custom Technology</Link></li>
+                    <li><Link to="/predictive-analytics">Predictive Analytics</Link></li>
+                    <li><Link to="/machine-learning">Machine Learning</Link></li>
+                    <li><Link to="/language-processing">Language Processing</Link></li>
+                    <li><Link to="/computer-vision">Computer Vision</Link></li>
                   </ul>
                 </div>
               </div>

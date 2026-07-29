@@ -88,7 +88,7 @@ export default function ServicesPage() {
                   </div>
                   <div className="service-img">
                     <img
-                      src={getImageUrl(service.image, "assets/images/service")}
+                      src={getImageUrl(service.image, "assets/images/service", 800)}
                       alt={service.title}
                       loading="lazy"
                       className="w-full h-[150px] object-cover transition-transform duration-500 group-hover:scale-110"

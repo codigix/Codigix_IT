@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from "../components/SEO";
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 import config from '../config';
 
 const API_BASE_URL = config.API_BASE_URL;
@@ -154,16 +156,26 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="marquee-area">
-            <div className="swiper marquee-slider">
-              <div className="swiper-wrapper">
-                {['Redefining', 'Revolution', 'Intelligence', 'Redefining', 'Revolution', 'Intelligence', 'Redefining', 'Revolution', 'Intelligence', 'Redefining', 'Revolution', 'Intelligence'].map((text, idx) => (
-                  <div className="swiper-slide marquee-item" key={idx}>
-                    <h4 className="marquee-text">{text}</h4>
-                    <div className="marquee-icon"><i className="tji-marquee-icon"></i></div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={30}
+              slidesPerView="auto"
+              loop={true}
+              speed={5000}
+              autoplay={{
+                delay: 0,
+                disableOnInteraction: false,
+              }}
+              allowTouchMove={false}
+              className="marquee-slider"
+            >
+              {['Redefining', 'Revolution', 'Intelligence', 'Redefining', 'Revolution', 'Intelligence', 'Redefining', 'Revolution', 'Intelligence', 'Redefining', 'Revolution', 'Intelligence'].map((text, idx) => (
+                <SwiperSlide className="marquee-item" key={idx} style={{ width: 'auto' }}>
+                  <h4 className="marquee-text">{text}</h4>
+                  <div className="marquee-icon"><i className="tji-marquee-icon"></i></div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       </section>

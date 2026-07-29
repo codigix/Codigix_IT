@@ -1,0 +1,11 @@
+# Codigix
+
+Codigix Infotech delivers cutting-edge AI-powered solutions, custom software engineering, machine learning, and predictive analytics to transform businesses globally.
+
+## Links
+
+- [Home](https://codigixinfotech.com/)
+- [About Us](https://codigixinfotech.com/about)
+- [Services](https://codigixinfotech.com/services)
+- [Projects](https://codigixinfotech.com/projects)
+- [Contact Us](https://codigixinfotech.com/contact)

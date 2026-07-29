@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SearchPopup from './SearchPopup';
 import HamburgerMenu from './HamburgerMenu';
@@ -13,10 +13,25 @@ export default function Header() {
   const location = useLocation();
   const isHome = location.pathname === "/";
 
+  const [isSticky, setIsSticky] = useState(false);
+
   useEffect(() => {
     setMenuOpen(false);
     setSearchOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 500) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (isHome) {
     return (
@@ -28,15 +43,15 @@ export default function Header() {
               <div className="flex flex-wrap -mx-4">
                 <div className="w-full px-4">
                   <div className="header-top-content">
-                    <p className="topbar-text"><i className="tji-idea"></i>Innovating Tomorrow, Today <Link to="/contact" aria-label="Contact us to learn more about our innovations">Contact Us</Link></p>
+                    <p className="topbar-text"><i className="tji-idea"></i>Innovating Tomorrow, Today <Link to="/contact" aria-label="Contact us to learn more about our innovations" className="text-white hover:text-gray-200 underline">Contact Us</Link></p>
                     <div className="header-info">
                       <div className="info-item">
                         <span><i className="tji-envelop-2"></i></span>
-                        <a href="mailto:info@codigix.co" aria-label="Send us an email at info@codigix.co">info@codigix.co</a>
+                        <a href="mailto:info@codigixinfotech.com" aria-label="Send us an email at info@codigixinfotech.com">info@codigixinfotech.com</a>
                       </div>
                       <div className="info-item">
                         <span><i className="tji-phone-2"></i></span>
-                        <a href="tel:+91 70665 56768" aria-label="Call us at +91 70665 56768">+91 70665 56768</a>
+                        <a href="tel:+91 9112706604" aria-label="Call us at +91 9112706604">+91 9112706604</a>
                       </div>
                       <div className="info-item">
                         <div className="social-links">
@@ -123,7 +138,7 @@ export default function Header() {
           </div>
         </header>
 
-        <header className="header-area header-3 header-duplicate header-sticky">
+        <header className={`header-area header-3 header-duplicate header-sticky ${isSticky ? 'sticky' : ''}`}>
           <div className="w-full px-4">
             <div className="flex flex-wrap -mx-4">
               <div className="w-full px-4">
@@ -268,7 +283,7 @@ export default function Header() {
         </div>
       </header>
 
-      <header className="header-area header-2 header-duplicate header-sticky">
+      <header className={`header-area header-2 header-duplicate header-sticky ${isSticky ? 'sticky' : ''}`}>
         <div className="header-bottom">
           <div className="w-full px-4">
             <div className="flex flex-wrap -mx-4">

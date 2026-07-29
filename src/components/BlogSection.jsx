@@ -107,6 +107,7 @@ const BlogSection = () => {
                 <Link 
                   to="/blog/details"
                   className="inline-flex items-center gap-2 text-orange-500 font-semibold hover:gap-4 transition-all"
+                  aria-label={`Read More about ${blog.title}`}
                 >
                   Read More
                   <span>→</span>

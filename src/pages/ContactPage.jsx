@@ -59,8 +59,8 @@ export default function ContactPage() {
 
   const contactInfo = [
     { icon: 'tji-location', title: 'Our Location', content: 'Office No: 514, 5th Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18' },
-    { icon: 'tji-envelop', title: 'Email us', links: [{ label: 'support@codigix.com', href: 'mailto:support@codigix.com' }, { label: 'info@codigix.com', href: 'mailto:info@codigix.com' }] },
-    { icon: 'tji-phone', title: 'Call us', links: [{ label: '  +91 70665 56768', href: 'tel:  +91 70665 56768' }]}
+    { icon: 'tji-envelop', title: 'Email us', links: [{ label: 'support@codigixinfotech.com', href: 'mailto:support@codigixinfotech.com' }, { label: 'info@codigixinfotech.com', href: 'mailto:info@codigixinfotech.com' }] },
+    { icon: 'tji-phone', title: 'Call us', links: [{ label: '+91 9112706604', href: 'tel:+91 9112706604' }]}
   ];
 
   return (

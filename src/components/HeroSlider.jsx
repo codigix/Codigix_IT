@@ -73,6 +73,7 @@ const HeroSlider = () => {
                     <Link 
                       to="/contact"
                       className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+                      aria-label="Learn more about our services by contacting us"
                     >
                       <span>→</span>
                       Learn More

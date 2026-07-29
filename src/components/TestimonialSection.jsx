@@ -171,8 +171,8 @@ const TestimonialSection = () => {
                             />
                           </div>
                           <div className="author-header">
-                            <h4 className="title">{testimonial.author || testimonial.name}</h4>
-                            <span className="designation">{testimonial.designation || testimonial.position}</span>
+                            <h3 className="title">{testimonial.author || testimonial.name}</h3>
+                            <span className="designation text-gray-700 dark:text-gray-400">{testimonial.designation || testimonial.position}</span>
                           </div>
                         </div>
                       </div>

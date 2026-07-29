@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from "../components/SEO";
 import config from '../config';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Briefcase, MapPin, ChevronRight, X, CheckCircle, Heart, Zap, Globe, Users } from 'lucide-react';
 
 const API_BASE_URL = config.API_BASE_URL;
 
@@ -95,6 +97,13 @@ export default function CareerPage() {
     );
   }
 
+  const perks = [
+    { icon: <Heart className="w-6 h-6" />, title: "Health & Wellness", desc: "Comprehensive health coverage and wellness programs for you and your family." },
+    { icon: <Globe className="w-6 h-6" />, title: "Remote Friendly", desc: "Work from anywhere with our flexible remote and hybrid work policies." },
+    { icon: <Zap className="w-6 h-6" />, title: "Fast-Paced Growth", desc: "Accelerate your career with challenging projects and continuous learning." },
+    { icon: <Users className="w-6 h-6" />, title: "Amazing Culture", desc: "Join a diverse, inclusive, and collaborative team that celebrates success." }
+  ];
+
   return (
     <>
       <SEO 
@@ -102,358 +111,345 @@ export default function CareerPage() {
         description="Join Codigix Infotech and build the future of AI. Explore job openings for software engineers, AI researchers, and tech professionals in a dynamic environment."
         keywords="Codigix careers, AI jobs, software engineering opportunities, tech recruitment, join Codigix team, IT job openings"
       />
-      <style>
-        {`
-          .career-item-horizontal {
-            background-color: #ffffff !important;
-            border: 1px solid #e8e8e8 !important;
-            transition: all 0.3s ease !important;
-            position: relative;
-            overflow: hidden;
-          }
-          .dark .career-item-horizontal {
-            background-color: #0b0625 !important;
-            border: 1px solid #1e1b4b !important;
-          }
-          .career-item-horizontal:hover {
-            border-color: var(--tj-color-theme-primary) !important;
-            transform: translateY(-5px) !important;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
-          }
-          .dark .career-item-horizontal:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
-          }
-          .skill-tag-alt {
-            background-color: #f8f7ff !important;
-            color: #6c56b6 !important;
-            padding: 5px 15px !important;
-            border-radius: 50px !important;
-            font-size: 12px !important;
-            font-weight: 500 !important;
-            border: 1px solid #e8e8e8 !important;
-            transition: all 0.3s ease;
-          }
-          .dark .skill-tag-alt {
-            background-color: #18133b !important;
-            border-color: #312c52 !important;
-            color: #ffffff !important;
-          }
-          .job-label-text {
-            color: var(--tj-color-heading-primary) !important;
-          }
-          .job-meta-text {
-            color: var(--tj-color-text-body) !important;
-          }
-          .job-desc-text {
-            color: var(--tj-color-text-body-2) !important;
-          }
-        `}
-      </style>
-      <section className="tj-page-header section-gap-x" style={{ backgroundImage: "url(https://res.cloudinary.com/foodfantacy/image/upload/v1778340863/0015_lf398t.jpg)" }}>
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap -mx-4">
-            <div className="w-full lg:w-full px-4">
-              <div className="tj-page-header-content text-center">
-                <h1 className="tj-page-title">Career Opportunities</h1>
-                <div className="tj-page-link">
-                  <span><i className="tji-home"></i></span>
-                  <span><Link to="/">Home</Link></span>
-                  <span>/</span>
-                  <span>Careers</span>
-                </div>
-              </div>
-            </div>
+      
+      {/* Modern Hero Section */}
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-[#0b0625] dark:via-[#0F0721] dark:to-[#1a0b2e]">
+        {/* Background elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-40 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-block py-1 px-3 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-6"
+            >
+              Join Our Innovation Team
+            </motion.span>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
+            >
+              Build the Future of <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">AI & Tech</span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10"
+            >
+              We're looking for passionate individuals who want to solve complex problems and create impactful solutions. Explore our open positions below.
+            </motion.p>
           </div>
         </div>
       </section>
 
-      <section className="tj-career-section section-gap section-gap-x">
+      {/* Perks Section */}
+      <section className="py-20 bg-white dark:bg-[#0F0721]">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap -mx-4">
-            <div className="w-full px-4">
-              <div className="sec-heading sec-heading-centered">
-                <span className="sub-title"><i className="tji-subtitle-2"></i>Join Our Team</span>
-                <h2 className="sec-title">Exciting Job Openings</h2>
-              </div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Why Join Codigix?</h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">We offer more than just a job. We provide an environment where you can thrive, grow, and do your best work.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {perks.map((perk, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="p-6 rounded-2xl bg-gray-50 dark:bg-[#150a30] border border-gray-100 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  {perk.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{perk.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400">{perk.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Job Openings Section */}
+      <section className="py-20 bg-gray-50 dark:bg-[#0b0625]" id="openings">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Open Positions</h2>
+              <p className="text-gray-600 dark:text-gray-400">Find the perfect role for your skills and aspirations.</p>
+            </div>
+            <div className="hidden md:block">
+              <span className="inline-block px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-semibold">
+                {jobs.length} {jobs.length === 1 ? 'Role' : 'Roles'} Available
+              </span>
             </div>
           </div>
 
-          <div className="flex flex-wrap -mx-4 gap-y-4 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {jobs.length === 0 ? (
-              <div className="w-full px-4 text-center">
-                <p>No job openings at the moment. Please check back later!</p>
+              <div className="col-span-full py-12 text-center bg-white dark:bg-[#150a30] rounded-2xl border border-gray-100 dark:border-gray-800">
+                <p className="text-gray-500 dark:text-gray-400">No job openings at the moment. Please check back later!</p>
               </div>
             ) : (
-              jobs.map((job) => (
-                <div className="w-full px-4" key={job.id}>
-                  <div className="career-item-horizontal shadow-sm transition-all p-4 rounded-2xl">
-                    <div className="grid grid-cols-3">
-                      <div className="col-span-2">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3 className=" mb-0 text-lg job-label-text">{job.title}</h3>
-                          <span className="inline-block px-2 py-1 text-xs font-semibold bg-opacity-10 text-primary rounded-full px-3 text-sm">New</span>
-                        </div>
+              jobs.map((job, idx) => (
+                <motion.div 
+                  key={job.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-white dark:bg-[#150a30] rounded-2xl p-6 border border-gray-100 dark:border-gray-800 hover:border-indigo-500/50 dark:hover:border-indigo-500/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full group cursor-default"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                      Actively Hiring
+                    </span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                      {job.type}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-1">{job.title}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 line-clamp-2 flex-grow">
+                    {job.description}
+                  </p>
 
-
-
-                        {job.experience && (
-                          <p className="mb-5 text-sm job-meta-text">{job.experience}</p>
-                        )}
-
-                        <p className="line-clamp-2 text-xs job-desc-text mb-5" style={{ maxWidth: '90%' }}>
-                          {job.description}
-                        </p>
-
-                        {job.skills && (
-                          <div className="skills-container mb-0">
-                            <h6 className="text-sm mb-2 job-label-text">Key Skills:</h6>
-                            <div className="flex flex-wrap gap-2">
-                              {job.skills.split(/[,\n•]/).filter(s => s.trim()).slice(0, 8).map((skill, i) => (
-                                <span key={i} className="skill-tag-alt">
-                                  {skill.trim()}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="col-span-1 lg:text-right mt-12 lg:mt-0">
-                        <div className="flex flex-wrap justify-end gap-2 job-meta-text text-sm mb-5">
-                          <span className="flex gap-1 text-xs items-center"><i className="tji-home mr-2 text-primary"></i>{job.company || 'Codigix Infotech Pvt. Ltd.'}</span>
-                          <span className="flex gap-1 text-xs items-center"><i className="tji-location mr-2 text-primary"></i>{job.location}</span>
-                          <span className="flex gap-1 text-xs items-center"><i className="tji-clock mr-2 text-primary"></i>{job.type}</span>
-                        </div>
-                        
-                        <Link
-                          className="tj-primary-btn home-button"
-onClick={() => handleApply(job)}
-                        >
-                          <div className="btn-inner">
-                            <span className="btn-icon h-icon">
-                              <i className="tji-arrow-right"></i>
-                            </span>
-                            <span className="btn-text">Apply Now</span>
-                            <span className="btn-icon">
-                              <i className="tji-arrow-right"></i>
-                            </span>
-                          </div>
-                        </Link>
-
-                      </div>
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                      <Briefcase className="w-4 h-4 mr-3 text-indigo-500" />
+                      {job.experience || 'Experience Not Specified'}
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                      <MapPin className="w-4 h-4 mr-3 text-indigo-500" />
+                      {job.location}
                     </div>
                   </div>
-                </div>
+
+                  {job.skills && (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {job.skills.split(/[,\n•]/).filter(s => s.trim()).slice(0, 3).map((skill, i) => (
+                        <span key={i} className="px-2.5 py-1 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-medium border border-gray-200 dark:border-gray-700">
+                          {skill.trim()}
+                        </span>
+                      ))}
+                      {job.skills.split(/[,\n•]/).filter(s => s.trim()).length > 3 && (
+                        <span className="px-2.5 py-1 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-xs font-medium border border-gray-200 dark:border-gray-700">
+                          +{job.skills.split(/[,\n•]/).filter(s => s.trim()).length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  <button 
+                    onClick={() => handleApply(job)}
+                    className="w-full mt-auto py-3 px-4 bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white dark:bg-indigo-900/30 dark:hover:bg-indigo-600 dark:text-indigo-400 dark:hover:text-white font-semibold rounded-xl transition-colors duration-300 flex items-center justify-center cursor-pointer"
+                  >
+                    Apply for this role
+                    <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </motion.div>
               ))
             )}
           </div>
         </div>
       </section>
 
-      {/* Application Modal */}
-      {showModal && (
-        <div className="modal-overlay" style={{
-          position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
-          backgroundColor: 'rgb(255 255 255 / 14%)', backdropFilter: 'blur(8px)', zIndex: 9999, display: 'flex',
-          alignItems: 'center', justifyContent: 'center', padding: '20px'
-        }}>
-          <div className="modal-content-custom p-8 md:p-12 rounded-2xl shadow-lg relative" style={{ 
-            maxWidth: '700px', 
-            width: '100%', 
-            maxHeight: '90vh', 
-            overflowY: 'auto',
-          }}>
-            <button className="absolute border-0 bg-transparent modal-close-btn" style={{ top: '25px', right: '25px', fontSize: '24px' }} onClick={() => setShowModal(false)}>×</button>
-
-            <h2 className="h3 mb-5 job-label-text">Apply for {selectedJob?.title}</h2>
-
-            <div className="job-details-mini mb-5 pb-4 border-b">
-              <div className="flex flex-wrap -mx-4 mb-5">
-                <div className="w-1/2 px-4">
-                  <span className="text-gray-500 text-sm block mb-1">Experience</span>
-                  <span className="job-meta-text font-medium">{selectedJob?.experience || 'N/A'}</span>
+      {/* Application Modal (Framer Motion) */}
+      <AnimatePresence>
+        {showModal && (
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowModal(false)}
+              className="absolute inset-0 bg-gray-900/40 dark:bg-black/60 backdrop-blur-sm"
+            />
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-[#150a30] rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+            >
+              {/* Modal Header */}
+              <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center bg-gray-50/50 dark:bg-[#0b0625]/50 backdrop-blur-md sticky top-0 z-10">
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">Apply for {selectedJob?.title}</h2>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{selectedJob?.location} • {selectedJob?.type}</p>
                 </div>
-                <div className="w-1/2 px-4">
-                  <span className="text-gray-500 text-sm block mb-1">Location</span>
-                  <span className="job-meta-text font-medium">{selectedJob?.location}</span>
-                </div>
-              </div>
-
-              {selectedJob?.responsibilities && (
-                <div className="mb-5">
-                  <h6 className="text-sm font-bold uppercase tracking-wider job-label-text mb-2">Key Responsibilities:</h6>
-                  <div className="text-sm job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.responsibilities}</div>
-                </div>
-              )}
-
-              {selectedJob?.skills && (
-                <div className="mb-5">
-                  <h6 className="text-sm font-bold uppercase tracking-wider job-label-text mb-2">Required Skills:</h6>
-                  <div className="text-sm job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.skills}</div>
-                </div>
-              )}
-
-              {selectedJob?.qualifications && (
-                <div className="mb-0">
-                  <h6 className="text-sm font-bold uppercase tracking-wider job-label-text mb-2">Qualifications:</h6>
-                  <div className="text-sm job-desc-text" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{selectedJob.qualifications}</div>
-                </div>
-              )}
-            </div>
-
-            {success ? (
-              <div className="p-4 rounded-lg bg-green-100 text-green-800">
-                Your application has been submitted successfully! We will get back to you soon.
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="mb-5">
-                  <label className="block mb-2 text-sm font-medium job-label-text">Full Name</label>
-                  <input type="text" name="name" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" value={formData.name} onChange={handleChange} required />
-                </div>
-                <div className="flex flex-wrap -mx-4">
-                  <div className="w-full md:w-1/2 px-4 mb-5">
-                    <label className="block mb-2 text-sm font-medium job-label-text">Email Address</label>
-                    <input type="email" name="email" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" value={formData.email} onChange={handleChange} required />
-                  </div>
-                  <div className="w-full md:w-1/2 px-4 mb-5">
-                    <label className="block mb-2 text-sm font-medium job-label-text">Phone Number</label>
-                    <input type="tel" name="phone" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" value={formData.phone} onChange={handleChange} required />
-                  </div>
-                </div>
-               
-                <div className="mb-5">
-                  <label className="block mb-2 text-sm font-medium job-label-text">Resume (PDF, DOC, DOCX)</label>
-                  <input type="file" name="resume" className="w-full border rounded-lg focus:ring-primary focus:border-primary p-2" onChange={handleChange} accept=".pdf,.doc,.docx" required />
-                </div>
-
-                {error && <div className="p-4 rounded-lg bg-red-100 text-red-800 mb-5 text-sm">{error}</div>}
-
-                <button type="submit" className="tj-primary-btn text-center" disabled={submitting}>
-                  <div className="btn-inner">
-                    <span className="btn-text">{submitting ? 'Submitting...' : 'Submit Application'}</span>
-                    <span className="btn-icon"><i className="tji-arrow-right"></i></span>
-                  </div>
+                <button 
+                  onClick={() => setShowModal(false)}
+                  className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors text-gray-500 dark:text-gray-400"
+                >
+                  <X className="w-5 h-5" />
                 </button>
-              </form>
-            )}
+              </div>
+
+              {/* Modal Body (Scrollable) */}
+              <div className="p-6 overflow-y-auto custom-scrollbar">
+                {success ? (
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center py-12 text-center"
+                  >
+                    <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-6">
+                      <CheckCircle className="w-10 h-10 text-green-500" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Application Submitted!</h3>
+                    <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+                      Thank you for applying to Codigix Infotech. Our team will review your application and get back to you soon.
+                    </p>
+                  </motion.div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    {/* Left Column: Job Details Summary */}
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-3">Role Overview</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line">
+                          {selectedJob?.description}
+                        </p>
+                      </div>
+                      
+                      {selectedJob?.skills && (
+                        <div>
+                          <h4 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-3">Key Skills</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedJob.skills.split(/[,\n•]/).filter(s => s.trim()).map((skill, i) => (
+                              <span key={i} className="px-3 py-1 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-lg">
+                                {skill.trim()}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {selectedJob?.responsibilities && (
+                        <div>
+                          <h4 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-3">Key Responsibilities</h4>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line">
+                            {selectedJob.responsibilities}
+                          </p>
+                        </div>
+                      )}
+
+                      {selectedJob?.qualifications && (
+                        <div>
+                          <h4 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-3">Qualifications</h4>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line">
+                            {selectedJob.qualifications}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Right Column: Application Form */}
+                    <div className="bg-gray-50 dark:bg-[#0b0625] p-6 rounded-2xl border border-gray-100 dark:border-gray-800 h-fit sticky top-0">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6">Your Details</h3>
+                      
+                      {error && (
+                        <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400 text-sm flex items-start gap-3">
+                          <X className="w-5 h-5 shrink-0" />
+                          <p>{error}</p>
+                        </div>
+                      )}
+
+                      <form onSubmit={handleSubmit} className="space-y-5">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Full Name *</label>
+                          <input 
+                            type="text" 
+                            name="name" 
+                            required 
+                            value={formData.name} 
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#1a0b2e] border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none"
+                            placeholder="John Doe"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Email Address *</label>
+                          <input 
+                            type="email" 
+                            name="email" 
+                            required 
+                            value={formData.email} 
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#1a0b2e] border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none"
+                            placeholder="john@example.com"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Phone Number *</label>
+                          <input 
+                            type="tel" 
+                            name="phone" 
+                            required 
+                            value={formData.phone} 
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#1a0b2e] border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none"
+                            placeholder="+1 (555) 000-0000"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Resume / CV (PDF) *</label>
+                          <div className="relative">
+                            <input 
+                              type="file" 
+                              name="resume" 
+                              required 
+                              accept=".pdf,.doc,.docx" 
+                              onChange={handleChange}
+                              className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#1a0b2e] border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 transition-all outline-none cursor-pointer"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Cover Letter (Optional)</label>
+                          <textarea 
+                            name="cover_letter" 
+                            rows="4" 
+                            value={formData.cover_letter} 
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#1a0b2e] border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none resize-none custom-scrollbar"
+                            placeholder="Tell us why you're a great fit for this role..."
+                          ></textarea>
+                        </div>
+
+                        <button 
+                          type="submit" 
+                          disabled={submitting}
+                          className="w-full py-3.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-colors duration-300 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
+                        >
+                          {submitting ? (
+                            <span className="flex items-center gap-2">
+                              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                              Submitting...
+                            </span>
+                          ) : (
+                            "Submit Application"
+                          )}
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
           </div>
-        </div>
-      )}
-
-      <style>{`
-        .modal-overlay { animation: fadeIn 0.3s ease-out; }
-        .modal-content-custom { 
-          animation: slideUp 0.3s ease-out; 
-          color: #1a1c2e; 
-          background-color: #ffffff;
-          scrollbar-width: thin;
-          scrollbar-color: var(--tj-color-theme-primary) #f1f1f1;
-        }
-        
-        .modal-content-custom::-webkit-scrollbar {
-          width: 8px;
-        }
-        
-        .modal-content-custom::-webkit-scrollbar-track {
-          background: #f1f1f1;
-          border-radius: 10px;
-        }
-        
-        .modal-content-custom::-webkit-scrollbar-thumb {
-          background: var(--tj-color-theme-primary);
-          border-radius: 10px;
-        }
-
-        .modal-content-custom::-webkit-scrollbar-thumb:hover {
-          background: #5a44a3;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
-        .career-item-horizontal {
-          transition: all 0.3s ease;
-          background-color: #0b0625 !important;
-          border: 1px solid #1e1b4b !important;
-          border-radius: 30px !important;
-          padding: 40px !important;
-          position: relative;
-          overflow: hidden;
-        }
-        .career-item-horizontal:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.4) !important;
-          border-color: var(--tj-color-theme-primary) !important;
-        }
-
-        .dark .career-item-horizontal {
-          background-color: #0b0625 !important;
-          border-color: #1e1b4b !important;
-        }
-
-        .light .career-item-horizontal {
-          background-color: #ffffff !important;
-          border-color: #ebebeb !important;
-        }
-
-        .job-meta-text {
-          color: var(--tj-color-text-body);
-        }
-        .job-desc-text {
-          color: var(--tj-color-text-body);
-          opacity: 0.8;
-        }
-        .job-label-text {
-          color: var(--tj-color-heading-primary);
-        }
-
-        .skill-tag-alt {
-          padding: 4px 12px;
-          font-size: 11px;
-          background-color: rgba(108, 86, 182, 0.1);
-          border: 1px solid var(--tj-color-border-1);
-          color: var(--tj-color-text-body);
-          border-radius: 50px;
-          transition: all 0.3s ease;
-        }
-        .skill-tag-alt:hover {
-          background-color: var(--tj-color-theme-primary);
-          color: white;
-        }
-
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .dark .modal-content-custom {
-          background-color: #1a133d !important;
-          color: #ffffff !important;
-          scrollbar-color: var(--tj-color-theme-primary) #060129;
-          border: 1px solid #312c52 !important;
-        }
-        .dark .modal-content-custom::-webkit-scrollbar-track {
-          background: #060129;
-        }
-        .dark .modal-content-custom .text-muted {
-          color: #9692b2 !important;
-        }
-        .dark .modal-content-custom input, 
-        .dark .modal-content-custom textarea {
-          background-color: #060129 !important;
-          color: #ffffff !important;
-          border: 1px solid #312c52 !important;
-        }
-        .modal-close-btn {
-          color: var(--tj-color-heading-primary);
-        }
-        .dark .modal-close-btn {
-          color: #ffffff !important;
-        }
-      `}</style>
+        )}
+      </AnimatePresence>
     </>
   );
 }

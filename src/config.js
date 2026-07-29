@@ -2,12 +2,13 @@ const API_BASE_URL = '/api';
 const SITE_URL = 'https://codigixinfotech.com';
 const SITE_NAME = 'Codigix';
 
-const getImageUrl = (image, defaultFolder = "") => {
+const getImageUrl = (image, defaultFolder = "", width = null) => {
     if (!image) return null;
 
     // Handle Cloudinary optimization
     if (typeof image === 'string' && image.includes('res.cloudinary.com')) {
-      return image.replace('/upload/', '/upload/f_auto,q_auto/');
+      const widthParam = width ? `,w_${width},c_limit` : ',w_1920,c_limit';
+      return image.replace('/upload/', `/upload/f_auto,q_auto${widthParam}/`);
     }
 
     if (image.startsWith("http") || image.startsWith("/") || image.startsWith("data:")) {

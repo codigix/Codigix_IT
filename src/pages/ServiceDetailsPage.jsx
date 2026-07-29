@@ -81,7 +81,7 @@ export default function ServiceDetailsPage() {
     };
 
     fetchServiceData();
-  }, [id]);
+  }, [id, slug]);
 
   if (loading) {
     return (

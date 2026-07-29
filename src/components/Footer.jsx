@@ -16,7 +16,7 @@ export default function Footer() {
                 <span className="sub-title"><i className="tji-subtitle-2"></i>Get Started</span>
                 <div className='main-sec'>
                 <h2 className="sec-title">Let’s Launch AI-Powered </h2>
-                <h2 className="sec-title-1 sec-title" > Project <img src={getImageUrl("assets/images/shape/hand.webp")} alt="Start your AI project with Codigix Infotech" width="40" height="40" loading="lazy" />
+                <h2 className="sec-title-1 sec-title" > Project <img src={getImageUrl("assets/images/shape/hand.webp")} alt="Start your AI project with Codigix Infotech" width="76" height="77" style={{ width: '40px', height: 'auto' }} loading="lazy" />
                   Here.
                 </h2>
                 </div>
@@ -41,6 +41,16 @@ export default function Footer() {
                 </div>
                 <div className="footer-text">
                   <p>Understanding client needs, defining goals, and designing tailored AI crafting's solutions.</p>
+                </div>
+                <div className="footer-contact" style={{marginTop: '20px', marginBottom: '20px'}}>
+                  <p style={{color: '#a3a3a3', marginBottom: '10px'}}>
+                    <i className="tji-envelop-2" style={{marginRight: '10px'}}></i> 
+                    <a href="mailto:info@codigixinfotech.com" style={{color: '#a3a3a3'}}>info@codigixinfotech.com</a>
+                  </p>
+                  <p style={{color: '#a3a3a3'}}>
+                    <i className="tji-phone-2" style={{marginRight: '10px'}}></i> 
+                    <a href="tel:+919112706604" style={{color: '#a3a3a3'}}>+91 9112706604</a>
+                  </p>
                 </div>
                 <div className="social-links style-2">
                   <ul>
@@ -70,12 +80,12 @@ export default function Footer() {
               <div className="footer-widget widget-nav-menu footer-col-3">
                 <h5 className="title">Our Services</h5>
                 <ul>
-                  <li><Link to="/services/details">AI-Powered Solutions</Link></li>
-                  <li><Link to="/services/details">Custom Technology</Link></li>
-                  <li><Link to="/services/details">Predictive Analytics</Link></li>
-                  <li><Link to="/services/details">Machine Learning</Link></li>
-                  <li><Link to="/services/details">Language Processing</Link></li>
-                  <li><Link to="/services/details">Computer Vision</Link></li>
+                  <li><Link to="/ai-powered-solutions">AI-Powered Solutions</Link></li>
+                  <li><Link to="/custom-technology">Custom Technology</Link></li>
+                  <li><Link to="/predictive-analytics">Predictive Analytics</Link></li>
+                  <li><Link to="/machine-learning">Machine Learning</Link></li>
+                  <li><Link to="/language-processing">Language Processing</Link></li>
+                  <li><Link to="/computer-vision">Computer Vision</Link></li>
                 </ul>
               </div>
             </div>

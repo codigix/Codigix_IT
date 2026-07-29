@@ -61,7 +61,7 @@ export default function BlogDetailsPage() {
         keywords={`${blog.category}, AI, technology, Codigix, ${blog.title}`}
         ogImage={getImageUrl(blog.image, "assets/images/blog")}
       />
-      <section className="tj-page-header section-gap-x" style={{ backgroundImage: "url(https://res.cloudinary.com/foodfantacy/image/upload/v1778340863/0015_lf398t.jpg)" }}>
+      <section className="tj-page-header section-gap-x" style={{ backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778340863/0015_lf398t.jpg")})` }}>
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4">
             <div className="w-full lg:w-full px-4">
