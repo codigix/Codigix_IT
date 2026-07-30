@@ -56,7 +56,7 @@ export default function Layout({ children }) {
             "@type": "Organization",
             "name": siteName,
             "url": siteUrl,
-            "logo": `${siteUrl}/assets/images/logos/logo.png`,
+            "logo": `${siteUrl}/assets/images/logos/logo.webp`,
             "contactPoint": {
               "@type": "ContactPoint",
               "telephone": "+91-7066556768",

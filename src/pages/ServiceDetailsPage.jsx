@@ -290,7 +290,7 @@ export default function ServiceDetailsPage() {
   return (
     <>
       {generateSlug(service.title) === 'web-development-design' ? (
-        <SEO 
+        <SEO
           exactTitle={true}
           title="Web Development Pune PCMC | UI/UX & Custom Websites "
           ogTitle="Web Development & Design Company in Pune & PCMC"
@@ -342,7 +342,7 @@ export default function ServiceDetailsPage() {
                   "@id": "https://codigixinfotech.com/#organization",
                   "name": "Codigix Infotech",
                   "url": "https://codigixinfotech.com/",
-                  "logo": "https://codigixinfotech.com/assets/images/logo.png",
+                  "logo": "https://codigixinfotech.com/assets/images/logo.webp",
                   "sameAs": []
                 }
               ]

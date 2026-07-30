@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { generateSlug } from "../utils/slugify";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SEO from "../components/SEO";
@@ -73,13 +74,13 @@ export default function HomePage() {
         const blogsData = blogsRes.ok ? await blogsRes.json() : [];
 
         let processedSlides = Array.isArray(slidesData) ? slidesData : [];
-        
+
         // Ensure ERP slide is first
-        const erpIndex = processedSlides.findIndex(s => 
-          s.title?.toLowerCase().includes('erp') || 
+        const erpIndex = processedSlides.findIndex(s =>
+          s.title?.toLowerCase().includes('erp') ||
           s.subtitle?.toLowerCase().includes('erp')
         );
-        
+
         if (erpIndex > 0) {
           const erpSlide = processedSlides.splice(erpIndex, 1)[0];
           processedSlides.unshift(erpSlide);
@@ -298,14 +299,14 @@ export default function HomePage() {
               const navRect = navContainer.getBoundingClientRect();
               const targetRect = targetNav.getBoundingClientRect();
               const innerRect = navInner.getBoundingClientRect();
-              
+
               // Calculate relative offset of the pill from the top of the inner container
               const relativeOffset = targetRect.top - innerRect.top;
-              
+
               // Center the pill in the container:
               // targetY = -(relativeOffset - containerHeight/2 + pillHeight/2)
               const targetY = -(relativeOffset - (navRect.height / 2) + (targetRect.height / 2));
-              
+
               // Don't scroll beyond the top
               const finalY = Math.min(0, targetY);
               navInner.style.transform = `translateY(${finalY}px)`;
@@ -358,14 +359,6 @@ export default function HomePage() {
     }
   ];
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
   // Common Card Component to keep code DRY
   const ServiceCard = ({ service }) => (
     <div className="service-inner bg-white dark:bg-[#18133b]">
@@ -395,11 +388,11 @@ export default function HomePage() {
         </Link>
       </div>
 
-      <div className="service-img rounded-xl overflow-hidden shadow-lg ">
+      <div className="service-img rounded-xl overflow-hidden shadow-lg bg-gray-50 dark:bg-[#0b0625] flex items-center justify-center p-4">
         <img
-          src={getImageUrl(service.image, "assets/images/service")}
+          src={getImageUrl(service.image, "assets/images/service", 800)}
           alt={service.title}
-          className="w-full h-64 object-cover"
+          className="w-full h-56 object-cover"
           width="600"
           height="400"
         />
@@ -481,7 +474,7 @@ export default function HomePage() {
                 "@id": "https://codigixinfotech.com/#organization",
                 "name": "Codigix Infotech",
                 "url": "https://codigixinfotech.com/",
-                "logo": "https://codigixinfotech.com/assets/images/logo.png",
+                "logo": "https://codigixinfotech.com/assets/images/logo.webp",
                 "description": "Codigix Infotech delivers AI-based ERP, IoT ERP, multifunctional CRM software, and custom web development solutions.",
                 "email": "info@codigixinfotech.com",
                 "telephone": "+91-70665 56768 ",
@@ -580,103 +573,118 @@ export default function HomePage() {
       {/* Banner Slider */}
       <section className="tj-slider-section">
         {slides && slides.length > 0 && (
+          <Helmet>
+            <link
+              rel="preload"
+              as="image"
+              href={getImageUrl(slides[0].image)}
+              fetchPriority="high"
+            />
+          </Helmet>
+        )}
+        {loading || !slides || slides.length === 0 ? (
+          <div className="w-full min-h-[600px] lg:min-h-[100vh] flex items-center justify-center bg-gray-50 dark:bg-[#0b0625]">
+            <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+          </div>
+        ) : (
           <Swiper
-          modules={[Pagination, Navigation, EffectFade, Autoplay]}
-          slidesPerView={1}
-          spaceBetween={0}
-          effect="fade"
-          loop={true}
-          speed={1400}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          navigation={{
-            nextEl: ".slider-next",
-            prevEl: ".slider-prev",
-          }}
-          pagination={{
-            el: ".hero-pagination",
-            clickable: true,
-            renderBullet: (index, className) => {
-              return `<span className="${className}">0${index + 1}</span>`;
-            },
-          }}
-          className="hero-slider"
-        >
-          {slides.map((slide) => (
-            <SwiperSlide key={slide.id}>
-              <div className="tj-slider-item">
-                <div className="slider-bg-image">
-                  <img
-                    src={getImageUrl(slide.image)}
-                    alt={slide.title}
-                    className="hero-image"
-                    loading={slide.id === 1 ? "eager" : "lazy"}
-                    fetchPriority={slide.id === 1 ? "high" : "auto"}
-                    width="1920"
-                    height="1080"
-                  />
-                </div>
+            modules={[Pagination, Navigation, EffectFade, Autoplay]}
+            slidesPerView={1}
+            spaceBetween={0}
+            effect="fade"
+            loop={true}
+            speed={1400}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            navigation={{
+              nextEl: ".slider-next",
+              prevEl: ".slider-prev",
+            }}
+            pagination={{
+              el: ".hero-pagination",
+              clickable: true,
+              renderBullet: (index, className) => {
+                return `<span className="${className}">0${index + 1}</span>`;
+              },
+            }}
+            className="hero-slider"
+          >
+            {slides.map((slide, index) => (
+              <SwiperSlide key={slide.id}>
+                <div className="tj-slider-item">
+                  <div className="slider-bg-image">
+                    <img
+                      src={getImageUrl(slide.image)}
+                      alt={slide.title}
+                      className="hero-image"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      width="1920"
+                      height="1080"
+                    />
+                  </div>
 
-                <div className="slider-wrapper">
-                  <div className="slider-content grid grid-cols-3">
-                    <div className="col-span-3">
-                      <div className="slider-title-area text-center ">
-                        <span className="sub-title">
-                          <i className="tji-subtitle-2"></i>
-                          {slide.subtitle}
-                        </span>
+                  <div className="slider-wrapper">
+                    <div className="slider-content grid grid-cols-3">
+                      <div className="col-span-3">
+                        <div className="slider-title-area text-center ">
+                          <span className="sub-title">
+                            <i className="tji-subtitle-2"></i>
+                            {slide.subtitle}
+                          </span>
 
-                        <h1 className="slider-title text-center">{slide.title}</h1>
-                      </div>
+                          <h1 className="slider-title text-center">{slide.title}</h1>
+                          {/* <p className="" >{slide.description}</p> */}
+                        </div>
 
-                      <div className="slider-desc text-center">{slide.description}</div>
+                        <div className="slider-desc text-center">{slide.description}</div>
 
-                    <div className="slider-btn text-center">
-                        <Link
-                          className="tj-primary-btn home-button"
-                          to="/contact"
-                          aria-label={`Learn More about ${slide.title}`}
-                        >
-                          <div className="btn-inner">
-                            <span className="btn-icon h-icon" aria-hidden="true">
-                              <i className="tji-arrow-right"></i>
-                            </span>
-                            <span className="btn-text">Learn More</span>
-                            <span className="btn-icon" aria-hidden="true">
-                              <i className="tji-arrow-right"></i>
-                            </span>
-                          </div>
-                        </Link>
+                        <div className="slider-btn text-center">
+                          <Link
+                            className="tj-primary-btn home-button"
+                            to="/contact"
+                            aria-label={`Learn More about ${slide.title}`}
+                          >
+                            <div className="btn-inner">
+                              <span className="btn-icon h-icon" aria-hidden="true">
+                                <i className="tji-arrow-right"></i>
+                              </span>
+                              <span className="btn-text">Learn More</span>
+                              <span className="btn-icon" aria-hidden="true">
+                                <i className="tji-arrow-right"></i>
+                              </span>
+                            </div>
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </SwiperSlide>
+            ))}
+
+            {/* Navigation */}
+            <div className="hero-navigation">
+              <div className="slider-prev" role="button" aria-label="Previous slide">
+                <span className="anim-icon">
+                  <i className="tji-arrow-left-long"></i>
+                  <i className="tji-arrow-left-long"></i>
+                </span>
               </div>
-            </SwiperSlide>
-          ))}
 
-          {/* Navigation */}
-          <div className="hero-navigation">
-            <div className="slider-prev" role="button" aria-label="Previous slide">
-              <span className="anim-icon">
-                <i className="tji-arrow-left-long"></i>
-                <i className="tji-arrow-left-long"></i>
-              </span>
+              <div className="slider-next" role="button" aria-label="Next slide">
+                <span className="anim-icon">
+                  <i className="tji-arrow-right-long"></i>
+                  <i className="tji-arrow-right-long"></i>
+                </span>
+              </div>
             </div>
 
-            <div className="slider-next" role="button" aria-label="Next slide">
-              <span className="anim-icon">
-                <i className="tji-arrow-right-long"></i>
-                <i className="tji-arrow-right-long"></i>
-              </span>
-            </div>
-          </div>
-
-          {/* Pagination */}
-          <div className="swiper-pagination hero-pagination"></div>
-        </Swiper>
+            {/* Pagination */}
+            <div className="swiper-pagination hero-pagination"></div>
+          </Swiper>
         )}
       </section>
 
@@ -848,7 +856,7 @@ export default function HomePage() {
                   data-wow-delay=".3s"
                   data-wow-duration="0.8s"
                 >
-                  <img src="https://res.cloudinary.com/foodfantacy/image/upload/v1778322898/person-working-with-ai-robot_ytu1wo.jpg" alt="AI and Technology Solutions for Business" loading="lazy" width="600" height="500" />
+                  <img src="/assets/images/about/ai_human_handshake.webp" alt="AI and Technology Solutions for Business" loading="lazy" width="600" height="500" />
                 </div>
                 <div className="video-wrap">
                   <a
@@ -1079,7 +1087,7 @@ export default function HomePage() {
                     </div>
                     <div className="h-[2px] flex-grow bg-gray-200 dark:bg-gray-800 ml-4"></div>
                   </div>
-                  
+
                   <div className="mobile-quarters space-y-8 pl-6 border-l-2 border-gray-100 dark:border-gray-800 ml-6">
                     {yearGroup.quarters.map((q) => (
                       <div key={`${yearGroup.year}-${q.q}`} className="mobile-quarter-card relative">
@@ -1093,9 +1101,9 @@ export default function HomePage() {
                               <i className={q.icon}></i>
                             </div>
                           </div>
-                          
+
                           <h4 className="text-lg font-bold mb-2 dark:text-white">{q.title}</h4>
-                          
+
                           <div className="flex items-center gap-1 mb-4">
                             <span className="text-2xl font-black ">{q.counter}</span>
                             <span className="text-sm font-bold text-gray-500">{q.plus}</span>
@@ -1109,7 +1117,7 @@ export default function HomePage() {
                               </li>
                             ))}
                           </ul>
-                          
+
                           {q.upcoming && (
                             <div className="mt-4 inline-block bg-indigo-600 text-white text-[10px] uppercase font-bold px-2 py-1 rounded">
                               Upcoming
@@ -1226,7 +1234,7 @@ export default function HomePage() {
               </div>
             </div>
           )}
-           <div className="flex flex-wrap -mx-4">
+          <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4">
               <div className="sec-heading sec-heading-centered style-3 mb-5">
                 <span className="sub-title wow fadeInUp" data-wow-delay="0.3s">
@@ -1266,7 +1274,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      
+
       {/* Testimonial Section */}
       <TestimonialSection />
 

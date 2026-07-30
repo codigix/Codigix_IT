@@ -76,7 +76,7 @@ export default function Header() {
                 <div className="w-full px-4">
                   <div className="header-wrapper">
                     <div className="site_logo">
-                      <Link className="logo" to="/"><img src={getImageUrl("/assets/images/logos/logo.png")} alt="Codigix Logo" width="160" height="60" loading="lazy" /></Link>
+                      <Link className="logo" to="/"><img src={getImageUrl("/assets/images/logos/logo.webp")} alt="Codigix Logo" width="160" height="60" loading="lazy" /></Link>
                     </div>
 
                     <div className="menu-area hidden lg:inline-flex items-center">
@@ -144,7 +144,7 @@ export default function Header() {
               <div className="w-full px-4">
                 <div className="header-wrapper">
                   <div className="site_logo">
-                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" width="160" height="60" loading="lazy" /></Link>
+                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.webp")} alt="Logo" width="160" height="60" loading="lazy" /></Link>
                   </div>
 
                   <div className="menu-area hidden lg:inline-flex items-center">
@@ -189,10 +189,10 @@ export default function Header() {
                   </div>
 
                   <div className="menu_bar mobile_menu_bar lg:hidden"
-                  onClick={() => setMenuOpen(true)}
-                  aria-label="Open mobile menu"
-                  role="button"
-                  tabIndex="0">
+                    onClick={() => setMenuOpen(true)}
+                    aria-label="Open mobile menu"
+                    role="button"
+                    tabIndex="0">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -225,7 +225,7 @@ export default function Header() {
               <div className="w-full px-4">
                 <div className="header-wrapper">
                   <div className="site_logo">
-                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Logo" width="160" height="60" loading="lazy" /></Link>
+                    <Link className="logo" to="/"><img src={getImageUrl("assets/images/logos/logo.webp")} alt="Logo" width="160" height="60" loading="lazy" /></Link>
                   </div>
 
                   <div className="menu-area hidden lg:inline-flex items-center">
@@ -247,7 +247,7 @@ export default function Header() {
                         </li> */}
                         <li><Link to="/services">Services</Link></li>
                         <li><Link to="/projects">Projects</Link></li>
-                       <li><Link to="/blog">Blog</Link></li>
+                        <li><Link to="/blog">Blog</Link></li>
                         <li><Link to="/careers">Careers</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                       </ul>
@@ -268,10 +268,10 @@ export default function Header() {
                   </div>
 
                   <div className="menu_bar mobile_menu_bar lg:hidden"
-                  onClick={() => setMenuOpen(true)}
-                  aria-label="Open mobile menu"
-                  role="button"
-                  tabIndex="0">
+                    onClick={() => setMenuOpen(true)}
+                    aria-label="Open mobile menu"
+                    role="button"
+                    tabIndex="0">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -290,7 +290,7 @@ export default function Header() {
               <div className="w-full px-4">
                 <div className="header-wrapper">
                   <div className="site_logo">
-                    <Link className="logo" to="/"><img src="/assets/images/logos/logo.png" alt="Codigix Logo" width="160" height="60" loading="lazy" /></Link>
+                    <Link className="logo" to="/"><img src="/assets/images/logos/logo.webp" alt="Codigix Logo" width="160" height="60" loading="lazy" /></Link>
                   </div>
 
                   <div className="menu-area hidden lg:inline-flex items-center">
@@ -335,7 +335,7 @@ export default function Header() {
                         <li><Link to="/services">Services</Link></li>
                         <li><Link to="/projects">Projects</Link></li>
                         <li><Link to="/blog">Blog</Link></li>
-                        
+
                         <li><Link to="/careers">Careers</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                       </ul>

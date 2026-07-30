@@ -27,19 +27,19 @@ const SEO = ({ title, metaTitle, ogTitle, description, keywords, canonical, ogIm
       <meta property="og:url" content={fullCanonical} />
       <meta property="og:title" content={finalOgTitle} />
       <meta property="og:description" content={description || defaultDescription} />
-      <meta property="og:image" content={ogImage || `${siteUrl}/assets/images/logos/logo.png`} />
+      <meta property="og:image" content={ogImage || `${siteUrl}/assets/images/logos/logo.webp`} />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={fullCanonical} />
       <meta property="twitter:title" content={fullTitle} />
       <meta property="twitter:description" content={description || defaultDescription} />
-      <meta property="twitter:image" content={ogImage || `${siteUrl}/assets/images/logos/logo.png`} />
+      <meta property="twitter:image" content={ogImage || `${siteUrl}/assets/images/logos/logo.webp`} />
       {twitterHandle && <meta name="twitter:site" content={twitterHandle} />}
 
       {/* Canonical */}
       <link rel="canonical" href={fullCanonical} />
-      
+
       {/* Custom Children Tags */}
       {children}
     </Helmet>

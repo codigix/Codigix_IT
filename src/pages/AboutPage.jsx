@@ -64,9 +64,9 @@ export default function AboutPage() {
 
   return (
     <>
-      <SEO 
+      <SEO
         exactTitle={true}
-        title="About Codigix Infotech | Software Company in Pune & PCMC" 
+        title="About Codigix Infotech | Software Company in Pune & PCMC"
         ogTitle="About Software Company in Pune | Codigix Infotech"
         description="Codigix Infotech is a Pune-based software development company in PCMC delivering AI ERP systems, CRM software, IoT solutions, custom web development services."
         keywords="software company in Pune, IT company PCMC, software development company Pimpri Chinchwad, ERP company Pune, CRM software company Pune, custom software company Pune, IT services Pune Hinjewadi"
@@ -94,7 +94,7 @@ export default function AboutPage() {
           })}
         </script>
       </SEO>
-      <section className="tj-page-header section-gap-x" style={{backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778342361/0015_lf398t.jpg")})`}}>
+      <section className="tj-page-header section-gap-x" style={{ backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778342361/0015_lf398t.jpg")})` }}>
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4">
             <div className="w-full lg:w-full px-4">
@@ -125,7 +125,7 @@ export default function AboutPage() {
                     </div>
                     <div className="about-bottom-area-2">
                       <div className="company-logo wow fadeInLeft" data-wow-delay=".3s">
-                        <img src={getImageUrl("/assets/images/logos/logo.png")} alt="Codigix Logo" width="160" height="60" loading="lazy" />
+                        <img src={getImageUrl("/assets/images/logos/logo.webp")} alt="Codigix Logo" width="160" height="60" loading="lazy" />
                       </div>
                       <div className="mission-vision-wrap">
                         <div className="mission-vision-box wow fadeInRight" data-wow-delay=".5s">

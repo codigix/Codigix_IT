@@ -111,6 +111,17 @@ export default function ProjectDetailsPage() {
             >
               {project.title}
             </motion.h1>
+
+            {project.description && (
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15 }}
+                className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8"
+              >
+                {project.description}
+              </motion.p>
+            )}
             
             <motion.div 
               initial={{ opacity: 0, y: 20 }}

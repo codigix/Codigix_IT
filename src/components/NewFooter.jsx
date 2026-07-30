@@ -57,7 +57,7 @@ export default function NewFooter() {
                   <div className="footer-logo">
                     <Link to="/">
                       <img
-                        src="/assets/images/logos/logo.png"
+                        src="/assets/images/logos/logo.webp"
                         alt="Codigix Logo"
                         width="160"
                         height="60"
@@ -72,14 +72,14 @@ export default function NewFooter() {
                       tailored AI crafting solutions.
                     </p>
                   </div>
-                  <div className="footer-contact" style={{marginTop: '20px', marginBottom: '20px'}}>
-                    <p style={{color: '#a3a3a3', marginBottom: '10px'}}>
-                      <i className="tji-envelop-2" style={{marginRight: '10px'}}></i> 
-                      <a href="mailto:info@codigixinfotech.com" style={{color: '#a3a3a3'}}>info@codigixinfotech.com</a>
+                  <div className="footer-contact" style={{ marginTop: '20px', marginBottom: '20px' }}>
+                    <p style={{ color: '#a3a3a3', marginBottom: '10px' }}>
+                      <i className="tji-envelop-2" style={{ marginRight: '10px' }}></i>
+                      <a href="mailto:info@codigixinfotech.com" style={{ color: '#a3a3a3' }}>info@codigixinfotech.com</a>
                     </p>
-                    <p style={{color: '#a3a3a3'}}>
-                      <i className="tji-phone-2" style={{marginRight: '10px'}}></i> 
-                      <a href="tel:+919112706604" style={{color: '#a3a3a3'}}>+91 9112706604</a>
+                    <p style={{ color: '#a3a3a3' }}>
+                      <i className="tji-phone-2" style={{ marginRight: '10px' }}></i>
+                      <a href="tel:+919112706604" style={{ color: '#a3a3a3' }}>+91 9112706604</a>
                     </p>
                   </div>
 

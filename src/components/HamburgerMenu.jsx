@@ -84,8 +84,8 @@ export default function HamburgerMenu({ isOpen, onClose }) {
 
       {/* DESKTOP MENU */}
       <div ref={desktopRef} className={`tj-offcanvas-area ${menuClass}`} style={{ zIndex: 9999 }}>
-          <div className="hamburger_bg"
-          >
+        <div className="hamburger_bg"
+        >
         </div>
         <div className="hamburger_wrapper">
           <div className="hamburger_inner">
@@ -93,7 +93,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
             <div className="hamburger_top flex items-center justify-between">
               <div className="hamburger_logo">
                 <Link className="mobile_logo" to="/">
-                  <img src="assets/images/logos/logo.png" alt="Codigix Logo" loading="lazy" width="160" height="60" />
+                  <img src="assets/images/logos/logo.webp" alt="Codigix Logo" loading="lazy" width="160" height="60" />
                 </Link>
               </div>
 
@@ -139,21 +139,21 @@ export default function HamburgerMenu({ isOpen, onClose }) {
                 <div className="contact-item">
                   <span className="subtitle">Phone</span>
                   <Link className="contact-link" to="tel:+91 70665 56768">
-                   +91 70665 56768
+                    +91 70665 56768
                   </Link>
                 </div>
 
                 <div className="contact-item">
                   <span className="subtitle">Email</span>
                   <Link className="contact-link" to="mailto:info@codigix.co">
-                   info@codigix.co
+                    info@codigix.co
                   </Link>
                 </div>
 
                 <div className="contact-item">
                   <span className="subtitle">Location</span>
                   <span className="contact-link">
-                   Office No: 514, 5th Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18
+                    Office No: 514, 5th Floor, Brahma Sky Uzuri, Pimpri-Chinchwad, Pune-18
                   </span>
                 </div>
 
@@ -163,11 +163,11 @@ export default function HamburgerMenu({ isOpen, onClose }) {
               <h5 className="hamburger-title">Follow Us</h5>
               <div className="social-links style-2">
                 <ul>
-                 <li><Link to="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook"><i className="tji-facebook"></i></Link></li>
-                <li><Link to="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><i className="tji-linkedin"></i></Link></li>
-                <li><Link to="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"><i className="tji-instagram"></i></Link></li>
-                <li><Link to="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X (Twitter)"><i className="tji-x-twitter"></i></Link></li>
-                  
+                  <li><Link to="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook"><i className="tji-facebook"></i></Link></li>
+                  <li><Link to="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><i className="tji-linkedin"></i></Link></li>
+                  <li><Link to="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"><i className="tji-instagram"></i></Link></li>
+                  <li><Link to="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X (Twitter)"><i className="tji-x-twitter"></i></Link></li>
+
                 </ul>
               </div>
             </div>
@@ -178,7 +178,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
       {/* MOBILE MENU */}
       <div
         ref={mobileRef}
-        className={`hamburger-area ${menuClass}`} 
+        className={`hamburger-area ${menuClass}`}
         style={{
           position: "fixed",
           top: 0,
@@ -190,7 +190,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
         }}
       >
         {/* ... your mobile menu inner content ... */}
-         <div className="hamburger_bg"
+        <div className="hamburger_bg"
           style={{ backgroundImage: "url(assets/images/funfact/bg-funfact.webp)" }}>
         </div>
         <div className="hamburger_wrapper">
@@ -198,7 +198,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
             <div className="hamburger_top flex items-center justify-between">
               <div className="hamburger_logo">
                 <Link to="/" className="mobile_logo">
-                  <img src="/assets/images/logos/logo.png" alt="Logo" loading="lazy" width="160" height="60" />
+                  <img src="/assets/images/logos/logo.webp" alt="Logo" loading="lazy" width="160" height="60" />
                 </Link>
               </div>
               <div className="hamburger_close">
@@ -260,7 +260,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
               </div>
             </div>
           </div>
-            <div className="hamburger-socials">
+          <div className="hamburger-socials">
             <h5 className="hamburger-title">Follow Us</h5>
             <div className="social-links style-2">
               <ul>
@@ -268,7 +268,7 @@ export default function HamburgerMenu({ isOpen, onClose }) {
                 <li><Link to="https://www.linkedin.com/company/codigix-infotech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><i className="tji-linkedin"></i></Link></li>
                 <li><Link to="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"><i className="tji-instagram"></i></Link></li>
                 <li><Link to="https://x.com/CodigixI2994" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X (Twitter)"><i className="tji-x-twitter"></i></Link></li>
-                  
+
               </ul>
             </div>
           </div>

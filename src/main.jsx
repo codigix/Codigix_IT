@@ -14,7 +14,8 @@
 // }
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "../public/assets/css/main.min.css";
+import "./assets/css/main.min.css";
+import "./assets/css/ainex-icons.css";
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 import { ThemeProvider } from "./context/ThemeContext";

@@ -39,12 +39,12 @@ export default function ServicesPage() {
 
   return (
     <>
-      <SEO 
-        title="Our Services | AI-Powered IT & Software Solutions" 
+      <SEO
+        title="Our Services | AI-Powered IT & Software Solutions"
         description="Explore Codigix Infotech's comprehensive range of AI-powered services: ERP/CRM development, machine learning, predictive analytics, and custom technology solutions."
         keywords="AI services, software development, ERP solutions, CRM development, machine learning services, custom IT solutions"
       />
-      <section className="tj-page-header section-gap-x" style={{ backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1778412018/samples/codigix%20infotech/businessman-typing-laptop-keyboard-late-evening_ldtqu3.jpg")})` }}>
+      <section className="tj-page-header section-gap-x" style={{ backgroundImage: `url(${getImageUrl("https://res.cloudinary.com/foodfantacy/image/upload/v1785386709/samples/codigix%20infotech/businessman-typing-laptop-keyboard-late-evening_ldtqu3.webp")})` }}>
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4">
             <div className="w-full lg:w-full px-4">
@@ -64,7 +64,7 @@ export default function ServicesPage() {
 
       <section className="tj-service-section-2 section-gap ">
         <div className="container mx-auto px-4">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -72,12 +72,12 @@ export default function ServicesPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {services.map((service, idx) => (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="service-item style-2" 
+                className="service-item style-2"
                 key={idx}
               >
                 <div className="service-inner">
@@ -86,12 +86,12 @@ export default function ServicesPage() {
                     <p className="desc">                      {service.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
                     </p>
                   </div>
-                  <div className="service-img">
+                  <div className="service-img bg-gray-50 dark:bg-[#0b0625] flex items-center justify-center p-4">
                     <img
                       src={getImageUrl(service.image, "assets/images/service", 800)}
                       alt={service.title}
                       loading="lazy"
-                      className="w-full h-[150px] object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-[150px] object-contain transition-transform duration-500 group-hover:scale-110"
                       width="400"
                       height="150"
                     />

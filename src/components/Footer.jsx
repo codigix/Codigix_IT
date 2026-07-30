@@ -13,16 +13,16 @@ export default function Footer() {
             <div className="w-full px-4">
               <div className="footer-cta">
                 <div className="sec-heading style-3 wow fadeInUp" data-wow-delay=".5s">
-                <span className="sub-title"><i className="tji-subtitle-2"></i>Get Started</span>
-                <div className='main-sec'>
-                <h2 className="sec-title">Let’s Launch AI-Powered </h2>
-                <h2 className="sec-title-1 sec-title" > Project <img src={getImageUrl("assets/images/shape/hand.webp")} alt="Start your AI project with Codigix Infotech" width="76" height="77" style={{ width: '40px', height: 'auto' }} loading="lazy" />
-                  Here.
-                </h2>
+                  <span className="sub-title"><i className="tji-subtitle-2"></i>Get Started</span>
+                  <div className='main-sec'>
+                    <h2 className="sec-title">Let’s Launch AI-Powered </h2>
+                    <h2 className="sec-title-1 sec-title" > Project <img src={getImageUrl("assets/images/shape/hand.webp")} alt="Start your AI project with Codigix Infotech" width="76" height="77" style={{ width: '40px', height: 'auto' }} loading="lazy" />
+                      Here.
+                    </h2>
+                  </div>
                 </div>
-              </div>
                 <div className="circle-text-wrap wow fadeInUp" data-wow-delay=".7s">
-                  <span className="circle-text" style={{backgroundImage: `url(${getImageUrl("assets/images/cta/circle-text.webp")})`}}></span>
+                  <span className="circle-text" style={{ backgroundImage: `url(${getImageUrl("assets/images/cta/circle-text.webp")})` }}></span>
                   <Link className="circle-icon" to="/contact" aria-label="Contact us to start your project"><span><i className="tji-plane-2"></i></span></Link>
                 </div>
                 <div className="cta-bg wow fadeIn" data-wow-delay=".3s"><img src={getImageUrl("assets/images/cta/line-pattern.webp")} alt="Abstract background pattern" width="500" height="200" loading="lazy" /></div>
@@ -30,26 +30,26 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div> 
+      </div>
       <div className="footer-main-area style-2">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4 justify-between">
             <div className="xl:w-1/4 px-4 md:w-1/2">
               <div className="footer-widget footer-col-1">
                 <div className="footer-logo">
-                  <Link to="/"><img src={getImageUrl("assets/images/logos/logo.png")} alt="Codigix Infotech - AI & Software Solutions Logo" width="160" height="60" loading="lazy" /></Link>
+                  <Link to="/"><img src={getImageUrl("assets/images/logos/logo.webp")} alt="Codigix Infotech - AI & Software Solutions Logo" width="160" height="60" loading="lazy" /></Link>
                 </div>
                 <div className="footer-text">
                   <p>Understanding client needs, defining goals, and designing tailored AI crafting's solutions.</p>
                 </div>
-                <div className="footer-contact" style={{marginTop: '20px', marginBottom: '20px'}}>
-                  <p style={{color: '#a3a3a3', marginBottom: '10px'}}>
-                    <i className="tji-envelop-2" style={{marginRight: '10px'}}></i> 
-                    <a href="mailto:info@codigixinfotech.com" style={{color: '#a3a3a3'}}>info@codigixinfotech.com</a>
+                <div className="footer-contact" style={{ marginTop: '20px', marginBottom: '20px' }}>
+                  <p style={{ color: '#a3a3a3', marginBottom: '10px' }}>
+                    <i className="tji-envelop-2" style={{ marginRight: '10px' }}></i>
+                    <a href="mailto:info@codigixinfotech.com" style={{ color: '#a3a3a3' }}>info@codigixinfotech.com</a>
                   </p>
-                  <p style={{color: '#a3a3a3'}}>
-                    <i className="tji-phone-2" style={{marginRight: '10px'}}></i> 
-                    <a href="tel:+919112706604" style={{color: '#a3a3a3'}}>+91 9112706604</a>
+                  <p style={{ color: '#a3a3a3' }}>
+                    <i className="tji-phone-2" style={{ marginRight: '10px' }}></i>
+                    <a href="tel:+919112706604" style={{ color: '#a3a3a3' }}>+91 9112706604</a>
                   </p>
                 </div>
                 <div className="social-links style-2">

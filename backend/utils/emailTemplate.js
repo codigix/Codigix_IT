@@ -99,7 +99,7 @@ const getEmailTemplate = (contentTitle, details) => {
                 </div>
               </td>
               <td width="30%" style="vertical-align: bottom; text-align: right;">
-                <img src="https://codigixinfotech.com/assets/images/logos/logo.png" alt="Codigix" style="height: 35px; margin-bottom: 15px;">
+                <img src="https://codigixinfotech.com/assets/images/logos/logo.webp" alt="Codigix" style="height: 35px; margin-bottom: 15px;">
                 <div style="text-align: right;">
                   <a href="https://www.facebook.com/codigix.infotech" style="text-decoration: none; margin-left: 5px;"><img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" width="24"></a>
                   <a href="https://www.linkedin.com/company/codigix-infotech" style="text-decoration: none; margin-left: 5px;"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" width="24"></a>

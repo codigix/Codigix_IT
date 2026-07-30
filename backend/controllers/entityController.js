@@ -56,11 +56,16 @@ exports.getAll = async (req, res) => {
       'results',
       'long_description',
       'content',
-      'description',
       'overview',
       'challenge',
       'solution'
     ];
+    
+    // Allow 'description' for slides since HomePage uses it in the slider
+    if (entity !== 'slides') {
+      heavyColumns.push('description');
+    }
+
     
     const selectColumns = validColumns
       .filter(col => !heavyColumns.includes(col))
