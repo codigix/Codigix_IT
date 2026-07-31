@@ -15,6 +15,18 @@ const BlogDetailsPage = lazy(() => import('./pages/BlogDetailsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const CareerPage = lazy(() => import('./pages/CareerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const NewHomePage = lazy(() => import('./pages/NewHomePage'));
+const NewAiSolutionsPage = lazy(() => import('./pages/NewAiSolutionsPage'));
+const NewIotSolutionsPage = lazy(() => import('./pages/NewIotSolutionsPage'));
+const NewErpSolutionsPage = lazy(() => import('./pages/NewErpSolutionsPage'));
+const NewCrmSolutionsPage = lazy(() => import('./pages/NewCrmSolutionsPage'));
+const NewOtherServicesPage = lazy(() => import('./pages/NewOtherServicesPage'));
+const NewIndustriesPage = lazy(() => import('./pages/NewIndustriesPage'));
+const NewCaseStudiesPage = lazy(() => import('./pages/NewCaseStudiesPage'));
+const NewCaseStudyDetailsPage = lazy(() => import('./pages/NewCaseStudyDetailsPage'));
+const NewCareerPage = lazy(() => import('./pages/NewCareerPage'));
+const NewAboutPage = lazy(() => import('./pages/NewAboutPage'));
+const NewContactPage = lazy(() => import('./pages/NewContactPage'));
 
 // Lazy load admin components
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
@@ -67,9 +79,26 @@ function AppRoutes() {
   }
 
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+    <Routes>
+      {/* New Home Route without Layout */}
+      <Route path="/new-home" element={<NewHomePage />} />
+      <Route path="/new-ai-solutions" element={<NewAiSolutionsPage />} />
+      <Route path="/new-iot-solutions" element={<NewIotSolutionsPage />} />
+      <Route path="/new-erp-solutions" element={<NewErpSolutionsPage />} />
+      <Route path="/new-crm-solutions" element={<NewCrmSolutionsPage />} />
+      <Route path="/new-other-services" element={<NewOtherServicesPage />} />
+      <Route path="/new-industries" element={<NewIndustriesPage />} />
+      <Route path="/new-case-studies" element={<NewCaseStudiesPage />} />
+      <Route path="/new-case-studies/:id" element={<NewCaseStudyDetailsPage />} />
+      <Route path="/new-career" element={<NewCareerPage />} />
+      <Route path="/new-about" element={<NewAboutPage />} />
+      <Route path="/new-contact" element={<NewContactPage />} />
+
+      {/* All other routes wrapped in Layout */}
+      <Route path="*" element={
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
           <Route path="/banner" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
@@ -84,7 +113,8 @@ function AppRoutes() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
-    
+      } />
+    </Routes>
   );
 }
 

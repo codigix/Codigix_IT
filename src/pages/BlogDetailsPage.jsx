@@ -39,7 +39,7 @@ export default function BlogDetailsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+        <div className="w-15 h-15 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -55,7 +55,7 @@ export default function BlogDetailsPage() {
 
   return (
     <>
-      <SEO 
+      <SEO
         title={`${blog.title} | Codigix Infotech Blog`}
         description={blog.summary || blog.content?.substring(0, 160) || "Read the latest insights and trends in AI and technology from Codigix Infotech."}
         keywords={`${blog.category}, AI, technology, Codigix, ${blog.title}`}
@@ -119,7 +119,7 @@ export default function BlogDetailsPage() {
                 </div>
                 <div className='blog-text' dangerouslySetInnerHTML={{ __html: blog.content }}>
                 </div>
-                
+
                 <div className="blog-tags tj-tags-post" >
                   <div className="tagcloud">
                     <span>Tags:</span>
@@ -138,7 +138,7 @@ export default function BlogDetailsPage() {
                     {recentBlogs.map((recent) => (
                       <li key={recent.id}>
                         <div className="post-thumb">
-                          <Link to={`/blog/details/${recent.id}`}> 
+                          <Link to={`/blog/details/${recent.id}`}>
                             <img src={getImageUrl(recent.image, "assets/images/blog")} alt={recent.title} loading="lazy" />
                           </Link>
                         </div>
@@ -155,7 +155,7 @@ export default function BlogDetailsPage() {
                       </li>
                     ))}
                   </ul>
-                </div> 
+                </div>
 
                 <div className="blog-sidebar-box">
                   <h3 className="title">Categories</h3>

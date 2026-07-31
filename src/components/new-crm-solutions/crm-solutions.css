@@ -1,0 +1,69 @@
+/* Custom styles for CRM Solutions Page */
+.crm-layout-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .crm-layout-container {
+    grid-template-columns: 3.5fr 1fr;
+  }
+}
+
+/* Sidebar Styles */
+.crm-sidebar {
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #02010c;
+}
+
+.crm-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.crm-sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.crm-sidebar-item.active {
+  background-color: rgba(238, 0, 28, 0.05);
+  border-left-color: #EE001C;
+}
+
+.crm-sidebar-item.active h4 {
+  color: #fff;
+  font-weight: 600;
+}
+
+.crm-sidebar-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.crm-sidebar-item.active .crm-sidebar-icon-wrap {
+  background-color: rgba(238, 0, 28, 0.15);
+  box-shadow: 0 0 10px rgba(238, 0, 28, 0.3);
+}
+
+.crm-sidebar-item:hover:not(.active) .crm-sidebar-icon-wrap {
+  background-color: rgba(126, 34, 206, 0.1);
+}
+
+/* Gradients and specific glowing text */
+.crm-text-gradient {
+  background: linear-gradient(to right, #EE001C, #7e22ce);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

@@ -65,7 +65,7 @@ const ProjectSection = () => {
             </p>
             <h2 className="sec-title">Breaking Boundaries, Building Dreams.</h2>
           </div>
-          <Link 
+          <Link
             to="/projects"
             className="hidden lg:inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
           >
@@ -89,8 +89,8 @@ const ProjectSection = () => {
               className="group relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all"
             >
               <div className="relative overflow-hidden">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
                   loading="lazy"
                   width="500"
@@ -104,9 +104,9 @@ const ProjectSection = () => {
                     {project.title}
                   </Link>
                 </h4>
-                <Link 
+                <Link
                   to="/projects/details"
-                  className="inline-flex items-center justify-center w-10 h-10 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors"
+                  className="inline-flex items-center justify-center w-15 h-15 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors"
                 >
                   →
                 </Link>
@@ -121,7 +121,7 @@ const ProjectSection = () => {
         </motion.div>
 
         <div className="lg:hidden text-center mt-12">
-          <Link 
+          <Link
             to="/projects"
             className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
           >

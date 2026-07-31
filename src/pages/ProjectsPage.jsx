@@ -13,11 +13,11 @@ export default function ProjectsPage() {
   const [categories, setCategories] = useState(["All"]);
   const [activeCategory, setActiveCategory] = useState("All");
   const [loading, setLoading] = useState(true);
-  
+
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 6;
-  
+
   //  logic of pagination
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
 
@@ -41,11 +41,11 @@ export default function ProjectsPage() {
         const data = await response.json();
         setProjects(data);
         setFilteredProjects(data);
-        
+
         // Extract unique categories
         const uniqueCategories = ["All", ...new Set(data.map(project => project.category || "Software"))];
         setCategories(uniqueCategories);
-        
+
         setLoading(false);
       } catch (error) {
         console.error('Error fetching projects:', error);
@@ -69,15 +69,15 @@ export default function ProjectsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+        <div className="w-15 h-15 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
     <>
-      <SEO 
-        title="Our Projects Portfolio | AI-Powered Innovation" 
+      <SEO
+        title="Our Projects Portfolio | AI-Powered Innovation"
         description="Explore Codigix Infotech's portfolio of successful AI-driven projects, custom software development, and digital transformation case studies across various industries."
         keywords="projects portfolio, AI case studies, software development projects, IT solutions portfolio, tech innovation"
       />
@@ -128,34 +128,34 @@ export default function ProjectsPage() {
             </div>
           </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {currentProjects.map((project, idx) => (
-                        <div className="col-span-1" key={project.id}>
-                          
-                          <div className="project-item">
-                            <div className="project-img">
-                              <img
-                                src={getImageUrl(project.image, "assets/images/project")}
-                                alt={project.title}
-                                className="w-full h-[250px] object-cover transition-transform duration-500 group-hover:scale-110"
-                                loading="lazy"
-                                width="600"
-                                height="400"
-                              />
-                            </div>
-                            <div className="project-content">
-                              <h4 className="title"><Link to={`/projects/details/${project.id}`}>{project.title}</Link></h4>
-                              <p className="line-clamp-2">{project.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
-                              </p>
-                              <Link to={`/projects/details/${project.id}`} className="icon-btn" aria-label={`View Details for ${project.title}`}>
-                                <i className="tji-arrow-right-long"></i>
-                              </Link>
-                            </div>
-                            <span className="categories"><Link to={`/projects/details/${project.id}`}>{project.category || 'Software'}</Link></span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {currentProjects.map((project, idx) => (
+              <div className="col-span-1" key={project.id}>
+
+                <div className="project-item">
+                  <div className="project-img">
+                    <img
+                      src={getImageUrl(project.image, "assets/images/project")}
+                      alt={project.title}
+                      className="w-full h-[250px] object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                      width="600"
+                      height="400"
+                    />
+                  </div>
+                  <div className="project-content">
+                    <h4 className="title"><Link to={`/projects/details/${project.id}`}>{project.title}</Link></h4>
+                    <p className="line-clamp-2">{project.overview || 'Specialize in delivering AI-powered solution revolutionize the way businesses operate by leveraging the latest technology.'}
+                    </p>
+                    <Link to={`/projects/details/${project.id}`} className="icon-btn" aria-label={`View Details for ${project.title}`}>
+                      <i className="tji-arrow-right-long"></i>
+                    </Link>
+                  </div>
+                  <span className="categories"><Link to={`/projects/details/${project.id}`}>{project.category || 'Software'}</Link></span>
+                </div>
+              </div>
+            ))}
+          </div>
 
           {/* <div className="tj-pagination flex justify-center">
             <ul>

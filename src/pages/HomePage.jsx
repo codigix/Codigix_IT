@@ -584,7 +584,7 @@ export default function HomePage() {
         )}
         {loading || !slides || slides.length === 0 ? (
           <div className="w-full min-h-[600px] lg:min-h-[100vh] flex items-center justify-center bg-gray-50 dark:bg-[#0b0625]">
-            <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+            <div className="w-15 h-15 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
           </div>
         ) : (
           <Swiper
@@ -1097,7 +1097,7 @@ export default function HomePage() {
                             <span className="text-xs font-bold uppercase tracking-wider ">
                               Quarter {q.q.replace('Q', '')} • {q.dates}
                             </span>
-                            <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center ">
+                            <div className="w-15 h-15 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center ">
                               <i className={q.icon}></i>
                             </div>
                           </div>

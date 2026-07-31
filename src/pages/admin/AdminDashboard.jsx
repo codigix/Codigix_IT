@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Briefcase, 
-  FileText, 
-  MessageSquare, 
-  Quote, 
-  TrendingUp, 
-  Users, 
+import {
+  Briefcase,
+  FileText,
+  MessageSquare,
+  Quote,
+  TrendingUp,
+  Users,
   User,
   Calendar,
   MoreVertical,
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
       const results = await Promise.all(
         entities.map(entity => fetch(`${API_BASE_URL}/${entity}/count`).then(res => res.json()))
       );
-      
+
       const newStats = {};
       entities.forEach((entity, index) => {
         newStats[entity] = results[index] ? results[index].count : 0;
@@ -55,7 +55,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     fetchStats();
-    
+
     // Auto-refresh every 60 seconds
     const interval = setInterval(fetchStats, 60000);
     return () => clearInterval(interval);
@@ -75,7 +75,7 @@ const AdminDashboard = () => {
         {uboldStats.map((stat, idx) => (
           <div key={idx} className="bg-[#252841]/60 backdrop-blur-md p-6 rounded-2xl border border-slate-800/30 hover:border-[#FF1F8B]/40 transition-all group">
             <div className="flex items-center justify-between mb-4">
-              <div className={`w-10 h-10 rounded-xl ${stat.bg} flex items-center justify-center ${stat.color} transition-transform group-hover:scale-110`}>
+              <div className={`w-15 h-15 rounded-xl ${stat.bg} flex items-center justify-center ${stat.color} transition-transform group-hover:scale-110`}>
                 <stat.icon className="w-5 h-5" />
               </div>
               <div className={`flex items-center gap-1 text-[9px]  px-2 py-0.5 rounded-full ${stat.isPositive ? 'bg-emerald-500/10 text-emerald-500' : 'bg-rose-500/10 text-rose-500'}`}>
@@ -105,7 +105,7 @@ const AdminDashboard = () => {
               <button className="px-3 py-1.5 text-[9px] text-white bg-[#FF1F8B] rounded-lg shadow-lg shadow-[#FF1F8B]/20 uppercase tracking-widest">Week</button>
             </div>
           </div>
-          
+
           <div className="h-[280px] w-full relative group/chart">
             <div className="absolute inset-0 flex flex-col justify-between py-1">
               {[0, 1, 2, 3].map(i => (
@@ -114,36 +114,36 @@ const AdminDashboard = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className="relative h-full w-full flex items-end pt-6">
-               <svg className="w-full h-full" viewBox="0 0 1000 100" preserveAspectRatio="none">
-                 <defs>
-                   <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                     <stop offset="0%" stopColor="#FF1F8B" stopOpacity="0.2" />
-                     <stop offset="100%" stopColor="#FF1F8B" stopOpacity="0" />
-                   </linearGradient>
-                 </defs>
-                 <path 
-                   d="M0,80 C100,70 150,20 250,30 C350,40 450,80 550,70 C650,60 750,10 850,20 C950,30 1000,50 1000,50 V100 H0 Z" 
-                   fill="url(#chartGradient)" 
-                 />
-                 <path 
-                   d="M0,80 C100,70 150,20 250,30 C350,40 450,80 550,70 C650,60 750,10 850,20 C950,30 1000,50 1000,50" 
-                   fill="none" 
-                   stroke="#FF1F8B" 
-                   strokeWidth="3" 
-                   strokeLinecap="round"
-                 />
-               </svg>
+              <svg className="w-full h-full" viewBox="0 0 1000 100" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#FF1F8B" stopOpacity="0.2" />
+                    <stop offset="100%" stopColor="#FF1F8B" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0,80 C100,70 150,20 250,30 C350,40 450,80 550,70 C650,60 750,10 850,20 C950,30 1000,50 1000,50 V100 H0 Z"
+                  fill="url(#chartGradient)"
+                />
+                <path
+                  d="M0,80 C100,70 150,20 250,30 C350,40 450,80 550,70 C650,60 750,10 850,20 C950,30 1000,50 1000,50"
+                  fill="none"
+                  stroke="#FF1F8B"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+              </svg>
             </div>
-            
+
             <div className="flex justify-between mt-6 px-2">
               {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(m => (
                 <span key={m} className="text-[9px] text-slate-600 uppercase tracking-widest">{m}</span>
               ))}
             </div>
           </div>
-          
+
           <div className="flex items-center gap-8 mt-6 pt-6 border-t border-slate-800/20">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-[#FF1F8B]"></div>
@@ -172,7 +172,7 @@ const AdminDashboard = () => {
                 <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
               </button>
             </div>
-            
+
             <div className="space-y-5">
               {[
                 { name: 'UI/UX REDESIGN', val: 75, color: 'bg-[#FF1F8B]' },
@@ -250,10 +250,10 @@ const AdminDashboard = () => {
             </div>
           </div>
           <div className="p-4 border-t border-slate-800/30 bg-[#1A1C2E]/30 flex gap-3">
-            <input 
-              type="text" 
-              placeholder="COMMAND..." 
-              className="flex-1 bg-[#1A1C2E] border border-slate-800/30 text-[10px] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#FF1F8B]/40 transition-all placeholder:text-slate-700 uppercase tracking-widest" 
+            <input
+              type="text"
+              placeholder="COMMAND..."
+              className="flex-1 bg-[#1A1C2E] border border-slate-800/30 text-[10px] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#FF1F8B]/40 transition-all placeholder:text-slate-700 uppercase tracking-widest"
             />
             <button className="bg-[#FF1F8B] text-white p-3 rounded-xl hover:bg-[#FF1F8B]/90 transition-all shadow-lg shadow-[#FF1F8B]/20">
               <Send className="w-4 h-4" />

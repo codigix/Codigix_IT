@@ -1,0 +1,43 @@
+/* Custom styles for Case Studies Page */
+
+/* Gradient Text */
+.case-studies-text-gradient {
+  background: linear-gradient(to right, #EE001C, #7e22ce);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Filter Bar Buttons */
+.case-studies-filter-btn {
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: #9ca3af;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.case-studies-filter-btn:hover {
+  border-color: rgba(238, 0, 28, 0.5);
+  color: #fff;
+}
+
+.case-studies-filter-btn.active {
+  background-color: #EE001C;
+  border-color: #7e22ce;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(238, 0, 28, 0.4);
+}
+
+/* Custom Scrollbar for Filters */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

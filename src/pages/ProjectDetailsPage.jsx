@@ -39,7 +39,7 @@ export default function ProjectDetailsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+        <div className="w-15 h-15 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -67,13 +67,13 @@ export default function ProjectDetailsPage() {
     }
     return project.gallery.split(',').map(img => img.trim()).filter(img => img !== '');
   })();
-  
+
   const goals = project.goals ? project.goals.split('\n').filter(goal => goal.trim() !== '') : [];
   const techStack = project.technology_stack ? project.technology_stack.split(/[,\n]/).map(t => t.trim()).filter(t => t !== '') : [];
 
   return (
     <div key={id} className="bg-white dark:bg-[#0b0625] min-h-screen">
-      <SEO 
+      <SEO
         title={`${project.title} | Codigix Infotech Case Study`}
         description={project.overview || `Case study: ${project.title}. Discover how Codigix Infotech delivered this successful project using advanced technologies and AI solutions.`}
         keywords={`${project.title}, project case study, AI development, software portfolio, ${project.category}, Codigix Infotech`}
@@ -84,8 +84,8 @@ export default function ProjectDetailsPage() {
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src={getImageUrl(project.image, "assets/images/project")} 
+          <img
+            src={getImageUrl(project.image, "assets/images/project")}
             alt={project.title}
             className="w-full h-full object-cover object-center"
           />
@@ -94,7 +94,7 @@ export default function ProjectDetailsPage() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium text-sm mb-6"
@@ -102,8 +102,8 @@ export default function ProjectDetailsPage() {
               <Tag className="w-4 h-4" />
               {project.category || 'Case Study'}
             </motion.div>
-            
-            <motion.h1 
+
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -113,7 +113,7 @@ export default function ProjectDetailsPage() {
             </motion.h1>
 
             {project.description && (
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 }}
@@ -122,8 +122,8 @@ export default function ProjectDetailsPage() {
                 {project.description}
               </motion.p>
             )}
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -143,27 +143,27 @@ export default function ProjectDetailsPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4">
-            
+
             {/* Main Content Area (Left) */}
             <div className="w-full lg:w-2/3 px-4 mb-12 lg:mb-0">
-              
+
               {/* Featured Image */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="rounded-3xl overflow-hidden shadow-2xl mb-12 border border-gray-100 dark:border-gray-800"
               >
-                <img 
-                  src={getImageUrl(project.image, "assets/images/project")} 
-                  alt={project.title} 
-                  className="w-full h-auto object-cover" 
-                  loading="lazy" 
+                <img
+                  src={getImageUrl(project.image, "assets/images/project")}
+                  alt={project.title}
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
                 />
               </motion.div>
-              
+
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                
+
                 {project.overview && (
                   <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                     <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Project Overview</h2>
@@ -201,9 +201,9 @@ export default function ProjectDetailsPage() {
 
               {/* Gallery Swiper */}
               {galleryImages.length > 0 && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }} 
-                  whileInView={{ opacity: 1, y: 0 }} 
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   className="mt-16"
                 >
@@ -254,11 +254,11 @@ export default function ProjectDetailsPage() {
                       {galleryImages.map((img, index) => (
                         <SwiperSlide key={index}>
                           <div className="aspect-[16/9] w-full bg-gray-100 dark:bg-[#0b0625] flex items-center justify-center">
-                            <img 
-                              src={getImageUrl(img, "assets/images/project")} 
-                              alt={`Gallery ${index + 1}`} 
-                              className="w-full h-full object-cover" 
-                              loading="lazy" 
+                            <img
+                              src={getImageUrl(img, "assets/images/project")}
+                              alt={`Gallery ${index + 1}`}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
                             />
                           </div>
                         </SwiperSlide>
@@ -271,7 +271,7 @@ export default function ProjectDetailsPage() {
               {/* Navigation Links */}
               <div className="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800 flex justify-between items-center">
                 <Link to="/projects" className="group flex items-center gap-2 text-gray-500 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 font-semibold transition-colors">
-                  <span className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center group-hover:border-indigo-600 dark:group-hover:border-indigo-400 transition-colors">
+                  <span className="w-15 h-15 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center group-hover:border-indigo-600 dark:group-hover:border-indigo-400 transition-colors">
                     <ArrowLeft className="w-5 h-5" />
                   </span>
                   Back to Projects
@@ -284,16 +284,16 @@ export default function ProjectDetailsPage() {
             {/* Sidebar Area (Right) */}
             <div className="w-full lg:w-1/3 px-4">
               <div className="sticky top-28 space-y-8">
-                
+
                 {/* Project Details Box */}
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   className="bg-gray-50 dark:bg-[#150a30] border border-gray-100 dark:border-gray-800 rounded-3xl p-8 shadow-xl"
                 >
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 border-b border-gray-200 dark:border-gray-700 pb-4">Project Details</h3>
-                  
+
                   <div className="space-y-6">
                     {project.client && (
                       <div className="flex items-start gap-4">
@@ -306,7 +306,7 @@ export default function ProjectDetailsPage() {
                         </div>
                       </div>
                     )}
-                    
+
                     {project.category && (
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
@@ -318,7 +318,7 @@ export default function ProjectDetailsPage() {
                         </div>
                       </div>
                     )}
-                    
+
                     {project.duration && (
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
@@ -330,7 +330,7 @@ export default function ProjectDetailsPage() {
                         </div>
                       </div>
                     )}
-                    
+
                     {project.website && (
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
@@ -350,7 +350,7 @@ export default function ProjectDetailsPage() {
 
                 {/* Technology Stack Box */}
                 {techStack.length > 0 && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -361,7 +361,7 @@ export default function ProjectDetailsPage() {
                       <Code2 className="w-6 h-6 text-gray-900 dark:text-white" />
                       <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Tech Stack</h3>
                     </div>
-                    
+
                     <div className="flex flex-wrap gap-2">
                       {techStack.map((tech, index) => (
                         <span key={index} className="px-4 py-2 rounded-xl bg-white dark:bg-[#0b0625] border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-semibold shadow-sm">
@@ -373,25 +373,7 @@ export default function ProjectDetailsPage() {
                 )}
 
                 {/* CTA Box */}
-                <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-8 shadow-2xl text-center relative overflow-hidden"
-                >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
-                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full blur-2xl -ml-10 -mb-10"></div>
-                  
-                  <div className="relative z-10">
-                    <h3 className="text-2xl font-bold text-white mb-4">Ready to start your project?</h3>
-                    <p className="text-indigo-100 mb-8">Let's discuss how we can help you build your next big idea.</p>
-                    <Link to="/contact" className="inline-flex items-center justify-center w-full px-6 py-4 bg-white text-indigo-700 font-bold rounded-xl hover:bg-gray-50 transition-colors shadow-lg group">
-                      Contact Us Today
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </motion.div>
+
 
               </div>
             </div>

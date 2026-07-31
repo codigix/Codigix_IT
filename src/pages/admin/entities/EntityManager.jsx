@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Plus, 
-  Search, 
-  Edit3, 
-  Trash2, 
-  CheckCircle, 
-  AlertCircle, 
-  X, 
+import {
+  Plus,
+  Search,
+  Edit3,
+  Trash2,
+  CheckCircle,
+  AlertCircle,
+  X,
   Image as ImageIcon,
   MoreHorizontal,
   FileText,
@@ -83,7 +83,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
   const handleMultiImagePaste = async (e, fieldName) => {
     const items = (e.clipboardData || e.originalEvent.clipboardData).items;
     let imagesAdded = 0;
-    
+
     // Get existing images
     let existingImages = [];
     try {
@@ -114,7 +114,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
           setFormData(prev => ({ ...prev, [fieldName]: JSON.stringify(newImages) }));
           imagesAdded++;
           if (imagesAdded === 1) {
-             setNotification({ type: 'success', message: 'Image(s) added to gallery!' });
+            setNotification({ type: 'success', message: 'Image(s) added to gallery!' });
           }
         };
         reader.readAsDataURL(file);
@@ -131,7 +131,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
       } else if (Array.isArray(currentVal)) {
         images = currentVal;
       }
-      
+
       const newImages = images.filter((_, i) => i !== index);
       setFormData(prev => ({ ...prev, [fieldName]: JSON.stringify(newImages) }));
     } catch (err) {
@@ -199,7 +199,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
     } catch (e) {
       console.error("Failed to parse tech list:", e);
     }
-    
+
     // Fallback: If it's not JSON, it might be the old line-based format
     // Let's try to convert it to the new format for the UI
     if (typeof value === 'string') {
@@ -223,7 +223,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
       });
       return categories;
     }
-    
+
     return [];
   };
 
@@ -271,8 +271,8 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
     e.preventDefault();
     setIsSaving(true);
     const method = editingItem ? 'PUT' : 'POST';
-    const url = editingItem 
-      ? `${API_BASE_URL}/${entity}/${editingItem.id}` 
+    const url = editingItem
+      ? `${API_BASE_URL}/${entity}/${editingItem.id}`
       : `${API_BASE_URL}/${entity}`;
 
     const token = localStorage.getItem('adminToken');
@@ -280,7 +280,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
     try {
       const response = await fetch(url, {
         method,
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
@@ -379,8 +379,8 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
     return `/assets/images/${folder}/${imageName}`;
   };
 
-  const filteredData = data.filter(item => 
-    Object.values(item).some(val => 
+  const filteredData = data.filter(item =>
+    Object.values(item).some(val =>
       String(val).toLowerCase().includes(searchQuery.toLowerCase())
     )
   );
@@ -394,17 +394,16 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
             initial={{ opacity: 0, y: -20, x: '-50%' }}
             animate={{ opacity: 1, y: 0, x: '-50%' }}
             exit={{ opacity: 0, y: -20, x: '-50%' }}
-            className={`fixed top-8 left-1/2 z-[100] px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border backdrop-blur-xl min-w-[320px] ${
-              notification.type === 'success' 
-              ? 'bg-[#00D1FF]/90 border-[#00D1FF]/50 text-white shadow-[#00D1FF]/20' 
-              : 'bg-[#FF1F8B]/90 border-[#FF1F8B]/50 text-white shadow-[#FF1F8B]/20'
-            }`}
+            className={`fixed top-8 left-1/2 z-[100] px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border backdrop-blur-xl min-w-[320px] ${notification.type === 'success'
+                ? 'bg-[#00D1FF]/90 border-[#00D1FF]/50 text-white shadow-[#00D1FF]/20'
+                : 'bg-[#FF1F8B]/90 border-[#FF1F8B]/50 text-white shadow-[#FF1F8B]/20'
+              }`}
           >
-            <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center shrink-0 border border-white/20">
+            <div className="w-15 h-15 rounded-xl bg-white/20 flex items-center justify-center shrink-0 border border-white/20">
               {notification.type === 'success' ? <CheckCircle className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
             </div>
             <div className="flex-1">
-               <p className="text-[10px] uppercase tracking-[0.1em]">{notification.message}</p>
+              <p className="text-[10px] uppercase tracking-[0.1em]">{notification.message}</p>
             </div>
             <button onClick={() => setNotification(null)} className="p-2 hover:bg-white/10 rounded-xl transition-colors">
               <X className="w-4 h-4" />
@@ -416,7 +415,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
       {/* Header Actions */}
       <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center bg-[#252841]/60 backdrop-blur-md p-12 rounded-2xl border border-slate-800/30 gap-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#FF1F8B]/10 flex items-center justify-center text-[#FF1F8B] border border-[#FF1F8B]/20">
+          <div className="w-15 h-15 rounded-xl bg-[#FF1F8B]/10 flex items-center justify-center text-[#FF1F8B] border border-[#FF1F8B]/20">
             <Database className="w-5 h-5" />
           </div>
           <div>
@@ -424,13 +423,13 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
             <p className="text-slate-500 text-[9px] uppercase tracking-[0.2em] mt-1">{data.length} Total Records</p>
           </div>
         </div>
-        
+
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative group">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-[#FF1F8B] transition-colors" />
-            <input 
-              type="text" 
-              placeholder="SEARCH RECORDS..." 
+            <input
+              type="text"
+              placeholder="SEARCH RECORDS..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full sm:w-60 bg-[#1A1C2E] border border-slate-800/30 rounded-xl pl-10 pr-4 py-2 text-[10px] font-bold text-white uppercase tracking-widest focus:outline-none focus:border-[#FF1F8B]/40 transition-all"
@@ -442,11 +441,10 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
               setFormData({});
               setShowForm(!showForm);
             }}
-            className={`px-6 py-2 rounded-xl  text-[10px] uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95 ${
-              showForm 
-              ? 'bg-[#1A1C2E] text-slate-300' 
-              : 'bg-[#FF1F8B] text-white hover:bg-[#FF1F8B]/90 shadow-[#FF1F8B]/20'
-            }`}
+            className={`px-6 py-2 rounded-xl  text-[10px] uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95 ${showForm
+                ? 'bg-[#1A1C2E] text-slate-300'
+                : 'bg-[#FF1F8B] text-white hover:bg-[#FF1F8B]/90 shadow-[#FF1F8B]/20'
+              }`}
           >
             {showForm ? <X className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
             {showForm ? 'Close Editor' : `Add New`}
@@ -562,14 +560,14 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                         </div>
                         {formData[field.name] && (
                           <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800/30 bg-[#1A1C2E]">
-                            <img 
-                              src={formData[field.name].startsWith('data:') || formData[field.name].startsWith('http') 
-                                ? formData[field.name] 
+                            <img
+                              src={formData[field.name].startsWith('data:') || formData[field.name].startsWith('http')
+                                ? formData[field.name]
                                 : `/assets/images/${field.folder || (entity === 'services' ? 'service' : entity)}/${formData[field.name]}${formData[field.name].includes('.') ? '' : '.jpg'}`}
-                              alt="Preview" 
+                              alt="Preview"
                               className="w-full h-full object-contain"
                             />
-                            <button 
+                            <button
                               type="button"
                               onClick={() => setFormData(prev => ({ ...prev, [field.name]: '' }))}
                               className="absolute top-2 right-2 p-2 bg-black/60 hover:bg-black/80 text-white rounded-lg backdrop-blur-md transition-all"
@@ -602,7 +600,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                           </div>
                           <p className="text-[8px] text-slate-500 mt-2 uppercase tracking-widest px-1">Tip: Paste images or use the icon to upload individually</p>
                         </div>
-                        
+
                         {formData[field.name] && (
                           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                             {(() => {
@@ -616,17 +614,17 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                                 } else if (typeof val === 'string' && val.trim()) {
                                   images = val.split(',').map(s => s.trim());
                                 }
-                                
+
                                 return images.map((img, idx) => (
                                   <div key={idx} className="relative aspect-square rounded-xl overflow-hidden border border-slate-800/30 bg-[#1A1C2E] group/img">
-                                    <img 
-                                      src={img.startsWith('data:') || img.startsWith('http') 
-                                        ? img 
+                                    <img
+                                      src={img.startsWith('data:') || img.startsWith('http')
+                                        ? img
                                         : `/assets/images/${field.folder || (entity === 'services' ? 'service' : entity)}/${img}${img.includes('.') ? '' : '.jpg'}`}
                                       alt={`Gallery ${idx}`}
                                       className="w-full h-full object-cover"
                                     />
-                                    <button 
+                                    <button
                                       type="button"
                                       onClick={() => handleRemoveMultiImage(field.name, idx)}
                                       className="absolute top-1 right-1 p-1 bg-black/60 hover:bg-rose-600 text-white rounded-lg backdrop-blur-md opacity-0 group-hover/img:opacity-100 transition-all"
@@ -681,30 +679,30 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
       {/* Table Section */}
       <div className="bg-[#252841]/40 backdrop-blur-md border border-slate-800/30 rounded-2xl overflow-hidden mb-5">
         <div className="p-12 border-b border-slate-800/30 bg-[#252841]/20 flex items-center justify-between">
-           <div className="flex items-center gap-3">
-              <Filter className="w-4 h-4 text-[#00D1FF]" />
-              <span className="text-[10px] text-white uppercase tracking-[0.2em]">Records List</span>
-           </div>
-           <div className="flex items-center gap-2">
-              <div className="flex bg-[#1A1C2E] p-1 rounded-xl border border-slate-800/30 mr-2">
-                <button 
-                  onClick={() => setCurrentView('grid')}
-                  className={`p-1.5 rounded-lg transition-all ${currentView === 'grid' ? 'bg-[#FF1F8B] text-white shadow-lg shadow-[#FF1F8B]/20' : 'text-slate-500 hover:text-slate-300'}`}
-                >
-                  <LayoutGrid className="w-3.5 h-3.5" />
-                </button>
-                <button 
-                  onClick={() => setCurrentView('table')}
-                  className={`p-1.5 rounded-lg transition-all ${currentView === 'table' ? 'bg-[#FF1F8B] text-white shadow-lg shadow-[#FF1F8B]/20' : 'text-slate-500 hover:text-slate-300'}`}
-                >
-                  <List className="w-3.5 h-3.5" />
-                </button>
-              </div>
-              <button onClick={fetchData} className="p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-[#FF1F8B] transition-all"><RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} /></button>
-              <button onClick={handleExport} className="p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-[#00D1FF] transition-all"><Download className="w-4 h-4" /></button>
-           </div>
+          <div className="flex items-center gap-3">
+            <Filter className="w-4 h-4 text-[#00D1FF]" />
+            <span className="text-[10px] text-white uppercase tracking-[0.2em]">Records List</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="flex bg-[#1A1C2E] p-1 rounded-xl border border-slate-800/30 mr-2">
+              <button
+                onClick={() => setCurrentView('grid')}
+                className={`p-1.5 rounded-lg transition-all ${currentView === 'grid' ? 'bg-[#FF1F8B] text-white shadow-lg shadow-[#FF1F8B]/20' : 'text-slate-500 hover:text-slate-300'}`}
+              >
+                <LayoutGrid className="w-3.5 h-3.5" />
+              </button>
+              <button
+                onClick={() => setCurrentView('table')}
+                className={`p-1.5 rounded-lg transition-all ${currentView === 'table' ? 'bg-[#FF1F8B] text-white shadow-lg shadow-[#FF1F8B]/20' : 'text-slate-500 hover:text-slate-300'}`}
+              >
+                <List className="w-3.5 h-3.5" />
+              </button>
+            </div>
+            <button onClick={fetchData} className="p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-[#FF1F8B] transition-all"><RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} /></button>
+            <button onClick={handleExport} className="p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-[#00D1FF] transition-all"><Download className="w-4 h-4" /></button>
+          </div>
         </div>
-        
+
         {loading ? (
           <div className="p-12 text-center">
             <div className="w-12 h-12 border-4 border-[#FF1F8B]/20 border-t-[#FF1F8B] rounded-full animate-spin mx-auto mb-5"></div>
@@ -713,7 +711,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
         ) : filteredData.length === 0 ? (
           <div className="p-12 text-center flex flex-col items-center gap-6">
             <div className="w-20 h-20 rounded-3xl bg-[#1A1C2E] flex items-center justify-center text-slate-700 text-3xl border border-slate-800/30 rotate-3">
-              <FileText className="w-10 h-10" />
+              <FileText className="w-15 h-15" />
             </div>
             <div className="max-w-xs mx-auto">
               <p className="text-white text-lg tracking-tight uppercase">No matching records</p>
@@ -734,9 +732,9 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                 {/* Image Preview */}
                 <div className="aspect-video relative overflow-hidden bg-slate-900">
                   {getImageUrl(item) ? (
-                    <img 
-                      src={getImageUrl(item)} 
-                      alt="" 
+                    <img
+                      src={getImageUrl(item)}
+                      alt=""
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       loading="lazy"
                     />
@@ -746,18 +744,18 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                     </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1A1C2E] via-[#1A1C2E]/20 to-transparent opacity-80" />
-                  
+
                   {/* Actions Overlay */}
                   <div className="absolute top-4 right-4 flex gap-2 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <button
                       onClick={() => handleEdit(item)}
-                      className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-[#FF1F8B] hover:border-[#FF1F8B] transition-all"
+                      className="w-15 h-15 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-[#FF1F8B] hover:border-[#FF1F8B] transition-all"
                     >
                       <Edit3 className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => setDeleteConfirmId(item.id)}
-                      className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-rose-600 hover:border-rose-600 transition-all"
+                      className="w-15 h-15 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-rose-600 hover:border-rose-600 transition-all"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -781,7 +779,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                       {item.title || item.name || 'Untitled Entry'}
                     </h3>
                   </div>
-                  
+
                   <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider leading-relaxed line-clamp-3 h-[45px]">
                     {item.description || item.desc || 'No description provided for this record.'}
                   </p>
@@ -789,9 +787,9 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                   <div className="pt-4 border-t border-slate-800/30 flex items-center justify-between">
                     <span className="text-[9px] text-slate-500 uppercase tracking-[0.2em]">ID: #{item.id}</span>
                     <div className="flex -space-x-2">
-                       <div className="w-6 h-6 rounded-full bg-slate-800 border-2 border-[#1A1C2E] flex items-center justify-center text-[8px] font-bold text-slate-500">
-                         {item.id % 9}
-                       </div>
+                      <div className="w-6 h-6 rounded-full bg-slate-800 border-2 border-[#1A1C2E] flex items-center justify-center text-[8px] font-bold text-slate-500">
+                        {item.id % 9}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -816,9 +814,9 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                       <div className="flex items-center gap-4">
                         <div className="w-14 h-14 rounded-xl bg-[#1A1C2E] border border-slate-800/30 overflow-hidden flex items-center justify-center text-slate-600 shrink-0 group-hover/row:border-[#FF1F8B]/30 transition-colors">
                           {getImageUrl(item) ? (
-                            <img 
-                              src={getImageUrl(item)} 
-                              alt="" 
+                            <img
+                              src={getImageUrl(item)}
+                              alt=""
                               className="w-full h-full object-cover group-hover/row:scale-110 transition-transform duration-500"
                               loading="lazy"
                               onError={(e) => {
@@ -831,10 +829,10 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                           )}
                         </div>
                         <div className="flex flex-col gap-1">
-                           <span className="text-white text-xs uppercase tracking-wide group-hover/row:text-[#FF1F8B] transition-colors">
+                          <span className="text-white text-xs uppercase tracking-wide group-hover/row:text-[#FF1F8B] transition-colors">
                             {item.title || item.author || item.name || 'Untitled Entry'}
-                           </span>
-                           <span className="text-[9px] text-slate-500 uppercase tracking-[0.2em]">ID: #{item.id}</span>
+                          </span>
+                          <span className="text-[9px] text-slate-500 uppercase tracking-[0.2em]">ID: #{item.id}</span>
                         </div>
                       </div>
                     </td>
@@ -846,10 +844,10 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                       </div>
                     </td>
                     <td className="px-6 py-6">
-                       <div className="flex items-center gap-2 text-[8px] uppercase tracking-[0.2em] text-[#00D1FF] bg-[#00D1FF]/5 px-2.5 py-1.5 rounded-lg w-fit border border-[#00D1FF]/10">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#00D1FF] animate-pulse"></div>
-                          Verified
-                       </div>
+                      <div className="flex items-center gap-2 text-[8px] uppercase tracking-[0.2em] text-[#00D1FF] bg-[#00D1FF]/5 px-2.5 py-1.5 rounded-lg w-fit border border-[#00D1FF]/10">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#00D1FF] animate-pulse"></div>
+                        Verified
+                      </div>
                     </td>
                     <td className="pl-6 pr-8 py-6 text-right">
                       <div className="flex justify-end gap-2 opacity-0 group-hover/row:opacity-100 transition-all translate-x-2 group-hover/row:translate-x-0">
@@ -894,16 +892,16 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
               className="relative bg-[#1A1C2E] border border-slate-800/30 p-12 rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-rose-500 to-transparent opacity-50" />
-              
+
               <div className="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-500 mb-5 border border-rose-500/20">
                 <AlertCircle className="w-7 h-7" />
               </div>
-              
+
               <h3 className="text-xl text-white mb-2 tracking-tight uppercase">Confirm Deletion</h3>
               <p className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-5 leading-relaxed">
                 This action is irreversible. The selected record will be permanently purged from the production database.
               </p>
-              
+
               <div className="flex gap-3">
                 <button
                   onClick={() => setDeleteConfirmId(null)}

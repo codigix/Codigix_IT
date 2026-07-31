@@ -74,20 +74,20 @@ const Contact = () => {
                 <div>
                   <h4 className="text-xl font-bold mb-5">Follow Us</h4>
                   <div className="flex gap-4">
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" 
-                       className="w-10 h-10 flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"
+                      className="w-15 h-15 flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
                       f
                     </a>
                     <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"
-                       className="w-10 h-10 flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
+                      className="w-15 h-15 flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
                       in
                     </a>
                     <a href="https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==" target="_blank" rel="noopener noreferrer"
-                       className="w-10 h-10 flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
+                      className="w-15 h-15 flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
                       ig
                     </a>
                     <a href="https://x.com/" target="_blank" rel="noopener noreferrer"
-                       className="w-10 h-10 flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
+                      className="w-15 h-15 flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
                       x
                     </a>
                   </div>

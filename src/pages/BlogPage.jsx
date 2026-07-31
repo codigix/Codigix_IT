@@ -30,19 +30,19 @@ export default function BlogPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+        <div className="w-15 h-15 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
     <>
-      <SEO 
-        title="Blog & Insights | AI & Technology Trends | Codigix Infotech" 
+      <SEO
+        title="Blog & Insights | AI & Technology Trends | Codigix Infotech"
         description="Stay updated with the latest AI trends, technology insights, and professional articles from the team of experts at Codigix Infotech."
         keywords="AI blog, technology insights, software engineering articles, tech trends 2024, AI news, Codigix Infotech blog"
       />
-      <section className="tj-page-header section-gap-x" style={{backgroundImage: `url(${getImageUrl("assets/images/bg/pheader-bg.webp")})`}}>
+      <section className="tj-page-header section-gap-x" style={{ backgroundImage: `url(${getImageUrl("assets/images/bg/pheader-bg.webp")})` }}>
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4">
             <div className="w-full lg:w-full px-4">

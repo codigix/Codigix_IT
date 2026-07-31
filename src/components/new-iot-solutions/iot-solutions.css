@@ -1,0 +1,69 @@
+/* Custom styles for IoT Solutions Page */
+.iot-layout-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .iot-layout-container {
+    grid-template-columns: 3.5fr 1fr;
+  }
+}
+
+/* Sidebar Styles */
+.iot-sidebar {
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #030112;
+}
+
+.iot-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.iot-sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.iot-sidebar-item.active {
+  background-color: rgba(238, 0, 28, 0.05);
+  border-left-color: #EE001C;
+}
+
+.iot-sidebar-item.active h4 {
+  color: #fff;
+  font-weight: 600;
+}
+
+.iot-sidebar-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.iot-sidebar-item.active .iot-sidebar-icon-wrap {
+  background-color: rgba(238, 0, 28, 0.15);
+  box-shadow: 0 0 10px rgba(238, 0, 28, 0.3);
+}
+
+.iot-sidebar-item:hover:not(.active) .iot-sidebar-icon-wrap {
+  background-color: rgba(126, 34, 206, 0.1);
+}
+
+/* Gradients and specific glowing text */
+.iot-text-gradient {
+  background: linear-gradient(to right, #EE001C, #7e22ce);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

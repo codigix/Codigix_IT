@@ -1,0 +1,826 @@
+import { 
+  Factory, Activity, MonitorSmartphone, Settings, Cpu, Radio, Radar, ShieldAlert, FileDigit, Zap, 
+  Wrench, Globe, LayoutDashboard, Cog, BarChart3, TrendingUp, BellRing, Settings2, ShieldCheck, 
+  CheckCircle2, Car, HeartPulse, Droplets, Truck, Pill, Building2, Router, Cloud, BarChart2, 
+  Laptop, Users, ArrowRightLeft, Database, Server, Code, Lock, Eye, Smartphone, Gauge, Network, 
+  Flame, BatteryCharging, Box, QrCode, Layers, Shield, Target, DollarSign, Clock, Search, Camera,
+  FileText, BrainCircuit
+} from 'lucide-react';
+
+export const iotTabData = {
+  'Industrial IoT': {
+    heroTitle: 'Industrial IoT Solutions for',
+    heroHighlight: 'Smart Manufacturing',
+    heroDesc: 'Connect machines, sensors, PLCs, and enterprise software through Industrial IoT to monitor production in real time, improve operational efficiency, reduce downtime, optimize energy consumption, and enable Industry 4.0 transformation.',
+    metrics: [
+      { label: 'Connected Machines', value: '150+', icon: Factory },
+      { label: 'Factories Onboarded', value: '50+', icon: MonitorSmartphone },
+      { label: 'System Availability', value: '99.9%', icon: ShieldCheck },
+      { label: 'Live Monitoring', value: '24x7', icon: Activity },
+    ],
+    whyTitle: 'Industrial IoT Solutions',
+    reasons: [
+      { title: 'Real-Time Visibility', description: 'Monitor machines, processes and performance in real time from anywhere.', icon: BarChart3, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Higher Productivity', description: 'Optimize operations, reduce downtime and improve throughput.', icon: TrendingUp, color: 'text-rose-500', bg: 'bg-rose-500/10' },
+      { title: 'Instant Alerts', description: 'Get notified instantly on alarms, faults and anomalies.', icon: BellRing, color: 'text-orange-400', bg: 'bg-orange-500/10' },
+      { title: 'Predictive Insights', description: 'Leverage AI & analytics to predict failures and prevent breakdowns.', icon: Settings2, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'Energy Optimization', description: 'Monitor energy consumption and reduce operational costs.', icon: Zap, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+      { title: 'Secure & Scalable', description: 'Enterprise-grade security with scalable cloud architecture.', icon: ShieldCheck, color: 'text-indigo-400', bg: 'bg-indigo-500/10' },
+    ],
+    architecture: [
+      { name: 'Machines', icon: Factory, color: 'text-blue-400' },
+      { name: 'PLC / Sensors', icon: Cpu, color: 'text-blue-500' },
+      { name: 'IoT Gateway', icon: Router, color: 'text-cyan-400' },
+      { name: 'Cloud Platform', icon: Cloud, color: 'text-blue-400' },
+      { name: 'Data Analytics', icon: BarChart2, color: 'text-indigo-400' },
+      { name: 'ERP / Systems', icon: Laptop, color: 'text-purple-400' },
+      { name: 'Action & Insights', icon: Users, color: 'text-fuchsia-400' },
+    ],
+    capabilities: [
+      'Real-Time Telemetry', 'Multi-Protocol Data Ingestion',
+      'Edge Computing & Analytics', 'Automated Fault Escalation',
+      'Predictive Machine Maintenance', 'Cloud SCADA Telemetry',
+      'Remote OTA Firmware Update', 'ISO 27001 Certified Security'
+    ],
+    useCases: [
+      { name: 'Automotive Plant', icon: Car },
+      { name: 'Pharma Manufacturing', icon: Pill },
+      { name: 'Chemical Processing', icon: Droplets },
+      { name: 'Steel & Metallurgy', icon: Factory },
+      { name: 'Electronics Assembly', icon: Cpu },
+      { name: 'FMCG Packaging', icon: Box },
+      { name: 'Energy Grids', icon: Zap },
+      { name: 'Heavy Machinery', icon: Cog },
+    ],
+    technologies: [
+      { name: 'MQTT', color: 'text-fuchsia-400' },
+      { name: 'OPC UA', color: 'text-blue-400' },
+      { name: 'Modbus TCP', color: 'text-cyan-400' },
+      { name: 'LoRaWAN', color: 'text-indigo-400' },
+      { name: 'Industrial 5G', color: 'text-white' },
+      { name: 'AWS IoT Core', color: 'text-orange-400' },
+      { name: 'Azure IoT Hub', color: 'text-blue-500' },
+      { name: 'InfluxDB', color: 'text-rose-400' },
+      { name: 'Node-RED', color: 'text-emerald-400' }
+    ],
+    integrations: ['SAP ERP', 'Ignition SCADA', 'Oracle MES', 'Salesforce CRM', 'Siemens PLCs', 'PostgreSQL', 'AWS Cloud', 'REST API']
+  },
+
+  'Machine Monitoring': {
+    heroTitle: 'Real-Time',
+    heroHighlight: 'Machine Monitoring',
+    heroDesc: 'Gain complete visibility into your machine performance. Track uptime, cycle times, and machine health in real-time to maximize equipment effectiveness and prevent unexpected breakdowns.',
+    metrics: [
+      { label: 'Uptime Tracking', value: '99.8%', icon: Activity },
+      { label: 'Downtime Saved', value: '35%', icon: TrendingUp },
+      { label: 'Sensor Refresh', value: '<100ms', icon: Zap },
+      { label: 'Supported Drivers', value: '150+', icon: Cpu },
+    ],
+    whyTitle: 'Machine Monitoring',
+    reasons: [
+      { title: 'Live Uptime Tracking', description: 'Monitor running vs idle states in real-time across all shopfloor equipment.', icon: Activity, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Cycle Time Analysis', description: 'Measure exact part cycle times and compare against target benchmarks.', icon: Gauge, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Downtime Categorization', description: 'Capture micro-stoppages and categorize operator downtime reasons instantly.', icon: BellRing, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+      { title: 'Health Telemetry', description: 'Monitor spindle speeds, motor temperatures, and hydraulic pressures continuously.', icon: Cpu, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'Multi-Machine View', description: 'Consolidate CNCs, injection molding, and presses into a single control tower.', icon: LayoutDashboard, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+      { title: 'Historical Audit Logs', description: 'Review shift-by-shift historical run logs for root-cause analysis.', icon: Database, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+    ],
+    architecture: [
+      { name: 'CNC / Press', icon: Factory, color: 'text-blue-400' },
+      { name: 'Current / Temp Sensor', icon: Radar, color: 'text-cyan-400' },
+      { name: 'Edge Data Collector', icon: Router, color: 'text-purple-400' },
+      { name: 'Timeseries DB', icon: Database, color: 'text-emerald-400' },
+      { name: 'Rule Engine', icon: Cpu, color: 'text-amber-400' },
+      { name: 'Shopfloor TV', icon: MonitorSmartphone, color: 'text-rose-400' },
+      { name: 'SMS / App Alert', icon: BellRing, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      'Live Machine Run/Idle/Stop Detection', 'Part Count & Stroke Counting',
+      'Motor Current & Thermal Monitoring', 'Spindle Load & RPM Telemetry',
+      'Operator Downtime Reason Input', 'Automated Shift Report Generation',
+      'Shopfloor LED ANDON Display Sync', 'REST API for ERP Job Tracking'
+    ],
+    useCases: [
+      { name: 'CNC Machine Shops', icon: Cog },
+      { name: 'Injection Molding', icon: Factory },
+      { name: 'Stamping & Presses', icon: Wrench },
+      { name: 'Packaging Machinery', icon: Box },
+      { name: 'Robotic Welding Cells', icon: Zap },
+      { name: 'Bottling Lines', icon: Droplets },
+      { name: 'Textile Looms', icon: Layers },
+      { name: 'Compressor Skids', icon: Settings },
+    ],
+    technologies: [
+      { name: 'Modbus RTU/TCP', color: 'text-blue-400' },
+      { name: 'MTConnect', color: 'text-purple-400' },
+      { name: 'FANUC FOCAS', color: 'text-amber-400' },
+      { name: 'Heidenhain API', color: 'text-emerald-400' },
+      { name: 'OPC DA/UA', color: 'text-cyan-400' },
+      { name: 'Node.js Edge', color: 'text-rose-400' },
+      { name: 'TimescaleDB', color: 'text-indigo-400' },
+      { name: 'Grafana Dashboards', color: 'text-orange-400' },
+      { name: 'MQTT-SN', color: 'text-white' }
+    ],
+    integrations: ['FANUC CNCs', 'Haas Controls', 'Siemens Sinumerik', 'Mazak Matrix', 'SQL Server', 'SAP PM Module', 'Telegram Alerts', 'Webhooks']
+  },
+
+  'Production Monitoring': {
+    heroTitle: 'Advanced',
+    heroHighlight: 'Production Monitoring',
+    heroDesc: 'Digitize your shop floor with real-time production tracking. Monitor output against targets, identify bottlenecks, and streamline workflows to increase overall manufacturing throughput.',
+    metrics: [
+      { label: 'Throughput Increase', value: '+22%', icon: TrendingUp },
+      { label: 'Target vs Actual Acc', value: '99.5%', icon: Target },
+      { label: 'Bottleneck Reduction', value: '40%', icon: Activity },
+      { label: 'Shift Handover Speed', value: '3x', icon: Zap },
+    ],
+    whyTitle: 'Production Monitoring',
+    reasons: [
+      { title: 'Target vs Actual Tracking', description: 'Compare real-time production output against hourly planned targets.', icon: Target, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+      { title: 'Job & Work-Order Tracking', description: 'Link live machine production counts directly to active production orders.', icon: FileDigit, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Line Bottleneck Alerts', description: 'Identify lagging workstations slowing down downstream assembly lines.', icon: BellRing, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+      { title: 'Scrap & Reject Analysis', description: 'Log rejected parts with defect reasons for immediate quality intervention.', icon: ShieldCheck, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'Operator Performance Metrics', description: 'Track operator efficiency and job completion speeds across shifts.', icon: Users, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Paperless Shopfloor', description: 'Replace whiteboards and manual logs with digital ANDON displays.', icon: MonitorSmartphone, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+    ],
+    architecture: [
+      { name: 'Assembly Line', icon: Factory, color: 'text-blue-400' },
+      { name: 'Photoelectric Sensor', icon: Radar, color: 'text-cyan-400' },
+      { name: 'Counter Gateway', icon: Router, color: 'text-purple-400' },
+      { name: 'MES Engine', icon: Server, color: 'text-emerald-400' },
+      { name: 'Target Comparator', icon: Target, color: 'text-amber-400' },
+      { name: 'ANDON Display', icon: MonitorSmartphone, color: 'text-rose-400' },
+      { name: 'ERP Order Sync', icon: Laptop, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      'Real-Time Target vs Actual Output', 'Automated Work Order Progress Sync',
+      'Line Speed & Takt Time Analysis', 'Scrap & Defect Reason Logging',
+      'Shift-wise Operator Efficiency Tracking', 'Automated Shift Report Dispatch',
+      'ANDON Board Real-time Broadcast', 'ERP Production Order Backflush'
+    ],
+    useCases: [
+      { name: 'Automotive Sub-assembly', icon: Car },
+      { name: 'Consumer Electronics', icon: Cpu },
+      { name: 'Garment Manufacturing', icon: Layers },
+      { name: 'Food Processing & Packing', icon: Box },
+      { name: 'Medical Device Assembly', icon: Pill },
+      { name: 'Furniture Production', icon: Factory },
+      { name: 'Plastic Goods Molding', icon: Cog },
+      { name: 'Hardware Stamping', icon: Wrench },
+    ],
+    technologies: [
+      { name: 'MQTT Broker', color: 'text-fuchsia-400' },
+      { name: 'Node.js MES Core', color: 'text-emerald-400' },
+      { name: 'PostgreSQL DB', color: 'text-blue-400' },
+      { name: 'React Digital Twins', color: 'text-cyan-400' },
+      { name: 'Socket.io Streaming', color: 'text-purple-400' },
+      { name: 'Docker Containers', color: 'text-rose-400' },
+      { name: 'Redis Cache', color: 'text-red-400' },
+      { name: 'Python Analytics', color: 'text-indigo-400' },
+      { name: 'Rest API Gateways', color: 'text-white' }
+    ],
+    integrations: ['SAP Production Module', 'Odoo MES', 'Oracle SCM', 'Infor CloudSuite', 'Custom SQL Databases', 'Industrial Touch Tablets', 'Receipt Printers', 'ANDON Screens']
+  },
+
+  'OEE Dashboard': {
+    heroTitle: 'Comprehensive',
+    heroHighlight: 'OEE Dashboards',
+    heroDesc: 'Calculate Overall Equipment Effectiveness (OEE) automatically. Visualize Availability, Performance, and Quality metrics on intuitive dashboards to drive continuous improvement.',
+    metrics: [
+      { label: 'OEE Improvement', value: '+18%', icon: LayoutDashboard },
+      { label: 'Availability Factor', value: '95.2%', icon: Clock },
+      { label: 'Performance Factor', value: '94.8%', icon: Activity },
+      { label: 'Quality Rate', value: '99.1%', icon: ShieldCheck },
+    ],
+    whyTitle: 'OEE Tracking',
+    reasons: [
+      { title: 'Automatic OEE Calculation', description: 'Eliminate manual Excel calculations with automated Availability x Performance x Quality algorithms.', icon: LayoutDashboard, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'Six Big Losses Breakdown', description: 'Pinpoint losses from breakdowns, setups, idling, minor stops, speed loss, and rejects.', icon: BarChart3, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+      { title: 'Real-Time Availability', description: 'Track actual operating time versus total planned production time continuously.', icon: Clock, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Speed & Performance Rate', description: 'Benchmark actual operating speed against theoretical ideal cycle time.', icon: Activity, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Quality Yield Tracking', description: 'Calculate First Pass Yield (FPY) by filtering out scrap and rework units.', icon: ShieldCheck, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+      { title: 'Multi-Plant Benchmarking', description: 'Compare OEE performance across different machines, lines, and plant locations.', icon: Globe, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+    ],
+    architecture: [
+      { name: 'Machine Signal', icon: Factory, color: 'text-blue-400' },
+      { name: 'Pulse Counter', icon: Radar, color: 'text-cyan-400' },
+      { name: 'Edge OEE Node', icon: Cpu, color: 'text-purple-400' },
+      { name: 'OEE Calculation Engine', icon: Server, color: 'text-emerald-400' },
+      { name: 'Loss Categorizer', icon: BarChart3, color: 'text-amber-400' },
+      { name: 'Executive Dashboard', icon: LayoutDashboard, color: 'text-rose-400' },
+      { name: 'Actionable Pareto', icon: TrendingUp, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      'Automated Availability, Performance & Quality Calculation', 'Six Big Losses Pareto Chart Breakdown',
+      'Ideal Cycle Time vs Actual Cycle Time Comparison', 'First Pass Yield (FPY) & Scrap Rate Tracking',
+      'Changeover & Setup Time Loss Logging', 'Shift, Operator, and Job-wise OEE Drilldowns',
+      'Real-Time Plant Floor ANDON OEE Gauges', 'Automated Daily OEE Digest Email'
+    ],
+    useCases: [
+      { name: 'Automotive Stamping', icon: Car },
+      { name: 'FMCG High-Speed Packing', icon: Box },
+      { name: 'Plastic Injection Molding', icon: Cog },
+      { name: 'Pharma Blister Packaging', icon: Pill },
+      { name: 'Semiconductor Fabrication', icon: Cpu },
+      { name: 'CNC Precision Machining', icon: Wrench },
+      { name: 'Bottling & Beverage Lines', icon: Droplets },
+      { name: 'Metal Casting & Forging', icon: Factory },
+    ],
+    technologies: [
+      { name: 'OEE Math Engine', color: 'text-purple-400' },
+      { name: 'InfluxDB TimeSeries', color: 'text-rose-400' },
+      { name: 'Grafana & D3.js', color: 'text-orange-400' },
+      { name: 'PostgreSQL Relational', color: 'text-blue-400' },
+      { name: 'React Dashboard UI', color: 'text-cyan-400' },
+      { name: 'Python Pandas', color: 'text-emerald-400' },
+      { name: 'MQTT Edge Sync', color: 'text-indigo-400' },
+      { name: 'REST Analytics API', color: 'text-white' },
+      { name: 'Node-RED Logic', color: 'text-fuchsia-400' }
+    ],
+    integrations: ['SAP Production Planning', 'Siemens Opcenter', 'Rockwell FactoryTalk', 'GE Digital MES', 'PowerBI Reports', 'Tableau Connectors', 'Excel Export', 'CSV Batch Export']
+  },
+
+  'PLC Integration': {
+    heroTitle: 'Seamless',
+    heroHighlight: 'PLC Integration',
+    heroDesc: 'Extract real-time data directly from legacy and modern Programmable Logic Controllers (PLCs). Bridge the gap between shop floor machines and top-floor IT systems without disrupting operations.',
+    metrics: [
+      { label: 'PLC Brands Supported', value: '25+', icon: Settings },
+      { label: 'Protocol Polling Rate', value: '10ms', icon: Zap },
+      { label: 'Data Packet Loss', value: '0%', icon: ShieldCheck },
+      { label: 'Connectors Ready', value: '100+', icon: Cpu },
+    ],
+    whyTitle: 'PLC Integration',
+    reasons: [
+      { title: 'Multi-Brand Compatibility', description: 'Connect Siemens, Allen-Bradley, Mitsubishi, Omron, Schneider, and Beckhoff PLCs.', icon: Settings, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Non-Intrusive Extraction', description: 'Read PLC memory tags without modifying machine PLC logic programs.', icon: ShieldCheck, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Bi-Directional Communication', description: 'Write parameters back to PLCs for automated recipe changes and interlocks.', icon: ArrowRightLeft, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'Legacy PLC Retrofitting', description: 'Extract data from older serial PLCs using serial-to-Ethernet gateways.', icon: Cpu, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+      { title: 'Tag Mapping & Scaling', description: 'Convert raw binary registers into human-readable engineering units automatically.', icon: Database, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+      { title: 'High-Speed Polling', description: 'Capture high-speed pulses and fast-changing analog signals down to 10ms.', icon: Zap, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+    ],
+    architecture: [
+      { name: 'Siemens / AB PLC', icon: Settings, color: 'text-blue-400' },
+      { name: 'Ethernet / RS485', icon: Network, color: 'text-cyan-400' },
+      { name: 'PLC Driver Gateway', icon: Router, color: 'text-purple-400' },
+      { name: 'Tag Normalizer', icon: Cpu, color: 'text-emerald-400' },
+      { name: 'MQTT / OPC Publisher', icon: Radio, color: 'text-amber-400' },
+      { name: 'Enterprise Cloud DB', icon: Database, color: 'text-rose-400' },
+      { name: 'MES / SCADA App', icon: Laptop, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      'Siemens S7-300/400/1200/1500 Protocol Drivers', 'Rockwell Allen-Bradley EtherNet/IP & CIP',
+      'Mitsubishi MELSEC & MC Protocol Connectivity', 'Omron FINS & EtherNet/IP Drivers',
+      'Modbus RTU/TCP Master & Slave Protocol', 'Bi-directional Tag Read/Write Operations',
+      'Automatic PLC Reconnection & Heartbeat Monitoring', 'Tag Scaling, Filtering & Threshold Alarms'
+    ],
+    useCases: [
+      { name: 'Automotive Stamping PLCs', icon: Car },
+      { name: 'Pharma Batch Reactors', icon: Pill },
+      { name: 'Water Treatment PLCs', icon: Droplets },
+      { name: 'Power Plant Turbines', icon: Zap },
+      { name: 'Warehouse Conveyor Belts', icon: Truck },
+      { name: 'Food Processing Ovens', icon: Box },
+      { name: 'Semiconductor Cleanrooms', icon: Cpu },
+      { name: 'Metal Extrusion Presses', icon: Factory },
+    ],
+    technologies: [
+      { name: 'Snap7 (Siemens)', color: 'text-blue-400' },
+      { name: 'EtherNet/IP (CIP)', color: 'text-purple-400' },
+      { name: 'Modbus TCP/IP', color: 'text-cyan-400' },
+      { name: 'OPC UA Client', color: 'text-emerald-400' },
+      { name: 'Kepware KepServer', color: 'text-amber-400' },
+      { name: 'Teltonika Gateways', color: 'text-rose-400' },
+      { name: 'Moxa Industrial Ethernet', color: 'text-indigo-400' },
+      { name: 'Node-RED Contrib PLC', color: 'text-fuchsia-400' },
+      { name: 'Python PyComm3', color: 'text-white' }
+    ],
+    integrations: ['Siemens S7 Series', 'Allen-Bradley ControlLogix', 'Mitsubishi Q/FX Series', 'Omron CJ/NJ Series', 'Beckhoff TwinCAT', 'Schneider Modicon', 'Delta DVP', 'Panasonic FP']
+  },
+
+  'SCADA Integration': {
+    heroTitle: 'Cloud-Connected',
+    heroHighlight: 'SCADA Integration',
+    heroDesc: 'Modernize your Supervisory Control and Data Acquisition (SCADA) systems. Securely push SCADA data to the cloud for advanced analytics, remote monitoring, and enterprise-wide visibility.',
+    metrics: [
+      { label: 'SCADA Systems Synced', value: '40+', icon: Cpu },
+      { label: 'Data Bridge Speed', value: '<50ms', icon: Zap },
+      { label: 'Security Level', value: 'TLS 1.3', icon: ShieldCheck },
+      { label: 'Uptime Reliability', value: '99.99%', icon: Activity },
+    ],
+    whyTitle: 'SCADA Integration',
+    reasons: [
+      { title: 'Cloud Telemetry Bridging', description: 'Securely forward OPC UA/DA data streams from local SCADA to cloud data lakes.', icon: Cloud, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Enterprise Visibility', description: 'Consolidate multiple isolated plant SCADAs into a unified executive dashboard.', icon: LayoutDashboard, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'Alarms & Events Sync', description: 'Forward high-priority SCADA alarm events instantly to mobile push & SMS.', icon: BellRing, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+      { title: 'Historical Trend Archiving', description: 'Store years of high-frequency SCADA trend data affordably in cloud storage.', icon: Database, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Zero-Trust Security', description: 'Utilize outbound-only encrypted MQTT tunnels without opening inbound firewall ports.', icon: ShieldCheck, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+      { title: 'Cross-Plant Analytics', description: 'Run Machine Learning models on SCADA data streams to uncover efficiency gains.', icon: Settings2, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+    ],
+    architecture: [
+      { name: 'Local SCADA Server', icon: Cpu, color: 'text-blue-400' },
+      { name: 'OPC UA Server', icon: Network, color: 'text-cyan-400' },
+      { name: 'Secure OPC Bridge', icon: Router, color: 'text-purple-400' },
+      { name: 'MQTT / TLS Tunnel', icon: Lock, color: 'text-rose-400' },
+      { name: 'Cloud Ingestion Core', icon: Cloud, color: 'text-emerald-400' },
+      { name: 'Timeseries Lake', icon: Database, color: 'text-amber-400' },
+      { name: 'Executive Cockpit', icon: Laptop, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      'OPC UA & OPC DA Server & Client Connectors', 'Ignition, Wonderware & WinCC Data Extraction',
+      'Outbound-only Encrypted Cloud Telemetry Tunnels', 'Real-time Alarm & Event Stream Forwarding',
+      'Historical Trend Backfilling & Compression', 'Multi-SCADA Unified Control Tower View',
+      'Bi-directional Command Relay with Audit Logs', 'High Availability Redundant Gateway Pair'
+    ],
+    useCases: [
+      { name: 'Water & Wastewater', icon: Droplets },
+      { name: 'Oil & Gas Pipelines', icon: Droplets },
+      { name: 'Power Substations', icon: Zap },
+      { name: 'Pharmaceutical Manufacturing', icon: Pill },
+      { name: 'Chemical Processing Plants', icon: Factory },
+      { name: 'Mining Operations', icon: Cog },
+      { name: 'Automotive Paint Shops', icon: Car },
+      { name: 'District Heating Grids', icon: Flame },
+    ],
+    technologies: [
+      { name: 'OPC UA Security', color: 'text-[#3b82f6]' },
+      { name: 'Inductive Ignition API', color: 'text-orange-400' },
+      { name: 'Siemens WinCC Open Architecture', color: 'text-cyan-400' },
+      { name: 'AVEWA Wonderware System Platform', color: 'text-purple-400' },
+      { name: 'Kepware OPC Gateway', color: 'text-amber-400' },
+      { name: 'TLS 1.3 Encryption', color: 'text-rose-400' },
+      { name: 'Sparkplug B MQTT', color: 'text-emerald-400' },
+      { name: 'AWS IoT SiteWise', color: 'text-indigo-400' },
+      { name: 'InfluxDB Enterprise', color: 'text-white' }
+    ],
+    integrations: ['Ignition SCADA', 'Wonderware System Platform', 'Siemens WinCC', 'Schneider Citect SCADA', 'GE iFIX', 'ABB System 800xA', 'Honeywell Experion', 'Yokogawa CENTUM']
+  },
+
+  'Sensor Monitoring': {
+    heroTitle: 'Wireless',
+    heroHighlight: 'Sensor Monitoring',
+    heroDesc: 'Deploy industrial-grade wireless sensors to monitor temperature, vibration, humidity, and pressure. Retrofit legacy equipment instantly to start collecting critical operational data.',
+    metrics: [
+      { label: 'Sensor Types', value: '40+', icon: Radar },
+      { label: 'Wireless Range', value: 'up to 10km', icon: Radio },
+      { label: 'Battery Life', value: '5+ Years', icon: BatteryCharging },
+      { label: 'Deployment Time', value: '< 1 Day', icon: Zap },
+    ],
+    whyTitle: 'Sensor Networks',
+    reasons: [
+      { title: 'Non-Invasive Retrofitting', description: 'Attach wireless magnetic sensors without halting machinery or laying expensive wires.', icon: Radar, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Long-Range Wireless', description: 'LoRaWAN and Bluetooth Mesh connectivity spanning multi-kilometer industrial sites.', icon: Radio, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'Multi-Metric Sensing', description: 'Track 3-axis vibration, surface temperature, humidity, pressure, and gas levels.', icon: Activity, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+      { title: 'Long Battery Lifespan', description: 'Ultra-low power sensor nodes with up to 5-10 year internal battery life.', icon: BatteryCharging, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Threshold Threshold Alarms', description: 'Configure custom high/low thresholds to trigger SMS and app notifications.', icon: BellRing, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+      { title: 'Harsh Environment IP68', description: 'Heavy-duty explosion-proof and waterproof enclosures built for steel mills & chemical plants.', icon: ShieldCheck, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+    ],
+    architecture: [
+      { name: 'Wireless Sensor', icon: Radar, color: 'text-blue-400' },
+      { name: 'LoRaWAN / BLE', icon: Radio, color: 'text-cyan-400' },
+      { name: 'Industrial Gateway', icon: Router, color: 'text-purple-400' },
+      { name: 'ChirpStack Server', icon: Server, color: 'text-rose-400' },
+      { name: 'Telemetry Engine', icon: Database, color: 'text-emerald-400' },
+      { name: 'Alarm Evaluator', icon: BellRing, color: 'text-amber-400' },
+      { name: 'Operator Mobile App', icon: Smartphone, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      '3-Axis Acceleration & Vibration RMS Monitoring', 'Infrared Surface & Ambient Temperature Sensing',
+      'Relative Humidity & Environmental Telemetry', 'Fluid & Gas Pressure Transducer Connectivity',
+      'LoRaWAN Long-Range Wireless Infrastructure', 'BLE (Bluetooth Low Energy) Mesh Networks',
+      'IP67 / IP68 Waterproof & Dustproof Sensor Pods', 'Automated Sensor Battery Level Alerts'
+    ],
+    useCases: [
+      { name: 'Cold Chain Logistics', icon: Truck },
+      { name: 'Chemical Storage Tanks', icon: Droplets },
+      { name: 'HVAC & Cleanrooms', icon: Factory },
+      { name: 'Server Rooms & Datacenters', icon: Server },
+      { name: 'Grain Silos & Agriculture', icon: Box },
+      { name: 'Pumping Stations', icon: Zap },
+      { name: 'Mining Ventilation', icon: Flame },
+      { name: 'Transformer Substations', icon: Shield },
+    ],
+    technologies: [
+      { name: 'LoRaWAN Protocol', color: 'text-indigo-400' },
+      { name: 'BLE 5.2 Mesh', color: 'text-blue-400' },
+      { name: 'Zigbee 3.0', color: 'text-amber-400' },
+      { name: 'NB-IoT / LTE-M', color: 'text-rose-400' },
+      { name: 'ChirpStack LNS', color: 'text-purple-400' },
+      { name: 'Milesight / Advantech Nodes', color: 'text-cyan-400' },
+      { name: 'Modbus Transducers', color: 'text-emerald-400' },
+      { name: 'InfluxDB Telemetry', color: 'text-fuchsia-400' },
+      { name: 'MQTT Edge Pipeline', color: 'text-white' }
+    ],
+    integrations: ['Milesight Sensors', 'Advantech WISE', 'Monnit Wireless', 'Banner Engineering', 'Sensata Technologies', 'ChirpStack LNS', 'AWS IoT Core', 'Grafana Alerting']
+  },
+
+  'RFID Tracking': {
+    heroTitle: 'Automated',
+    heroHighlight: 'RFID Tracking',
+    heroDesc: 'Implement high-accuracy RFID solutions for inventory management, asset tracking, and WIP (Work-in-Progress) monitoring. Eliminate manual scanning and reduce human error.',
+    metrics: [
+      { label: 'Read Accuracy Rate', value: '99.9%', icon: Radio },
+      { label: 'Inventory Count Speed', value: '10x', icon: Zap },
+      { label: 'Asset Search Time', value: '-85%', icon: Clock },
+      { label: 'Tags Managed', value: '1M+', icon: Box },
+    ],
+    whyTitle: 'RFID Solutions',
+    reasons: [
+      { title: 'Bulk Item Scanning', description: 'Read hundreds of tagged items simultaneously in seconds without line of sight.', icon: Radio, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'Real-Time WIP Tracking', description: 'Track sub-assemblies moving through manufacturing stages automatically.', icon: Activity, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Asset Location Tracking', description: 'Locate tools, molds, dies, and mobile equipment across large facility floors.', icon: Search, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Portal Door Automation', description: 'Automatically record shipment dispatch and intake as forklifts pass portal readers.', icon: Truck, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+      { title: 'Anti-Theft & Audit Log', description: 'Prevent unauthorized asset movement and maintain 100% digital chain-of-custody.', icon: ShieldCheck, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+      { title: 'ERP & WMS Direct Sync', description: 'Automatically update stock levels in SAP, Oracle, and Odoo upon RFID portal scan.', icon: Database, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+    ],
+    architecture: [
+      { name: 'RFID Tagged Asset', icon: Box, color: 'text-blue-400' },
+      { name: 'Fixed / Handheld Reader', icon: Radio, color: 'text-cyan-400' },
+      { name: 'LLRP Reader Middleware', icon: Router, color: 'text-purple-400' },
+      { name: 'Tag Event Processor', icon: Cpu, color: 'text-rose-400' },
+      { name: 'Inventory DB', icon: Database, color: 'text-emerald-400' },
+      { name: 'WMS / ERP Sync', icon: Laptop, color: 'text-amber-400' },
+      { name: 'Location Map UI', icon: MonitorSmartphone, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      'UHF Rain RFID Passive & Active Tag Integration', 'Fixed Multi-Antenna Portal Reader Configurations',
+      'Industrial Handheld Mobile Reader App Integration', 'Work-in-Progress (WIP) Stage Gate Tracking',
+      'Tool & Mold Asset Inventory Management', 'Automated Dock Door Shipment Dispatch',
+      'Metal-Mount & High-Temperature Special Tagging', 'ERP Stock Reorder Point Triggering'
+    ],
+    useCases: [
+      { name: 'Warehouse Distribution', icon: Truck },
+      { name: 'Automotive Parts Tracking', icon: Car },
+      { name: 'Apparel & Retail Inventory', icon: Box },
+      { name: 'Hospital Linen & Equipment', icon: HeartPulse },
+      { name: 'Tooling & Mold Management', icon: Wrench },
+      { name: 'Pallet & Container Returns', icon: Factory },
+      { name: 'Pharma Cold Chain Crates', icon: Pill },
+      { name: 'High-Value Electronics', icon: Cpu },
+    ],
+    technologies: [
+      { name: 'UHF RAIN RFID (860-960 MHz)', color: 'text-purple-400' },
+      { name: 'HF / NFC (13.56 MHz)', color: 'text-blue-400' },
+      { name: 'LLRP (Low Level Reader Protocol)', color: 'text-cyan-400' },
+      { name: 'Impinj R700 / Speedway', color: 'text-rose-400' },
+      { name: 'Zebra FX9600 Readers', color: 'text-amber-400' },
+      { name: 'Alien Technology Tag SDK', color: 'text-emerald-400' },
+      { name: 'Tag Event Filtering Engine', color: 'text-indigo-400' },
+      { name: 'PostgreSQL Inventory DB', color: 'text-white' },
+      { name: 'REST / GraphQL Sync', color: 'text-fuchsia-400' }
+    ],
+    integrations: ['Impinj Readers', 'Zebra RFID Handhelds', 'Honeywell RFID', 'SAP WM/EWM', 'Oracle WMS', 'Manhattan WMS', 'Odoo Inventory', 'Custom SQL DBs']
+  },
+
+  'Barcode Automation': {
+    heroTitle: 'Intelligent',
+    heroHighlight: 'Barcode Automation',
+    heroDesc: 'Streamline warehouse and production logistics with automated barcode scanning systems. Ensure seamless traceability and integration with your ERP and WMS platforms.',
+    metrics: [
+      { label: 'Scan Accuracy', value: '100%', icon: QrCode },
+      { label: 'Scan Speed', value: '50/sec', icon: Zap },
+      { label: 'Shipping Errors', value: '0%', icon: ShieldCheck },
+      { label: 'WMS Sync Time', value: 'Real-time', icon: Database },
+    ],
+    whyTitle: 'Barcode Systems',
+    reasons: [
+      { title: 'High-Speed Conveyor Scanning', description: 'Read 1D and 2D DataMatrix codes on fast-moving conveyor belts automatically.', icon: QrCode, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Traceability & Serial Numbering', description: 'Trace every part from raw material intake to final customer shipment.', icon: FileDigit, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'Error-Free Pick & Pack', description: 'Verify packed items against customer purchase orders using mobile scanners.', icon: ShieldCheck, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Vision-Based Barcode Reading', description: 'Decipher damaged, low-contrast, or reflective barcodes effortlessly.', icon: Eye, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+      { title: 'Automated Label Printing', description: 'Print GS1-compliant shipping labels automatically triggered by PLC weight scales.', icon: Box, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+      { title: 'Direct ERP Backflushing', description: 'Instantly deduct inventory in SAP/ERP when barcodes pass inspection gates.', icon: Database, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+    ],
+    architecture: [
+      { name: 'Barcode / QR Label', icon: QrCode, color: 'text-blue-400' },
+      { name: 'Fixed Cognex / Keyence', icon: Camera, color: 'text-cyan-400' },
+      { name: 'Industrial Scan Gateway', icon: Router, color: 'text-purple-400' },
+      { name: 'Barcode Parser Engine', icon: Cpu, color: 'text-emerald-400' },
+      { name: 'Traceability Database', icon: Database, color: 'text-amber-400' },
+      { name: 'ERP / WMS API', icon: Laptop, color: 'text-rose-400' },
+      { name: 'Label Print Trigger', icon: FileDigit, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      '1D (Code 128, UPC) & 2D (DataMatrix, QR Code) Decoding', 'Cognex & Keyence Fixed Industrial Camera Integration',
+      'Android Mobile Scanner App (Zebra/Honeywell) Development', 'Multi-side Conveyor Tunnel Barcode Reader Arrays',
+      'GS1-128 Shipping Label Generation & Automated Printing', 'Damaged & Low-Contrast Code Reconstruction Algorithms',
+      'Production Serial Number Genealogy & Tracking', 'Real-time ERP Inventory Stock Ledger Update'
+    ],
+    useCases: [
+      { name: 'E-commerce Fulfillment', icon: Truck },
+      { name: 'Pharma Track & Trace', icon: Pill },
+      { name: 'Automotive Part Serializing', icon: Car },
+      { name: 'Food Packaging Batching', icon: Box },
+      { name: 'Electronics SMT Lines', icon: Cpu },
+      { name: 'Postal & Parcel Sorting', icon: Factory },
+      { name: 'FMCG Master Carton Packing', icon: Layers },
+      { name: 'Beverage Crate Line', icon: Droplets },
+    ],
+    technologies: [
+      { name: 'Cognex DataMan SDK', color: 'text-rose-400' },
+      { name: 'Keyence AutoID Native', color: 'text-amber-400' },
+      { name: 'Zebra EMDK for Android', color: 'text-blue-400' },
+      { name: 'ZPL / EPL Label Print Engine', color: 'text-emerald-400' },
+      { name: 'GS1 Standard Parser', color: 'text-purple-400' },
+      { name: 'OpenCV Code Locator', color: 'text-cyan-400' },
+      { name: 'Node.js Ingestion Pipeline', color: 'text-indigo-400' },
+      { name: 'PostgreSQL Serial Ledger', color: 'text-white' },
+      { name: 'MQTT Edge Events', color: 'text-fuchsia-400' }
+    ],
+    integrations: ['Cognex Scanners', 'Keyence Readers', 'Zebra Handhelds', 'Honeywell Mobility', 'Zebra Printers', 'SAP S/4HANA', 'Oracle WMS', 'Odoo Inventory']
+  },
+
+  'Energy Monitoring': {
+    heroTitle: 'Smart',
+    heroHighlight: 'Energy Monitoring',
+    heroDesc: 'Track power consumption at the machine level. Identify energy waste, optimize usage during peak hours, and reduce your carbon footprint with actionable energy analytics.',
+    metrics: [
+      { label: 'Energy Cost Savings', value: '20%', icon: DollarSign },
+      { label: 'Carbon Footprint', value: '-25%', icon: Zap },
+      { label: 'Sub-meter Accuracy', value: '0.5%', icon: Target },
+      { label: 'Peak Demand Alerts', value: 'Instant', icon: BellRing },
+    ],
+    whyTitle: 'Energy Management',
+    reasons: [
+      { title: 'Machine-Level Submetering', description: 'Measure kWh, power factor, max demand, and phase voltage per machine.', icon: Zap, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+      { title: 'Peak Demand Management', description: 'Get automated alerts before exceeding sanctioned utility demand limits.', icon: BellRing, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+      { title: 'Energy-per-Unit Costing', description: 'Calculate exact electrical energy cost per manufactured part.', icon: DollarSign, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Idle Energy Waste Detection', description: 'Detect machinery left running during non-production hours and weekends.', icon: Clock, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+      { title: 'Harmonics & Power Quality', description: 'Monitor Total Harmonic Distortion (THD) and power factor penalties.', icon: Activity, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'ESG & Carbon Reporting', description: 'Generate audit-ready CO2 emission reports for sustainability compliance.', icon: ShieldCheck, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+    ],
+    architecture: [
+      { name: 'Energy Meter / CTs', icon: Zap, color: 'text-cyan-400' },
+      { name: 'RS485 Modbus Loop', icon: Network, color: 'text-blue-400' },
+      { name: 'Smart Energy Gateway', icon: Router, color: 'text-purple-400' },
+      { name: 'Energy Analytics Engine', icon: Cpu, color: 'text-rose-400' },
+      { name: 'Cost / kWh Calculator', icon: DollarSign, color: 'text-emerald-400' },
+      { name: 'Timeseries Archive', icon: Database, color: 'text-amber-400' },
+      { name: 'Sustainability Dashboard', icon: Laptop, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      'Multi-function Energy Meter (EM6400) Integration', 'Machine-level kWh & Specific Energy Consumption (SEC)',
+      'Maximum Demand (MD) Penalty Prevention Alerts', 'Power Factor (PF) & Reactive Power Monitoring',
+      'Air Compressor & HVAC Energy Leakage Audits', 'Automated Daily & Monthly Utility Costing Reports',
+      'Carbon Footprint (tCO2e) Conversion Analytics', 'Solar PV & Diesel Generator Hybrid Integration'
+    ],
+    useCases: [
+      { name: 'Steel Mills & Foundries', icon: Factory },
+      { name: 'Textile Mills', icon: Layers },
+      { name: 'Cold Storage Facilities', icon: Box },
+      { name: 'Automotive Plants', icon: Car },
+      { name: 'Datacenters & IT Parks', icon: Server },
+      { name: 'Cement Factories', icon: Building2 },
+      { name: 'Commercial Buildings', icon: Building2 },
+      { name: 'Pharma Cleanrooms', icon: Pill },
+    ],
+    technologies: [
+      { name: 'Modbus RTU over RS485', color: 'text-cyan-400' },
+      { name: 'DLMS / COSEM Protocol', color: 'text-blue-400' },
+      { name: 'Schneider Energy Meters', color: 'text-emerald-400' },
+      { name: 'L&T / Janitza Meters', color: 'text-amber-400' },
+      { name: 'TimescaleDB / InfluxDB', color: 'text-purple-400' },
+      { name: 'Grafana Energy Suite', color: 'text-orange-400' },
+      { name: 'Python Energy Analytics', color: 'text-indigo-400' },
+      { name: 'MQTT Edge Gateway', color: 'text-rose-400' },
+      { name: 'REST Report API', color: 'text-white' }
+    ],
+    integrations: ['Schneider Electric Meters', 'L&T Tripper Meters', 'Janitza Energy Analyzers', 'ABB Power Meters', 'Siemens PAC Meters', 'AWS IoT Core', 'PowerBI Energy Suite', 'SAP Carbon Footprint']
+  },
+
+  'Predictive Maintenance': {
+    heroTitle: 'AI-Driven',
+    heroHighlight: 'Predictive Maintenance',
+    heroDesc: 'Move from reactive to proactive maintenance. Use machine learning algorithms to analyze vibration and temperature data, predicting equipment failures before they cause costly downtime.',
+    metrics: [
+      { label: 'Unplanned Downtime', value: '-45%', icon: Wrench },
+      { label: 'Maintenance Cost', value: '-30%', icon: DollarSign },
+      { label: 'Equipment Lifespan', value: '+40%', icon: Activity },
+      { label: 'Prediction Accuracy', value: '95%', icon: Target },
+    ],
+    whyTitle: 'Predictive Maintenance',
+    reasons: [
+      { title: 'Vibration Spectrum Analysis (FFT)', description: 'Analyze 3-axis acceleration data to detect unbalance, misalignment, and bearing wear.', icon: Activity, color: 'text-[#e11d48]', bg: 'bg-rose-500/10' },
+      { title: 'Bearing Defect Frequency AI', description: 'Identify outer-race, inner-race, and ball-pass bearing defects months in advance.', icon: Wrench, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'Thermal Anomaly Detection', description: 'Monitor surface thermal rise rates on critical motors and gearboxes.', icon: Flame, color: 'text-orange-400', bg: 'bg-orange-500/10' },
+      { title: 'Remaining Useful Life (RUL)', description: 'Calculate RUL countdown estimates for critical assets using ML models.', icon: Clock, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Automated Work Orders', description: 'Trigger maintenance tickets automatically in SAP PM or CMMS before failure occurs.', icon: FileText, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Spare Part Optimization', description: 'Order replacement bearings and seals only when needed, reducing inventory storage costs.', icon: Box, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+    ],
+    architecture: [
+      { name: 'Vibration Sensor', icon: Radar, color: 'text-rose-400' },
+      { name: 'High-speed Sampler', icon: Activity, color: 'text-blue-400' },
+      { name: 'Edge FFT Calculator', icon: Cpu, color: 'text-purple-400' },
+      { name: 'ML Anomaly Engine', icon: BrainCircuit, color: 'text-emerald-400' },
+      { name: 'RUL Predictor', icon: Clock, color: 'text-amber-400' },
+      { name: 'CMMS Work Order', icon: Wrench, color: 'text-cyan-400' },
+      { name: 'Engineer Mobile App', icon: Smartphone, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      'High-frequency (10kHz) 3-Axis Vibration Acceleration Sampling', 'FFT (Fast Fourier Transform) Spectral Analysis Engine',
+      'ISO 10816 Vibration Severity Standard Evaluation', 'Bearing Fault Frequency (BPFO, BPFI, BSF, FTF) Identification',
+      'Remaining Useful Life (RUL) Predictive ML Models', 'Automated CMMS Work Order Ticket Generation',
+      'Wireless Magnetic Sensor Retrofit Installation', 'Machine Health Index (0-100%) Dashboard Display'
+    ],
+    useCases: [
+      { name: 'Heavy Centrifugal Pumps', icon: Droplets },
+      { name: 'Industrial Gearboxes', icon: Cog },
+      { name: 'Air Compressors & Blowers', icon: Zap },
+      { name: 'Cooling Tower Fans', icon: Factory },
+      { name: 'CNC High-Speed Spindles', icon: Wrench },
+      { name: 'Conveyor Drive Motors', icon: Truck },
+      { name: 'Extruder Motors', icon: Box },
+      { name: 'Turbine Generators', icon: Flame },
+    ],
+    technologies: [
+      { name: 'FFT Signal Processing', color: 'text-rose-400' },
+      { name: 'PyTorch Anomaly Models', color: 'text-purple-400' },
+      { name: 'XGBoost RUL Predictor', color: 'text-blue-400' },
+      { name: 'ISO 10816 Standard Rules', color: 'text-emerald-400' },
+      { name: 'MEMS Accelerometers', color: 'text-amber-400' },
+      { name: 'MQTT High-Speed Stream', color: 'text-cyan-400' },
+      { name: 'TimescaleDB Telemetry', color: 'text-indigo-400' },
+      { name: 'FastAPI Analytics Engine', color: 'text-white' },
+      { name: 'Grafana Spectrum Graphs', color: 'text-fuchsia-400' }
+    ],
+    integrations: ['IFM Effector Sensors', 'Fluke Vibration Sensors', 'SKF Observer', 'SAP PM Module', 'Fiix CMMS', 'MaintainX', 'AWS IoT Events', 'Telegram Alert Bot']
+  },
+
+  'Remote Equipment Monitoring': {
+    heroTitle: 'Global',
+    heroHighlight: 'Remote Monitoring',
+    heroDesc: 'Monitor your critical assets and equipment securely from anywhere in the world. Provide remote diagnostics, troubleshooting, and support to reduce dispatch costs and improve service SLAs.',
+    metrics: [
+      { label: 'Global Assets Monitored', value: '5,000+', icon: ShieldAlert },
+      { label: 'Field Visit Reduction', value: '40%', icon: Truck },
+      { label: 'Remote Resolution', value: '65%', icon: Wrench },
+      { label: 'Service SLA Compliance', value: '99.5%', icon: ShieldCheck },
+    ],
+    whyTitle: 'Remote Monitoring',
+    reasons: [
+      { title: 'Global Fleet Map View', description: 'Track equipment geographic locations, online status, and health globally.', icon: Globe, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Remote Diagnostics', description: 'Diagnose fault codes and parameter settings remotely before sending a technician.', icon: Wrench, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'OTA Firmware Updates', description: 'Push over-the-air software updates and patch equipment remotely.', icon: Cloud, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+      { title: 'Cellular 4G/5G Gateways', description: 'Utilize global multi-carrier eSIM cellular gateways for standalone connectivity.', icon: Radio, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+      { title: 'OEM Service Monetization', description: 'Offer predictive maintenance contracts to your equipment buyers as a service.', icon: DollarSign, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Encrypted VPN Tunnels', description: 'Secure remote PLC programming access via encrypted VPN tunnels.', icon: Lock, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+    ],
+    architecture: [
+      { name: 'Deployed Asset', icon: Factory, color: 'text-blue-400' },
+      { name: '4G / 5G eSIM Modem', icon: Radio, color: 'text-cyan-400' },
+      { name: 'Encrypted VPN Tunnel', icon: Lock, color: 'text-rose-400' },
+      { name: 'OEM Cloud Telemetry', icon: Cloud, color: 'text-purple-400' },
+      { name: 'Diagnostic Engine', icon: Cpu, color: 'text-emerald-400' },
+      { name: 'Customer Service Portal', icon: Laptop, color: 'text-amber-400' },
+      { name: 'Field Tech Mobile App', icon: Smartphone, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      'Global Asset Fleet Interactive Map View', 'Cellular 4G/5G & Satellite Gateway Integration',
+      'Remote PLC Programming via Secure VPN Tunnels', 'Over-The-Air (OTA) Gateway Firmware Upgrades',
+      'OEM Service Level Agreement (SLA) Tracking', 'Automated Customer Fault Email Notifications',
+      'Asset Warranty & Maintenance History Tracking', 'Remote Parameter Configuration & Reset Commands'
+    ],
+    useCases: [
+      { name: 'Diesel Generator Sets', icon: Zap },
+      { name: 'Industrial Chillers & HVAC', icon: Factory },
+      { name: 'Solar Inverter Fleets', icon: Zap },
+      { name: 'Medical MRI & CT Scanners', icon: HeartPulse },
+      { name: 'Construction Cranes', icon: Building2 },
+      { name: 'Agricultural Pumps', icon: Droplets },
+      { name: 'Mining Drill Rigs', icon: Wrench },
+      { name: 'Commercial Elevators', icon: Building2 },
+    ],
+    technologies: [
+      { name: 'Global eSIM Cellular (4G/5G)', color: 'text-blue-400' },
+      { name: 'OpenVPN / WireGuard Tunnels', color: 'text-rose-400' },
+      { name: 'Teltonika & HMS Gateways', color: 'text-purple-400' },
+      { name: 'AWS IoT Device Management', color: 'text-orange-400' },
+      { name: 'MQTT Over TLS', color: 'text-cyan-400' },
+      { name: 'React GIS Map Engine', color: 'text-emerald-400' },
+      { name: 'Node.js Microservices', color: 'text-amber-400' },
+      { name: 'PostgreSQL Fleet DB', color: 'text-white' },
+      { name: 'Docker OTA Containers', color: 'text-fuchsia-400' }
+    ],
+    integrations: ['Teltonika RUT Modem', 'HMS Ewon Flexy', 'Advantech Routers', 'AWS IoT Core', 'Salesforce Service Cloud', 'Zendesk Support', 'Twilio SMS', 'SendGrid']
+  },
+
+  'Digital Twin': {
+    heroTitle: 'Interactive',
+    heroHighlight: 'Digital Twin',
+    heroDesc: 'Create virtual replicas of your physical assets and processes. Simulate changes, train operators, and analyze performance in a risk-free virtual environment before real-world implementation.',
+    metrics: [
+      { label: 'Simulation Fidelity', value: '99.2%', icon: Globe },
+      { label: 'Commissioning Time', value: '-50%', icon: Zap },
+      { label: 'Testing Risk', value: '0%', icon: ShieldCheck },
+      { label: 'Asset Lifecycle Boost', value: '+30%', icon: Activity },
+    ],
+    whyTitle: 'Digital Twin Tech',
+    reasons: [
+      { title: 'Real-Time Physics Mirroring', description: 'Sync 3D CAD models with live IoT telemetry to mirror real-world machine state.', icon: Globe, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+      { title: 'Virtual Commissioning', description: 'Test PLC code and line changes on the digital twin before touching physical hardware.', icon: Wrench, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'What-If Scenario Simulation', description: 'Simulate line speed increases or component stress under hypothetical conditions.', icon: Settings2, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: '3D Thermal & Stress Visuals', description: 'Visualize heat distribution and stress points directly on 3D CAD models in real time.', icon: Flame, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+      { title: 'Immersive Operator Training', description: 'Train new operators using interactive 3D simulations without risking equipment.', icon: Users, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+      { title: 'Predictive Lifecycle Tracking', description: 'Track cumulative mechanical fatigue across the complete asset lifecycle.', icon: BarChart3, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+    ],
+    architecture: [
+      { name: 'Physical Asset', icon: Factory, color: 'text-blue-400' },
+      { name: 'IoT Telemetry Stream', icon: Radio, color: 'text-cyan-400' },
+      { name: 'Sync Engine', icon: Router, color: 'text-purple-400' },
+      { name: '3D CAD Geometry Model', icon: Box, color: 'text-emerald-400' },
+      { name: 'Physics Simulation Core', icon: Cpu, color: 'text-amber-400' },
+      { name: 'WebGL / Three.js Render', icon: MonitorSmartphone, color: 'text-rose-400' },
+      { name: 'VR / Desktop Viewer', icon: Laptop, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      '3D CAD File (STEP, OBJ, FBX) WebGL Rendering Engine', 'Real-Time Sensor Telemetry to 3D Model Binding',
+      'Virtual PLC Code Commissioning & Emulation', '3D Spatial Heatmap & Stress Concentration Visuals',
+      'What-If Production Throughput & Bottleneck Simulation', 'Historical Replay Mode for Failure Root Cause Analysis',
+      'Multi-User Collaborative VR/AR Inspection Rooms', 'Physics Engine (Kinematics & Dynamics) Integration'
+    ],
+    useCases: [
+      { name: 'Whole Factory Floor Twins', icon: Factory },
+      { name: 'Robotic Assembly Cells', icon: Cog },
+      { name: 'Turbine & Jet Engines', icon: Flame },
+      { name: 'Power Grid Infrastructure', icon: Zap },
+      { name: 'Commercial Smart Buildings', icon: Building2 },
+      { name: 'Automotive Chassis Production', icon: Car },
+      { name: 'Offshore Oil Rig Skids', icon: Droplets },
+      { name: 'Pharma Cleanroom Suites', icon: Pill },
+    ],
+    technologies: [
+      { name: 'Three.js & WebGL', color: 'text-cyan-400' },
+      { name: 'Unreal Engine 5 Pixel Streaming', color: 'text-purple-400' },
+      { name: 'NVIDIA Omniverse', color: 'text-emerald-400' },
+      { name: 'Siemens Tecnomatix', color: 'text-blue-400' },
+      { name: 'Autodesk Forge API', color: 'text-amber-400' },
+      { name: 'WebSocket Realtime Sync', color: 'text-rose-400' },
+      { name: 'Python Physics Simulator', color: 'text-indigo-400' },
+      { name: 'PostgreSQL Telemetry DB', color: 'text-white' },
+      { name: 'Docker Cloud Rendering', color: 'text-fuchsia-400' }
+    ],
+    integrations: ['Autodesk Revit/Inventor', 'Siemens NX / Process Simulate', 'Dassault SolidWorks', 'NVIDIA Omniverse', 'PTC ThingWorx', 'Unity 3D Industrial', 'AWS TwinMaker', 'Azure Digital Twins']
+  },
+
+  'Industry 4.0': {
+    heroTitle: 'Complete',
+    heroHighlight: 'Industry 4.0',
+    heroDesc: 'Embrace the fourth industrial revolution. Integrate IoT, AI, Cloud Computing, and Big Data to create a fully autonomous, intelligent, and hyper-connected manufacturing ecosystem.',
+    metrics: [
+      { label: 'Overall Productivity', value: '+30%', icon: Cog },
+      { label: 'Time-to-Market', value: '-40%', icon: Zap },
+      { label: 'Factory Automation', value: '100%', icon: Factory },
+      { label: 'ROI Timeline', value: '6-12 Mos', icon: DollarSign },
+    ],
+    whyTitle: 'Industry 4.0',
+    reasons: [
+      { title: 'Cyber-Physical Convergence', description: 'Bridge shopfloor physical machines with top-floor cloud enterprise software.', icon: Cog, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+      { title: 'Self-Optimizing Production', description: 'Autonomous closed-loop systems that automatically adjust line parameters.', icon: Settings2, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+      { title: 'Horizontal & Vertical Integration', description: 'Seamless data flow from suppliers through factory floor to end customer.', icon: Network, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+      { title: 'Big Data & AI Analytics', description: 'Process terabytes of shopfloor data to uncover hidden efficiency opportunities.', icon: Database, color: 'text-rose-400', bg: 'bg-rose-500/10' },
+      { title: 'Flexible Batch Size 1', description: 'Reconfigure assembly lines dynamically to support custom mass personalization.', icon: Box, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+      { title: 'Zero-Downtime Smart Factory', description: 'Combined predictive maintenance, digital twins, and automated logistics.', icon: ShieldCheck, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+    ],
+    architecture: [
+      { name: 'Smart Machines', icon: Factory, color: 'text-blue-400' },
+      { name: 'Edge AI Node', icon: Cpu, color: 'text-cyan-400' },
+      { name: 'Private 5G Network', icon: Radio, color: 'text-purple-400' },
+      { name: 'Cloud Data Platform', icon: Cloud, color: 'text-rose-400' },
+      { name: 'Digital Twin Model', icon: Globe, color: 'text-emerald-400' },
+      { name: 'ERP / MES Suite', icon: Laptop, color: 'text-amber-400' },
+      { name: 'Autonomous Factory', icon: Cog, color: 'text-indigo-400' },
+    ],
+    capabilities: [
+      'Full-Stack Industrial IoT Architecture Blueprinting', 'Unified Namespace (UNS) Data Architecture Deployment',
+      'Private 5G Campus Network Infrastructure Setup', 'AI-Driven Closed-Loop Quality & Control Optimization',
+      'Automated Guided Vehicle (AGV) Fleet Integration', 'End-to-End Supply Chain Traceability & Blockchain',
+      'Industrial Cybersecurity (ISA/IEC 62443 Standard) Hardening', 'Comprehensive Smart Factory Roadmap & Consulting'
+    ],
+    useCases: [
+      { name: 'Automotive Gigafactories', icon: Car },
+      { name: 'Semiconductor Fabrication', icon: Cpu },
+      { name: 'Smart Pharmaceutical Plants', icon: Pill },
+      { name: 'Consumer Packaged Goods', icon: Box },
+      { name: 'Aerospace Assembly Lines', icon: Truck },
+      { name: 'Chemical Process Complexes', icon: Droplets },
+      { name: 'Smart Steel Mills', icon: Factory },
+      { name: 'Renewable Equipment Mfg', icon: Zap },
+    ],
+    technologies: [
+      { name: 'Unified Namespace (UNS)', color: 'text-purple-400' },
+      { name: 'MQTT Sparkplug B', color: 'text-blue-400' },
+      { name: 'Private 5G NR', color: 'text-cyan-400' },
+      { name: 'OPC UA Pub/Sub', color: 'text-emerald-400' },
+      { name: 'AWS IoT SiteWise', color: 'text-orange-400' },
+      { name: 'Docker & Kubernetes Edge', color: 'text-rose-400' },
+      { name: 'TensorFlow Enterprise', color: 'text-amber-400' },
+      { name: 'ISA-95 Standard', color: 'text-white' },
+      { name: 'TimescaleDB Data Lake', color: 'text-fuchsia-400' }
+    ],
+    integrations: ['SAP S/4HANA Manufacturing', 'Siemens Opcenter MES', 'Rockwell Automation Stack', 'GE Digital Smart Factory', 'PTC ThingWorx', 'Ignition Industrial Suite', 'AWS IoT Enterprise', 'Azure IoT Central']
+  }
+};
+
+export const getDefaultData = (tabName) => {
+  return iotTabData[tabName] || iotTabData['Industrial IoT'];
+};

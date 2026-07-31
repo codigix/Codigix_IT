@@ -1,0 +1,409 @@
+/* new-home.css - Custom styles for the New Home Page */
+
+/* Base Theme Variables */
+:root {
+  --nh-bg-dark: #0d0b21;
+  --nh-bg-darker: #110f2d;
+  --nh-bg-card: #16133a;
+  --nh-bg-card-hover: #1e1b4c;
+  --nh-text-main: #ffffff;
+  --nh-text-muted: #9ca3af;
+  --nh-accent-red: #dc2626;
+  --nh-accent-red-hover: #b91c1c;
+  --nh-accent-purple: #8b5cf6;
+  --nh-accent-blue: #3b82f6;
+  --nh-border-color: rgba(255, 255, 255, 0.05);
+  --nh-border-highlight: rgba(139, 92, 246, 0.3);
+}
+
+/* Global Reset for New Home */
+.new-home-wrapper {
+  background-color: var(--nh-bg-dark);
+  color: var(--nh-text-main);
+  font-family: 'Inter', 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+.new-home-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+/* Typography */
+.nh-section-subtitle {
+  color: var(--nh-accent-red);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.nh-section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--nh-text-main);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Gradients & Glows */
+.nh-glow-blue {
+  position: absolute;
+  background: rgba(59, 130, 246, 0.15);
+  filter: blur(120px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.nh-glow-purple {
+  position: absolute;
+  background: rgba(139, 92, 246, 0.15);
+  filter: blur(120px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Custom Buttons */
+.nh-btn-primary {
+  background-color: var(--nh-accent-red);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+.nh-btn-primary:hover {
+  background-color: var(--nh-accent-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+}
+
+.nh-btn-outline {
+  background-color: transparent;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.nh-btn-outline:hover {
+  border-color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Solution Cards */
+.nh-solution-card {
+  background: linear-gradient(180deg, rgba(30, 27, 75, 0.4) 0%, rgba(10, 6, 32, 0.8) 100%);
+  border: 1px solid var(--nh-border-color);
+  border-radius: 16px;
+  padding: 30px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nh-solution-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--nh-border-highlight);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nh-solution-img-box {
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nh-solution-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+
+.nh-solution-list li {
+  color: var(--nh-text-muted);
+  font-size: 0.875rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.nh-solution-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: var(--nh-accent-red);
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+/* AI Grid Items */
+.nh-ai-badge {
+  background-color: rgba(19, 13, 53, 0.6);
+  border: 1px solid var(--nh-border-color);
+  border-radius: 12px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.nh-ai-badge:hover {
+  background-color: rgba(30, 27, 75, 0.8);
+  border-color: var(--nh-accent-purple);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(139, 92, 246, 0.1);
+}
+
+.nh-ai-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: rgba(139, 92, 246, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+}
+
+.nh-ai-badge:hover .nh-ai-icon-wrap {
+  background-color: rgba(139, 92, 246, 0.2);
+  transform: scale(1.1);
+}
+
+/* Workflow Flowchart */
+.nh-workflow-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 40px 0;
+  overflow-x: auto;
+}
+
+.nh-workflow-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.nh-workflow-line-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--nh-accent-blue), var(--nh-accent-purple), var(--nh-accent-red));
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  z-index: 2;
+}
+
+.nh-workflow-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  min-width: 100px;
+}
+
+.nh-workflow-icon {
+  width: 64px;
+  height: 64px;
+  background-color: var(--nh-bg-card);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.nh-workflow-node:hover .nh-workflow-icon {
+  border-color: var(--nh-accent-purple);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  transform: scale(1.1);
+}
+
+/* CTA Footer Gradient */
+.nh-cta-box {
+  background: linear-gradient(90deg, #18093d 0%, #0d0628 100%);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.nh-cta-box::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(220,38,38,0.2) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* Infinite Slider */
+.nh-marquee-container {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.nh-marquee-track {
+  display: flex;
+  animation: nh-marquee 40s linear infinite;
+  width: max-content;
+}
+
+.nh-marquee-container:hover .nh-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes nh-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Animation utilities */
+@keyframes nh-float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes nh-float-reverse {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(10px) rotate(-1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes nh-pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(139, 92, 246, 0.2); transform: scale(1); }
+  50% { box-shadow: 0 0 25px rgba(139, 92, 246, 0.4); transform: scale(1.02); }
+}
+
+@keyframes nh-spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes nh-spin-slow-reverse {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-float {
+  animation: nh-float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: nh-float 8s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: nh-float-reverse 7s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: nh-spin-slow 20s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: nh-spin-slow-reverse 25s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: nh-pulse-glow 3s ease-in-out infinite;
+}
+
+/* Pulsing Active LED badges */
+.nh-led-active {
+  width: 6px;
+  height: 6px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #22c55e;
+  display: inline-block;
+  animation: nh-led-pulse 1.5s infinite;
+}
+
+@keyframes nh-led-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Cyber Grid background */
+.nh-cyber-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center;
+}
+
+/* Custom Cursor Glow */
+.cursor-glow {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(220, 38, 38, 0.02) 50%, transparent 100%);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  will-change: transform;
+}
+
+/* Scroll progress bar */
+.scroll-progress-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #dc2626, #8b5cf6, #3b82f6);
+  width: 0%;
+  transition: width 0.05s ease-out;
+}
+
+
