@@ -22,38 +22,38 @@ const solutions = [
   {
     title: 'AI Development',
     features: ['Generative AI', 'Chatbots & Assistants', 'Computer Vision', 'Voice AI', 'LLM Integration', 'AI Automation', 'Predictive Analytics'],
-    imageLight: '/assets/images/new-home/sol_ai_light.png',
-    imageDark: '/assets/images/new-home/sol_ai_dark.png'
+    imageLight: '/assets/images/new-home/sol_ai_light.webp',
+    imageDark: '/assets/images/new-home/sol_ai_dark.webp'
   },
   {
     title: 'Industrial IoT',
     features: ['PLC Integration', 'Machine Monitoring', 'OEE Dashboard', 'Predictive Maintenance', 'Sensor Networks', 'SCADA Integration', 'Industry 4.0'],
-    imageLight: '/assets/images/new-home/sol_iot_light.png',
-    imageDark: '/assets/images/new-home/sol_iot_dark.png'
+    imageLight: '/assets/images/new-home/sol_iot_light.webp',
+    imageDark: '/assets/images/new-home/sol_iot_dark.webp'
   },
   {
     title: 'ERP Development',
     features: ['Manufacturing ERP', 'Inventory Management', 'Production Planning', 'Purchase & Procurement', 'Quality Management', 'Finance & Accounts', 'HR & Asset Management'],
-    imageLight: '/assets/images/new-home/sol_erp_light.png',
-    imageDark: '/assets/images/new-home/sol_erp_dark.png'
+    imageLight: '/assets/images/new-home/sol_erp_light.webp',
+    imageDark: '/assets/images/new-home/sol_erp_dark.webp'
   },
   {
     title: 'CRM Development',
     features: ['Lead Management', 'Sales Automation', 'Marketing Automation', 'Customer Support', 'Service Management', 'Quotation & Invoice', 'Reports & Analytics'],
-    imageLight: '/assets/images/new-home/sol_crm_light.png',
-    imageDark: '/assets/images/new-home/sol_crm_dark.png'
+    imageLight: '/assets/images/new-home/sol_crm_light.webp',
+    imageDark: '/assets/images/new-home/sol_crm_dark.webp'
   },
   {
     title: 'Custom Software',
     features: ['Web Applications', 'Enterprise Solutions', 'Cloud Platforms', 'SaaS Products', 'Workflow Automation', 'API Integrations', 'Legacy Modernization'],
-    imageLight: '/assets/images/new-home/sol_custom_light.png',
-    imageDark: '/assets/images/new-home/sol_custom_dark.png'
+    imageLight: '/assets/images/new-home/sol_custom_light.webp',
+    imageDark: '/assets/images/new-home/sol_custom_dark.webp'
   },
   {
     title: 'Mobile App Dev',
     features: ['Android & iOS', 'Flutter Development', 'React Native', 'PWA Development', 'Offline Applications', 'Push Notifications'],
-    imageLight: '/assets/images/new-home/sol_mobile_light.png',
-    imageDark: '/assets/images/new-home/sol_mobile_dark.png'
+    imageLight: '/assets/images/new-home/sol_mobile_light.webp',
+    imageDark: '/assets/images/new-home/sol_mobile_dark.webp'
   }
 ];
 

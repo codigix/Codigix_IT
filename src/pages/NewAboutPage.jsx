@@ -36,7 +36,7 @@ const NewAboutPage = () => {
       "legalName": "Codigix Infotech",
       "foundingDate": "2023-07-01",
       "url": siteUrl,
-      "logo": `${siteUrl}/assets/images/logos/logo.png`,
+      "logo": `${siteUrl}/assets/images/logos/logo.webp`,
       "description": "Codigix Infotech delivers cutting-edge AI solutions, Industrial IoT automation, custom ERP systems, and enterprise software engineering.",
       "address": {
         "@type": "PostalAddress",
@@ -92,7 +92,7 @@ const NewAboutPage = () => {
     "@type": "Organization",
     "name": "Codigix Infotech",
     "url": siteUrl,
-    "logo": `${siteUrl}/assets/images/logos/logo.png`,
+    "logo": `${siteUrl}/assets/images/logos/logo.webp`,
     "sameAs": [
       "https://www.linkedin.com/company/135144609/admin/",
       "https://www.facebook.com/codigix.infotech",
@@ -110,7 +110,7 @@ const NewAboutPage = () => {
         description={metaDescription}
         keywords="About Codigix Infotech, IT company Pune, AI engineering company, Industrial IoT solutions company, software development firm India, enterprise IT consulting, Codigix story, Codigix leadership"
         canonical={canonicalUrl}
-        ogImage={`${siteUrl}/assets/images/logos/logo.png`}
+        ogImage={`${siteUrl}/assets/images/logos/logo.webp`}
         schemaData={[aboutPageSchema, breadcrumbSchema, faqSchema, organizationSchema]}
       />
 

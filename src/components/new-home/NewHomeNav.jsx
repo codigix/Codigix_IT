@@ -143,7 +143,7 @@ const NewHomeNav = () => {
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 z-50">
-            <img src="/assets/images/logos/logo.png" alt="Codigix" className="w-full h-15 object-contain" />
+            <img src="/assets/images/logos/logo.webp" alt="Codigix" className="w-full h-15 object-contain" />
           </Link>
 
           {/* Desktop Nav */}

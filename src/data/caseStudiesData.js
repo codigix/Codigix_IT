@@ -8,7 +8,7 @@ export const caseStudiesData = [
     clientName: 'Sterling Techno System',
     subtitle: 'A unified ERP solution integrated with IIoT to streamline production, monitor shop-floor operations in real-time, and improve efficiency across the manufacturing ecosystem.',
     objective: 'The objective was to build a centralized ERP system with IIoT integration to connect machines, processes, and people on a single platform.',
-    heroImage: '/assets/images/service/erp_dash.png',
+    heroImage: '/assets/images/service/erp_dash.webp',
     
     // Sidebar Overview Details
     sidebarSpecs: {
@@ -104,7 +104,7 @@ export const caseStudiesData = [
     clientName: 'Vastra Bhushan',
     subtitle: 'Automating multi-channel lead ingestion, instant quotation e-signatures, and sales pipeline management across wholesale networks.',
     objective: 'Build an enterprise CRM to automate sales pipelines, improve lead conversion rates, and enhance buyer engagement across wholesale networks.',
-    heroImage: '/assets/images/service/crm_dash.png',
+    heroImage: '/assets/images/service/crm_dash.webp',
 
     sidebarSpecs: {
       client: 'Vastra Bhushan',
@@ -189,7 +189,7 @@ export const caseStudiesData = [
     clientName: 'Nobel Casting',
     subtitle: 'Connecting foundry furnaces and CNC machinery with IIoT edge gateways for real-time telemetry and predictive maintenance.',
     objective: 'Deploy IIoT sensors and edge gateways to monitor real-time furnace temperature, machine OEE, and prevent unplanned downtime.',
-    heroImage: '/assets/images/service/iot_robot.png',
+    heroImage: '/assets/images/service/iot_robot.webp',
 
     sidebarSpecs: {
       client: 'Nobel Casting',
@@ -353,7 +353,7 @@ export const caseStudiesData = [
     clientName: 'HealthCare Plus Network',
     subtitle: 'Cross-platform mobile application for doctor appointment scheduling, WebRTC video consultation, e-prescriptions, and diagnostic test alerts.',
     objective: 'Build a secure, HIPAA-compliant cross-platform mobile app connecting patients with specialist doctors and hospital EMR databases.',
-    heroImage: '/assets/images/service/mobile_app.png',
+    heroImage: '/assets/images/service/mobile_app.webp',
 
     sidebarSpecs: {
       client: 'HealthCare Plus Network',
@@ -435,7 +435,7 @@ export const caseStudiesData = [
     clientName: 'RetailMax Hypermarkets',
     subtitle: 'Deploying machine learning models for demand forecasting, dynamic pricing, and automated store inventory replenishment.',
     objective: 'Develop AI predictive models to process 120,000 SKUs, seasonal promotion spikes, and competitor pricing to automate store inventory replenishment.',
-    heroImage: '/assets/images/service/ai_brain.png',
+    heroImage: '/assets/images/service/ai_brain.webp',
 
     sidebarSpecs: {
       client: 'RetailMax Hypermarkets',

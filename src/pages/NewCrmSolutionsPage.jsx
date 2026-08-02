@@ -98,7 +98,7 @@ const NewCrmSolutionsPage = () => {
         description={metaDescription}
         keywords={`Custom CRM Software, ${activeTab}, lead management system, sales pipeline automation, customer support CRM, WhatsApp CRM integration, AI lead scoring, Codigix Infotech`}
         canonical={canonicalUrl}
-        ogImage="https://codigixinfotech.com/assets/images/logos/logo.png"
+        ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={crmSchemas}
       />
 

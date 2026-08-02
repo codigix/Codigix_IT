@@ -91,7 +91,7 @@ const CtaFooterSection = () => {
             {/* Branding Column */}
             <div className="lg:col-span-1 pr-4">
               <Link to="/" onClick={handleLinkClick} className="inline-block mb-6">
-                <img src="/assets/images/logos/logo.png" alt="Codigix Infotech Logo" className="h-8 object-contain" />
+                <img src="/assets/images/logos/logo.webp" alt="Codigix Infotech Logo" className="h-8 object-contain" />
               </Link>
               <p className="text-[12px] text-slate-500 dark:text-gray-400 mb-8 leading-relaxed">
                 We build future-ready AI, IoT and software solutions that transform businesses and drive real results.

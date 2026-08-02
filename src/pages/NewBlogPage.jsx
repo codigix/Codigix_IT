@@ -6,69 +6,24 @@ import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import { Helmet } from 'react-helmet-async';
 import config from '../config';
 
-const blogCategories = ['All', 'IoT & Industry 4.0', 'Enterprise SaaS', 'Sales Tech', 'Web Engineering'];
+import { blogPostsData } from '../data/blogData';
 
-const allBlogPosts = [
-  {
-    id: 'industrial-iot',
-    title: 'Unlocking Industrial IoT: Bridging Physical Devices with Cloud Telemetry',
-    excerpt: 'Explore how modern ESP32 and PLC sensors stream industrial data directly to cloud brokers, optimizing predictive maintenance and machinery OEE.',
-    category: 'IoT & Industry 4.0',
-    date: 'Aug 1, 2026',
-    author: 'Suresh Nair',
-    readTime: '5 min read',
-    image: '/assets/images/new-home/blog_iot.png',
-  },
-  {
-    id: 'future-of-erp',
-    title: 'The Future of ERP: Scalable Cloud Architecture and AI-Powered Automation',
-    excerpt: 'Discover the power of serverless cloud functions, automated 3-way match procurement, and real-time machine ledger syncing in modern ERP systems.',
-    category: 'Enterprise SaaS',
-    date: 'Jul 28, 2026',
-    author: 'Deepak Sharma',
-    readTime: '7 min read',
-    image: '/assets/images/new-home/blog_erp.png',
-  },
-  {
-    id: 'crm-conversions',
-    title: 'Unlocking CRM Conversions: Leveraging AI Intent Scoring & Smart Funnels',
-    excerpt: 'Learn how smart round-robin routing engines and dynamic multi-channel lead ingestion maximize deal win-rates and pipeline conversions.',
-    category: 'Sales Tech',
-    date: 'Jul 24, 2026',
-    author: 'Meera Iyer',
-    readTime: '4 min read',
-    image: '/assets/images/new-home/blog_crm.png',
-  },
-  {
-    id: 'react-performance',
-    title: 'Optimizing React & Next.js for Core Web Vitals to Boost SEO Performance',
-    excerpt: 'Deep-dive into server component architectures, dynamic import split chunks, lazy layouts, and cache hydration tricks to achieve a 100/100 speed rank.',
-    category: 'Web Engineering',
-    date: 'Jul 18, 2026',
-    author: 'Amit Verma',
-    readTime: '6 min read',
-    image: '/assets/images/service/web_dev_dashboard.webp',
-  },
-  {
-    id: 'predictive-maintenance',
-    title: 'Leveraging Predictive Analytics & AI for Zero-Downtime Factory Operations',
-    excerpt: 'How real-time vibration and temperature data streams train machine learning anomaly models to predict factory failures hours before they occur.',
-    category: 'IoT & Industry 4.0',
-    date: 'Jul 10, 2026',
-    author: 'Suresh Nair',
-    readTime: '8 min read',
-    image: '/assets/images/new-iot-solutions/hero_factory.png',
-  },
-  {
-    id: 'saas-cloud-security',
-    title: 'Architecting IAM Vaults and OAuth2 Security in Modern SaaS Solutions',
-    excerpt: 'Secure corporate client data with advanced identity access management vaults, federated single sign-on (SSO), and encrypted webhooks.',
-    category: 'Enterprise SaaS',
-    date: 'Jul 04, 2026',
-    author: 'Deepak Sharma',
-    readTime: '6 min read',
-    image: '/assets/images/service/custom_software_dashboard.webp',
-  }
+const blogCategories = [
+  'All',
+  'AI & Automation',
+  'IoT & Industry 4.0',
+  'Enterprise ERP',
+  'Sales Tech & CRM',
+  'Web Engineering',
+  'Mobile Engineering',
+  'Cloud & DevOps',
+  'Smart Manufacturing',
+  'Healthcare Tech',
+  'Retail & E-Commerce',
+  'Fintech & Banking',
+  'Construction Tech',
+  'Automotive Tech',
+  'EdTech'
 ];
 
 const NewBlogPage = () => {
@@ -83,18 +38,20 @@ const NewBlogPage = () => {
         const response = await fetch(`${config.API_BASE_URL}/blogs`);
         if (response.ok) {
           const result = await response.json();
-          const formatted = result.map(post => ({
-            id: post.id.toString(),
-            title: post.title,
-            excerpt: post.body ? (post.body.slice(0, 150) + (post.body.length > 150 ? '...' : '')) : 'No excerpt provided.',
-            category: post.category,
-            date: post.date,
-            author: post.author || 'Codigix Tech Team',
-            readTime: post.readTime || '5 min read',
-            image: post.image ? (post.image.startsWith('http') || post.image.startsWith('data:') ? post.image : `/assets/images/blog/${post.image}${post.image.includes('.') ? '' : '.jpg'}`) : '/assets/images/service/web_dev_dashboard.webp',
-            link: `/blog/${post.id}`
-          }));
-          setDbPosts(formatted);
+          if (Array.isArray(result) && result.length > 0) {
+            const formatted = result.map(post => ({
+              id: post.id.toString(),
+              title: post.title,
+              excerpt: post.body ? (post.body.slice(0, 150) + (post.body.length > 150 ? '...' : '')) : 'No excerpt provided.',
+              category: post.category,
+              date: post.date,
+              author: post.author || 'Codigix Tech Team',
+              readTime: post.readTime || '5 min read',
+              image: post.image ? (post.image.startsWith('http') || post.image.startsWith('data:') || post.image.startsWith('/') ? post.image : `/assets/images/service/${post.image}${post.image.includes('.') ? '' : '.webp'}`) : '/assets/images/service/web_dev_dashboard.webp',
+              link: `/blog/${post.id}`
+            }));
+            setDbPosts(formatted);
+          }
         }
       } catch (err) {
         console.error("Error loading db blogs:", err);
@@ -105,7 +62,13 @@ const NewBlogPage = () => {
     fetchDbBlogs();
   }, []);
 
-  const combinedPosts = dbPosts;
+  // Merge DB posts with static master posts (deduping by title or ID)
+  const combinedPosts = [...dbPosts];
+  blogPostsData.forEach(staticPost => {
+    if (!combinedPosts.some(p => p.id === staticPost.id || p.title === staticPost.title)) {
+      combinedPosts.push(staticPost);
+    }
+  });
 
   const filteredPosts = combinedPosts.filter(post => {
     const categoryMatch = selectedCategory === 'All' || post.category === selectedCategory;

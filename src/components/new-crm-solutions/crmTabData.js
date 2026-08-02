@@ -3,7 +3,7 @@ export const crmTabData = {
     heroTitle: 'Smart CRM Solutions to',
     heroHighlight: 'Build Stronger Relationships',
     heroDesc: 'Streamline your sales, marketing, customer support, and service operations with our intelligent CRM solutions. Engage customers, close more deals, improve satisfaction, and grow your business.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     overview: 'Our Sales CRM Platform empowers high-performing revenue teams with full pipeline visibility, automated deal scoring, contact activity histories, and instant quotation delivery. Eliminate manual CRM entry and focus on closing high-margin deals.',
     departmentDashboard: {
       deptName: 'Sales & Revenue Operations Department',
@@ -47,7 +47,7 @@ export const crmTabData = {
     heroTitle: 'Advanced CRM for',
     heroHighlight: 'Lead Management',
     heroDesc: 'Capture, track, and nurture leads across multiple channels. Score leads automatically and pass the best prospects to your sales team to maximize conversion rates and ROI.',
-    image: '/assets/images/new-iot-solutions/ai_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_robot_dark.webp',
     overview: 'Our Lead Management System captures incoming leads from websites, paid ads, emails, and phone calls. Automatically verify email validity, rank prospects using custom lead scoring rules, and route high-intent leads to reps instantly.',
     departmentDashboard: {
       deptName: 'Lead Generation & Demand Ops Department',
@@ -91,7 +91,7 @@ export const crmTabData = {
     heroTitle: 'Intelligent',
     heroHighlight: 'Marketing Automation',
     heroDesc: 'Automate marketing campaigns, email sequences, and customer engagement. Deliver personalized messages at scale and track campaign performance in real-time.',
-    image: '/assets/images/new-iot-solutions/ai_brain_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_brain_dark.webp',
     overview: 'Our Marketing Automation suite turns cold prospects into loyal customers. Create visual campaign workflows, design responsive email templates, conduct A/B split testing, and track revenue attribution directly in your CRM.',
     departmentDashboard: {
       deptName: 'Digital Marketing & Growth Operations Department',
@@ -135,7 +135,7 @@ export const crmTabData = {
     heroTitle: 'Omnichannel',
     heroHighlight: 'Customer Support',
     heroDesc: 'Deliver exceptional support across email, chat, social media, and phone. Centralize all customer interactions to build long-lasting, loyal customer relationships.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     overview: 'Our Customer Support suite converts customer queries into brand loyalty. Centralize support requests into a unified ticket queue, enforce custom SLAs, automate agent routing, and analyze customer satisfaction (CSAT) scores.',
     departmentDashboard: {
       deptName: 'Customer Care & Contact Center Department',
@@ -179,7 +179,7 @@ export const crmTabData = {
     heroTitle: 'Efficient',
     heroHighlight: 'Service Management',
     heroDesc: 'Manage service requests, contracts, and Service Level Agreements (SLAs) with ease. Dispatch technicians and track service delivery to improve customer satisfaction.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     overview: 'Service Management handles client contracts, warranties, and maintenance routines. Track AMC expiration dates, manage spare part costs, and ensure customer machinery operates smoothly.',
     departmentDashboard: {
       deptName: 'Field Service & Warranty Department',
@@ -223,7 +223,7 @@ export const crmTabData = {
     heroTitle: 'Streamlined',
     heroHighlight: 'Quotation Management',
     heroDesc: 'Create, manage, and track professional quotes in minutes. Speed up the approval process, negotiate effectively, and close deals faster with automated quotation workflows.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     overview: 'Our Quotation & CPQ Management module automates complex pricing logic. Configure products, apply target discount thresholds, auto-calculate taxes/duties, and send interactive web quotes that clients can review and e-sign.',
     departmentDashboard: {
       deptName: 'CPQ & Deal Desk Operations Department',
@@ -267,7 +267,7 @@ export const crmTabData = {
     heroTitle: 'Integrated',
     heroHighlight: 'Project Management',
     heroDesc: 'Plan, execute, and track customer projects seamlessly. Collaborate with teams, manage resources, and deliver projects on time and within budget directly from your CRM.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     overview: 'Our Project Management module links sales opportunities directly to project execution. Build Gantt chart schedules, assign tasks, log billable team hours, track budget burn rates, and give clients transparent portal views.',
     departmentDashboard: {
       deptName: 'Client Delivery & PMO Department',
@@ -311,7 +311,7 @@ export const crmTabData = {
     heroTitle: 'Centralized',
     heroHighlight: 'Task Management',
     heroDesc: 'Assign tasks, set priorities, and track progress across teams. Ensure nothing falls through the cracks and keep your entire organization aligned and productive.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     overview: 'Our Task Management module organizes team activity across all business units. Create custom Kanban boards, configure checklist items, set automated due-date reminders, and ensure seamless team collaboration.',
     departmentDashboard: {
       deptName: 'Cross-Department Operations Department',
@@ -355,7 +355,7 @@ export const crmTabData = {
     heroTitle: 'Mobile-First',
     heroHighlight: 'Field Service CRM',
     heroDesc: 'Manage field operations, engineers, visits, and real-time updates. Empower your mobile workforce with the tools they need to resolve issues on the first visit.',
-    image: '/assets/images/new-iot-solutions/iot_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/iot_robot_dark.webp',
     overview: 'Our Field Service CRM connects dispatch managers with mobile technicians. Route engineers based on GPS proximity and skill certifications, collect digital customer sign-offs, and track spare parts used on site.',
     departmentDashboard: {
       deptName: 'Field Dispatch & Technician Operations Department',
@@ -399,7 +399,7 @@ export const crmTabData = {
     heroTitle: 'Comprehensive',
     heroHighlight: 'Helpdesk Solutions',
     heroDesc: 'Handle tickets, incidents, and customer queries efficiently. Use intelligent routing and AI-powered suggestions to resolve support tickets faster than ever.',
-    image: '/assets/images/new-iot-solutions/ai_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_robot_dark.webp',
     overview: 'Our Helpdesk Solution turns ticket chaos into organized service delivery. Capture tickets across email, portal, and chat, apply smart auto-routing based on topic tags, and utilize AI solution recommendations.',
     departmentDashboard: {
       deptName: 'IT Helpdesk & Incident Resolution Department',
@@ -443,7 +443,7 @@ export const crmTabData = {
     heroTitle: 'Self-Service',
     heroHighlight: 'Customer Portals',
     heroDesc: 'Empower customers with self-service capabilities. Provide a branded portal for knowledge bases, ticket tracking, order history, and real-time updates.',
-    image: '/assets/images/new-iot-solutions/ai_brain_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_brain_dark.webp',
     overview: 'Our Customer Portal provides your clients with a secure 24/7 self-service window. Allow customers to track orders, submit support tickets, download invoices, review contract documents, and manage their account profile.',
     departmentDashboard: {
       deptName: 'Client Self-Service & Community Operations Department',
@@ -487,7 +487,7 @@ export const crmTabData = {
     heroTitle: 'Data-Driven',
     heroHighlight: 'CRM Analytics',
     heroDesc: 'Gain deep insights with advanced reports and dashboards. Monitor pipeline health, track revenue, and make data-driven decisions with real-time analytics.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     overview: 'Our CRM Analytics module transforms customer data into strategic revenue intelligence. Build custom drag-and-drop dashboards, analyze sales conversion funnels, track rep performance metrics, and forecast revenue.',
     departmentDashboard: {
       deptName: 'Revenue Intelligence & Executive BI Department',

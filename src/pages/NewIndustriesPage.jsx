@@ -98,7 +98,7 @@ const NewIndustriesPage = () => {
         description={metaDescription}
         keywords={`Industry software solutions, ${activeIndustry} software, manufacturing IoT, healthcare AI, retail ERP, logistics CRM, fintech software, Codigix Infotech`}
         canonical={canonicalUrl}
-        ogImage="https://codigixinfotech.com/assets/images/logos/logo.png"
+        ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={industriesSchemas}
       />
 

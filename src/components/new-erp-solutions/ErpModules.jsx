@@ -195,14 +195,14 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
                   
                   {/* Light Theme Image */}
                   <img 
-                    src={proj.imageLight || proj.image || '/assets/images/service/erp_manufacturing_light.png'} 
+                    src={proj.imageLight || proj.image || '/assets/images/service/erp_manufacturing_light.webp'} 
                     alt={proj.title} 
                     className="block dark:hidden w-full h-full object-cover rounded-xl shadow-xs group-hover:scale-105 transition-transform duration-500 relative z-10" 
                   />
 
                   {/* Dark Theme Image */}
                   <img 
-                    src={proj.imageDark || proj.image || '/assets/images/new-iot-solutions/erp_isometric_dark.png'} 
+                    src={proj.imageDark || proj.image || '/assets/images/new-iot-solutions/erp_isometric_dark.webp'} 
                     alt={proj.title} 
                     className="hidden dark:block w-full h-full object-contain filter contrast-125 brightness-110 group-hover:scale-105 transition-transform duration-500 relative z-10" 
                   />

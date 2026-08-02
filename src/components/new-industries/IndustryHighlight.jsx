@@ -25,7 +25,7 @@ const industryData = {
       'Medical Billing & Insurance', 'Pharmacy Management',
       'Lab & Diagnostics Integration', 'Healthcare Compliance (HIPAA)'
     ],
-    image: '/assets/images/service/ai_brain.png',
+    image: '/assets/images/service/ai_brain.webp',
     btnText: 'View Healthcare Solutions'
   },
   'Retail': {

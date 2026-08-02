@@ -290,12 +290,12 @@ const DefaultAiVisualizer = ({ tab }) => {
       {/* Center Image Showcase Frame */}
       <div className="my-3 relative rounded-xl border border-purple-500/40 overflow-hidden shadow-lg group bg-[#040114]">
         <img 
-          src="/assets/images/ai-page/ai_solutions_hero.png" 
+          src="/assets/images/ai-page/ai_solutions_hero.webp" 
           alt="Codigix AI Solutions" 
           className="w-full h-40 object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = '/assets/images/new-home/ai_brain.png';
+            e.target.src = '/assets/images/new-home/ai_brain.webp';
           }}
         />
 

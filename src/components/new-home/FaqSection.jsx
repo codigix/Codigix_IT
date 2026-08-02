@@ -46,13 +46,13 @@ const FaqSection = () => {
       {/* Light Mode Full Background Image */}
       <div
         className="block dark:hidden absolute inset-0 bg-contain bg-left lg:bg-top bg-no-repeat pointer-events-none z-0 opacity-95 transition-opacity duration-300"
-        style={{ backgroundImage: "url('/assets/images/new-home/faq_light_bg.png')" }}
+        style={{ backgroundImage: "url('/assets/images/new-home/faq_light_bg.webp')" }}
       />
 
       {/* Dark Mode Full Background Image */}
       <div
         className="hidden dark:block absolute inset-0 bg-contain bg-left lg:bg-top bg-no-repeat pointer-events-none z-0 opacity-95 mix-blend-screen transition-opacity duration-300"
-        style={{ backgroundImage: "url('/assets/images/new-home/faq_dark_bg.png')" }}
+        style={{ backgroundImage: "url('/assets/images/new-home/faq_dark_bg.webp')" }}
       />
 
       <div className="max-w-7xl mx-auto relative z-10">

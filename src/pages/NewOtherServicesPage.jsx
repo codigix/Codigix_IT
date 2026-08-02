@@ -120,7 +120,7 @@ const NewOtherServicesPage = () => {
         description={metaDescription}
         keywords="Custom Web Development, Mobile App Development, UI UX Design Systems, AWS Cloud Architecture, DevOps CI CD Automation, React Next.js Node.js, Codigix Infotech"
         canonical={canonicalUrl}
-        ogImage="https://codigixinfotech.com/assets/images/logos/logo.png"
+        ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={servicesSchemas}
       />
 

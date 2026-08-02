@@ -98,7 +98,7 @@ const NewAiSolutionsPage = () => {
         description={metaDescription}
         keywords={`AI solutions, ${activeTab}, Generative AI, custom LLM integration, AI chatbots, computer vision engineering, voice AI agents, predictive analytics, Codigix Infotech`}
         canonical={canonicalUrl}
-        ogImage="https://codigixinfotech.com/assets/images/logos/logo.png"
+        ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={aiSchemas}
       />
 

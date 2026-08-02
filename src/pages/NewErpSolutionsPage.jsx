@@ -99,7 +99,7 @@ const NewErpSolutionsPage = () => {
         description={metaDescription}
         keywords={`Custom ERP Software, ${activeTab}, ERP system development, inventory management ERP, production planning software, enterprise ERP, manufacturing ERP, cloud ERP, Codigix Infotech`}
         canonical={canonicalUrl}
-        ogImage="https://codigixinfotech.com/assets/images/logos/logo.png"
+        ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={erpSchemas}
       />
 

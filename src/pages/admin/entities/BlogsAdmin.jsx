@@ -28,52 +28,19 @@ import {
 
 const API_BASE = 'http://localhost:5000/api';
 
-const fallbackBlogPosts = [
-  {
-    id: 1,
-    title: 'Unlocking Industrial IoT: Bridging Physical Devices with Cloud Telemetry',
-    category: 'IoT & Industry 4.0',
-    date: 'Aug 1, 2026',
-    author: 'Suresh Nair',
-    role: 'Principal IoT Solutions Architect',
-    readTime: '5 min read',
-    image: '/assets/images/new-home/blog_iot.png',
-    body: 'The convergence of operational technology (OT) and information technology (IT) has unlocked unprecedented efficiencies on the factory shop floor. Edge device sensors interface directly with machinery via OPC UA and Modbus RTU, sending telemetry payloads via TLS-encrypted MQTT pipelines to AWS IoT Core for predictive maintenance.'
-  },
-  {
-    id: 2,
-    title: 'The Future of ERP: Scalable Cloud Architecture and AI-Powered Automation',
-    category: 'Enterprise SaaS',
-    date: 'Jul 28, 2026',
-    author: 'Deepak Sharma',
-    role: 'VP of Enterprise Solutions',
-    readTime: '7 min read',
-    image: '/assets/images/new-home/blog_erp.png',
-    body: 'Legacy monolithic ERP installations are rapidly being replaced by distributed, event-driven SaaS architectures. Today’s competitive landscape demands microservices running in Docker containers orchestrated by Kubernetes to ensure independent scaling of inventory, purchase, and finance modules.'
-  },
-  {
-    id: 3,
-    title: 'Unlocking CRM Conversions: Leveraging AI Intent Scoring & Smart Funnels',
-    category: 'Sales Tech',
-    date: 'Jul 24, 2026',
-    author: 'Meera Iyer',
-    role: 'Lead CRM Architect',
-    readTime: '4 min read',
-    image: '/assets/images/new-home/blog_crm.png',
-    body: 'Learn how smart round-robin routing engines and dynamic multi-channel lead ingestion maximize deal win-rates and pipeline conversions with real-time AI scoring.'
-  },
-  {
-    id: 4,
-    title: 'Optimizing React & Next.js for Core Web Vitals to Boost SEO Performance',
-    category: 'Web Engineering',
-    date: 'Jul 18, 2026',
-    author: 'Amit Verma',
-    role: 'Senior Frontend Architect',
-    readTime: '6 min read',
-    image: '/assets/images/service/web_dev_dashboard.webp',
-    body: 'Deep-dive into server component architectures, dynamic import split chunks, lazy layouts, and cache hydration tricks to achieve a 100/100 Google PageSpeed score.'
-  }
-];
+import { blogPostsData } from '../../../data/blogData';
+
+const fallbackBlogPosts = blogPostsData.map((post, idx) => ({
+  id: idx + 1,
+  title: post.title,
+  category: post.category,
+  date: post.date,
+  author: post.author,
+  role: post.role || 'Technical Lead',
+  readTime: post.readTime || '5 min read',
+  image: post.image,
+  body: post.excerpt || (typeof post.content === 'string' ? post.content.replace(/<[^>]+>/g, '').slice(0, 200) + '...' : 'Comprehensive technology insight article.')
+}));
 
 const ImageUploader = ({ label, value, onChange }) => {
   const [isUploading, setIsUploading] = useState(false);
@@ -197,7 +164,23 @@ const BlogsAdmin = () => {
     body: ''
   });
 
-  const categories = ['All', 'IoT & Industry 4.0', 'Enterprise SaaS', 'Sales Tech', 'Web Engineering', 'AI & Automation', 'Cloud & Security'];
+  const categories = [
+    'All',
+    'AI & Automation',
+    'IoT & Industry 4.0',
+    'Enterprise ERP',
+    'Sales Tech & CRM',
+    'Web Engineering',
+    'Mobile Engineering',
+    'Cloud & DevOps',
+    'Smart Manufacturing',
+    'Healthcare Tech',
+    'Retail & E-Commerce',
+    'Fintech & Banking',
+    'Construction Tech',
+    'Automotive Tech',
+    'EdTech'
+  ];
 
   // Fetch blogs from DB
   const fetchBlogs = async () => {

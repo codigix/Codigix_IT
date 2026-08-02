@@ -8,7 +8,7 @@ const offices = [
     city: "Office No: 514, 5th Floor, Brahma Sky Uzuri, MIDC, Pimpri-Chinchwad, Maharashtra 411018.",
     phone: "+91 9112706604",
     email: "info@codigixinfotech.com",
-    img: "/assets/images/service/ai_brain.png"
+    img: "/assets/images/service/ai_brain.webp"
   }
 ];
 

@@ -50,7 +50,7 @@ const NewCaseStudiesPage = () => {
       "@type": "Organization",
       "name": "Codigix Infotech",
       "url": siteUrl,
-      "logo": `${siteUrl}/assets/images/logos/logo.png`
+      "logo": `${siteUrl}/assets/images/logos/logo.webp`
     },
     "hasPart": caseStudiesData.map(study => ({
       "@type": "CreativeWork",
@@ -109,7 +109,7 @@ const NewCaseStudiesPage = () => {
     "@type": "Organization",
     "name": "Codigix Infotech",
     "url": siteUrl,
-    "logo": `${siteUrl}/assets/images/logos/logo.png`,
+    "logo": `${siteUrl}/assets/images/logos/logo.webp`,
     "sameAs": [
       "https://www.linkedin.com/company/135144609/admin/",
       "https://www.facebook.com/codigix.infotech",
@@ -127,7 +127,7 @@ const NewCaseStudiesPage = () => {
         description={metaDescription}
         keywords={`IT case studies, AI solutions case studies, Industrial IoT success stories, enterprise ERP case studies, CRM implementation results, custom software engineering, Codigix Infotech, ${activeCategory} case studies`}
         canonical={canonicalUrl}
-        ogImage={`${siteUrl}/assets/images/service/erp_dash.png`}
+        ogImage={`${siteUrl}/assets/images/service/erp_dash.webp`}
         schemaData={[collectionSchema, breadcrumbSchema, faqSchema, organizationSchema]}
       />
 

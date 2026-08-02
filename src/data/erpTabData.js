@@ -2,7 +2,7 @@ export const erpTabData = {
   'Manufacturing ERP': {
     title: 'Intelligent Manufacturing ERP Solutions',
     desc: 'Optimize production schedules, manage Bill of Materials (BOM), automate shopfloor routing, and track material requisitions in real time.',
-    image: '/assets/images/new-iot-solutions/iot_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/iot_robot_dark.webp',
     benefits: [
       'Real-time Production Monitoring',
       'Accurate Costing & Margin Control',
@@ -22,7 +22,7 @@ export const erpTabData = {
   'Healthcare ERP': {
     title: 'Secure Healthcare ERP & Hospital Management',
     desc: 'Streamline hospital operations, manage secure electronic health records (EHR/EMR), simplify patient billing, and coordinate medical inventories.',
-    image: '/assets/images/new-iot-solutions/ai_brain_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_brain_dark.webp',
     benefits: [
       'Seamless Patient Intake Flow',
       'HIPAA & Secure Data Vaults',
@@ -42,7 +42,7 @@ export const erpTabData = {
   'Trading ERP': {
     title: 'Global Trading & Distribution ERP',
     desc: 'Unify your supply chain operations. Control purchase-to-pay processes, manage order fulfillments, and track vendor shipments across multiple countries.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     benefits: [
       'Multi-Currency Book Ledger',
       'Automated Sales Order Entry',
@@ -62,7 +62,7 @@ export const erpTabData = {
   'Construction ERP': {
     title: 'Enterprise Construction & Project ERP',
     desc: 'Gain 360-degree control over multi-site construction projects. Track subcontracts, monitor equipment allocation, and control material billing variances.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     benefits: [
       'Multi-site Budget Visibility',
       'Contractor Milestone Tracking',
@@ -82,7 +82,7 @@ export const erpTabData = {
   'Inventory Management': {
     title: 'Real-time Inventory Management Solutions',
     desc: 'Achieve absolute accuracy in stock levels. Automate reorder points, perform stock valuations, and synchronize multiple warehouses in real time.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     benefits: [
       'Real-time Stock Audits',
       'Smart Reorder Point Alerts',
@@ -102,7 +102,7 @@ export const erpTabData = {
   'Purchase Management': {
     title: 'Automated Purchase & Procurement ERP',
     desc: 'Streamline the purchase requisition workflow. Automate RFQ releases, track vendor quotations, and coordinate multi-level approval hierarchies.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     benefits: [
       'Centralized Material Requests',
       'Automated RFQ Comparisons',
@@ -122,7 +122,7 @@ export const erpTabData = {
   'Production Planning': {
     title: 'Advanced Production Planning & Scheduling',
     desc: 'Eliminate scheduling bottlenecks. Optimize demand forecasts, balance machine capacities, and streamline raw material allocations.',
-    image: '/assets/images/new-iot-solutions/iot_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/iot_robot_dark.webp',
     benefits: [
       'Optimal Resource Load Balancing',
       'Accurate Material Needs (MRP)',
@@ -142,7 +142,7 @@ export const erpTabData = {
   'Quality Management': {
     title: 'Enterprise Quality Management (QMS)',
     desc: 'Uphold the highest quality standards. Implement inline inspections, log non-conformances (NCR), and automate Corrective Actions (CAPA).',
-    image: '/assets/images/new-iot-solutions/ai_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_robot_dark.webp',
     benefits: [
       'Automated Quality Gates',
       'Non-Conformance (NCR) Logs',
@@ -162,7 +162,7 @@ export const erpTabData = {
   'Finance & Accounts': {
     title: 'Integrated Enterprise Accounting & Finance',
     desc: 'Unify your financial accounting. Manage General Ledger (GL), automate AR/AP workflows, handle tax filing, and generate compliance reports.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     benefits: [
       'Real-time Profit & Loss Ledger',
       'Automated Tax & GST Audits',
@@ -182,7 +182,7 @@ export const erpTabData = {
   'HR & Payroll': {
     title: 'Unified HR Management & Automated Payroll',
     desc: 'Optimize employee lifecycles. Automate attendance logs, manage leave requests, configure complex tax slabs, and run secure payroll operations.',
-    image: '/assets/images/new-iot-solutions/ai_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_robot_dark.webp',
     benefits: [
       'Automated Shift Attendance',
       'Single-Click Payroll Runs',
@@ -202,7 +202,7 @@ export const erpTabData = {
   'Asset Management': {
     title: 'Enterprise Asset Lifecycle & Maintenance',
     desc: 'Maximize the value of your physical assets. Track location history, calculate dynamic depreciation rates, and automate preventive AMC schedules.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     benefits: [
       'Minimized Equipment Downtime',
       'Auto-calculated Depreciation',
@@ -222,7 +222,7 @@ export const erpTabData = {
   'Warehouse Management': {
     title: 'Advanced Warehouse Management (WMS)',
     desc: 'Optimize your internal space and speed up pick-and-pack times. Manage inventory by specific bins, automate shelf assignments, and coordinate stock movements.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     benefits: [
       'Optimized Bin Allocations',
       'Faster Pick/Pack Delivery Cycles',
@@ -242,7 +242,7 @@ export const erpTabData = {
   'ERP Integrations': {
     title: 'Seamless ERP Integrations & API Console',
     desc: 'Connect your ERP core to external tools. Sync e-commerce channels, link payment gateways, integrate IoT sensors, and connect CRM applications.',
-    image: '/assets/images/new-iot-solutions/ai_brain_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_brain_dark.webp',
     benefits: [
       'Unified Business Data Sync',
       'Real-time IoT Telemetry Feeds',

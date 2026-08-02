@@ -36,7 +36,7 @@ const SEO = ({
   
   const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
   const fullCanonical = canonical || `${siteUrl}${currentPath === "/" ? "" : currentPath}`;
-  const finalOgImage = ogImage || `${siteUrl}/assets/images/logos/logo.png`;
+  const finalOgImage = ogImage || `${siteUrl}/assets/images/logos/logo.webp`;
 
   // Process structured JSON-LD schemas
   const schemasToRender = Array.isArray(schemaData)

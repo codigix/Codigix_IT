@@ -146,7 +146,7 @@ const NewCaseStudyDetailsPage = () => {
   
   const heroImgUrl = activeStudy.heroImage?.startsWith('/uploads') 
     ? `http://localhost:5000${activeStudy.heroImage}` 
-    : (activeStudy.heroImage?.startsWith('http') ? activeStudy.heroImage : `${siteUrl}${activeStudy.heroImage || '/assets/images/service/erp_dash.png'}`);
+    : (activeStudy.heroImage?.startsWith('http') ? activeStudy.heroImage : `${siteUrl}${activeStudy.heroImage || '/assets/images/service/erp_dash.webp'}`);
 
   // Related Case Studies (filter out active)
   const relatedStudies = caseStudiesData.filter(s => String(s.id) !== String(activeStudy.id)).slice(0, 3);
@@ -175,7 +175,7 @@ const NewCaseStudyDetailsPage = () => {
       "name": "Codigix Infotech",
       "logo": {
         "@type": "ImageObject",
-        "url": `${siteUrl}/assets/images/logos/logo.png`
+        "url": `${siteUrl}/assets/images/logos/logo.webp`
       }
     },
     "about": [
@@ -526,7 +526,7 @@ const NewCaseStudyDetailsPage = () => {
 
                 <div className="flex items-center gap-4">
                   <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden border border-white/20 hidden sm:block">
-                    <img src="/assets/images/new-iot-solutions/iot_robot_dark.png" alt="Transform Operations through Codigix IT Solutions" className="w-full h-full object-cover" />
+                    <img src="/assets/images/new-iot-solutions/iot_robot_dark.webp" alt="Transform Operations through Codigix IT Solutions" className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-white mb-1">Ready to Transform Your Operations?</h2>

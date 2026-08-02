@@ -3,7 +3,7 @@ export const erpTabData = {
     heroTitle: 'Smart ERP Solutions for',
     heroHighlight: 'Manufacturing Excellence.',
     heroDesc: 'Automate shop floor operations, optimize production planning, manage BOMs, and gain real-time visibility into your manufacturing processes with our intelligent ERP solutions.',
-    image: '/assets/images/new-iot-solutions/iot_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/iot_robot_dark.webp',
     overview: 'Our Manufacturing ERP is built specifically for discrete and process manufacturers. It bridges shop floor automation with top-floor executive decision-making. From multi-level Bill of Materials (BOM) management to real-time machine telemetry integration, raw material planning (MRP), and automated scrap tracking, our platform empowers plant managers to boost throughput, maximize OEE, and maintain strict ISO compliance.',
     departmentDashboard: {
       deptName: 'Manufacturing & Shopfloor Operations Department',
@@ -30,9 +30,9 @@ export const erpTabData = {
       { title: 'Job Costing & Profitability', desc: 'Real-time variance analysis comparing estimated standard costs against actual labor/material.', icon: 'PieChart', color: 'text-rose-400', bg: 'bg-rose-500/10', metric: 'Exact Cost Logs' }
     ],
     projects: [
-      { title: 'Automotive Stamping Plant Automation', client: 'Apex Auto Components', results: 'Increased OEE by 24% and eliminated 150+ hours of paper-based job tracking per month.', tag: 'Automotive', imageLight: '/assets/images/service/erp_manufacturing_light.png', imageDark: '/assets/images/new-iot-solutions/iot_robot_dark.png' },
-      { title: 'Precision CNC Machining ERP', client: 'Titan Precision Gears', results: 'Achieved 99.4% BOM material accuracy and reduced work-in-progress inventory by $420,000.', tag: 'Precision Engineering', imageLight: '/assets/images/service/crm_project_light.png', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.png' },
-      { title: 'Multi-Plant Electronics Manufacturing', client: 'Electra Tech India', results: 'Automated 12,000 daily shopfloor scans and reduced order lead time from 14 days to 4 days.', tag: 'Electronics', imageLight: '/assets/images/service/crm_sales_light.png', imageDark: '/assets/images/new-iot-solutions/erp_isometric_dark.png' }
+      { title: 'Automotive Stamping Plant Automation', client: 'Apex Auto Components', results: 'Increased OEE by 24% and eliminated 150+ hours of paper-based job tracking per month.', tag: 'Automotive', imageLight: '/assets/images/service/erp_manufacturing_light.webp', imageDark: '/assets/images/new-iot-solutions/iot_robot_dark.webp' },
+      { title: 'Precision CNC Machining ERP', client: 'Titan Precision Gears', results: 'Achieved 99.4% BOM material accuracy and reduced work-in-progress inventory by $420,000.', tag: 'Precision Engineering', imageLight: '/assets/images/service/crm_project_light.webp', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.webp' },
+      { title: 'Multi-Plant Electronics Manufacturing', client: 'Electra Tech India', results: 'Automated 12,000 daily shopfloor scans and reduced order lead time from 14 days to 4 days.', tag: 'Electronics', imageLight: '/assets/images/service/crm_sales_light.webp', imageDark: '/assets/images/new-iot-solutions/erp_isometric_dark.webp' }
     ],
     benefits: ['Real-time Production Monitoring', 'Accurate Costing & Margin Control', 'Optimized Shopfloor Routing', 'Reduced Material Waste', 'Automated Quality Inspection', 'Predictive Maintenance Alerts'],
     workflow: [
@@ -47,7 +47,7 @@ export const erpTabData = {
     heroTitle: 'Integrated ERP for',
     heroHighlight: 'Healthcare Systems.',
     heroDesc: 'Streamline patient management, billing, pharmacy inventory, and compliance reporting with a unified healthcare ERP platform built for scalability and patient care.',
-    image: '/assets/images/new-iot-solutions/ai_brain_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_brain_dark.webp',
     overview: 'Our Healthcare ERP connects clinical workflows with administrative infrastructure. It unifies patient registration, Electronic Health Records (EHR/EMR), ward bed management, pharmacy inventory, and insurer claims processing into a HIPAA-compliant digital core, giving medical directors real-time operational control.',
     departmentDashboard: {
       deptName: 'Clinical & Hospital Administration Department',
@@ -74,9 +74,9 @@ export const erpTabData = {
       { title: 'Diagnostic Lab Integration', desc: 'Sync LIMS test machines directly to patient charts for instant lab report publishing.', icon: 'Activity', color: 'text-cyan-400', bg: 'bg-cyan-500/10', metric: 'Instant Sync' }
     ],
     projects: [
-      { title: 'Multi-Specialty Hospital ERP Deployment', client: 'Sunshine Super Specialty Hospitals', results: 'Unified 450 beds across 3 hospital wings, reducing average discharge times by 65%.', tag: 'Hospitals', imageLight: '/assets/images/service/crm_support_light.png', imageDark: '/assets/images/new-iot-solutions/ai_brain_dark.png' },
-      { title: 'Regional Pharmacy Chain Inventory ERP', client: 'MedLife Pharmacy Network', results: 'Automated drug expiration tracking across 40 branch stores, saving $180,000 annually.', tag: 'Pharma Retail', imageLight: '/assets/images/service/crm_portal_light.png', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.png' },
-      { title: 'Diagnostic Laboratory LIMS Integration', client: 'PathoCare Clinical Labs', results: 'Connected 14 automated blood analyzer machines directly to online patient portals.', tag: 'Diagnostics', imageLight: '/assets/images/service/crm_lead_light.png', imageDark: '/assets/images/new-iot-solutions/ai_robot_dark.png' }
+      { title: 'Multi-Specialty Hospital ERP Deployment', client: 'Sunshine Super Specialty Hospitals', results: 'Unified 450 beds across 3 hospital wings, reducing average discharge times by 65%.', tag: 'Hospitals', imageLight: '/assets/images/service/crm_support_light.webp', imageDark: '/assets/images/new-iot-solutions/ai_brain_dark.webp' },
+      { title: 'Regional Pharmacy Chain Inventory ERP', client: 'MedLife Pharmacy Network', results: 'Automated drug expiration tracking across 40 branch stores, saving $180,000 annually.', tag: 'Pharma Retail', imageLight: '/assets/images/service/crm_portal_light.webp', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.webp' },
+      { title: 'Diagnostic Laboratory LIMS Integration', client: 'PathoCare Clinical Labs', results: 'Connected 14 automated blood analyzer machines directly to online patient portals.', tag: 'Diagnostics', imageLight: '/assets/images/service/crm_lead_light.webp', imageDark: '/assets/images/new-iot-solutions/ai_robot_dark.webp' }
     ],
     benefits: ['Seamless Patient Intake Flow', 'HIPAA & Secure Data Vaults', 'Unified Clinic & Ward Billing', 'Pharmacy Stock Alerts', 'Doctor Scheduling Optimization', 'Centralized Diagnostic Logs'],
     workflow: [
@@ -91,7 +91,7 @@ export const erpTabData = {
     heroTitle: 'Robust ERP Solutions for',
     heroHighlight: 'Trading & Distribution.',
     heroDesc: 'Manage your entire supply chain, track inventory across multiple warehouses, automate sales orders, and improve vendor relationships with our trading ERP.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     overview: 'Designed for wholesale importers, exporters, and distributors, our Trading ERP unifies global purchasing, multi-location stock replenishment, sales order fulfillment, customs documentation, and landed-cost calculations in real time.',
     departmentDashboard: {
       deptName: 'Supply Chain & Wholesale Distribution Department',
@@ -118,9 +118,9 @@ export const erpTabData = {
       { title: 'Rebate & Commission Rules', desc: 'Configure tiered distributor margins, sales agent commissions, and volume rebates.', icon: 'PieChart', color: 'text-rose-400', bg: 'bg-rose-500/10', metric: 'Auto Rebates' }
     ],
     projects: [
-      { title: 'Global FMCG Import & Distribution ERP', client: 'Orient Trade Worldwide', results: 'Automated landed-cost calculations across 1,200 monthly sea containers.', tag: 'Import/Export', imageLight: '/assets/images/service/crm_light_analytics.png', imageDark: '/assets/images/new-iot-solutions/erp_isometric_dark.png' },
-      { title: 'Wholesale Electrical Equipment Distribution', client: 'Nova Electrical Distributors', results: 'Synchronized 5 regional fulfillment hubs, increasing inventory turnover by 3.5x.', tag: 'Wholesale', imageLight: '/assets/images/service/crm_portal_light.png', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.png' },
-      { title: 'Multi-Currency Commodity Trading Platform', client: 'AgriCorp Global Trading', results: 'Reduced sales order processing time from 45 minutes to under 2 minutes.', tag: 'Commodities', imageLight: '/assets/images/service/crm_sales_light.png', imageDark: '/assets/images/new-iot-solutions/ai_brain_dark.png' }
+      { title: 'Global FMCG Import & Distribution ERP', client: 'Orient Trade Worldwide', results: 'Automated landed-cost calculations across 1,200 monthly sea containers.', tag: 'Import/Export', imageLight: '/assets/images/service/crm_light_analytics.webp', imageDark: '/assets/images/new-iot-solutions/erp_isometric_dark.webp' },
+      { title: 'Wholesale Electrical Equipment Distribution', client: 'Nova Electrical Distributors', results: 'Synchronized 5 regional fulfillment hubs, increasing inventory turnover by 3.5x.', tag: 'Wholesale', imageLight: '/assets/images/service/crm_portal_light.webp', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.webp' },
+      { title: 'Multi-Currency Commodity Trading Platform', client: 'AgriCorp Global Trading', results: 'Reduced sales order processing time from 45 minutes to under 2 minutes.', tag: 'Commodities', imageLight: '/assets/images/service/crm_sales_light.webp', imageDark: '/assets/images/new-iot-solutions/ai_brain_dark.webp' }
     ],
     benefits: ['Multi-Currency Book Ledger', 'Automated Sales Order Entry', 'Cross-docking & Warehousing', 'Supplier Performance Scorecards', 'Customs & Duty Automation', 'Dynamic Price Margins'],
     workflow: [
@@ -135,7 +135,7 @@ export const erpTabData = {
     heroTitle: 'End-to-End ERP for',
     heroHighlight: 'Construction Projects.',
     heroDesc: 'Take control of your construction projects with integrated budgeting, resource planning, contract management, and real-time site progress tracking.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     overview: 'Our Construction ERP is engineered for general contractors, infrastructure builders, and real estate developers. Manage site BOQs, subcontractor tenders, material indenting, equipment usage logs, and Running Account (RA) bills from desktop or mobile devices.',
     departmentDashboard: {
       deptName: 'Project Engineering & Site Operations Department',
@@ -162,9 +162,9 @@ export const erpTabData = {
       { title: 'Project Profitability Analytics', desc: 'Executive dashboards comparing estimated budget versus actual expenditure per WBS.', icon: 'PieChart', color: 'text-rose-400', bg: 'bg-rose-500/10', metric: 'Live ROI View' }
     ],
     projects: [
-      { title: 'Infrastructure Highway Project ERP', client: 'Vanguard Infra Ltd', results: 'Managed $140M highway stretch with 100% digital site DPRs and sub-contractor RA bills.', tag: 'Infrastructure', imageLight: '/assets/images/service/crm_project_light.png', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.png' },
-      { title: 'Commercial High-Rise Construction ERP', client: 'Skyline Urban Developers', results: 'Prevented steel & cement material wastage by 18% through barcoded site indents.', tag: 'Real Estate', imageLight: '/assets/images/service/crm_fieldservice_light.png', imageDark: '/assets/images/new-iot-solutions/iot_robot_dark.png' },
-      { title: 'Industrial Turnkey EPC Project ERP', client: 'Indus Engineering & Construction', results: 'Reduced project milestone billing delays from 3 weeks to 2 days.', tag: 'EPC Projects', imageLight: '/assets/images/service/crm_sales_light.png', imageDark: '/assets/images/new-iot-solutions/erp_isometric_dark.png' }
+      { title: 'Infrastructure Highway Project ERP', client: 'Vanguard Infra Ltd', results: 'Managed $140M highway stretch with 100% digital site DPRs and sub-contractor RA bills.', tag: 'Infrastructure', imageLight: '/assets/images/service/crm_project_light.webp', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.webp' },
+      { title: 'Commercial High-Rise Construction ERP', client: 'Skyline Urban Developers', results: 'Prevented steel & cement material wastage by 18% through barcoded site indents.', tag: 'Real Estate', imageLight: '/assets/images/service/crm_fieldservice_light.webp', imageDark: '/assets/images/new-iot-solutions/iot_robot_dark.webp' },
+      { title: 'Industrial Turnkey EPC Project ERP', client: 'Indus Engineering & Construction', results: 'Reduced project milestone billing delays from 3 weeks to 2 days.', tag: 'EPC Projects', imageLight: '/assets/images/service/crm_sales_light.webp', imageDark: '/assets/images/new-iot-solutions/erp_isometric_dark.webp' }
     ],
     benefits: ['Multi-site Budget Visibility', 'Contractor Milestone Tracking', 'Equipment Dispatch Efficiency', 'Automated RA Billing Logs', 'Labor Attendance Sync', 'Material Consumption Audits'],
     workflow: [
@@ -179,7 +179,7 @@ export const erpTabData = {
     heroTitle: 'Intelligent',
     heroHighlight: 'Inventory Management.',
     heroDesc: 'Optimize stock levels, automate reordering, track serial numbers, and reduce carrying costs with real-time, multi-warehouse inventory visibility.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     overview: 'Our Inventory Management module provides complete control over your stock assets. Gain instant visibility across multiple warehouse locations, automate replenishment orders based on lead times, track serial numbers, and streamline stock auditing with handheld mobile scanners.',
     departmentDashboard: {
       deptName: 'Central Inventory & Stores Department',
@@ -223,7 +223,7 @@ export const erpTabData = {
     heroTitle: 'Streamlined',
     heroHighlight: 'Purchase Management.',
     heroDesc: 'Automate RFQs, manage purchase orders, track vendor performance, and streamline the approval workflow to ensure cost-effective procurement.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     overview: 'Our Purchase Management module modernizes corporate procurement. From auto-generating Purchase Requisitions to sending side-by-side RFQ tenders, evaluating supplier rating metrics, and enforcing multi-tier approval rules, it guarantees maximum cost savings.',
     departmentDashboard: {
       deptName: 'Corporate Procurement & Sourcing Department',
@@ -267,7 +267,7 @@ export const erpTabData = {
     heroTitle: 'Advanced',
     heroHighlight: 'Production Planning.',
     heroDesc: 'Plan demand accurately, schedule capacity, route materials efficiently, and balance resources to ensure on-time delivery and maximum production throughput.',
-    image: '/assets/images/new-iot-solutions/iot_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/iot_robot_dark.webp',
     overview: 'Production Planning module provides advanced Master Production Scheduling (MPS) and Material Requirements Planning (MRP). Align sales order demand forecasts with shopfloor machine capabilities to prevent bottlenecks and ensure 100% on-time delivery.',
     departmentDashboard: {
       deptName: 'Planning & Production Control (PPC) Department',
@@ -311,7 +311,7 @@ export const erpTabData = {
     heroTitle: 'Comprehensive',
     heroHighlight: 'Quality Management.',
     heroDesc: 'Ensure rigorous quality standards at every stage. Manage inspections, track non-conformances (NCR), and implement CAPA workflows to maintain compliance.',
-    image: '/assets/images/new-iot-solutions/ai_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_robot_dark.webp',
     overview: 'Our Quality Management System (QMS) enforces strict quality gates across your supply chain. Conduct inward GRN checks, inline production sampling, and finished goods testing with instant Non-Conformance (NCR) quarantine and Corrective Action (CAPA) tracking.',
     departmentDashboard: {
       deptName: 'Quality Assurance & Compliance (QA/QC) Department',
@@ -355,7 +355,7 @@ export const erpTabData = {
     heroTitle: 'Unified',
     heroHighlight: 'Finance & Accounts.',
     heroDesc: 'Gain real-time financial insights. Automate GL, AP/AR, bank reconciliation, tax compliance (GST), and generate comprehensive financial reports instantly.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     overview: 'Our Finance & Accounts module provides enterprise-grade accounting and financial control. Unify your General Ledger, Accounts Receivable, Accounts Payable, GST/TDS tax compliance, fixed asset books, and multi-currency bank reconciliations into a single, audit-proof dashboard.',
     departmentDashboard: {
       deptName: 'Finance & Accounts Controlling Department',
@@ -399,7 +399,7 @@ export const erpTabData = {
     heroTitle: 'Modern',
     heroHighlight: 'HR & Payroll Systems.',
     heroDesc: 'Manage your workforce effectively from hire to retire. Automate attendance tracking, payroll processing, tax deductions, leave management, and performance reviews.',
-    image: '/assets/images/new-iot-solutions/ai_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_robot_dark.webp',
     overview: 'Our HR & Payroll module automates employee administration from onboarding to retirement. Integrate biometric attendance devices, run complex multi-tier salary calculations with tax deductions, manage leave approvals, and empower staff with a mobile self-service app.',
     departmentDashboard: {
       deptName: 'Human Resources & People Operations Department',
@@ -443,7 +443,7 @@ export const erpTabData = {
     heroTitle: 'Proactive',
     heroHighlight: 'Asset Management.',
     heroDesc: 'Track all your fixed assets across locations. Automate depreciation calculations, schedule maintenance, and maximize asset lifespan and utilization.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     overview: 'Our Fixed Asset Management module protects your high-value physical investments. Track asset movements across branches, calculate straight-line or written-down depreciation rates automatically, manage AMCs, and prevent unplanned equipment failures.',
     departmentDashboard: {
       deptName: 'Plant Facilities & Fixed Asset Management Department',
@@ -487,7 +487,7 @@ export const erpTabData = {
     heroTitle: 'Efficient',
     heroHighlight: 'Warehouse Management.',
     heroDesc: 'Optimize warehouse operations with barcode scanning, automated put-away rules, intelligent picking/packing, and real-time bin-level stock visibility.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     overview: 'Our Warehouse Management System (WMS) maximizes space utilization and fulfillment speed. Manage bin locations, automate put-away routing, direct picking staff via handheld scanners, and achieve 99.9% order dispatch accuracy.',
     departmentDashboard: {
       deptName: 'Logistics & Warehouse Operations (WMS) Department',
@@ -531,7 +531,7 @@ export const erpTabData = {
     heroTitle: 'Seamless',
     heroHighlight: 'ERP Integrations.',
     heroDesc: 'Connect your ERP with third-party applications, IoT devices, payment gateways, CRM systems, and eCommerce platforms to create a unified business ecosystem.',
-    image: '/assets/images/new-iot-solutions/ai_brain_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_brain_dark.webp',
     overview: 'Our ERP Integration module connects your central database with external applications, IoT hardware sensors, e-commerce storefronts, payment gateways, and banking portals via secure REST/GraphQL APIs and webhooks.',
     departmentDashboard: {
       deptName: 'Enterprise IT & API Infrastructure Department',

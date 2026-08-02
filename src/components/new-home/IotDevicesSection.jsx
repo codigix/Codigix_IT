@@ -4,16 +4,16 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 const devices = [
-  { name: 'Temperature Sensors', image: '/assets/images/new-home/iot_temp_sensor.png' },
-  { name: 'Pressure Sensors', image: '/assets/images/new-home/iot_pressure_sensor.png' },
-  { name: 'Vibration Sensors', image: '/assets/images/new-home/iot_vibration_sensor.png' },
-  { name: 'PLC Controllers', image: '/assets/images/new-home/iot_plc_controller.png' },
-  { name: 'Raspberry Pi', image: '/assets/images/new-home/iot_raspberry_pi.png' },
-  { name: 'ESP32 / ESP8266', image: '/assets/images/new-home/iot_esp32.png' },
-  { name: 'RFID Readers', image: '/assets/images/new-home/iot_rfid_reader.png' },
-  { name: 'Barcode Scanner', image: '/assets/images/new-home/iot_barcode_scanner.png' },
-  { name: 'Industrial Gateway', image: '/assets/images/new-home/iot_gateway_icon.png' },
-  { name: 'Camera Modules', image: '/assets/images/new-home/iot_camera_module.png' },
+  { name: 'Temperature Sensors', image: '/assets/images/new-home/iot_temp_sensor.webp' },
+  { name: 'Pressure Sensors', image: '/assets/images/new-home/iot_pressure_sensor.webp' },
+  { name: 'Vibration Sensors', image: '/assets/images/new-home/iot_vibration_sensor.webp' },
+  { name: 'PLC Controllers', image: '/assets/images/new-home/iot_plc_controller.webp' },
+  { name: 'Raspberry Pi', image: '/assets/images/new-home/iot_raspberry_pi.webp' },
+  { name: 'ESP32 / ESP8266', image: '/assets/images/new-home/iot_esp32.webp' },
+  { name: 'RFID Readers', image: '/assets/images/new-home/iot_rfid_reader.webp' },
+  { name: 'Barcode Scanner', image: '/assets/images/new-home/iot_barcode_scanner.webp' },
+  { name: 'Industrial Gateway', image: '/assets/images/new-home/iot_gateway_icon.webp' },
+  { name: 'Camera Modules', image: '/assets/images/new-home/iot_camera_module.webp' },
 ];
 
 const deviceTelemetry = {

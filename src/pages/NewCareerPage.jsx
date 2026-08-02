@@ -66,7 +66,7 @@ const NewCareerPage = () => {
       "@type": "Organization",
       "name": "Codigix Infotech",
       "sameAs": siteUrl,
-      "logo": `${siteUrl}/assets/images/logos/logo.png`
+      "logo": `${siteUrl}/assets/images/logos/logo.webp`
     },
     "jobLocation": {
       "@type": "Place",
@@ -122,7 +122,7 @@ const NewCareerPage = () => {
     "@type": "Organization",
     "name": "Codigix Infotech",
     "url": siteUrl,
-    "logo": `${siteUrl}/assets/images/logos/logo.png`,
+    "logo": `${siteUrl}/assets/images/logos/logo.webp`,
     "sameAs": [
       "https://www.linkedin.com/company/135144609/admin/",
       "https://www.facebook.com/codigix.infotech",
@@ -140,7 +140,7 @@ const NewCareerPage = () => {
         description={metaDescription}
         keywords={`IT careers Pune, software developer jobs Pune, Full Stack developer job, React developer jobs, UI UX designer job, Codigix Infotech careers, technology jobs India, AI engineering jobs, ${activeDepartment} jobs`}
         canonical={canonicalUrl}
-        ogImage={`${siteUrl}/assets/images/logos/logo.png`}
+        ogImage={`${siteUrl}/assets/images/logos/logo.webp`}
         schemaData={[...jobPostingSchemas, breadcrumbSchema, faqSchema, organizationSchema]}
       />
 

@@ -2,7 +2,7 @@ export const crmTabData = {
   'Sales CRM': {
     title: 'Enterprise Sales CRM Platform',
     desc: 'Empower your sales force. Track active deal stages, monitor sales activities, automate pipeline stages, and close deals faster with AI-driven deal scoring.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     benefits: [
       'Visibility Into Active Deals',
       'AI-Powered Deal Scoring',
@@ -22,7 +22,7 @@ export const crmTabData = {
   'Lead Management': {
     title: 'Intelligent Lead Management & Routing',
     desc: 'Capture, score, and distribute leads automatically. Ensure zero lead leakage with real-time routing engines and automated email nurturing.',
-    image: '/assets/images/new-iot-solutions/ai_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_robot_dark.webp',
     benefits: [
       'Zero Lead Leakage Assured',
       'Dynamic Rule-Based Routing',
@@ -42,7 +42,7 @@ export const crmTabData = {
   'Marketing Automation': {
     title: 'Targeted Marketing Automation Suites',
     desc: 'Design and execute multi-channel marketing campaigns. Automate drip emails, create landing pages, segment audiences, and measure real ROI.',
-    image: '/assets/images/new-iot-solutions/ai_brain_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_brain_dark.webp',
     benefits: [
       'High-Conversion Drip Campaigns',
       'Granular Segment Builders',
@@ -62,7 +62,7 @@ export const crmTabData = {
   'Customer Support': {
     title: 'Omnichannel Customer Support Hub',
     desc: 'Provide exceptional customer care across all touchpoints. Resolve inquiries via email, phone, live chat, and social media channels in one unified inbox.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     benefits: [
       'Unified Support Inbox Console',
       'SLA-Based Priority Queues',
@@ -82,7 +82,7 @@ export const crmTabData = {
   'Service Management': {
     title: 'Customer Service Contract Management',
     desc: 'Manage service level agreements (SLAs), warranty cards, and maintenance contracts. Track preventive service dates and manage renewal pipelines.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     benefits: [
       'Automatic SLA Warnings',
       'Service Contract Renewal Alerts',
@@ -102,7 +102,7 @@ export const crmTabData = {
   'Quotation Management': {
     title: 'Automated Quotation & CPQ Platform',
     desc: 'Generate professional, error-free quotations in seconds. Configure complex pricing rules, manage discounts, and secure approvals via e-signatures.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     benefits: [
       'Instant Quote Generation',
       'Error-Free Configured Pricing',
@@ -122,7 +122,7 @@ export const crmTabData = {
   'Project Management': {
     title: 'Collaborative Project Delivery System',
     desc: 'Deliver client projects on time and within budget. Build Gantt charts, assign team tasks, monitor billable timesheets, and track project budgets.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     benefits: [
       'Interactive Gantt Charts',
       'Real-time Budget Alerts',
@@ -142,7 +142,7 @@ export const crmTabData = {
   'Task Management': {
     title: 'Streamlined Task & Activity Organizer',
     desc: 'Organize your team\'s daily tasks. Design custom Kanban boards, configure deadline reminders, and automate daily task updates.',
-    image: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    image: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     benefits: [
       'Visual Kanban Boards',
       'Daily Progress Tracking',
@@ -162,7 +162,7 @@ export const crmTabData = {
   'Field Service CRM': {
     title: 'Dynamic Field Service & Scheduling',
     desc: 'Coordinate your field engineers in real time. Optimize travel routes, dispatch jobs based on skill levels, and capture digital service signs.',
-    image: '/assets/images/new-iot-solutions/iot_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/iot_robot_dark.webp',
     benefits: [
       'Smart Route Optimization',
       'Skill-Based Tech Dispatch',
@@ -182,7 +182,7 @@ export const crmTabData = {
   'Helpdesk': {
     title: 'IT Helpdesk & Ticket Console',
     desc: 'Simplify internal and external support requests. Implement custom ticket routing, enforce strict SLAs, and build extensive self-service help libraries.',
-    image: '/assets/images/new-iot-solutions/ai_robot_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_robot_dark.webp',
     benefits: [
       'Custom Ticketing Workflows',
       'SLA Breach Warning Alerts',
@@ -202,7 +202,7 @@ export const crmTabData = {
   'Customer Portal': {
     title: 'Interactive Client Engagement Portal',
     desc: 'Empower clients with secure self-service tools. Allow users to search invoices, check order states, download quotations, and submit tickets 24/7.',
-    image: '/assets/images/new-iot-solutions/ai_brain_dark.png',
+    image: '/assets/images/new-iot-solutions/ai_brain_dark.webp',
     benefits: [
       'Secure 24/7 Portal Access',
       'Real-time Order Updates',
@@ -222,7 +222,7 @@ export const crmTabData = {
   'CRM Analytics': {
     title: 'Advanced CRM Analytics & Forecasting',
     desc: 'Gain actionable customer insights. Monitor sales conversion rates, measure campaign performance, and forecast sales pipelines.',
-    image: '/assets/images/new-iot-solutions/erp_isometric_dark.png',
+    image: '/assets/images/new-iot-solutions/erp_isometric_dark.webp',
     benefits: [
       'Real-time Sales Pipelines',
       'Conversion Rate Funnels',

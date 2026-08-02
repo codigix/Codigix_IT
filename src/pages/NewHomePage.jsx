@@ -65,7 +65,7 @@ const NewHomePage = () => {
       "name": "Codigix Infotech",
       "altName": "Codigix",
       "url": "https://codigixinfotech.com/",
-      "logo": "https://codigixinfotech.com/assets/images/logos/logo.png",
+      "logo": "https://codigixinfotech.com/assets/images/logos/logo.webp",
       "description": "Codigix Infotech delivers cutting-edge AI-powered software, custom Industrial IoT automation, enterprise ERP/CRM systems, and cloud engineering.",
       "sameAs": [
         "https://www.linkedin.com/company/135144609/admin/",
@@ -119,7 +119,7 @@ const NewHomePage = () => {
         description="Transform your business with Codigix Infotech. We build intelligent Generative AI agents, Industrial IoT sensor automation, enterprise ERP/CRM platforms, and custom cloud software."
         keywords="AI solutions, Industrial IoT, ERP development, CRM development, machine learning, computer vision, predictive analytics, enterprise software, Codigix Infotech"
         canonical="https://codigixinfotech.com/"
-        ogImage="https://codigixinfotech.com/assets/images/logos/logo.png"
+        ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={homeSchemas}
       />
 

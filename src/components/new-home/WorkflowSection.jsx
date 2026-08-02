@@ -13,8 +13,8 @@ const steps = [
     iconColor: 'text-rose-600 dark:text-rose-400',
     bgColor: 'from-rose-500/20 via-rose-500/10 to-transparent',
     activeGlow: 'border-rose-500 shadow-[0_8px_25px_rgba(244,63,94,0.35)]',
-    imageLight: '/assets/images/workflow/wf_machine.png',
-    imageDark: '/assets/images/workflow/wf_machine.png',
+    imageLight: '/assets/images/workflow/wf_machine.webp',
+    imageDark: '/assets/images/workflow/wf_machine.webp',
     desc: 'Industrial equipment & assets',
     log: '[TELEMETRY] Connection established with Machine_ID #402. Ingesting raw sensor values... OK'
   },
@@ -24,8 +24,8 @@ const steps = [
     iconColor: 'text-indigo-600 dark:text-indigo-400',
     bgColor: 'from-indigo-500/20 via-indigo-500/10 to-transparent',
     activeGlow: 'border-indigo-500 shadow-[0_8px_25px_rgba(99,102,241,0.35)]',
-    imageLight: '/assets/images/workflow/wf_plc.png',
-    imageDark: '/assets/images/workflow/wf_plc.png',
+    imageLight: '/assets/images/workflow/wf_plc.webp',
+    imageDark: '/assets/images/workflow/wf_plc.webp',
     desc: 'Direct machine sensor control',
     log: '[MODBUS/TCP] Reading 16-bit register inputs. Status: 0x00 (Normal). Telemetry verified.'
   },
@@ -35,8 +35,8 @@ const steps = [
     iconColor: 'text-purple-600 dark:text-purple-400',
     bgColor: 'from-purple-500/25 via-purple-500/10 to-transparent',
     activeGlow: 'border-purple-500 shadow-[0_8px_25px_rgba(168,85,247,0.35)]',
-    imageLight: '/assets/images/workflow/wf_iot.png',
-    imageDark: '/assets/images/workflow/wf_iot.png',
+    imageLight: '/assets/images/workflow/wf_iot.webp',
+    imageDark: '/assets/images/workflow/wf_iot.webp',
     desc: 'Edge processing & encryption',
     log: '[EDGE] Packaging JSON payload. Encrypting with TLS 1.3. Streaming to endpoint...'
   },
@@ -46,8 +46,8 @@ const steps = [
     iconColor: 'text-blue-600 dark:text-blue-400',
     bgColor: 'from-blue-500/20 via-blue-500/10 to-transparent',
     activeGlow: 'border-blue-500 shadow-[0_8px_25px_rgba(59,130,246,0.35)]',
-    imageLight: '/assets/images/workflow/wf_cloud.png',
-    imageDark: '/assets/images/workflow/wf_cloud.png',
+    imageLight: '/assets/images/workflow/wf_cloud.webp',
+    imageDark: '/assets/images/workflow/wf_cloud.webp',
     desc: 'Centralized datalake storage',
     log: '[DATALAKE] Ingesting stream from gateway. Partitioning raw telemetry. Storing in AWS S3...'
   },
@@ -57,8 +57,8 @@ const steps = [
     iconColor: 'text-pink-600 dark:text-pink-400',
     bgColor: 'from-pink-500/20 via-pink-500/10 to-transparent',
     activeGlow: 'border-pink-500 shadow-[0_8px_25px_rgba(236,72,153,0.35)]',
-    imageLight: '/assets/images/workflow/wf_ai.png',
-    imageDark: '/assets/images/workflow/wf_ai.png',
+    imageLight: '/assets/images/workflow/wf_ai.webp',
+    imageDark: '/assets/images/workflow/wf_ai.webp',
     desc: 'Predictive modeling & ML',
     log: '[ML_MODEL] Running anomaly detection. Probability: 0.0042. Decision: Anomaly flag = FALSE'
   },
@@ -68,8 +68,8 @@ const steps = [
     iconColor: 'text-amber-600 dark:text-amber-400',
     bgColor: 'from-amber-500/20 via-amber-500/10 to-transparent',
     activeGlow: 'border-amber-500 shadow-[0_8px_25px_rgba(245,158,11,0.35)]',
-    imageLight: '/assets/images/workflow/wf_erp.png',
-    imageDark: '/assets/images/workflow/wf_erp.png',
+    imageLight: '/assets/images/workflow/wf_erp.webp',
+    imageDark: '/assets/images/workflow/wf_erp.webp',
     desc: 'Operational resource logs',
     log: '[LEDGER] Logging operational output to database. ERP sync state: Success.'
   },
@@ -79,8 +79,8 @@ const steps = [
     iconColor: 'text-emerald-600 dark:text-emerald-400',
     bgColor: 'from-emerald-500/20 via-emerald-500/10 to-transparent',
     activeGlow: 'border-emerald-500 shadow-[0_8px_25px_rgba(16,185,129,0.35)]',
-    imageLight: '/assets/images/workflow/wf_dashboard_3d.png',
-    imageDark: '/assets/images/workflow/wf_dashboard_3d.png',
+    imageLight: '/assets/images/workflow/wf_dashboard_3d.webp',
+    imageDark: '/assets/images/workflow/wf_dashboard_3d.webp',
     desc: 'Live monitoring control room',
     log: '[REALTIME] Pushing live state to WebSockets. UI Refresh: 60fps. Latency: 4.2ms.'
   },
@@ -90,8 +90,8 @@ const steps = [
     iconColor: 'text-cyan-600 dark:text-cyan-400',
     bgColor: 'from-cyan-500/20 via-cyan-500/10 to-transparent',
     activeGlow: 'border-cyan-500 shadow-[0_8px_25px_rgba(6,182,212,0.35)]',
-    imageLight: '/assets/images/workflow/wf_mobile_3d.png',
-    imageDark: '/assets/images/workflow/wf_mobile_3d.png',
+    imageLight: '/assets/images/workflow/wf_mobile_3d.webp',
+    imageDark: '/assets/images/workflow/wf_mobile_3d.webp',
     desc: 'Field-level instant alerts',
     log: '[APNS/FCM] Stream health normal. Status OK. Dispatching gateway keep-alive heartbeat.'
   },
@@ -101,8 +101,8 @@ const steps = [
     iconColor: 'text-purple-600 dark:text-purple-400',
     bgColor: 'from-purple-500/20 via-purple-500/10 to-transparent',
     activeGlow: 'border-purple-500 shadow-[0_8px_25px_rgba(168,85,247,0.35)]',
-    imageLight: '/assets/images/workflow/wf_management_3d.png',
-    imageDark: '/assets/images/workflow/wf_management_3d.png',
+    imageLight: '/assets/images/workflow/wf_management_3d.webp',
+    imageDark: '/assets/images/workflow/wf_management_3d.webp',
     desc: 'Strategic decision making',
     log: '[ANALYTICS] Operations dashboard ready. OEE score updated: 94.2%. Logs cached successfully.'
   }

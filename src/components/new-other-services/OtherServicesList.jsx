@@ -147,7 +147,7 @@ const services = [
     desc: 'We build fast, secure, and scalable web applications tailored to your business goals. From modern frontends (React, Next.js, Vue) to robust backend microservices (Node.js, Python, Java), we deliver web software that drives measurable business growth.',
     features: ['Custom Web Applications', 'E-Commerce Platforms', 'CMS Development', 'Web Portals & Dashboards', 'API & Microservices', 'Core Web Vitals Speed Boost'],
     imageLight: '/assets/images/service/web_dev_dashboard.webp',
-    imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.png',
+    imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.webp',
     icon: Code2,
     color: 'text-indigo-500 dark:text-indigo-400',
     bg: 'bg-indigo-500/10'
@@ -160,7 +160,7 @@ const services = [
     desc: 'Native or cross-platform, we create feature-rich mobile applications that deliver seamless experiences across iOS and Android devices. We leverage React Native, Flutter, and native Swift/Kotlin to build apps users love.',
     features: ['Native iOS (Swift) Development', 'Native Android (Kotlin) Development', 'Cross-Platform (React Native / Flutter)', 'Offline Data Synchronization', 'Biometric & Mobile Security', 'Push Notification Engines'],
     imageLight: '/assets/images/service/mobile_app_dashboard.webp',
-    imageDark: '/assets/images/new-iot-solutions/iot_robot_dark.png',
+    imageDark: '/assets/images/new-iot-solutions/iot_robot_dark.webp',
     icon: Smartphone,
     color: 'text-purple-500 dark:text-purple-400',
     bg: 'bg-purple-500/10'
@@ -173,7 +173,7 @@ const services = [
     desc: 'We design intuitive, user-centric interfaces that enhance engagement and create exceptional digital experiences. Our designers build atomic design systems in Figma to ensure consistent brand identity across web and mobile products.',
     features: ['User Research & Journey Mapping', 'Figma Wireframing & Prototyping', 'Atomic UI Design Systems', 'Interactive Design Systems', 'Usability & A/B Testing', 'Design-to-Code Handoff'],
     imageLight: '/assets/images/service/ui_ux_designing_dashboard.webp',
-    imageDark: '/assets/images/service/ui_ux_dashboard.png',
+    imageDark: '/assets/images/service/ui_ux_dashboard.webp',
     icon: PenTool,
     color: 'text-fuchsia-500 dark:text-fuchsia-400',
     bg: 'bg-fuchsia-500/10'
@@ -186,7 +186,7 @@ const services = [
     desc: 'Leverage the power of the cloud to scale, secure, and optimize your business operations with our cloud engineering services. We handle cloud migrations, serverless architectures, and multi-region infrastructure setups.',
     features: ['AWS / Azure Cloud Migration', 'Auto-Scaling Infrastructure', 'Serverless Functions (AWS Lambda)', 'Cloud Security & IAM Vaults', 'Disaster Recovery & Daily Backup', 'Cloud FinOps Cost Reduction'],
     imageLight: '/assets/images/service/custom_software_dashboard.webp',
-    imageDark: '/assets/images/new-iot-solutions/ai_brain_dark.png',
+    imageDark: '/assets/images/new-iot-solutions/ai_brain_dark.webp',
     icon: Cloud,
     color: 'text-blue-500 dark:text-blue-400',
     bg: 'bg-blue-500/10'
@@ -198,8 +198,8 @@ const services = [
     agenda: 'Automate CI/CD pipelines, Docker containerization, and Kubernetes cluster orchestration to accelerate software release velocity.',
     desc: 'We streamline development and operations to deliver faster, reliable, and high-quality software with continuous improvement. Eliminate deployment bottlenecks with automated testing, infrastructure as code (Terraform), and 24/7 telemetry monitoring.',
     features: ['CI/CD Pipeline Automation', 'Infrastructure as Code (Terraform)', 'Docker & Containerization', 'Kubernetes Cluster Orchestration', '24/7 Telemetry & Logging (Prometheus)', 'Zero-Downtime Releases'],
-    imageLight: '/assets/images/service/crm_marketing_light.png',
-    imageDark: '/assets/images/new-iot-solutions/ai_robot_dark.png',
+    imageLight: '/assets/images/service/crm_marketing_light.webp',
+    imageDark: '/assets/images/new-iot-solutions/ai_robot_dark.webp',
     icon: DevOpsIcon,
     color: 'text-pink-500 dark:text-pink-400',
     bg: 'bg-pink-500/10'

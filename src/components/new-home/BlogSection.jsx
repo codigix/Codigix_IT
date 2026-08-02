@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Calendar, User, Clock, ArrowRight } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import config from '../../config';
+import { blogPostsData } from '../../data/blogData';
 
 const blogPosts = [
   {
@@ -13,7 +14,7 @@ const blogPosts = [
     date: 'Aug 1, 2026',
     author: 'Suresh Nair',
     readTime: '5 min read',
-    image: '/assets/images/new-home/blog_iot.png',
+    image: '/assets/images/new-home/blog_iot.webp',
     link: '/blog/industrial-iot'
   },
   {
@@ -24,7 +25,7 @@ const blogPosts = [
     date: 'Jul 28, 2026',
     author: 'Deepak Sharma',
     readTime: '7 min read',
-    image: '/assets/images/new-home/blog_erp.png',
+    image: '/assets/images/new-home/blog_erp.webp',
     link: '/blog/future-of-erp'
   },
   {
@@ -35,7 +36,7 @@ const blogPosts = [
     date: 'Jul 24, 2026',
     author: 'Meera Iyer',
     readTime: '4 min read',
-    image: '/assets/images/new-home/blog_crm.png',
+    image: '/assets/images/new-home/blog_crm.webp',
     link: '/blog/crm-conversions'
   }
 ];
@@ -50,18 +51,20 @@ const BlogSection = () => {
         const response = await fetch(`${config.API_BASE_URL}/blogs`);
         if (response.ok) {
           const result = await response.json();
-          const formatted = result.map(post => ({
-            id: post.id.toString(),
-            title: post.title,
-            excerpt: post.body ? (post.body.slice(0, 150) + (post.body.length > 150 ? '...' : '')) : 'No excerpt provided.',
-            category: post.category,
-            date: post.date,
-            author: post.author || 'Codigix Tech Team',
-            readTime: post.readTime || '5 min read',
-            image: post.image ? (post.image.startsWith('http') || post.image.startsWith('data:') ? post.image : `/assets/images/blog/${post.image}${post.image.includes('.') ? '' : '.jpg'}`) : '/assets/images/service/web_dev_dashboard.webp',
-            link: `/blog/${post.id}`
-          }));
-          setDbPosts(formatted);
+          if (Array.isArray(result) && result.length > 0) {
+            const formatted = result.map(post => ({
+              id: post.id.toString(),
+              title: post.title,
+              excerpt: post.body ? (post.body.slice(0, 150) + (post.body.length > 150 ? '...' : '')) : 'No excerpt provided.',
+              category: post.category,
+              date: post.date,
+              author: post.author || 'Codigix Tech Team',
+              readTime: post.readTime || '5 min read',
+              image: post.image ? (post.image.startsWith('http') || post.image.startsWith('data:') || post.image.startsWith('/') ? post.image : `/assets/images/service/${post.image}${post.image.includes('.') ? '' : '.webp'}`) : '/assets/images/service/web_dev_dashboard.webp',
+              link: `/blog/${post.id}`
+            }));
+            setDbPosts(formatted);
+          }
         }
       } catch (err) {
         console.error("Error loading homepage db blogs:", err);
@@ -70,7 +73,17 @@ const BlogSection = () => {
     fetchDbBlogs();
   }, []);
 
-  const combinedPosts = dbPosts.slice(0, 3);
+  const combinedPosts = dbPosts.length > 0 ? dbPosts.slice(0, 3) : blogPostsData.slice(0, 3).map(p => ({
+    id: p.id,
+    title: p.title,
+    excerpt: p.excerpt,
+    category: p.category,
+    date: p.date,
+    author: p.author,
+    readTime: p.readTime,
+    image: p.image,
+    link: `/blog/${p.id}`
+  }));
 
   return (
     <section className="py-24 relative overflow-hidden bg-slate-50/50 dark:bg-black/10 border-t border-slate-200/60 dark:border-gray-800/40">

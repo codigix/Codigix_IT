@@ -8,14 +8,14 @@ const industryCards = [
     title: 'Manufacturing',
     desc: 'Smart ERP, IoT, and automation solutions to optimize production, supply chain, and operations.',
     icon: Factory,
-    image: '/assets/images/service/erp_dash.png'
+    image: '/assets/images/service/erp_dash.webp'
   },
   {
     id: 'Healthcare',
     title: 'Healthcare',
     desc: 'End-to-end hospital & clinic management systems to improve patient care and efficiency.',
     icon: HeartPulse,
-    image: '/assets/images/service/ai_brain.png'
+    image: '/assets/images/service/ai_brain.webp'
   },
   {
     id: 'Retail',
@@ -29,14 +29,14 @@ const industryCards = [
     title: 'Finance',
     desc: 'Secure, compliant, and intelligent software for financial management, banking, and accounting.',
     icon: Landmark,
-    image: '/assets/images/service/crm_dash.png'
+    image: '/assets/images/service/crm_dash.webp'
   },
   {
     id: 'Real Estate',
     title: 'Real Estate',
     desc: 'Property management, CRM, and project tracking solutions to streamline real estate operations.',
     icon: Home,
-    image: '/assets/images/service/custom_soft.png'
+    image: '/assets/images/service/custom_soft.webp'
   }
 ];
 

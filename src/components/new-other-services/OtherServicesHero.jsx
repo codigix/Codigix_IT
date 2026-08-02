@@ -128,7 +128,7 @@ const OtherServicesHero = () => {
                 className="block dark:hidden w-full h-full object-cover rounded-xl shadow-xs" 
               />
               <img 
-                src="/assets/images/new-iot-solutions/software_wireframe_dark.png" 
+                src="/assets/images/new-iot-solutions/software_wireframe_dark.webp" 
                 alt="Digital Engineering Showcase Dark" 
                 className="hidden dark:block w-full h-full object-contain filter contrast-125 brightness-110" 
               />

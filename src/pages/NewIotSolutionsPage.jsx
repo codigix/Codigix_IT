@@ -98,7 +98,7 @@ const NewIotSolutionsPage = () => {
         description={metaDescription}
         keywords={`Industrial IoT, ${activeTab}, PLC integration, SCADA automation, OEE dashboard, predictive maintenance, Modbus TCP, OPC-UA, MQTT, Codigix Infotech`}
         canonical={canonicalUrl}
-        ogImage="https://codigixinfotech.com/assets/images/logos/logo.png"
+        ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={iotSchemas}
       />
 

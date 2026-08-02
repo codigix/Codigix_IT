@@ -25,7 +25,7 @@ const HeroSection = () => {
       {/* Full Background Image */}
       <div
         className="absolute inset-1 bg-cover w-full h-full bg-center bg-no-repeat z-0 pointer-events-none opacity-10 dark:opacity-40 mix-blend-multiply dark:mix-blend-screen transition-all duration-300"
-        style={{ backgroundImage: "url('/assets/images/new-home/hero-bg.png')" }}
+        style={{ backgroundImage: "url('/assets/images/new-home/hero-bg.webp')" }}
       />
       {/* Gradient Overlay to ensure text readability on the left */}
       <div className="absolute inset-0 bg-gradient-to-r from-purple-50/90 via-slate-50/80 to-transparent dark:from-[#07041a] dark:via-[#07041a]/90 dark:to-transparent z-0 pointer-events-none" />

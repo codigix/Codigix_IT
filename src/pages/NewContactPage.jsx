@@ -29,7 +29,7 @@ const NewContactPage = () => {
       "@type": "Organization",
       "name": "Codigix Infotech",
       "url": siteUrl,
-      "logo": `${siteUrl}/assets/images/logos/logo.png`,
+      "logo": `${siteUrl}/assets/images/logos/logo.webp`,
       "contactPoint": [
         {
           "@type": "ContactPoint",
@@ -87,7 +87,7 @@ const NewContactPage = () => {
     "@type": "Organization",
     "name": "Codigix Infotech",
     "url": siteUrl,
-    "logo": `${siteUrl}/assets/images/logos/logo.png`,
+    "logo": `${siteUrl}/assets/images/logos/logo.webp`,
     "sameAs": [
       "https://www.linkedin.com/company/135144609/admin/",
       "https://www.facebook.com/codigix.infotech",
@@ -105,7 +105,7 @@ const NewContactPage = () => {
         description={metaDescription}
         keywords="Contact Codigix Infotech, IT company Pune contact, software consultation, AI consulting inquiry, Industrial IoT development contact, custom software quote, Codigix email address, Codigix phone number"
         canonical={canonicalUrl}
-        ogImage={`${siteUrl}/assets/images/logos/logo.png`}
+        ogImage={`${siteUrl}/assets/images/logos/logo.webp`}
         schemaData={[contactPageSchema, breadcrumbSchema, faqSchema, organizationSchema]}
       />
 
