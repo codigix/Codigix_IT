@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MessageSquare, PhoneCall, FileText, LineChart, Users, PackageSearch, Settings, FileBarChart, Network, Mail, ArrowRight } from 'lucide-react';
 
@@ -213,9 +214,15 @@ const AiSolutionsGrid = () => {
             </p>
 
             <div>
-              <button className="nh-btn-primary mt-2">
-                Explore AI Solutions <ArrowRight size={18} />
-              </button>
+              <Link to="/ai-solutions" aria-label="Explore AI Solutions and Machine Learning Services by Codigix">
+                <motion.div 
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="nh-btn-primary mt-2 inline-flex items-center gap-2 cursor-pointer"
+                >
+                  Explore AI Solutions <ArrowRight size={18} />
+                </motion.div>
+              </Link>
             </div>
           </div>
 

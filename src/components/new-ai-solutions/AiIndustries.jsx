@@ -48,7 +48,7 @@ const AiIndustries = ({ activeTab }) => {
   return (
     <section className="py-16 border-t border-purple-200/70 dark:border-gray-800/50">
       <div className="mb-8 text-left">
-        <h3 className="text-xs font-extrabold text-purple-700 dark:text-purple-400 uppercase tracking-widest mb-2">Industry Applications</h3>
+        <span className="block text-xs font-extrabold text-purple-700 dark:text-purple-400 uppercase tracking-widest mb-2">Industry Applications</span>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Where {activeTab} Creates High Impact</h2>
       </div>
       
@@ -77,7 +77,7 @@ const AiIndustries = ({ activeTab }) => {
               <div className="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-500/20 flex items-center justify-center mb-3 group-hover:bg-purple-100 dark:group-hover:bg-purple-900/40 transition-colors">
                 <IndIcon size={22} className="text-purple-600 dark:text-purple-400" />
               </div>
-              <h4 className="text-[13px] font-extrabold text-slate-900 dark:text-white mb-1 leading-tight">{ind.name}</h4>
+              <h3 className="text-[13px] font-extrabold text-slate-900 dark:text-white mb-1 leading-tight">{ind.name}</h3>
               <p className="text-[10px] text-slate-600 dark:text-gray-400 leading-relaxed truncate w-full px-1">{ind.desc}</p>
             </motion.div>
           );

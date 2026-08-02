@@ -10,62 +10,79 @@ const SEO = ({
   keywords,
   canonical,
   ogImage,
-  ogType,
-  twitterHandle,
-  exactTitle,
-  robots,
-  schema,
+  ogType = "website",
+  twitterHandle = "@codigix",
+  exactTitle = false,
+  robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  schemaData = null,
   children
 }) => {
   const siteName = config.SITE_NAME || "Codigix Infotech";
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
-  const fullTitle = exactTitle ? title : (title ? `${title} | ${siteName}` : `${siteName} - AI-Powered IT Solutions & Software Engineering`);
+  
+  const fullTitle = exactTitle 
+    ? title 
+    : title 
+      ? `${title} | ${siteName}` 
+      : `${siteName} | AI Solutions, Industrial IoT & Custom Software Engineering`;
+      
   const finalMetaTitle = metaTitle || fullTitle;
   const finalOgTitle = ogTitle || fullTitle;
-  const defaultDescription = "Codigix Infotech delivers cutting-edge AI-powered solutions, custom software engineering, IoT platform development, ERP, CRM, and predictive analytics.";
-  const defaultKeywords = "AI solutions, IoT software development, ERP development, CRM solutions, custom software engineering, machine learning, predictive analytics, Codigix Infotech";
+  
+  const defaultDescription =
+    "Codigix Infotech delivers cutting-edge AI-powered solutions, custom software engineering, Industrial IoT automation, enterprise ERP/CRM systems, and predictive analytics.";
+  const defaultKeywords =
+    "AI solutions, Industrial IoT, ERP development, CRM development, machine learning, computer vision, predictive analytics, custom software engineering, Codigix Infotech";
+  
+  const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
+  const fullCanonical = canonical || `${siteUrl}${currentPath === "/" ? "" : currentPath}`;
+  const finalOgImage = ogImage || `${siteUrl}/assets/images/logos/logo.png`;
 
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
-  const fullCanonical = canonical || `${siteUrl}${currentPath}`;
-  const robotsDirective = robots || "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
-
-  // Format schema into JSON-LD scripts array
-  const schemasToRender = Array.isArray(schema) ? schema : (schema ? [schema] : []);
+  // Process structured JSON-LD schemas
+  const schemasToRender = Array.isArray(schemaData)
+    ? schemaData
+    : schemaData
+    ? [schemaData]
+    : [];
 
   return (
     <Helmet>
+      {/* HTML Attributes */}
+      <html lang="en" />
+
       {/* Primary Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="title" content={finalMetaTitle} />
       <meta name="description" content={description || defaultDescription} />
       <meta name="keywords" content={keywords || defaultKeywords} />
-      <meta name="robots" content={robotsDirective} />
-      <meta name="googlebot" content={robotsDirective} />
+      <meta name="robots" content={robots} />
+      <meta name="author" content="Codigix Infotech" />
 
       {/* Open Graph / Facebook */}
-      <meta property="og:type" content={ogType || "website"} />
-      <meta property="og:site_name" content={siteName} />
+      <meta property="og:type" content={ogType} />
       <meta property="og:url" content={fullCanonical} />
       <meta property="og:title" content={finalOgTitle} />
       <meta property="og:description" content={description || defaultDescription} />
-      <meta property="og:image" content={ogImage || `${siteUrl}/assets/images/logos/logo.webp`} />
+      <meta property="og:image" content={finalOgImage} />
+      <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content="en_US" />
 
-      {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={fullCanonical} />
-      <meta property="twitter:title" content={fullTitle} />
-      <meta property="twitter:description" content={description || defaultDescription} />
-      <meta property="twitter:image" content={ogImage || `${siteUrl}/assets/images/logos/logo.webp`} />
+      {/* Twitter Cards */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={fullCanonical} />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={description || defaultDescription} />
+      <meta name="twitter:image" content={finalOgImage} />
       {twitterHandle && <meta name="twitter:site" content={twitterHandle} />}
+      {twitterHandle && <meta name="twitter:creator" content={twitterHandle} />}
 
-      {/* Canonical */}
+      {/* Canonical Link */}
       <link rel="canonical" href={fullCanonical} />
 
-      {/* Structured Data (JSON-LD) for Google Rich Snippets */}
-      {schemasToRender.map((s, index) => (
-        <script key={index} type="application/ld+json">
-          {JSON.stringify(s)}
+      {/* Dynamic JSON-LD Structured Data */}
+      {schemasToRender.map((schema, index) => (
+        <script key={`jsonld-schema-${index}`} type="application/ld+json">
+          {JSON.stringify(schema)}
         </script>
       ))}
 

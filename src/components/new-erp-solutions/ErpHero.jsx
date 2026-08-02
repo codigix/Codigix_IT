@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Calendar, ArrowRight, Rocket, Building2, ShieldCheck, Users } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { getDefaultData } from './erpTabData';
 
 // Manufacturing ERP Simulator
@@ -450,6 +450,7 @@ const renderErpSandboxWidget = (tab) => {
   }
 };
 
+/* --- Main ErpHero Component --- */
 const ErpHero = ({ activeTab }) => {
   const navigate = useNavigate();
   const data = getDefaultData(activeTab);
@@ -458,13 +459,25 @@ const ErpHero = ({ activeTab }) => {
     <div className="relative">
 
       {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide">
-        <span onClick={() => navigate('/')} className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors">Home</span>
-        <ChevronRight size={12} />
-        <span className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors">Services</span>
-        <ChevronRight size={12} />
-        <span className="text-purple-500 font-medium">{activeTab}</span>
-      </div>
+      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide">
+        <ol className="flex items-center gap-2">
+          <li>
+            <Link to="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">Home</Link>
+          </li>
+          <li>
+            <ChevronRight size={12} />
+          </li>
+          <li>
+            <Link to="/erp-solutions" className="hover:text-slate-900 dark:hover:text-white transition-colors">ERP Solutions</Link>
+          </li>
+          <li>
+            <ChevronRight size={12} />
+          </li>
+          <li className="text-purple-500 font-medium" aria-current="page">
+            {activeTab}
+          </li>
+        </ol>
+      </nav>
 
       {/* Hero Content */}
       <div className="flex flex-col lg:flex-row gap-12 items-center">
@@ -498,13 +511,15 @@ const ErpHero = ({ activeTab }) => {
           >
             <button
               onClick={() => navigate('/contact')}
-              className="px-6 py-3 bg-[#a855f7] hover:bg-[#9333ea] text-white text-sm font-medium rounded-md shadow-lg shadow-purple-500/20 transition-all flex items-center gap-2"
+              aria-label="Book a custom ERP software consultation"
+              className="px-6 py-3 bg-[#a855f7] hover:bg-[#9333ea] text-white text-sm font-medium rounded-md shadow-lg shadow-purple-500/20 transition-all flex items-center gap-2 cursor-pointer"
             >
               Book Consultation <ArrowRight size={16} />
             </button>
             <button
               onClick={() => navigate('/contact')}
-              className="px-6 py-3 bg-transparent border border-slate-300 dark:border-gray-600 hover:border-slate-500 dark:hover:border-gray-400 text-slate-900 dark:text-white text-sm font-medium rounded-md transition-all flex items-center gap-2"
+              aria-label="Request a live demonstration of Codigix ERP"
+              className="px-6 py-3 bg-transparent border border-slate-300 dark:border-gray-600 hover:border-slate-500 dark:hover:border-gray-400 text-slate-900 dark:text-white text-sm font-medium rounded-md transition-all flex items-center gap-2 cursor-pointer"
             >
               Request Demo <Calendar size={16} />
             </button>
@@ -541,7 +556,7 @@ const ErpHero = ({ activeTab }) => {
             <Rocket size={24} />
           </div>
           <div>
-            <h4 className="text-[17px] font-bold text-slate-900 dark:text-white">3+</h4>
+            <h3 className="text-[17px] font-bold text-slate-900 dark:text-white">3+</h3>
             <p className="text-[10px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Successful<br />Implementations</p>
           </div>
         </div>
@@ -551,7 +566,7 @@ const ErpHero = ({ activeTab }) => {
             <Building2 size={24} />
           </div>
           <div>
-            <h4 className="text-[17px] font-bold text-slate-900 dark:text-white">2+</h4>
+            <h3 className="text-[17px] font-bold text-slate-900 dark:text-white">2+</h3>
             <p className="text-[10px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Industries<br />Served</p>
           </div>
         </div>
@@ -561,7 +576,7 @@ const ErpHero = ({ activeTab }) => {
             <ShieldCheck size={24} />
           </div>
           <div>
-            <h4 className="text-[17px] font-bold text-slate-900 dark:text-white">99.9%</h4>
+            <h3 className="text-[17px] font-bold text-slate-900 dark:text-white">99.9%</h3>
             <p className="text-[10px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">System<br />Uptime</p>
           </div>
         </div>
@@ -571,7 +586,7 @@ const ErpHero = ({ activeTab }) => {
             <Users size={24} />
           </div>
           <div>
-            <h4 className="text-[17px] font-bold text-slate-900 dark:text-white">10+</h4>
+            <h3 className="text-[17px] font-bold text-slate-900 dark:text-white">10+</h3>
             <p className="text-[10px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Users<br />Empowered</p>
           </div>
         </div>

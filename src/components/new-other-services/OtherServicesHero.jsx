@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, Cpu, ShieldCheck, Zap, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { ChevronRight, Cpu, ShieldCheck, Zap, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const DigitalPipelineSimulator = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -49,13 +50,19 @@ const OtherServicesHero = () => {
     <div className="relative border-b border-slate-200 dark:border-gray-800/50 pb-12">
 
       {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide uppercase font-bold text-left">
-        <span className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors">Home</span>
-        <ChevronRight size={12} />
-        <span className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors">Services</span>
-        <ChevronRight size={12} />
-        <span className="text-purple-600 dark:text-purple-400 font-extrabold">Digital & Engineering Services</span>
-      </div>
+      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide uppercase font-bold text-left">
+        <ol className="flex items-center gap-2">
+          <li>
+            <Link to="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">Home</Link>
+          </li>
+          <li>
+            <ChevronRight size={12} />
+          </li>
+          <li className="text-purple-600 dark:text-purple-400 font-extrabold" aria-current="page">
+            Services
+          </li>
+        </ol>
+      </nav>
 
       {/* Hero Content */}
       <div className="flex flex-col lg:flex-row gap-12 items-center">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Calendar, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { getDefaultData } from './iotTabData';
 
 // Industrial IoT & Sensor Monitoring: Live Sensor Matrix
@@ -359,6 +359,22 @@ const IotHero = ({ activeTab }) => {
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.4 }}
             >
+              <nav aria-label="Breadcrumb" className="mb-3">
+                <ol className="flex items-center gap-2 text-xs text-slate-500 dark:text-gray-400 font-medium">
+                  <li>
+                    <Link to="/" className="hover:text-rose-500 transition-colors">Home</Link>
+                  </li>
+                  <li className="text-slate-400 dark:text-gray-600">&gt;</li>
+                  <li>
+                    <Link to="/iot-solutions" className="hover:text-rose-500 transition-colors">IoT Solutions</Link>
+                  </li>
+                  <li className="text-slate-400 dark:text-gray-600">&gt;</li>
+                  <li className="text-rose-600 dark:text-rose-400 font-extrabold" aria-current="page">
+                    {activeTab}
+                  </li>
+                </ol>
+              </nav>
+
               <span className="ai-tag mb-4">IoT PLATFORM</span>
               <h1 className="text-4xl sm:text-5xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.1] mb-6">
                 {data.heroTitle} <span className="iot-text-gradient">{data.heroHighlight}</span>
@@ -378,12 +394,14 @@ const IotHero = ({ activeTab }) => {
           >
             <button
               onClick={() => navigate('/contact')}
+              aria-label="Book an Industrial IoT Consultation with Codigix"
               className="px-6 py-3 bg-[#EE001C] hover:bg-[#b90014] text-white text-sm font-medium rounded-md shadow-lg shadow-red-500/20 transition-all flex items-center gap-2"
             >
               Book Consultation <ArrowRight size={16} />
             </button>
             <button
               onClick={() => navigate('/contact')}
+              aria-label="Schedule a Live IoT System Demo with Codigix"
               className="px-6 py-3 bg-transparent border border-slate-300 dark:border-gray-600 hover:border-slate-500 dark:hover:border-gray-400 text-slate-900 dark:text-white text-sm font-medium rounded-md transition-all flex items-center gap-2"
             >
               Schedule Demo <Calendar size={16} />
@@ -425,7 +443,7 @@ const IotHero = ({ activeTab }) => {
                 <MetricIcon size={22} />
               </div>
               <div>
-                <h4 className="text-xl font-bold text-slate-900 dark:text-white">{metric.value}</h4>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">{metric.value}</h3>
                 <p className="text-[10px] text-slate-500 dark:text-gray-400 uppercase tracking-wide">{metric.label}</p>
               </div>
             </div>

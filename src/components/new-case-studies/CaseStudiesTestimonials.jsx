@@ -108,7 +108,7 @@ const CaseStudiesTestimonials = () => {
                     "{test.quote}"
                   </p>
                   <div className="flex items-center gap-3">
-                    <img src={test.image} alt={test.name} className="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-gray-700" />
+                    <img src={test.image} alt={`${test.name} - ${test.title} client testimonial avatar`} className="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-gray-700" />
                     <div>
                       <h4 className="text-[13px] font-bold text-slate-900 dark:text-white">{test.name}</h4>
                       <p className="text-[10px] text-slate-550 dark:text-gray-500">{test.title}</p>

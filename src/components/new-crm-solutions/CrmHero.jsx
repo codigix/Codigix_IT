@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Calendar, ArrowRight, TrendingUp, Users, ShieldCheck, Zap, Smile } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { getDefaultData } from './crmTabData';
 
 // Sales CRM Simulator
@@ -211,13 +211,25 @@ const CrmHero = ({ activeTab }) => {
     <div className="relative">
 
       {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide">
-        <span onClick={() => navigate('/')} className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors">Home</span>
-        <ChevronRight size={12} />
-        <span className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors">Services</span>
-        <ChevronRight size={12} />
-        <span className="text-purple-400 font-medium">{activeTab}</span>
-      </div>
+      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide">
+        <ol className="flex items-center gap-2">
+          <li>
+            <Link to="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">Home</Link>
+          </li>
+          <li>
+            <ChevronRight size={12} />
+          </li>
+          <li>
+            <Link to="/crm-solutions" className="hover:text-slate-900 dark:hover:text-white transition-colors">CRM Solutions</Link>
+          </li>
+          <li>
+            <ChevronRight size={12} />
+          </li>
+          <li className="text-purple-400 font-medium" aria-current="page">
+            {activeTab}
+          </li>
+        </ol>
+      </nav>
 
       {/* Hero Content */}
       <div className="flex flex-col lg:flex-row gap-12 items-center">
@@ -251,13 +263,15 @@ const CrmHero = ({ activeTab }) => {
           >
             <button
               onClick={() => navigate('/contact')}
-              className="px-6 py-3 bg-[#9333ea] hover:bg-[#a855f7] text-white text-sm font-medium rounded-md shadow-lg shadow-purple-500/20 transition-all flex items-center gap-2"
+              aria-label="Book a custom CRM software consultation"
+              className="px-6 py-3 bg-[#9333ea] hover:bg-[#a855f7] text-white text-sm font-medium rounded-md shadow-lg shadow-purple-500/20 transition-all flex items-center gap-2 cursor-pointer"
             >
               Book Consultation <ArrowRight size={16} />
             </button>
             <button
               onClick={() => navigate('/contact')}
-              className="px-6 py-3 bg-transparent border border-slate-300 dark:border-gray-600 hover:border-slate-500 dark:hover:border-gray-400 text-slate-900 dark:text-white text-sm font-medium rounded-md transition-all flex items-center gap-2"
+              aria-label="Request a live demonstration of Codigix CRM"
+              className="px-6 py-3 bg-transparent border border-slate-300 dark:border-gray-600 hover:border-slate-500 dark:hover:border-gray-400 text-slate-900 dark:text-white text-sm font-medium rounded-md transition-all flex items-center gap-2 cursor-pointer"
             >
               Request Demo <Calendar size={16} />
             </button>
@@ -294,7 +308,7 @@ const CrmHero = ({ activeTab }) => {
             <TrendingUp size={20} />
           </div>
           <div>
-            <h4 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">3+</h4>
+            <h3 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">3+</h3>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Happy<br />Customers</p>
           </div>
         </div>
@@ -304,7 +318,7 @@ const CrmHero = ({ activeTab }) => {
             <Users size={20} />
           </div>
           <div>
-            <h4 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">5+</h4>
+            <h3 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">5+</h3>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Users<br />Empowered</p>
           </div>
         </div>
@@ -314,7 +328,7 @@ const CrmHero = ({ activeTab }) => {
             <ShieldCheck size={20} />
           </div>
           <div>
-            <h4 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">97.9%</h4>
+            <h3 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">97.9%</h3>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">System<br />Uptime</p>
           </div>
         </div>
@@ -324,7 +338,7 @@ const CrmHero = ({ activeTab }) => {
             <Zap size={20} />
           </div>
           <div>
-            <h4 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">30%+</h4>
+            <h3 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">30%+</h3>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Increase in<br />Productivity</p>
           </div>
         </div>
@@ -334,7 +348,7 @@ const CrmHero = ({ activeTab }) => {
             <Smile size={20} />
           </div>
           <div>
-            <h4 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">40%+</h4>
+            <h3 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">40%+</h3>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Higher Customer<br />Satisfaction</p>
           </div>
         </div>

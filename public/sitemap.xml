@@ -2,44 +2,116 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://codigixinfotech.com/</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://codigixinfotech.com/about</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://codigixinfotech.com/ai-solutions</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/iot-solutions</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/erp-solutions</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/crm-solutions</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://codigixinfotech.com/services</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/industries</loc>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codigixinfotech.com/projects</loc>
-    <lastmod>2026-05-15</lastmod>
+    <loc>https://codigixinfotech.com/case-studies</loc>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/case-studies/1</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/case-studies/2</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/case-studies/3</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/case-studies/4</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/case-studies/5</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/case-studies/6</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/case-studies/40</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://codigixinfotech.com/about</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://codigixinfotech.com/blog</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codigixinfotech.com/careers</loc>
-    <lastmod>2026-05-15</lastmod>
+    <loc>https://codigixinfotech.com/career</loc>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://codigixinfotech.com/contact</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>

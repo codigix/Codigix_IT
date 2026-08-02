@@ -179,7 +179,7 @@ const NewHomeNav = () => {
                             <span className="truncate">{dropItem.name}</span>
                             <ChevronRight
                               size={14}
-                              className="text-purple-500 dark:text-purple-400/70 group-hover/item:translate-x-1 transition-all shrink-0 ml-1"
+                              className="text-purple-600 dark:text-purple-400 group-hover/item:translate-x-1 group-hover/item:text-purple-700 dark:group-hover/item:text-purple-300 transition-all shrink-0 ml-1"
                             />
                           </Link>
                         ))}

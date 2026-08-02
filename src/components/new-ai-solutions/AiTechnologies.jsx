@@ -10,7 +10,7 @@ const AiTechnologies = ({ activeTab }) => {
   return (
     <section className="py-16 border-t border-purple-200/70 dark:border-gray-800/50">
       <div className="mb-8 text-left">
-        <h3 className="text-xs font-extrabold text-purple-700 dark:text-purple-400 uppercase tracking-widest mb-2">Technology Stack</h3>
+        <span className="block text-xs font-extrabold text-purple-700 dark:text-purple-400 uppercase tracking-widest mb-2">Technology Stack</span>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Frameworks & Tools Powering {activeTab}</h2>
       </div>
       
@@ -33,7 +33,7 @@ const AiTechnologies = ({ activeTab }) => {
 
                 <TechIcon size={24} className="text-purple-600 dark:text-purple-400 group-hover:text-rose-600 dark:group-hover:text-purple-300 transition-colors" />
               </div>
-              <h4 className="text-[13px] font-extrabold text-slate-900 dark:text-white mb-1 leading-tight">{tech.name}</h4>
+              <h3 className="text-[13px] font-extrabold text-slate-900 dark:text-white mb-1 leading-tight">{tech.name}</h3>
               <p className="text-[10px] text-slate-600 dark:text-gray-400 leading-relaxed truncate w-full px-2">{tech.desc}</p>
               
               {/* Tooltip detail tag */}

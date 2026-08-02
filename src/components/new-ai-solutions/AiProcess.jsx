@@ -10,7 +10,7 @@ const AiProcess = ({ activeTab }) => {
   return (
     <section className="py-16 border-t border-purple-200/70 dark:border-gray-800/50 relative">
       <div className="mb-12 text-left">
-        <h3 className="text-xs font-extrabold text-purple-700 dark:text-purple-400 uppercase tracking-widest mb-2">Implementation Roadmap</h3>
+        <span className="block text-xs font-extrabold text-purple-700 dark:text-purple-400 uppercase tracking-widest mb-2">Implementation Roadmap</span>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">How We Deploy {activeTab}</h2>
       </div>
       
@@ -39,7 +39,7 @@ const AiProcess = ({ activeTab }) => {
                 <StepIcon size={22} className="group-hover:scale-110 transition-transform" />
               </div>
               
-              <div className="text-xs font-extrabold text-purple-700 dark:text-purple-400 mb-1">{step.num}. {step.name}</div>
+              <h3 className="text-xs font-extrabold text-purple-700 dark:text-purple-400 mb-1">{step.num}. {step.name}</h3>
               <p className="text-[11px] text-slate-600 dark:text-gray-400 leading-relaxed pr-2 font-normal">{step.desc}</p>
             </motion.div>
           );

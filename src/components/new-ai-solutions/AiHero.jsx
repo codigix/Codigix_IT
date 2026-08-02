@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Cpu, Activity, ShieldCheck, Zap, Layers, ArrowUpRight } from 'lucide-react';
 import { aiSolutionsData } from '../../data/aiSolutionsData';
@@ -365,9 +366,21 @@ const AiHero = ({ activeTab }) => {
             transition={{ duration: 0.4 }}
             className="flex flex-col space-y-5 text-left"
           >
-            <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-gray-400 mb-1 font-medium">
-              <span>Home</span> <span className="text-slate-400 dark:text-gray-600">&gt;</span> <span>AI Solutions</span> <span className="text-slate-400 dark:text-gray-600">&gt;</span> <span className="text-purple-600 dark:text-purple-400 font-extrabold">{activeTab}</span>
-            </div>
+            <nav aria-label="Breadcrumb" className="mb-1">
+              <ol className="flex items-center gap-2 text-xs text-slate-500 dark:text-gray-400 font-medium">
+                <li>
+                  <Link to="/" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Home</Link>
+                </li>
+                <li className="text-slate-400 dark:text-gray-600">&gt;</li>
+                <li>
+                  <Link to="/ai-solutions" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">AI Solutions</Link>
+                </li>
+                <li className="text-slate-400 dark:text-gray-600">&gt;</li>
+                <li className="text-purple-600 dark:text-purple-400 font-extrabold" aria-current="page">
+                  {activeTab}
+                </li>
+              </ol>
+            </nav>
 
             <div>
               <span className="ai-tag mb-4">{activeTab.toUpperCase()}</span>

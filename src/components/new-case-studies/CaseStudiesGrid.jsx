@@ -3,23 +3,29 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { categories } from './CaseStudiesSidebar';
-
+import { caseStudiesData as fallbackCaseStudies } from '../../data/caseStudiesData';
+import config from '../../config';
 
 const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
   const navigate = useNavigate();
-  const [caseStudiesData, setCaseStudiesData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [caseStudiesData, setCaseStudiesData] = useState(fallbackCaseStudies);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/projects');
+        const response = await fetch(`${config.API_BASE_URL}/projects`);
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
-        setCaseStudiesData(data);
-        setLoading(false);
+        if (Array.isArray(data) && data.length > 0) {
+          setCaseStudiesData(data);
+        } else {
+          setCaseStudiesData(fallbackCaseStudies);
+        }
       } catch (error) {
-        console.error('Error fetching case studies:', error);
+        console.error('Error fetching case studies from API, using static data:', error);
+        setCaseStudiesData(fallbackCaseStudies);
+      } finally {
         setLoading(false);
       }
     };
@@ -36,7 +42,7 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
   if (loading) return <div className="py-20 text-center text-slate-500">Loading Case Studies...</div>;
 
   return (
-    <div id="case-studies-grid" className="py-8 scroll-mt-24 text-left">
+    <section id="case-studies-grid" className="py-8 scroll-mt-24 text-left" aria-label="Case Studies Portfolio Grid">
       
       {/* Filter Bar */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
@@ -87,8 +93,8 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
               <div className="h-48 overflow-hidden relative">
                  <div className="absolute inset-0 bg-purple-900/10 dark:bg-purple-900/20 mix-blend-overlay group-hover:bg-transparent transition-colors"></div>
                  <img 
-                   src={study.image} 
-                   alt={study.title} 
+                   src={study.image || study.heroImage} 
+                   alt={`${study.title} - ${study.catName || study.category} case study preview for ${study.clientName || study.client}`} 
                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 filter brightness-90 contrast-125"
                  />
               </div>
@@ -96,7 +102,7 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
               {/* Content */}
               <div className="p-6 flex flex-col flex-1 relative z-20 bg-white dark:bg-gradient-to-t dark:from-[#050112] dark:via-[#050112] dark:to-transparent">
                  <span className="text-[9px] font-bold text-purple-750 dark:text-purple-400 uppercase tracking-widest bg-purple-50 dark:bg-purple-500/10 inline-block self-start px-2 py-1 rounded border border-purple-200 dark:border-purple-500/20 mb-3">
-                   {study.catName}
+                   {study.catName || study.category}
                  </span>
                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug group-hover:text-purple-650 dark:group-hover:text-purple-300 transition-colors">
                    {study.title}
@@ -113,6 +119,8 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
                          if (study.results_impact) {
                            let parsed = typeof study.results_impact === 'string' ? JSON.parse(study.results_impact) : study.results_impact;
                            stats = parsed.slice(0, 3).map(item => ({ value: item.val || item.value, label: item.title || item.label }));
+                         } else if (study.results) {
+                           stats = study.results.slice(0, 3).map(item => ({ value: item.val || item.value, label: item.title || item.label }));
                          } else if (study.stats) {
                            stats = study.stats;
                          }
@@ -135,7 +143,7 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
         </AnimatePresence>
       </motion.div>
 
-    </div>
+    </section>
   );
 };
 

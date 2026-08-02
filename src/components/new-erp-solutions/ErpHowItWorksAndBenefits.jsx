@@ -18,7 +18,7 @@ const ErpHowItWorksAndBenefits = ({ activeTab }) => {
       {/* How Our ERP Works */}
       <div className="relative">
         <div className="text-center mb-8">
-          <h3 className="text-[15px] font-bold text-slate-900 dark:text-white tracking-wide">How {activeTab} Works</h3>
+          <h2 className="text-[15px] font-bold text-slate-900 dark:text-white tracking-wide">How {activeTab} Works</h2>
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-2 relative z-10">
@@ -53,7 +53,7 @@ const ErpHowItWorksAndBenefits = ({ activeTab }) => {
                         <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 rounded-full transition-opacity blur-md bg-current ${colorClass}`}></div>
                         <IconComponent size={20} className="relative z-10" />
                       </div>
-                      <h4 className="text-[12px] font-bold text-slate-900 dark:text-white mb-1">{step.name}</h4>
+                      <h3 className="text-[12px] font-bold text-slate-900 dark:text-white mb-1">{step.name}</h3>
                       <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight pr-1">{step.desc}</p>
                     </div>
 
@@ -73,7 +73,7 @@ const ErpHowItWorksAndBenefits = ({ activeTab }) => {
       {/* Key Benefits */}
       <div>
         <div className="text-center mb-8">
-          <h3 className="text-[15px] font-bold text-slate-900 dark:text-white tracking-wide">Key Benefits</h3>
+          <h2 className="text-[15px] font-bold text-slate-900 dark:text-white tracking-wide">Key Benefits</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">

@@ -7,8 +7,10 @@ import CrmHowItWorksAndBenefits from '../components/new-crm-solutions/CrmHowItWo
 import CrmIndustryTabs from '../components/new-crm-solutions/CrmIndustryTabs';
 import CrmTechLogos from '../components/new-crm-solutions/CrmTechLogos';
 import CrmBottomCta from '../components/new-crm-solutions/CrmBottomCta';
+import CrmFaqSection, { crmFaqData } from '../components/new-crm-solutions/CrmFaqSection';
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
+import SEO from '../components/SEO';
 import '../components/new-crm-solutions/crm-solutions.css';
 
 const NewCrmSolutionsPage = () => {
@@ -27,36 +29,114 @@ const NewCrmSolutionsPage = () => {
     setSearchParams({ tab: tabName });
   };
 
+  const isDefaultOverview = activeTab === 'Sales CRM';
+  const pageTitle = isDefaultOverview
+    ? "Custom CRM Software Development & Lead Pipeline Automation | Codigix Infotech"
+    : `${activeTab} Solutions & Custom CRM Software | Codigix Infotech`;
+
+  const metaDescription = `Codigix Infotech engineers custom CRM software solutions, including ${activeTab}, lead scoring automation, sales pipeline tracking, customer support ticketing, WhatsApp integration, and AI deal forecasting.`;
+
+  const canonicalUrl = `https://codigixinfotech.com/crm-solutions${isDefaultOverview ? '' : `?tab=${encodeURIComponent(activeTab)}`}`;
+
+  // Structured JSON-LD Data for CRM Solutions Page
+  const crmSchemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "TechService",
+      "name": `${activeTab} - Custom CRM Software Development`,
+      "provider": {
+        "@type": "Organization",
+        "name": "Codigix Infotech",
+        "url": "https://codigixinfotech.com/"
+      },
+      "areaServed": "Global",
+      "description": metaDescription
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://codigixinfotech.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "CRM Solutions",
+          "item": "https://codigixinfotech.com/crm-solutions"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": activeTab,
+          "item": canonicalUrl
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": crmFaqData.map(item => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
+    }
+  ];
+
   return (
-    <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white selection:bg-indigo-500/30 transition-colors duration-300">
+    <>
+      <SEO
+        title={pageTitle}
+        metaTitle={pageTitle}
+        description={metaDescription}
+        keywords={`Custom CRM Software, ${activeTab}, lead management system, sales pipeline automation, customer support CRM, WhatsApp CRM integration, AI lead scoring, Codigix Infotech`}
+        canonical={canonicalUrl}
+        ogImage="https://codigixinfotech.com/assets/images/logos/logo.png"
+        schemaData={crmSchemas}
+      />
 
-      {/* Navigation */}
-      <NewHomeNav />
+      <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white selection:bg-indigo-500/30 transition-colors duration-300">
 
-      {/* Main Layout Container */}
-      <div className="crm-layout-container  mx-auto pt-20 lg:pt-20">
+        {/* Navigation Header */}
+        <header>
+          <NewHomeNav />
+        </header>
 
-        {/* Main Content Area (Left Side) */}
-        <div className="px-4 sm:px-8 lg:px-12 xl:px-16 py-12 lg:border-r border-slate-200 dark:border-gray-800/50">
-          <CrmHero activeTab={activeTab} />
-          <CrmModules activeTab={activeTab} setActiveTab={handleTabChange} />
-          <CrmHowItWorksAndBenefits activeTab={activeTab} />
-          <CrmIndustryTabs activeTab={activeTab} setActiveTab={handleTabChange} />
-          <CrmTechLogos activeTab={activeTab} />
-          <CrmBottomCta activeTab={activeTab} />
+        {/* Main Layout Container */}
+        <div className="crm-layout-container mx-auto pt-20 lg:pt-20">
+
+          {/* Main Content Area (Left Side) */}
+          <main id="main-content" className="px-4 sm:px-8 lg:px-12 xl:px-16 py-12 lg:border-r border-slate-200 dark:border-gray-800/50">
+            <CrmHero activeTab={activeTab} />
+            <CrmModules activeTab={activeTab} setActiveTab={handleTabChange} />
+            <CrmHowItWorksAndBenefits activeTab={activeTab} />
+            <CrmIndustryTabs activeTab={activeTab} setActiveTab={handleTabChange} />
+            <CrmTechLogos activeTab={activeTab} />
+            <CrmFaqSection />
+            <CrmBottomCta activeTab={activeTab} />
+          </main>
+
+          {/* Sticky Sidebar (Right Side) */}
+          <aside aria-label="CRM Modules Selector">
+            <CrmSidebar activeTab={activeTab} setActiveTab={handleTabChange} />
+          </aside>
+
         </div>
 
-        {/* Sticky Sidebar (Right Side) */}
-        <CrmSidebar activeTab={activeTab} setActiveTab={handleTabChange} />
+        {/* Footer */}
+        <footer className="pt-24 border-t border-slate-200 dark:border-gray-800/30 mt-12 bg-slate-50/50 dark:bg-black/20">
+          <CtaFooterSection />
+        </footer>
 
       </div>
-
-      {/* Footer */}
-      <div className="pt-24 border-t border-slate-200 dark:border-gray-800/30 mt-12 bg-slate-50/50 dark:bg-black/20">
-        <CtaFooterSection />
-      </div>
-
-    </div>
+    </>
   );
 };
 

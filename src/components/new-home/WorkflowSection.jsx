@@ -1,80 +1,111 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUp, LayoutDashboard, Smartphone, BrainCircuit } from 'lucide-react';
+import {
+  Cog, Cpu, Wifi, Cloud, BrainCircuit,
+  Building2, LayoutDashboard, Smartphone, TrendingUp,
+  ArrowRight, ArrowUp
+} from 'lucide-react';
 
 const steps = [
   {
     name: 'Machine',
+    icon: Cog,
+    iconColor: 'text-rose-600 dark:text-rose-400',
+    bgColor: 'from-rose-500/20 via-rose-500/10 to-transparent',
+    activeGlow: 'border-rose-500 shadow-[0_8px_25px_rgba(244,63,94,0.35)]',
     imageLight: '/assets/images/workflow/wf_machine.png',
     imageDark: '/assets/images/workflow/wf_machine.png',
     desc: 'Industrial equipment & assets',
-    log: '[TELEMETRY] Connection established with Machine_ID #402. Ingesting raw sensor values... OK',
-    needsInvert: true
+    log: '[TELEMETRY] Connection established with Machine_ID #402. Ingesting raw sensor values... OK'
   },
   {
     name: 'PLC',
+    icon: Cpu,
+    iconColor: 'text-indigo-600 dark:text-indigo-400',
+    bgColor: 'from-indigo-500/20 via-indigo-500/10 to-transparent',
+    activeGlow: 'border-indigo-500 shadow-[0_8px_25px_rgba(99,102,241,0.35)]',
     imageLight: '/assets/images/workflow/wf_plc.png',
     imageDark: '/assets/images/workflow/wf_plc.png',
     desc: 'Direct machine sensor control',
-    log: '[MODBUS/TCP] Reading 16-bit register inputs. Status: 0x00 (Normal). Telemetry verified.',
-    needsInvert: true
+    log: '[MODBUS/TCP] Reading 16-bit register inputs. Status: 0x00 (Normal). Telemetry verified.'
   },
   {
     name: 'IoT Gateway',
+    icon: Wifi,
+    iconColor: 'text-purple-600 dark:text-purple-400',
+    bgColor: 'from-purple-500/25 via-purple-500/10 to-transparent',
+    activeGlow: 'border-purple-500 shadow-[0_8px_25px_rgba(168,85,247,0.35)]',
     imageLight: '/assets/images/workflow/wf_iot.png',
     imageDark: '/assets/images/workflow/wf_iot.png',
     desc: 'Edge processing & encryption',
-    log: '[EDGE] Packaging JSON payload. Encrypting with TLS 1.3. Streaming to endpoint...',
-    needsInvert: true
+    log: '[EDGE] Packaging JSON payload. Encrypting with TLS 1.3. Streaming to endpoint...'
   },
   {
     name: 'Cloud',
+    icon: Cloud,
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    bgColor: 'from-blue-500/20 via-blue-500/10 to-transparent',
+    activeGlow: 'border-blue-500 shadow-[0_8px_25px_rgba(59,130,246,0.35)]',
     imageLight: '/assets/images/workflow/wf_cloud.png',
     imageDark: '/assets/images/workflow/wf_cloud.png',
     desc: 'Centralized datalake storage',
-    log: '[DATALAKE] Ingesting stream from gateway. Partitioning raw telemetry. Storing in AWS S3...',
-    needsInvert: true
+    log: '[DATALAKE] Ingesting stream from gateway. Partitioning raw telemetry. Storing in AWS S3...'
   },
   {
     name: 'AI Analytics',
+    icon: BrainCircuit,
+    iconColor: 'text-pink-600 dark:text-pink-400',
+    bgColor: 'from-pink-500/20 via-pink-500/10 to-transparent',
+    activeGlow: 'border-pink-500 shadow-[0_8px_25px_rgba(236,72,153,0.35)]',
     imageLight: '/assets/images/workflow/wf_ai.png',
     imageDark: '/assets/images/workflow/wf_ai.png',
     desc: 'Predictive modeling & ML',
-    log: '[ML_MODEL] Running anomaly detection. Probability: 0.0042. Decision: Anomaly flag = FALSE',
-    needsInvert: true
+    log: '[ML_MODEL] Running anomaly detection. Probability: 0.0042. Decision: Anomaly flag = FALSE'
   },
   {
     name: 'ERP System',
+    icon: Building2,
+    iconColor: 'text-amber-600 dark:text-amber-400',
+    bgColor: 'from-amber-500/20 via-amber-500/10 to-transparent',
+    activeGlow: 'border-amber-500 shadow-[0_8px_25px_rgba(245,158,11,0.35)]',
     imageLight: '/assets/images/workflow/wf_erp.png',
     imageDark: '/assets/images/workflow/wf_erp.png',
     desc: 'Operational resource logs',
-    log: '[LEDGER] Logging operational output to database. ERP sync state: Success.',
-    needsInvert: true
+    log: '[LEDGER] Logging operational output to database. ERP sync state: Success.'
   },
   {
     name: 'Dashboard',
+    icon: LayoutDashboard,
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
+    bgColor: 'from-emerald-500/20 via-emerald-500/10 to-transparent',
+    activeGlow: 'border-emerald-500 shadow-[0_8px_25px_rgba(16,185,129,0.35)]',
     imageLight: '/assets/images/workflow/wf_dashboard_3d.png',
     imageDark: '/assets/images/workflow/wf_dashboard_3d.png',
     desc: 'Live monitoring control room',
-    log: '[REALTIME] Pushing live state to WebSockets. UI Refresh: 60fps. Latency: 4.2ms.',
-    needsInvert: true
+    log: '[REALTIME] Pushing live state to WebSockets. UI Refresh: 60fps. Latency: 4.2ms.'
   },
   {
     name: 'Mobile App',
+    icon: Smartphone,
+    iconColor: 'text-cyan-600 dark:text-cyan-400',
+    bgColor: 'from-cyan-500/20 via-cyan-500/10 to-transparent',
+    activeGlow: 'border-cyan-500 shadow-[0_8px_25px_rgba(6,182,212,0.35)]',
     imageLight: '/assets/images/workflow/wf_mobile_3d.png',
     imageDark: '/assets/images/workflow/wf_mobile_3d.png',
     desc: 'Field-level instant alerts',
-    log: '[APNS/FCM] Stream health normal. Status OK. Dispatching gateway keep-alive heartbeat.',
-    needsInvert: true
+    log: '[APNS/FCM] Stream health normal. Status OK. Dispatching gateway keep-alive heartbeat.'
   },
   {
     name: 'Management',
+    icon: TrendingUp,
+    iconColor: 'text-purple-600 dark:text-purple-400',
+    bgColor: 'from-purple-500/20 via-purple-500/10 to-transparent',
+    activeGlow: 'border-purple-500 shadow-[0_8px_25px_rgba(168,85,247,0.35)]',
     imageLight: '/assets/images/workflow/wf_management_3d.png',
     imageDark: '/assets/images/workflow/wf_management_3d.png',
     desc: 'Strategic decision making',
-    log: '[ANALYTICS] Operations dashboard ready. OEE score updated: 94.2%. Logs cached successfully.',
-    needsInvert: true
-  },
+    log: '[ANALYTICS] Operations dashboard ready. OEE score updated: 94.2%. Logs cached successfully.'
+  }
 ];
 
 const WorkflowSection = () => {
@@ -102,6 +133,8 @@ const WorkflowSection = () => {
           <div className="flex flex-wrap lg:flex-nowrap justify-center lg:justify-between items-center w-full gap-4 lg:gap-2 relative z-10">
             {steps.map((step, idx) => {
               const isActive = idx === activeStep;
+              const StepIcon = step.icon;
+
               return (
                 <React.Fragment key={idx}>
                   <motion.div
@@ -124,33 +157,26 @@ const WorkflowSection = () => {
                       <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-slate-900 border-r border-b border-purple-500/30 rotate-45" />
                     </div>
 
-                    {/* Icon Card Frame - Expanded with soft pastel circular glow backdrops */}
-                    <div className={`w-20 h-20 sm:w-24 sm:h-24 mb-3 flex items-center justify-center rounded-2xl relative border transition-all duration-300 ${isActive
-                      ? 'border-purple-600 dark:border-purple-500 bg-purple-100/90 dark:bg-purple-950/40 shadow-[0_8px_30px_rgba(139,92,246,0.35)] dark:shadow-[0_8px_30px_rgba(139,92,246,0.25)]'
-                      : 'border-slate-200/90 dark:border-gray-800/80 bg-slate-50 dark:bg-[#0c0828]/40 shadow-[0_4px_15px_rgba(0,0,0,0.03)] hover:border-purple-400 dark:hover:border-purple-500/40'
-                      }`}>
-                      {/* Interactive inner colorful glow backdrop */}
-                      <div className={`absolute inset-1.5 rounded-xl transition-all duration-300 ${isActive
-                        ? 'bg-gradient-to-tr from-purple-500/15 to-indigo-500/15'
-                        : 'bg-gradient-to-tr from-slate-100/40 to-slate-200/40 dark:from-purple-950/10 dark:to-indigo-950/10 group-hover:from-purple-500/5 group-hover:to-indigo-500/5'
-                        }`} />
+                    {/* Icon Card Frame */}
+                    <div className={`w-20 h-20 sm:w-24 sm:h-24 mb-3 flex flex-col items-center justify-center rounded-2xl relative border transition-all duration-300 overflow-hidden ${
+                      isActive
+                        ? `${step.activeGlow} bg-white dark:bg-[#120c38]`
+                        : 'border-slate-200/90 dark:border-gray-800/80 bg-white dark:bg-[#0c0828]/60 shadow-[0_4px_15px_rgba(0,0,0,0.03)] hover:border-purple-400 dark:hover:border-purple-500/40'
+                    }`}>
+                      {/* Gradient glow backdrop */}
+                      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${step.bgColor} transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50 group-hover:opacity-100'}`} />
 
-                      {/* Light Theme Bold Icon - Increased to w-14 h-14 */}
-                      <img
-                        src={step.imageLight}
-                        alt={`${step.name} Light`}
-                        className={`block dark:hidden w-20 h-20 object-contain group-hover:-translate-y-1 transition-all duration-300 drop-shadow-[0_4px_8px_rgba(139,92,246,0.25)] relative z-10 ${step.needsInvert ? 'invert contrast-135 brightness-75 saturate-125' : 'contrast-110 saturate-110'
-                          }`}
-                      />
-
-                      {/* Dark Theme Bold Icon - Increased to w-14 h-14 */}
-                      <img
-                        src={step.imageDark}
-                        alt={`${step.name} Dark`}
-                        className="hidden dark:block w-14 h-14 object-contain group-hover:-translate-y-1 transition-all duration-300 drop-shadow-[0_0_15px_rgba(139,92,246,0.4)] group-hover:drop-shadow-[0_8px_20px_rgba(139,92,246,0.5)] relative z-10 contrast-110 brightness-110 saturate-110"
-                      />
+                      {/* Crisp Vector Icon with vibrant brand color */}
+                      <div className="relative z-10 flex items-center justify-center p-3 rounded-xl bg-slate-50/80 dark:bg-black/30 border border-slate-100 dark:border-white/10 shadow-inner group-hover:scale-110 transition-transform duration-300">
+                        <StepIcon size={28} className={`${step.iconColor} transition-all duration-300 filter drop-shadow-[0_2px_8px_rgba(168,85,247,0.3)]`} />
+                      </div>
                     </div>
-                    <span className={`text-[11px] font-extrabold uppercase tracking-wider transition-colors duration-300 ${isActive ? 'text-purple-700 dark:text-purple-400' : 'text-slate-700 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white'}`}>{step.name}</span>
+
+                    <span className={`text-[11px] font-extrabold uppercase tracking-wider transition-colors duration-300 ${
+                      isActive ? 'text-purple-700 dark:text-purple-400 font-black' : 'text-slate-700 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white'
+                    }`}>
+                      {step.name}
+                    </span>
                   </motion.div>
 
                   {/* Arrow */}
@@ -257,7 +283,7 @@ const WorkflowSection = () => {
               <span className="text-gray-200">Executing: <span className="text-purple-400">./stream_pipeline_verify --active-node="{steps[activeStep].name.toLowerCase()}"</span></span>
             </div>
             <div className="flex items-start gap-2 pt-1">
-              <span className="text-green-500 select-none">$</span>
+              <span className="text-purple-400 select-none">$</span>
               <span className="text-green-400 font-semibold">{steps[activeStep].log}</span>
             </div>
           </div>

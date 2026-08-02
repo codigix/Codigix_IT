@@ -10,7 +10,7 @@ const AiValueProps = ({ activeTab }) => {
   return (
     <section className="py-16">
       <div className="mb-8 text-left">
-        <h3 className="text-xs font-extrabold text-purple-700 dark:text-purple-400 uppercase tracking-widest mb-2">Key Capabilities & Benefits</h3>
+        <span className="block text-xs font-extrabold text-purple-700 dark:text-purple-400 uppercase tracking-widest mb-2">Key Capabilities & Benefits</span>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">How {activeTab} Adds Value to Your Business</h2>
       </div>
       
@@ -36,7 +36,7 @@ const AiValueProps = ({ activeTab }) => {
               <div className="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800/40 flex items-center justify-center mb-4 relative z-10 transition-transform duration-300 group-hover:scale-110">
                 <PropIcon size={22} className="text-purple-600 dark:text-purple-400 group-hover:text-rose-500 transition-colors" />
               </div>
-              <h4 className="text-sm font-extrabold text-slate-900 dark:text-white mb-2 relative z-10">{prop.title}</h4>
+              <h3 className="text-sm font-extrabold text-slate-900 dark:text-white mb-2 relative z-10">{prop.title}</h3>
               <p className="text-xs text-slate-600 dark:text-gray-300 leading-relaxed relative z-10 font-normal">{prop.desc}</p>
             </motion.div>
           );

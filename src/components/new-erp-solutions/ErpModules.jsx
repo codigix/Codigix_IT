@@ -31,10 +31,10 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
       {/* 1. All ERP Modules Quick Selector */}
       <div className="mb-14">
         <div className="text-center mb-8 flex flex-col items-center">
-          <h3 className="text-xl font-bold text-slate-900 dark:text-white relative inline-block">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white relative inline-block">
             Comprehensive ERP Modules & Department Hubs
             <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"></div>
-          </h3>
+          </h2>
           <p className="text-xs text-slate-500 dark:text-gray-400 mt-3">Select any ERP module below to view detailed departmental dashboards and operational tools</p>
         </div>
 

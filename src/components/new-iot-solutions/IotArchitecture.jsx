@@ -10,9 +10,9 @@ const IotArchitecture = ({ activeTab }) => {
   return (
     <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-4 relative">
       <div className="text-center mb-10">
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
           End-to-End <span className="text-rose-600 dark:text-rose-500">{activeTab} Architecture</span>
-        </h3>
+        </h2>
       </div>
 
       <div className="relative z-10">
@@ -41,9 +41,9 @@ const IotArchitecture = ({ activeTab }) => {
                     <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 rounded-xl transition-opacity blur-md bg-current ${step.color}`}></div>
                     <StepIcon size={24} className={`${step.color} relative z-10 group-hover:scale-110 transition-transform`} />
                   </div>
-                  <h4 className="text-[11px] font-medium text-slate-700 dark:text-gray-300 text-center leading-tight">
+                  <h3 className="text-[11px] font-medium text-slate-700 dark:text-gray-300 text-center leading-tight">
                     {step.name}
-                  </h4>
+                  </h3>
                 </motion.div>
                 
                 {index < steps.length - 1 && (

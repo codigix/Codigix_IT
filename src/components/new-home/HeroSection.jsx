@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight, Play, MonitorPlay, FolderGit, Building2, Globe2, Activity,
@@ -65,24 +66,29 @@ const HeroSection = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="nh-btn-primary text-xs flex justify-center items-center shadow-[0_0_20px_rgba(220,38,38,0.35)] hover:shadow-[0_0_30px_rgba(220,38,38,0.55)]"
-                >
-                  Schedule Free Consultation <ArrowRight size={15} />
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="px-5 py-3 bg-white dark:bg-[#0c0828] border border-purple-200 dark:border-purple-900/60 hover:border-purple-400 dark:hover:border-purple-500/60 hover:bg-purple-50/50 dark:hover:bg-[#150d40] text-slate-800 dark:text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-all text-xs shadow-sm"
-                >
-                  <MonitorPlay size={16} className="text-purple-600 dark:text-purple-400" /> Book Live Demo
-                </motion.button>
+                <Link to="/contact" aria-label="Schedule a Free AI and Software Consultation with Codigix">
+                  <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="nh-btn-primary text-xs flex justify-center items-center shadow-[0_0_20px_rgba(220,38,38,0.35)] hover:shadow-[0_0_30px_rgba(220,38,38,0.55)] cursor-pointer"
+                  >
+                    Schedule Free Consultation <ArrowRight size={15} className="ml-1" />
+                  </motion.div>
+                </Link>
+                <Link to="/services" aria-label="Explore Codigix Enterprise Solutions & Live Demos">
+                  <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="px-5 py-3 bg-white dark:bg-[#0c0828] border border-purple-200 dark:border-purple-900/60 hover:border-purple-400 dark:hover:border-purple-500/60 hover:bg-purple-50/50 dark:hover:bg-[#150d40] text-slate-800 dark:text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-all text-xs shadow-sm cursor-pointer"
+                  >
+                    <MonitorPlay size={16} className="text-purple-600 dark:text-purple-400" /> Explore Our Solutions
+                  </motion.div>
+                </Link>
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setIsVideoModalOpen(true)}
+                  aria-label="Watch Codigix Customer Success Story Video"
                   className="p-2 text-slate-700 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white font-medium flex items-center justify-center gap-3 transition-colors text-xs"
                 >
                   <div className="w-10 h-10 rounded-full border border-rose-500/40 hover:border-rose-500 flex items-center justify-center bg-white dark:bg-[#0c0828] shadow-sm transition-colors">

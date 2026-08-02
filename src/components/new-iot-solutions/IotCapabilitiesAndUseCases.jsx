@@ -28,10 +28,10 @@ const IotCapabilitiesAndUseCases = ({ activeTab }) => {
       
       {/* Key Capabilities */}
       <div className="bg-white dark:bg-[#090624]/30 border border-slate-200 dark:border-gray-800/60 rounded-xl p-6 hover:border-slate-300 dark:hover:border-gray-700/80 transition-colors text-left shadow-sm dark:shadow-none">
-        <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-6 flex items-center justify-between">
+        <h2 className="text-sm font-bold text-slate-900 dark:text-white mb-6 flex items-center justify-between">
           <span>Key Capabilities</span>
           <span className="text-[10px] text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/30 px-2 py-0.5 rounded border border-rose-200 dark:border-rose-900/40">{activeTab}</span>
-        </h4>
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-3">
           {capabilities.map((cap, i) => (
             <div key={i} className="flex items-center gap-2 bg-slate-50 dark:bg-[#050117]/50 border border-slate-200 dark:border-gray-800/50 rounded-lg p-2.5 hover:border-rose-500/30 transition-colors">
@@ -45,7 +45,7 @@ const IotCapabilitiesAndUseCases = ({ activeTab }) => {
       {/* Use Cases */}
       <div className="bg-white dark:bg-[#090624]/30 border border-slate-200 dark:border-gray-800/60 rounded-xl p-6 hover:border-slate-350 dark:hover:border-gray-700/80 transition-colors text-left flex flex-col justify-between shadow-sm dark:shadow-none">
         <div>
-          <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-6">Use Cases Across Industries</h4>
+          <h2 className="text-sm font-bold text-slate-900 dark:text-white mb-6">Use Cases Across Industries</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {useCases.map((uc, i) => {
               const UcIcon = uc.icon;

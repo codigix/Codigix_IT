@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const faqs = [
+export const contactFaqs = [
   {
     question: "How quickly will you respond to my inquiry?",
     answer: "We strive to respond to all inquiries within 24 hours during normal business hours."
@@ -49,7 +49,7 @@ const ContactFaq = () => {
 
       {/* FAQ Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-        {faqs.map((faq, idx) => (
+        {contactFaqs.map((faq, idx) => (
           <div 
             key={idx} 
             className={`border rounded-xl bg-white dark:bg-[#050112] overflow-hidden transition-all duration-300 text-left shadow-xs ${

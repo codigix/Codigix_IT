@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
@@ -67,8 +68,9 @@ const IotDevicesSection = () => {
                     <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-xl group-hover:bg-blue-500/20 transition-colors"></div>
                     <img 
                       src={device.image} 
-                      alt={device.name} 
+                      alt={`Codigix Industrial IoT ${device.name} Integration`} 
                       className="max-w-full max-h-full object-contain filter drop-shadow-[0_0_10px_rgba(59,130,246,0.25)] transition-transform duration-300 group-hover:scale-110 relative z-10" 
+                      loading="lazy"
                     />
                   </div>
                   <span className="text-[9px] lg:text-[10px] text-center text-slate-700 dark:text-gray-400 group-hover:text-blue-700 dark:group-hover:text-white font-extrabold leading-tight px-0.5 uppercase tracking-wider transition-colors duration-300">
@@ -88,9 +90,15 @@ const IotDevicesSection = () => {
             </p>
             
             <div>
-              <button className="px-6 py-3 bg-[#e11d48] hover:bg-[#be123c] text-white rounded-lg font-medium flex items-center justify-center gap-2 transition-colors mt-2 text-sm shadow-[0_0_15px_rgba(225,29,72,0.3)]">
-                Explore IoT Solutions <ArrowRight size={18} />
-              </button>
+              <Link to="/iot-solutions" aria-label="Explore Industrial IoT Solutions by Codigix Infotech">
+                <motion.div 
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-6 py-3 bg-[#e11d48] hover:bg-[#be123c] text-white rounded-lg font-medium inline-flex items-center justify-center gap-2 transition-colors mt-2 text-sm shadow-[0_0_15px_rgba(225,29,72,0.3)] cursor-pointer"
+                >
+                  Explore IoT Solutions <ArrowRight size={18} />
+                </motion.div>
+              </Link>
             </div>
           </div>
 

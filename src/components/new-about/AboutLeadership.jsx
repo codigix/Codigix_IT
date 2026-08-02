@@ -69,7 +69,7 @@ const AboutLeadership = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#050112] to-transparent z-10"></div>
                 <img 
                   src={member.image} 
-                  alt={member.name} 
+                  alt={`${member.name} - ${member.role} at Codigix Infotech`} 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 filter grayscale group-hover:grayscale-0"
                 />
               </div>

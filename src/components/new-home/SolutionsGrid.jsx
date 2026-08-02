@@ -1,6 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronRight } from 'lucide-react';
+
+const getSolutionPath = (title) => {
+  switch (title) {
+    case 'AI Development':
+      return '/ai-solutions';
+    case 'Industrial IoT':
+      return '/iot-solutions';
+    case 'ERP Development':
+      return '/erp-solutions';
+    case 'CRM Development':
+      return '/crm-solutions';
+    default:
+      return '/services';
+  }
+};
 
 const solutions = [
   {
@@ -165,8 +181,9 @@ const SolutionsGrid = () => {
                   <div className="block dark:hidden w-full h-full bg-slate-50/80 border border-slate-200/80 relative">
                     <img 
                       src={sol.imageLight} 
-                      alt={`${sol.title} Light`} 
+                      alt={`Codigix ${sol.title} - Enterprise Engineering Solutions`} 
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 relative z-10" 
+                      loading="lazy"
                     />
                   </div>
 
@@ -175,8 +192,9 @@ const SolutionsGrid = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 to-purple-500/10 pointer-events-none" />
                     <img 
                       src={sol.imageDark} 
-                      alt={`${sol.title} Dark`} 
+                      alt={`Codigix ${sol.title} - Industrial & Software Platform`} 
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 relative z-10" 
+                      loading="lazy"
                     />
                   </div>
                   
@@ -196,9 +214,13 @@ const SolutionsGrid = () => {
                 </ul>
 
                 <div className="mt-auto">
-                  <a href="#" className="inline-flex items-center text-sm font-bold text-slate-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors">
-                    Explore <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </a>
+                  <Link 
+                    to={getSolutionPath(sol.title)} 
+                    aria-label={`Explore details for Codigix ${sol.title}`}
+                    className="inline-flex items-center text-sm font-bold text-slate-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors"
+                  >
+                    Explore Solutions <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </div>
             ))}
