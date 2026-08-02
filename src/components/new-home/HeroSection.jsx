@@ -22,11 +22,16 @@ const HeroSection = () => {
       {/* Cyber Grid background layer */}
       <div className="absolute inset-0 nh-cyber-grid opacity-[0.25] dark:opacity-[0.18] z-0 pointer-events-none" />
 
-      {/* Full Background Image */}
-      <div
-        className="absolute inset-1 bg-cover w-full h-full bg-center bg-no-repeat z-0 pointer-events-none opacity-10 dark:opacity-40 mix-blend-multiply dark:mix-blend-screen transition-all duration-300"
-        style={{ backgroundImage: "url('/assets/images/new-home/hero-bg.webp')" }}
-      />
+      {/* Full Background Image (LCP Element optimized with fetchPriority="high") */}
+      <div className="absolute inset-1 w-full h-full z-0 pointer-events-none opacity-10 dark:opacity-40 mix-blend-multiply dark:mix-blend-screen transition-all duration-300 overflow-hidden">
+        <img 
+          src="/assets/images/new-home/hero-bg.webp" 
+          alt="Codigix Infotech Enterprise Background"
+          fetchPriority="high"
+          decoding="sync"
+          className="w-full h-full object-cover object-center"
+        />
+      </div>
       {/* Gradient Overlay to ensure text readability on the left */}
       <div className="absolute inset-0 bg-gradient-to-r from-purple-50/90 via-slate-50/80 to-transparent dark:from-[#07041a] dark:via-[#07041a]/90 dark:to-transparent z-0 pointer-events-none" />
 

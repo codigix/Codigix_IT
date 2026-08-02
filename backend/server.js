@@ -9,9 +9,10 @@ const db = require('./config/db');
 
 const app = express();
 
-app.use(compression());
+// Performance & Compression headers middleware
+app.use(compression({ level: 6 }));
 app.use(cors({
-  origin: true, // Reflect request origin back (allows all)
+  origin: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
   credentials: true
@@ -19,10 +20,18 @@ app.use(cors({
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
+// Performance headers for low latency & keep-alive
+app.use((req, res, next) => {
+  res.setHeader('X-DNS-Prefetch-Control', 'on');
+  res.setHeader('Connection', 'keep-alive');
+  next();
+});
+
 // Serve uploads with cache control (1 year)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
   maxAge: '1y',
-  immutable: true
+  immutable: true,
+  etag: true
 }));
 
 // Request logger
@@ -39,14 +48,18 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Serve frontend static files in production
+// Serve frontend static files in production with optimized cache rules
 if (NODE_ENV === 'production') {
   const distPath = path.join(__dirname, '../dist');
   app.use(express.static(distPath, {
     maxAge: '1y',
-    setHeaders: (res, path) => {
-      if (path.endsWith('.html')) {
-        res.setHeader('Cache-Control', 'no-cache');
+    immutable: true,
+    etag: true,
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+      } else if (filePath.endsWith('.webp') || filePath.endsWith('.png') || filePath.endsWith('.jpg') || filePath.endsWith('.woff2')) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
       }
     }
   }));
