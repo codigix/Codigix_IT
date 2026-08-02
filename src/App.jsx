@@ -1,20 +1,8 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
-import Layout from './components/Layout';
 
-// Lazy load pages
-const HomePage = lazy(() => import('./pages/HomePage'));
-const AboutPage = lazy(() => import('./pages/AboutPage'));
-const ServicesPage = lazy(() => import('./pages/ServicesPage'));
-const ServiceDetailsPage = lazy(() => import('./pages/ServiceDetailsPage'));
-const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
-const ProjectDetailsPage = lazy(() => import('./pages/ProjectDetailsPage'));
-const BlogPage = lazy(() => import('./pages/BlogPage'));
-const BlogDetailsPage = lazy(() => import('./pages/BlogDetailsPage'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
-const CareerPage = lazy(() => import('./pages/CareerPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+// Lazy load active pages
 const NewHomePage = lazy(() => import('./pages/NewHomePage'));
 const NewAiSolutionsPage = lazy(() => import('./pages/NewAiSolutionsPage'));
 const NewIotSolutionsPage = lazy(() => import('./pages/NewIotSolutionsPage'));
@@ -27,21 +15,20 @@ const NewCaseStudyDetailsPage = lazy(() => import('./pages/NewCaseStudyDetailsPa
 const NewCareerPage = lazy(() => import('./pages/NewCareerPage'));
 const NewAboutPage = lazy(() => import('./pages/NewAboutPage'));
 const NewContactPage = lazy(() => import('./pages/NewContactPage'));
+const NewBlogPage = lazy(() => import('./pages/NewBlogPage'));
+const NewBlogDetailsPage = lazy(() => import('./pages/NewBlogDetailsPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Lazy load admin components
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
-const HeroSlides = lazy(() => import('./pages/admin/entities/HeroSlides'));
-const ServicesAdmin = lazy(() => import('./pages/admin/entities/ServicesAdmin'));
-const ProjectsAdmin = lazy(() => import('./pages/admin/entities/ProjectsAdmin'));
+const CaseStudiesAdmin = lazy(() => import('./pages/admin/entities/CaseStudiesAdmin'));
 const BlogsAdmin = lazy(() => import('./pages/admin/entities/BlogsAdmin'));
 const TestimonialsAdmin = lazy(() => import('./pages/admin/entities/TestimonialsAdmin'));
 const ClientsAdmin = lazy(() => import('./pages/admin/entities/ClientsAdmin'));
-const WorkingProcessAdmin = lazy(() => import('./pages/admin/entities/WorkingProcessAdmin'));
-const AchievementsAdmin = lazy(() => import('./pages/admin/entities/AchievementsAdmin'));
-const TeamAdmin = lazy(() => import('./pages/admin/entities/TeamAdmin'));
 const JobsAdmin = lazy(() => import('./pages/admin/entities/JobsAdmin'));
 const ApplicationsAdmin = lazy(() => import('./pages/admin/entities/ApplicationsAdmin'));
+const InquiriesAdmin = lazy(() => import('./pages/admin/entities/InquiriesAdmin'));
 const AdminLayout = lazy(() => import('./pages/admin/components/AdminLayout'));
 
 function AppRoutes() {
@@ -60,17 +47,13 @@ function AppRoutes() {
         {/* Nested Admin Routes */}
         <Route element={<AdminLayout />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/slides" element={<HeroSlides />} />
-          <Route path="/admin/services" element={<ServicesAdmin />} />
-          <Route path="/admin/projects" element={<ProjectsAdmin />} />
+          <Route path="/admin/case-studies" element={<CaseStudiesAdmin />} />
           <Route path="/admin/blogs" element={<BlogsAdmin />} />
           <Route path="/admin/testimonials" element={<TestimonialsAdmin />} />
           <Route path="/admin/clients" element={<ClientsAdmin />} />
-          <Route path="/admin/workingProcess" element={<WorkingProcessAdmin />} />
-          <Route path="/admin/achievements" element={<AchievementsAdmin />} />
-          <Route path="/admin/team" element={<TeamAdmin />} />
           <Route path="/admin/jobs" element={<JobsAdmin />} />
           <Route path="/admin/applications" element={<ApplicationsAdmin />} />
+          <Route path="/admin/inquiries" element={<InquiriesAdmin />} />
         </Route>
 
         <Route path="/admin" element={<AdminLogin />} />
@@ -80,40 +63,66 @@ function AppRoutes() {
 
   return (
     <Routes>
-      {/* New Home Route without Layout */}
+      {/* Primary Clean SEO Routes */}
+      <Route path="/" element={<NewHomePage />} />
+      <Route path="/home" element={<NewHomePage />} />
       <Route path="/new-home" element={<NewHomePage />} />
+      
+      {/* AI Solutions */}
+      <Route path="/ai-solutions" element={<NewAiSolutionsPage />} />
       <Route path="/new-ai-solutions" element={<NewAiSolutionsPage />} />
+      
+      {/* IoT Solutions */}
+      <Route path="/iot-solutions" element={<NewIotSolutionsPage />} />
       <Route path="/new-iot-solutions" element={<NewIotSolutionsPage />} />
+      
+      {/* ERP Solutions */}
+      <Route path="/erp-solutions" element={<NewErpSolutionsPage />} />
       <Route path="/new-erp-solutions" element={<NewErpSolutionsPage />} />
+      
+      {/* CRM Solutions */}
+      <Route path="/crm-solutions" element={<NewCrmSolutionsPage />} />
       <Route path="/new-crm-solutions" element={<NewCrmSolutionsPage />} />
+      
+      {/* Services */}
+      <Route path="/services" element={<NewOtherServicesPage />} />
+      <Route path="/other-services" element={<NewOtherServicesPage />} />
       <Route path="/new-other-services" element={<NewOtherServicesPage />} />
+      
+      {/* Industries */}
+      <Route path="/industries" element={<NewIndustriesPage />} />
       <Route path="/new-industries" element={<NewIndustriesPage />} />
+      
+      {/* Case Studies / Projects */}
+      <Route path="/case-studies" element={<NewCaseStudiesPage />} />
+      <Route path="/projects" element={<NewCaseStudiesPage />} />
       <Route path="/new-case-studies" element={<NewCaseStudiesPage />} />
+      <Route path="/case-studies/:id" element={<NewCaseStudyDetailsPage />} />
       <Route path="/new-case-studies/:id" element={<NewCaseStudyDetailsPage />} />
+      
+      {/* Career */}
+      <Route path="/career" element={<NewCareerPage />} />
+      <Route path="/careers" element={<NewCareerPage />} />
       <Route path="/new-career" element={<NewCareerPage />} />
+      
+      {/* About */}
+      <Route path="/about" element={<NewAboutPage />} />
       <Route path="/new-about" element={<NewAboutPage />} />
+      
+      {/* Contact */}
+      <Route path="/contact" element={<NewContactPage />} />
       <Route path="/new-contact" element={<NewContactPage />} />
-
-      {/* All other routes wrapped in Layout */}
-      <Route path="*" element={
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-          <Route path="/banner" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/services/details/:id?" element={<ServiceDetailsPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/projects/details/:id" element={<ProjectDetailsPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/details/:id" element={<BlogDetailsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/careers" element={<CareerPage />} />
-          <Route path="/:slug" element={<ServiceDetailsPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Layout>
-      } />
+      
+      {/* Blogs */}
+      <Route path="/blog" element={<NewBlogPage />} />
+      <Route path="/blogs" element={<NewBlogPage />} />
+      <Route path="/new-blog" element={<NewBlogPage />} />
+      <Route path="/blog/:id" element={<NewBlogDetailsPage />} />
+      <Route path="/blogs/:id" element={<NewBlogDetailsPage />} />
+      <Route path="/new-blog/:id" element={<NewBlogDetailsPage />} />
+      
+      {/* Catch-all 404 */}
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
@@ -121,8 +130,8 @@ function AppRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
- <Suspense fallback={<div>Loading...</div>}>
-      <AppRoutes />
+      <Suspense fallback={<div className="min-h-screen bg-[#030014] flex items-center justify-center text-white font-mono text-sm">Loading Codigix...</div>}>
+        <AppRoutes />
       </Suspense>
     </BrowserRouter>
   );

@@ -46,10 +46,10 @@ const AiIndustries = ({ activeTab }) => {
   const logText = industryLogs[selectedInd] || `[DIAGNOSTIC] Select an industry above to parse targeted telemetry insights.`;
 
   return (
-    <section className="py-16 border-t border-gray-800/30">
+    <section className="py-16 border-t border-purple-200/70 dark:border-gray-800/50">
       <div className="mb-8 text-left">
-        <h3 className="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-2">Industry Applications</h3>
-        <h2 className="text-2xl sm:text-3xl font-bold text-white">Where {activeTab} Creates High Impact</h2>
+        <h3 className="text-xs font-extrabold text-purple-700 dark:text-purple-400 uppercase tracking-widest mb-2">Industry Applications</h3>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Where {activeTab} Creates High Impact</h2>
       </div>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -63,8 +63,10 @@ const AiIndustries = ({ activeTab }) => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
-              className={`ai-feature-card flex flex-col items-center text-center !p-4 cursor-pointer transition-all duration-300 group ${
-                isSelected ? 'border-purple-500 bg-[#110c38] shadow-[0_0_20px_rgba(139,92,246,0.15)]' : 'border-gray-800/80 hover:border-purple-500/40 hover:bg-[#110c38]'
+              className={`flex flex-col items-center text-center p-4 rounded-2xl cursor-pointer transition-all duration-300 group relative border shadow-sm ${
+                isSelected 
+                  ? 'border-purple-500 bg-purple-50/90 dark:bg-[#110c38] shadow-[0_8px_25px_rgba(139,92,246,0.2)]' 
+                  : 'border-slate-200/90 dark:border-gray-800/80 bg-white dark:bg-[#090624]/90 hover:border-purple-400 hover:bg-purple-50/30 dark:hover:bg-[#110c38]'
               }`}
             >
               {/* LED Active Beacon */}
@@ -72,21 +74,21 @@ const AiIndustries = ({ activeTab }) => {
                 <span className={`nh-led-active ${isSelected ? 'bg-purple-500 shadow-[0_0_8px_#a855f7]' : 'bg-green-500 shadow-[0_0_8px_#22c55e]'}`}></span>
               </div>
 
-              <div className="w-12 h-12 rounded-lg bg-purple-950/30 border border-purple-500/20 flex items-center justify-center mb-4 group-hover:bg-purple-900/40 transition-colors">
-                <IndIcon size={22} className="text-purple-400" />
+              <div className="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-500/20 flex items-center justify-center mb-3 group-hover:bg-purple-100 dark:group-hover:bg-purple-900/40 transition-colors">
+                <IndIcon size={22} className="text-purple-600 dark:text-purple-400" />
               </div>
-              <h4 className="text-[13px] font-bold text-white mb-2 leading-tight">{ind.name}</h4>
-              <p className="text-[10px] text-gray-400 leading-relaxed truncate w-full">{ind.desc}</p>
+              <h4 className="text-[13px] font-extrabold text-slate-900 dark:text-white mb-1 leading-tight">{ind.name}</h4>
+              <p className="text-[10px] text-slate-600 dark:text-gray-400 leading-relaxed truncate w-full px-1">{ind.desc}</p>
             </motion.div>
           );
         })}
       </div>
 
-      {/* Live Industry Diagnostic Metrics Logger */}
-      <div className="mt-8 border border-gray-800/85 bg-[#07041a] rounded-xl p-4 shadow-md font-mono text-[10px] text-left">
-        <div className="flex items-center justify-between border-b border-gray-800/60 pb-2 mb-2">
-          <span className="text-gray-500 font-bold uppercase tracking-wider">industry_diagnostics.log</span>
-          <span className="text-[8px] text-[#ff858f] font-bold">READY</span>
+      {/* Live Industry Diagnostic Metrics Logger - High-contrast dark console */}
+      <div className="mt-8 border border-purple-900/40 dark:border-gray-800/85 bg-[#0c0828] dark:bg-[#07041a] rounded-xl p-4 shadow-[0_15px_40px_rgba(139,92,246,0.12)] dark:shadow-md font-mono text-[10px] text-left keep-dark">
+        <div className="flex items-center justify-between border-b border-purple-900/40 pb-2 mb-2">
+          <span className="text-gray-400 font-bold uppercase tracking-wider">industry_diagnostics.log</span>
+          <span className="text-[8px] text-rose-400 font-bold">READY</span>
         </div>
         <div className="h-6 flex items-center">
           <AnimatePresence mode="wait">
@@ -96,7 +98,7 @@ const AiIndustries = ({ activeTab }) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 10 }}
               transition={{ duration: 0.25 }}
-              className="text-purple-300 font-semibold leading-normal"
+              className="text-purple-300 font-bold leading-normal"
             >
               {logText}
             </motion.div>

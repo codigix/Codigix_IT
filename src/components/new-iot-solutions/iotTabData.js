@@ -1,8 +1,8 @@
-import { 
-  Factory, Activity, MonitorSmartphone, Settings, Cpu, Radio, Radar, ShieldAlert, FileDigit, Zap, 
-  Wrench, Globe, LayoutDashboard, Cog, BarChart3, TrendingUp, BellRing, Settings2, ShieldCheck, 
-  CheckCircle2, Car, HeartPulse, Droplets, Truck, Pill, Building2, Router, Cloud, BarChart2, 
-  Laptop, Users, ArrowRightLeft, Database, Server, Code, Lock, Eye, Smartphone, Gauge, Network, 
+import {
+  Factory, Activity, MonitorSmartphone, Settings, Cpu, Radio, Radar, ShieldAlert, FileDigit, Zap,
+  Wrench, Globe, LayoutDashboard, Cog, BarChart3, TrendingUp, BellRing, Settings2, ShieldCheck,
+  CheckCircle2, Car, HeartPulse, Droplets, Truck, Pill, Building2, Router, Cloud, BarChart2,
+  Laptop, Users, ArrowRightLeft, Database, Server, Code, Lock, Eye, Smartphone, Gauge, Network,
   Flame, BatteryCharging, Box, QrCode, Layers, Shield, Target, DollarSign, Clock, Search, Camera,
   FileText, BrainCircuit
 } from 'lucide-react';
@@ -13,8 +13,8 @@ export const iotTabData = {
     heroHighlight: 'Smart Manufacturing',
     heroDesc: 'Connect machines, sensors, PLCs, and enterprise software through Industrial IoT to monitor production in real time, improve operational efficiency, reduce downtime, optimize energy consumption, and enable Industry 4.0 transformation.',
     metrics: [
-      { label: 'Connected Machines', value: '150+', icon: Factory },
-      { label: 'Factories Onboarded', value: '50+', icon: MonitorSmartphone },
+      { label: 'Connected Machines', value: '2+', icon: Factory },
+      { label: 'Factories Onboarded', value: '2+', icon: MonitorSmartphone },
       { label: 'System Availability', value: '99.9%', icon: ShieldCheck },
       { label: 'Live Monitoring', value: '24x7', icon: Activity },
     ],

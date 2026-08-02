@@ -6,24 +6,23 @@ const CtaFooterSection = () => {
     <>
       {/* CTA Section */}
       <section className="relative px-4 sm:px-6 lg:px-8 max-w-[1500px] mx-auto -mb-12 md:-mb-16 z-20">
-        <div className="bg-gradient-to-r from-[#100b2e] via-[#1b082d] to-[#2c081e] border border-gray-700/50 rounded-2xl flex flex-col lg:flex-row items-center justify-between p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-10 relative overflow-hidden">
-          
+        <div className="bg-gradient-to-r from-purple-700 via-purple-800 to-indigo-800 dark:from-[#100b2e] dark:via-[#1b082d] dark:to-[#2c081e] border border-purple-500/30 dark:border-gray-700/50 rounded-2xl flex flex-col lg:flex-row items-center justify-between p-8 md:p-10 shadow-[0_20px_50px_rgba(126,34,206,0.25)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-10 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
              {/* Subtle background glow/lines */}
-             <div className="absolute -left-[10%] top-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-blue-600/10 blur-[80px]"></div>
-             <div className="absolute -right-[10%] top-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-red-600/10 blur-[80px]"></div>
+             <div className="absolute -left-[10%] top-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-white/5 dark:bg-blue-600/10 blur-[80px]"></div>
+             <div className="absolute -right-[10%] top-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-pink-500/10 dark:bg-red-600/10 blur-[80px]"></div>
           </div>
 
           <div className="relative z-10 space-y-3 mb-6 lg:mb-0 text-center lg:text-left flex-1">
             <h2 className="text-2xl md:text-[28px] font-bold text-white tracking-wide">Ready to Build Your Intelligent Business?</h2>
-            <p className="text-gray-300 text-sm md:text-[15px]">Let's automate your operations and accelerate your growth with AI, IoT, ERP, CRM and Custom Software.</p>
+            <p className="text-purple-100 dark:text-gray-300 text-sm md:text-[15px]">Let's automate your operations and accelerate your growth with AI, IoT, ERP, CRM and Custom Software.</p>
           </div>
 
           <div className="relative z-10 flex flex-col sm:flex-row gap-4 shrink-0">
-            <button className="px-6 py-3 bg-[#e11d48] hover:bg-[#be123c] text-white text-sm rounded-md font-medium flex items-center justify-center gap-2 transition-colors shadow-lg">
+            <button className="px-6 py-3 bg-[#e11d48] hover:bg-[#be123c] text-white text-sm rounded-md font-medium flex items-center justify-center gap-2 transition-colors shadow-lg shadow-rose-600/30">
               Book Free Consultation &rarr;
             </button>
-            <button className="px-6 py-3 bg-transparent border border-gray-600 hover:border-gray-400 text-white text-sm rounded-md font-medium flex items-center justify-center gap-2 transition-colors">
+            <button className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/30 hover:border-white/50 text-white text-sm rounded-md font-medium flex items-center justify-center gap-2 transition-colors">
               <FileText size={16} /> Get Proposal
             </button>
           </div>
@@ -31,7 +30,7 @@ const CtaFooterSection = () => {
       </section>
 
       {/* Footer Section */}
-      <footer className="bg-[#050212] pt-32 pb-8 border-t border-red-900/30">
+      <footer className="bg-slate-50 dark:bg-[#050212] pt-32 pb-8 border-t border-slate-200 dark:border-red-900/30 transition-colors duration-300">
         <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-6 mb-12">
 
@@ -40,7 +39,7 @@ const CtaFooterSection = () => {
               <div className="mb-6">
                 <img src="/assets/images/logos/logo.png" alt="Codigix" className="h-8 object-contain" />
               </div>
-              <p className="text-[12px] text-gray-400 mb-8 leading-relaxed">
+              <p className="text-[12px] text-slate-500 dark:text-gray-400 mb-8 leading-relaxed">
                 We build future-ready AI, IoT and software solutions that transform businesses and drive real results.
               </p>
               <div className="flex space-x-2">
@@ -64,73 +63,73 @@ const CtaFooterSection = () => {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-white text-sm font-semibold mb-6">Quick Links</h4>
+              <h4 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Quick Links</h4>
               <ul className="space-y-3">
                 {['Home', 'About Us', 'Services', 'Industries', 'Case Studies', 'Careers', 'Blog'].map(link => (
-                  <li key={link}><a href="#" className="text-[12px] text-gray-400 hover:text-white transition-colors">{link}</a></li>
+                  <li key={link}><a href="#" className="text-[12px] text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors">{link}</a></li>
                 ))}
               </ul>
             </div>
 
             {/* Solutions */}
             <div>
-              <h4 className="text-white text-sm font-semibold mb-6">Solutions</h4>
+              <h4 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Solutions</h4>
               <ul className="space-y-3">
                 {['AI Solutions', 'IoT Solutions', 'ERP Solutions', 'CRM Solutions', 'Custom Software', 'Mobile App Development'].map(link => (
-                  <li key={link}><a href="#" className="text-[12px] text-gray-400 hover:text-white transition-colors">{link}</a></li>
+                  <li key={link}><a href="#" className="text-[12px] text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors">{link}</a></li>
                 ))}
               </ul>
             </div>
 
             {/* Industries */}
             <div>
-              <h4 className="text-white text-sm font-semibold mb-6">Industries</h4>
+              <h4 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Industries</h4>
               <ul className="space-y-3">
                 {['Manufacturing', 'Healthcare', 'Automobile', 'Retail', 'Construction', 'Education'].map(link => (
-                  <li key={link}><a href="#" className="text-[12px] text-gray-400 hover:text-white transition-colors">{link}</a></li>
+                  <li key={link}><a href="#" className="text-[12px] text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors">{link}</a></li>
                 ))}
               </ul>
             </div>
 
             {/* Support */}
             <div>
-              <h4 className="text-white text-sm font-semibold mb-6">Support</h4>
+              <h4 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Support</h4>
               <ul className="space-y-3">
                 {['Contact Us', 'Privacy Policy', 'Terms & Conditions', 'Sitemap'].map(link => (
-                  <li key={link}><a href="#" className="text-[12px] text-gray-400 hover:text-white transition-colors">{link}</a></li>
+                  <li key={link}><a href="#" className="text-[12px] text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors">{link}</a></li>
                 ))}
               </ul>
             </div>
 
             {/* Contact Us */}
             <div>
-              <h4 className="text-white text-sm font-semibold mb-6">Contact Us</h4>
+              <h4 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Contact Us</h4>
               <ul className="space-y-4">
-                <li className="flex items-start gap-2 text-[12px] text-gray-400">
-                  <Phone size={14} className="text-gray-400 mt-0.5 shrink-0" />
-                  <span>+91 87668 72267</span>
+                <li className="flex items-start gap-2 text-[12px] text-slate-500 dark:text-gray-400">
+                  <Phone size={14} className="text-slate-400 dark:text-gray-500 mt-0.5 shrink-0" />
+                  <span>+91 9112706604</span>
                 </li>
-                <li className="flex items-start gap-2 text-[12px] text-gray-400">
-                  <Mail size={14} className="text-gray-400 mt-0.5 shrink-0" />
+                <li className="flex items-start gap-2 text-[12px] text-slate-500 dark:text-gray-400">
+                  <Mail size={14} className="text-slate-400 dark:text-gray-500 mt-0.5 shrink-0" />
                   <span>info@codigixinfotech.com</span>
                 </li>
-                <li className="flex items-start gap-2 text-[12px] text-gray-400">
-                  <MapPin size={14} className="text-gray-400 mt-0.5 shrink-0" />
-                  <span className="leading-tight">Pune, Maharashtra, India</span>
+                <li className="flex items-start gap-2 text-[12px] text-slate-500 dark:text-gray-400">
+                  <MapPin size={14} className="text-slate-400 dark:text-gray-500 mt-0.5 shrink-0" />
+                  <span className="leading-tight">Office No: 514, 5th Floor, Brahma Sky Uzuri, MIDC, Pimpri-Chinchwad, Maharashtra 411018.</span>
                 </li>
               </ul>
             </div>
 
           </div>
 
-          <div className="pt-8 border-t border-gray-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-gray-500">
+          <div className="pt-8 border-t border-slate-200 dark:border-gray-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-xs text-slate-500 dark:text-gray-500">
               © {new Date().getFullYear()} Codigix Infotech Pvt. Ltd. All Rights Reserved.
             </p>
-            <div className="flex gap-6 text-xs text-gray-500">
-              <a href="#" className="hover:text-gray-300">Privacy Policy</a>
-              <a href="#" className="hover:text-gray-300">Terms & Conditions</a>
-              <a href="#" className="hover:text-gray-300">Sitemap</a>
+            <div className="flex gap-6 text-xs text-slate-500 dark:text-gray-500">
+              <a href="#" className="hover:text-slate-800 dark:hover:text-gray-300">Privacy Policy</a>
+              <a href="#" className="hover:text-slate-800 dark:hover:text-gray-300">Terms & Conditions</a>
+              <a href="#" className="hover:text-slate-800 dark:hover:text-gray-300">Sitemap</a>
             </div>
           </div>
         </div>

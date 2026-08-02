@@ -13,9 +13,9 @@ const impactStats = [
 
 const CaseStudiesImpact = () => {
   return (
-    <div className="py-12 border-t border-gray-800/50 mt-8 text-left">
+    <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-8 text-left">
       <div className="text-center mb-10">
-        <h2 className="text-xl font-bold text-white">Business Impact That Matters</h2>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">Business Impact That Matters</h2>
         <div className="w-12 h-1 bg-purple-500 mx-auto mt-4 rounded-full"></div>
       </div>
 
@@ -27,7 +27,7 @@ const CaseStudiesImpact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.1 }}
             viewport={{ once: true }}
-            className="flex flex-col items-center text-center gap-3 bg-[#050117] border border-gray-800/80 p-5 rounded-2xl hover:border-purple-500/30 transition-all duration-300 relative group overflow-hidden"
+            className="flex flex-col items-center text-center gap-3 bg-white dark:bg-[#050117] border border-slate-200 dark:border-gray-800/80 p-5 rounded-2xl hover:border-purple-500/30 transition-all duration-300 relative group overflow-hidden shadow-sm dark:shadow-none"
           >
             {/* Spotlight background hover */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.05)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
@@ -37,12 +37,12 @@ const CaseStudiesImpact = () => {
               <span className="nh-led-active bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
             </div>
 
-            <div className="w-12 h-12 rounded-full border border-purple-500/20 bg-purple-900/10 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+            <div className="w-12 h-12 rounded-full border border-purple-500/20 bg-purple-900/10 flex items-center justify-center text-purple-650 dark:text-purple-400 group-hover:scale-110 transition-transform">
               <stat.icon size={20} />
             </div>
             <div>
-              <h4 className="text-lg font-bold text-white mb-1">{stat.value}</h4>
-              <p className="text-[10px] text-gray-400 uppercase tracking-widest">{stat.label}</p>
+              <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{stat.value}</h4>
+              <p className="text-[10px] text-slate-500 dark:text-gray-400 uppercase tracking-widest">{stat.label}</p>
             </div>
           </motion.div>
         ))}

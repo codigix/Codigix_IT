@@ -2,8 +2,8 @@ import React from 'react';
 
 const CrmTechLogos = () => {
   return (
-    <div className="mt-16 pt-8 border-t border-gray-800/50 flex flex-col lg:flex-row items-center gap-6 lg:gap-12 text-left">
-      <h4 className="text-[13px] font-bold text-white shrink-0">Technologies & Integrations</h4>
+    <div className="mt-16 pt-8 border-t border-slate-200 dark:border-gray-800/50 flex flex-col lg:flex-row items-center gap-6 lg:gap-12 text-left">
+      <h4 className="text-[13px] font-bold text-slate-900 dark:text-white shrink-0">Technologies & Integrations</h4>
       
       <div className="flex-1 flex flex-wrap items-center justify-center lg:justify-start gap-x-8 gap-y-6 opacity-75 grayscale hover:grayscale-0 transition-all duration-500">
          <div className="flex items-center gap-1.5 cursor-pointer group relative">
@@ -45,7 +45,7 @@ const CrmTechLogos = () => {
            <span className="font-bold text-orange-500 text-lg">zapier</span>
          </div>
 
-         <div className="px-3 py-0.5 bg-[#0c0830] rounded border border-gray-700 text-gray-300 font-mono text-[11px] font-bold cursor-pointer group relative">
+         <div className="px-3 py-0.5 bg-slate-100 dark:bg-[#0c0830] rounded border border-slate-200 dark:border-gray-700 text-slate-700 dark:text-gray-300 font-mono text-[11px] font-bold cursor-pointer group relative">
            API
          </div>
       </div>

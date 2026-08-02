@@ -46,7 +46,22 @@ async function initializeDatabase() {
         client VARCHAR(255),
         budget VARCHAR(255),
         gallery TEXT,
-        client_logo VARCHAR(255)
+        client_logo VARCHAR(255),
+        slug VARCHAR(255),
+        catName VARCHAR(255),
+        subtitle TEXT,
+        objective TEXT,
+        heroImage VARCHAR(255),
+        businessChallengeDesc TEXT,
+        challenges JSON,
+        solutionDesc TEXT,
+        solutionPoints JSON,
+        radialNodes JSON,
+        keyFeatures JSON,
+        techStack JSON,
+        results_impact JSON,
+        solutionHighlights JSON,
+        testimonial JSON
       )`,
       `CREATE TABLE IF NOT EXISTS testimonials (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -60,11 +75,18 @@ async function initializeDatabase() {
         title VARCHAR(255),
         category VARCHAR(255),
         date VARCHAR(100),
-        image VARCHAR(255)
+        image VARCHAR(255),
+        author VARCHAR(255),
+        role VARCHAR(255),
+        readTime VARCHAR(100),
+        body TEXT
       )`,
       `CREATE TABLE IF NOT EXISTS clients (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        image VARCHAR(255)
+        image VARCHAR(255),
+        name VARCHAR(255),
+        industry VARCHAR(255),
+        website VARCHAR(255)
       )`,
       `CREATE TABLE IF NOT EXISTS workingProcess (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -121,6 +143,15 @@ async function initializeDatabase() {
         status VARCHAR(50) DEFAULT 'pending',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      )`,
+      `CREATE TABLE IF NOT EXISTS inquiries (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone VARCHAR(50),
+        subject VARCHAR(255),
+        message TEXT,
+        submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )`
     ];
 

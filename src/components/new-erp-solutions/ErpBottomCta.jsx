@@ -14,8 +14,8 @@ const ErpBottomCta = () => {
             <Award size={20} />
           </div>
           <div>
-            <h4 className="text-[11px] font-bold text-white">Trusted by 150+</h4>
-            <p className="text-[9px] text-gray-500 uppercase tracking-wide">Businesses Worldwide</p>
+            <h4 className="text-[11px] font-bold text-slate-900 dark:text-white">Trusted by 150+</h4>
+            <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-wide">Businesses Worldwide</p>
           </div>
         </div>
 
@@ -24,8 +24,8 @@ const ErpBottomCta = () => {
             <ShieldCheck size={20} />
           </div>
           <div>
-            <h4 className="text-[11px] font-bold text-white">Secure & Compliant</h4>
-            <p className="text-[9px] text-gray-500 uppercase tracking-wide">Enterprise-Grade Security</p>
+            <h4 className="text-[11px] font-bold text-slate-900 dark:text-white">Secure & Compliant</h4>
+            <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-wide">Enterprise-Grade Security</p>
           </div>
         </div>
 
@@ -34,8 +34,8 @@ const ErpBottomCta = () => {
             <Cloud size={20} />
           </div>
           <div>
-            <h4 className="text-[11px] font-bold text-white">Cloud or On-Premise</h4>
-            <p className="text-[9px] text-gray-500 uppercase tracking-wide">Flexible Deployment</p>
+            <h4 className="text-[11px] font-bold text-slate-900 dark:text-white">Cloud or On-Premise</h4>
+            <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-wide">Flexible Deployment</p>
           </div>
         </div>
 
@@ -44,8 +44,8 @@ const ErpBottomCta = () => {
             <Clock size={20} />
           </div>
           <div>
-            <h4 className="text-[11px] font-bold text-white">24/7 Support</h4>
-            <p className="text-[9px] text-gray-500 uppercase tracking-wide">Always Here to Help</p>
+            <h4 className="text-[11px] font-bold text-slate-900 dark:text-white">24/7 Support</h4>
+            <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-wide">Always Here to Help</p>
           </div>
         </div>
 
@@ -54,8 +54,8 @@ const ErpBottomCta = () => {
             <RefreshCw size={20} />
           </div>
           <div>
-            <h4 className="text-[11px] font-bold text-white">Continuous Updates</h4>
-            <p className="text-[9px] text-gray-500 uppercase tracking-wide">Latest Features & Technology</p>
+            <h4 className="text-[11px] font-bold text-slate-900 dark:text-white">Continuous Updates</h4>
+            <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-wide">Latest Features & Technology</p>
           </div>
         </div>
       </div>

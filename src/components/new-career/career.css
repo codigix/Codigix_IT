@@ -7,31 +7,6 @@
   background-clip: text;
 }
 
-/* Filter Bar Buttons */
-.career-filter-btn {
-  padding: 8px 16px;
-  font-size: 11px;
-  font-weight: 500;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: transparent;
-  color: #9ca3af;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.career-filter-btn:hover {
-  border-color: rgba(238, 0, 28, 0.5);
-  color: #fff;
-}
-
-.career-filter-btn.active {
-  background-color: #EE001C;
-  border-color: #7e22ce;
-  color: #fff;
-  box-shadow: 0 0 15px rgba(238, 0, 28, 0.4);
-}
-
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -40,59 +15,41 @@
   scrollbar-width: none;
 }
 
-/* Job Row Hover Glow */
-.job-row-hover {
-  transition: all 0.3s ease;
-}
-
-.job-row-hover:hover {
-  border-color: rgba(238, 0, 28, 0.4);
-  background-color: rgba(238, 0, 28, 0.05);
-  box-shadow: 0 0 20px rgba(238, 0, 28, 0.1);
-}
-
-/* Modal Dark Form Inputs */
+/* Modal form inputs theme classes */
 .modal-input {
-  background-color: #0b071e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #f3f4f6;
   border-radius: 8px;
   padding: 10px 14px;
   font-size: 12px;
   transition: all 0.25s ease;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+
+.dark .modal-input {
+  background-color: #0b071e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f3f4f6;
 }
 
 .modal-input:focus {
   outline: none;
   border-color: #EE001C;
   box-shadow: 0 0 12px rgba(238, 0, 28, 0.3);
-  background-color: #0e0927;
 }
 
 .modal-input::placeholder {
+  color: #94a3b8;
+}
+
+.dark .modal-input::placeholder {
   color: #6b7280;
-}
-
-.modal-select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 14px;
-}
-
-/* Radio Option Styling */
-.modal-radio {
-  accent-color: #EE001C;
-  width: 14px;
-  height: 14px;
-  cursor: pointer;
 }
 
 /* Stepper Line */
 .stepper-line {
   height: 2px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(156, 163, 175, 0.2);
 }
 
 .stepper-line-active {

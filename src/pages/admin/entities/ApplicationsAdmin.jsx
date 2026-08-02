@@ -4,11 +4,10 @@ import {
   Download,
   RefreshCw,
   Search,
-  ExternalLink,
   Mail,
   Phone,
   Calendar,
-  User
+  Inbox
 } from 'lucide-react';
 import config from '../../../config';
 
@@ -42,88 +41,106 @@ const ApplicationsAdmin = () => {
   );
 
   return (
-    <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center bg-[#252841]/60 backdrop-blur-md p-12 rounded-2xl border border-slate-800/30 gap-6">
+    <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
+      
+      {/* Header Actions Container */}
+      <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center bg-white dark:bg-[#0c0828]/60 backdrop-blur-md p-6 rounded-2xl border border-slate-200 dark:border-purple-900/30 gap-6 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-15 h-15 rounded-xl bg-[#00D1FF]/10 flex items-center justify-center text-[#00D1FF] border border-[#00D1FF]/20">
+          <div className="w-12 h-12 rounded-xl bg-purple-600/10 flex items-center justify-center text-purple-600 dark:text-purple-400 border border-purple-500/20">
             <FileText className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl text-white tracking-tight uppercase">Job Applications</h2>
-            <p className="text-slate-500 text-[9px] uppercase tracking-[0.2em] mt-1">{applications.length} Total Applications</p>
+            <h2 className="text-xl text-slate-900 dark:text-white font-extrabold tracking-tight uppercase">Job Applications</h2>
+            <p className="text-slate-500 dark:text-gray-400 text-[10px] uppercase font-bold tracking-widest mt-1">{applications.length} Total Applications</p>
           </div>
         </div>
 
-        <div className="relative group">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-[#00D1FF] transition-colors" />
-          <input
-            type="text"
-            placeholder="SEARCH APPLICATIONS..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full sm:w-80 bg-[#1A1C2E] border border-slate-800/30 rounded-xl pl-10 pr-4 py-2 text-[10px] font-bold text-white uppercase tracking-widest focus:outline-none focus:border-[#00D1FF]/40 transition-all"
-          />
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="relative group">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-455 group-focus-within:text-purple-500 transition-colors" />
+            <input
+              type="text"
+              placeholder="SEARCH APPLICATIONS..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full sm:w-80 bg-slate-50 dark:bg-[#1A1C2E] border border-slate-200 dark:border-purple-900/30 rounded-xl pl-10 pr-4 py-2.5 text-xs font-bold text-slate-900 dark:text-white uppercase tracking-widest focus:outline-none focus:border-purple-650 transition-all placeholder:text-slate-400"
+            />
+          </div>
+          <button
+            onClick={fetchApplications}
+            disabled={loading}
+            className="p-2.5 hover:bg-slate-100 dark:hover:bg-purple-900/20 border border-slate-200 dark:border-purple-900/30 rounded-xl text-slate-500 hover:text-purple-600 dark:hover:text-purple-400 transition-all flex items-center justify-center disabled:opacity-50"
+            title="Reload Applications"
+          >
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+          </button>
         </div>
       </div>
 
-      <div className="bg-[#252841]/40 backdrop-blur-md border border-slate-800/30 rounded-2xl overflow-hidden">
+      {/* Main Table Container */}
+      <div className="bg-white dark:bg-[#0c0828]/40 backdrop-blur-md border border-slate-200 dark:border-purple-900/30 rounded-2xl overflow-hidden shadow-sm">
         {loading ? (
           <div className="p-12 text-center">
-            <RefreshCw className="w-15 h-15 animate-spin text-[#00D1FF] mx-auto mb-5" />
-            <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em]">Loading Applications...</p>
+            <div className="w-12 h-12 border-4 border-purple-500/20 border-t-purple-650 rounded-full animate-spin mx-auto mb-5"></div>
+            <p className="text-slate-500 dark:text-gray-400 text-[10px] uppercase font-bold tracking-widest">Loading Applications...</p>
           </div>
         ) : filteredApplications.length === 0 ? (
-          <div className="p-12 text-center flex flex-col items-center gap-4">
-            <FileText className="w-16 h-16 text-slate-700 mb-2" />
-            <p className="text-white text-lg uppercase">No applications found</p>
+          <div className="p-12 text-center flex flex-col items-center gap-6">
+            <div className="w-20 h-20 rounded-3xl bg-slate-50 dark:bg-[#1A1C2E] flex items-center justify-center text-slate-400 text-3xl border border-slate-200 dark:border-purple-900/30 rotate-3">
+              <Inbox className="w-15 h-15" />
+            </div>
+            <div className="max-w-xs mx-auto">
+              <p className="text-slate-900 dark:text-white text-lg font-bold tracking-tight uppercase">No applications found</p>
+              <p className="text-slate-500 dark:text-gray-450 text-[10px] mt-2 font-bold uppercase tracking-wider leading-relaxed">Incoming job applications and resume uploads will appear here dynamically.</p>
+            </div>
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left min-w-[1000px]">
+            <table className="w-full text-left min-w-[1000px] border-collapse">
               <thead>
-                <tr className="bg-[#1A1C2E]/50 border-b border-slate-800/30">
-                  <th className="pl-8 pr-6 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em]">Candidate</th>
-                  <th className="px-6 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em]">Contact info</th>
-                  <th className="px-6 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em]">Applied For</th>
-                  <th className="px-6 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em]">Date</th>
-                  <th className="pl-6 pr-8 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em] text-right">Resume</th>
+                <tr className="bg-slate-50 dark:bg-[#1A1C2E]/50 border-b border-slate-200 dark:border-purple-900/30">
+                  <th className="pl-8 pr-6 py-5 text-[10px] text-slate-550 dark:text-gray-400 uppercase tracking-widest font-bold">Candidate</th>
+                  <th className="px-6 py-5 text-[10px] text-slate-550 dark:text-gray-400 uppercase tracking-widest font-bold">Contact info</th>
+                  <th className="px-6 py-5 text-[10px] text-slate-550 dark:text-gray-400 uppercase tracking-widest font-bold">Applied For</th>
+                  <th className="px-6 py-5 text-[10px] text-slate-550 dark:text-gray-400 uppercase tracking-widest font-bold">Date</th>
+                  <th className="pl-6 pr-8 py-5 text-[10px] text-slate-550 dark:text-gray-400 uppercase tracking-widest font-bold text-right">Resume</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/20">
+              <tbody className="divide-y divide-slate-100 dark:divide-purple-900/10">
                 {filteredApplications.map((app) => (
-                  <tr key={app.id} className="hover:bg-white/5 transition-all group/row">
+                  <tr key={app.id} className="hover:bg-slate-50/50 dark:hover:bg-purple-950/15 transition-all group/row">
                     <td className="pl-8 pr-6 py-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#00D1FF] to-[#00D1FF]/30 flex items-center justify-center text-white font-bold text-lg">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white font-extrabold text-sm shadow-sm uppercase shrink-0">
                           {app.name.charAt(0)}
                         </div>
                         <div>
-                          <p className="text-white font-bold text-sm uppercase">{app.name}</p>
-                          <p className="text-slate-500 text-[10px] tracking-wider">{app.email}</p>
+                          <p className="text-slate-900 dark:text-white font-bold text-sm uppercase tracking-wide group-hover/row:text-purple-650 transition-colors">{app.name}</p>
+                          <p className="text-slate-500 text-[10px] tracking-wider font-semibold mt-0.5">{app.email}</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-6">
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2 text-slate-400">
-                          <Mail className="w-3 h-3" />
-                          <span className="text-[10px]">{app.email}</span>
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2 text-slate-600 dark:text-gray-300 font-medium">
+                          <Mail className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+                          <span className="text-xs">{app.email}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-slate-400">
-                          <Phone className="w-3 h-3" />
-                          <span className="text-[10px]">{app.phone}</span>
+                        <div className="flex items-center gap-2 text-slate-600 dark:text-gray-300 font-medium">
+                          <Phone className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+                          <span className="text-xs">{app.phone}</span>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-6">
-                      <span className="px-3 py-1 rounded-full bg-[#FF1F8B]/10 text-[#FF1F8B] text-[10px] uppercase font-bold border border-[#FF1F8B]/20">
-                        Job ID: {app.job_id}
+                      <span className="px-3.5 py-1.5 rounded-full bg-purple-50 text-purple-600 border border-purple-200/50 dark:bg-purple-950/30 dark:text-purple-400 dark:border-purple-900/30 text-[10px] uppercase font-extrabold tracking-widest">
+                        Job ID: #{app.job_id}
                       </span>
                     </td>
                     <td className="px-6 py-6">
-                      <div className="flex items-center gap-2 text-slate-400">
-                        <Calendar className="w-3 h-3" />
-                        <span className="text-[10px]">{new Date(app.applied_at).toLocaleDateString()}</span>
+                      <div className="flex items-center gap-2 text-slate-550 dark:text-gray-400 text-xs font-semibold">
+                        <Calendar className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+                        <span>{new Date(app.applied_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                       </div>
                     </td>
                     <td className="pl-6 pr-8 py-6 text-right">
@@ -131,7 +148,7 @@ const ApplicationsAdmin = () => {
                         href={`${config.API_BASE_URL.replace('/api', '')}${app.resume_url}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-[#00D1FF] hover:bg-[#00D1FF]/80 text-white px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all shadow-lg shadow-[#00D1FF]/20"
+                        className="inline-flex items-center gap-2 bg-purple-600 dark:bg-purple-800 hover:bg-purple-750 dark:hover:bg-purple-900 text-white px-4.5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-purple-600/25 active:scale-95"
                       >
                         <Download className="w-3.5 h-3.5" />
                         Download
@@ -144,6 +161,7 @@ const ApplicationsAdmin = () => {
           </div>
         )}
       </div>
+
     </div>
   );
 };

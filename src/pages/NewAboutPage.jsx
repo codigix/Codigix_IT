@@ -14,45 +14,45 @@ import '../components/new-about/about.css';
 
 const NewAboutPage = () => {
   return (
-    <div className="bg-[#0d0b21] min-h-screen font-sans text-white selection:bg-purple-500/30">
-      
+    <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white selection:bg-purple-500/30 transition-colors duration-300">
+
       {/* Navigation */}
       <NewHomeNav />
-      
+
       {/* Main Content Area */}
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 pt-32 pb-12">
-        
+      <div className=" mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 pt-32 pb-12">
+
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-[11px] text-gray-400 mb-8 tracking-wide uppercase font-bold">
-          <span className="hover:text-white cursor-pointer transition-colors">Home</span>
+        <div className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide uppercase font-bold">
+          <span className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors">Home</span>
           <span className="mx-1 text-gray-600">›</span>
-          <span className="text-gray-300 font-medium">About Us</span>
+          <span className="text-slate-900 dark:text-white font-medium">About Us</span>
         </div>
 
         {/* Top Section: Hero & Stats */}
         <div className="mb-16">
-           <AboutHero />
-           <AboutStats />
+          <AboutHero />
+          <AboutStats />
         </div>
 
         {/* Full Width Sections */}
         <div className="space-y-12 md:space-y-20 mt-12">
-           <AboutStory />
-           <AboutFutureRoadmap />
-           <AboutMissionVision />
-           <AboutLeadership />
-           <AboutTechExpertise />
-           <AboutPartnersCertifications />
-           <AboutBottomCta />
+          <AboutStory />
+          <AboutFutureRoadmap />
+          <AboutMissionVision />
+          <AboutLeadership />
+          <AboutTechExpertise />
+          <AboutPartnersCertifications />
+          <AboutBottomCta />
         </div>
 
       </div>
-      
+
       {/* Footer */}
-      <div className="pt-24 border-t border-gray-800/30 bg-black/20">
+      <div className="pt-24 border-t border-slate-200 dark:border-gray-800/30 mt-12 bg-slate-50/50 dark:bg-black/20">
         <CtaFooterSection />
       </div>
-      
+
     </div>
   );
 };

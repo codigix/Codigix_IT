@@ -66,9 +66,9 @@ const CareerTestimonials = () => {
   }, [visibleCount, maxIndex, currentIndex]);
 
   return (
-    <div className="py-12 border-t border-gray-800/50 mt-8 relative">
+    <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-8 relative">
       <div className="text-center mb-10">
-        <h2 className="text-xl font-bold text-white">What Our Team Says</h2>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">What Our Team Says</h2>
         <div className="w-12 h-1 bg-[#EE001C] mx-auto mt-4 rounded-full"></div>
       </div>
 
@@ -76,7 +76,7 @@ const CareerTestimonials = () => {
         {/* Left Arrow */}
         <button 
           onClick={handlePrev}
-          className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#EE001C] transition-colors shrink-0"
+          className="w-10 h-10 rounded-full border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:border-[#EE001C] dark:hover:border-[#EE001C] bg-white dark:bg-transparent shadow-sm shrink-0 transition-colors"
         >
           <ChevronLeft size={20} />
         </button>
@@ -96,16 +96,16 @@ const CareerTestimonials = () => {
                 className="px-2 shrink-0"
                 style={{ width: `${100 / teamTestimonials.length}%` }}
               >
-                <div className="bg-[#050112] border border-gray-800/80 rounded-2xl p-6 flex flex-col shadow-xl min-h-[220px] h-full hover:border-[#EE001C]/40 transition-colors group">
+                <div className="bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-6 flex flex-col shadow-sm dark:shadow-xl min-h-[220px] h-full hover:border-[#EE001C]/40 transition-colors group">
                   <Quote size={20} className="text-[#EE001C] mb-4 opacity-50" />
-                  <p className="text-[11px] text-gray-300 leading-relaxed italic mb-8 flex-1">
+                  <p className="text-[11px] text-slate-650 dark:text-gray-300 leading-relaxed italic mb-8 flex-1">
                     "{test.quote}"
                   </p>
                   <div className="flex items-center gap-3">
-                    <img src={test.image} alt={test.name} className="w-10 h-10 rounded-full object-cover border border-gray-700" />
+                    <img src={test.image} alt={test.name} className="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-gray-700" />
                     <div>
-                      <h4 className="text-[12px] font-bold text-white">{test.name}</h4>
-                      <p className="text-[9px] text-gray-500">{test.title}</p>
+                      <h4 className="text-[12px] font-bold text-slate-900 dark:text-white">{test.name}</h4>
+                      <p className="text-[9px] text-slate-550 dark:text-gray-500">{test.title}</p>
                     </div>
                   </div>
                 </div>
@@ -117,7 +117,7 @@ const CareerTestimonials = () => {
         {/* Right Arrow */}
         <button 
           onClick={handleNext}
-          className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#EE001C] transition-colors shrink-0"
+          className="w-10 h-10 rounded-full border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:border-[#EE001C] dark:hover:border-[#EE001C] bg-white dark:bg-transparent shadow-sm shrink-0 transition-colors"
         >
           <ChevronRight size={20} />
         </button>

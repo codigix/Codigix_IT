@@ -8,10 +8,10 @@ const IotArchitecture = ({ activeTab }) => {
   const steps = data.architecture || [];
 
   return (
-    <div className="py-12 border-t border-gray-800/50 mt-4 relative">
+    <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-4 relative">
       <div className="text-center mb-10">
-        <h3 className="text-xl font-bold text-white">
-          End-to-End <span className="text-rose-500">{activeTab} Architecture</span>
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+          End-to-End <span className="text-rose-600 dark:text-rose-500">{activeTab} Architecture</span>
         </h3>
       </div>
 
@@ -37,11 +37,11 @@ const IotArchitecture = ({ activeTab }) => {
                   transition={{ delay: index * 0.05 }}
                   className="flex flex-col items-center group w-24 relative z-10"
                 >
-                  <div className="w-14 h-14 bg-[#050117] border border-gray-700/80 rounded-xl flex items-center justify-center mb-4 group-hover:border-rose-500/50 group-hover:bg-[#090624] transition-all relative">
+                  <div className="w-14 h-14 bg-white dark:bg-[#050117] border border-slate-200 dark:border-gray-700/80 rounded-xl flex items-center justify-center mb-4 group-hover:border-rose-500/50 group-hover:bg-rose-50/50 dark:group-hover:bg-[#090624] transition-all relative shadow-sm dark:shadow-none">
                     <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 rounded-xl transition-opacity blur-md bg-current ${step.color}`}></div>
                     <StepIcon size={24} className={`${step.color} relative z-10 group-hover:scale-110 transition-transform`} />
                   </div>
-                  <h4 className="text-[11px] font-medium text-gray-300 text-center leading-tight">
+                  <h4 className="text-[11px] font-medium text-slate-700 dark:text-gray-300 text-center leading-tight">
                     {step.name}
                   </h4>
                 </motion.div>

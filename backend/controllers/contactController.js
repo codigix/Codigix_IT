@@ -1,3 +1,4 @@
+const db = require('../config/db');
 const { sendEmail } = require('../utils/email');
 const { getEmailTemplate, getThankYouTemplate } = require('../utils/emailTemplate');
 
@@ -29,6 +30,16 @@ exports.sendContactMessage = async (req, res) => {
       { label: 'Message', value: cfMessage, icon: '💬' }
     ];
 
+    // Save to database first so we don't lose the inquiry if email fails
+    try {
+      await db.query(
+        'INSERT INTO inquiries (name, email, phone, subject, message) VALUES (?, ?, ?, ?, ?)',
+        [cfName, cfEmail, cfPhone || 'N/A', selectedSubject, cfMessage]
+      );
+    } catch (dbErr) {
+      console.error('Failed to save inquiry to database:', dbErr);
+    }
+
     const emailContent = getEmailTemplate('New Contact Form Submission', details);
 
     const emailText = `
@@ -56,6 +67,8 @@ exports.sendContactMessage = async (req, res) => {
       html: thankYouContent,
       fromName: 'Codigix Team'
     });
+
+
 
     res.status(200).json({ message: 'Message sent successfully' });
   } catch (error) {

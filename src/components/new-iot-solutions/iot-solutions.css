@@ -6,58 +6,19 @@
 
 @media (min-width: 1024px) {
   .iot-layout-container {
-    grid-template-columns: 3.5fr 1fr;
+    grid-template-columns: 3fr 1fr;
+  }
+  .iot-sidebar {
+    border-left: none !important;
+  }
+  .light .iot-sidebar {
+    border-left: none !important;
   }
 }
 
 /* Sidebar Styles */
 .iot-sidebar {
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
-  background-color: #030112;
-}
-
-.iot-sidebar-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-left: 3px solid transparent;
-}
-
-.iot-sidebar-item:hover {
-  background-color: rgba(255, 255, 255, 0.02);
-}
-
-.iot-sidebar-item.active {
-  background-color: rgba(238, 0, 28, 0.05);
-  border-left-color: #EE001C;
-}
-
-.iot-sidebar-item.active h4 {
-  color: #fff;
-  font-weight: 600;
-}
-
-.iot-sidebar-icon-wrap {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.03);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.iot-sidebar-item.active .iot-sidebar-icon-wrap {
-  background-color: rgba(238, 0, 28, 0.15);
-  box-shadow: 0 0 10px rgba(238, 0, 28, 0.3);
-}
-
-.iot-sidebar-item:hover:not(.active) .iot-sidebar-icon-wrap {
-  background-color: rgba(126, 34, 206, 0.1);
+  min-width: 240px;
 }
 
 /* Gradients and specific glowing text */
@@ -67,3 +28,130 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Light theme overrides for IoT Simulators */
+.light .border-gray-800, 
+.light .border-gray-800\/80,
+.light .border-gray-800\/60,
+.light .border-gray-850,
+.light .border-gray-200 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.light .bg-\[\#07041a\] {
+  background-color: #ffffff !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
+}
+
+.light .bg-\[\#0b0724\] {
+  background-color: #f6f5ff !important;
+}
+
+.light .bg-gray-800\/80 {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #060129 !important;
+}
+
+.light .text-gray-200 {
+  color: #060129 !important;
+}
+
+.light .text-gray-300 {
+  color: #312c52 !important;
+}
+
+.light .text-gray-400 {
+  color: #524f66 !important;
+}
+
+.light .text-gray-500 {
+  color: #78758f !important;
+}
+
+.light .text-gray-650 {
+  color: #78758f !important;
+}
+
+.light .text-gray-600 {
+  color: #9692b2 !important;
+}
+
+.light .bg-gray-800 {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #060129 !important;
+}
+
+.light .bg-gray-800:hover {
+  background-color: #f3f0ff !important;
+}
+
+.light .bg-gray-900 {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.light .bg-\[\#050117\] {
+  background-color: #f8f7ff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.light .text-white {
+  color: #060129 !important;
+}
+
+.light .text-cyan-400 {
+  color: #0284c7 !important;
+}
+
+.light .text-purple-400 {
+  color: #7c3aed !important;
+}
+
+.light .text-green-400 {
+  color: #16a34a !important;
+}
+
+/* Light Theme Card Backgrounds & Hover States */
+.light .bg-\[\#090624\]\/30,
+.light .bg-\[\#090624\]\/50 {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02) !important;
+}
+
+.light .hover\:bg-\[\#0c0830\]:hover {
+  background-color: #fcfbff !important;
+  border-color: rgba(238, 0, 28, 0.2) !important;
+}
+
+.light .bg-\[\#050117\]\/50 {
+  background-color: #f8f7ff !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Text and icon contrast overrides in light theme */
+.light .text-blue-400 {
+  color: #2563eb !important;
+}
+
+.light .text-rose-400 {
+  color: #e11d48 !important;
+}
+
+.light .text-rose-300 {
+  color: #e11d48 !important;
+}
+
+/* Hover background overrides for architecture step boxes in light theme */
+.light .group:hover .group-hover\:bg-\[\#090624\] {
+  background-color: #efeaff !important;
+}
+
+/* Active sidebar icon color override in light theme */
+.light .iot-sidebar-item.active svg {
+  color: #ffffff !important;
+}
+
+
+

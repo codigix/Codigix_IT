@@ -13,12 +13,12 @@ const CrmHowItWorksAndBenefits = ({ activeTab }) => {
   const benefits = data.benefits || [];
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mt-16 border-t border-gray-800/50 pt-12 text-left">
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mt-16 border-t border-slate-200 dark:border-gray-800/50 pt-12 text-left">
       
       {/* How Our CRM Works */}
       <div className="relative">
         <div className="text-center mb-8">
-          <h3 className="text-[15px] font-bold text-white tracking-wide">How {activeTab} Works</h3>
+          <h3 className="text-[15px] font-bold text-slate-900 dark:text-white tracking-wide">How {activeTab} Works</h3>
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-2 relative z-10">
@@ -50,10 +50,11 @@ const CrmHowItWorksAndBenefits = ({ activeTab }) => {
                   <React.Fragment key={index}>
                     <div className="flex flex-col items-center group w-24 text-center z-10">
                       <div className={`w-12 h-12 rounded-full ${bgClass} ${colorClass} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform relative border border-purple-500/20`}>
-                        <IconComponent size={20} />
+                        <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 rounded-full transition-opacity blur-md bg-current ${colorClass}`}></div>
+                        <IconComponent size={20} className="relative z-10" />
                       </div>
-                      <h4 className="text-[12px] font-bold text-white mb-1">{step.name}</h4>
-                      <p className="text-[9px] text-gray-400 leading-tight pr-1">{step.desc}</p>
+                      <h4 className="text-[12px] font-bold text-slate-900 dark:text-white mb-1">{step.name}</h4>
+                      <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight pr-1">{step.desc}</p>
                     </div>
 
                     {index < workflow.length - 1 && (
@@ -72,7 +73,7 @@ const CrmHowItWorksAndBenefits = ({ activeTab }) => {
       {/* Key Benefits */}
       <div>
         <div className="text-center mb-8">
-          <h3 className="text-[15px] font-bold text-white tracking-wide">Key Benefits</h3>
+          <h3 className="text-[15px] font-bold text-slate-900 dark:text-white tracking-wide">Key Benefits</h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
@@ -86,9 +87,9 @@ const CrmHowItWorksAndBenefits = ({ activeTab }) => {
               transition={{ duration: 0.3 }}
             >
               {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-start gap-2 bg-[#050117] p-2.5 border border-gray-800/80 rounded-xl hover:border-purple-500/30 transition-colors">
+                <div key={index} className="flex items-start gap-2 bg-white dark:bg-[#050117] p-2.5 border border-slate-200 dark:border-gray-800/80 rounded-xl hover:border-purple-500/30 transition-colors shadow-sm dark:shadow-none">
                   <CheckCircle2 size={16} className="text-purple-500 shrink-0 mt-0.5" />
-                  <span className="text-[12px] text-gray-300 leading-tight">{benefit}</span>
+                  <span className="text-[12px] text-slate-700 dark:text-gray-300 leading-tight">{benefit}</span>
                 </div>
               ))}
             </motion.div>

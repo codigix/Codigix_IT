@@ -113,7 +113,7 @@ const aiQueries = [
 
 const AiSolutionsGrid = () => {
   const [queryIndex, setQueryIndex] = useState(0);
-  
+
   useEffect(() => {
     const timer = setInterval(() => {
       setQueryIndex((prev) => (prev + 1) % aiQueries.length);
@@ -124,40 +124,40 @@ const AiSolutionsGrid = () => {
   const currentQuery = aiQueries[queryIndex];
 
   return (
-    <section className="py-24 bg-[#050117] relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-b from-white via-slate-50 to-purple-50/40 dark:from-[#0d0b21] dark:via-[#0d0b21] dark:to-[#0d0b21] relative overflow-hidden transition-colors duration-300">
       <svg width="0" height="0" className="absolute">
         <defs>
           <linearGradient id="ai-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#f43f5e" /> {/* Rose */}
-            <stop offset="50%" stopColor="#8b5cf6" /> {/* Purple */}
-            <stop offset="100%" stopColor="#3b82f6" /> {/* Blue */}
+            <stop offset="0%" stopColor="#e11d48" /> {/* Rose */}
+            <stop offset="50%" stopColor="#9333ea" /> {/* Purple */}
+            <stop offset="100%" stopColor="#2563eb" /> {/* Blue */}
           </linearGradient>
         </defs>
       </svg>
-      <div className="max-w-[1400px] mx-auto ">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Top Stats Banner */}
         <div className="w-full mb-20">
-          <div className="border border-gray-700/50 rounded-2xl bg-[#090624] p-8 lg:p-10 shadow-[0_0_30px_rgba(59,130,246,0.05)] relative overflow-hidden">
+          <div className="border border-purple-200/80 dark:border-purple-900/50 rounded-2xl bg-gradient-to-r from-purple-50/80 via-white to-rose-50/80 dark:from-[#0c0828] dark:via-[#130b3a] dark:to-[#0c0828] p-8 lg:p-10 shadow-[0_8px_30px_rgba(139,92,246,0.08)] dark:shadow-[0_15px_40px_rgba(0,0,0,0.5)] relative overflow-hidden">
 
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-60"></div>
 
             <div className="text-center mb-8">
-              <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] text-gray-400 uppercase">POWERING DIGITAL TRANSFORMATION</span>
+              <span className="text-[10px] sm:text-xs font-extrabold tracking-[0.2em] text-slate-600 dark:text-gray-400 uppercase">POWERING DIGITAL TRANSFORMATION</span>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-gray-800/60">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-purple-200/70 dark:divide-gray-800/60">
               {[
-                { val: '50+', label: 'Successful Projects' },
-                { val: '20+', label: 'Enterprise Clients' },
-                { val: '10+', label: 'Industries Served' },
-                { val: '99.9%', label: 'System Uptime' },
+                { val: '10+', label: 'Successful Projects' },
+                { val: '10+', label: 'Enterprise Clients' },
+                { val: '5+', label: 'Industries Served' },
+                { val: '97%', label: 'System Uptime' },
                 { val: '24x7', label: 'Expert Support' },
-                { val: '100%', label: 'Custom Solutions' }
+                { val: '97%', label: 'Custom Solutions' }
               ].map((stat, i) => (
                 <div key={i} className="flex flex-col items-center justify-center py-2 lg:py-0">
-                  <span className="text-3xl lg:text-4xl font-bold text-white mb-2">{stat.val}</span>
-                  <span className="text-[11px] lg:text-xs text-gray-400 font-medium">{stat.label}</span>
+                  <span className="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-2">{stat.val}</span>
+                  <span className="text-[11px] lg:text-xs text-slate-600 dark:text-gray-400 font-bold">{stat.label}</span>
                 </div>
               ))}
             </div>
@@ -166,36 +166,36 @@ const AiSolutionsGrid = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
 
-          {/* Left Side: AI API Playground Simulator */}
+          {/* Left Side: AI API Playground Simulator - Dark Console in both themes */}
           <div className="lg:col-span-4 relative z-10 flex flex-col justify-center text-left">
-            <div className="w-full h-full border border-gray-800/80 bg-[#07041a] rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.5)] font-mono text-[11px] flex flex-col">
+            <div className="w-full h-full border border-purple-900/40 dark:border-gray-800/80 bg-[#0c0828] dark:bg-[#07041a] rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(139,92,246,0.12)] dark:shadow-[0_15px_40px_rgba(0,0,0,0.5)] font-mono text-[11px] flex flex-col keep-dark">
               {/* Header */}
-              <div className="bg-[#0b0724] px-4 py-3 border-b border-gray-800 flex items-center justify-between">
+              <div className="bg-[#130d3a] dark:bg-[#0b0724] px-4 py-3 border-b border-purple-900/40 flex items-center justify-between">
                 <div className="flex gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                   <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                 </div>
-                <span className="text-[9px] text-gray-500 font-bold uppercase tracking-wider">codigix_ai_sdk.js</span>
+                <span className="text-[9px] text-gray-400 font-bold uppercase tracking-wider">codigix_ai_sdk.js</span>
               </div>
-              
+
               {/* Terminal Code Body */}
-              <div className="p-4 space-y-4 text-gray-400 flex-1 flex flex-col justify-between min-h-[260px]">
+              <div className="p-4 space-y-4 text-gray-300 flex-1 flex flex-col justify-between min-h-[260px]">
                 <div>
-                  <div className="text-gray-600">// Initialize client</div>
-                  <div className="text-gray-300"><span className="text-purple-400">const</span> client = <span className="text-purple-400">new</span> CodigixAI();</div>
-                  
-                  <div className="text-gray-600 mt-4">// Stream query classification</div>
-                  <div className="text-gray-300"><span className="text-purple-400">const</span> response = <span className="text-purple-400">await</span> client.classify({'{'}</div>
-                  <div className="pl-4 text-green-400">text: "{currentQuery.prompt}"</div>
-                  <div className="text-gray-300">{'}'});</div>
+                  <div className="text-gray-500">// Initialize client</div>
+                  <div className="text-gray-200"><span className="text-purple-400 font-bold">const</span> client = <span className="text-purple-400 font-bold">new</span> CodigixAI();</div>
+
+                  <div className="text-gray-500 mt-4">// Stream query classification</div>
+                  <div className="text-gray-200"><span className="text-purple-400 font-bold">const</span> response = <span className="text-purple-400 font-bold">await</span> client.classify({'{'}</div>
+                  <div className="pl-4 text-green-400 font-semibold">text: "{currentQuery.prompt}"</div>
+                  <div className="text-gray-200">{'}'});</div>
                 </div>
 
-                <div className="border-t border-gray-800/80 pt-3">
-                  <div className="text-gray-600">// Output Response Payload</div>
+                <div className="border-t border-purple-900/40 pt-3">
+                  <div className="text-gray-500">// Output Response Payload</div>
                   <div className="text-cyan-400 font-bold">classification: "{currentQuery.tag}"</div>
-                  <div className="text-cyan-500 mt-0.5">confidence: {currentQuery.conf}</div>
-                  <div className="text-gray-500 text-[9px] mt-1.5 flex items-center gap-1.5">
+                  <div className="text-cyan-300 mt-0.5 font-semibold">confidence: {currentQuery.conf}</div>
+                  <div className="text-gray-400 text-[9px] mt-1.5 flex items-center gap-1.5">
                     <span className="nh-led-active"></span>
                     Execution latency: {currentQuery.lat}
                   </div>
@@ -205,10 +205,10 @@ const AiSolutionsGrid = () => {
           </div>
 
           {/* Middle Content */}
-          <div className="space-y-6 lg:col-span-3 flex flex-col justify-center">
-            <span className="text-purple-500 font-semibold tracking-wider text-xs sm:text-sm uppercase">AI SOLUTIONS THAT THINK AHEAD</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">Integrate AI. Automate Smarter.</h2>
-            <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+          <div className="space-y-6 lg:col-span-3 flex flex-col justify-center text-left">
+            <span className="text-purple-600 dark:text-purple-500 font-bold tracking-wider text-xs sm:text-sm uppercase">AI SOLUTIONS THAT THINK AHEAD</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">Integrate AI. Automate Smarter.</h2>
+            <p className="text-slate-650 dark:text-gray-400 text-sm md:text-base leading-relaxed">
               From AI chatbots to intelligent document processing, we build AI solutions that understand, learn and evolve with your business.
             </p>
 
@@ -230,18 +230,18 @@ const AiSolutionsGrid = () => {
                   transition={{ delay: index * 0.05 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -6, scale: 1.02 }}
-                  className="nh-ai-badge group bg-[#090624]/95 border border-gray-800/80 hover:bg-[#110c38] hover:border-purple-500/40 transition-all duration-300 rounded-2xl p-4 flex flex-col items-center justify-center text-center cursor-pointer shadow-sm hover:shadow-[0_10px_25px_rgba(139,92,246,0.12)] aspect-square lg:aspect-[4/5] w-full relative overflow-hidden"
+                  className="nh-ai-badge group bg-white dark:bg-[#090624]/95 border border-slate-200 dark:border-gray-800/80 hover:bg-purple-50/60 dark:hover:bg-[#110c38] hover:border-purple-400 dark:hover:border-purple-500/40 transition-all duration-300 rounded-2xl p-4 flex flex-col items-center justify-center text-center cursor-pointer shadow-sm hover:shadow-[0_10px_25px_rgba(139,92,246,0.15)] aspect-square lg:aspect-[4/5] w-full relative overflow-hidden"
                 >
                   {/* Status Indicator */}
                   <div className="absolute top-2.5 right-2.5 flex items-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
                     <span className="nh-led-active"></span>
-                    <span className="text-[7px] text-green-400 font-bold tracking-widest uppercase hidden group-hover:inline-block">API</span>
+                    <span className="text-[7px] text-green-600 dark:text-green-400 font-bold tracking-widest uppercase hidden group-hover:inline-block">API</span>
                   </div>
 
                   <div className="mb-4">
                     <cap.icon className="w-10 h-10 transition-transform duration-300 group-hover:rotate-[8deg] drop-shadow-[0_0_10px_rgba(59,130,246,0.2)]" />
                   </div>
-                  <span className="text-[10px] lg:text-[11px] text-center text-gray-400 group-hover:text-white font-bold leading-tight px-0.5 uppercase tracking-wider transition-colors duration-300">
+                  <span className="text-[10px] lg:text-[11px] text-center text-slate-700 dark:text-gray-400 group-hover:text-purple-700 dark:group-hover:text-white font-extrabold leading-tight px-0.5 uppercase tracking-wider transition-colors duration-300">
                     {cap.name}
                   </span>
                 </motion.div>

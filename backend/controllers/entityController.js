@@ -130,7 +130,11 @@ exports.create = async (req, res) => {
     const filteredItem = Object.keys(newItem)
       .filter(key => validColumns.includes(key))
       .reduce((obj, key) => {
-        obj[key] = newItem[key];
+        let val = newItem[key];
+        if (typeof val === 'string' && /^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/.test(val)) {
+          val = val.replace('T', ' ').substring(0, 19);
+        }
+        obj[key] = val;
         return obj;
       }, {});
 
@@ -157,7 +161,11 @@ exports.update = async (req, res) => {
     const filteredItem = Object.keys(updatedItem)
       .filter(key => validColumns.includes(key))
       .reduce((obj, key) => {
-        obj[key] = updatedItem[key];
+        let val = updatedItem[key];
+        if (typeof val === 'string' && /^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/.test(val)) {
+          val = val.replace('T', ' ').substring(0, 19);
+        }
+        obj[key] = val;
         return obj;
       }, {});
 

@@ -1,98 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { categories } from './CaseStudiesSidebar';
 
-const caseStudiesData = [
-  {
-    id: 1,
-    category: 'ERP',
-    catName: 'ERP SOLUTIONS',
-    title: 'Manufacturing ERP for Sterling Techno Systems',
-    desc: 'Implemented a comprehensive ERP solution to streamline production, inventory, finance, and quality management.',
-    image: '/assets/images/service/erp_dash.png',
-    stats: [
-      { value: '35%', label: 'Increase in Productivity' },
-      { value: '28%', label: 'Reduction in Operating Cost' },
-      { value: '99%', label: 'Data Accuracy Achieved' }
-    ]
-  },
-  {
-    id: 2,
-    category: 'CRM',
-    catName: 'CRM SOLUTIONS',
-    title: 'Sales CRM for Vastra Bhushan',
-    desc: 'Built a robust CRM to automate sales, improve lead conversion, and enhance customer engagement.',
-    image: '/assets/images/service/crm_dash.png',
-    stats: [
-      { value: '40%', label: 'Increase in Sales' },
-      { value: '60%', label: 'Improvement in Lead Conversion' },
-      { value: '95%', label: 'Customer Retention' }
-    ]
-  },
-  {
-    id: 3,
-    category: 'IoT',
-    catName: 'IOT SOLUTIONS',
-    title: 'IIoT Implementation for Nobel Casting',
-    desc: 'Connected machines and deployed IoT sensors to monitor real-time production and machine performance.',
-    image: '/assets/images/service/iot_robot.png',
-    stats: [
-      { value: '30%', label: 'Reduction in Downtime' },
-      { value: '25%', label: 'Increase in OEE' },
-      { value: '100%', label: 'Real-time Monitoring' }
-    ]
-  },
-  {
-    id: 4,
-    category: 'Web',
-    catName: 'WEB DEVELOPMENT',
-    title: 'Corporate Website for Codigix Infotech',
-    desc: 'Developed a modern, responsive website that showcases services and improves online presence.',
-    image: '/assets/images/service/web_dev_dashboard.webp',
-    stats: [
-      { value: '3X', label: 'Increase in Traffic' },
-      { value: '50%', label: 'More User Engagement' },
-      { value: '100%', label: 'Mobile Responsive' }
-    ]
-  },
-  {
-    id: 5,
-    category: 'Mobile',
-    catName: 'MOBILE APPS',
-    title: 'Mobile App for Healthcare Provider',
-    desc: 'Built a cross-platform mobile app for appointment booking, patient management, and real-time notifications.',
-    image: '/assets/images/service/mobile_app.png',
-    stats: [
-      { value: '45%', label: 'More App Downloads' },
-      { value: '70%', label: 'Increase in User Engagement' },
-      { value: '4.8', label: 'Average App Rating' }
-    ]
-  },
-  {
-    id: 6,
-    category: 'AI',
-    catName: 'AI SOLUTIONS',
-    title: 'AI Analytics for Retail Business',
-    desc: 'Implemented AI-powered analytics to forecast demand, optimize inventory, and personalize marketing.',
-    image: '/assets/images/service/ai_brain.png',
-    stats: [
-      { value: '32%', label: 'Increase in Revenue' },
-      { value: '20%', label: 'Inventory Cost Reduced' },
-      { value: '90%', label: 'Forecast Accuracy' }
-    ]
-  }
-];
 
 const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
   const navigate = useNavigate();
+  const [caseStudiesData, setCaseStudiesData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/projects');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        setCaseStudiesData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching case studies:', error);
+        setLoading(false);
+      }
+    };
+    fetchProjects();
+  }, []);
+
   const filteredStudies = activeCategory === 'All' 
     ? caseStudiesData 
-    : caseStudiesData.filter(study => study.category === activeCategory);
+    : caseStudiesData.filter(study => study.category === activeCategory || study.catName === activeCategory);
 
   // Top 6 categories for the horizontal filter bar
   const filterTabs = categories.slice(0, 6);
+
+  if (loading) return <div className="py-20 text-center text-slate-500">Loading Case Studies...</div>;
 
   return (
     <div id="case-studies-grid" className="py-8 scroll-mt-24 text-left">
@@ -104,14 +45,18 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
              <button 
                key={tab.id}
                onClick={() => setActiveCategory(tab.id)}
-               className={`case-studies-filter-btn shrink-0 ${activeCategory === tab.id ? 'active' : ''}`}
+               className={`px-4 py-2 text-[11px] font-medium rounded-lg border transition-all shrink-0 ${
+                 activeCategory === tab.id 
+                   ? 'bg-purple-600 border-purple-500 text-white shadow-md shadow-purple-500/20 font-semibold' 
+                   : 'bg-slate-50 dark:bg-[#050117] border-slate-200 dark:border-gray-800 text-slate-550 dark:text-gray-400 hover:border-slate-400 dark:hover:border-gray-600 hover:text-slate-900 dark:hover:text-gray-250'
+               }`}
              >
                {tab.id === 'All' ? 'All' : tab.name}
              </button>
            ))}
         </div>
 
-        <div className="shrink-0 flex items-center gap-2 px-4 py-2 border border-gray-700 rounded-md text-[11px] text-gray-400 cursor-pointer hover:border-gray-500 transition-colors">
+        <div className="shrink-0 flex items-center gap-2 px-4 py-2 border border-slate-250 dark:border-gray-700 rounded-lg text-[11px] text-slate-500 dark:text-gray-400 cursor-pointer hover:border-slate-400 dark:hover:border-gray-500 transition-colors shadow-sm">
           Sort by: Latest <ChevronDown size={14} />
         </div>
       </div>
@@ -127,8 +72,8 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
-              onClick={() => navigate(`/new-case-studies/${study.id}`)}
-              className="bg-[#050112] border border-gray-800/85 rounded-2xl overflow-hidden shadow-xl flex flex-col group hover:border-purple-500/50 transition-all duration-300 cursor-pointer relative"
+              onClick={() => navigate(`/case-studies/${study.id}`)}
+              className="bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/85 rounded-2xl overflow-hidden shadow-sm dark:shadow-xl flex flex-col group hover:border-purple-500/50 transition-all duration-300 cursor-pointer relative"
             >
               {/* Spotlight background hover */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.06)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
@@ -140,7 +85,7 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
 
               {/* Image Area */}
               <div className="h-48 overflow-hidden relative">
-                 <div className="absolute inset-0 bg-purple-900/20 mix-blend-overlay z-10 group-hover:bg-transparent transition-colors"></div>
+                 <div className="absolute inset-0 bg-purple-900/10 dark:bg-purple-900/20 mix-blend-overlay group-hover:bg-transparent transition-colors"></div>
                  <img 
                    src={study.image} 
                    alt={study.title} 
@@ -149,28 +94,39 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
               </div>
 
               {/* Content */}
-              <div className="p-6 flex flex-col flex-1 relative z-20 bg-gradient-to-t from-[#050112] via-[#050112] to-transparent">
-                 <span className="text-[9px] font-bold text-purple-400 uppercase tracking-widest bg-purple-500/10 inline-block self-start px-2 py-1 rounded border border-purple-500/20 mb-3">
+              <div className="p-6 flex flex-col flex-1 relative z-20 bg-white dark:bg-gradient-to-t dark:from-[#050112] dark:via-[#050112] dark:to-transparent">
+                 <span className="text-[9px] font-bold text-purple-750 dark:text-purple-400 uppercase tracking-widest bg-purple-50 dark:bg-purple-500/10 inline-block self-start px-2 py-1 rounded border border-purple-200 dark:border-purple-500/20 mb-3">
                    {study.catName}
                  </span>
-                 <h3 className="text-lg font-bold text-white mb-2 leading-snug group-hover:text-purple-300 transition-colors">
+                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug group-hover:text-purple-650 dark:group-hover:text-purple-300 transition-colors">
                    {study.title}
                  </h3>
-                 <p className="text-[11px] text-gray-400 leading-relaxed mb-6 flex-1">
-                   {study.desc}
+                 <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-relaxed mb-6 flex-1">
+                   {study.subtitle || study.overview || study.desc}
                  </p>
 
                  {/* Stats */}
-                 <div className="grid grid-cols-3 gap-2 border-t border-gray-800 pt-4 mb-4">
-                    {study.stats.map((stat, idx) => (
-                      <div key={idx} className="flex flex-col">
-                        <span className="text-lg font-bold text-purple-300 mb-1">{stat.value}</span>
-                        <span className="text-[9px] text-gray-500 leading-tight">{stat.label}</span>
-                      </div>
-                    ))}
+                 <div className="grid grid-cols-3 gap-2 border-t border-slate-200 dark:border-gray-800 pt-4 mb-4">
+                    {(() => {
+                       let stats = [];
+                       try {
+                         if (study.results_impact) {
+                           let parsed = typeof study.results_impact === 'string' ? JSON.parse(study.results_impact) : study.results_impact;
+                           stats = parsed.slice(0, 3).map(item => ({ value: item.val || item.value, label: item.title || item.label }));
+                         } else if (study.stats) {
+                           stats = study.stats;
+                         }
+                       } catch(e) {}
+                       return stats.map((stat, idx) => (
+                         <div key={idx} className="flex flex-col">
+                           <span className="text-lg font-bold text-purple-600 dark:text-purple-300 mb-1">{stat.value}</span>
+                           <span className="text-[9px] text-slate-500 dark:text-gray-500 leading-tight">{stat.label}</span>
+                         </div>
+                       ));
+                    })()}
                  </div>
 
-                 <div className="flex items-center gap-2 text-purple-400 text-[11px] font-medium group-hover:text-purple-300 transition-colors mt-auto">
+                 <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 text-[11px] font-medium group-hover:text-purple-500 transition-colors mt-auto">
                    View Case Study <ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
                  </div>
               </div>

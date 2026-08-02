@@ -12,9 +12,9 @@ const values = [
 
 const AboutMissionVision = () => {
   return (
-    <div className="py-12 border-t border-gray-800/50 mt-8 mb-8">
+    <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-8 mb-8 text-left">
       <div className="text-center mb-12">
-        <h2 className="text-2xl font-bold text-white">Our Values, Mission & Vision</h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Our Values, Mission & Vision</h2>
         <div className="w-12 h-1 bg-purple-500 mx-auto mt-4 rounded-full"></div>
       </div>
 
@@ -25,17 +25,17 @@ const AboutMissionVision = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-[#050112] border border-gray-800/80 rounded-2xl p-8 shadow-xl flex flex-col"
+          className="bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm dark:shadow-xl flex flex-col"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Gem size={24} className="text-purple-400" />
-            <h3 className="text-xl font-bold text-white">Our Values</h3>
+            <Gem size={24} className="text-purple-650 dark:text-purple-400" />
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Our Values</h3>
           </div>
           <div className="flex flex-col gap-4 flex-1">
             {values.map((val, idx) => (
               <div key={idx} className="flex items-start gap-3">
                 <CheckCircle2 size={16} className="text-purple-500 shrink-0 mt-0.5" />
-                <span className="text-[12px] text-gray-300">{val}</span>
+                <span className="text-[12px] text-slate-650 dark:text-gray-300">{val}</span>
               </div>
             ))}
           </div>
@@ -47,7 +47,7 @@ const AboutMissionVision = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           viewport={{ once: true }}
-          className="bg-[#050112] border border-gray-800/80 rounded-2xl p-8 shadow-xl relative overflow-hidden flex flex-col group hover:border-purple-500/50 transition-colors"
+          className="bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm dark:shadow-xl relative overflow-hidden flex flex-col group hover:border-purple-500/50 transition-colors"
         >
           {/* Decorative Target SVG (Placeholder with CSS) */}
           <div className="absolute -bottom-8 -right-8 w-48 h-48 border-[1px] border-purple-500/20 rounded-full flex items-center justify-center opacity-100 group-hover:scale-110 transition-transform duration-700">
@@ -57,10 +57,10 @@ const AboutMissionVision = () => {
           </div>
 
           <div className="flex items-center gap-3 mb-6 relative z-10">
-            <Rocket size={24} className="text-purple-400" />
-            <h3 className="text-xl font-bold text-white">Our Mission</h3>
+            <Rocket size={24} className="text-purple-650 dark:text-purple-400" />
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Our Mission</h3>
           </div>
-          <p className="text-[12px] text-gray-300 leading-relaxed relative z-10">
+          <p className="text-[12px] text-slate-650 dark:text-gray-300 leading-relaxed relative z-10">
             To empower businesses with intelligent, innovative, and scalable digital solutions that drive growth, efficiency, and long-term value.
           </p>
         </motion.div>
@@ -71,7 +71,7 @@ const AboutMissionVision = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           viewport={{ once: true }}
-          className="bg-[#050112] border border-gray-800/80 rounded-2xl p-8 shadow-xl relative overflow-hidden flex flex-col group hover:border-purple-500/50 transition-colors"
+          className="bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm dark:shadow-xl relative overflow-hidden flex flex-col group hover:border-purple-500/50 transition-colors"
         >
           {/* Decorative Mountain SVG (Placeholder with CSS) */}
           <div className="absolute bottom-0 left-0 right-0 h-32 opacity-100 group-hover:opacity-50 transition-opacity">
@@ -82,10 +82,10 @@ const AboutMissionVision = () => {
           </div>
 
           <div className="flex items-center gap-3 mb-6 relative z-10">
-            <Binoculars size={24} className="text-purple-400" />
-            <h3 className="text-xl font-bold text-white">Our Vision</h3>
+            <Binoculars size={24} className="text-purple-650 dark:text-purple-400" />
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Our Vision</h3>
           </div>
-          <p className="text-[12px] text-gray-300 leading-relaxed relative z-10">
+          <p className="text-[12px] text-slate-650 dark:text-gray-300 leading-relaxed relative z-10">
             To be a global leader in digital transformation, recognized for delivering exceptional solutions that create a better tomorrow.
           </p>
         </motion.div>

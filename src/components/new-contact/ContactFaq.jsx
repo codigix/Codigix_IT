@@ -41,8 +41,8 @@ const ContactFaq = () => {
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-center justify-between mb-8 gap-4">
-        <h2 className="text-xl font-bold text-white">Frequently Asked Questions</h2>
-        <div className="text-purple-400 text-[11px] font-medium flex items-center gap-1 cursor-pointer hover:text-purple-300 transition-colors">
+        <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
+        <div className="text-purple-600 dark:text-purple-400 text-xs font-bold flex items-center gap-1.5 cursor-pointer hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
           View All FAQs <ArrowRight size={14} />
         </div>
       </div>
@@ -52,18 +52,22 @@ const ContactFaq = () => {
         {faqs.map((faq, idx) => (
           <div 
             key={idx} 
-            className={`border border-gray-800/80 rounded-xl bg-[#050112] overflow-hidden transition-all duration-300 ${openIndex === idx ? 'border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.1)]' : 'hover:border-gray-600'}`}
+            className={`border rounded-xl bg-white dark:bg-[#050112] overflow-hidden transition-all duration-300 text-left shadow-xs ${
+              openIndex === idx 
+                ? 'border-purple-500/60 shadow-[0_4px_15px_rgba(139,92,246,0.12)]' 
+                : 'border-slate-200/90 dark:border-gray-800/80 hover:border-purple-300 dark:hover:border-gray-700'
+            }`}
           >
             <button 
               onClick={() => toggleFaq(idx)}
               className="w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none"
             >
-              <span className={`text-[12px] font-medium transition-colors ${openIndex === idx ? 'text-white' : 'text-gray-300'}`}>
+              <span className={`text-xs font-bold transition-colors ${openIndex === idx ? 'text-purple-700 dark:text-purple-300' : 'text-slate-800 dark:text-gray-200'}`}>
                 {faq.question}
               </span>
               <ChevronDown 
                 size={16} 
-                className={`text-purple-400 transition-transform duration-300 shrink-0 ml-4 ${openIndex === idx ? 'rotate-180' : ''}`} 
+                className={`text-purple-600 dark:text-purple-400 transition-transform duration-300 shrink-0 ml-4 ${openIndex === idx ? 'rotate-180' : ''}`} 
               />
             </button>
             
@@ -76,7 +80,7 @@ const ContactFaq = () => {
                   transition={{ duration: 0.3 }}
                   className="px-6 pb-4"
                 >
-                  <p className="text-[11px] text-gray-500 leading-relaxed border-t border-gray-800 pt-4">
+                  <p className="text-[11px] text-slate-600 dark:text-gray-400 leading-relaxed border-t border-slate-100 dark:border-gray-800 pt-3 font-normal">
                     {faq.answer}
                   </p>
                 </motion.div>

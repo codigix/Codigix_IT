@@ -47,7 +47,7 @@ const NewOtherServicesPage = () => {
           const { top, bottom } = element.getBoundingClientRect();
           const absoluteTop = top + window.pageYOffset;
           const absoluteBottom = bottom + window.pageYOffset;
-          
+
           if (scrollPosition >= absoluteTop && scrollPosition < absoluteBottom) {
             setActiveSection(section);
             break;
@@ -61,31 +61,31 @@ const NewOtherServicesPage = () => {
   }, []);
 
   return (
-    <div className="bg-[#0d0b21] min-h-screen font-sans text-white selection:bg-indigo-500/30">
-      
+    <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white selection:bg-indigo-500/30 transition-colors duration-300">
+
       {/* Navigation */}
       <NewHomeNav />
-      
+
       {/* Main Layout Container */}
-      <div className="services-layout-container max-w-[1600px] mx-auto">
-        
+      <div className="services-layout-container  mx-auto pt-20 lg:pt-20">
+
         {/* Main Content Area (Left Side) */}
-        <div className="px-4 sm:px-8 lg:px-12 xl:px-16 py-12 lg:border-r border-gray-800/50">
+        <div className="px-4 sm:px-8 lg:px-12 xl:px-16 py-12 lg:border-r border-slate-200 dark:border-gray-800/50">
           <OtherServicesHero />
           <OtherServicesList />
           <OtherServicesBottomCta />
         </div>
-        
+
         {/* Sticky Sidebar (Right Side) */}
         <OtherServicesSidebar activeSection={activeSection} setActiveSection={setActiveSection} />
-        
+
       </div>
-      
+
       {/* Footer */}
-      <div className="pt-24 border-t border-gray-800/30 mt-12 bg-black/20">
+      <div className="pt-24 border-t border-slate-200 dark:border-gray-800/30 mt-12 bg-slate-50/50 dark:bg-black/20">
         <CtaFooterSection />
       </div>
-      
+
     </div>
   );
 };

@@ -44,7 +44,7 @@ const IndustriesGrid = ({ setActiveIndustry }) => {
   return (
     <div className="py-12 text-left">
       <div className="text-center mb-10">
-        <h2 className="text-2xl font-bold text-white">Industries We Serve</h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Industries We Serve</h2>
         <div className="w-12 h-1 bg-purple-500 mx-auto mt-4 rounded-full"></div>
       </div>
 
@@ -65,7 +65,7 @@ const IndustriesGrid = ({ setActiveIndustry }) => {
                 window.scrollTo({ top: y, behavior: 'smooth' });
               }
             }}
-            className="group relative h-[360px] bg-[#050112] border border-gray-800/60 rounded-xl overflow-hidden cursor-pointer hover:border-purple-500/50 transition-all duration-300 flex flex-col"
+            className="group relative h-[360px] bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/60 rounded-xl overflow-hidden cursor-pointer hover:border-purple-500/50 transition-all duration-300 flex flex-col shadow-sm dark:shadow-none"
           >
             {/* Spotlight background hover */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.06)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
@@ -77,7 +77,7 @@ const IndustriesGrid = ({ setActiveIndustry }) => {
 
             {/* Image Area */}
             <div className="h-[45%] relative overflow-hidden">
-               <div className="absolute inset-0 bg-gradient-to-t from-[#050112] to-transparent z-10"></div>
+               <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#050112] to-transparent z-10"></div>
                <img 
                  src={card.image} 
                  alt={card.title} 
@@ -86,15 +86,15 @@ const IndustriesGrid = ({ setActiveIndustry }) => {
             </div>
             
             {/* Content Area */}
-            <div className="flex-1 p-5 flex flex-col z-20 relative -mt-4 bg-[#050112]">
+            <div className="flex-1 p-5 flex flex-col z-20 relative -mt-4 bg-white dark:bg-[#050112]">
                <div className="flex items-center gap-2 mb-3">
-                 <card.icon size={16} className="text-purple-400 group-hover:text-purple-300" />
-                 <h3 className="text-[13px] font-bold text-white group-hover:text-purple-200 transition-colors">{card.title}</h3>
+                 <card.icon size={16} className="text-purple-600 dark:text-purple-400 group-hover:text-purple-500" />
+                 <h3 className="text-[13px] font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-200 transition-colors">{card.title}</h3>
                </div>
-               <p className="text-[11px] text-gray-400 leading-relaxed flex-1">
+               <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-relaxed flex-1">
                  {card.desc}
                </p>
-               <div className="flex items-center gap-2 text-purple-400 text-[11px] font-medium mt-4 group-hover:text-purple-300">
+               <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 text-[11px] font-medium mt-4 group-hover:text-purple-500">
                  Explore Solutions <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform" />
                </div>
             </div>

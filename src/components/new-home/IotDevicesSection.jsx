@@ -34,7 +34,7 @@ const IotDevicesSection = () => {
   const telemetry = deviceTelemetry[selectedDevice] || deviceTelemetry['Temperature Sensors'];
 
   return (
-    <section className="py-24 bg-[#050117] relative">
+    <section className="py-24 bg-gradient-to-b from-purple-50/30 via-slate-50 to-white dark:from-[#0d0b21] dark:via-[#0d0b21] dark:to-[#0d0b21] relative transition-colors duration-300">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
@@ -51,25 +51,27 @@ const IotDevicesSection = () => {
                   whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ delay: index * 0.03, duration: 0.3 }}
                   viewport={{ once: true }}
-                  className={`flex flex-col items-center justify-center p-3 lg:p-4 bg-[#090624]/95 border rounded-2xl transition-all duration-300 group cursor-pointer shadow-sm aspect-[4/5] w-full relative overflow-hidden ${
-                    isSelected ? 'border-blue-500 bg-[#110c38] shadow-[0_0_20px_rgba(59,130,246,0.15)]' : 'border-gray-800/80 hover:border-blue-500/40 hover:bg-[#110c38]'
+                  className={`flex flex-col items-center justify-center p-3 lg:p-4 bg-white dark:bg-[#090624]/95 border rounded-2xl transition-all duration-300 group cursor-pointer shadow-sm aspect-[4/5] w-full relative overflow-hidden ${
+                    isSelected 
+                      ? 'border-blue-500 bg-blue-50/90 dark:bg-[#110c38] shadow-[0_8px_25px_rgba(59,130,246,0.2)]' 
+                      : 'border-slate-200 dark:border-gray-800/80 hover:border-blue-400 hover:bg-blue-50/30 dark:hover:bg-[#110c38]'
                   }`}
                 >
                   {/* Pulsing LED Active status */}
                   <div className="absolute top-2.5 right-2.5 flex items-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
                     <span className={`nh-led-active ${isSelected ? 'bg-blue-500 shadow-[0_0_8px_#3b82f6]' : 'bg-green-500 shadow-[0_0_8px_#22c55e]'}`}></span>
-                    <span className="text-[7px] text-green-400 font-bold tracking-widest uppercase hidden group-hover:inline-block">LIVE</span>
+                    <span className="text-[7px] text-green-600 dark:text-green-400 font-bold tracking-widest uppercase hidden group-hover:inline-block">LIVE</span>
                   </div>
 
                   <div className="w-full h-16 lg:h-20 mb-3 flex items-center justify-center relative">
-                    <div className="absolute inset-0 bg-blue-500/5 rounded-full blur-xl group-hover:bg-blue-500/10 transition-colors"></div>
+                    <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-xl group-hover:bg-blue-500/20 transition-colors"></div>
                     <img 
                       src={device.image} 
                       alt={device.name} 
-                      className="max-w-full max-h-full object-contain filter drop-shadow-[0_0_10px_rgba(59,130,246,0.2)] transition-transform duration-300 group-hover:scale-110 relative z-10" 
+                      className="max-w-full max-h-full object-contain filter drop-shadow-[0_0_10px_rgba(59,130,246,0.25)] transition-transform duration-300 group-hover:scale-110 relative z-10" 
                     />
                   </div>
-                  <span className="text-[9px] lg:text-[10px] text-center text-gray-400 group-hover:text-white font-bold leading-tight px-0.5 uppercase tracking-wider transition-colors duration-300">
+                  <span className="text-[9px] lg:text-[10px] text-center text-slate-700 dark:text-gray-400 group-hover:text-blue-700 dark:group-hover:text-white font-extrabold leading-tight px-0.5 uppercase tracking-wider transition-colors duration-300">
                     {device.name}
                   </span>
                 </motion.div>
@@ -78,10 +80,10 @@ const IotDevicesSection = () => {
           </div>
 
           {/* Middle: IoT Integrations Text */}
-          <div className="lg:col-span-3 order-1 lg:order-2 space-y-6 lg:pl-4 flex flex-col justify-center">
-            <span className="text-purple-500 font-semibold tracking-wider text-[11px] sm:text-xs uppercase">CONNECTED DEVICES. REAL IMPACT.</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">IoT Devices & Integrations</h2>
-            <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+          <div className="lg:col-span-3 order-1 lg:order-2 space-y-6 lg:pl-4 flex flex-col justify-center text-left">
+            <span className="text-purple-600 dark:text-purple-500 font-bold tracking-wider text-[11px] sm:text-xs uppercase">CONNECTED DEVICES. REAL IMPACT.</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">IoT Devices & Integrations</h2>
+            <p className="text-slate-650 dark:text-gray-400 text-sm md:text-base leading-relaxed">
               We integrate industrial IoT devices and sensors to collect real-time data and turn it into actionable insights.
             </p>
             
@@ -92,34 +94,34 @@ const IotDevicesSection = () => {
             </div>
           </div>
 
-          {/* Right Side: Live Telemetry stream visual graph panel */}
+          {/* Right Side: Live Telemetry stream visual graph panel - High-contrast dark console */}
           <div className="lg:col-span-2 order-3 flex flex-col justify-center">
-            <div className="w-full border border-gray-800/80 bg-[#07041a] rounded-2xl p-4 shadow-[0_15px_30px_rgba(0,0,0,0.5)] font-mono text-[10px] space-y-3">
-              <div className="flex items-center justify-between border-b border-gray-800/85 pb-2">
-                <span className="text-gray-500 font-bold uppercase tracking-wider">telemetry_rx.bin</span>
+            <div className="w-full border border-purple-900/40 dark:border-gray-800/80 bg-[#0c0828] dark:bg-[#07041a] rounded-2xl p-4 shadow-[0_15px_40px_rgba(139,92,246,0.12)] dark:shadow-[0_15px_30px_rgba(0,0,0,0.5)] font-mono text-[10px] space-y-3 keep-dark">
+              <div className="flex items-center justify-between border-b border-purple-900/40 pb-2">
+                <span className="text-gray-400 font-bold uppercase tracking-wider">telemetry_rx.bin</span>
                 <span className="nh-led-active bg-blue-500 shadow-[0_0_8px_#3b82f6]"></span>
               </div>
               
               <div>
-                <div className="text-gray-600">// Target device</div>
+                <div className="text-gray-500">// Target device</div>
                 <div className="text-xs font-bold text-white uppercase truncate">{selectedDevice}</div>
               </div>
               
-              <div className="grid grid-cols-2 gap-2 border-t border-b border-gray-800/60 py-2">
+              <div className="grid grid-cols-2 gap-2 border-t border-b border-purple-900/40 py-2">
                 <div>
-                  <div className="text-gray-600">Metric</div>
+                  <div className="text-gray-500">Metric</div>
                   <div className="text-[10px] font-bold text-gray-300 truncate">{telemetry.metric}</div>
                 </div>
                 <div>
-                  <div className="text-gray-600">Value</div>
+                  <div className="text-gray-500">Value</div>
                   <div className="text-[10px] font-bold text-white animate-pulse truncate" style={{ color: telemetry.color }}>{telemetry.val}</div>
                 </div>
               </div>
 
               <div>
-                <div className="text-gray-600">// Signal waves</div>
-                <div className="h-12 border border-gray-800/50 bg-[#050117] rounded-lg mt-1 flex items-center justify-center relative overflow-hidden">
-                  <svg className="w-full h-8 px-2 opacity-80" viewBox="0 0 180 30" preserveAspectRatio="none">
+                <div className="text-gray-500">// Signal waves</div>
+                <div className="h-12 border border-purple-900/40 bg-[#060318] rounded-lg mt-1 flex items-center justify-center relative overflow-hidden">
+                  <svg className="w-full h-8 px-2 opacity-90" viewBox="0 0 180 30" preserveAspectRatio="none">
                     <path
                       d={telemetry.wave}
                       fill="none"
@@ -138,7 +140,7 @@ const IotDevicesSection = () => {
                 </div>
               </div>
 
-              <div className="text-[8px] text-gray-600 text-right">
+              <div className="text-[8px] text-gray-500 text-right">
                 status: <span className="text-green-400 font-bold uppercase">{telemetry.status}</span>
               </div>
             </div>

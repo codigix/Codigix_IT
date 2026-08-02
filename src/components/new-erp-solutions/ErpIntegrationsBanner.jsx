@@ -3,7 +3,7 @@ import { Share2, Puzzle } from 'lucide-react';
 
 const ErpIntegrationsBanner = () => {
   return (
-    <div className="relative mt-12 rounded-2xl overflow-hidden bg-gradient-to-r from-[#0d0a25] to-[#0f0931] border border-gray-800/60 p-6 lg:p-8 flex flex-col md:flex-row items-center gap-6 shadow-[0_5px_30px_rgba(0,0,0,0.3)] group">
+    <div className="relative mt-12 rounded-2xl overflow-hidden bg-slate-50 dark:bg-gradient-to-r dark:from-[#0d0a25] dark:to-[#0f0931] border border-slate-200 dark:border-gray-800/60 p-6 lg:p-8 flex flex-col md:flex-row items-center gap-6 shadow-sm dark:shadow-[0_5px_30px_rgba(0,0,0,0.3)] group">
       
       {/* Background glow */}
       <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-48 h-48 bg-purple-500/10 blur-3xl rounded-full"></div>
@@ -13,8 +13,8 @@ const ErpIntegrationsBanner = () => {
       </div>
 
       <div className="flex-1 z-10 text-center md:text-left">
-        <h4 className="text-[15px] font-bold text-white mb-2 tracking-wide">ERP Integrations</h4>
-        <p className="text-[12px] text-gray-400 leading-relaxed max-w-2xl">
+        <h4 className="text-[15px] font-bold text-slate-900 dark:text-white mb-2 tracking-wide">ERP Integrations</h4>
+        <p className="text-[12px] text-slate-600 dark:text-gray-400 leading-relaxed max-w-2xl">
           Seamlessly integrate with third-party applications, IoT devices, payment gateways, CRM, eCommerce, and other business-critical systems.
         </p>
       </div>

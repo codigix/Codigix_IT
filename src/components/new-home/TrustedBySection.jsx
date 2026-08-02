@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+
 const IconManufacturing = ({ className, style }) => (
   <svg className={className} style={style} viewBox="0 0 24 24" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M4 20h16M5 20V9l4-3v4l4-3v4l4-3v12M15 15v5M9 15v5" />
@@ -103,23 +104,23 @@ const industries = [
 
 const TrustedBySection = () => {
   return (
-    <section className="py-12 border-t border-gray-800/50 bg-[#070320] relative">
+    <section className="py-12 border-t border-b border-purple-200/60 dark:border-purple-900/40 bg-gradient-to-b from-white via-purple-50/20 to-slate-50 dark:from-[#07041a] dark:via-[#0c0828] dark:to-[#07041a] relative transition-colors duration-300">
       <svg width="0" height="0" className="absolute">
         <defs>
           <linearGradient id="trust-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#f43f5e" /> {/* Rose 500 */}
-            <stop offset="50%" stopColor="#d946ef" /> {/* Fuchsia 500 */}
-            <stop offset="100%" stopColor="#3b82f6" /> {/* Blue 500 */}
+            <stop offset="0%" stopColor="#e11d48" /> {/* Rose 600 */}
+            <stop offset="50%" stopColor="#c026d3" /> {/* Fuchsia 600 */}
+            <stop offset="100%" stopColor="#2563eb" /> {/* Blue 600 */}
           </linearGradient>
         </defs>
       </svg>
 
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <h3 className="text-center text-[11px] font-bold tracking-widest text-gray-300 uppercase mb-12">
+        <h3 className="text-center text-[11px] font-extrabold tracking-widest text-slate-600 dark:text-gray-300 uppercase mb-12">
           Trusted by Industries Worldwide
         </h3>
 
-        <div className="flex flex-wrap justify-center gap-x-12 gap-y-10 lg:justify-between items-center opacity-85 hover:opacity-100 transition-opacity duration-500">
+        <div className="flex flex-wrap justify-center gap-x-12 gap-y-10 lg:justify-between items-center opacity-90 hover:opacity-100 transition-opacity duration-500">
           {industries.map((industry, index) => (
             <motion.div 
               key={index} 
@@ -132,14 +133,14 @@ const TrustedBySection = () => {
             >
               <div className="relative">
                 {/* Background soft glow on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 to-blue-500/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-125" />
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-500/20 to-blue-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-125" />
                 <industry.icon
-                  className="w-14 h-14 relative z-10 transition-all duration-300 group-hover:-translate-y-1.5 filter group-hover:drop-shadow-[0_0_15px_rgba(244,63,94,0.4)]"
+                  className="w-14 h-14 relative z-10 transition-all duration-300 group-hover:-translate-y-1.5 filter group-hover:drop-shadow-[0_0_15px_rgba(225,29,72,0.4)]"
                   style={{ stroke: 'url(#trust-gradient)' }}
-                  strokeWidth={1.3}
+                  strokeWidth={1.4}
                 />
               </div>
-              <span className="text-[10px] sm:text-[11px] text-gray-400 group-hover:text-white font-bold transition-colors tracking-wider uppercase">
+              <span className="text-[10px] sm:text-[11px] text-slate-700 group-hover:text-purple-700 dark:text-gray-300 dark:group-hover:text-white font-extrabold transition-colors tracking-wider uppercase">
                 {industry.name}
               </span>
             </motion.div>

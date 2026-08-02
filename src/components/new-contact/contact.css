@@ -1,7 +1,14 @@
 /* Custom styles for Contact Us Page */
 
 .contact-text-gradient {
-  background: linear-gradient(to right, #8b5cf6, #3b82f6);
+  background: linear-gradient(to right, #7e22ce, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .contact-text-gradient {
+  background: linear-gradient(to right, #c084fc, #60a5fa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -34,23 +41,37 @@
   animation-delay: 1s;
 }
 
-/* Form Input Styling */
+/* Form Input Styling - Dual Theme Compatible */
 .contact-input {
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #0f172a;
   transition: all 0.3s ease;
 }
 
 .contact-input:focus {
   outline: none;
-  border-color: rgba(168, 85, 247, 0.6);
-  box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
-  background-color: rgba(168, 85, 247, 0.05);
+  border-color: rgba(139, 92, 246, 0.7);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+  background-color: #ffffff;
 }
 
 .contact-input::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: #64748b;
+}
+
+.dark .contact-input {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.dark .contact-input:focus {
+  background-color: rgba(168, 85, 247, 0.05);
+}
+
+.dark .contact-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
 }
 
 /* Accordion Transition */
@@ -62,6 +83,6 @@
 }
 
 .accordion-content.open {
-  max-height: 500px; /* arbitrary large value to fit content */
+  max-height: 500px;
   opacity: 1;
 }

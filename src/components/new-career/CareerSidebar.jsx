@@ -32,18 +32,18 @@ const reasons = [
 const CareerSidebar = () => {
   return (
     <div className="w-full">
-      <div className="bg-transparent border border-gray-800/80 rounded-2xl py-6 px-4 shadow-xl">
-        <h3 className="text-[12px] font-bold text-white uppercase tracking-widest mb-6 px-2">Why Join Us?</h3>
+      <div className="bg-white dark:bg-[#0a0624]/60 border border-slate-200 dark:border-gray-800/80 rounded-2xl py-6 px-4 shadow-sm dark:shadow-xl">
+        <h3 className="text-[11px] font-bold text-slate-400 dark:text-gray-550 uppercase tracking-widest mb-6 px-2">Why Join Us?</h3>
         
         <div className="flex flex-col gap-6">
           {reasons.map((reason, idx) => (
             <div key={idx} className="flex items-start gap-4 px-2 group">
-              <div className="w-10 h-10 rounded-xl bg-purple-900/20 border border-purple-500/20 flex items-center justify-center shrink-0 group-hover:bg-purple-900/40 group-hover:border-purple-500/50 transition-colors">
-                <reason.icon size={18} className="text-purple-400" />
+              <div className="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/20 flex items-center justify-center shrink-0 group-hover:bg-purple-100 dark:group-hover:bg-purple-900/40 group-hover:border-purple-400 dark:group-hover:border-purple-500/50 transition-colors">
+                <reason.icon size={18} className="text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <h4 className="text-[13px] font-bold text-white mb-1 group-hover:text-purple-300 transition-colors">{reason.title}</h4>
-                <p className="text-[11px] text-gray-500 leading-relaxed">{reason.desc}</p>
+                <h4 className="text-[13px] font-bold text-slate-900 dark:text-white mb-1 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">{reason.title}</h4>
+                <p className="text-[11px] text-slate-500 dark:text-gray-550 leading-relaxed">{reason.desc}</p>
               </div>
             </div>
           ))}

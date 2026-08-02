@@ -30,9 +30,9 @@ export const erpTabData = {
       { title: 'Job Costing & Profitability', desc: 'Real-time variance analysis comparing estimated standard costs against actual labor/material.', icon: 'PieChart', color: 'text-rose-400', bg: 'bg-rose-500/10', metric: 'Exact Cost Logs' }
     ],
     projects: [
-      { title: 'Automotive Stamping Plant Automation', client: 'Apex Auto Components', results: 'Increased OEE by 24% and eliminated 150+ hours of paper-based job tracking per month.', tag: 'Automotive' },
-      { title: 'Precision CNC Machining ERP', client: 'Titan Precision Gears', results: 'Achieved 99.4% BOM material accuracy and reduced work-in-progress inventory by $420,000.', tag: 'Precision Engineering' },
-      { title: 'Multi-Plant Electronics Manufacturing', client: 'Electra Tech India', results: 'Automated 12,000 daily shopfloor scans and reduced order lead time from 14 days to 4 days.', tag: 'Electronics' }
+      { title: 'Automotive Stamping Plant Automation', client: 'Apex Auto Components', results: 'Increased OEE by 24% and eliminated 150+ hours of paper-based job tracking per month.', tag: 'Automotive', imageLight: '/assets/images/service/erp_manufacturing_light.png', imageDark: '/assets/images/new-iot-solutions/iot_robot_dark.png' },
+      { title: 'Precision CNC Machining ERP', client: 'Titan Precision Gears', results: 'Achieved 99.4% BOM material accuracy and reduced work-in-progress inventory by $420,000.', tag: 'Precision Engineering', imageLight: '/assets/images/service/crm_project_light.png', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.png' },
+      { title: 'Multi-Plant Electronics Manufacturing', client: 'Electra Tech India', results: 'Automated 12,000 daily shopfloor scans and reduced order lead time from 14 days to 4 days.', tag: 'Electronics', imageLight: '/assets/images/service/crm_sales_light.png', imageDark: '/assets/images/new-iot-solutions/erp_isometric_dark.png' }
     ],
     benefits: ['Real-time Production Monitoring', 'Accurate Costing & Margin Control', 'Optimized Shopfloor Routing', 'Reduced Material Waste', 'Automated Quality Inspection', 'Predictive Maintenance Alerts'],
     workflow: [
@@ -74,9 +74,9 @@ export const erpTabData = {
       { title: 'Diagnostic Lab Integration', desc: 'Sync LIMS test machines directly to patient charts for instant lab report publishing.', icon: 'Activity', color: 'text-cyan-400', bg: 'bg-cyan-500/10', metric: 'Instant Sync' }
     ],
     projects: [
-      { title: 'Multi-Specialty Hospital ERP Deployment', client: 'Sunshine Super Specialty Hospitals', results: 'Unified 450 beds across 3 hospital wings, reducing average discharge times by 65%.', tag: 'Hospitals' },
-      { title: 'Regional Pharmacy Chain Inventory ERP', client: 'MedLife Pharmacy Network', results: 'Automated drug expiration tracking across 40 branch stores, saving $180,000 annually.', tag: 'Pharma Retail' },
-      { title: 'Diagnostic Laboratory LIMS Integration', client: 'PathoCare Clinical Labs', results: 'Connected 14 automated blood analyzer machines directly to online patient portals.', tag: 'Diagnostics' }
+      { title: 'Multi-Specialty Hospital ERP Deployment', client: 'Sunshine Super Specialty Hospitals', results: 'Unified 450 beds across 3 hospital wings, reducing average discharge times by 65%.', tag: 'Hospitals', imageLight: '/assets/images/service/crm_support_light.png', imageDark: '/assets/images/new-iot-solutions/ai_brain_dark.png' },
+      { title: 'Regional Pharmacy Chain Inventory ERP', client: 'MedLife Pharmacy Network', results: 'Automated drug expiration tracking across 40 branch stores, saving $180,000 annually.', tag: 'Pharma Retail', imageLight: '/assets/images/service/crm_portal_light.png', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.png' },
+      { title: 'Diagnostic Laboratory LIMS Integration', client: 'PathoCare Clinical Labs', results: 'Connected 14 automated blood analyzer machines directly to online patient portals.', tag: 'Diagnostics', imageLight: '/assets/images/service/crm_lead_light.png', imageDark: '/assets/images/new-iot-solutions/ai_robot_dark.png' }
     ],
     benefits: ['Seamless Patient Intake Flow', 'HIPAA & Secure Data Vaults', 'Unified Clinic & Ward Billing', 'Pharmacy Stock Alerts', 'Doctor Scheduling Optimization', 'Centralized Diagnostic Logs'],
     workflow: [
@@ -118,9 +118,9 @@ export const erpTabData = {
       { title: 'Rebate & Commission Rules', desc: 'Configure tiered distributor margins, sales agent commissions, and volume rebates.', icon: 'PieChart', color: 'text-rose-400', bg: 'bg-rose-500/10', metric: 'Auto Rebates' }
     ],
     projects: [
-      { title: 'Global FMCG Import & Distribution ERP', client: 'Orient Trade Worldwide', results: 'Automated landed-cost calculations across 1,200 monthly sea containers.', tag: 'Import/Export' },
-      { title: 'Wholesale Electrical Equipment Distribution', client: 'Nova Electrical Distributors', results: 'Synchronized 5 regional fulfillment hubs, increasing inventory turnover by 3.5x.', tag: 'Wholesale' },
-      { title: 'Multi-Currency Commodity Trading Platform', client: 'AgriCorp Global Trading', results: 'Reduced sales order processing time from 45 minutes to under 2 minutes.', tag: 'Commodities' }
+      { title: 'Global FMCG Import & Distribution ERP', client: 'Orient Trade Worldwide', results: 'Automated landed-cost calculations across 1,200 monthly sea containers.', tag: 'Import/Export', imageLight: '/assets/images/service/crm_light_analytics.png', imageDark: '/assets/images/new-iot-solutions/erp_isometric_dark.png' },
+      { title: 'Wholesale Electrical Equipment Distribution', client: 'Nova Electrical Distributors', results: 'Synchronized 5 regional fulfillment hubs, increasing inventory turnover by 3.5x.', tag: 'Wholesale', imageLight: '/assets/images/service/crm_portal_light.png', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.png' },
+      { title: 'Multi-Currency Commodity Trading Platform', client: 'AgriCorp Global Trading', results: 'Reduced sales order processing time from 45 minutes to under 2 minutes.', tag: 'Commodities', imageLight: '/assets/images/service/crm_sales_light.png', imageDark: '/assets/images/new-iot-solutions/ai_brain_dark.png' }
     ],
     benefits: ['Multi-Currency Book Ledger', 'Automated Sales Order Entry', 'Cross-docking & Warehousing', 'Supplier Performance Scorecards', 'Customs & Duty Automation', 'Dynamic Price Margins'],
     workflow: [
@@ -162,9 +162,9 @@ export const erpTabData = {
       { title: 'Project Profitability Analytics', desc: 'Executive dashboards comparing estimated budget versus actual expenditure per WBS.', icon: 'PieChart', color: 'text-rose-400', bg: 'bg-rose-500/10', metric: 'Live ROI View' }
     ],
     projects: [
-      { title: 'Infrastructure Highway Project ERP', client: 'Vanguard Infra Ltd', results: 'Managed $140M highway stretch with 100% digital site DPRs and sub-contractor RA bills.', tag: 'Infrastructure' },
-      { title: 'Commercial High-Rise Construction ERP', client: 'Skyline Urban Developers', results: 'Prevented steel & cement material wastage by 18% through barcoded site indents.', tag: 'Real Estate' },
-      { title: 'Industrial Turnkey EPC Project ERP', client: 'Indus Engineering & Construction', results: 'Reduced project milestone billing delays from 3 weeks to 2 days.', tag: 'EPC Projects' }
+      { title: 'Infrastructure Highway Project ERP', client: 'Vanguard Infra Ltd', results: 'Managed $140M highway stretch with 100% digital site DPRs and sub-contractor RA bills.', tag: 'Infrastructure', imageLight: '/assets/images/service/crm_project_light.png', imageDark: '/assets/images/new-iot-solutions/software_wireframe_dark.png' },
+      { title: 'Commercial High-Rise Construction ERP', client: 'Skyline Urban Developers', results: 'Prevented steel & cement material wastage by 18% through barcoded site indents.', tag: 'Real Estate', imageLight: '/assets/images/service/crm_fieldservice_light.png', imageDark: '/assets/images/new-iot-solutions/iot_robot_dark.png' },
+      { title: 'Industrial Turnkey EPC Project ERP', client: 'Indus Engineering & Construction', results: 'Reduced project milestone billing delays from 3 weeks to 2 days.', tag: 'EPC Projects', imageLight: '/assets/images/service/crm_sales_light.png', imageDark: '/assets/images/new-iot-solutions/erp_isometric_dark.png' }
     ],
     benefits: ['Multi-site Budget Visibility', 'Contractor Milestone Tracking', 'Equipment Dispatch Efficiency', 'Automated RA Billing Logs', 'Labor Attendance Sync', 'Material Consumption Audits'],
     workflow: [

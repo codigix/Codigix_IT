@@ -12,7 +12,7 @@ const SalesCrmSimulator = () => {
         <span className="text-purple-400 font-bold uppercase tracking-wider">SALES_PIPELINE_ENGINE</span>
         <span className="nh-led-active bg-purple-500 shadow-[0_0_8px_#a855f7]"></span>
       </div>
-      
+
       <div className="space-y-2">
         <div className="flex justify-between">
           <span className="text-gray-400">Pipeline Value MTD</span>
@@ -48,7 +48,7 @@ const LeadManagementSimulator = () => {
         <span className="text-cyan-400 font-bold uppercase tracking-wider">LEAD_CONVERSION_MAT</span>
         <span className="nh-led-active bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></span>
       </div>
-      
+
       <div className="space-y-2">
         <div className="flex justify-between bg-[#050117] p-2 border border-gray-800 rounded-lg">
           <div>
@@ -73,7 +73,7 @@ const MarketingAutomationSimulator = () => {
         <span className="text-pink-400 font-bold uppercase tracking-wider">MARKETING_BLAST_MONITOR</span>
         <span className="nh-led-active bg-pink-400 shadow-[0_0_8px_#f472b6]"></span>
       </div>
-      
+
       <div className="space-y-2">
         <div className="flex justify-between">
           <span className="text-gray-400">Campaign: Summer Promo</span>
@@ -100,7 +100,7 @@ const CustomerSupportSimulator = () => {
         <span className="text-rose-500 font-bold uppercase tracking-wider">HELPDESK_SUPPORT_BOARD</span>
         <span className="nh-led-active bg-rose-500 shadow-[0_0_8px_#f43f5e]"></span>
       </div>
-      
+
       <div className="space-y-2">
         <div className="flex justify-between">
           <span className="text-gray-400">CSAT Score MTD</span>
@@ -127,7 +127,7 @@ const ServiceManagementSimulator = () => {
         <span className="text-orange-400 font-bold uppercase tracking-wider">FIELD_SERVICE_DISPATCH</span>
         <span className="nh-led-active bg-orange-400 shadow-[0_0_8px_#fb923c]"></span>
       </div>
-      
+
       <div className="space-y-2">
         <div className="flex justify-between">
           <span className="text-gray-400">Assigned Techs</span>
@@ -154,7 +154,7 @@ const QuotationManagementSimulator = () => {
         <span className="text-emerald-400 font-bold uppercase tracking-wider">CONTRACT_QUOTE_ESIGN</span>
         <span className="nh-led-active bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
       </div>
-      
+
       <div className="space-y-2 bg-[#050117] border border-gray-800 p-3 rounded-lg text-white font-bold">
         <div>QUOTE #Q-902-A2 STATUS: SIGNED</div>
         <div className="text-[8px] text-green-400">DESPATCH COMPLETED: ONGOING</div>
@@ -169,10 +169,10 @@ const DefaultCrmVisualizer = () => {
     <div className="w-full max-w-sm aspect-square relative flex items-center justify-center p-6">
       <div className="absolute w-[240px] h-[240px] rounded-full border border-dashed border-purple-500/20 animate-spin-slow"></div>
       <div className="absolute w-[180px] h-[180px] rounded-full border border-dashed border-blue-400/30 animate-spin-reverse"></div>
-      
+
       <div className="w-32 h-32 rounded-full bg-gradient-to-tr from-purple-600/30 via-rose-600/20 to-blue-600/30 border border-purple-500/30 flex items-center justify-center relative shadow-[0_0_50px_rgba(168,85,247,0.25)]">
         <div className="absolute w-2 h-2 rounded-full bg-purple-500 animate-pulse shadow-[0_0_8px_#a855f7]" />
-        
+
         {/* Users Grid SVG Outline */}
         <svg className="w-10 h-10 text-white drop-shadow-[0_0_12px_#a855f7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -208,56 +208,56 @@ const CrmHero = ({ activeTab }) => {
   const data = getDefaultData(activeTab);
 
   return (
-    <div className="relative pt-12 pb-16">
-      
+    <div className="relative">
+
       {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-[11px] text-gray-400 mb-8 tracking-wide">
-        <span onClick={() => navigate('/new-home')} className="hover:text-white cursor-pointer transition-colors">Home</span>
+      <div className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide">
+        <span onClick={() => navigate('/')} className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors">Home</span>
         <ChevronRight size={12} />
-        <span className="hover:text-white cursor-pointer transition-colors">Services</span>
+        <span className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors">Services</span>
         <ChevronRight size={12} />
         <span className="text-purple-400 font-medium">{activeTab}</span>
       </div>
 
       {/* Hero Content */}
       <div className="flex flex-col lg:flex-row gap-12 items-center">
-        
+
         {/* Left text */}
         <div className="lg:w-1/2 z-10 text-left">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             key={activeTab + "title"}
-            className="text-4xl sm:text-5xl lg:text-[44px] font-bold text-white leading-[1.1] mb-6"
+            className="text-4xl sm:text-5xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.1] mb-6"
           >
             {data.heroTitle} <span className="crm-text-gradient">{data.heroHighlight}</span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             key={activeTab + "desc"}
-            className="text-sm text-gray-300 leading-relaxed mb-10 max-w-lg"
+            className="text-sm text-slate-600 dark:text-gray-300 leading-relaxed mb-10 max-w-lg"
           >
             {data.heroDesc}
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <button 
-              onClick={() => navigate('/new-contact')}
+            <button
+              onClick={() => navigate('/contact')}
               className="px-6 py-3 bg-[#9333ea] hover:bg-[#a855f7] text-white text-sm font-medium rounded-md shadow-lg shadow-purple-500/20 transition-all flex items-center gap-2"
             >
               Book Consultation <ArrowRight size={16} />
             </button>
-            <button 
-              onClick={() => navigate('/new-contact')}
-              className="px-6 py-3 bg-transparent border border-gray-600 hover:border-gray-400 text-white text-sm font-medium rounded-md transition-all flex items-center gap-2"
+            <button
+              onClick={() => navigate('/contact')}
+              className="px-6 py-3 bg-transparent border border-slate-300 dark:border-gray-600 hover:border-slate-500 dark:hover:border-gray-400 text-slate-900 dark:text-white text-sm font-medium rounded-md transition-all flex items-center gap-2"
             >
               Request Demo <Calendar size={16} />
             </button>
@@ -283,59 +283,59 @@ const CrmHero = ({ activeTab }) => {
       </div>
 
       {/* Stats Row */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
         className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 mt-16 text-left"
       >
-        <div className="bg-[#0c0830]/80 border border-gray-800/60 rounded-xl p-4 flex items-center gap-3 hover:border-purple-500/30 transition-colors shadow-lg">
-          <div className="p-2 bg-purple-500/10 rounded-lg text-purple-400 border border-purple-500/20">
+        <div className="bg-white dark:bg-[#0c0830]/80 border border-slate-200 dark:border-gray-800/60 rounded-xl p-4 flex items-center gap-3 hover:border-purple-500/30 transition-colors shadow-sm dark:shadow-lg">
+          <div className="p-2 bg-purple-500/10 rounded-lg text-purple-600 dark:text-purple-400 border border-purple-500/20">
             <TrendingUp size={20} />
           </div>
           <div>
-            <h4 className="text-[16px] font-bold text-white leading-tight">25K+</h4>
-            <p className="text-[9px] text-gray-400 leading-tight tracking-wide">Happy<br/>Customers</p>
+            <h4 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">3+</h4>
+            <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Happy<br />Customers</p>
           </div>
         </div>
 
-        <div className="bg-[#0c0830]/80 border border-gray-800/60 rounded-xl p-4 flex items-center gap-3 hover:border-pink-500/30 transition-colors shadow-lg">
-          <div className="p-2 bg-pink-500/10 rounded-lg text-pink-400 border border-pink-500/20">
+        <div className="bg-white dark:bg-[#0c0830]/80 border border-slate-200 dark:border-gray-800/60 rounded-xl p-4 flex items-center gap-3 hover:border-pink-500/30 transition-colors shadow-sm dark:shadow-lg">
+          <div className="p-2 bg-pink-500/10 rounded-lg text-pink-600 dark:text-pink-400 border border-pink-500/20">
             <Users size={20} />
           </div>
           <div>
-            <h4 className="text-[16px] font-bold text-white leading-tight">50K+</h4>
-            <p className="text-[9px] text-gray-400 leading-tight tracking-wide">Users<br/>Empowered</p>
+            <h4 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">5+</h4>
+            <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Users<br />Empowered</p>
           </div>
         </div>
 
-        <div className="bg-[#0c0830]/80 border border-gray-800/60 rounded-xl p-4 flex items-center gap-3 hover:border-blue-500/30 transition-colors shadow-lg">
-          <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400 border border-blue-500/20">
+        <div className="bg-white dark:bg-[#0c0830]/80 border border-slate-200 dark:border-gray-800/60 rounded-xl p-4 flex items-center gap-3 hover:border-blue-500/30 transition-colors shadow-sm dark:shadow-lg">
+          <div className="p-2 bg-blue-500/10 rounded-lg text-blue-600 dark:text-blue-400 border border-blue-500/20">
             <ShieldCheck size={20} />
           </div>
           <div>
-            <h4 className="text-[16px] font-bold text-white leading-tight">99.9%</h4>
-            <p className="text-[9px] text-gray-400 leading-tight tracking-wide">System<br/>Uptime</p>
+            <h4 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">97.9%</h4>
+            <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">System<br />Uptime</p>
           </div>
         </div>
 
-        <div className="bg-[#0c0830]/80 border border-gray-800/60 rounded-xl p-4 flex items-center gap-3 hover:border-fuchsia-500/30 transition-colors shadow-lg">
-          <div className="p-2 bg-fuchsia-500/10 rounded-lg text-fuchsia-400 border border-fuchsia-500/20">
+        <div className="bg-white dark:bg-[#0c0830]/80 border border-slate-200 dark:border-gray-800/60 rounded-xl p-4 flex items-center gap-3 hover:border-fuchsia-500/30 transition-colors shadow-sm dark:shadow-lg">
+          <div className="p-2 bg-fuchsia-500/10 rounded-lg text-fuchsia-600 dark:text-fuchsia-400 border border-fuchsia-500/20">
             <Zap size={20} />
           </div>
           <div>
-            <h4 className="text-[16px] font-bold text-white leading-tight">30%+</h4>
-            <p className="text-[9px] text-gray-400 leading-tight tracking-wide">Increase in<br/>Productivity</p>
+            <h4 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">30%+</h4>
+            <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Increase in<br />Productivity</p>
           </div>
         </div>
 
-        <div className="bg-[#0c0830]/80 border border-gray-800/60 rounded-xl p-4 flex items-center gap-3 hover:border-teal-500/30 transition-colors shadow-lg">
-          <div className="p-2 bg-teal-500/10 rounded-lg text-teal-400 border border-teal-500/20">
+        <div className="bg-white dark:bg-[#0c0830]/80 border border-slate-200 dark:border-gray-800/60 rounded-xl p-4 flex items-center gap-3 hover:border-teal-500/30 transition-colors shadow-sm dark:shadow-lg">
+          <div className="p-2 bg-teal-500/10 rounded-lg text-teal-600 dark:text-teal-400 border border-teal-500/20">
             <Smile size={20} />
           </div>
           <div>
-            <h4 className="text-[16px] font-bold text-white leading-tight">40%+</h4>
-            <p className="text-[9px] text-gray-400 leading-tight tracking-wide">Higher Customer<br/>Satisfaction</p>
+            <h4 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">40%+</h4>
+            <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Higher Customer<br />Satisfaction</p>
           </div>
         </div>
       </motion.div>

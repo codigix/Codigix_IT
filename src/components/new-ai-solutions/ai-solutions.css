@@ -6,7 +6,7 @@
 
 @media (min-width: 1024px) {
   .ai-layout-container {
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3.2fr 1fr;
   }
 }
 
@@ -29,49 +29,6 @@
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-}
-
-/* Sidebar Styles */
-.ai-sidebar {
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
-  background-color: #030112;
-}
-
-.ai-sidebar-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-left: 3px solid transparent;
-}
-
-.ai-sidebar-item:hover {
-  background-color: rgba(255, 255, 255, 0.02);
-}
-
-.ai-sidebar-item.active {
-  background-color: rgba(238, 0, 28, 0.05);
-  border-left: 3px solid #EE001C;
-}
-
-.ai-sidebar-icon-wrap {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.ai-sidebar-item.active .ai-sidebar-icon-wrap {
-  background: rgba(238, 0, 28, 0.15);
-  border-color: rgba(238, 0, 28, 0.3);
-  color: #ff858f;
 }
 
 /* Feature Cards */
@@ -129,4 +86,34 @@
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Light Theme Component Tweaks */
+.light .ai-tag {
+  color: #c20015;
+  background: rgba(238, 0, 28, 0.08);
+  border-color: rgba(238, 0, 28, 0.2);
+}
+
+.light .ai-feature-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.light .ai-feature-card:hover {
+  background: #fdfdfd;
+  border-color: rgba(238, 0, 28, 0.25);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.08);
+}
+
+.light .ai-icon-box {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.light .ai-process-icon {
+  background: #ffffff;
+  border-color: rgba(238, 0, 28, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }

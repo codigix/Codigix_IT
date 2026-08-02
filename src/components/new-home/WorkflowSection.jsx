@@ -1,61 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUp } from 'lucide-react';
+import { ArrowRight, ArrowUp, LayoutDashboard, Smartphone, BrainCircuit } from 'lucide-react';
 
 const steps = [
-  { 
-    name: 'Machine', 
-    image: '/assets/images/workflow/wf_machine.png', 
+  {
+    name: 'Machine',
+    imageLight: '/assets/images/workflow/wf_machine.png',
+    imageDark: '/assets/images/workflow/wf_machine.png',
     desc: 'Industrial equipment & assets',
-    log: '[TELEMETRY] Connection established with Machine_ID #402. Ingesting raw sensor values... OK'
+    log: '[TELEMETRY] Connection established with Machine_ID #402. Ingesting raw sensor values... OK',
+    needsInvert: true
   },
-  { 
-    name: 'PLC', 
-    image: '/assets/images/workflow/wf_plc.png', 
+  {
+    name: 'PLC',
+    imageLight: '/assets/images/workflow/wf_plc.png',
+    imageDark: '/assets/images/workflow/wf_plc.png',
     desc: 'Direct machine sensor control',
-    log: '[MODBUS/TCP] Reading 16-bit register inputs. Status: 0x00 (Normal). Telemetry verified.'
+    log: '[MODBUS/TCP] Reading 16-bit register inputs. Status: 0x00 (Normal). Telemetry verified.',
+    needsInvert: true
   },
-  { 
-    name: 'IoT Gateway', 
-    image: '/assets/images/workflow/wf_iot.png', 
+  {
+    name: 'IoT Gateway',
+    imageLight: '/assets/images/workflow/wf_iot.png',
+    imageDark: '/assets/images/workflow/wf_iot.png',
     desc: 'Edge processing & encryption',
-    log: '[EDGE] Packaging JSON payload. Encrypting with TLS 1.3. Streaming to endpoint...'
+    log: '[EDGE] Packaging JSON payload. Encrypting with TLS 1.3. Streaming to endpoint...',
+    needsInvert: true
   },
-  { 
-    name: 'Cloud', 
-    image: '/assets/images/workflow/wf_cloud.png', 
+  {
+    name: 'Cloud',
+    imageLight: '/assets/images/workflow/wf_cloud.png',
+    imageDark: '/assets/images/workflow/wf_cloud.png',
     desc: 'Centralized datalake storage',
-    log: '[DATALAKE] Ingesting stream from gateway. Partitioning raw telemetry. Storing in AWS S3...'
+    log: '[DATALAKE] Ingesting stream from gateway. Partitioning raw telemetry. Storing in AWS S3...',
+    needsInvert: true
   },
-  { 
-    name: 'AI Analytics', 
-    image: '/assets/images/workflow/wf_ai.png', 
+  {
+    name: 'AI Analytics',
+    imageLight: '/assets/images/workflow/wf_ai.png',
+    imageDark: '/assets/images/workflow/wf_ai.png',
     desc: 'Predictive modeling & ML',
-    log: '[ML_MODEL] Running anomaly detection. Probability: 0.0042. Decision: Anomaly flag = FALSE'
+    log: '[ML_MODEL] Running anomaly detection. Probability: 0.0042. Decision: Anomaly flag = FALSE',
+    needsInvert: true
   },
-  { 
-    name: 'ERP System', 
-    image: '/assets/images/workflow/wf_erp.png', 
+  {
+    name: 'ERP System',
+    imageLight: '/assets/images/workflow/wf_erp.png',
+    imageDark: '/assets/images/workflow/wf_erp.png',
     desc: 'Operational resource logs',
-    log: '[LEDGER] Logging operational output to database. ERP sync state: Success.'
+    log: '[LEDGER] Logging operational output to database. ERP sync state: Success.',
+    needsInvert: true
   },
-  { 
-    name: 'Dashboard', 
-    image: '/assets/images/service/crm_dash.png', 
+  {
+    name: 'Dashboard',
+    imageLight: '/assets/images/workflow/wf_dashboard_3d.png',
+    imageDark: '/assets/images/workflow/wf_dashboard_3d.png',
     desc: 'Live monitoring control room',
-    log: '[REALTIME] Pushing live state to WebSockets. UI Refresh: 60fps. Latency: 4.2ms.'
+    log: '[REALTIME] Pushing live state to WebSockets. UI Refresh: 60fps. Latency: 4.2ms.',
+    needsInvert: true
   },
-  { 
-    name: 'Mobile App', 
-    image: '/assets/images/service/mobile_app.png', 
+  {
+    name: 'Mobile App',
+    imageLight: '/assets/images/workflow/wf_mobile_3d.png',
+    imageDark: '/assets/images/workflow/wf_mobile_3d.png',
     desc: 'Field-level instant alerts',
-    log: '[APNS/FCM] Stream health normal. Status OK. Dispatching gateway keep-alive heartbeat.'
+    log: '[APNS/FCM] Stream health normal. Status OK. Dispatching gateway keep-alive heartbeat.',
+    needsInvert: true
   },
-  { 
-    name: 'Management', 
-    image: '/assets/images/about/ai_human_handshake.webp', 
+  {
+    name: 'Management',
+    imageLight: '/assets/images/workflow/wf_management_3d.png',
+    imageDark: '/assets/images/workflow/wf_management_3d.png',
     desc: 'Strategic decision making',
-    log: '[ANALYTICS] Operations dashboard ready. OEE score updated: 94.2%. Logs cached successfully.'
+    log: '[ANALYTICS] Operations dashboard ready. OEE score updated: 94.2%. Logs cached successfully.',
+    needsInvert: true
   },
 ];
 
@@ -72,11 +90,11 @@ const WorkflowSection = () => {
   }, [isPaused]);
 
   return (
-    <section className="py-24 bg-[#050117] border-y border-gray-800/50 overflow-hidden relative">
+    <section className="py-24 bg-gradient-to-b from-purple-50/30 via-slate-50 to-white dark:from-[#0d0b21] dark:via-[#0d0b21] dark:to-[#0d0b21] border-y border-purple-100 dark:border-gray-800/50 overflow-hidden relative transition-colors duration-300">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-        <span className="nh-section-subtitle mb-2 block">HOW WE TRANSFORM BUSINESSES</span>
-        <h2 className="nh-section-title mb-20">Industry 4.0 Workflow</h2>
+        <span className="nh-section-subtitle mb-2 block text-rose-600 dark:text-rose-500 font-bold tracking-wider">HOW WE TRANSFORM BUSINESSES</span>
+        <h2 className="nh-section-title mb-20 text-slate-900 dark:text-white font-extrabold">Industry 4.0 Workflow</h2>
 
         <div className="relative w-full mx-auto pb-10">
 
@@ -90,7 +108,6 @@ const WorkflowSection = () => {
                     onClick={() => {
                       setActiveStep(idx);
                       setIsPaused(true);
-                      // Resume auto rotation after 12 seconds
                       const timer = setTimeout(() => setIsPaused(false), 12000);
                       return () => clearTimeout(timer);
                     }}
@@ -98,24 +115,42 @@ const WorkflowSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className={`flex flex-col items-center group cursor-pointer w-[105px] lg:w-auto relative transition-all duration-300 ${isActive ? 'scale-105' : 'opacity-60 hover:opacity-100'}`}
+                    className={`flex flex-col items-center group cursor-pointer w-[105px] lg:w-auto relative transition-all duration-300 ${isActive ? 'scale-105' : 'opacity-70 hover:opacity-100'}`}
                   >
                     {/* Floating description tooltip */}
-                    <div className="absolute -top-20 left-1/2 -translate-x-1/2 bg-[#0a0620] border border-purple-500/30 text-gray-300 text-[10px] px-3 py-2 rounded-lg shadow-[0_10px_35px_rgba(0,0,0,0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none w-28 text-center z-30 leading-snug">
+                    <div className="absolute -top-20 left-1/2 -translate-x-1/2 bg-slate-900 text-white border border-purple-500/30 text-[10px] px-3 py-2 rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.3)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none w-28 text-center z-30 leading-snug">
                       <div className="font-bold text-white mb-0.5">{step.name}</div>
-                      {step.desc}
-                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#0a0620] border-r border-b border-purple-500/30 rotate-45" />
+                      <span className="text-gray-300">{step.desc}</span>
+                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-slate-900 border-r border-b border-purple-500/30 rotate-45" />
                     </div>
 
-                    <div className={`w-16 h-16 sm:w-20 sm:h-20 mb-3 flex items-center justify-center rounded-2xl relative border transition-all duration-300 ${isActive ? 'border-purple-500/40 bg-purple-500/10 shadow-[0_0_20px_rgba(139,92,246,0.3)]' : 'border-transparent bg-transparent'}`}>
-                      <div className="absolute inset-0 bg-blue-500/5 rounded-full blur-md group-hover:bg-purple-500/10 transition-colors" />
+                    {/* Icon Card Frame - Expanded with soft pastel circular glow backdrops */}
+                    <div className={`w-20 h-20 sm:w-24 sm:h-24 mb-3 flex items-center justify-center rounded-2xl relative border transition-all duration-300 ${isActive
+                      ? 'border-purple-600 dark:border-purple-500 bg-purple-100/90 dark:bg-purple-950/40 shadow-[0_8px_30px_rgba(139,92,246,0.35)] dark:shadow-[0_8px_30px_rgba(139,92,246,0.25)]'
+                      : 'border-slate-200/90 dark:border-gray-800/80 bg-slate-50 dark:bg-[#0c0828]/40 shadow-[0_4px_15px_rgba(0,0,0,0.03)] hover:border-purple-400 dark:hover:border-purple-500/40'
+                      }`}>
+                      {/* Interactive inner colorful glow backdrop */}
+                      <div className={`absolute inset-1.5 rounded-xl transition-all duration-300 ${isActive
+                        ? 'bg-gradient-to-tr from-purple-500/15 to-indigo-500/15'
+                        : 'bg-gradient-to-tr from-slate-100/40 to-slate-200/40 dark:from-purple-950/10 dark:to-indigo-950/10 group-hover:from-purple-500/5 group-hover:to-indigo-500/5'
+                        }`} />
+
+                      {/* Light Theme Bold Icon - Increased to w-14 h-14 */}
                       <img
-                        src={step.image}
-                        alt={step.name}
-                        className="w-full h-full object-contain group-hover:-translate-y-2 transition-all duration-300 drop-shadow-[0_0_12px_rgba(59,130,246,0.2)] group-hover:drop-shadow-[0_0_18px_rgba(139,92,246,0.4)] relative z-10"
+                        src={step.imageLight}
+                        alt={`${step.name} Light`}
+                        className={`block dark:hidden w-20 h-20 object-contain group-hover:-translate-y-1 transition-all duration-300 drop-shadow-[0_4px_8px_rgba(139,92,246,0.25)] relative z-10 ${step.needsInvert ? 'invert contrast-135 brightness-75 saturate-125' : 'contrast-110 saturate-110'
+                          }`}
+                      />
+
+                      {/* Dark Theme Bold Icon - Increased to w-14 h-14 */}
+                      <img
+                        src={step.imageDark}
+                        alt={`${step.name} Dark`}
+                        className="hidden dark:block w-14 h-14 object-contain group-hover:-translate-y-1 transition-all duration-300 drop-shadow-[0_0_15px_rgba(139,92,246,0.4)] group-hover:drop-shadow-[0_8px_20px_rgba(139,92,246,0.5)] relative z-10 contrast-110 brightness-110 saturate-110"
                       />
                     </div>
-                    <span className={`text-[11px] font-semibold uppercase tracking-wider transition-colors duration-300 ${isActive ? 'text-purple-400' : 'text-gray-400 group-hover:text-white'}`}>{step.name}</span>
+                    <span className={`text-[11px] font-extrabold uppercase tracking-wider transition-colors duration-300 ${isActive ? 'text-purple-700 dark:text-purple-400' : 'text-slate-700 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white'}`}>{step.name}</span>
                   </motion.div>
 
                   {/* Arrow */}
@@ -124,9 +159,9 @@ const WorkflowSection = () => {
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       transition={{ delay: idx * 0.1 + 0.2 }}
-                      className="hidden lg:block text-gray-700 px-1"
+                      className="hidden lg:block text-slate-400 dark:text-gray-700 px-1"
                     >
-                      <ArrowRight size={18} strokeWidth={1.5} />
+                      <ArrowRight size={18} strokeWidth={2} />
                     </motion.div>
                   )}
                 </React.Fragment>
@@ -156,30 +191,29 @@ const WorkflowSection = () => {
                 id="workflow-track"
                 d="M 50,0 L 50,30 Q 50,50 70,50 L 930,50 Q 950,50 950,30 L 950,0"
                 stroke="url(#wf-gradient)"
-                strokeWidth="2"
+                strokeWidth="2.5"
                 strokeDasharray="8 8"
                 vectorEffect="non-scaling-stroke"
                 className="animate-data-flow"
               />
               <defs>
                 <linearGradient id="wf-gradient" x1="0" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#f43f5e" /> {/* Rose */}
-                  <stop offset="0.5" stopColor="#3b82f6" /> {/* Blue */}
-                  <stop offset="1" stopColor="#06b6d4" /> {/* Cyan */}
+                  <stop stopColor="#f43f5e" />
+                  <stop offset="0.5" stopColor="#3b82f6" />
+                  <stop offset="1" stopColor="#06b6d4" />
                 </linearGradient>
               </defs>
 
-              {/* Native Staggered Animated Data Packets along the Path */}
-              <circle r="4" fill="#f43f5e" filter="drop-shadow(0 0 3px #f43f5e)">
+              <circle r="4.5" fill="#f43f5e" filter="drop-shadow(0 0 3px #f43f5e)">
                 <animateMotion dur="6s" repeatCount="indefinite" path="M 50,0 L 50,30 Q 50,50 70,50 L 930,50 Q 950,50 950,30 L 950,0" />
               </circle>
-              <circle r="4" fill="#3b82f6" filter="drop-shadow(0 0 3px #3b82f6)">
+              <circle r="4.5" fill="#3b82f6" filter="drop-shadow(0 0 3px #3b82f6)">
                 <animateMotion dur="6s" begin="1.5s" repeatCount="indefinite" path="M 50,0 L 50,30 Q 50,50 70,50 L 930,50 Q 950,50 950,30 L 950,0" />
               </circle>
-              <circle r="4" fill="#06b6d4" filter="drop-shadow(0 0 3px #06b6d4)">
+              <circle r="4.5" fill="#06b6d4" filter="drop-shadow(0 0 3px #06b6d4)">
                 <animateMotion dur="6s" begin="3s" repeatCount="indefinite" path="M 50,0 L 50,30 Q 50,50 70,50 L 930,50 Q 950,50 950,30 L 950,0" />
               </circle>
-              <circle r="4" fill="#8b5cf6" filter="drop-shadow(0 0 3px #8b5cf6)">
+              <circle r="4.5" fill="#8b5cf6" filter="drop-shadow(0 0 3px #8b5cf6)">
                 <animateMotion dur="6s" begin="4.5s" repeatCount="indefinite" path="M 50,0 L 50,30 Q 50,50 70,50 L 930,50 Q 950,50 950,30 L 950,0" />
               </circle>
             </svg>
@@ -191,8 +225,8 @@ const WorkflowSection = () => {
             <div className="absolute bottom-[0px] right-[20%] w-[11px] h-[11px] rounded-full bg-cyan-300 shadow-[0_0_10px_#06b6d4] animate-pulse" style={{ animationDelay: '600ms' }}></div>
 
             {/* Pill in the middle */}
-            <div className="absolute bottom-[-8px] left-1/2 transform -translate-x-1/2 bg-[#050117] px-6 py-1 border border-blue-500/40 rounded-full flex items-center justify-center pointer-events-auto shadow-[0_0_15px_rgba(59,130,246,0.1)]">
-              <span className="text-[11px] text-gray-300 font-semibold tracking-wider uppercase">Real-time Data Flow</span>
+            <div className="absolute bottom-[-8px] left-1/2 transform -translate-x-1/2 bg-white dark:bg-[#050117] px-6 py-1 border border-blue-400 dark:border-blue-500/40 rounded-full flex items-center justify-center pointer-events-auto shadow-[0_4px_15px_rgba(59,130,246,0.15)]">
+              <span className="text-[11px] text-slate-800 dark:text-gray-300 font-extrabold tracking-wider uppercase">Real-time Data Flow</span>
             </div>
 
             {/* End Arrows */}
@@ -202,31 +236,29 @@ const WorkflowSection = () => {
         </div>
 
         {/* Live Pipeline Terminal Console */}
-        <div className="mt-14 max-w-3xl mx-auto border border-gray-800/80 rounded-xl overflow-hidden bg-[#07041a] text-left shadow-[0_15px_45px_rgba(0,0,0,0.5)]">
-          {/* Terminal Header */}
-          <div className="bg-[#0b0724] px-4 py-2.5 border-b border-gray-800 flex items-center justify-between">
+        <div className="mt-14 max-w-3xl mx-auto border border-purple-900/40 dark:border-gray-800/80 rounded-xl overflow-hidden bg-[#0c0828] dark:bg-[#07041a] text-left shadow-[0_15px_40px_rgba(139,92,246,0.15)] dark:shadow-[0_15px_45px_rgba(0,0,0,0.5)] keep-dark">
+          <div className="bg-[#130d3a] dark:bg-[#0b0724] px-4 py-2.5 border-b border-purple-900/40 flex items-center justify-between">
             <div className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
               <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
               <span className="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
-              <span className="text-[10px] font-mono text-gray-500 ml-2">pipeline_monitor.sh</span>
+              <span className="text-[10px] font-mono text-gray-400 ml-2">pipeline_monitor.sh</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="nh-led-active"></span>
               <span className="text-[8px] font-mono text-green-400 font-bold uppercase tracking-wider">LIVE TELEMETRY STREAM</span>
             </div>
           </div>
-          
-          {/* Terminal Body */}
-          <div className="p-4 font-mono text-xs text-gray-400 min-h-[110px] flex flex-col justify-center space-y-1">
-            <div className="text-[9px] text-gray-600">-- SESSION STARTED: {new Date().toLocaleDateString()} --</div>
+
+          <div className="p-4 font-mono text-xs text-gray-300 min-h-[110px] flex flex-col justify-center space-y-1">
+            <div className="text-[9px] text-gray-500">-- SESSION STARTED: {new Date().toLocaleDateString()} --</div>
             <div className="flex items-start gap-2">
               <span className="text-rose-500 select-none">&rarr;</span>
               <span className="text-gray-200">Executing: <span className="text-purple-400">./stream_pipeline_verify --active-node="{steps[activeStep].name.toLowerCase()}"</span></span>
             </div>
             <div className="flex items-start gap-2 pt-1">
               <span className="text-green-500 select-none">$</span>
-              <span className="text-green-400/90 font-semibold">{steps[activeStep].log}</span>
+              <span className="text-green-400 font-semibold">{steps[activeStep].log}</span>
             </div>
           </div>
         </div>

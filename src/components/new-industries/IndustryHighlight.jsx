@@ -72,7 +72,7 @@ const IndustryHighlight = ({ activeIndustry }) => {
 
   return (
     <div id="industry-highlight" className="py-12 scroll-mt-24">
-      <div className="bg-[#050112] border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl flex flex-col lg:flex-row relative">
+      <div className="bg-slate-50 dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl overflow-hidden shadow-sm dark:shadow-2xl flex flex-col lg:flex-row relative">
         
         {/* Glow Effects */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-purple-600/10 blur-3xl rounded-full pointer-events-none"></div>
@@ -89,24 +89,24 @@ const IndustryHighlight = ({ activeIndustry }) => {
             {/* Image Side */}
             <div className="lg:w-2/5 relative p-4">
                <div className="w-full h-full rounded-xl overflow-hidden relative min-h-[300px]">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#050112] z-10 lg:block hidden"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-slate-50 dark:to-[#050112] z-10 lg:block hidden"></div>
                   <img 
                     src={data.image} 
                     alt={data.title} 
-                    className="w-full h-full object-cover filter contrast-110 brightness-90 mix-blend-screen"
+                    className="w-full h-full object-cover filter contrast-110 brightness-90 dark:mix-blend-screen"
                   />
                </div>
             </div>
 
             {/* Content Side */}
             <div className="lg:w-3/5 p-8 lg:p-12 z-20 flex flex-col justify-center">
-              <h4 className="text-[11px] font-bold text-purple-400 uppercase tracking-widest mb-3">
+              <h4 className="text-[11px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-widest mb-3">
                 {activeIndustry}
               </h4>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-snug">
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4 leading-snug">
                 {data.title}
               </h2>
-              <p className="text-[13px] text-gray-400 leading-relaxed mb-8 max-w-2xl">
+              <p className="text-[13px] text-slate-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl">
                 {data.desc}
               </p>
 
@@ -114,13 +114,13 @@ const IndustryHighlight = ({ activeIndustry }) => {
                 {data.features.map((feature, idx) => (
                   <div key={idx} className="flex items-start gap-2">
                     <CheckCircle2 size={16} className="text-purple-500 shrink-0 mt-0.5" />
-                    <span className="text-[12px] text-gray-300 leading-tight">{feature}</span>
+                    <span className="text-[12px] text-slate-700 dark:text-gray-300 leading-tight">{feature}</span>
                   </div>
                 ))}
               </div>
 
               <button 
-                onClick={() => navigate('/new-contact')}
+                onClick={() => navigate('/contact')}
                 className="self-start px-6 py-3 bg-[#9333ea] hover:bg-[#a855f7] text-white text-[12px] font-medium rounded-md shadow-lg shadow-purple-500/20 transition-all flex items-center gap-2"
               >
                 {data.btnText} <ArrowRight size={14} />

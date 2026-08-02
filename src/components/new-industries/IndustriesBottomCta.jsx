@@ -12,40 +12,40 @@ const IndustriesBottomCta = () => {
         <div className="flex items-center gap-4">
           <Rocket size={24} className="text-purple-500 opacity-80" />
           <div>
-            <h4 className="text-sm font-bold text-white">150+</h4>
-            <p className="text-[10px] text-gray-500 uppercase tracking-widest">Projects Delivered</p>
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white">150+</h4>
+            <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest">Projects Delivered</p>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
           <Building2 size={24} className="text-purple-500 opacity-80" />
           <div>
-            <h4 className="text-sm font-bold text-white">50+</h4>
-            <p className="text-[10px] text-gray-500 uppercase tracking-widest">Industries Served</p>
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white">50+</h4>
+            <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest">Industries Served</p>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
           <Clock size={24} className="text-purple-500 opacity-80" />
           <div>
-            <h4 className="text-sm font-bold text-white">July 2023</h4>
-            <p className="text-[10px] text-gray-500 uppercase tracking-widest">Company Founded</p>
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white">July 2023</h4>
+            <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest">Company Founded</p>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
           <Users size={24} className="text-purple-500 opacity-80" />
           <div>
-            <h4 className="text-sm font-bold text-white">250+</h4>
-            <p className="text-[10px] text-gray-500 uppercase tracking-widest">Expert Professionals</p>
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white">250+</h4>
+            <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest">Expert Professionals</p>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
           <CheckCircle2 size={24} className="text-purple-500 opacity-80" />
           <div>
-            <h4 className="text-sm font-bold text-white">98.5%</h4>
-            <p className="text-[10px] text-gray-500 uppercase tracking-widest">Client Satisfaction</p>
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white">98.5%</h4>
+            <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest">Client Satisfaction</p>
           </div>
         </div>
       </div>

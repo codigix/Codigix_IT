@@ -10,13 +10,11 @@ import {
   AlertCircle,
   X,
   Image as ImageIcon,
-  MoreHorizontal,
   FileText,
   Filter,
   Download,
   Database,
   RefreshCw,
-  ExternalLink,
   LayoutGrid,
   List
 } from 'lucide-react';
@@ -84,7 +82,6 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
     const items = (e.clipboardData || e.originalEvent.clipboardData).items;
     let imagesAdded = 0;
 
-    // Get existing images
     let existingImages = [];
     try {
       const currentVal = formData[fieldName];
@@ -100,7 +97,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
         }
       }
     } catch (err) {
-      console.error("Error parsing existing images:", err);
+      existingImages = [];
     }
 
     const newImages = [...existingImages];
@@ -111,31 +108,12 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
         const reader = new FileReader();
         reader.onload = (event) => {
           newImages.push(event.target.result);
-          setFormData(prev => ({ ...prev, [fieldName]: JSON.stringify(newImages) }));
           imagesAdded++;
-          if (imagesAdded === 1) {
-            setNotification({ type: 'success', message: 'Image(s) added to gallery!' });
-          }
+          setFormData(prev => ({ ...prev, [fieldName]: JSON.stringify(newImages) }));
+          setNotification({ type: 'success', message: `Gallery image added!` });
         };
         reader.readAsDataURL(file);
       }
-    }
-  };
-
-  const handleRemoveMultiImage = (fieldName, index) => {
-    try {
-      let images = [];
-      const currentVal = formData[fieldName];
-      if (typeof currentVal === 'string' && currentVal.startsWith('[')) {
-        images = JSON.parse(currentVal);
-      } else if (Array.isArray(currentVal)) {
-        images = currentVal;
-      }
-
-      const newImages = images.filter((_, i) => i !== index);
-      setFormData(prev => ({ ...prev, [fieldName]: JSON.stringify(newImages) }));
-    } catch (err) {
-      console.error("Error removing image:", err);
     }
   };
 
@@ -145,6 +123,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
       const reader = new FileReader();
       reader.onload = (event) => {
         setFormData(prev => ({ ...prev, [fieldName]: event.target.result }));
+        setNotification({ type: 'success', message: 'Image selected successfully!' });
       };
       reader.readAsDataURL(file);
     }
@@ -152,9 +131,8 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
 
   const handleMultiFileChange = (e, fieldName) => {
     const files = Array.from(e.target.files);
-    if (files.length === 0) return;
-
-    // Get existing images
+    let loadedCount = 0;
+    
     let existingImages = [];
     try {
       const currentVal = formData[fieldName];
@@ -170,11 +148,10 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
         }
       }
     } catch (err) {
-      console.error("Error parsing existing images:", err);
+      existingImages = [];
     }
 
     const newImages = [...existingImages];
-    let loadedCount = 0;
 
     files.forEach(file => {
       const reader = new FileReader();
@@ -200,8 +177,6 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
       console.error("Failed to parse tech list:", e);
     }
 
-    // Fallback: If it's not JSON, it might be the old line-based format
-    // Let's try to convert it to the new format for the UI
     if (typeof value === 'string') {
       const lines = value.split('\n').filter(l => l.trim());
       const categories = [];
@@ -267,63 +242,28 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
     handleTechListChange(fieldName, currentVal);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSaving(true);
-    const method = editingItem ? 'PUT' : 'POST';
-    const url = editingItem
-      ? `${API_BASE_URL}/${entity}/${editingItem.id}`
-      : `${API_BASE_URL}/${entity}`;
-
-    const token = localStorage.getItem('adminToken');
-
+  const handleRemoveMultiImage = (fieldName, index) => {
+    let images = [];
     try {
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        fetchData();
-        setEditingItem(null);
-        setFormData({});
-        setShowForm(false);
-        setNotification({ type: 'success', message: `${title.slice(0, -1)} ${editingItem ? 'updated' : 'created'} successfully!` });
-      } else if (response.status === 401 || response.status === 403) {
-        navigate('/admin/login');
-      } else {
-        setNotification({ type: 'error', message: `Failed to save ${title.toLowerCase()}.` });
+      const currentVal = formData[fieldName];
+      if (typeof currentVal === 'string' && currentVal.startsWith('[')) {
+        images = JSON.parse(currentVal);
+      } else if (Array.isArray(currentVal)) {
+        images = currentVal;
       }
-    } catch (error) {
-      console.error('Error saving data:', error);
-      setNotification({ type: 'error', message: 'An unexpected error occurred.' });
-    } finally {
-      setIsSaving(false);
+    } catch (e) {
+      images = [];
     }
+
+    const newImages = images.filter((_, i) => i !== index);
+    setFormData(prev => ({ ...prev, [fieldName]: JSON.stringify(newImages) }));
   };
 
-  const handleEdit = async (item) => {
-    setLoading(true);
-    try {
-      const response = await fetch(`${API_BASE_URL}/${entity}/${item.id}`);
-      if (response.ok) {
-        const fullItem = await response.json();
-        setEditingItem(fullItem);
-        setFormData(fullItem);
-        setShowForm(true);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        setNotification({ type: 'error', message: 'Failed to fetch full record details.' });
-      }
-    } catch (error) {
-      console.error('Error fetching full item:', error);
-      setNotification({ type: 'error', message: 'An error occurred while fetching details.' });
-    } finally {
-      setLoading(false);
-    }
+  const handleEdit = (item) => {
+    setEditingItem(item);
+    setFormData({ ...item });
+    setShowForm(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleDelete = async (id) => {
@@ -335,18 +275,57 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
           'Authorization': `Bearer ${token}`
         }
       });
+
       if (response.ok) {
-        fetchData();
-        setNotification({ type: 'success', message: `${title.slice(0, -1)} deleted successfully!` });
+        setNotification({ type: 'success', message: 'Record deleted successfully!' });
+        setData(data.filter(item => item.id !== id));
       } else {
-        setNotification({ type: 'error', message: 'Failed to delete record.' });
+        const errData = await response.json();
+        setNotification({ type: 'error', message: errData.error || 'Failed to delete record.' });
       }
     } catch (error) {
-      console.error('Error deleting data:', error);
-      setNotification({ type: 'error', message: 'An error occurred while deleting.' });
-    } finally {
-      setDeleteConfirmId(null);
+      setNotification({ type: 'error', message: 'Network error deleting record.' });
     }
+    setDeleteConfirmId(null);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSaving(true);
+    const token = localStorage.getItem('adminToken');
+
+    const method = editingItem ? 'PUT' : 'POST';
+    const url = editingItem 
+      ? `${API_BASE_URL}/${entity}/${editingItem.id}` 
+      : `${API_BASE_URL}/${entity}`;
+
+    try {
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setNotification({ 
+          type: 'success', 
+          message: editingItem ? 'Record updated successfully!' : 'Record created successfully!' 
+        });
+        setShowForm(false);
+        setFormData({});
+        setEditingItem(null);
+        fetchData();
+      } else {
+        const errData = await response.json();
+        setNotification({ type: 'error', message: errData.error || 'Failed to save record.' });
+      }
+    } catch (error) {
+      setNotification({ type: 'error', message: 'Network error saving record.' });
+    }
+    setIsSaving(false);
   };
 
   const handleExport = () => {
@@ -387,6 +366,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
 
   return (
     <div className="flex flex-col gap-8 relative animate-in fade-in slide-in-from-bottom-4 duration-500">
+      
       {/* Notifications */}
       <AnimatePresence>
         {notification && (
@@ -394,16 +374,17 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
             initial={{ opacity: 0, y: -20, x: '-50%' }}
             animate={{ opacity: 1, y: 0, x: '-50%' }}
             exit={{ opacity: 0, y: -20, x: '-50%' }}
-            className={`fixed top-8 left-1/2 z-[100] px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border backdrop-blur-xl min-w-[320px] ${notification.type === 'success'
-                ? 'bg-[#00D1FF]/90 border-[#00D1FF]/50 text-white shadow-[#00D1FF]/20'
-                : 'bg-[#FF1F8B]/90 border-[#FF1F8B]/50 text-white shadow-[#FF1F8B]/20'
-              }`}
+            className={`fixed top-8 left-1/2 z-[100] px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border backdrop-blur-xl min-w-[320px] ${
+              notification.type === 'success'
+                ? 'bg-purple-600 border-purple-500/35 text-white shadow-purple-500/25'
+                : 'bg-rose-600 border-rose-500/35 text-white shadow-rose-500/25'
+            }`}
           >
-            <div className="w-15 h-15 rounded-xl bg-white/20 flex items-center justify-center shrink-0 border border-white/20">
+            <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
               {notification.type === 'success' ? <CheckCircle className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
             </div>
             <div className="flex-1">
-              <p className="text-[10px] uppercase tracking-[0.1em]">{notification.message}</p>
+              <p className="text-xs uppercase font-extrabold tracking-wider">{notification.message}</p>
             </div>
             <button onClick={() => setNotification(null)} className="p-2 hover:bg-white/10 rounded-xl transition-colors">
               <X className="w-4 h-4" />
@@ -412,39 +393,41 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
         )}
       </AnimatePresence>
 
-      {/* Header Actions */}
-      <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center bg-[#252841]/60 backdrop-blur-md p-12 rounded-2xl border border-slate-800/30 gap-6">
+      {/* Header Actions Container */}
+      <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center bg-white dark:bg-[#0c0828]/60 backdrop-blur-md p-6 rounded-2xl border border-slate-200 dark:border-purple-900/30 gap-6 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-15 h-15 rounded-xl bg-[#FF1F8B]/10 flex items-center justify-center text-[#FF1F8B] border border-[#FF1F8B]/20">
+          <div className="w-12 h-12 rounded-xl bg-purple-550/10 flex items-center justify-center text-purple-600 dark:text-purple-400 border border-purple-500/20">
             <Database className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl text-white tracking-tight uppercase">{title}</h2>
-            <p className="text-slate-500 text-[9px] uppercase tracking-[0.2em] mt-1">{data.length} Total Records</p>
+            <h2 className="text-xl text-slate-900 dark:text-white font-extrabold tracking-tight uppercase">{title}</h2>
+            <p className="text-slate-500 dark:text-gray-400 text-[10px] uppercase font-bold tracking-widest mt-1">{data.length} Total Records</p>
           </div>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative group">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-[#FF1F8B] transition-colors" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-purple-500 transition-colors" />
             <input
               type="text"
               placeholder="SEARCH RECORDS..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full sm:w-60 bg-[#1A1C2E] border border-slate-800/30 rounded-xl pl-10 pr-4 py-2 text-[10px] font-bold text-white uppercase tracking-widest focus:outline-none focus:border-[#FF1F8B]/40 transition-all"
+              className="w-full sm:w-60 bg-slate-50 dark:bg-[#1A1C2E] border border-slate-200 dark:border-purple-900/30 rounded-xl pl-10 pr-4 py-2.5 text-xs font-bold text-slate-900 dark:text-white uppercase tracking-widest focus:outline-none focus:border-purple-650 transition-all placeholder:text-slate-400"
             />
           </div>
+          
           <button
             onClick={() => {
               setEditingItem(null);
               setFormData({});
               setShowForm(!showForm);
             }}
-            className={`px-6 py-2 rounded-xl  text-[10px] uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95 ${showForm
-                ? 'bg-[#1A1C2E] text-slate-300'
-                : 'bg-[#FF1F8B] text-white hover:bg-[#FF1F8B]/90 shadow-[#FF1F8B]/20'
-              }`}
+            className={`px-6 py-2.5 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95 ${
+              showForm
+                ? 'bg-slate-100 dark:bg-[#1A1C2E] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-purple-900/30'
+                : 'bg-purple-600 dark:bg-purple-800 text-white hover:bg-purple-750 dark:hover:bg-purple-900 shadow-md shadow-purple-600/20'
+            }`}
           >
             {showForm ? <X className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
             {showForm ? 'Close Editor' : `Add New`}
@@ -452,20 +435,20 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
         </div>
       </div>
 
-      {/* Form Section */}
+      {/* Editor Form Section */}
       <AnimatePresence>
         {showForm && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="bg-[#252841]/60 backdrop-blur-md border border-slate-800/30 rounded-2xl p-12 lg:p-8"
+            className="bg-white dark:bg-[#0c0828]/60 backdrop-blur-md border border-slate-200 dark:border-purple-900/30 rounded-2xl p-6 shadow-sm"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {fields.map((field) => (
                   <div key={field.name} className={`space-y-2 ${field.type === 'textarea' ? 'md:col-span-2' : ''}`}>
-                    <label className="block text-[9px] text-slate-500 uppercase tracking-[0.2em] px-1">
+                    <label className="block text-xs font-bold text-slate-700 dark:text-gray-300 uppercase tracking-wider px-1">
                       {field.label || field.name}
                     </label>
                     {field.type === 'textarea' ? (
@@ -474,20 +457,20 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                         value={formData[field.name] || ''}
                         onChange={handleInputChange}
                         placeholder={`ENTER ${field.label || field.name.toUpperCase()}...`}
-                        className="w-full bg-[#1A1C2E] border border-slate-800/30 rounded-xl px-4 py-4 text-[11px] font-bold text-white focus:border-[#FF1F8B]/40 focus:outline-none transition-all min-h-[120px] resize-none uppercase tracking-wide"
+                        className="w-full bg-slate-50 dark:bg-[#1A1C2E] border border-slate-200 dark:border-purple-900/30 rounded-xl px-4 py-3 text-xs font-bold text-slate-900 dark:text-white focus:border-purple-650 focus:outline-none transition-all min-h-[120px] resize-none placeholder:text-slate-400"
                         required={field.required !== false}
                       />
                     ) : field.type === 'tech-list' ? (
                       <div className="space-y-4">
                         {parseTechList(formData[field.name]).map((group, groupIndex) => (
-                          <div key={groupIndex} className="bg-[#1A1C2E] border border-slate-800/30 rounded-xl p-8 space-y-4">
+                          <div key={groupIndex} className="bg-slate-50 dark:bg-[#1A1C2E] border border-slate-200 dark:border-purple-900/30 rounded-xl p-6 space-y-4">
                             <div className="flex items-center gap-4">
                               <input
                                 type="text"
                                 value={group.name}
                                 onChange={(e) => handleUpdateTechGroupName(field.name, groupIndex, e.target.value)}
                                 placeholder="CATEGORY NAME (E.G. FRONTEND)"
-                                className="flex-1 bg-[#252841] border border-slate-800/30 rounded-lg px-4 py-2 text-[10px] font-bold text-white uppercase tracking-wider focus:border-[#FF1F8B]/40 outline-none"
+                                className="flex-1 bg-white dark:bg-[#252841] border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-xs font-bold text-slate-950 dark:text-white focus:border-purple-650 outline-none"
                               />
                               <button
                                 type="button"
@@ -505,12 +488,12 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                                     value={item}
                                     onChange={(e) => handleUpdateTechItem(field.name, groupIndex, itemIndex, e.target.value)}
                                     placeholder="ITEM NAME"
-                                    className="w-full bg-[#252841] border border-slate-800/30 rounded-lg pl-4 pr-10 py-2 text-[10px] font-bold text-white uppercase tracking-wider focus:border-[#FF1F8B]/40 outline-none"
+                                    className="w-full bg-white dark:bg-[#252841] border border-slate-200 dark:border-slate-800 rounded-lg pl-4 pr-10 py-2 text-xs font-bold text-slate-950 dark:text-white focus:border-purple-650 outline-none"
                                   />
                                   <button
                                     type="button"
                                     onClick={() => handleRemoveTechItem(field.name, groupIndex, itemIndex)}
-                                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-slate-600 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all"
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-slate-655 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all"
                                   >
                                     <X size={14} />
                                   </button>
@@ -519,9 +502,9 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                               <button
                                 type="button"
                                 onClick={() => handleAddTechItem(field.name, groupIndex)}
-                                className="border border-dashed border-slate-800/30 rounded-lg py-2 text-[9px] uppercase tracking-widest text-slate-500 hover:text-white hover:border-[#FF1F8B]/40 transition-all flex items-center justify-center gap-2"
+                                className="col-span-2 py-2 border border-dashed border-slate-300 dark:border-slate-700 hover:border-purple-500 rounded-lg text-slate-500 text-xs font-bold transition-all"
                               >
-                                <Plus size={12} /> Add Item
+                                + Add Item
                               </button>
                             </div>
                           </div>
@@ -529,78 +512,70 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                         <button
                           type="button"
                           onClick={() => handleAddTechGroup(field.name)}
-                          className="w-full bg-[#FF1F8B]/10 border border-dashed border-[#FF1F8B]/30 rounded-xl py-3 text-[10px] uppercase tracking-[0.2em] text-[#FF1F8B] hover:bg-[#FF1F8B]/20 transition-all flex items-center justify-center gap-2"
+                          className="w-full py-3 border border-dashed border-slate-300 dark:border-slate-750 hover:border-purple-500 rounded-xl text-slate-600 dark:text-slate-400 text-xs font-bold transition-all"
                         >
-                          <Plus size={14} /> Add Technology Category
+                          + Add Category Group
                         </button>
                       </div>
                     ) : field.type === 'image' ? (
                       <div className="space-y-4">
-                        <div className="relative group">
+                        <div className="flex items-center gap-4">
                           <input
                             type="text"
                             name={field.name}
                             value={formData[field.name] || ''}
                             onChange={handleInputChange}
                             onPaste={(e) => handlePaste(e, field.name)}
-                            placeholder="PASTE IMAGE OR TYPE URL/NAME..."
-                            className="w-full bg-[#1A1C2E] border border-slate-800/30 rounded-xl px-4 py-4 text-[11px] font-bold text-white focus:border-[#FF1F8B]/40 focus:outline-none transition-all tracking-wide pr-12"
+                            placeholder="PASTE IMAGE DATA OR TYPE PATH..."
+                            className="flex-1 bg-slate-50 dark:bg-[#1A1C2E] border border-slate-200 dark:border-purple-900/30 rounded-xl px-4 py-3 text-xs font-bold text-slate-900 dark:text-white focus:border-purple-650 focus:outline-none transition-all placeholder:text-slate-400"
                           />
-                          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                            <label className="cursor-pointer p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-[#FF1F8B] transition-all">
-                              <ImageIcon className="w-4 h-4" />
-                              <input
-                                type="file"
-                                accept="image/*"
-                                className="hidden"
-                                onChange={(e) => handleFileChange(e, field.name)}
-                              />
-                            </label>
-                          </div>
+                          <label className="px-4 py-3 bg-purple-50 dark:bg-purple-950/20 border border-purple-500/15 text-purple-600 dark:text-purple-400 rounded-xl text-xs font-bold cursor-pointer hover:bg-purple-100/50 transition-all flex items-center gap-2">
+                            <ImageIcon className="w-4 h-4" />
+                            Browse
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => handleFileChange(e, field.name)}
+                              className="hidden"
+                            />
+                          </label>
                         </div>
+                        <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider px-1">Tip: Click browse or paste image data directly inside the textbox</p>
                         {formData[field.name] && (
-                          <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800/30 bg-[#1A1C2E]">
+                          <div className="relative w-32 aspect-square rounded-xl overflow-hidden border border-slate-200 dark:border-purple-900/20 bg-slate-100">
                             <img
-                              src={formData[field.name].startsWith('data:') || formData[field.name].startsWith('http')
-                                ? formData[field.name]
+                              src={formData[field.name].startsWith('data:') || formData[field.name].startsWith('http') 
+                                ? formData[field.name] 
                                 : `/assets/images/${field.folder || (entity === 'services' ? 'service' : entity)}/${formData[field.name]}${formData[field.name].includes('.') ? '' : '.jpg'}`}
                               alt="Preview"
-                              className="w-full h-full object-contain"
+                              className="w-full h-full object-cover"
                             />
-                            <button
-                              type="button"
-                              onClick={() => setFormData(prev => ({ ...prev, [field.name]: '' }))}
-                              className="absolute top-2 right-2 p-2 bg-black/60 hover:bg-black/80 text-white rounded-lg backdrop-blur-md transition-all"
-                            >
-                              <X className="w-4 h-4" />
-                            </button>
                           </div>
                         )}
                       </div>
                     ) : field.type === 'multi-image' ? (
                       <div className="space-y-4">
-                        <div className="relative group">
+                        <div className="flex items-center gap-4">
                           <input
                             type="text"
-                            placeholder="PASTE IMAGES OR USE UPLOAD BUTTON..."
+                            placeholder="PASTE IMAGES OR CHOOSE FILES..."
                             onPaste={(e) => handleMultiImagePaste(e, field.name)}
-                            className="w-full bg-[#1A1C2E] border border-slate-800/30 rounded-xl px-4 py-4 text-[11px] font-bold text-white focus:border-[#FF1F8B]/40 focus:outline-none transition-all tracking-wide pr-12"
+                            className="flex-1 bg-slate-50 dark:bg-[#1A1C2E] border border-slate-200 dark:border-purple-900/30 rounded-xl px-4 py-3 text-xs font-bold text-slate-900 dark:text-white focus:border-purple-650 focus:outline-none transition-all placeholder:text-slate-400"
                           />
-                          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                            <label className="cursor-pointer p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-[#FF1F8B] transition-all">
-                              <ImageIcon className="w-4 h-4" />
-                              <input
-                                type="file"
-                                accept="image/*"
-                                multiple
-                                className="hidden"
-                                onChange={(e) => handleMultiFileChange(e, field.name)}
-                              />
-                            </label>
-                          </div>
-                          <p className="text-[8px] text-slate-500 mt-2 uppercase tracking-widest px-1">Tip: Paste images or use the icon to upload individually</p>
+                          <label className="px-4 py-3 bg-purple-50 dark:bg-purple-950/20 border border-purple-500/15 text-purple-600 dark:text-purple-400 rounded-xl text-xs font-bold cursor-pointer hover:bg-purple-100/50 transition-all flex items-center gap-2">
+                            <ImageIcon className="w-4 h-4" />
+                            Upload Gallery
+                            <input
+                              type="file"
+                              multiple
+                              accept="image/*"
+                              onChange={(e) => handleMultiFileChange(e, field.name)}
+                              className="hidden"
+                            />
+                          </label>
                         </div>
-
+                        <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider px-1">Tip: Paste images or use the icon to upload individually</p>
+                        
                         {formData[field.name] && (
                           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                             {(() => {
@@ -616,7 +591,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                                 }
 
                                 return images.map((img, idx) => (
-                                  <div key={idx} className="relative aspect-square rounded-xl overflow-hidden border border-slate-800/30 bg-[#1A1C2E] group/img">
+                                  <div key={idx} className="relative aspect-square rounded-xl overflow-hidden border border-slate-200 dark:border-purple-900/30 bg-slate-100 group/img">
                                     <img
                                       src={img.startsWith('data:') || img.startsWith('http')
                                         ? img
@@ -647,25 +622,26 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                         value={formData[field.name] || ''}
                         onChange={handleInputChange}
                         placeholder={`ENTER ${field.label || field.name.toUpperCase()}...`}
-                        className="w-full bg-[#1A1C2E] border border-slate-800/30 rounded-xl px-4 py-4 text-[11px] font-bold text-white focus:border-[#FF1F8B]/40 focus:outline-none transition-all tracking-wide"
+                        className="w-full bg-slate-50 dark:bg-[#1A1C2E] border border-slate-200 dark:border-purple-900/30 rounded-xl px-4 py-3 text-xs font-bold text-slate-900 dark:text-white focus:border-purple-650 focus:outline-none transition-all placeholder:text-slate-400"
                         required={field.required !== false}
                       />
                     )}
                   </div>
                 ))}
               </div>
-              <div className="flex justify-end gap-3 pt-6 border-t border-slate-800/20">
+              
+              <div className="flex justify-end gap-3 pt-6 border-t border-slate-200 dark:border-purple-900/20">
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}
-                  className="px-5 py-2 rounded-xl text-[10px] uppercase tracking-[0.2em] text-slate-500 hover:text-white transition-all"
+                  className="px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-550 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all"
                 >
                   Discard
                 </button>
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="bg-[#FF1F8B] text-white px-8 py-3 rounded-xl text-[10px] uppercase tracking-[0.2em] hover:bg-[#FF1F8B]/90 shadow-lg shadow-[#FF1F8B]/20 transition-all disabled:opacity-50 flex items-center gap-2"
+                  className="bg-purple-600 dark:bg-purple-800 text-white px-8 py-3 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-purple-750 dark:hover:bg-purple-900 shadow-md shadow-purple-600/25 transition-all disabled:opacity-50 flex items-center gap-2"
                 >
                   {isSaving ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : null}
                   {editingItem ? 'Update Record' : 'Create Entry'}
@@ -676,66 +652,66 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
         )}
       </AnimatePresence>
 
-      {/* Table Section */}
-      <div className="bg-[#252841]/40 backdrop-blur-md border border-slate-800/30 rounded-2xl overflow-hidden mb-5">
-        <div className="p-12 border-b border-slate-800/30 bg-[#252841]/20 flex items-center justify-between">
+      {/* Grid/Table Records Section */}
+      <div className="bg-white dark:bg-[#0c0828]/40 backdrop-blur-md border border-slate-200 dark:border-purple-900/30 rounded-2xl overflow-hidden mb-5 shadow-sm">
+        <div className="p-6 border-b border-slate-200 dark:border-purple-900/20 bg-slate-50 dark:bg-[#0c0828]/25 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Filter className="w-4 h-4 text-[#00D1FF]" />
-            <span className="text-[10px] text-white uppercase tracking-[0.2em]">Records List</span>
+            <Filter className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+            <span className="text-[10px] text-slate-900 dark:text-white uppercase font-bold tracking-widest">Records List</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex bg-[#1A1C2E] p-1 rounded-xl border border-slate-800/30 mr-2">
+            <div className="flex bg-slate-100 dark:bg-[#1A1C2E] p-1 rounded-xl border border-slate-250 dark:border-purple-900/30 mr-2">
               <button
                 onClick={() => setCurrentView('grid')}
-                className={`p-1.5 rounded-lg transition-all ${currentView === 'grid' ? 'bg-[#FF1F8B] text-white shadow-lg shadow-[#FF1F8B]/20' : 'text-slate-500 hover:text-slate-300'}`}
+                className={`p-1.5 rounded-lg transition-all ${currentView === 'grid' ? 'bg-purple-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-350'}`}
               >
                 <LayoutGrid className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => setCurrentView('table')}
-                className={`p-1.5 rounded-lg transition-all ${currentView === 'table' ? 'bg-[#FF1F8B] text-white shadow-lg shadow-[#FF1F8B]/20' : 'text-slate-500 hover:text-slate-300'}`}
+                className={`p-1.5 rounded-lg transition-all ${currentView === 'table' ? 'bg-purple-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-350'}`}
               >
                 <List className="w-3.5 h-3.5" />
               </button>
             </div>
-            <button onClick={fetchData} className="p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-[#FF1F8B] transition-all"><RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} /></button>
-            <button onClick={handleExport} className="p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-[#00D1FF] transition-all"><Download className="w-4 h-4" /></button>
+            <button onClick={fetchData} className="p-2 hover:bg-slate-105 rounded-lg text-slate-400 hover:text-purple-650 transition-all"><RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} /></button>
+            <button onClick={handleExport} className="p-2 hover:bg-slate-105 rounded-lg text-slate-400 hover:text-purple-650 transition-all"><Download className="w-4 h-4" /></button>
           </div>
         </div>
 
         {loading ? (
           <div className="p-12 text-center">
-            <div className="w-12 h-12 border-4 border-[#FF1F8B]/20 border-t-[#FF1F8B] rounded-full animate-spin mx-auto mb-5"></div>
-            <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em]">Synchronizing Database Cloud...</p>
+            <div className="w-12 h-12 border-4 border-purple-500/20 border-t-purple-600 rounded-full animate-spin mx-auto mb-5"></div>
+            <p className="text-slate-500 dark:text-gray-400 text-[10px] uppercase font-bold tracking-widest">Synchronizing Database Cloud...</p>
           </div>
         ) : filteredData.length === 0 ? (
           <div className="p-12 text-center flex flex-col items-center gap-6">
-            <div className="w-20 h-20 rounded-3xl bg-[#1A1C2E] flex items-center justify-center text-slate-700 text-3xl border border-slate-800/30 rotate-3">
+            <div className="w-20 h-20 rounded-3xl bg-slate-50 dark:bg-[#1A1C2E] flex items-center justify-center text-slate-400 text-3xl border border-slate-200 dark:border-purple-900/30 rotate-3">
               <FileText className="w-15 h-15" />
             </div>
             <div className="max-w-xs mx-auto">
-              <p className="text-white text-lg tracking-tight uppercase">No matching records</p>
-              <p className="text-slate-500 text-[10px] mt-2 font-bold uppercase tracking-wider">We couldn't find any entries matching your current filter criteria.</p>
+              <p className="text-slate-900 dark:text-white text-lg font-bold tracking-tight uppercase">No matching records</p>
+              <p className="text-slate-500 dark:text-gray-450 text-[10px] mt-2 font-bold uppercase tracking-wider leading-relaxed">We couldn't find any entries matching your current filter criteria.</p>
             </div>
-            <button onClick={() => setSearchQuery('')} className="text-[#FF1F8B] text-[10px] uppercase tracking-[0.2em] hover:underline">Clear all filters</button>
+            <button onClick={() => setSearchQuery('')} className="text-purple-650 dark:text-purple-400 text-xs font-bold uppercase tracking-wider hover:underline">Clear all filters</button>
           </div>
         ) : currentView === 'grid' ? (
-          <div className="p-12 lg:p-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div className="p-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {filteredData.map((item) => (
               <motion.div
                 key={item.id}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="group relative bg-[#1A1C2E] rounded-3xl overflow-hidden border border-slate-800/30 hover:border-[#FF1F8B]/30 transition-all duration-500 shadow-2xl"
+                className="group relative bg-white dark:bg-[#1A1C2E] rounded-3xl overflow-hidden border border-slate-200 dark:border-purple-900/30 hover:border-purple-600/30 dark:hover:border-purple-500/30 transition-all duration-500 shadow-md hover:shadow-lg"
               >
                 {/* Image Preview */}
-                <div className="aspect-video relative overflow-hidden bg-slate-900">
+                <div className="aspect-video relative overflow-hidden bg-slate-100 dark:bg-slate-900">
                   {getImageUrl(item) ? (
                     <img
                       src={getImageUrl(item)}
                       alt=""
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       loading="lazy"
                     />
                   ) : (
@@ -743,51 +719,51 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                       <Database className="w-12 h-12 opacity-20" />
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1C2E] via-[#1A1C2E]/20 to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#1A1C2E] via-white/25 dark:via-[#1A1C2E]/20 to-transparent opacity-80" />
 
                   {/* Actions Overlay */}
                   <div className="absolute top-4 right-4 flex gap-2 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <button
                       onClick={() => handleEdit(item)}
-                      className="w-15 h-15 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-[#FF1F8B] hover:border-[#FF1F8B] transition-all"
+                      className="w-10 h-10 rounded-xl bg-white dark:bg-black/60 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-white hover:bg-purple-600 dark:hover:bg-purple-750 hover:text-white transition-all shadow-sm"
                     >
-                      <Edit3 className="w-4 h-4" />
+                      <Edit3 className="w-4.5 h-4.5" />
                     </button>
                     <button
                       onClick={() => setDeleteConfirmId(item.id)}
-                      className="w-15 h-15 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-rose-600 hover:border-rose-600 transition-all"
+                      className="w-10 h-10 rounded-xl bg-white dark:bg-black/60 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-750 dark:text-white hover:bg-rose-600 dark:hover:bg-rose-500 hover:text-white transition-all shadow-sm"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-4.5 h-4.5" />
                     </button>
                   </div>
 
                   <div className="absolute bottom-4 left-6">
-                    <div className="flex items-center gap-2 text-[8px] uppercase tracking-[0.2em] text-[#00D1FF] bg-[#00D1FF]/10 backdrop-blur-md px-2.5 py-1.5 rounded-lg border border-[#00D1FF]/20">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#00D1FF] animate-pulse"></div>
+                    <div className="flex items-center gap-2 text-[9px] font-extrabold uppercase tracking-widest text-purple-600 bg-purple-50 dark:text-purple-400 dark:bg-purple-950/40 px-2.5 py-1.5 rounded-lg border border-purple-500/10">
+                      <div className="w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400 animate-pulse"></div>
                       Live Preview
                     </div>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-12 space-y-4">
+                <div className="p-6 space-y-4">
                   <div>
-                    <span className="text-[9px] text-[#FF1F8B] uppercase tracking-[0.2em] block mb-1">
+                    <span className="text-[10px] font-extrabold text-purple-600 dark:text-purple-400 uppercase tracking-widest block mb-1">
                       {item.subtitle || 'ENTITY RECORD'}
                     </span>
-                    <h3 className="text-lg text-white uppercase tracking-tight line-clamp-1 group-hover:text-[#FF1F8B] transition-colors">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-tight line-clamp-1 group-hover:text-purple-650 dark:group-hover:text-purple-400 transition-colors">
                       {item.title || item.name || 'Untitled Entry'}
                     </h3>
                   </div>
 
-                  <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider leading-relaxed line-clamp-3 h-[45px]">
+                  <p className="text-slate-500 dark:text-slate-400 text-[11px] font-medium leading-relaxed line-clamp-3 h-[45px]">
                     {item.description || item.desc || 'No description provided for this record.'}
                   </p>
 
-                  <div className="pt-4 border-t border-slate-800/30 flex items-center justify-between">
-                    <span className="text-[9px] text-slate-500 uppercase tracking-[0.2em]">ID: #{item.id}</span>
+                  <div className="pt-4 border-t border-slate-100 dark:border-purple-900/20 flex items-center justify-between">
+                    <span className="text-[9px] text-slate-400 uppercase tracking-[0.2em]">ID: #{item.id}</span>
                     <div className="flex -space-x-2">
-                      <div className="w-6 h-6 rounded-full bg-slate-800 border-2 border-[#1A1C2E] flex items-center justify-center text-[8px] font-bold text-slate-500">
+                      <div className="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-white dark:border-[#1A1C2E] flex items-center justify-center text-[8px] font-bold text-slate-500">
                         {item.id % 9}
                       </div>
                     </div>
@@ -800,28 +776,28 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
           <div className="overflow-x-auto">
             <table className="w-full text-left min-w-[800px]">
               <thead>
-                <tr className="bg-[#1A1C2E]/50 border-b border-slate-800/30">
-                  <th className="pl-8 pr-6 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em]">Resource Preview</th>
-                  <th className="px-6 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em]">Entry Details</th>
-                  <th className="px-6 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em]">Status</th>
-                  <th className="pl-6 pr-8 py-5 text-[9px] text-slate-500 uppercase tracking-[0.2em] text-right">Operations</th>
+                <tr className="bg-slate-50 dark:bg-[#1A1C2E]/50 border-b border-slate-200 dark:border-purple-900/30">
+                  <th className="pl-8 pr-6 py-5 text-[10px] text-slate-500 uppercase tracking-widest">Resource Preview</th>
+                  <th className="px-6 py-5 text-[10px] text-slate-500 uppercase tracking-widest">Entry Details</th>
+                  <th className="px-6 py-5 text-[10px] text-slate-500 uppercase tracking-widest">Status</th>
+                  <th className="pl-6 pr-8 py-5 text-[10px] text-slate-500 uppercase tracking-widest text-right">Operations</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/20">
+              <tbody className="divide-y divide-slate-100 dark:divide-purple-900/10">
                 {filteredData.map((item) => (
-                  <tr key={item.id} className="hover:bg-[#FF1F8B]/5 transition-all group/row">
+                  <tr key={item.id} className="hover:bg-slate-50 dark:hover:bg-purple-950/15 transition-all group/row border-b border-slate-100 dark:border-purple-900/10">
                     <td className="pl-8 pr-6 py-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-xl bg-[#1A1C2E] border border-slate-800/30 overflow-hidden flex items-center justify-center text-slate-600 shrink-0 group-hover/row:border-[#FF1F8B]/30 transition-colors">
+                        <div className="w-14 h-14 rounded-xl bg-slate-100 dark:bg-[#1A1C2E] border border-slate-200 dark:border-purple-900/30 overflow-hidden flex items-center justify-center text-slate-655 shrink-0 group-hover/row:border-purple-500/30 transition-colors">
                           {getImageUrl(item) ? (
                             <img
                               src={getImageUrl(item)}
                               alt=""
-                              className="w-full h-full object-cover group-hover/row:scale-110 transition-transform duration-500"
+                              className="w-full h-full object-cover group-hover/row:scale-105 transition-transform duration-500"
                               loading="lazy"
                               onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.parentElement.innerHTML = '<div className="flex items-center justify-center h-full w-full"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-image w-5 h-5"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>';
+                                e.target.parentElement.innerHTML = '<div className="flex items-center justify-center h-full w-full"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="w-5 h-5 opacity-40"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>';
                               }}
                             />
                           ) : (
@@ -829,23 +805,23 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                           )}
                         </div>
                         <div className="flex flex-col gap-1">
-                          <span className="text-white text-xs uppercase tracking-wide group-hover/row:text-[#FF1F8B] transition-colors">
+                          <span className="text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wide group-hover/row:text-purple-650 dark:group-hover:text-purple-450 transition-colors">
                             {item.title || item.author || item.name || 'Untitled Entry'}
                           </span>
-                          <span className="text-[9px] text-slate-500 uppercase tracking-[0.2em]">ID: #{item.id}</span>
+                          <span className="text-[9px] text-slate-400 uppercase tracking-[0.2em]">ID: #{item.id}</span>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-6">
                       <div className="max-w-xs">
-                        <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider leading-relaxed line-clamp-2">
+                        <p className="text-slate-500 dark:text-slate-400 text-[10px] font-bold uppercase tracking-wider leading-relaxed line-clamp-2">
                           {item.description || item.desc || item.quote || item.image || 'No additional details provided.'}
                         </p>
                       </div>
                     </td>
                     <td className="px-6 py-6">
-                      <div className="flex items-center gap-2 text-[8px] uppercase tracking-[0.2em] text-[#00D1FF] bg-[#00D1FF]/5 px-2.5 py-1.5 rounded-lg w-fit border border-[#00D1FF]/10">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#00D1FF] animate-pulse"></div>
+                      <div className="flex items-center gap-2 text-[8px] uppercase tracking-[0.2em] text-purple-600 bg-purple-50 px-2.5 py-1.5 rounded-lg w-fit border border-purple-500/10 dark:text-purple-400 dark:bg-purple-950/40">
+                        <div className="w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400 animate-pulse"></div>
                         Verified
                       </div>
                     </td>
@@ -853,14 +829,14 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
                       <div className="flex justify-end gap-2 opacity-0 group-hover/row:opacity-100 transition-all translate-x-2 group-hover/row:translate-x-0">
                         <button
                           onClick={() => handleEdit(item)}
-                          className="w-9 h-9 rounded-xl bg-[#1A1C2E] border border-slate-800/30 flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#FF1F8B] hover:border-[#FF1F8B] transition-all"
+                          className="w-9 h-9 rounded-xl bg-white dark:bg-[#1A1C2E] border border-slate-200 dark:border-purple-900/30 flex items-center justify-center text-slate-500 hover:text-white hover:bg-purple-600 dark:hover:bg-purple-750 transition-all shadow-sm"
                           title="Edit"
                         >
                           <Edit3 className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => setDeleteConfirmId(item.id)}
-                          className="w-9 h-9 rounded-xl bg-[#1A1C2E] border border-slate-800/30 flex items-center justify-center text-slate-400 hover:text-white hover:bg-rose-600 hover:border-rose-600 transition-all"
+                          className="w-9 h-9 rounded-xl bg-white dark:bg-[#1A1C2E] border border-slate-200 dark:border-purple-900/30 flex items-center justify-center text-slate-500 hover:text-white hover:bg-rose-600 dark:hover:bg-rose-500 transition-all shadow-sm"
                           title="Delete"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -874,6 +850,7 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
           </div>
         )}
       </div>
+
       {/* Delete Confirmation Modal */}
       <AnimatePresence>
         {deleteConfirmId && (
@@ -883,35 +860,35 @@ const EntityManager = ({ entity, title, fields, viewType = 'table' }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setDeleteConfirmId(null)}
-              className="absolute inset-0 bg-[#0a0f1d]/60 backdrop-blur-xl"
+              className="absolute inset-0 bg-slate-900/40 dark:bg-[#0a0f1d]/60 backdrop-blur-xl"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="relative bg-[#1A1C2E] border border-slate-800/30 p-12 rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden"
+              className="relative bg-white dark:bg-[#1A1C2E] border border-slate-200 dark:border-purple-900/30 p-8 rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-rose-500 to-transparent opacity-50" />
 
-              <div className="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-500 mb-5 border border-rose-500/20">
-                <AlertCircle className="w-7 h-7" />
+              <div className="w-12 h-12 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-500 mb-5 border border-rose-500/20">
+                <AlertCircle className="w-6 h-6" />
               </div>
 
-              <h3 className="text-xl text-white mb-2 tracking-tight uppercase">Confirm Deletion</h3>
-              <p className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-5 leading-relaxed">
+              <h3 className="text-xl font-extrabold text-slate-900 dark:text-white mb-2 tracking-tight uppercase">Confirm Deletion</h3>
+              <p className="text-slate-550 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-6 leading-relaxed">
                 This action is irreversible. The selected record will be permanently purged from the production database.
               </p>
 
               <div className="flex gap-3">
                 <button
                   onClick={() => setDeleteConfirmId(null)}
-                  className="flex-1 px-4 py-3 rounded-xl text-[10px] uppercase tracking-[0.2em] text-slate-500 hover:text-white hover:bg-white/5 transition-all"
+                  className="flex-1 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={() => handleDelete(deleteConfirmId)}
-                  className="flex-1 bg-rose-600 text-white px-4 py-3 rounded-xl text-[10px] uppercase tracking-[0.2em] transition-all active:scale-95 shadow-lg shadow-rose-600/20 hover:bg-rose-500"
+                  className="flex-1 bg-rose-600 text-white px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all active:scale-95 shadow-md shadow-rose-600/20 hover:bg-rose-500"
                 >
                   Delete
                 </button>

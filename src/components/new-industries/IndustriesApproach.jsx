@@ -22,8 +22,8 @@ const IndustriesApproach = () => {
     <div className="py-12 flex flex-col xl:flex-row gap-6 text-left">
       
       {/* Our Approach */}
-      <div className="xl:w-3/5 bg-[#050112] border border-gray-800/80 rounded-2xl p-8 shadow-xl relative">
-        <h3 className="text-xl font-bold text-white mb-8">Our Approach</h3>
+      <div className="xl:w-3/5 bg-slate-50 dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm dark:shadow-xl relative">
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-8">Our Approach</h3>
         
         <div className="approach-line-container flex justify-between items-start mt-12 relative z-10 px-4 overflow-x-auto pb-4 hide-scrollbar">
           {/* Background Live Data Flow Path (Desktop Only) */}
@@ -43,25 +43,25 @@ const IndustriesApproach = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="flex flex-col items-center text-center w-28 relative bg-[#050112] group shrink-0 z-10"
+              className="flex flex-col items-center text-center w-28 relative bg-slate-50 dark:bg-[#050112] group shrink-0 z-10"
             >
-              <div className="w-12 h-12 rounded-full bg-[#0a0520] border border-purple-500/30 flex items-center justify-center mb-4 text-purple-400 group-hover:bg-purple-900/40 group-hover:scale-110 transition-all z-10 relative shadow-[0_0_15px_rgba(168,85,247,0.1)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] border border-purple-500/20">
+              <div className="w-12 h-12 rounded-full bg-white dark:bg-[#0a0520] border border-purple-200 dark:border-purple-500/30 flex items-center justify-center mb-4 text-purple-600 dark:text-purple-400 group-hover:bg-purple-900/40 group-hover:scale-110 transition-all z-10 relative shadow-[0_0_15px_rgba(168,85,247,0.05)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] border border-purple-500/20">
                 <step.icon size={20} />
               </div>
-              <h4 className="text-[12px] font-bold text-white mb-2">{step.name}</h4>
-              <p className="text-[9px] text-gray-500 leading-tight pr-1">{step.desc}</p>
+              <h4 className="text-[12px] font-bold text-slate-900 dark:text-white mb-2">{step.name}</h4>
+              <p className="text-[9px] text-slate-550 dark:text-gray-500 leading-tight pr-1">{step.desc}</p>
             </motion.div>
           ))}
         </div>
       </div>
 
       {/* Why Businesses Choose Codigix */}
-      <div className="xl:w-2/5 bg-[#050112] border border-gray-800/80 rounded-2xl p-8 shadow-xl">
-        <h3 className="text-xl font-bold text-white mb-8">Why Businesses Choose Codigix</h3>
+      <div className="xl:w-2/5 bg-slate-50 dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm dark:shadow-xl">
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-8">Why Businesses Choose Codigix</h3>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-4">
           {reasons.map((reason, idx) => (
-            <div key={idx} className="flex items-start gap-2 bg-[#050117] p-2.5 border border-gray-800/80 rounded-xl hover:border-purple-500/30 transition-colors relative group overflow-hidden">
+            <div key={idx} className="flex items-start gap-2 bg-white dark:bg-[#050117] p-2.5 border border-slate-200 dark:border-gray-800/80 rounded-xl hover:border-purple-500/30 transition-colors relative group overflow-hidden shadow-sm dark:shadow-none">
               {/* Spotlight background hover */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.05)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
@@ -71,7 +71,7 @@ const IndustriesApproach = () => {
               </div>
 
               <Hexagon size={14} className="text-purple-500 shrink-0 mt-0.5 fill-purple-900/30 relative z-10" />
-              <span className="text-[11px] text-gray-300 leading-tight relative z-10">{reason}</span>
+              <span className="text-[11px] text-slate-700 dark:text-gray-300 leading-tight relative z-10">{reason}</span>
             </div>
           ))}
         </div>

@@ -41,7 +41,7 @@ const CareerHero = ({ onApply }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-4xl sm:text-5xl lg:text-[44px] font-bold text-white leading-[1.15] mb-6"
+          className="text-4xl sm:text-5xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.15] mb-6"
         >
           Build the Future.<br/>
           Grow With <span className="career-text-gradient">Codigix.</span>
@@ -51,7 +51,7 @@ const CareerHero = ({ onApply }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-[13px] text-gray-300 leading-relaxed mb-8 max-w-md"
+          className="text-[13px] text-slate-600 dark:text-gray-300 leading-relaxed mb-8 max-w-md"
         >
           At Codigix, we believe great people build great solutions. Join our team of innovators, problem solvers, and dreamers who are transforming businesses through technology.
         </motion.p>
@@ -68,43 +68,43 @@ const CareerHero = ({ onApply }) => {
           >
             View Open Positions <ArrowRight size={14} />
           </button>
-          <button className="w-full sm:w-auto px-6 py-3 bg-transparent border border-gray-700 hover:border-gray-500 text-white text-[12px] font-medium rounded-md transition-all flex items-center justify-center gap-2">
+          <button className="w-full sm:w-auto px-6 py-3 bg-transparent border border-slate-350 dark:border-gray-700 hover:border-slate-500 dark:hover:border-gray-500 text-slate-800 dark:text-white text-[12px] font-medium rounded-md transition-all flex items-center justify-center gap-2">
             Life at Codigix <PlayCircle size={14} />
           </button>
         </motion.div>
       </div>
 
       {/* Interactive AI Hiring & Application Stream Widget */}
-      <div className="xl:w-1/2 relative w-full border border-gray-800 bg-[#07041a] rounded-2xl overflow-hidden shadow-2xl p-6 flex flex-col justify-between min-h-[350px] font-mono text-[10px]">
+      <div className="xl:w-1/2 relative w-full border border-slate-200 dark:border-gray-800 bg-white dark:bg-[#07041a] rounded-2xl overflow-hidden shadow-sm dark:shadow-2xl p-6 flex flex-col justify-between min-h-[350px] font-mono text-[10px]">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-gray-800 pb-3">
+        <div className="flex items-center justify-between border-b border-slate-200 dark:border-gray-800 pb-3">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e]"></span>
-            <span className="text-gray-400 font-bold uppercase tracking-wider">hiring_console_rx</span>
+            <span className="text-slate-400 dark:text-gray-400 font-bold uppercase tracking-wider">hiring_console_rx</span>
           </div>
-          <span className="text-[8px] text-gray-500">active_vacancies: 3</span>
+          <span className="text-[8px] text-slate-500 dark:text-gray-500">active_vacancies: 3</span>
         </div>
 
         {/* Roles Grid */}
         <div className="space-y-2.5 my-4">
-          <div className="text-gray-500 text-[8px] uppercase tracking-wider">// Current Open Positions</div>
+          <div className="text-slate-450 dark:text-gray-500 text-[8px] uppercase tracking-wider">// Current Open Positions</div>
           {openRoles.map((role, i) => (
-            <div key={i} className="flex justify-between items-center bg-[#050117] border border-gray-800/80 p-2.5 rounded-xl">
+            <div key={i} className="flex justify-between items-center bg-slate-50 dark:bg-[#050117] border border-slate-200 dark:border-gray-800/80 p-2.5 rounded-xl">
               <div>
-                <span className="text-white font-bold block">{role.title}</span>
-                <span className="text-[8px] text-gray-500">{role.code}</span>
+                <span className="text-slate-900 dark:text-white font-bold block">{role.title}</span>
+                <span className="text-[8px] text-slate-500 dark:text-gray-500">{role.code}</span>
               </div>
               <div className="text-right">
-                <span className="text-purple-400 font-bold block">{role.applicants} applicants</span>
-                <span className="text-[8px] text-cyan-400 uppercase tracking-widest">{role.status}</span>
+                <span className="text-purple-600 dark:text-purple-400 font-bold block">{role.applicants} applicants</span>
+                <span className="text-[8px] text-cyan-600 dark:text-cyan-400 uppercase tracking-widest">{role.status}</span>
               </div>
             </div>
           ))}
         </div>
 
         {/* Diagnostic Logs Console */}
-        <div className="border-t border-gray-800 pt-3">
-          <div className="text-gray-500 text-[8px] uppercase tracking-wider mb-2">// Recruiter Dispatch Logs</div>
+        <div className="border-t border-slate-200 dark:border-gray-800 pt-3">
+          <div className="text-slate-450 dark:text-gray-500 text-[8px] uppercase tracking-wider mb-2">// Recruiter Dispatch Logs</div>
           <div className="h-10 flex items-center">
             <AnimatePresence mode="wait">
               <motion.div
@@ -113,7 +113,7 @@ const CareerHero = ({ onApply }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
                 transition={{ duration: 0.3 }}
-                className="text-green-400/90 leading-relaxed text-[9px]"
+                className="text-green-600 dark:text-green-400/90 leading-relaxed text-[9px]"
               >
                 &gt; {recruiterLogs[logIdx]}
               </motion.div>
@@ -122,10 +122,10 @@ const CareerHero = ({ onApply }) => {
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-800/50 pt-3 flex items-center justify-between text-gray-500 text-[9px]">
+        <div className="border-t border-slate-200 dark:border-gray-800/50 pt-3 flex items-center justify-between text-slate-550 dark:text-gray-500 text-[9px]">
           <span className="flex items-center gap-1"><Users size={12} className="text-[#EE001C]" /> 150+ Team</span>
           <span className="flex items-center gap-1"><ShieldCheck size={12} className="text-emerald-400" /> Great Place to Work</span>
-          <span className="text-purple-400 font-bold cursor-pointer hover:underline" onClick={() => onApply && onApply()}>Apply Now →</span>
+          <span className="text-purple-600 dark:text-purple-400 font-bold cursor-pointer hover:underline" onClick={() => onApply && onApply()}>Apply Now →</span>
         </div>
       </div>
 

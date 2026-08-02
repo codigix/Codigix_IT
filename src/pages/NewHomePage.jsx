@@ -7,6 +7,7 @@ import WorkflowSection from '../components/new-home/WorkflowSection';
 import AiSolutionsGrid from '../components/new-home/AiSolutionsGrid';
 import IotDevicesSection from '../components/new-home/IotDevicesSection';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
+import BlogSection from '../components/new-home/BlogSection';
 import { Helmet } from 'react-helmet-async';
 import { ArrowUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -23,14 +24,14 @@ const NewHomePage = () => {
       setMousePos({ x: e.clientX, y: e.clientY });
       if (!cursorVisible) setCursorVisible(true);
     };
-    
+
     const handleMouseLeave = () => {
       setCursorVisible(false);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseleave', handleMouseLeave);
-    
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
@@ -42,7 +43,7 @@ const NewHomePage = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      
+
       setScrollProgress(progress);
       setShowScrollTop(scrollTop > 400);
     };
@@ -60,15 +61,15 @@ const NewHomePage = () => {
       <Helmet>
         <title>Codigix - AI & IoT Solutions</title>
       </Helmet>
-      
-      <div className="new-home-wrapper pb-24 relative min-h-screen">
+
+      <div className="new-home-wrapper  relative min-h-screen">
         {/* Custom Cursor Glow (Desktop Only) */}
         {cursorVisible && (
-          <div 
-            className="cursor-glow hidden lg:block" 
-            style={{ 
-              left: `${mousePos.x}px`, 
-              top: `${mousePos.y}px` 
+          <div
+            className="cursor-glow hidden lg:block"
+            style={{
+              left: `${mousePos.x}px`,
+              top: `${mousePos.y}px`
             }}
           />
         )}
@@ -80,6 +81,7 @@ const NewHomePage = () => {
         <WorkflowSection />
         <AiSolutionsGrid />
         <IotDevicesSection />
+        <BlogSection />
         <CtaFooterSection />
 
         {/* Circular Scroll progress Back-to-top */}

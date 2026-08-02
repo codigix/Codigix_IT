@@ -78,24 +78,24 @@ const AboutTechExpertise = () => {
     <div className="flex flex-col lg:flex-row gap-6 items-stretch mb-12">
 
       {/* Left: Our Expertise */}
-      <div className="lg:w-1/3 bg-[#050112] border border-gray-800/80 rounded-2xl p-8 shadow-xl flex flex-col">
-        <h3 className="text-xl font-bold text-white mb-4">Our Expertise</h3>
-        <p className="text-[12px] text-gray-400 leading-relaxed mb-8">
+      <div className="lg:w-1/3 bg-slate-50 dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm dark:shadow-xl flex flex-col text-left">
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Our Expertise</h3>
+        <p className="text-[12px] text-slate-650 dark:text-gray-400 leading-relaxed mb-8">
           We combine domain knowledge with cutting-edge technologies to build solutions that are secure, scalable, and future-ready.
         </p>
         <div className="flex flex-col gap-4">
           {expertise.map((item, idx) => (
             <div key={idx} className="flex items-start gap-3">
               <CheckCircle2 size={16} className="text-purple-500 shrink-0 mt-0.5" />
-              <span className="text-[12px] text-gray-300">{item}</span>
+              <span className="text-[12px] text-slate-700 dark:text-gray-300">{item}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Right: Technologies */}
-      <div className="lg:w-2/3 bg-[#050112] border border-gray-800/80 rounded-2xl p-8 shadow-xl flex flex-col">
-        <h3 className="text-xl font-bold text-white mb-8">Technologies We Work With</h3>
+      <div className="lg:w-2/3 bg-slate-50 dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm dark:shadow-xl flex flex-col text-left">
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-8">Technologies We Work With</h3>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 flex-1">
           {techStack.map((tech, idx) => (
@@ -108,10 +108,10 @@ const AboutTechExpertise = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: idx * 0.05 }}
               viewport={{ once: true }}
-              className="border border-gray-800 rounded-xl p-4 flex items-center justify-center gap-3 hover:border-purple-500/50 hover:bg-purple-900/10 transition-colors group cursor-pointer decoration-transparent"
+              className="bg-white dark:bg-[#050117] border border-slate-200 dark:border-gray-800 rounded-xl p-4 flex items-center justify-center gap-3 hover:border-purple-500/50 hover:bg-purple-900/10 transition-colors group cursor-pointer decoration-transparent shadow-sm dark:shadow-none"
             >
               <img src={tech.icon} alt={tech.name} className="w-6 h-6 object-contain filter grayscale grayscale-0  transition-all" />
-              <span className="text-[11px] font-medium text-gray-400 group-hover:text-white transition-colors">{tech.name}</span>
+              <span className="text-[11px] font-medium text-slate-550 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">{tech.name}</span>
             </motion.a>
           ))}
         </div>

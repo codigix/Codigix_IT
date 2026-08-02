@@ -12,9 +12,9 @@ const logos = [
 
 const IndustriesLogos = () => {
   return (
-    <div className="py-12 border-t border-gray-800/50 border-b border-gray-800/50 my-8">
+    <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 border-b border-slate-200 dark:border-gray-800/50 my-8">
       <div className="text-center mb-8">
-        <h3 className="text-lg font-bold text-white">Trusted by Businesses Across Industries</h3>
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white">Trusted by Businesses Across Industries</h3>
       </div>
       
       <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
