@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Globe, MessageSquare, ArrowRight, Lock, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import config from '../../config';
+import { trackContactSubmit } from '../../utils/analytics';
 
 const ContactFormSection = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -38,6 +39,7 @@ const ContactFormSection = () => {
         throw new Error('Failed to send contact inquiry');
       }
 
+      trackContactSubmit(formData);
       setSubmitted(true);
       setFormData({
         cfName: '',

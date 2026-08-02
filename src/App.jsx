@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
+import { trackPageView } from './utils/analytics';
 
 // Lazy load active pages
 const NewHomePage = lazy(() => import('./pages/NewHomePage'));
@@ -37,7 +38,10 @@ function AppRoutes() {
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location.pathname]);
+    if (!isAdmin) {
+      trackPageView(location.pathname + location.search, document.title);
+    }
+  }, [location.pathname, location.search, isAdmin]);
 
   if (isAdmin) {
     return (

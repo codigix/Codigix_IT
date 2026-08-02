@@ -4,6 +4,7 @@ import {
   ArrowRight, ArrowLeft, Bookmark, ShieldCheck, Mail, Phone, Code2, GraduationCap, Check
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { trackJobApply } from '../../utils/analytics';
 
 const JobApplyModal = ({ isOpen, onClose, job }) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -69,6 +70,7 @@ const JobApplyModal = ({ isOpen, onClose, job }) => {
     if (currentStep < 4) {
       setCurrentStep(prev => prev + 1);
     } else {
+      trackJobApply(defaultJob.title);
       setIsSubmitted(true);
     }
   };
