@@ -2011,11 +2011,11 @@ html:not(.dark) .font-admin label {
   color: #334155 !important;
 }
 
-html:not(.dark) .font-admin .text-[#00D1FF] {
+html:not(.dark) .font-admin .text-\[\#00D1FF\] {
   color: #0284c7 !important;
 }
 
-html:not(.dark) .font-admin .text-[#FF1F8B] {
+html:not(.dark) .font-admin .text-\[\#FF1F8B\] {
   color: #7c3aed !important;
 }
 
