@@ -1,5 +1,5 @@
 // Google Analytics (GA4) Tracking Utility for Codigix Infotech
-export const GA_TRACKING_ID = 'G-MWZETZDMWP';
+export const GA_TRACKING_ID = 'G-T3T20910VX';
 
 // Trigger page view on route change
 export const trackPageView = (path, title) => {
