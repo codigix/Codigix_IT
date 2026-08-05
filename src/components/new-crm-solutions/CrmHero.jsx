@@ -264,16 +264,16 @@ const CrmHero = ({ activeTab }) => {
             <button
               onClick={() => navigate('/contact')}
               aria-label="Book a custom CRM software consultation"
-              className="px-6 py-3 bg-[#9333ea] hover:bg-[#a855f7] text-white text-sm font-medium rounded-md shadow-lg shadow-purple-500/20 transition-all flex items-center gap-2 cursor-pointer"
+              className="px-6 py-3 bg-gradient-to-r from-[#EE001C] to-[#7e22ce] hover:from-[#d30018] hover:to-[#6b1fb0] text-white text-[12px] font-medium rounded-md shadow-[0_0_20px_rgba(238,0,28,0.3)] transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              Book Consultation <ArrowRight size={16} />
+              Book Consultation <ArrowRight size={14} />
             </button>
             <button
               onClick={() => navigate('/contact')}
               aria-label="Request a live demonstration of Codigix CRM"
-              className="px-6 py-3 bg-transparent border border-slate-300 dark:border-gray-600 hover:border-slate-500 dark:hover:border-gray-400 text-slate-900 dark:text-white text-sm font-medium rounded-md transition-all flex items-center gap-2 cursor-pointer"
+              className="px-6 py-3 bg-transparent border border-slate-350 dark:border-gray-700 hover:border-purple-500 text-slate-800 dark:text-white text-[12px] font-medium rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-purple-500/10"
             >
-              Request Demo <Calendar size={16} />
+              Request Demo <Calendar size={14} />
             </button>
           </motion.div>
         </div>

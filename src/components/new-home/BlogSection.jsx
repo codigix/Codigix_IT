@@ -92,7 +92,7 @@ const BlogSection = () => {
       <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center mb-16 flex flex-col items-center">
           <motion.div
@@ -103,7 +103,7 @@ const BlogSection = () => {
           >
             <span>💡 Insights & Knowledge</span>
           </motion.div>
-          
+
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -113,7 +113,7 @@ const BlogSection = () => {
           >
             Latest News & Tech Articles
           </motion.h2>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -150,7 +150,7 @@ const BlogSection = () => {
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
                   />
-                  
+
                   {/* Category Badge on top of image */}
                   <div className="absolute top-4 left-4 z-20">
                     <span className="text-[10px] font-extrabold uppercase bg-purple-600 text-white px-3 py-1 rounded-full shadow-md">
@@ -181,14 +181,14 @@ const BlogSection = () => {
                     <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors mb-3">
                       {post.title}
                     </h3>
-                    
+
                     <p className="text-xs text-slate-650 dark:text-gray-400 leading-relaxed font-normal mb-6">
                       {post.excerpt}
                     </p>
                   </div>
 
                   <div className="pt-2 border-t border-slate-100 dark:border-gray-800/80">
-                    <Link 
+                    <Link
                       to={post.link}
                       className="inline-flex items-center gap-1 text-[11.5px] font-bold text-purple-700 dark:text-purple-300 group-hover:gap-2 transition-all"
                     >
@@ -204,7 +204,7 @@ const BlogSection = () => {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <button 
+          <button
             onClick={() => navigate('/blog')}
             className="px-6 py-3 bg-purple-50 dark:bg-purple-600/20 hover:bg-purple-600 text-purple-750 dark:text-purple-300 hover:text-white text-xs font-bold rounded-xl border border-purple-200 dark:border-purple-500/40 shadow-sm hover:shadow-md transition-all"
           >

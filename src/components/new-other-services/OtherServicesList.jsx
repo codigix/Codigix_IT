@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Code2, Smartphone, PenTool, Cloud, Infinity as DevOpsIcon } from 'lucide-react';
 
@@ -212,101 +213,101 @@ const OtherServicesList = () => {
       {services.map((service, index) => {
         const isEven = index % 2 === 0;
         return (
-          <div 
-            key={service.id} 
+          <div
+            key={service.id}
             id={service.id}
             className="flex flex-col lg:flex-row gap-10 items-stretch py-14 border-b border-slate-200 dark:border-gray-800/40 last:border-0"
           >
-            
+
             {/* Visual SaaS App Frame & Simulator Display Side */}
             <div className={`lg:w-1/2 w-full order-2 ${isEven ? 'lg:order-1' : 'lg:order-2'} flex flex-col justify-between gap-4`}>
-               {/* Modern SaaS Window Frame */}
-               <motion.div 
-                 initial={{ opacity: 0, x: isEven ? -30 : 30 }}
-                 whileInView={{ opacity: 1, x: 0 }}
-                 viewport={{ once: true, margin: "-80px" }}
-                 className="w-full rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 bg-white dark:bg-[#060318] shadow-md dark:shadow-2xl group transition-all duration-300"
-               >
-                  {/* Window Controls Top Header */}
-                  <div className="bg-slate-100/90 dark:bg-[#0d0728] px-4 py-2.5 border-b border-slate-200/80 dark:border-gray-800 flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                          <span className="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
-                          <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-                      </div>
-                      <div className="text-[10px] font-mono text-slate-500 dark:text-gray-400 tracking-wider bg-white/80 dark:bg-black/40 px-3 py-0.5 rounded-md border border-slate-200/60 dark:border-gray-800 truncate max-w-[210px]">
-                          codigix.services/{service.id}
-                      </div>
-                      <div className="w-8"></div>
+              {/* Modern SaaS Window Frame */}
+              <motion.div
+                initial={{ opacity: 0, x: isEven ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                className="w-full rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 bg-white dark:bg-[#060318] shadow-md dark:shadow-2xl group transition-all duration-300"
+              >
+                {/* Window Controls Top Header */}
+                <div className="bg-slate-100/90 dark:bg-[#0d0728] px-4 py-2.5 border-b border-slate-200/80 dark:border-gray-800 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
                   </div>
-
-                  {/* Dual Theme Image Canvas */}
-                  <div className="relative w-full h-[220px] bg-slate-50 dark:bg-[#090422] flex items-center justify-center p-2.5 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/5 via-transparent to-pink-500/5 pointer-events-none z-10"></div>
-                      
-                      {/* Light Theme Genuine White Dashboard Image */}
-                      <img 
-                         src={service.imageLight} 
-                         alt={`${service.title} Light Showcase`} 
-                         className="block dark:hidden w-full h-full object-cover rounded-xl shadow-xs border border-slate-200/70 group-hover:scale-[1.02] transition-transform duration-500 relative z-10" 
-                       />
-
-                      {/* Dark Theme Showcase Image */}
-                      <img 
-                         src={service.imageDark} 
-                         alt={`${service.title} Dark Showcase`} 
-                         className="hidden dark:block w-full h-full object-cover rounded-xl filter contrast-125 brightness-110 group-hover:scale-[1.02] transition-transform duration-500 relative z-10" 
-                       />
+                  <div className="text-[10px] font-mono text-slate-500 dark:text-gray-400 tracking-wider bg-white/80 dark:bg-black/40 px-3 py-0.5 rounded-md border border-slate-200/60 dark:border-gray-800 truncate max-w-[210px]">
+                    codigix.services/{service.id}
                   </div>
-               </motion.div>
+                  <div className="w-8"></div>
+                </div>
 
-               {/* Interactive Live System Simulator Box */}
-               <div className="w-full">
-                  {renderServiceSimulator(service.id)}
-               </div>
+                {/* Dual Theme Image Canvas */}
+                <div className="relative w-full h-[220px] bg-slate-50 dark:bg-[#090422] flex items-center justify-center p-2.5 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/5 via-transparent to-pink-500/5 pointer-events-none z-10"></div>
+
+                  {/* Light Theme Genuine White Dashboard Image */}
+                  <img
+                    src={service.imageLight}
+                    alt={`${service.title} Light Showcase`}
+                    className="block dark:hidden w-full h-full object-cover rounded-xl shadow-xs border border-slate-200/70 group-hover:scale-[1.02] transition-transform duration-500 relative z-10"
+                  />
+
+                  {/* Dark Theme Showcase Image */}
+                  <img
+                    src={service.imageDark}
+                    alt={`${service.title} Dark Showcase`}
+                    className="hidden dark:block w-full h-full object-cover rounded-xl filter contrast-125 brightness-110 group-hover:scale-[1.02] transition-transform duration-500 relative z-10"
+                  />
+                </div>
+              </motion.div>
+
+              {/* Interactive Live System Simulator Box */}
+              <div className="w-full">
+                {renderServiceSimulator(service.id)}
+              </div>
             </div>
 
             {/* Content & Agenda Text Side */}
             <div className={`lg:w-1/2 w-full order-1 ${isEven ? 'lg:order-2' : 'lg:order-1'} text-left flex flex-col justify-between`}>
-               <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-3xl font-extrabold text-slate-300 dark:text-gray-700">{service.num}</span>
-                    <div className={`p-2.5 rounded-xl ${service.bg} ${service.color} border border-purple-500/20`}>
-                       <service.icon size={20} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{service.title}</h3>
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl font-extrabold text-slate-300 dark:text-gray-700">{service.num}</span>
+                  <div className={`p-2.5 rounded-xl ${service.bg} ${service.color} border border-purple-500/20`}>
+                    <service.icon size={20} />
                   </div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{service.title}</h3>
+                </div>
 
-                  {/* Strategic Agenda Banner */}
-                  <div className="mb-4 p-3 bg-purple-50/80 dark:bg-purple-950/40 border border-purple-200/80 dark:border-purple-800/40 rounded-xl">
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple-750 dark:text-purple-300 block mb-1">
-                      🎯 Strategic Agenda & Target Outcome:
-                    </span>
-                    <p className="text-[11.5px] font-medium text-slate-800 dark:text-gray-200 leading-snug">
-                      {service.agenda}
-                    </p>
-                  </div>
-                  
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed mb-6 font-normal">
-                    {service.desc}
+                {/* Strategic Agenda Banner */}
+                <div className="mb-4 p-3 bg-purple-50/80 dark:bg-purple-950/40 border border-purple-200/80 dark:border-purple-800/40 rounded-xl">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple-750 dark:text-purple-300 block mb-1">
+                    🎯 Strategic Agenda & Target Outcome:
+                  </span>
+                  <p className="text-[11.5px] font-medium text-slate-800 dark:text-gray-200 leading-snug">
+                    {service.agenda}
                   </p>
+                </div>
 
-                  {/* 6 Key Functional Capabilities Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
-                     {service.features.map((feat, idx) => (
-                       <div key={idx} className="flex items-start gap-2 bg-white dark:bg-[#050117] p-2.5 border border-slate-200 dark:border-gray-800/80 rounded-xl hover:border-purple-500/30 transition-colors shadow-xs">
-                         <CheckCircle2 size={14} className="text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" />
-                         <span className="text-xs text-slate-700 dark:text-gray-300 font-semibold leading-tight">{feat}</span>
-                       </div>
-                     ))}
-                  </div>
-               </div>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed mb-6 font-normal">
+                  {service.desc}
+                </p>
 
-               <div className="pt-2">
-                 <button className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-xs font-bold rounded-xl shadow-md hover:shadow-lg transition-all flex items-center gap-2">
-                   Explore {service.title} Capabilities & Pricing →
-                 </button>
-               </div>
+                {/* 6 Key Functional Capabilities Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
+                  {service.features.map((feat, idx) => (
+                    <div key={idx} className="flex items-start gap-2 bg-white dark:bg-[#050117] p-2.5 border border-slate-200 dark:border-gray-800/80 rounded-xl hover:border-purple-500/30 transition-colors shadow-xs">
+                      <CheckCircle2 size={14} className="text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" />
+                      <span className="text-xs text-slate-700 dark:text-gray-300 font-semibold leading-tight">{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <Link to="/contact" className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-xs font-bold rounded-xl shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2">
+                  Explore {service.title} Capabilities & Pricing →
+                </Link>
+              </div>
             </div>
 
           </div>

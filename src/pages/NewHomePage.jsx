@@ -123,7 +123,7 @@ const NewHomePage = () => {
         schemaData={homeSchemas}
       />
 
-      <div className="new-home-wrapper relative min-h-screen">
+      <div className="home-wrapper relative min-h-screen">
         {/* Custom Cursor Glow (Desktop Only) */}
         {cursorVisible && (
           <div

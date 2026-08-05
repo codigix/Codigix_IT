@@ -72,9 +72,9 @@ const NewBlogPage = () => {
 
   const filteredPosts = combinedPosts.filter(post => {
     const categoryMatch = selectedCategory === 'All' || post.category === selectedCategory;
-    const searchMatch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        post.author.toLowerCase().includes(searchQuery.toLowerCase());
+    const searchMatch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.author.toLowerCase().includes(searchQuery.toLowerCase());
     return categoryMatch && searchMatch;
   });
 
@@ -85,14 +85,14 @@ const NewBlogPage = () => {
       </Helmet>
 
       <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white transition-colors duration-300">
-        
+
         {/* Navigation */}
         <NewHomeNav />
 
         {/* Blog Banner Hero */}
         <div className="pt-32 pb-16 border-b border-slate-200 dark:border-gray-800/40 relative overflow-hidden bg-slate-50/50 dark:bg-black/10">
           <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/5 via-transparent to-pink-500/5 pointer-events-none" />
-          
+
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -125,18 +125,17 @@ const NewBlogPage = () => {
         {/* Search & Category Filter Controls */}
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col md:flex-row gap-6 justify-between items-center border-b border-slate-200/60 dark:border-gray-800/40 pb-8 mb-10">
-            
+
             {/* Category Pills */}
             <div className="flex flex-wrap gap-2 justify-center md:justify-start">
               {blogCategories.map((cat, i) => (
                 <button
                   key={i}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
-                    selectedCategory === cat
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 border-purple-500 text-white shadow-md scale-105'
-                    : 'bg-white dark:bg-[#07041c] border-slate-200 dark:border-gray-800 text-slate-700 dark:text-gray-400 hover:border-purple-400 dark:hover:border-gray-600 hover:text-purple-600 dark:hover:text-gray-200'
-                  }`}
+                  className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all ${selectedCategory === cat
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 border-purple-500 text-white shadow-md scale-105'
+                      : 'bg-white dark:bg-[#07041c] border-slate-200 dark:border-gray-800 text-slate-700 dark:text-gray-400 hover:border-purple-400 dark:hover:border-gray-600 hover:text-purple-600 dark:hover:text-gray-200'
+                    }`}
                 >
                   {cat}
                 </button>
@@ -158,7 +157,7 @@ const NewBlogPage = () => {
           </div>
 
           {/* Cards Grid */}
-          <motion.div 
+          <motion.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[300px]"
           >
@@ -181,7 +180,7 @@ const NewBlogPage = () => {
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
                     />
-                    
+
                     {/* Category Badge */}
                     <div className="absolute top-4 left-4 z-20">
                       <span className="text-[10px] font-extrabold uppercase bg-purple-600 text-white px-3 py-1 rounded-full shadow-md">
@@ -212,14 +211,14 @@ const NewBlogPage = () => {
                       <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors mb-3">
                         {post.title}
                       </h3>
-                      
+
                       <p className="text-xs text-slate-600 dark:text-gray-400 leading-relaxed font-normal mb-6">
                         {post.excerpt}
                       </p>
                     </div>
 
                     <div className="pt-2 border-t border-slate-100 dark:border-gray-800/80">
-                      <a 
+                      <a
                         href={`/blog/${post.id}`}
                         className="inline-flex items-center gap-1 text-[11.5px] font-bold text-purple-700 dark:text-purple-300 group-hover:gap-2 transition-all"
                       >

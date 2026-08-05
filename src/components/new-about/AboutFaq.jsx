@@ -38,7 +38,7 @@ const AboutFaq = () => {
   };
 
   return (
-    <section className="py-12 text-left" aria-labelledby="about-faq-heading">
+    <section id="about-faq" className="py-12 text-left scroll-mt-24" aria-labelledby="about-faq-heading">
       <div className="bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-xl relative overflow-hidden">
         
         {/* Header */}

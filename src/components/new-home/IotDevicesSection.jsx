@@ -38,13 +38,13 @@ const IotDevicesSection = () => {
     <section className="py-24 bg-gradient-to-b from-purple-50/30 via-slate-50 to-white dark:from-[#0d0b21] dark:via-[#0d0b21] dark:to-[#0d0b21] relative transition-colors duration-300">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-          
+
           {/* Left Side: Device Grid */}
           <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 order-2 lg:order-1">
             {devices.map((device, index) => {
               const isSelected = device.name === selectedDevice;
               return (
-                <motion.div 
+                <motion.div
                   key={index}
                   onClick={() => setSelectedDevice(device.name)}
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -52,11 +52,10 @@ const IotDevicesSection = () => {
                   whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ delay: index * 0.03, duration: 0.3 }}
                   viewport={{ once: true }}
-                  className={`flex flex-col items-center justify-center p-3 lg:p-4 bg-white dark:bg-[#090624]/95 border rounded-2xl transition-all duration-300 group cursor-pointer shadow-sm aspect-[4/5] w-full relative overflow-hidden ${
-                    isSelected 
-                      ? 'border-blue-500 bg-blue-50/90 dark:bg-[#110c38] shadow-[0_8px_25px_rgba(59,130,246,0.2)]' 
+                  className={`flex flex-col items-center justify-center p-3 lg:p-4 bg-white dark:bg-[#090624]/95 border rounded-2xl transition-all duration-300 group cursor-pointer shadow-sm aspect-[4/5] w-full relative overflow-hidden ${isSelected
+                      ? 'border-blue-500 bg-blue-50/90 dark:bg-[#110c38] shadow-[0_8px_25px_rgba(59,130,246,0.2)]'
                       : 'border-slate-200 dark:border-gray-800/80 hover:border-blue-400 hover:bg-blue-50/30 dark:hover:bg-[#110c38]'
-                  }`}
+                    }`}
                 >
                   {/* Pulsing LED Active status */}
                   <div className="absolute top-2.5 right-2.5 flex items-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
@@ -66,10 +65,10 @@ const IotDevicesSection = () => {
 
                   <div className="w-full h-16 lg:h-20 mb-3 flex items-center justify-center relative">
                     <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-xl group-hover:bg-blue-500/20 transition-colors"></div>
-                    <img 
-                      src={device.image} 
-                      alt={`Codigix Industrial IoT ${device.name} Integration`} 
-                      className="max-w-full max-h-full object-contain filter drop-shadow-[0_0_10px_rgba(59,130,246,0.25)] transition-transform duration-300 group-hover:scale-110 relative z-10" 
+                    <img
+                      src={device.image}
+                      alt={`Codigix Industrial IoT ${device.name} Integration`}
+                      className="max-w-full max-h-full object-contain filter drop-shadow-[0_0_10px_rgba(59,130,246,0.25)] transition-transform duration-300 group-hover:scale-110 relative z-10"
                       loading="lazy"
                     />
                   </div>
@@ -88,10 +87,10 @@ const IotDevicesSection = () => {
             <p className="text-slate-650 dark:text-gray-400 text-sm md:text-base leading-relaxed">
               We integrate industrial IoT devices and sensors to collect real-time data and turn it into actionable insights.
             </p>
-            
+
             <div>
               <Link to="/iot-solutions" aria-label="Explore Industrial IoT Solutions by Codigix Infotech">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                   className="px-6 py-3 bg-[#e11d48] hover:bg-[#be123c] text-white rounded-lg font-medium inline-flex items-center justify-center gap-2 transition-colors mt-2 text-sm shadow-[0_0_15px_rgba(225,29,72,0.3)] cursor-pointer"
@@ -109,12 +108,12 @@ const IotDevicesSection = () => {
                 <span className="text-gray-400 font-bold uppercase tracking-wider">telemetry_rx.bin</span>
                 <span className="nh-led-active bg-blue-500 shadow-[0_0_8px_#3b82f6]"></span>
               </div>
-              
+
               <div>
                 <div className="text-gray-500">// Target device</div>
                 <div className="text-xs font-bold text-white uppercase truncate">{selectedDevice}</div>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-2 border-t border-b border-purple-900/40 py-2">
                 <div>
                   <div className="text-gray-500">Metric</div>

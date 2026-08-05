@@ -84,7 +84,7 @@ const AboutFutureRoadmap = () => {
   const [activePhase, setActivePhase] = useState(roadmapPhases[0]);
 
   return (
-    <div className="py-16 border-t border-slate-200 dark:border-gray-800/50 relative overflow-hidden text-left">
+    <div id="about-roadmap" className="py-16 border-t border-slate-200 dark:border-gray-800/50 relative overflow-hidden text-left scroll-mt-24">
       
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>

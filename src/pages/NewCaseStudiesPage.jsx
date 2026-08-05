@@ -32,7 +32,7 @@ const NewCaseStudiesPage = () => {
 
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
   const canonicalUrl = `${siteUrl}/case-studies${activeCategory !== 'All' ? `?tab=${activeCategory}` : ''}`;
-  
+
   const pageTitle = activeCategory === 'All'
     ? "Client Case Studies & Engineering Success Stories | Codigix Infotech"
     : `${activeCategory} Case Studies & Client Success Stories | Codigix Infotech`;

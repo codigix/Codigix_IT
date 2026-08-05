@@ -19,7 +19,7 @@ import '../components/new-about/about.css';
 const NewAboutPage = () => {
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
   const canonicalUrl = `${siteUrl}/about`;
-  
+
   const pageTitle = "About Codigix Infotech | AI Solutions, IoT & Software Engineering Company";
   const metaDescription = "Discover Codigix Infotech—a global IT services & digital engineering leader delivering AI solutions, Industrial IoT automation, custom ERP systems, and enterprise software engineering.";
 

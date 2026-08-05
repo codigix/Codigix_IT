@@ -12,7 +12,7 @@ const values = [
 
 const AboutMissionVision = () => {
   return (
-    <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-8 mb-8 text-left">
+    <div id="about-mission" className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-8 mb-8 text-left scroll-mt-24">
       <div className="text-center mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Our Values, Mission & Vision</h2>
         <div className="w-12 h-1 bg-purple-500 mx-auto mt-4 rounded-full"></div>

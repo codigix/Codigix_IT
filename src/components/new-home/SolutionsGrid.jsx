@@ -176,13 +176,13 @@ const SolutionsGrid = () => {
 
                 {/* Theme-Aware Showcase Container */}
                 <div className="w-full h-48 mb-6 rounded-xl overflow-hidden relative shadow-inner">
-                  
+
                   {/* Light Theme Visual Frame */}
                   <div className="block dark:hidden w-full h-full bg-slate-50/80 border border-slate-200/80 relative">
-                    <img 
-                      src={sol.imageLight} 
-                      alt={`Codigix ${sol.title} - Enterprise Engineering Solutions`} 
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 relative z-10" 
+                    <img
+                      src={sol.imageLight}
+                      alt={`Codigix ${sol.title} - Enterprise Engineering Solutions`}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 relative z-10"
                       loading="lazy"
                     />
                   </div>
@@ -190,14 +190,14 @@ const SolutionsGrid = () => {
                   {/* Dark Theme Visual Frame */}
                   <div className="hidden dark:block w-full h-full bg-gradient-to-br from-[#0c0828] to-[#160d3d] border border-purple-900/30 relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 to-purple-500/10 pointer-events-none" />
-                    <img 
-                      src={sol.imageDark} 
-                      alt={`Codigix ${sol.title} - Industrial & Software Platform`} 
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 relative z-10" 
+                    <img
+                      src={sol.imageDark}
+                      alt={`Codigix ${sol.title} - Industrial & Software Platform`}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 relative z-10"
                       loading="lazy"
                     />
                   </div>
-                  
+
                 </div>
 
                 <h3 className="text-lg xl:text-xl font-extrabold text-slate-900 dark:text-white mb-4">{sol.title}</h3>
@@ -214,8 +214,8 @@ const SolutionsGrid = () => {
                 </ul>
 
                 <div className="mt-auto">
-                  <Link 
-                    to={getSolutionPath(sol.title)} 
+                  <Link
+                    to={getSolutionPath(sol.title)}
                     aria-label={`Explore details for Codigix ${sol.title}`}
                     className="inline-flex items-center text-sm font-bold text-slate-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors"
                   >

@@ -33,7 +33,7 @@ const partners = [
 
 const AboutPartnersCertifications = () => {
   return (
-    <div className="flex flex-col lg:flex-row gap-6 items-stretch mb-12 text-left">
+    <div id="about-partners" className="flex flex-col lg:flex-row gap-6 items-stretch mb-12 text-left scroll-mt-24">
       
       {/* Left: Certifications (With Clean Semi-Transparent Dark Overlay) */}
       <div className="lg:w-1/3 bg-slate-50 dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm dark:shadow-xl flex flex-col relative overflow-hidden group">

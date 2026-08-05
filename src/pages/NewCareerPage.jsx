@@ -41,7 +41,7 @@ const NewCareerPage = () => {
 
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
   const canonicalUrl = `${siteUrl}/career${activeDepartment !== 'All Departments' ? `?tab=${activeDepartment}` : ''}`;
-  
+
   const pageTitle = activeDepartment === 'All Departments'
     ? "Careers & Job Openings | Join Codigix Infotech Engineering Team"
     : `${activeDepartment} Jobs & Careers | Codigix Infotech`;

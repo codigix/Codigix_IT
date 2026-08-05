@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, Cpu, ShieldCheck, Zap, TrendingUp } from 'lucide-react';
+import { ChevronRight, Cpu, ShieldCheck, Zap, TrendingUp, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const DigitalPipelineSimulator = () => {
@@ -81,10 +81,30 @@ const OtherServicesHero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed mb-8 max-w-lg font-normal"
+            className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed mb-6 max-w-lg font-normal"
           >
             From modern web platforms to cross-platform mobile apps, cloud infrastructure, UI/UX design systems, and DevOps pipelines – we deliver end-to-end digital solutions tailored for your business growth.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="flex flex-wrap items-center gap-4 mb-8"
+          >
+            <Link
+              to="/contact"
+              className="px-6 py-3 bg-gradient-to-r from-[#EE001C] to-[#7e22ce] hover:from-[#d30018] hover:to-[#6b1fb0] text-white text-[12px] font-medium rounded-md shadow-[0_0_20px_rgba(238,0,28,0.3)] transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Explore Digital Services</span> <ArrowRight size={14} />
+            </Link>
+            <Link
+              to="/contact"
+              className="px-6 py-3 bg-transparent border border-slate-350 dark:border-gray-700 hover:border-purple-500 text-slate-800 dark:text-white text-[12px] font-medium rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-purple-500/10"
+            >
+              <span>Request Free Proposal</span> <Sparkles size={14} />
+            </Link>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -122,19 +142,19 @@ const OtherServicesHero = () => {
               <div className="w-8"></div>
             </div>
             <div className="p-2 relative h-[170px] overflow-hidden bg-slate-50 dark:bg-[#090422] flex items-center justify-center">
-              <img 
-                src="/assets/images/service/custom_software_dashboard.webp" 
-                alt="Digital Engineering Showcase Light" 
-                className="block dark:hidden w-full h-full object-cover rounded-xl shadow-xs" 
+              <img
+                src="/assets/images/service/custom_software_dashboard.webp"
+                alt="Digital Engineering Showcase Light"
+                className="block dark:hidden w-full h-full object-cover rounded-xl shadow-xs"
               />
-              <img 
-                src="/assets/images/new-iot-solutions/software_wireframe_dark.webp" 
-                alt="Digital Engineering Showcase Dark" 
-                className="hidden dark:block w-full h-full object-contain filter contrast-125 brightness-110" 
+              <img
+                src="/assets/images/new-iot-solutions/software_wireframe_dark.webp"
+                alt="Digital Engineering Showcase Dark"
+                className="hidden dark:block w-full h-full object-contain filter contrast-125 brightness-110"
               />
             </div>
           </div>
-          
+
           <DigitalPipelineSimulator />
         </div>
 

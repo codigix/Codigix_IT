@@ -35,7 +35,7 @@ const team = [
 
 const AboutLeadership = () => {
   return (
-    <div className="py-12 relative mb-12">
+    <div id="about-leadership" className="py-12 relative mb-12 scroll-mt-24">
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-center justify-between mb-10 gap-4 text-left">

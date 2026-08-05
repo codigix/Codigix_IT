@@ -1,5 +1,5 @@
 import React from 'react';
-import { Factory, HeartPulse, ShoppingCart, Landmark, Home, ArrowRight } from 'lucide-react';
+import { Factory, HeartPulse, ShoppingCart, Landmark, Home, ArrowRight, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const industryCards = [
@@ -40,7 +40,7 @@ const industryCards = [
   }
 ];
 
-const IndustriesGrid = ({ setActiveIndustry }) => {
+const IndustriesGrid = ({ activeIndustry = 'Manufacturing', setActiveIndustry }) => {
   return (
     <div className="py-12 text-left">
       <div className="text-center mb-10">
@@ -49,57 +49,78 @@ const IndustriesGrid = ({ setActiveIndustry }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {industryCards.map((card, idx) => (
-          <motion.div 
-            key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.1 }}
-            viewport={{ once: true }}
-            onClick={() => {
-              setActiveIndustry(card.id);
-              // Smooth scroll to the highlight section
-              const element = document.getElementById('industry-highlight');
-              if(element) {
-                const y = element.getBoundingClientRect().top + window.pageYOffset - 100;
-                window.scrollTo({ top: y, behavior: 'smooth' });
-              }
-            }}
-            className="group relative h-[360px] bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/60 rounded-xl overflow-hidden cursor-pointer hover:border-purple-500/50 transition-all duration-300 flex flex-col shadow-sm dark:shadow-none"
-          >
-            {/* Spotlight background hover */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.06)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+        {industryCards.map((card, idx) => {
+          const isSelected = activeIndustry === card.id || 
+            (card.id === 'Retail' && activeIndustry.includes('Retail')) ||
+            (card.id === 'Finance' && activeIndustry.includes('Finance'));
 
-            {/* LED Active Beacon */}
-            <div className="absolute top-3 right-3 flex items-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity z-20">
-              <span className="nh-led-active bg-purple-500 shadow-[0_0_8px_#a855f7]"></span>
-            </div>
+          return (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              onClick={() => {
+                if (setActiveIndustry) {
+                  setActiveIndustry(card.id);
+                }
+                const element = document.getElementById('industry-highlight');
+                if (element) {
+                  const y = element.getBoundingClientRect().top + window.pageYOffset - 100;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+              }}
+              className={`group relative h-[360px] bg-white dark:bg-[#050112] border rounded-xl overflow-hidden cursor-pointer transition-all duration-300 flex flex-col shadow-sm dark:shadow-none ${
+                isSelected 
+                  ? 'border-purple-500 ring-2 ring-purple-500/50 shadow-lg shadow-purple-500/10 dark:shadow-purple-500/20' 
+                  : 'border-slate-200 dark:border-gray-800/60 hover:border-purple-500/50'
+              }`}
+            >
+              {/* Spotlight background hover */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.08)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-            {/* Image Area */}
-            <div className="h-[45%] relative overflow-hidden">
-               <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#050112] to-transparent z-10"></div>
-               <img 
-                 src={card.image} 
-                 alt={card.title} 
-                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 opacity-60 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100"
-               />
-            </div>
-            
-            {/* Content Area */}
-            <div className="flex-1 p-5 flex flex-col z-20 relative -mt-4 bg-white dark:bg-[#050112]">
-               <div className="flex items-center gap-2 mb-3">
-                 <card.icon size={16} className="text-purple-600 dark:text-purple-400 group-hover:text-purple-500" />
-                 <h3 className="text-[13px] font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-200 transition-colors">{card.title}</h3>
-               </div>
-               <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-relaxed flex-1">
-                 {card.desc}
-               </p>
-               <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 text-[11px] font-medium mt-4 group-hover:text-purple-500">
-                 Explore Solutions <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform" />
-               </div>
-            </div>
-          </motion.div>
-        ))}
+              {/* Selection Badge / Beacon */}
+              <div className="absolute top-3 right-3 flex items-center gap-1 z-20">
+                {isSelected ? (
+                  <span className="px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider bg-purple-600 text-white rounded-full flex items-center gap-1 shadow-xs">
+                    <Check size={10} /> Active
+                  </span>
+                ) : (
+                  <span className="nh-led-active bg-purple-500/60 group-hover:bg-purple-500 shadow-[0_0_8px_#a855f7]"></span>
+                )}
+              </div>
+
+              {/* Image Area */}
+              <div className="h-[45%] relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#050112] to-transparent z-10"></div>
+                <img 
+                  src={card.image} 
+                  alt={card.title} 
+                  className={`w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ${
+                    isSelected ? 'opacity-100 mix-blend-normal' : 'opacity-60 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100'
+                  }`}
+                />
+              </div>
+              
+              {/* Content Area */}
+              <div className="flex-1 p-5 flex flex-col z-20 relative -mt-4 bg-white dark:bg-[#050112]">
+                <div className="flex items-center gap-2 mb-3">
+                  <card.icon size={16} className={isSelected ? "text-purple-600 dark:text-purple-400 font-bold" : "text-purple-600 dark:text-purple-400 group-hover:text-purple-500"} />
+                  <h3 className={`text-[13px] font-bold transition-colors ${isSelected ? 'text-purple-600 dark:text-purple-300' : 'text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-200'}`}>
+                    {card.title}
+                  </h3>
+                </div>
+                <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-relaxed flex-1">
+                  {card.desc}
+                </p>
+                <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 text-[11px] font-medium mt-4 group-hover:text-purple-500">
+                  {isSelected ? 'Viewing Solution' : 'Explore Solutions'} <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );

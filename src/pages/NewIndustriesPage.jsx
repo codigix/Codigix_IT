@@ -10,6 +10,7 @@ import IndustriesApproach from '../components/new-industries/IndustriesApproach'
 import IndustriesLogos from '../components/new-industries/IndustriesLogos';
 import IndustriesBottomCta from '../components/new-industries/IndustriesBottomCta';
 import IndustriesFaqSection, { industriesFaqData } from '../components/new-industries/IndustriesFaqSection';
+import CaseStudiesTestimonials from '../components/new-case-studies/CaseStudiesTestimonials';
 import SEO from '../components/SEO';
 import '../components/new-industries/industries.css';
 
@@ -139,10 +140,11 @@ const NewIndustriesPage = () => {
             {/* Left Main Content */}
             <main id="main-content" className="flex-1 min-w-0 space-y-12">
               <IndustriesHero activeIndustry={activeIndustry} />
-              <IndustriesGrid setActiveIndustry={handleIndustryChange} />
+              <IndustriesGrid activeIndustry={activeIndustry} setActiveIndustry={handleIndustryChange} />
               <IndustryHighlight activeIndustry={activeIndustry} />
               <IndustriesApproach activeIndustry={activeIndustry} />
               <IndustriesLogos activeIndustry={activeIndustry} />
+              <CaseStudiesTestimonials />
               <IndustriesFaqSection />
               <IndustriesBottomCta activeIndustry={activeIndustry} />
             </main>

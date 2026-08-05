@@ -47,7 +47,7 @@ function AppRoutes() {
     return (
       <Routes>
         <Route path="/admin/login" element={<AdminLogin />} />
-        
+
         {/* Nested Admin Routes */}
         <Route element={<AdminLayout />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
@@ -70,61 +70,61 @@ function AppRoutes() {
       {/* Primary Clean SEO Routes */}
       <Route path="/" element={<NewHomePage />} />
       <Route path="/home" element={<NewHomePage />} />
-      <Route path="/new-home" element={<NewHomePage />} />
-      
+      <Route path="/home" element={<NewHomePage />} />
+
       {/* AI Solutions */}
       <Route path="/ai-solutions" element={<NewAiSolutionsPage />} />
-      <Route path="/new-ai-solutions" element={<NewAiSolutionsPage />} />
-      
+      <Route path="/ai-solutions" element={<NewAiSolutionsPage />} />
+
       {/* IoT Solutions */}
       <Route path="/iot-solutions" element={<NewIotSolutionsPage />} />
-      <Route path="/new-iot-solutions" element={<NewIotSolutionsPage />} />
-      
+      <Route path="/iot-solutions" element={<NewIotSolutionsPage />} />
+
       {/* ERP Solutions */}
       <Route path="/erp-solutions" element={<NewErpSolutionsPage />} />
-      <Route path="/new-erp-solutions" element={<NewErpSolutionsPage />} />
-      
+      <Route path="/erp-solutions" element={<NewErpSolutionsPage />} />
+
       {/* CRM Solutions */}
       <Route path="/crm-solutions" element={<NewCrmSolutionsPage />} />
-      <Route path="/new-crm-solutions" element={<NewCrmSolutionsPage />} />
-      
+      <Route path="/crm-solutions" element={<NewCrmSolutionsPage />} />
+
       {/* Services */}
       <Route path="/services" element={<NewOtherServicesPage />} />
       <Route path="/other-services" element={<NewOtherServicesPage />} />
-      <Route path="/new-other-services" element={<NewOtherServicesPage />} />
-      
+      <Route path="/other-services" element={<NewOtherServicesPage />} />
+
       {/* Industries */}
       <Route path="/industries" element={<NewIndustriesPage />} />
-      <Route path="/new-industries" element={<NewIndustriesPage />} />
-      
+      <Route path="/industries" element={<NewIndustriesPage />} />
+
       {/* Case Studies / Projects */}
       <Route path="/case-studies" element={<NewCaseStudiesPage />} />
       <Route path="/projects" element={<NewCaseStudiesPage />} />
-      <Route path="/new-case-studies" element={<NewCaseStudiesPage />} />
+      <Route path="/case-studies" element={<NewCaseStudiesPage />} />
       <Route path="/case-studies/:id" element={<NewCaseStudyDetailsPage />} />
-      <Route path="/new-case-studies/:id" element={<NewCaseStudyDetailsPage />} />
-      
+      <Route path="/case-studies/:id" element={<NewCaseStudyDetailsPage />} />
+
       {/* Career */}
       <Route path="/career" element={<NewCareerPage />} />
       <Route path="/careers" element={<NewCareerPage />} />
-      <Route path="/new-career" element={<NewCareerPage />} />
-      
+      <Route path="/career" element={<NewCareerPage />} />
+
       {/* About */}
       <Route path="/about" element={<NewAboutPage />} />
-      <Route path="/new-about" element={<NewAboutPage />} />
-      
+      <Route path="/about" element={<NewAboutPage />} />
+
       {/* Contact */}
       <Route path="/contact" element={<NewContactPage />} />
-      <Route path="/new-contact" element={<NewContactPage />} />
-      
+      <Route path="/contact" element={<NewContactPage />} />
+
       {/* Blogs */}
       <Route path="/blog" element={<NewBlogPage />} />
       <Route path="/blogs" element={<NewBlogPage />} />
-      <Route path="/new-blog" element={<NewBlogPage />} />
+      <Route path="/blog" element={<NewBlogPage />} />
       <Route path="/blog/:id" element={<NewBlogDetailsPage />} />
       <Route path="/blogs/:id" element={<NewBlogDetailsPage />} />
-      <Route path="/new-blog/:id" element={<NewBlogDetailsPage />} />
-      
+      <Route path="/blog/:id" element={<NewBlogDetailsPage />} />
+
       {/* Catch-all 404 */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

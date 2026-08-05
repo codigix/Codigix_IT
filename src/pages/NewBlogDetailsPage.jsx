@@ -89,7 +89,7 @@ const NewBlogDetailsPage = () => {
   useEffect(() => {
     const loadPost = async () => {
       setLoading(true);
-      
+
       // 1. Check detailed content or master blog posts data
       const masterPost = detailedBlogContent[id] || getBlogById(id);
       if (masterPost) {
@@ -176,16 +176,16 @@ const NewBlogDetailsPage = () => {
       </Helmet>
 
       <div className="bg-white dark:bg-[#030014] min-h-screen font-sans text-slate-900 dark:text-white transition-colors duration-300">
-        
+
         {/* Navigation */}
         <NewHomeNav />
 
         {/* Article Container */}
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-28 lg:pt-32 pb-20">
-          
+
           {/* Back button & Breadcrumb */}
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-            <Link 
+            <Link
               to="/blog"
               className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
             >
@@ -202,10 +202,10 @@ const NewBlogDetailsPage = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row gap-12">
-            
+
             {/* Left/Center Main Article Area */}
             <div className="lg:w-[70%] text-left">
-              
+
               {/* Immersive Article Header */}
               <div className="mb-8">
                 <span className="text-[10px] font-extrabold uppercase bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/40 px-3.5 py-1 rounded-full mb-4 inline-block">
@@ -225,7 +225,7 @@ const NewBlogDetailsPage = () => {
                     <h4 className="text-sm font-bold text-slate-900 dark:text-white">{post.author}</h4>
                     <p className="text-[11px] text-slate-500 dark:text-gray-400">{post.role}</p>
                   </div>
-                  
+
                   <div className="ml-auto flex items-center gap-4 text-xs font-semibold text-slate-500 dark:text-gray-400">
                     <span className="flex items-center gap-1">
                       <Calendar size={13} className="text-purple-600 dark:text-purple-400" />
@@ -241,10 +241,10 @@ const NewBlogDetailsPage = () => {
 
               {/* Large Immersive Banner Image */}
               <div className="w-full h-[380px] sm:h-[420px] rounded-2xl overflow-hidden mb-10 border border-slate-200 dark:border-gray-800 shadow-lg bg-slate-100 dark:bg-[#0c0828]">
-                <img 
-                  src={post.image} 
-                  alt={post.title} 
-                  className="w-full h-full object-cover" 
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = '/assets/images/blog/blog_web_engineering.webp';
@@ -255,7 +255,7 @@ const NewBlogDetailsPage = () => {
               {/* Dynamic Article Body */}
               <article className="prose prose-slate dark:prose-invert max-w-none mb-14 text-left">
                 {typeof post.body === 'string' ? (
-                  <div 
+                  <div
                     dangerouslySetInnerHTML={{ __html: post.body }}
                     className="text-slate-700 dark:text-gray-300 text-[15px] leading-relaxed space-y-4 font-normal"
                   />
@@ -266,13 +266,12 @@ const NewBlogDetailsPage = () => {
 
               {/* Article Interaction Row */}
               <div className="flex items-center gap-4 sm:gap-6 border-t border-slate-200 dark:border-gray-800/80 pt-6">
-                <button 
+                <button
                   onClick={handleLike}
-                  className={`flex items-center gap-2 text-xs font-bold transition-all px-4 py-2.5 rounded-xl border ${
-                    hasLiked 
-                    ? 'bg-rose-50 dark:bg-rose-950/30 border-rose-300 dark:border-rose-900 text-rose-600'
-                    : 'bg-slate-50 dark:bg-[#07041c] border-slate-200 dark:border-gray-800 text-slate-700 dark:text-gray-300 hover:border-rose-400 hover:text-rose-600'
-                  }`}
+                  className={`flex items-center gap-2 text-xs font-bold transition-all px-4 py-2.5 rounded-xl border ${hasLiked
+                      ? 'bg-rose-50 dark:bg-rose-950/30 border-rose-300 dark:border-rose-900 text-rose-600'
+                      : 'bg-slate-50 dark:bg-[#07041c] border-slate-200 dark:border-gray-800 text-slate-700 dark:text-gray-300 hover:border-rose-400 hover:text-rose-600'
+                    }`}
                 >
                   <Heart size={14} className={hasLiked ? 'fill-rose-500 text-rose-500' : ''} />
                   <span>{likes} Likes</span>
@@ -294,7 +293,7 @@ const NewBlogDetailsPage = () => {
             {/* Right Sticky Sidebar */}
             <div className="lg:w-[30%]">
               <div className="sticky top-28 space-y-8 text-left">
-                
+
                 {/* Recent Articles Widget */}
                 <div className="bg-slate-50/80 dark:bg-[#07041c] border border-slate-200 dark:border-purple-900/30 rounded-2xl p-5 shadow-sm">
                   <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-wider pb-2 border-b border-slate-200 dark:border-gray-800/80">
@@ -316,13 +315,13 @@ const NewBlogDetailsPage = () => {
                 {/* Newsletter Subscribe Card */}
                 <div className="bg-gradient-to-br from-purple-100/90 via-indigo-50 to-purple-50 dark:from-purple-950/40 dark:via-indigo-950/40 dark:to-[#07041c] border border-purple-200 dark:border-purple-900/40 rounded-2xl p-5 text-left relative overflow-hidden shadow-sm">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl pointer-events-none" />
-                  
+
                   <Bookmark className="text-purple-600 dark:text-purple-400 mb-3" size={24} />
                   <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">Subscribe to Tech Journal</h3>
                   <p className="text-[11px] text-slate-600 dark:text-gray-300 leading-relaxed mb-4">
                     Get weekly hardware, cloud, and engineering insights directly in your inbox. No spam.
                   </p>
-                  
+
                   <input
                     type="email"
                     placeholder="Enter email address..."

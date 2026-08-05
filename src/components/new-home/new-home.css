@@ -1,4 +1,4 @@
-/* new-home.css - Custom styles for the New Home Page */
+/* home.css - Custom styles for the New Home Page */
 
 /* Base Theme Variables */
 :root {
@@ -32,14 +32,14 @@
 }
 
 /* Global Reset for New Home */
-.new-home-wrapper {
+.home-wrapper {
   background-color: var(--nh-bg-dark);
   color: var(--nh-text-main);
   font-family: 'Plus Jakarta Sans', sans-serif;
   overflow-x: hidden;
 }
 
-.new-home-section {
+.home-section {
   padding: 100px 0;
   position: relative;
 }

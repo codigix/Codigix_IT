@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Cpu, Activity, ShieldCheck, Zap, Layers, ArrowUpRight } from 'lucide-react';
+import { Sparkles, Cpu, Activity, ShieldCheck, Zap, Layers, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { aiSolutionsData } from '../../data/aiSolutionsData';
 import './ai-solutions.css';
 
@@ -34,9 +34,8 @@ const ChatbotSimulator = () => {
       <div className="p-3.5 flex-1 overflow-y-auto space-y-2 select-none hide-scrollbar">
         {messages.map((msg, i) => (
           <div key={i} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`px-3 py-2 rounded-xl max-w-[85%] leading-relaxed ${
-              msg.sender === 'user' ? 'bg-gradient-to-r from-purple-600 to-rose-600 text-white rounded-tr-none shadow-sm' : 'bg-[#181145] text-gray-200 rounded-tl-none border border-purple-900/50'
-            }`}>
+            <div className={`px-3 py-2 rounded-xl max-w-[85%] leading-relaxed ${msg.sender === 'user' ? 'bg-gradient-to-r from-purple-600 to-rose-600 text-white rounded-tr-none shadow-sm' : 'bg-[#181145] text-gray-200 rounded-tl-none border border-purple-900/50'
+              }`}>
               {msg.text}
             </div>
           </div>
@@ -44,13 +43,13 @@ const ChatbotSimulator = () => {
         {typing && <div className="text-purple-300 italic pl-1 animate-pulse">Codigix LLM agent reasoning...</div>}
       </div>
       <div className="p-2.5 border-t border-purple-900/40 bg-[#130d3a] dark:bg-[#0b0724] flex gap-2 flex-wrap">
-        <button 
+        <button
           onClick={() => handleOption("Check order status #405", "Retrieving database details... Order #405 has been dispatched. ETA: 2h 15m.")}
           className="px-2.5 py-1.5 bg-purple-950/70 hover:bg-purple-900 text-[9px] text-purple-200 rounded-lg border border-purple-700/50 transition-colors font-medium flex items-center gap-1"
         >
           Check Order #405
         </button>
-        <button 
+        <button
           onClick={() => handleOption("System OEE metrics", "Live OEE calculation: Assembly line 1 = 92.4%, Line 2 = 91.8%. State: Optimal.")}
           className="px-2.5 py-1.5 bg-purple-950/70 hover:bg-purple-900 text-[9px] text-purple-200 rounded-lg border border-purple-700/50 transition-colors font-medium flex items-center gap-1"
         >
@@ -98,11 +97,10 @@ const VoiceAgentSimulator = () => {
       <div className="bg-[#130d3a] p-3 rounded-xl border border-purple-900/40 min-h-[48px] text-gray-200 leading-relaxed">
         {speech || '// Press "Trigger VoIP Agent Call" below to stream live audio payload.'}
       </div>
-      <button 
+      <button
         onClick={triggerCall}
-        className={`w-full py-2.5 rounded-xl font-bold text-center transition-all shadow-md ${
-          callActive ? 'bg-rose-600 hover:bg-rose-700 text-white' : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700'
-        }`}
+        className={`w-full py-2.5 rounded-xl font-bold text-center transition-all shadow-md ${callActive ? 'bg-rose-600 hover:bg-rose-700 text-white' : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700'
+          }`}
       >
         {callActive ? 'DISCONNECT CALL' : 'TRIGGER VOIP AGENT CALL'}
       </button>
@@ -172,7 +170,7 @@ const ComputerVisionSimulator = () => {
         <span className="text-rose-400 font-bold uppercase tracking-wider text-[11px]">VISION_CAM_FEED_1080P</span>
         <span className="text-gray-400">30fps</span>
       </div>
-      
+
       <div className="border border-purple-900/40 bg-[#060318] rounded-xl h-32 relative flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-between px-8">
           <div className={`w-14 h-14 border-2 rounded-lg flex flex-col justify-between p-1.5 transition-all ${frame === 0 ? 'border-rose-500 bg-rose-500/20' : 'border-purple-500/50 bg-purple-950/30'}`}>
@@ -184,7 +182,7 @@ const ComputerVisionSimulator = () => {
             {frame === 2 && <span className="text-[7px] text-rose-400 font-extrabold">DEFECT</span>}
           </div>
         </div>
-        
+
         <div className="absolute bottom-2 left-2 bg-black/80 px-2.5 py-1 rounded-md border border-purple-900/40 text-gray-200 text-[8px]">
           Status: {frame % 2 === 0 ? 'Defect Flagged' : 'Passed Inspection'}
         </div>
@@ -206,7 +204,7 @@ const PredictiveAnalyticsSimulator = () => {
         <span className="text-purple-300 font-bold uppercase tracking-wider text-[11px]">PREDICTIVE_ML_FORECAST</span>
         <span className="nh-led-active"></span>
       </div>
-      
+
       <div className="h-28 bg-[#060318] border border-purple-900/40 rounded-xl relative overflow-hidden flex items-end">
         <svg className="w-full h-full px-2" viewBox="0 0 200 80" preserveAspectRatio="none">
           <line x1="0" y1="20" x2="200" y2="20" stroke="rgba(139,92,246,0.15)" strokeWidth="0.5" strokeDasharray="2 2" />
@@ -266,7 +264,7 @@ const ApiIntegrationSimulator = () => {
 const DefaultAiVisualizer = ({ tab }) => {
   return (
     <div className="w-full max-w-md bg-gradient-to-br from-[#0c0828] via-[#090520] to-[#120738] border border-purple-500/40 rounded-2xl p-4 shadow-[0_20px_50px_rgba(139,92,246,0.25)] relative overflow-hidden flex flex-col justify-between text-left keep-dark min-h-[280px]">
-      
+
       {/* Glow Backdrop Spotlights */}
       <div className="absolute -top-12 -right-12 w-48 h-48 bg-purple-600/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-rose-600/20 rounded-full blur-3xl pointer-events-none" />
@@ -289,9 +287,9 @@ const DefaultAiVisualizer = ({ tab }) => {
 
       {/* Center Image Showcase Frame */}
       <div className="my-3 relative rounded-xl border border-purple-500/40 overflow-hidden shadow-lg group bg-[#040114]">
-        <img 
-          src="/assets/images/ai-page/ai_solutions_hero.webp" 
-          alt="Codigix AI Solutions" 
+        <img
+          src="/assets/images/ai-page/ai_solutions_hero.webp"
+          alt="Codigix AI Solutions"
           className="w-full h-40 object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
             e.target.onerror = null;
@@ -395,6 +393,22 @@ const AiHero = ({ activeTab }) => {
             <p className="text-slate-650 dark:text-gray-300 text-sm md:text-base max-w-lg leading-relaxed font-normal">
               {content.description}
             </p>
+
+            {/* Banner Buttons */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <Link
+                to="/contact"
+                className="px-6 py-3 bg-gradient-to-r from-[#EE001C] to-[#7e22ce] hover:from-[#d30018] hover:to-[#6b1fb0] text-white text-[12px] font-medium rounded-md shadow-[0_0_20px_rgba(238,0,28,0.3)] transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>Book AI Consultation</span> <ArrowRight size={14} />
+              </Link>
+              <Link
+                to="/contact"
+                className="px-6 py-3 bg-transparent border border-slate-350 dark:border-gray-700 hover:border-purple-500 text-slate-800 dark:text-white text-[12px] font-medium rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-purple-500/10"
+              >
+                <span>Request AI Demo</span> <Sparkles size={14} />
+              </Link>
+            </div>
 
             {/* Metrics Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-6 border-t border-purple-200/70 dark:border-gray-800/50 mt-4">

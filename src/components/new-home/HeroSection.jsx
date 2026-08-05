@@ -24,8 +24,8 @@ const HeroSection = () => {
 
       {/* Full Background Image (LCP Element optimized with fetchPriority="high") */}
       <div className="absolute inset-1 w-full h-full z-0 pointer-events-none opacity-10 dark:opacity-40 mix-blend-multiply dark:mix-blend-screen transition-all duration-300 overflow-hidden">
-        <img 
-          src="/assets/images/new-home/hero-bg.webp" 
+        <img
+          src="/assets/images/new-home/hero-bg.webp"
           alt="Codigix Infotech Enterprise Background"
           fetchPriority="high"
           decoding="sync"

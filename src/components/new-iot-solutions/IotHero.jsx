@@ -337,15 +337,6 @@ const IotHero = ({ activeTab }) => {
   return (
     <div className="relative">
 
-      {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide">
-        <span onClick={() => navigate('/')} className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors">Home</span>
-        <ChevronRight size={12} />
-        <span className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors">Services</span>
-        <ChevronRight size={12} />
-        <span className="text-[#EE001C] font-medium">{activeTab}</span>
-      </div>
-
       {/* Hero Content */}
       <div className="flex flex-col lg:flex-row gap-12 items-center">
 
@@ -395,16 +386,16 @@ const IotHero = ({ activeTab }) => {
             <button
               onClick={() => navigate('/contact')}
               aria-label="Book an Industrial IoT Consultation with Codigix"
-              className="px-6 py-3 bg-[#EE001C] hover:bg-[#b90014] text-white text-sm font-medium rounded-md shadow-lg shadow-red-500/20 transition-all flex items-center gap-2"
+              className="px-6 py-3 bg-gradient-to-r from-[#EE001C] to-[#7e22ce] hover:from-[#d30018] hover:to-[#6b1fb0] text-white text-[12px] font-medium rounded-md shadow-[0_0_20px_rgba(238,0,28,0.3)] transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              Book Consultation <ArrowRight size={16} />
+              Book Consultation <ArrowRight size={14} />
             </button>
             <button
               onClick={() => navigate('/contact')}
               aria-label="Schedule a Live IoT System Demo with Codigix"
-              className="px-6 py-3 bg-transparent border border-slate-300 dark:border-gray-600 hover:border-slate-500 dark:hover:border-gray-400 text-slate-900 dark:text-white text-sm font-medium rounded-md transition-all flex items-center gap-2"
+              className="px-6 py-3 bg-transparent border border-slate-350 dark:border-gray-700 hover:border-purple-500 text-slate-800 dark:text-white text-[12px] font-medium rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-purple-500/10"
             >
-              Schedule Demo <Calendar size={16} />
+              Schedule Demo <Calendar size={14} />
             </button>
           </motion.div>
         </div>

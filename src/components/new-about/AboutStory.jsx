@@ -37,7 +37,7 @@ const timeline = [
 
 const AboutStory = () => {
   return (
-    <div className="flex flex-col lg:flex-row gap-16 py-12 items-center">
+    <div id="about-story" className="flex flex-col lg:flex-row gap-16 py-12 items-center scroll-mt-24">
       
       {/* Left: Text */}
       <div className="lg:w-1/3">

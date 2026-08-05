@@ -75,7 +75,7 @@ const techStack = [
 
 const AboutTechExpertise = () => {
   return (
-    <div className="flex flex-col lg:flex-row gap-6 items-stretch mb-12">
+    <div id="about-tech" className="flex flex-col lg:flex-row gap-6 items-stretch mb-12 scroll-mt-24">
 
       {/* Left: Our Expertise */}
       <div className="lg:w-1/3 bg-slate-50 dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm dark:shadow-xl flex flex-col text-left">

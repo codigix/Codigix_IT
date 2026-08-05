@@ -42,6 +42,24 @@ const ImpactTelemetrySimulator = () => {
 
 const CaseStudiesHero = () => {
   const navigate = useNavigate();
+  const handleDownload = () => {
+    // 1. Trigger instant download of Case Studies Portfolio document
+    const link = document.createElement('a');
+    link.href = '/assets/docs/Codigix_Enterprise_Case_Studies_Portfolio.txt';
+    link.download = 'Codigix_Enterprise_Case_Studies_Portfolio.txt';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // 2. Smooth scroll down to the Case Studies grid
+    const grid = document.getElementById('case-studies-grid');
+    if (grid) {
+      const yOffset = -90;
+      const y = grid.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="flex flex-col h-full justify-between">
       
@@ -89,8 +107,8 @@ const CaseStudiesHero = () => {
               Discuss Your Project <ArrowRight size={14} />
             </button>
             <button 
-              onClick={() => navigate('/contact')}
-              className="w-full sm:w-auto px-6 py-3 bg-transparent border border-slate-350 dark:border-gray-700 hover:border-slate-500 dark:hover:border-gray-500 text-slate-800 dark:text-white text-[12px] font-medium rounded-md transition-all flex items-center justify-center gap-2"
+              onClick={handleDownload}
+              className="w-full sm:w-auto px-6 py-3 bg-transparent border border-slate-350 dark:border-gray-700 hover:border-purple-500 text-slate-800 dark:text-white text-[12px] font-medium rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-purple-500/10"
             >
               Download Case Studies <Download size={14} />
             </button>

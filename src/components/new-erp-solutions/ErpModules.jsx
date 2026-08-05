@@ -27,7 +27,7 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
 
   return (
     <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-8 text-left">
-      
+
       {/* 1. All ERP Modules Quick Selector */}
       <div className="mb-14">
         <div className="text-center mb-8 flex flex-col items-center">
@@ -48,11 +48,10 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => setActiveTab && setActiveTab(item.title)}
-                className={`flex flex-col items-center text-center p-4 rounded-xl cursor-pointer transition-all duration-300 relative overflow-hidden ${
-                  isActive 
-                    ? 'bg-purple-50 dark:bg-purple-950/60 border-2 border-purple-500 shadow-[0_0_25px_rgba(168,85,247,0.15)] scale-[1.02]' 
+                className={`flex flex-col items-center text-center p-4 rounded-xl cursor-pointer transition-all duration-300 relative overflow-hidden ${isActive
+                    ? 'bg-purple-50 dark:bg-purple-950/60 border-2 border-purple-500 shadow-[0_0_25px_rgba(168,85,247,0.15)] scale-[1.02]'
                     : 'bg-slate-50 dark:bg-[#050117]/80 border border-slate-200 dark:border-gray-800/70 hover:bg-slate-100 dark:hover:bg-[#0d072c] hover:border-purple-500/40'
-                }`}
+                  }`}
               >
                 {/* Spotlight background hover */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.06)_0%,transparent_70%)] opacity-0 hover:opacity-100 transition-opacity pointer-events-none" />
@@ -76,7 +75,7 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
 
       {/* 2. Detailed Overview Block */}
       {overview && (
-        <motion.div 
+        <motion.div
           key={`overview-${activeTab}`}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -130,7 +129,7 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
 
             {/* Department Dashboard Widgets & Reports */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              
+
               {/* Widgets Column */}
               <div className="lg:col-span-8 space-y-3">
                 <h4 className="text-xs font-bold text-slate-700 dark:text-gray-300 uppercase tracking-wider mb-3">Live Department Widgets</h4>
@@ -192,19 +191,19 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
               <div key={idx} className="bg-white dark:bg-[#050117] border border-slate-200 dark:border-gray-800/70 rounded-2xl overflow-hidden hover:border-purple-500/40 transition-all duration-300 shadow-md dark:shadow-xl group">
                 <div className="h-44 overflow-hidden relative bg-slate-50 dark:bg-[#090422] flex items-center justify-center p-2">
                   <div className="absolute inset-0 bg-purple-900/5 group-hover:bg-purple-900/0 transition-colors z-10 pointer-events-none"></div>
-                  
+
                   {/* Light Theme Image */}
-                  <img 
-                    src={proj.imageLight || proj.image || '/assets/images/service/erp_manufacturing_light.webp'} 
-                    alt={proj.title} 
-                    className="block dark:hidden w-full h-full object-cover rounded-xl shadow-xs group-hover:scale-105 transition-transform duration-500 relative z-10" 
+                  <img
+                    src={proj.imageLight || proj.image || '/assets/images/service/erp_manufacturing_light.webp'}
+                    alt={proj.title}
+                    className="block dark:hidden w-full h-full object-cover rounded-xl shadow-xs group-hover:scale-105 transition-transform duration-500 relative z-10"
                   />
 
                   {/* Dark Theme Image */}
-                  <img 
-                    src={proj.imageDark || proj.image || '/assets/images/new-iot-solutions/erp_isometric_dark.webp'} 
-                    alt={proj.title} 
-                    className="hidden dark:block w-full h-full object-contain filter contrast-125 brightness-110 group-hover:scale-105 transition-transform duration-500 relative z-10" 
+                  <img
+                    src={proj.imageDark || proj.image || '/assets/images/new-iot-solutions/erp_isometric_dark.webp'}
+                    alt={proj.title}
+                    className="hidden dark:block w-full h-full object-contain filter contrast-125 brightness-110 group-hover:scale-105 transition-transform duration-500 relative z-10"
                   />
                 </div>
                 <div className="p-5">

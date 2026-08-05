@@ -88,10 +88,10 @@ export const caseStudiesData = [
 
     // Testimonial Card
     testimonial: {
-      quote: "Codigix Infotech transformed our manufacturing operations with their ERP and IIoT solution. We now have real-time visibility, better control, and higher productivity across our shop-floor.",
-      author: "Mr. Akshay Mahajan",
+      quote: "Codigix transformed our manufacturing operations with a powerful ERP solution. Their team understood our processes deeply and delivered beyond expectations.",
+      author: "Vikram Patil",
       title: "Director",
-      company: "Sterling Techno System",
+      company: "Sterling Techno Systems",
       avatar: "/assets/images/about/team-1.jpg"
     }
   },
@@ -173,9 +173,9 @@ export const caseStudiesData = [
     ],
 
     testimonial: {
-      quote: "Our sales velocity skyrocketed after Codigix IT deployed our custom Sales CRM. Our representatives now send e-signable quotations in under 3 minutes, and our lead conversion rate has doubled.",
-      author: "Mr. Vikram Mehta",
-      title: "Head of Sales",
+      quote: "The CRM solution from Codigix has helped us improve our sales process and customer relationships significantly.",
+      author: "Ranjit Deshmukh",
+      title: "CEO",
       company: "Vastra Bhushan",
       avatar: "/assets/images/about/team-2.jpg"
     }
@@ -255,9 +255,9 @@ export const caseStudiesData = [
     ],
 
     testimonial: {
-      quote: "Codigix IT's IIoT implementation saved our plant from multiple furnace failure incidents. The live telemetry dashboards and early maintenance warnings paid for themselves within the first two months.",
-      author: "Mr. Amit Patel",
-      title: "VP Operations",
+      quote: "Their IIoT implementation gave us real-time visibility into our machines. Downtime is reduced and efficiency is at an all-time high.",
+      author: "Sandeep Kulkarni",
+      title: "Plant Head",
       company: "Nobel Casting",
       avatar: "/assets/images/about/team-3.jpg"
     }

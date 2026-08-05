@@ -143,9 +143,9 @@ const NewCaseStudyDetailsPage = () => {
   const canonicalUrl = `${siteUrl}/case-studies/${id}`;
   const pageTitle = `${activeStudy.title} Case Study | ${specs.client} | Codigix Infotech`;
   const metaDescription = activeStudy.subtitle || activeStudy.objective || `Case Study: How Codigix Infotech delivered ${activeStudy.title} for ${specs.client}.`;
-  
-  const heroImgUrl = activeStudy.heroImage?.startsWith('/uploads') 
-    ? `http://localhost:5000${activeStudy.heroImage}` 
+
+  const heroImgUrl = activeStudy.heroImage?.startsWith('/uploads')
+    ? `http://localhost:5000${activeStudy.heroImage}`
     : (activeStudy.heroImage?.startsWith('http') ? activeStudy.heroImage : `${siteUrl}${activeStudy.heroImage || '/assets/images/service/erp_dash.webp'}`);
 
   // Related Case Studies (filter out active)

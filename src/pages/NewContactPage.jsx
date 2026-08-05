@@ -14,7 +14,7 @@ import '../components/new-contact/contact.css';
 const NewContactPage = () => {
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
   const canonicalUrl = `${siteUrl}/contact`;
-  
+
   const pageTitle = "Contact Us | Codigix Infotech - Free Consultation & IT Services Inquiry";
   const metaDescription = "Get in touch with Codigix Infotech for enterprise AI solutions, Industrial IoT automation, custom ERP/CRM engineering, and IT consulting. Contact our Pune office or schedule a meeting.";
 

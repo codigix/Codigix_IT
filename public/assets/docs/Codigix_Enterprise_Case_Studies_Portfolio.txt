@@ -1,0 +1,85 @@
+==============================================================================
+               CODIGIX INFOTECH PVT. LTD. - ENTERPRISE CASE STUDIES
+==============================================================================
+Website: https://codigixinfotech.com
+Contact: contact@codigixinfotech.com | Pune, Maharashtra, India
+
+------------------------------------------------------------------------------
+CASE STUDY 1: SMART MANUFACTURING ERP + IIOT INTEGRATION
+------------------------------------------------------------------------------
+Client: Sterling Techno Systems
+Industry: Precision Manufacturing & Industrial Equipment
+Duration: 6 Months
+Tech Stack: Node.js, React, MySQL, IIoT Sensors, MQTT, InfluxDB
+
+Business Challenge:
+Sterling Techno System relied on manual production logs and disconnected department software, leading to high machine downtime, human data entry errors, and lack of real-time OEE (Overall Equipment Effectiveness) visibility across shopfloor production lines.
+
+Codigix Solution:
+- Implemented a unified cloud ERP integrated with Modbus & MQTT IIoT edge sensors.
+- Created live automated dashboards for Availability, Performance, and Quality tracking.
+- Rolled out automated 3-way purchase order matching and role-based inventory alerts.
+
+Measurable Business Impact:
+- 35% Increase in Shopfloor Productivity
+- 40% Reduction in Manual Paperwork & Data Entry
+- 99.9% Machine Telemetry Uptime
+
+Client Testimonial:
+"Codigix transformed our manufacturing plant with their smart ERP and IIoT solution. We now have real-time visibility into machine downtime and production OEE across all shifts."
+- Vikram Patil, Operations Director, Sterling Techno Systems
+
+------------------------------------------------------------------------------
+CASE STUDY 2: ENTERPRISE SALES CRM & RETAIL ERP SYSTEM
+------------------------------------------------------------------------------
+Client: Vastra Bhushan
+Industry: Retail & Textile Manufacturing
+Duration: 5 Months
+Tech Stack: React, Node.js, PostgreSQL, Redis, REST APIs
+
+Business Challenge:
+Sales leads from digital campaigns and retail outlets were lost due to unorganized manual spreadsheet tracking and delayed sales rep follow-ups.
+
+Codigix Solution:
+- Deployed a custom Sales CRM featuring dynamic lead scoring and automated pipeline routing.
+- Integrated multi-store inventory synchronization with real-time stock alerts.
+- Added WhatsApp & SMS notification triggers for high-intent customer inquiries.
+
+Measurable Business Impact:
+- 60% Lift in Lead Conversion Rate
+- 50% Faster Sales Follow-up Response Time
+- 100% Stock Visibility Across Outlets
+
+Client Testimonial:
+"The custom CRM built by Codigix doubled our team's response speed. Lead tracking is now effortless, and our sales conversions have grown significantly."
+- Ranjit Deshmukh, Founder & CEO, Vastra Bhushan
+
+------------------------------------------------------------------------------
+CASE STUDY 3: INDUSTRIAL IOT TELEMETRY & PREDICTIVE MAINTENANCE
+------------------------------------------------------------------------------
+Client: Nobel Casting
+Industry: Heavy Metal Casting & Foundry Automation
+Duration: 4 Months
+Tech Stack: Python AI, MQTT, OPC-UA, Docker, InfluxDB, Grafana
+
+Business Challenge:
+Heavy casting furnaces suffered unplanned overheating and breakdown stoppages, incurring expensive maintenance costs and production delays.
+
+Codigix Solution:
+- Embedded edge gateway hardware capturing sub-second thermal and vibration metrics.
+- Developed AI predictive maintenance algorithms alerting engineers to anomalous thermal spikes.
+- Automated shift report generation and preventive maintenance work tickets.
+
+Measurable Business Impact:
+- 30% Reduction in Unplanned Machine Downtime
+- 25% Savings in Maintenance Overhead
+- Zero Unscheduled Furnace Overheats
+
+Client Testimonial:
+"The IIoT predictive analytics system deployed by Codigix caught critical machine anomalies before failure, saving us lakhs in potential equipment repair costs."
+- Sandeep Kulkarni, Chief Technical Officer, Nobel Casting
+
+==============================================================================
+© 2026 Codigix Infotech Pvt. Ltd. All rights reserved.
+For custom AI, IoT, ERP, and enterprise software inquiries, visit https://codigixinfotech.com
+==============================================================================

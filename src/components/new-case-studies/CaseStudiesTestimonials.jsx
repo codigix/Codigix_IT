@@ -1,39 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { caseStudiesData } from '../../data/caseStudiesData';
 
-const testimonials = [
-  {
-    quote: "Codigix transformed our manufacturing operations with a powerful ERP solution. Their team understood our processes deeply and delivered beyond expectations.",
-    name: "Vikram Patil",
-    title: "Director, Sterling Techno Systems",
-    image: "https://i.pravatar.cc/150?img=11"
-  },
-  {
-    quote: "The CRM solution from Codigix has helped us improve our sales process and customer relationships significantly.",
-    name: "Ranjit Deshmukh",
-    title: "CEO, Vastra Bhushan",
-    image: "https://i.pravatar.cc/150?img=12"
-  },
-  {
-    quote: "Their IIoT implementation gave us real-time visibility into our machines. Downtime is reduced and efficiency is at an all-time high.",
-    name: "Sandeep Kulkarni",
-    title: "Plant Head, Nobel Casting",
-    image: "https://i.pravatar.cc/150?img=13"
-  },
-  {
-    quote: "The custom SCADA integration from Codigix allowed us to track production live. Efficiency went up by 18% in the first quarter alone.",
-    name: "Aashish Mehta",
-    title: "VP Operations, Premier Pipes",
-    image: "https://i.pravatar.cc/150?img=68"
-  },
-  {
-    quote: "Their cloud migration and DevOps setup secured our medical record database flawlessly. Compliance and speed are top-tier.",
-    name: "Dr. Anjali Sen",
-    title: "IT Head, Apex Healthcare Group",
-    image: "https://i.pravatar.cc/150?img=47"
-  }
-];
+// Fetch client reviews dynamically from caseStudiesData project details
+const fetchedTestimonials = caseStudiesData
+  .filter(study => study.testimonial && study.testimonial.quote)
+  .map(study => ({
+    quote: study.testimonial.quote,
+    author: study.testimonial.author || 'Client Executive',
+    title: study.testimonial.title || 'Director',
+    company: study.testimonial.company || study.clientName || 'Partner Enterprise',
+    avatar: study.testimonial.avatar || '/assets/images/about/team-1.jpg'
+  }));
 
 const CaseStudiesTestimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -54,7 +32,7 @@ const CaseStudiesTestimonials = () => {
     return () => window.removeEventListener('resize', updateCount);
   }, []);
 
-  const maxIndex = Math.max(0, testimonials.length - visibleCount);
+  const maxIndex = Math.max(0, fetchedTestimonials.length - visibleCount);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev < maxIndex ? prev + 1 : 0));
@@ -64,55 +42,66 @@ const CaseStudiesTestimonials = () => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : maxIndex));
   };
 
-  // Adjust active index if screen size changes and index becomes out of bounds
-  useEffect(() => {
-    if (currentIndex > maxIndex) {
-      setCurrentIndex(maxIndex);
-    }
-  }, [visibleCount, maxIndex, currentIndex]);
-
   return (
-    <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-8 relative">
+    <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-8 relative text-left">
       <div className="text-center mb-10">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">What Our Clients Say</h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Client Reviews & Project Testimonials</h2>
+        <p className="text-xs text-slate-500 dark:text-gray-400 mt-1 font-normal max-w-lg mx-auto">
+          Direct feedback from project executives on our custom ERP, CRM, and IIoT engineering solutions.
+        </p>
         <div className="w-12 h-1 bg-[#EE001C] mx-auto mt-4 rounded-full"></div>
       </div>
 
       <div className="flex items-center gap-4">
         {/* Left Arrow */}
-        <button 
-          onClick={handlePrev}
-          className="w-10 h-10 rounded-full border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:border-[#EE001C] dark:hover:border-[#EE001C] bg-white dark:bg-transparent shadow-sm shrink-0 transition-colors"
-        >
-          <ChevronLeft size={20} />
-        </button>
+        {fetchedTestimonials.length > visibleCount && (
+          <button 
+            onClick={handlePrev}
+            aria-label="Previous testimonial"
+            className="w-10 h-10 rounded-full border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:border-[#EE001C] bg-white dark:bg-[#080420] shadow-sm shrink-0 transition-colors cursor-pointer"
+          >
+            <ChevronLeft size={20} />
+          </button>
+        )}
 
-        {/* Testimonials Slider Window */}
+        {/* Testimonials Window */}
         <div className="overflow-hidden flex-1 py-4">
           <div 
-            className="flex transition-transform duration-500 ease-in-out"
+            className="flex transition-transform duration-500 ease-in-out gap-6"
             style={{ 
-              transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
-              width: `${(testimonials.length / visibleCount) * 100}%`
+              transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`
             }}
           >
-            {testimonials.map((test, idx) => (
+            {fetchedTestimonials.map((test, idx) => (
               <div 
-                key={idx} 
-                className="px-2 shrink-0"
-                style={{ width: `${100 / testimonials.length}%` }}
+                key={idx}
+                className="flex-none w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-white dark:bg-[#080420] border border-slate-200 dark:border-gray-800/90 rounded-3xl p-7 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
               >
-                <div className="bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl p-6 sm:p-8 flex flex-col shadow-sm dark:shadow-xl min-h-[220px] h-full hover:border-[#EE001C]/40 transition-colors group">
-                  <Quote size={24} className="text-[#EE001C] mb-4 opacity-50" />
-                  <p className="text-[12px] text-slate-650 dark:text-gray-300 leading-relaxed italic mb-8 flex-1">
+                <div>
+                  {/* Quote Icon 99 */}
+                  <div className="mb-4 text-[#ef4444] opacity-90">
+                    <span className="text-4xl font-serif font-black leading-none select-none">“</span>
+                  </div>
+
+                  {/* Quote Statement */}
+                  <p className="text-xs sm:text-[13px] text-slate-700 dark:text-gray-200 italic leading-relaxed mb-6 font-normal">
                     "{test.quote}"
                   </p>
-                  <div className="flex items-center gap-3">
-                    <img src={test.image} alt={`${test.name} - ${test.title} client testimonial avatar`} className="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-gray-700" />
-                    <div>
-                      <h4 className="text-[13px] font-bold text-slate-900 dark:text-white">{test.name}</h4>
-                      <p className="text-[10px] text-slate-550 dark:text-gray-500">{test.title}</p>
-                    </div>
+                </div>
+
+                {/* Author Metadata Row */}
+                <div className="flex items-center gap-3 pt-4 border-t border-slate-100 dark:border-gray-800/60 mt-auto">
+                  <img 
+                    src={test.avatar} 
+                    alt={test.author}
+                    className="w-11 h-11 rounded-full object-cover border border-slate-200 dark:border-gray-700 shrink-0"
+                    onError={(e) => {
+                      e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80';
+                    }}
+                  />
+                  <div>
+                    <h3 className="text-xs font-bold text-slate-900 dark:text-white leading-tight">{test.author}</h3>
+                    <p className="text-[11px] text-slate-500 dark:text-gray-400 font-normal mt-0.5">{test.title}, {test.company}</p>
                   </div>
                 </div>
               </div>
@@ -121,26 +110,15 @@ const CaseStudiesTestimonials = () => {
         </div>
 
         {/* Right Arrow */}
-        <button 
-          onClick={handleNext}
-          className="w-10 h-10 rounded-full border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:border-[#EE001C] dark:hover:border-[#EE001C] bg-white dark:bg-transparent shadow-sm shrink-0 transition-colors"
-        >
-          <ChevronRight size={20} />
-        </button>
-      </div>
-      
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-8">
-         {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
-           <button
-             key={idx}
-             onClick={() => setCurrentIndex(idx)}
-             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-               currentIndex === idx ? 'bg-[#EE001C] w-4' : 'bg-slate-300 dark:bg-gray-700 hover:bg-slate-400 dark:hover:bg-gray-600'
-             }`}
-             aria-label={`Go to slide ${idx + 1}`}
-           />
-         ))}
+        {fetchedTestimonials.length > visibleCount && (
+          <button 
+            onClick={handleNext}
+            aria-label="Next testimonial"
+            className="w-10 h-10 rounded-full border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:border-[#EE001C] bg-white dark:bg-[#080420] shadow-sm shrink-0 transition-colors cursor-pointer"
+          >
+            <ChevronRight size={20} />
+          </button>
+        )}
       </div>
     </div>
   );
