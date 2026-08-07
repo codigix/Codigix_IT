@@ -32,8 +32,8 @@ const industriesLinks = [
 
 const supportLinks = [
   { name: 'Contact Us', path: '/contact' },
-  { name: 'Privacy Policy', path: '/contact' },
-  { name: 'Terms & Conditions', path: '/contact' },
+  { name: 'Privacy Policy', path: '/privacy-policy' },
+  { name: 'Terms & Conditions', path: '/terms-conditions' },
   { name: 'Sitemap', path: '/sitemap.xml', external: true }
 ];
 
@@ -230,8 +230,8 @@ const CtaFooterSection = () => {
               © {new Date().getFullYear()} Codigix Infotech Pvt. Ltd. All Rights Reserved.
             </p>
             <div className="flex gap-6 text-xs text-slate-500 dark:text-gray-500">
-              <Link to="/contact" onClick={handleLinkClick} className="hover:text-purple-600 dark:hover:text-gray-300">Privacy Policy</Link>
-              <Link to="/contact" onClick={handleLinkClick} className="hover:text-purple-600 dark:hover:text-gray-300">Terms & Conditions</Link>
+              <Link to="/privacy-policy" onClick={handleLinkClick} className="hover:text-purple-600 dark:hover:text-gray-300">Privacy Policy</Link>
+              <Link to="/terms-conditions" onClick={handleLinkClick} className="hover:text-purple-600 dark:hover:text-gray-300">Terms & Conditions</Link>
               <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600 dark:hover:text-gray-300">Sitemap</a>
             </div>
           </div>

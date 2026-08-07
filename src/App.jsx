@@ -18,6 +18,8 @@ const NewAboutPage = lazy(() => import('./pages/NewAboutPage'));
 const NewContactPage = lazy(() => import('./pages/NewContactPage'));
 const NewBlogPage = lazy(() => import('./pages/NewBlogPage'));
 const NewBlogDetailsPage = lazy(() => import('./pages/NewBlogDetailsPage'));
+const TermsConditionsPage = lazy(() => import('./pages/TermsConditionsPage'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Lazy load admin components
@@ -70,60 +72,52 @@ function AppRoutes() {
       {/* Primary Clean SEO Routes */}
       <Route path="/" element={<NewHomePage />} />
       <Route path="/home" element={<NewHomePage />} />
-      <Route path="/home" element={<NewHomePage />} />
 
       {/* AI Solutions */}
-      <Route path="/ai-solutions" element={<NewAiSolutionsPage />} />
       <Route path="/ai-solutions" element={<NewAiSolutionsPage />} />
 
       {/* IoT Solutions */}
       <Route path="/iot-solutions" element={<NewIotSolutionsPage />} />
-      <Route path="/iot-solutions" element={<NewIotSolutionsPage />} />
 
       {/* ERP Solutions */}
       <Route path="/erp-solutions" element={<NewErpSolutionsPage />} />
-      <Route path="/erp-solutions" element={<NewErpSolutionsPage />} />
 
       {/* CRM Solutions */}
-      <Route path="/crm-solutions" element={<NewCrmSolutionsPage />} />
       <Route path="/crm-solutions" element={<NewCrmSolutionsPage />} />
 
       {/* Services */}
       <Route path="/services" element={<NewOtherServicesPage />} />
       <Route path="/other-services" element={<NewOtherServicesPage />} />
-      <Route path="/other-services" element={<NewOtherServicesPage />} />
 
       {/* Industries */}
-      <Route path="/industries" element={<NewIndustriesPage />} />
       <Route path="/industries" element={<NewIndustriesPage />} />
 
       {/* Case Studies / Projects */}
       <Route path="/case-studies" element={<NewCaseStudiesPage />} />
       <Route path="/projects" element={<NewCaseStudiesPage />} />
-      <Route path="/case-studies" element={<NewCaseStudiesPage />} />
-      <Route path="/case-studies/:id" element={<NewCaseStudyDetailsPage />} />
       <Route path="/case-studies/:id" element={<NewCaseStudyDetailsPage />} />
 
       {/* Career */}
       <Route path="/career" element={<NewCareerPage />} />
       <Route path="/careers" element={<NewCareerPage />} />
-      <Route path="/career" element={<NewCareerPage />} />
 
       {/* About */}
-      <Route path="/about" element={<NewAboutPage />} />
       <Route path="/about" element={<NewAboutPage />} />
 
       {/* Contact */}
       <Route path="/contact" element={<NewContactPage />} />
-      <Route path="/contact" element={<NewContactPage />} />
+
+      {/* Legal Routes */}
+      <Route path="/terms-conditions" element={<TermsConditionsPage />} />
+      <Route path="/terms" element={<TermsConditionsPage />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+      <Route path="/privacy" element={<PrivacyPolicyPage />} />
 
       {/* Blogs */}
       <Route path="/blog" element={<NewBlogPage />} />
       <Route path="/blogs" element={<NewBlogPage />} />
-      <Route path="/blog" element={<NewBlogPage />} />
       <Route path="/blog/:id" element={<NewBlogDetailsPage />} />
       <Route path="/blogs/:id" element={<NewBlogDetailsPage />} />
-      <Route path="/blog/:id" element={<NewBlogDetailsPage />} />
 
       {/* Catch-all 404 */}
       <Route path="*" element={<NotFoundPage />} />
