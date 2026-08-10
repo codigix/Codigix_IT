@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const path = require('path');
+const fs = require('fs');
 const { PORT, CLIENT_URL, NODE_ENV } = require('./config/config');
 const apiRoutes = require('./routes/api');
 const db = require('./config/db');
@@ -51,6 +52,32 @@ app.get('/health', (req, res) => {
 // Serve frontend static files in production with optimized cache rules
 if (NODE_ENV === 'production') {
   const distPath = path.join(__dirname, '../dist');
+
+  // Serve pre-compressed Brotli / Gzip files if supported by client
+  app.use((req, res, next) => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+    const acceptEncoding = req.headers['accept-encoding'] || '';
+    const urlPath = req.url.split('?')[0];
+    const fullPath = path.join(distPath, urlPath);
+
+    if (acceptEncoding.includes('br') && fs.existsSync(fullPath + '.br')) {
+      req.url = urlPath + '.br';
+      res.setHeader('Content-Encoding', 'br');
+      if (urlPath.endsWith('.js')) res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
+      else if (urlPath.endsWith('.css')) res.setHeader('Content-Type', 'text/css; charset=UTF-8');
+      else if (urlPath.endsWith('.html')) res.setHeader('Content-Type', 'text/html; charset=UTF-8');
+      else if (urlPath.endsWith('.svg')) res.setHeader('Content-Type', 'image/svg+xml');
+    } else if (acceptEncoding.includes('gzip') && fs.existsSync(fullPath + '.gz')) {
+      req.url = urlPath + '.gz';
+      res.setHeader('Content-Encoding', 'gzip');
+      if (urlPath.endsWith('.js')) res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
+      else if (urlPath.endsWith('.css')) res.setHeader('Content-Type', 'text/css; charset=UTF-8');
+      else if (urlPath.endsWith('.html')) res.setHeader('Content-Type', 'text/html; charset=UTF-8');
+      else if (urlPath.endsWith('.svg')) res.setHeader('Content-Type', 'image/svg+xml');
+    }
+    next();
+  });
+
   app.use(express.static(distPath, {
     maxAge: '1y',
     immutable: true,
