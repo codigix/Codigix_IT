@@ -7,9 +7,8 @@
     "dev": "vite",
     "server": "node backend/server.js",
     "dev:all": "concurrently \"npm run dev\" \"npm run server\"",
-    "build": "vite build && npm run purge:css && node compress_assets.mjs",
-    "purge:css": "purgecss --css dist/assets/*.css --content dist/index.html \"dist/assets/*.js\" --output dist/assets/",
-    "compress": "node compress_assets.mjs",
+    "build": "vite build && npm run purge:css",
+    "purge:css": "purgecss --css dist/assets/css/*.css --content dist/index.html dist/assets/*.js --output dist/assets/css/",
     "lint": "eslint .",
     "preview": "vite preview",
     "preview:all": "concurrently \"npm run preview\" \"npm run server\""

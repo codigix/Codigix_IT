@@ -10,12 +10,8 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       tailwindcss(),
-      viteCompression({ algorithm: 'gzip' }),
-      viteCompression({ algorithm: 'brotliCompress', ext: '.br' })
+      viteCompression({ algorithm: 'gzip' })
     ],
-    esbuild: {
-      drop: mode === 'production' ? ['console', 'debugger'] : []
-    },
     server: {
       proxy: {
         '/api': {
@@ -25,9 +21,6 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      cssMinify: true,
-      minify: 'esbuild',
-      chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
           manualChunks: {
@@ -40,4 +33,3 @@ export default defineConfig(({ mode }) => {
     }
   }
 })
-
