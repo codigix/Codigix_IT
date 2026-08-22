@@ -4,6 +4,16 @@
 @source "../src/**/*.{js,jsx,ts,tsx}";
 @source "../index.html";
 
+/* Global Cursor Pointer Reset */
+button,
+a,
+select,
+input[type="submit"],
+input[type="button"],
+[role="button"] {
+  cursor: pointer !important;
+}
+
 @theme {
   --color-primary: var(--tj-color-theme-primary);
   --color-secondary: #FF6B35;

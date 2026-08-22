@@ -43,18 +43,6 @@ const FaqSection = () => {
   return (
     <section className="relative py-10 px-4 sm:px-6 lg:px-12 bg-[#faf8ff] dark:bg-[#050212] transition-colors duration-300 border-t border-purple-200/60 dark:border-purple-900/30 overflow-hidden">
 
-      {/* Light Mode Full Background Image */}
-      <div
-        className="block dark:hidden absolute inset-0 bg-contain bg-left lg:bg-top bg-no-repeat pointer-events-none z-0 opacity-95 transition-opacity duration-300"
-        style={{ backgroundImage: "url('/assets/images/new-home/faq_light_bg.webp')" }}
-      />
-
-      {/* Dark Mode Full Background Image */}
-      <div
-        className="hidden dark:block absolute inset-0 bg-contain bg-left lg:bg-top bg-no-repeat pointer-events-none z-0 opacity-95 mix-blend-screen transition-opacity duration-300"
-        style={{ backgroundImage: "url('/assets/images/new-home/faq_dark_bg.webp')" }}
-      />
-
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Section Header */}
@@ -83,11 +71,22 @@ const FaqSection = () => {
         {/* Two Column Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
 
-          {/* Left Column: 3D Graphic Spacer (Light/Dark BG Provides Graphic) + "Can't find your answer?" Card */}
+          {/* Left Column: 3D FAQ Illustration Card + "Can't find your answer?" Card */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-6 h-full">
 
-            {/* Visual Spacer to allow the background 3D Question Mark to shine */}
-            <div className="min-h-[220px] lg:min-h-[280px] w-full" />
+            {/* AI Generated FAQ Image Container Card */}
+            <div className="flex-1 flex items-center justify-center relative overflow-hidden ">
+              <img
+                src="/assets/images/new-home/faq_light_bg.png"
+                alt="Frequently Asked Questions Illustration (Light Mode)"
+                className="block dark:hidden object-contain max-h-[260px] lg:max-h-[320px] w-auto transition-all duration-500 group-hover:scale-105"
+              />
+              <img
+                src="/assets/images/new-home/faq_light_bg.png"
+                alt="Frequently Asked Questions Illustration (Dark Mode)"
+                className="hidden dark:block object-contain max-h-[260px] lg:max-h-[320px] w-auto transition-all duration-500 group-hover:scale-105"
+              />
+            </div>
 
             {/* "Can't find your answer?" Card */}
             <div className="w-full p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-[#090422]/90 border border-purple-200/90 dark:border-purple-500/40 backdrop-blur-xl shadow-xl dark:shadow-[0_10px_35px_rgba(0,0,0,0.6)] text-left transition-colors duration-300">
