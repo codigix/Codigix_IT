@@ -77,12 +77,12 @@ const FaqSection = () => {
             {/* AI Generated FAQ Image Container Card */}
             <div className="flex-1 flex items-center justify-center relative overflow-hidden ">
               <img
-                src="/assets/images/new-home/faq_light_bg.png"
+                src="/assets/images/new-home/faq_light_bg.webp"
                 alt="Frequently Asked Questions Illustration (Light Mode)"
                 className="block dark:hidden object-contain max-h-[260px] lg:max-h-[320px] w-auto transition-all duration-500 group-hover:scale-105"
               />
               <img
-                src="/assets/images/new-home/faq_light_bg.png"
+                src="/assets/images/new-home/faq_light_bg.webp"
                 alt="Frequently Asked Questions Illustration (Dark Mode)"
                 className="hidden dark:block object-contain max-h-[260px] lg:max-h-[320px] w-auto transition-all duration-500 group-hover:scale-105"
               />
