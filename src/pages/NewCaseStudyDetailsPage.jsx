@@ -145,7 +145,7 @@ const NewCaseStudyDetailsPage = () => {
   const metaDescription = activeStudy.subtitle || activeStudy.objective || `Case Study: How Codigix Infotech delivered ${activeStudy.title} for ${specs.client}.`;
 
   const heroImgUrl = activeStudy.heroImage?.startsWith('/uploads')
-    ? `http://localhost:5000${activeStudy.heroImage}`
+    ? `${import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || ''}${activeStudy.heroImage}`
     : (activeStudy.heroImage?.startsWith('http') ? activeStudy.heroImage : `${siteUrl}${activeStudy.heroImage || '/assets/images/service/erp_dash.webp'}`);
 
   // Related Case Studies (filter out active)
@@ -665,7 +665,7 @@ const NewCaseStudyDetailsPage = () => {
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full overflow-hidden border border-purple-300 dark:border-purple-500/40 shrink-0">
                       <img
-                        src={testimonial.avatar?.startsWith('/uploads') ? `http://localhost:5000${testimonial.avatar}` : (testimonial.avatar || "/assets/images/about/team-1.jpg")}
+                        src={testimonial.avatar?.startsWith('/uploads') ? `${import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || ''}${testimonial.avatar}` : (testimonial.avatar || "/assets/images/about/team-1.jpg")}
                         alt={`${testimonial.author} testimonial avatar from ${testimonial.company}`}
                         className="w-full h-full object-cover"
                       />

@@ -1,7 +1,7 @@
 import { caseStudiesData } from './src/data/caseStudiesData.js';
 
 async function seedDatabase() {
-  const API_BASE = 'http://localhost:5000/api';
+  const API_BASE = process.env.API_BASE_URL || 'http://localhost:5000/api';
 
   try {
     // Delete existing ones to prevent duplicates (optional, doing it manually by deleting all first via GET)
