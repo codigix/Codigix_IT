@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Plus,
   Trash2,
@@ -141,6 +142,7 @@ const ImageUploader = ({ label, value, onChange }) => {
 };
 
 const BlogsAdmin = () => {
+  const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -211,33 +213,11 @@ const BlogsAdmin = () => {
 
   // Form Handlers
   const handleOpenCreateModal = () => {
-    setEditingBlog(null);
-    setFormData({
-      title: '',
-      category: 'IoT & Industry 4.0',
-      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-      author: 'Codigix Tech Team',
-      role: 'Technology Lead',
-      readTime: '5 min read',
-      image: '',
-      body: ''
-    });
-    setIsModalOpen(true);
+    navigate('/admin/blogs/create');
   };
 
   const handleOpenEditModal = (blog) => {
-    setEditingBlog(blog);
-    setFormData({
-      title: blog.title || '',
-      category: blog.category || 'IoT & Industry 4.0',
-      date: blog.date || new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-      author: blog.author || '',
-      role: blog.role || '',
-      readTime: blog.readTime || '5 min read',
-      image: blog.image || '',
-      body: blog.body || ''
-    });
-    setIsModalOpen(true);
+    navigate(`/admin/blogs/edit/${blog.id}`);
   };
 
   const handleSaveBlog = async (e) => {
@@ -496,7 +476,7 @@ const BlogsAdmin = () => {
                   </h3>
 
                   <p className="text-xs text-slate-600 dark:text-gray-400 line-clamp-3 leading-relaxed mb-4">
-                    {blog.body}
+                    {(blog.body || '').replace(/<[^>]+>/g, '')}
                   </p>
                 </div>
 
@@ -575,7 +555,7 @@ const BlogsAdmin = () => {
                     </td>
                     <td className="p-4 max-w-xs sm:max-w-md">
                       <p className="font-bold text-slate-900 dark:text-white truncate">{blog.title}</p>
-                      <p className="text-[11px] text-slate-500 dark:text-gray-400 truncate mt-0.5">{blog.body}</p>
+                      <p className="text-[11px] text-slate-500 dark:text-gray-400 truncate mt-0.5">{(blog.body || '').replace(/<[^>]+>/g, '')}</p>
                     </td>
                     <td className="p-4">
                       <span className="px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 font-bold text-[10px]">
@@ -815,9 +795,10 @@ const BlogsAdmin = () => {
             </div>
 
             {/* Content Body */}
-            <div className="text-xs sm:text-sm text-slate-700 dark:text-gray-300 leading-relaxed whitespace-pre-line space-y-4">
-              {previewBlog.body}
-            </div>
+            <div 
+              className="text-xs sm:text-sm text-slate-700 dark:text-gray-300 leading-relaxed space-y-4 preview-html-content"
+              dangerouslySetInnerHTML={{ __html: previewBlog.body }}
+            />
 
             {/* Footer Close */}
             <div className="pt-6 border-t border-slate-200 dark:border-purple-900/30 mt-8 flex justify-end">

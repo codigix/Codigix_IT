@@ -6,26 +6,6 @@ import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import { Helmet } from 'react-helmet-async';
 import config from '../config';
 
-import { blogPostsData } from '../data/blogData';
-
-const blogCategories = [
-  'All',
-  'AI & Automation',
-  'IoT & Industry 4.0',
-  'Enterprise ERP',
-  'Sales Tech & CRM',
-  'Web Engineering',
-  'Mobile Engineering',
-  'Cloud & DevOps',
-  'Smart Manufacturing',
-  'Healthcare Tech',
-  'Retail & E-Commerce',
-  'Fintech & Banking',
-  'Construction Tech',
-  'Automotive Tech',
-  'EdTech'
-];
-
 const NewBlogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,7 +22,7 @@ const NewBlogPage = () => {
             const formatted = result.map(post => ({
               id: post.id.toString(),
               title: post.title,
-              excerpt: post.body ? (post.body.slice(0, 150) + (post.body.length > 150 ? '...' : '')) : 'No excerpt provided.',
+              excerpt: post.body ? (post.body.replace(/<[^>]+>/g, '').slice(0, 150) + (post.body.replace(/<[^>]+>/g, '').length > 150 ? '...' : '')) : 'No excerpt provided.',
               category: post.category,
               date: post.date,
               author: post.author || 'Codigix Tech Team',
@@ -62,21 +42,15 @@ const NewBlogPage = () => {
     fetchDbBlogs();
   }, []);
 
-  // Merge DB posts with static master posts (deduping by title or ID)
-  const combinedPosts = [...dbPosts];
-  blogPostsData.forEach(staticPost => {
-    if (!combinedPosts.some(p => p.id === staticPost.id || p.title === staticPost.title)) {
-      combinedPosts.push(staticPost);
-    }
-  });
-
-  const filteredPosts = combinedPosts.filter(post => {
+  const filteredPosts = dbPosts.filter(post => {
     const categoryMatch = selectedCategory === 'All' || post.category === selectedCategory;
     const searchMatch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.author.toLowerCase().includes(searchQuery.toLowerCase());
     return categoryMatch && searchMatch;
   });
+
+  const dynamicCategories = ['All', ...new Set(dbPosts.map(p => p.category || 'General').filter(Boolean))];
 
   return (
     <>
@@ -128,7 +102,7 @@ const NewBlogPage = () => {
 
             {/* Category Pills */}
             <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-              {blogCategories.map((cat, i) => (
+              {dynamicCategories.map((cat, i) => (
                 <button
                   key={i}
                   onClick={() => setSelectedCategory(cat)}

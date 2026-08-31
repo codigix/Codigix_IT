@@ -396,47 +396,68 @@ export const erpTabData = {
     ]
   },
   'HR & Payroll': {
-    heroTitle: 'Modern',
-    heroHighlight: 'HR & Payroll Systems.',
-    heroDesc: 'Manage your workforce effectively from hire to retire. Automate attendance tracking, payroll processing, tax deductions, leave management, and performance reviews.',
+    heroTitle: 'Transform Your Workforce with',
+    heroHighlight: 'AI-Powered HR Intelligence.',
+    heroDesc: 'E-HRM ERP is an all-in-one enterprise platform uniting Complete Recruitment Automation, Employee & Org Management, AI Face Attendance, and Attendance-to-Payslip Automated Payroll.',
     image: '/assets/images/new-iot-solutions/ai_robot_dark.webp',
-    overview: 'Our HR & Payroll module automates employee administration from onboarding to retirement. Integrate biometric attendance devices, run complex multi-tier salary calculations with tax deductions, manage leave approvals, and empower staff with a mobile self-service app.',
+    overview: 'Our E-HRM Suite automates your entire employee lifecycle from hiring to retirement. Eliminate time theft with high-accuracy 128-dimensional AI Face Recognition (<0.3s match rate) and 100m GPS geofencing. Connect approved attendance, late marks, and LWP deductions directly to our 1-Click Payroll Engine for instant PF, ESIC, Tax compliance, and bank payouts.',
     departmentDashboard: {
       deptName: 'Human Resources & People Operations Department',
-      deptRole: 'Manages employee onboarding, biometric timecards, shift rosters, single-click payroll disbursement, and PF/ESI compliance.',
+      deptRole: 'Manages a 16-step ATS recruitment pipeline, AI biometric attendance, shift rosters, single-click payroll disbursement, and 360° performance appraisals.',
       kpis: [
-        { label: 'Active Workforce Count', value: '1,250' },
-        { label: 'Attendance Rate Today', value: '97.4%', color: 'text-emerald-400' },
+        { label: 'AI Face Match Speed', value: '< 0.3s', color: 'text-emerald-400' },
+        { label: 'Attendance Accuracy', value: '100%', color: 'text-emerald-400' },
         { label: 'Payroll Run Status', value: 'Calculated & Verified', color: 'text-emerald-400' },
-        { label: 'Pending Expense Claims', value: '8' }
+        { label: 'Tax & PF Compliance', value: '100%', color: 'text-emerald-400' }
       ],
       widgets: [
-        { title: 'Biometric Attendance Feed', desc: 'Live punch-in logs from face-recognition units.' },
-        { title: 'Single-Click Payroll Run', desc: 'Computes gross salary, taxes, PF & bank files.' },
-        { title: 'Employee Leave Portal', desc: 'Approves leave applications & leave balances.' }
+        { title: 'AI Biometric Live Feed', desc: 'Real-time punch logs with liveness detection & GPS tracking.' },
+        { title: 'Attendance-to-Payslip Chain', desc: 'Auto-computes gross salary, taxes, PF & bank files.' },
+        { title: 'Active ATS Job Pipeline', desc: 'Candidate resume scoring & MS Teams interview sync.' }
       ],
-      reports: ['Monthly Salary Register', 'PF & ESI Statutory Return', 'Employee Turnover & Retention']
+      reports: ['Monthly Salary Register', 'PF & ESI Statutory Return', 'Employee 9-Box Performance Matrix']
     },
     subModules: [
-      { title: 'Single-Click Payroll Engine', desc: 'Calculate gross pay, PF, ESI, TDS, professional tax, loan deductions, and net payouts instantly.', icon: 'DollarSign', color: 'text-fuchsia-400', bg: 'bg-fuchsia-500/10', metric: '1-Click Payroll' },
-      { title: 'Biometric & Shift Attendance', desc: 'Sync face-recognition and fingerprint biometric machines with shift roster rules.', icon: 'Clock', color: 'text-purple-400', bg: 'bg-purple-500/10', metric: 'Real-time Timecard' },
-      { title: 'Employee Self-Service (ESS) Portal', desc: 'Mobile app for staff to view payslips, apply for leave, submit tax proof, and log expenses.', icon: 'Users', color: 'text-blue-400', bg: 'bg-blue-500/10', metric: 'Empowered Staff' },
-      { title: 'Leave & Holiday Management', desc: 'Configure paid leave, sick leave, maternity leave, and encashment calculation rules.', icon: 'Calendar', color: 'text-emerald-400', bg: 'bg-emerald-500/10', metric: 'Auto Leave Sync' },
-      { title: 'Expense Reimbursements', desc: 'Scan travel receipts, submit claims, and route expenses through manager approval chains.', icon: 'CreditCard', color: 'text-cyan-400', bg: 'bg-cyan-500/10', metric: 'Fast Claims' },
-      { title: 'Performance Appraisal (KRA/KPI)', desc: 'Track employee goals, quarterly review scorecards, self-appraisals, and increment letters.', icon: 'Award', color: 'text-amber-400', bg: 'bg-amber-500/10', metric: 'Objective Review' }
+      { title: 'Recruitment & ATS Flow', desc: '16-Step hiring journey, automated resume scoring, auto question bank tests, and digital offer letter generation.', icon: 'UserPlus', color: 'text-purple-400', bg: 'bg-purple-500/10', metric: 'End-to-End Hiring' },
+      { title: 'AI Biometric & Geofencing', desc: 'Mobile face recognition attendance with anti-spoof liveness checks and 100m strict GPS geofencing lock.', icon: 'Camera', color: 'text-emerald-400', bg: 'bg-emerald-500/10', metric: 'Zero Time Theft' },
+      { title: 'Automated 1-Click Payroll', desc: 'Syncs attendance directly to compute gross pay, PF, ESI, TDS, professional tax, and net payouts instantly.', icon: 'Wallet', color: 'text-amber-400', bg: 'bg-amber-500/10', metric: '100% Compliant' },
+      { title: 'Employee Self-Service (ESS)', desc: 'Mobile PWA for staff to view PDF payslips, apply for leave, submit tax proofs, and manage expense claims.', icon: 'Smartphone', color: 'text-sky-400', bg: 'bg-sky-500/10', metric: 'Empowered Staff' },
+      { title: 'Performance & 360° Appraisals', desc: 'Track KRA/KPIs, multi-rater peer reviews, 9-box potential matrix, and automated promotion history logs.', icon: 'TrendingUp', color: 'text-fuchsia-400', bg: 'bg-fuchsia-500/10', metric: 'Career Growth' },
+      { title: 'Org Master & Learning LMS', desc: 'Manage department cost centers, document vaults, internal training courses, and certification trackers.', icon: 'GraduationCap', color: 'text-indigo-400', bg: 'bg-indigo-500/10', metric: 'Skill Upgrades' }
     ],
     projects: [
-      { title: 'Multi-Location Manufacturing Plant Payroll', client: 'Polymax Rubber Works', results: 'Automated monthly payroll processing for 2,200 shopfloor workers from 3 days to 15 minutes.', tag: 'Manufacturing Payroll' },
-      { title: 'IT Services Biometric & Remote ESS App', client: 'SoftNet Global Solutions', results: 'Deployed mobile attendance tracking for 850 remote software engineers across 5 cities.', tag: 'IT Workforce' },
-      { title: 'Retail Staff Shift Roster & Statutory HR', client: 'HyperMarket Superstores', results: 'Reduced employee turnover by 15% through transparent mobile leave and shift scheduling.', tag: 'Retail HR' }
+      { 
+        title: 'Multi-Location Manufacturing Plant Payroll', 
+        client: 'Polymax Rubber Works', 
+        results: 'Automated monthly payroll processing for 2,200 shopfloor workers from 3 days to 15 minutes.', 
+        tag: 'Manufacturing Payroll',
+        imageLight: '/assets/images/hr-projects/manufacturing.jpg',
+        imageDark: '/assets/images/hr-projects/manufacturing.jpg'
+      },
+      { 
+        title: 'IT Services Biometric & Remote ESS App', 
+        client: 'SoftNet Global Solutions', 
+        results: 'Deployed AI mobile face attendance for 850 remote software engineers across 5 cities.', 
+        tag: 'IT Workforce',
+        imageLight: '/assets/images/hr-projects/biometric_ess.jpg',
+        imageDark: '/assets/images/hr-projects/biometric_ess.jpg'
+      },
+      { 
+        title: 'Retail Staff Shift Roster & Statutory HR', 
+        client: 'HyperMarket Superstores', 
+        results: 'Reduced employee turnover by 15% through transparent mobile leave and shift scheduling.', 
+        tag: 'Retail HR',
+        imageLight: '/assets/images/hr-projects/retail_shift.jpg',
+        imageDark: '/assets/images/hr-projects/retail_shift.jpg'
+      }
     ],
-    benefits: ['Automated Shift Attendance', 'Single-Click Payroll Runs', 'Regulatory Tax & PF Compliance', 'Self-Service Employee Portals', 'Transparent Expense Claims', 'Performance Review Metrics'],
+    benefits: ['AI Face Recognition Attendance', '100m GPS Geofencing Limits', '1-Click Statutory Payroll (PF/TDS)', '16-Step ATS Recruitment Pipeline', '9-Box Performance Matrix', 'Employee Mobile App (ESS)'],
     workflow: [
-      { name: 'Onboard', desc: 'Create profiles and capture contracts' },
-      { name: 'Log Time', desc: 'Sync biometric attendance records' },
-      { name: 'Calculate', desc: 'Compute gross salary, taxes, and deductions' },
-      { name: 'Disburse', desc: 'Generate payslips and bank files' },
-      { name: 'Comply', desc: 'Submit PF, ESI, and tax declarations' }
+      { name: 'Recruit', desc: 'Source candidates and parse resumes via ATS' },
+      { name: 'Onboard', desc: 'Create profiles and collect documents' },
+      { name: 'Track Time', desc: 'AI Face scanner with GPS location lock' },
+      { name: 'Disburse', desc: 'Automate payslips and statutory deductions' },
+      { name: 'Appraise', desc: 'Evaluate KPIs via 360° feedback' }
     ]
   },
   'Asset Management': {

@@ -4,32 +4,40 @@ import { motion } from 'framer-motion';
 
 const team = [
   {
+    name: "Nitin Kamble",
+    role: "CEO & Founder",
+    roleColor: "text-purple-400",
+    desc: "Visionary leader with a passion for delivering technology solutions that transform businesses and empower teams.",
+    image: "/assets/images/team/nitin.jpg",
+    objectPosition: "object-[center_20%]"
+  },
+  {
     name: "Ashwini Khedekar",
-    role: "Founder & CEO",
+    role: "Chief Technology Officer",
     roleColor: "text-purple-400",
-    desc: "Visionary leader with 10+ years of experience in delivering technology solutions that transform businesses.",
-    image: "https://i.pravatar.cc/300?img=47"
+    desc: "Technology leader driving system architecture, innovation, and technical strategy for scalable enterprise solutions.",
+    image: "/assets/images/team/ashwini.jpg"
   },
   {
-    name: "Sushant Khedekar",
-    role: "COO",
+    name: "Sudarshan Kale",
+    role: "Software Engineer - I",
     roleColor: "text-purple-400",
-    desc: "Operations strategist focused on building strong processes, teams, and client relationships.",
-    image: "https://i.pravatar.cc/300?img=11"
+    desc: "Full-stack developer focused on writing clean, efficient code and building robust web applications.",
+    image: "/assets/images/team/sushant.jpg"
   },
   {
-    name: "Pratik Kamble",
-    role: "CTO",
+    name: "Purvesh Warude",
+    role: "Manual & Automation Tester (Intern)",
     roleColor: "text-purple-400",
-    desc: "Technology enthusiast leading innovation, architecture, and the delivery of scalable solutions.",
-    image: "https://i.pravatar.cc/300?img=12"
+    desc: "Dedicated to ensuring product quality through comprehensive manual testing and automated test scripts.",
+    image: "/assets/images/team/pratik.jpg"
   },
   {
-    name: "Pooja Jadhav",
-    role: "Head - Delivery",
+    name: "Sanika Mote",
+    role: "Software Engineer - I",
     roleColor: "text-purple-400",
-    desc: "Delivery expert ensuring quality execution, on-time delivery, and exceptional client satisfaction.",
-    image: "https://i.pravatar.cc/300?img=44"
+    desc: "Passionate software engineer building responsive user interfaces and scalable backend services.",
+    image: "/assets/images/team/pooja.jpg"
   }
 ];
 
@@ -65,12 +73,12 @@ const AboutLeadership = () => {
               viewport={{ once: true }}
               className="bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-2xl overflow-hidden shadow-sm dark:shadow-xl group hover:border-purple-500/50 transition-all text-left"
             >
-              <div className="h-48 overflow-hidden bg-slate-100 dark:bg-gray-900 relative">
+              <div className="h-72 overflow-hidden bg-slate-100 dark:bg-gray-900 relative">
                 <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#050112] to-transparent z-10"></div>
                 <img 
                   src={member.image} 
                   alt={`${member.name} - ${member.role} at Codigix Infotech`} 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 filter grayscale group-hover:grayscale-0"
+                  className={`w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 filter grayscale group-hover:grayscale-0 ${member.objectPosition || 'object-top'}`}
                 />
               </div>
               

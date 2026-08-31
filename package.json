@@ -19,6 +19,7 @@
     "compression": "^1.8.1",
     "framer-motion": "^12.34.0",
     "gsap": "^3.14.2",
+    "jodit-react": "^5.4.72",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

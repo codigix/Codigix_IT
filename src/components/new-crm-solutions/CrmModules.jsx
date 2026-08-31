@@ -27,7 +27,7 @@ const CrmModules = ({ activeTab, setActiveTab }) => {
 
   return (
     <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-8 text-left">
-      
+
       {/* 1. All CRM Modules Quick Selector */}
       <div className="mb-14">
         <div className="text-center mb-8 flex flex-col items-center">
@@ -48,11 +48,10 @@ const CrmModules = ({ activeTab, setActiveTab }) => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => setActiveTab && setActiveTab(item.title)}
-                className={`flex flex-col items-center text-center p-4 rounded-xl cursor-pointer transition-all duration-300 relative overflow-hidden ${
-                  isActive 
-                    ? 'bg-purple-50 dark:bg-purple-950/60 border-2 border-purple-500 shadow-[0_0_25px_rgba(168,85,247,0.15)] scale-[1.02]' 
-                    : 'bg-slate-50 dark:bg-[#050117]/80 border border-slate-200 dark:border-gray-800/70 hover:bg-slate-100 dark:hover:bg-[#0d072c] hover:border-purple-500/40'
-                }`}
+                className={`flex flex-col items-center text-center p-4 rounded-xl cursor-pointer transition-all duration-300 relative overflow-hidden ${isActive
+                  ? 'bg-purple-50 dark:bg-purple-950/60 border-2 border-purple-500 shadow-[0_0_25px_rgba(168,85,247,0.15)] scale-[1.02]'
+                  : 'bg-slate-50 dark:bg-[#050117]/80 border border-slate-200 dark:border-gray-800/70 hover:bg-slate-100 dark:hover:bg-[#0d072c] hover:border-purple-500/40'
+                  }`}
               >
                 {/* Spotlight background hover */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.06)_0%,transparent_70%)] opacity-0 hover:opacity-100 transition-opacity pointer-events-none" />
@@ -76,7 +75,7 @@ const CrmModules = ({ activeTab, setActiveTab }) => {
 
       {/* 2. Detailed Overview Block */}
       {overview && (
-        <motion.div 
+        <motion.div
           key={`overview-${activeTab}`}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -103,7 +102,7 @@ const CrmModules = ({ activeTab, setActiveTab }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="mb-14 p-6 lg:p-8 rounded-2xl bg-slate-50 dark:bg-[#090526]/70 border border-slate-250 dark:border-purple-900/40 shadow-sm dark:shadow-2xl relative overflow-hidden"
+            className="mb-14 p-6 lg:p-8 rounded-2xl bg-slate-50 dark:bg-[#090526]/70  dark:border-purple-900/40 shadow-sm dark:shadow-2xl relative overflow-hidden"
           >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-slate-200 dark:border-gray-800/80 pb-4">
               <div>
@@ -130,7 +129,7 @@ const CrmModules = ({ activeTab, setActiveTab }) => {
 
             {/* Department Dashboard Widgets & Reports */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              
+
               {/* Widgets Column */}
               <div className="lg:col-span-8 space-y-3">
                 <h4 className="text-xs font-bold text-slate-700 dark:text-gray-300 uppercase tracking-wider mb-3">Live Department Widgets</h4>
@@ -181,7 +180,7 @@ const CrmModules = ({ activeTab, setActiveTab }) => {
 
       {/* Sub-Modules Grid */}
       <AnimatePresence mode="wait">
-        <motion.div 
+        <motion.div
           key={`submodules-${activeTab}`}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -234,7 +233,7 @@ const CrmModules = ({ activeTab, setActiveTab }) => {
               className="grid grid-cols-1 md:grid-cols-3 gap-6"
             >
               {projects.map((proj, idx) => (
-                <div 
+                <div
                   key={idx}
                   className="p-5 rounded-xl bg-white dark:bg-[#090526]/60 border border-slate-200 dark:border-purple-900/30 flex flex-col justify-between hover:border-purple-500/50 transition-colors shadow-sm"
                 >

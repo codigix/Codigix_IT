@@ -110,7 +110,7 @@ const NewIotSolutionsPage = () => {
         </header>
 
         {/* Main Layout Container */}
-        <div className="iot-layout-container mx-auto pt-20 lg:pt-20">
+        <div className="iot-layout-container mx-auto pt-32 lg:pt-36">
 
           {/* Main Content Area (Left Side) */}
           <main id="main-content" className="px-4 sm:px-8 lg:px-12 xl:px-16 lg:border-r border-slate-200 dark:border-gray-800/50 py-12">

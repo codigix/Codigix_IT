@@ -79,7 +79,9 @@ async function initializeDatabase() {
         author VARCHAR(255),
         role VARCHAR(255),
         readTime VARCHAR(100),
-        body TEXT
+        body TEXT,
+        views INT DEFAULT 0,
+        likes INT DEFAULT 0
       )`,
       `CREATE TABLE IF NOT EXISTS clients (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -112,6 +114,11 @@ async function initializeDatabase() {
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         role VARCHAR(50) DEFAULT 'admin'
+      )`,
+      `CREATE TABLE IF NOT EXISTS newsletters (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        subscribed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )`,
       `CREATE TABLE IF NOT EXISTS jobs (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -151,7 +158,16 @@ async function initializeDatabase() {
         phone VARCHAR(50),
         subject VARCHAR(255),
         message TEXT,
+        status VARCHAR(20) DEFAULT 'pending',
         submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )`,
+      `CREATE TABLE IF NOT EXISTS blog_comments (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        blog_id INT,
+        name VARCHAR(255) NOT NULL,
+        comment TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (blog_id) REFERENCES blogs(id) ON DELETE CASCADE
       )`
     ];
 

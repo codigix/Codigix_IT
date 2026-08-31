@@ -4,6 +4,7 @@ const authController = require('../controllers/authController');
 const entityController = require('../controllers/entityController');
 const jobController = require('../controllers/jobController');
 const contactController = require('../controllers/contactController');
+const blogController = require('../controllers/blogController');
 const authenticateToken = require('../middleware/auth');
 const aiController = require('../controllers/aiController');
 const multer = require('multer');
@@ -44,6 +45,8 @@ router.post('/upload', upload.single('image'), (req, res) => {
 // AI Document Analysis route
 router.post('/analyze-case-study', upload.single('document'), aiController.analyzeDocument);
 router.post('/analyze-case-study-text', aiController.analyzeText);
+router.post('/analyze-blog-doc', upload.single('document'), aiController.analyzeBlogDocument);
+router.post('/analyze-blog-text', aiController.analyzeBlogText);
 
 // Job application route (public)
 router.post('/jobs/apply', jobController.applyForJob);
@@ -61,7 +64,8 @@ const publicEntities = [
     'team', 
     'jobs',
     'purchase_orders',
-    'inquiries'
+    'inquiries',
+    'applications'
 ];
 
 publicEntities.forEach(entity => {
@@ -78,6 +82,12 @@ publicEntities.forEach(entity => {
         return entityController.getById(req, res);
     });
 });
+
+// Blog specific interaction routes (must be before generic /:entity routes)
+router.put('/blogs/:id/view', blogController.incrementView);
+router.put('/blogs/:id/like', blogController.incrementLike);
+router.get('/blogs/:id/comments', blogController.getComments);
+router.post('/blogs/:id/comments', blogController.addComment);
 
 // Protected entity routes (POST, PUT, DELETE)
 router.post('/:entity', entityController.create);

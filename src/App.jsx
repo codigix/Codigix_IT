@@ -27,6 +27,7 @@ const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const CaseStudiesAdmin = lazy(() => import('./pages/admin/entities/CaseStudiesAdmin'));
 const BlogsAdmin = lazy(() => import('./pages/admin/entities/BlogsAdmin'));
+const AdminBlogEditor = lazy(() => import('./pages/admin/entities/AdminBlogEditor'));
 const TestimonialsAdmin = lazy(() => import('./pages/admin/entities/TestimonialsAdmin'));
 const ClientsAdmin = lazy(() => import('./pages/admin/entities/ClientsAdmin'));
 const JobsAdmin = lazy(() => import('./pages/admin/entities/JobsAdmin'));
@@ -55,6 +56,8 @@ function AppRoutes() {
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/case-studies" element={<CaseStudiesAdmin />} />
           <Route path="/admin/blogs" element={<BlogsAdmin />} />
+          <Route path="/admin/blogs/create" element={<AdminBlogEditor />} />
+          <Route path="/admin/blogs/edit/:id" element={<AdminBlogEditor />} />
           <Route path="/admin/testimonials" element={<TestimonialsAdmin />} />
           <Route path="/admin/clients" element={<ClientsAdmin />} />
           <Route path="/admin/jobs" element={<JobsAdmin />} />

@@ -117,7 +117,7 @@ const NewContactPage = () => {
         </header>
 
         {/* Main Content Area */}
-        <main className="mx-auto px-4 sm:px-6 lg:px-12 pt-28 lg:pt-32 pb-12">
+        <main className="mx-auto px-4 sm:px-6 lg:px-12 pt-32 lg:pt-36 pb-12">
 
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide uppercase font-bold">

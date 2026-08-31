@@ -102,7 +102,15 @@ const CareerTestimonials = () => {
                     "{test.quote}"
                   </p>
                   <div className="flex items-center gap-3">
-                    <img src={test.image} alt={test.name} className="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-gray-700" />
+                    <img 
+                      src={test.image} 
+                      alt={test.name} 
+                      className="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-gray-700 shrink-0" 
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(test.name || 'User')}&background=random&color=fff&size=150`;
+                      }}
+                    />
                     <div>
                       <h4 className="text-[12px] font-bold text-slate-900 dark:text-white">{test.name}</h4>
                       <p className="text-[9px] text-slate-550 dark:text-gray-500">{test.title}</p>

@@ -120,7 +120,7 @@ const TermsConditionsPage = () => {
         </header>
 
         {/* Main Content Area */}
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 lg:pt-36 pb-20">
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 lg:pt-36 pb-20">
 
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide uppercase font-bold">

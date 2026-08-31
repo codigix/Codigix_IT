@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import OtherServicesSidebar from '../components/new-other-services/OtherServicesSidebar';
 import OtherServicesHero from '../components/new-other-services/OtherServicesHero';
 import OtherServicesList from '../components/new-other-services/OtherServicesList';
+import OtherServicesPricing from '../components/new-other-services/OtherServicesPricing';
 import OtherServicesBottomCta from '../components/new-other-services/OtherServicesBottomCta';
 import ServicesFaqSection, { servicesFaqData } from '../components/new-other-services/ServicesFaqSection';
 import NewHomeNav from '../components/new-home/NewHomeNav';
@@ -22,7 +23,8 @@ const NewOtherServicesPage = () => {
         'Mobile Apps': 'mobile-apps',
         'UI/UX Design': 'ui-ux-design',
         'Cloud Solutions': 'cloud-solutions',
-        'DevOps': 'devops'
+        'DevOps': 'devops',
+        'Pricing Plans': 'pricing'
       };
       const sectionId = idMap[tabFromUrl];
       if (sectionId) {
@@ -40,7 +42,7 @@ const NewOtherServicesPage = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['web-development', 'mobile-apps', 'ui-ux-design', 'cloud-solutions', 'devops'];
+      const sections = ['web-development', 'mobile-apps', 'ui-ux-design', 'cloud-solutions', 'devops', 'pricing'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -132,12 +134,13 @@ const NewOtherServicesPage = () => {
         </header>
 
         {/* Main Layout Container */}
-        <div className="services-layout-container mx-auto pt-20 lg:pt-20">
+        <div className="services-layout-container mx-auto pt-32 lg:pt-36">
 
           {/* Main Content Area (Left Side) */}
           <main id="main-content" className="px-4 sm:px-8 lg:px-12 xl:px-16 py-12 lg:border-r border-slate-200 dark:border-gray-800/50">
             <OtherServicesHero />
             <OtherServicesList />
+            <OtherServicesPricing />
             <ServicesFaqSection />
             <OtherServicesBottomCta />
           </main>

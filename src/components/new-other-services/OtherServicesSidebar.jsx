@@ -1,5 +1,5 @@
 import React from 'react';
-import { Monitor, Smartphone, PenTool, Cloud, Infinity as DevOpsIcon } from 'lucide-react';
+import { Monitor, Smartphone, PenTool, Cloud, Infinity as DevOpsIcon, CreditCard } from 'lucide-react';
 import SolutionSidebar from '../common/SolutionSidebar';
 
 const servicesItems = [
@@ -8,6 +8,7 @@ const servicesItems = [
   { id: 'ui-ux-design', name: 'UI/UX Design', subtitle: 'Intuitive user interface & experience', icon: PenTool },
   { id: 'cloud-solutions', name: 'Cloud Solutions', subtitle: 'AWS, Azure & cloud architecture', icon: Cloud },
   { id: 'devops', name: 'DevOps Services', subtitle: 'CI/CD pipelines & infrastructure', icon: DevOpsIcon },
+  { id: 'pricing', name: 'Pricing Plans', subtitle: 'Flexible engagement models', icon: CreditCard },
 ];
 
 const OtherServicesSidebar = ({ activeSection, setActiveSection }) => {

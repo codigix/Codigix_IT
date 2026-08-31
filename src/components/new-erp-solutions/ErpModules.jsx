@@ -49,8 +49,8 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
                 whileTap={{ scale: 0.97 }}
                 onClick={() => setActiveTab && setActiveTab(item.title)}
                 className={`flex flex-col items-center text-center p-4 rounded-xl cursor-pointer transition-all duration-300 relative overflow-hidden ${isActive
-                    ? 'bg-purple-50 dark:bg-purple-950/60 border-2 border-purple-500 shadow-[0_0_25px_rgba(168,85,247,0.15)] scale-[1.02]'
-                    : 'bg-slate-50 dark:bg-[#050117]/80 border border-slate-200 dark:border-gray-800/70 hover:bg-slate-100 dark:hover:bg-[#0d072c] hover:border-purple-500/40'
+                  ? 'bg-purple-50 dark:bg-purple-950/60 border-2 border-purple-500 shadow-[0_0_25px_rgba(168,85,247,0.15)] scale-[1.02]'
+                  : 'bg-slate-50 dark:bg-[#050117]/80 border border-slate-200 dark:border-gray-800/70 hover:bg-slate-100 dark:hover:bg-[#0d072c] hover:border-purple-500/40'
                   }`}
               >
                 {/* Spotlight background hover */}
@@ -102,7 +102,7 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="mb-14 p-6 lg:p-8 rounded-2xl bg-slate-50 dark:bg-[#090526]/70 border border-slate-250 dark:border-purple-900/40 shadow-sm dark:shadow-2xl relative overflow-hidden"
+            className="mb-14 p-6 lg:p-8 rounded-2xl bg-slate-50 dark:bg-[#090526]/70  dark:border-purple-900/40 shadow-sm dark:shadow-2xl relative overflow-hidden"
           >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-slate-200 dark:border-gray-800/80 pb-4">
               <div>
@@ -225,6 +225,64 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
             ))}
           </div>
         </div>
+      )}
+
+      {/* Live Preview for HR & Payroll */}
+      {activeTab === 'HR & Payroll' && (
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-14"
+        >
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h3 className="text-xs font-extrabold text-purple-600 dark:text-purple-400 uppercase tracking-widest">Live Interactive Preview</h3>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-1">HR Management System</h2>
+            </div>
+            <a
+              href="https://hrmsystem.codigixinfotech.com/landing/landing"
+              target="_blank"
+              rel="noreferrer"
+              className="text-xs font-bold text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg transition-colors flex items-center gap-2 shadow-md shadow-purple-500/20"
+            >
+              <Icons.ExternalLink size={14} /> Open Live Site
+            </a>
+          </div>
+
+          <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 shadow-xl bg-slate-100 dark:bg-[#050117]">
+            {/* Browser Window Mockup */}
+            <div className="h-8 bg-slate-200 dark:bg-[#0c082b] flex items-center px-4 border-b border-slate-300 dark:border-gray-800">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+              </div>
+              <div className="mx-auto bg-white/50 dark:bg-black/20 rounded text-[9px] px-4 py-0.5 text-slate-500 font-mono tracking-wider">
+                hrmsystem.codigixinfotech.com/landing/landing
+              </div>
+            </div>
+
+            {/* Iframe Preview with Auto-Scroll on Hover */}
+            <div className="w-full h-[600px] relative overflow-hidden group cursor-ns-resize">
+              {/* This inner container is taller than the viewport and translates up on hover */}
+              <div className="w-full h-[3500px] transition-transform duration-[12s] ease-linear group-hover:-translate-y-[calc(3500px-600px)]">
+                <iframe
+                  src="https://hrmsystem.codigixinfotech.com/landing/landing"
+                  title="HR Management System Landing Page Preview"
+                  className="w-full h-full border-none pointer-events-none"
+                  scrolling="no"
+                ></iframe>
+              </div>
+
+              {/* Overlay to catch hover events properly without iframe stealing them */}
+              <div className="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/5 pointer-events-none">
+                <div className="bg-black/50 backdrop-blur text-white px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase flex items-center gap-2">
+                  <Icons.MousePointerClick size={14} /> Auto-Scrolling Preview
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       )}
 
     </div>

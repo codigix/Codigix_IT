@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { categories } from './CaseStudiesSidebar';
-import { caseStudiesData as fallbackCaseStudies } from '../../data/caseStudiesData';
 import config from '../../config';
 
 const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
   const navigate = useNavigate();
-  const [caseStudiesData, setCaseStudiesData] = useState(fallbackCaseStudies);
-  const [loading, setLoading] = useState(false);
+  const [caseStudiesData, setCaseStudiesData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -20,11 +19,11 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
         if (Array.isArray(data) && data.length > 0) {
           setCaseStudiesData(data);
         } else {
-          setCaseStudiesData(fallbackCaseStudies);
+          setCaseStudiesData([]);
         }
       } catch (error) {
-        console.error('Error fetching case studies from API, using static data:', error);
-        setCaseStudiesData(fallbackCaseStudies);
+        console.error('Error fetching case studies from API:', error);
+        setCaseStudiesData([]);
       } finally {
         setLoading(false);
       }

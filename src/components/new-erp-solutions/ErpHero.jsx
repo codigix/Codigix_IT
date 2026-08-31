@@ -307,32 +307,38 @@ const FinanceErpSimulator = () => {
   );
 };
 
-// HR & Payroll Timesheet Simulator
+// HR & Payroll System Preview
 const HrPayrollSimulator = () => {
   return (
-    <div className="w-full max-w-sm border border-gray-800 bg-[#07041a] rounded-2xl p-4 shadow-2xl font-mono text-[10px] space-y-4 text-left">
-      <div className="flex items-center justify-between border-b border-gray-800 pb-2">
-        <span className="text-fuchsia-400 font-bold uppercase tracking-wider">HR_PAYROLL_GATEWAY</span>
-        <span className="nh-led-active bg-fuchsia-400 shadow-[0_0_8px_#e879f9]"></span>
-      </div>
-
-      <div className="space-y-2">
-        <div className="flex justify-between">
-          <span className="text-gray-400">Active Staff</span>
-          <span className="text-white font-bold">150 Checked In</span>
+    <div className="w-full max-w-lg border border-gray-800 bg-[#07041a] rounded-xl overflow-hidden shadow-2xl relative flex flex-col h-[300px] group cursor-ns-resize">
+      <div className="flex items-center gap-2 px-4 py-2 border-b border-gray-800 bg-[#050117] relative z-20">
+        <div className="flex gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
         </div>
-        <div className="flex justify-between">
-          <span className="text-gray-400">Payroll sync state</span>
-          <span className="text-green-400 font-bold">SUCCESS (100% processed)</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-400">Leave balance queue</span>
-          <span className="text-cyan-400 font-bold">0 pending tickets</span>
+        <div className="mx-auto flex items-center justify-center bg-[#07041a] rounded px-3 py-1 text-[10px] text-gray-400 font-mono border border-gray-800 flex-1 ml-4 max-w-[250px]">
+          <span className="truncate">hrmsystem.codigixinfotech.com/landing/landing</span>
         </div>
       </div>
 
-      <div className="text-[8px] text-gray-600 text-right">
-        Status: <span className="text-green-400">EMPLOYEE PROFILE COMPLIANT</span>
+      <div className="flex-1 bg-white relative w-full overflow-hidden">
+        <div className="w-full h-[2500px] transition-transform duration-[12s] ease-linear group-hover:-translate-y-[calc(2500px-260px)]">
+          <iframe
+            src="https://hrmsystem.codigixinfotech.com/landing/landing"
+            title="HRM System Preview"
+            className="w-full h-full border-none pointer-events-none"
+            sandbox="allow-scripts allow-same-origin"
+            scrolling="no"
+          ></iframe>
+        </div>
+
+        {/* Overlay to catch hover events properly */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/5 pointer-events-none">
+          <div className="bg-black/50 backdrop-blur text-white px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase flex items-center gap-2">
+            Auto-Scrolling Preview
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -509,20 +515,43 @@ const ErpHero = ({ activeTab }) => {
             transition={{ delay: 0.2 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <button
-              onClick={() => navigate('/contact')}
-              aria-label="Book a custom ERP software consultation"
-              className="px-6 py-3 bg-gradient-to-r from-[#EE001C] to-[#7e22ce] hover:from-[#d30018] hover:to-[#6b1fb0] text-white text-[12px] font-medium rounded-md shadow-[0_0_20px_rgba(238,0,28,0.3)] transition-all flex items-center justify-center gap-2 cursor-pointer"
-            >
-              Book Consultation <ArrowRight size={14} />
-            </button>
-            <button
-              onClick={() => navigate('/contact')}
-              aria-label="Request a live demonstration of Codigix ERP"
-              className="px-6 py-3 bg-transparent border border-slate-350 dark:border-gray-700 hover:border-purple-500 text-slate-800 dark:text-white text-[12px] font-medium rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-purple-500/10"
-            >
-              Request Demo <Calendar size={14} />
-            </button>
+            {activeTab === 'HR & Payroll' ? (
+              <>
+                <a
+                  href="https://hrmsystem.codigixinfotech.com/landing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 bg-gradient-to-r from-[#EE001C] to-[#7e22ce] hover:from-[#d30018] hover:to-[#6b1fb0] text-white text-[12px] font-medium rounded-md shadow-[0_0_20px_rgba(238,0,28,0.3)] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  System Overview <ArrowRight size={14} />
+                </a>
+                <a
+                  href="https://hrmsystem.codigixinfotech.com/landing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 bg-transparent border border-slate-350 dark:border-gray-700 hover:border-purple-500 text-slate-800 dark:text-white text-[12px] font-medium rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-purple-500/10"
+                >
+                  Book Demo <Calendar size={14} />
+                </a>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => navigate('/contact')}
+                  aria-label="Book a custom ERP software consultation"
+                  className="px-6 py-3 bg-gradient-to-r from-[#EE001C] to-[#7e22ce] hover:from-[#d30018] hover:to-[#6b1fb0] text-white text-[12px] font-medium rounded-md shadow-[0_0_20px_rgba(238,0,28,0.3)] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  Book Consultation <ArrowRight size={14} />
+                </button>
+                <button
+                  onClick={() => navigate('/contact')}
+                  aria-label="Request a live demonstration of Codigix ERP"
+                  className="px-6 py-3 bg-transparent border border-slate-350 dark:border-gray-700 hover:border-purple-500 text-slate-800 dark:text-white text-[12px] font-medium rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-purple-500/10"
+                >
+                  Request Demo <Calendar size={14} />
+                </button>
+              </>
+            )}
           </motion.div>
         </div>
 

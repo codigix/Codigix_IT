@@ -1,22 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import { caseStudiesData } from '../../data/caseStudiesData';
-
-// Fetch client reviews dynamically from caseStudiesData project details
-const fetchedTestimonials = caseStudiesData
-  .filter(study => study.testimonial && study.testimonial.quote)
-  .map(study => ({
-    quote: study.testimonial.quote,
-    author: study.testimonial.author || 'Client Executive',
-    title: study.testimonial.title || 'Director',
-    company: study.testimonial.company || study.clientName || 'Partner Enterprise',
-    avatar: study.testimonial.avatar || '/assets/images/about/team-1.jpg'
-  }));
+import config from '../../config';
 
 const CaseStudiesTestimonials = () => {
+  const [fetchedTestimonials, setFetchedTestimonials] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
 
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await fetch(`${config.API_BASE_URL}/projects`);
+        if (response.ok) {
+          const data = await response.json();
+          const tests = data
+            .map(project => {
+              let t = project.testimonial;
+              if (typeof t === 'string') {
+                try { t = JSON.parse(t); } catch(e) { t = null; }
+              }
+              return t && t.quote ? { ...t, company: t.company || project.client || project.clientName } : null;
+            })
+            .filter(Boolean)
+            .map(t => ({
+              quote: t.quote,
+              author: t.author || 'Client Executive',
+              title: t.title || 'Director',
+              company: t.company || 'Partner Enterprise',
+              avatar: t.avatar || ''
+            }));
+          setFetchedTestimonials(tests);
+        }
+      } catch (error) {
+        console.error('Failed to fetch testimonials:', error);
+      }
+    };
+    fetchTestimonials();
+  }, []);
   useEffect(() => {
     const updateCount = () => {
       if (window.innerWidth < 640) {
@@ -96,7 +116,8 @@ const CaseStudiesTestimonials = () => {
                     alt={test.author}
                     className="w-11 h-11 rounded-full object-cover border border-slate-200 dark:border-gray-700 shrink-0"
                     onError={(e) => {
-                      e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80';
+                      e.target.onerror = null;
+                      e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(test.author || 'User')}&background=random&color=fff&size=150`;
                     }}
                   />
                   <div>

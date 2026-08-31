@@ -304,9 +304,24 @@ const OtherServicesList = () => {
               </div>
 
               <div className="pt-2">
-                <Link to="/contact" className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-xs font-bold rounded-xl shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2">
+                <button 
+                  onClick={() => {
+                    // Dispatch event to change pricing tab
+                    const event = new CustomEvent('select-pricing', { detail: service.id });
+                    window.dispatchEvent(event);
+                    
+                    // Scroll to pricing section
+                    const el = document.getElementById('pricing');
+                    if (el) {
+                      const yOffset = -100;
+                      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                      window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
+                  }}
+                  className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-xs font-bold rounded-xl shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2"
+                >
                   Explore {service.title} Capabilities & Pricing →
-                </Link>
+                </button>
               </div>
             </div>
 

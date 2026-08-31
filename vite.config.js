@@ -15,7 +15,11 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: env.VITE_API_BASE_URL?.replace('/api', '') || process.env.BACKEND_URL,
+          target: env.VITE_API_BASE_URL?.replace('/api', '') || process.env.BACKEND_URL || 'http://localhost:5000',
+          changeOrigin: true,
+        },
+        '/uploads': {
+          target: env.VITE_API_BASE_URL?.replace('/api', '') || process.env.BACKEND_URL || 'http://localhost:5000',
           changeOrigin: true,
         },
       },

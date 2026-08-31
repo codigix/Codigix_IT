@@ -277,31 +277,31 @@ const erpDashboardData = {
     ]
   },
   'HR & Payroll': {
-    title: 'Human Resources & Automated Payroll Hub',
-    desc: 'Manage employee lifecycle, biometric attendance, Leave requests, automated monthly payroll slips, and statutory compliance.',
-    features: ['Biometric Attendance Sync', 'Automated Payroll Engine', 'Leave & Shift Management', 'Employee Self-Service (ESS)', 'Tax & PF/ESIC Compliance', 'Performance Review Logs'],
-    funnelTitle: 'Attendance & Payroll Processing',
+    title: 'E-HRM Enterprise ERP & AI Hub',
+    desc: 'Automate hiring with our 16-Step ATS, eliminate buddy punching with <0.3s AI face recognition, and run fully compliant payroll instantly.',
+    features: ['16-Step ATS Recruitment', 'AI Face Recognition (<0.3s)', '100m GPS Geofencing', '1-Click Payroll (PF/TDS)', '9-Box Performance Matrix', 'Employee Mobile App (ESS)'],
+    funnelTitle: 'End-to-End HR Automation Pipeline',
     funnel: [
-      { stage: 'Biometric Attendance Logs', val: '1,240', color: 'bg-purple-600' },
-      { stage: 'Leaves & Shifts Approved', val: '42', color: 'bg-indigo-600' },
-      { stage: 'Payroll Slips Calculated', val: '1,240', color: 'bg-pink-600' },
-      { stage: 'Direct Salaries Disbursed', val: '1,240', color: 'bg-emerald-500' }
+      { stage: 'ATS Resumes Screened', val: '8,450', color: 'bg-purple-600' },
+      { stage: 'AI Face Authentications', val: '1,240', color: 'bg-emerald-500' },
+      { stage: '1-Click Payroll Run', val: '1,240', color: 'bg-amber-500' },
+      { stage: 'ESS Mobile App Users', val: '1,190', color: 'bg-sky-500' }
     ],
-    rightCardTitle: 'Attendance Rate & Payroll Velocity',
-    donutMetric: { val: '98.5%', label: 'Attendance Rate' },
+    rightCardTitle: 'AI Match Rate & Automation Velocity',
+    donutMetric: { val: '99.9%', label: 'AI Face Match' },
     bars: [
-      { height: 'h-[90%]', val: '1.2k', label: 'Staff' },
-      { height: 'h-[85%]', val: '98.5%', label: 'Attendance' },
-      { height: 'h-[95%]', val: '10m', label: 'Payroll' },
-      { height: 'h-[70%]', val: '96%', label: 'ESSApp' },
-      { height: 'h-[92%]', val: '100%', label: 'Disbursed' }
+      { height: 'h-[95%]', val: '8.4k', label: 'ATS' },
+      { height: 'h-[99%]', val: '99.9%', label: 'Face AI' },
+      { height: 'h-[100%]', val: '1.2k', label: 'Payroll' },
+      { height: 'h-[96%]', val: '1.1k', label: 'ESSApp' },
+      { height: 'h-[100%]', val: '100%', label: 'Compliant' }
     ],
-    statusText: 'Biometric Attendance & ESS Portal Stream',
+    statusText: 'E-HRM AI Intelligence & Payroll Engine Stream',
     stats: [
-      { label: 'Headcount Active', value: '1,240', chg: 'Active' },
-      { label: 'Attendance Rate', value: '98.5%', chg: '↑ 1.1%', color: 'text-emerald-600 dark:text-emerald-400' },
-      { label: 'Payroll Processing Time', value: '10 min', chg: '⚡ Fast', color: 'text-emerald-600 dark:text-emerald-400' },
-      { label: 'ESS App Adoption', value: '96.0%', chg: 'High Sync' }
+      { label: 'ATS Pipeline', value: '8,450', chg: 'Active' },
+      { label: 'AI Match Accuracy', value: '99.9%', chg: '< 0.3s', color: 'text-emerald-600 dark:text-emerald-400' },
+      { label: 'Payroll Processing', value: 'Instant', chg: '⚡ 1-Click', color: 'text-amber-500 dark:text-amber-400' },
+      { label: 'ESS App Adoption', value: '96.0%', chg: 'High Sync', color: 'text-sky-600 dark:text-sky-400' }
     ]
   },
   'Asset Management': {

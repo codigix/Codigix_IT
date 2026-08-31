@@ -47,7 +47,7 @@ const HeroSection = () => {
         while(true) {'{'} optimize(); {'}'}
       </div>
 
-      <div className="mx-auto w-full relative z-10 pt-20 pb-20">
+      <div className="mx-auto w-full relative z-10 pt-32 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
 
           {/* Left Content */}

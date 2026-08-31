@@ -69,6 +69,27 @@ if (NODE_ENV === 'production') {
   });
 }
 
+// Newsletter Subscription Endpoint
+app.post('/api/newsletters/subscribe', async (req, res) => {
+  const { email } = req.body;
+  if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+    return res.status(400).json({ error: 'Valid email is required.' });
+  }
+
+  try {
+    const [existing] = await db.query('SELECT * FROM newsletters WHERE email = ?', [email]);
+    if (existing.length > 0) {
+      return res.status(400).json({ error: 'Email is already subscribed.' });
+    }
+
+    await db.query('INSERT INTO newsletters (email) VALUES (?)', [email]);
+    res.status(201).json({ message: 'Successfully subscribed to the newsletter!' });
+  } catch (error) {
+    console.error('Error subscribing to newsletter:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Verify database connection and start server
 const startServer = async () => {
   try {
@@ -88,7 +109,10 @@ const startServer = async () => {
     // Don't exit in development so the health check might still work? 
     // Actually, most routes need DB, but let's at least keep it alive if possible or exit.
     // For now, keep exit to follow original behavior but with better logs.
-    process.exit(1);
+    // process.exit(1);
+    app.listen(PORT, () => {
+      console.log(`Server is running in degraded mode (no DB) on http://localhost:${PORT}`);
+    });
   }
 };
 

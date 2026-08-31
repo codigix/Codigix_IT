@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
+import { ArrowRight, Menu, X, ChevronDown, ChevronRight, Mail, Phone } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ThemeToggle from '../ThemeToggle';
 
-const navLinks = [
+const mainNavLinks = [
   { name: 'Home', path: '/', hasDropdown: false },
+  { name: 'Services', path: '/services', hasDropdown: false },
+  { name: 'About Us', path: '/about', hasDropdown: false },
+  { name: 'Career', path: '/career', hasDropdown: false },
+  { name: 'Case Studies', path: '/case-studies', hasDropdown: false },
+  { name: 'Blog', path: '/blog', hasDropdown: false }
+];
+
+const subNavLinks = [
   {
     name: 'AI Solutions',
     path: '/ai-solutions',
@@ -87,18 +95,6 @@ const navLinks = [
     ]
   },
   {
-    name: 'Services',
-    path: '/services',
-    hasDropdown: true,
-    dropdownItems: [
-      { name: 'Web Development', path: '/services?tab=Web+Development' },
-      { name: 'Mobile Apps', path: '/services?tab=Mobile+Apps' },
-      { name: 'UI/UX Design', path: '/services?tab=UI/UX+Design' },
-      { name: 'Cloud Solutions', path: '/services?tab=Cloud+Solutions' },
-      { name: 'DevOps Services', path: '/services?tab=DevOps' }
-    ]
-  },
-  {
     name: 'Industries',
     path: '/industries',
     hasDropdown: true,
@@ -109,10 +105,7 @@ const navLinks = [
       { name: 'Finance & Banking', path: '/industries?tab=Finance' },
       { name: 'Real Estate', path: '/industries?tab=Real+Estate' }
     ]
-  },
-  { name: 'Case Studies', path: '/case-studies', hasDropdown: false },
-  { name: 'Career', path: '/career', hasDropdown: false },
-  { name: 'About Us', path: '/about', hasDropdown: false },
+  }
 ];
 
 const NewHomeNav = () => {
@@ -136,63 +129,66 @@ const NewHomeNav = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 dark:bg-[#0d0b21]/95 backdrop-blur-md shadow-lg py-3 border-b border-gray-200 dark:border-gray-800' : 'bg-transparent py-5'}`}>
-      <div className=" mx-auto px-4 sm:px-6 lg:px-12">
-        <div className="flex items-center justify-between">
+  const renderLinks = (linksArray) => (
+    linksArray.map((link, i) => {
+      const isActive = location.pathname === link.path;
+      const isLargeGrid = link.dropdownItems && link.dropdownItems.length >= 8;
 
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 z-50">
-            <img src="/assets/images/logos/logo.webp" alt="Codigix" className="w-full h-15 object-contain" />
+      return (
+        <div key={i} className="relative group">
+          <Link
+            to={link.path}
+            className={`text-sm font-medium transition-colors flex items-center gap-1 py-4 relative ${isActive ? 'text-slate-900 dark:text-white font-semibold' : 'text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white'}`}
+          >
+            {link.name}
+            {link.hasDropdown && <ChevronDown size={14} className={`transition-transform group-hover:rotate-180 ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-gray-400'}`} />}
+            {isActive && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#EE001C] to-[#7e22ce] rounded-full" />
+            )}
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
-            {navLinks.map((link, i) => {
-              const isActive = location.pathname === link.path;
-              const isLargeGrid = link.dropdownItems && link.dropdownItems.length >= 8;
-
-              return (
-                <div key={i} className="relative group">
+          {/* Grid Format Mega Dropdown */}
+          {link.hasDropdown && link.dropdownItems && (
+            <div className={`absolute top-full left-0 mt-1 bg-white dark:bg-[#08041d]/95 backdrop-blur-xl border border-gray-200 dark:border-purple-900/40 rounded-xl shadow-[0_15px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_15px_50px_rgba(0,0,0,0.8)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0 z-50 p-4 ${isLargeGrid ? 'w-[680px]' : 'w-[440px]'}`}>
+              <div className={`grid ${isLargeGrid ? 'grid-cols-3' : 'grid-cols-2'} gap-2`}>
+                {link.dropdownItems.map((dropItem, idx) => (
                   <Link
-                    to={link.path}
-                    className={`text-sm font-medium transition-colors flex items-center gap-1 py-4 relative ${isActive ? 'text-slate-900 dark:text-white font-semibold' : 'text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white'}`}
+                    key={idx}
+                    to={dropItem.path}
+                    className="flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-medium text-slate-700 hover:text-slate-900 dark:text-gray-300 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-purple-900/30 hover:border-slate-200 dark:hover:border-purple-500/30 border border-transparent transition-all group/item"
                   >
-                    {link.name}
-                    {link.hasDropdown && <ChevronDown size={14} className={`transition-transform group-hover:rotate-180 ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-gray-400'}`} />}
-                    {isActive && (
-                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#EE001C] to-[#7e22ce] rounded-full" />
-                    )}
+                    <span className="truncate">{dropItem.name}</span>
+                    <ChevronRight
+                      size={14}
+                      className="text-purple-600 dark:text-purple-400 group-hover/item:translate-x-1 group-hover/item:text-purple-700 dark:group-hover/item:text-purple-300 transition-all shrink-0 ml-1"
+                    />
                   </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    })
+  );
 
-                  {/* Grid Format Mega Dropdown */}
-                  {link.hasDropdown && link.dropdownItems && (
-                    <div className={`absolute top-full ${i > 4 ? 'right-0' : 'left-0'} mt-1 bg-white dark:bg-[#08041d]/95 backdrop-blur-xl border border-gray-200 dark:border-purple-900/40 rounded-xl shadow-[0_15px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_15px_50px_rgba(0,0,0,0.8)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0 z-50 p-4 ${isLargeGrid ? 'w-[680px]' : 'w-[440px]'
-                      }`}>
-                      <div className={`grid ${isLargeGrid ? 'grid-cols-3' : 'grid-cols-2'} gap-2`}>
-                        {link.dropdownItems.map((dropItem, idx) => (
-                          <Link
-                            key={idx}
-                            to={dropItem.path}
-                            className="flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-medium text-slate-700 hover:text-slate-900 dark:text-gray-300 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-purple-900/30 hover:border-slate-200 dark:hover:border-purple-500/30 border border-transparent transition-all group/item"
-                          >
-                            <span className="truncate">{dropItem.name}</span>
-                            <ChevronRight
-                              size={14}
-                              className="text-purple-600 dark:text-purple-400 group-hover/item:translate-x-1 group-hover/item:text-purple-700 dark:group-hover/item:text-purple-300 transition-all shrink-0 ml-1"
-                            />
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+  return (
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 dark:bg-[#0d0b21]/95 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-gray-800' : 'bg-white dark:bg-[#07041a] border-b border-gray-200 dark:border-gray-800'}`}>
+
+      {/* Top Main Nav */}
+      <div className={`transition-all duration-300 px-4 sm:px-6 lg:px-12 ${scrolled ? 'py-2' : 'py-3'}`}>
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2.5 z-50">
+            <img src="/assets/images/logos/logo.webp" alt="Codigix" className={`object-contain transition-all duration-300 ${scrolled ? 'h-10' : 'h-12'}`} />
+          </Link>
+
+          <div className="hidden lg:flex items-center gap-5 xl:gap-8 ml-8">
+            {renderLinks(mainNavLinks)}
           </div>
 
-          {/* Theme Toggle & Let's Talk Button */}
-          <div className="hidden lg:flex items-center ml-2 gap-3">
+          <div className="flex-1"></div>
+
+          <div className="hidden lg:flex items-center gap-4">
             <ThemeToggle />
             <button
               onClick={() => navigate('/contact')}
@@ -216,6 +212,17 @@ const NewHomeNav = () => {
         </div>
       </div>
 
+      {/* Sub Nav (Dropdowns & Contact) */}
+      <div className={`hidden lg:flex justify-between items-center px-4 sm:px-6 lg:px-12 border-t border-gray-100 dark:border-gray-800/80 bg-slate-50/50 dark:bg-black/20 transition-all duration-300 overflow-visible ${scrolled ? 'h-0 opacity-0 pointer-events-none border-transparent' : 'h-12 opacity-100'}`}>
+        <div className="flex items-center gap-4 xl:gap-8 pl-8">
+          {renderLinks(subNavLinks)}
+        </div>
+        <div className="flex items-center gap-6 text-[11px] font-bold text-slate-500 dark:text-gray-400">
+          <span className="flex items-center gap-1.5 hover:text-purple-600 transition-colors cursor-pointer"><Mail size={12} /> info@codigixinfotech.com</span>
+          <span className="flex items-center gap-1.5 hover:text-purple-600 transition-colors cursor-pointer"><Phone size={12} /> +91 9112706604</span>
+        </div>
+      </div>
+
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -225,7 +232,7 @@ const NewHomeNav = () => {
             exit={{ opacity: 0, y: -20 }}
             className="absolute top-full left-0 right-0 bg-[#070320] border-b border-gray-800 shadow-xl py-4 px-4 lg:hidden flex flex-col space-y-4 max-h-[80vh] overflow-y-auto"
           >
-            {navLinks.map((link, i) => {
+            {[...mainNavLinks, ...subNavLinks].map((link, i) => {
               const isActive = location.pathname === link.path;
               return (
                 <div key={i} className="flex flex-col border-b border-gray-800/50 last:border-0 pb-2">
@@ -278,7 +285,7 @@ const NewHomeNav = () => {
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
-    </nav>
+    </header>
   );
 };
 
