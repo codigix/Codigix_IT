@@ -38,6 +38,20 @@ const team = [
     roleColor: "text-purple-400",
     desc: "Passionate software engineer building responsive user interfaces and scalable backend services.",
     image: "/assets/images/team/pooja.jpg"
+  },
+  {
+    name: "Abhijit Khedekar",
+    role: "Business Analyst",
+    roleColor: "text-purple-400",
+    desc: "Expert in gathering requirements and streamlining business processes to deliver optimal software solutions.",
+    image: "/assets/images/team/abhijit.jpg"
+  },
+  {
+    name: "Sujata Choudhary",
+    role: "CMS Engineer - I",
+    roleColor: "text-purple-400",
+    desc: "Specialized in content management systems, ensuring seamless digital experiences and robust content delivery.",
+    image: "/assets/images/team/sujata.jpg"
   }
 ];
 
