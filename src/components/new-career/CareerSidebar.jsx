@@ -1,5 +1,5 @@
 import React from 'react';
-import { Settings, BookOpen, Users, Clock, Target } from 'lucide-react';
+import { Settings, BookOpen, Users, Clock, Target, MapPin, ExternalLink } from 'lucide-react';
 
 const reasons = [
   {
@@ -47,6 +47,30 @@ const CareerSidebar = () => {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div className="bg-white dark:bg-[#0a0624]/60 border border-slate-200 dark:border-gray-800/80 rounded-2xl py-6 px-4 shadow-sm dark:shadow-xl mt-6">
+        <h3 className="text-[11px] font-bold text-slate-400 dark:text-gray-550 uppercase tracking-widest mb-6 px-2">Our Office</h3>
+        
+        <div className="flex items-start gap-4 px-2 group">
+          <div className="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/20 flex items-center justify-center shrink-0 group-hover:bg-purple-100 dark:group-hover:bg-purple-900/40 group-hover:border-purple-400 dark:group-hover:border-purple-500/50 transition-colors">
+            <MapPin size={18} className="text-purple-600 dark:text-purple-400" />
+          </div>
+          <div>
+            <h4 className="text-[13px] font-bold text-slate-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">Pune Headquarters</h4>
+            <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-relaxed mb-3">
+              Office No: 514, 5th Floor, Brahma Sky Uzuri, MIDC, Pimpri Colony, Pimpri-Chinchwad, Maharashtra 411018
+            </p>
+            <a 
+              href="https://www.google.com/maps/search/?api=1&query=Office+No:+514,+5th+Floor,+Brahma+Sky+Uzuri,+MIDC,+Pimpri+Colony,+Pimpri-Chinchwad,+Maharashtra+411018"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[11px] font-bold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors bg-purple-50 dark:bg-purple-900/20 px-3 py-1.5 rounded-lg border border-purple-200 dark:border-purple-500/20"
+            >
+              View on Map <ExternalLink size={12} />
+            </a>
+          </div>
         </div>
       </div>
     </div>

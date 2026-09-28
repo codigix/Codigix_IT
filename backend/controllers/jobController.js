@@ -45,26 +45,37 @@ exports.applyForJob = (req, res) => {
       return res.status(400).json({ error: 'Please upload a resume' });
     }
 
-    const { job_id, name, email, phone, cover_letter } = req.body;
+    const { job_id, name, email, phone, cover_letter, details } = req.body;
     console.log(`Application for job ${job_id} from ${name}`);
     const resume_url = `/uploads/resumes/${req.file.filename}`;
 
     try {
       const [result] = await db.query(
-        'INSERT INTO applications (job_id, name, email, phone, resume_url, cover_letter) VALUES (?, ?, ?, ?, ?, ?)',
-        [job_id, name, email, phone, resume_url, cover_letter]
+        'INSERT INTO applications (job_id, name, email, phone, resume_url, cover_letter, details) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [job_id, name, email, phone, resume_url, cover_letter, details || null]
       );
 
-      const details = [
+      let parsedDetails = {};
+      try {
+        if(details) parsedDetails = JSON.parse(details);
+      } catch(e) {}
+
+      const emailDetails = [
         { label: 'Job ID', value: job_id, icon: '🆔' },
         { label: 'Name', value: name, icon: '👤' },
         { label: 'Email', value: email, icon: '✉️' },
         { label: 'Phone', value: phone || 'N/A', icon: '📞' },
+        { label: 'Location', value: parsedDetails.city ? `${parsedDetails.city}, ${parsedDetails.state}, ${parsedDetails.country}` : 'N/A', icon: '📍' },
+        { label: 'Experience', value: parsedDetails.experience || 'N/A', icon: '💼' },
+        { label: 'Notice Period', value: parsedDetails.noticePeriod || 'N/A', icon: '⏳' },
+        { label: 'Qualification', value: parsedDetails.highestQualification || 'N/A', icon: '🎓' },
+        { label: 'Current Company', value: parsedDetails.currentCompany || 'N/A', icon: '🏢' },
+        { label: 'LinkedIn', value: parsedDetails.linkedinUrl || 'N/A', icon: '🔗' },
         { label: 'Resume', value: `<a href="https://codigixinfotech.com${resume_url}" target="_blank" style="color: #0056b3; text-decoration: none; font-weight: bold;">Download Resume</a>`, icon: '📄' },
         { label: 'Cover Letter', value: cover_letter || 'No cover letter provided.', icon: '✉️' }
       ];
 
-      const emailContent = getEmailTemplate('New Job Application Received', details);
+      const emailContent = getEmailTemplate('New Job Application Received', emailDetails);
 
       await sendEmail({
         subject: `New Job Application: ${name}`,

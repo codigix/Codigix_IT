@@ -22,6 +22,7 @@ const NewCareerPage = () => {
   const [activeDepartment, setActiveDepartment] = useState(tabQuery || 'All Departments');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
+  const [modalMode, setModalMode] = useState('apply');
 
   useEffect(() => {
     if (tabQuery) {
@@ -34,8 +35,9 @@ const NewCareerPage = () => {
     setSearchParams({ tab: dept });
   };
 
-  const handleOpenModal = (job = null) => {
+  const handleOpenModal = (job = null, mode = 'apply') => {
     setSelectedJob(job);
+    setModalMode(mode);
     setIsModalOpen(true);
   };
 
@@ -174,7 +176,7 @@ const NewCareerPage = () => {
               <CareerJobs
                 activeDepartment={activeDepartment}
                 setActiveDepartment={handleDepartmentChange}
-                onApply={(job) => handleOpenModal(job)}
+                onApply={(job, mode) => handleOpenModal(job, mode)}
               />
               <CareerLife />
               <CareerTestimonials />
@@ -196,6 +198,7 @@ const NewCareerPage = () => {
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           job={selectedJob}
+          initialMode={modalMode}
         />
 
         {/* Footer */}

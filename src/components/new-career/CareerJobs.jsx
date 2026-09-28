@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, MapPin, Clock, Briefcase, PenTool, TrendingUp, BarChart, Headphones } from 'lucide-react';
+import { ArrowRight, MapPin, Clock, Briefcase, PenTool, TrendingUp, BarChart, Headphones, Building2, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import config from '../../config';
 
@@ -99,7 +99,12 @@ const CareerJobs = ({ activeDepartment, setActiveDepartment, onApply }) => {
                  ...j,
                  deptIcon: icon,
                  desc: j.description || j.desc || 'Join our growing team',
-                 exp: j.experience || j.exp || 'Not specified'
+                 exp: j.experience || j.exp || 'Not specified',
+                 type: j.type || 'Full-time',
+                 company: j.company || 'Codigix Infotech',
+                 skills: j.skills || '',
+                 responsibilities: j.responsibilities || '',
+                 qualifications: j.qualifications || '',
               };
             });
             setJobs(mappedJobs);
@@ -177,9 +182,14 @@ const CareerJobs = ({ activeDepartment, setActiveDepartment, onApply }) => {
                         <IconComp size={20} />
                       </div>
                       <div>
-                        <span className="text-[9px] font-bold uppercase tracking-wider text-purple-650 dark:text-purple-400 block mb-0.5">
-                          {job.dept}
-                        </span>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-[9px] font-bold uppercase tracking-wider text-purple-650 dark:text-purple-400 block">
+                            {job.dept}
+                          </span>
+                          <span className="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-gray-800 text-[9px] font-semibold text-slate-600 dark:text-gray-300">
+                            {job.type || 'Full-time'}
+                          </span>
+                        </div>
                         <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                           {job.title}
                         </h3>
@@ -187,26 +197,68 @@ const CareerJobs = ({ activeDepartment, setActiveDepartment, onApply }) => {
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-600 dark:text-gray-300 leading-relaxed mb-6 flex-1">
+                  <div className="flex items-center gap-4 text-[10px] text-slate-500 dark:text-gray-400 mb-3 font-medium">
+                    <span className="flex items-center gap-1">
+                      <Building2 size={12} className="text-purple-500" />
+                      {job.company || 'Codigix Infotech'}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <MapPin size={12} className="text-purple-500 shrink-0" /> 
+                      {job.location || 'Pune, India'}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock size={12} className="text-purple-500 shrink-0" /> 
+                      {job.exp}
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-slate-600 dark:text-gray-300 leading-relaxed mb-4 flex-1 line-clamp-2">
                     {job.desc}
                   </p>
 
+                  {job.skills && (
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {job.skills.split(',').slice(0, 4).map((skill, idx) => (
+                        <span key={idx} className="px-2 py-1 rounded bg-slate-100 dark:bg-gray-800 text-slate-600 dark:text-gray-300 text-[9px] font-medium border border-slate-200 dark:border-gray-700">
+                          {skill.trim()}
+                        </span>
+                      ))}
+                      {job.skills.split(',').length > 4 && (
+                         <span className="px-2 py-1 rounded bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 text-[9px] font-medium">
+                           +{job.skills.split(',').length - 4} more
+                         </span>
+                      )}
+                    </div>
+                  )}
+
+                  {job.qualifications && (
+                    <div className="mb-4">
+                      <div className="flex items-start gap-1.5 text-xs text-slate-600 dark:text-gray-400">
+                        <CheckCircle2 size={12} className="text-emerald-500 mt-0.5 shrink-0" />
+                        <span className="line-clamp-1">{job.qualifications}</span>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="border-t border-slate-100 dark:border-gray-800/80 pt-4 flex items-center justify-between gap-2 mt-auto">
                     <div className="flex flex-wrap items-center gap-3 text-[10px] text-slate-500 dark:text-gray-400">
-                      <span className="flex items-center gap-1">
-                        <Clock size={12} className="text-purple-500 shrink-0" /> {job.exp}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin size={12} className="text-purple-500 shrink-0" /> {job.location || 'Pune, India'}
-                      </span>
+                      {/* Left side empty for balance or we can add a date here later */}
                     </div>
 
-                    <button
-                      onClick={() => onApply(job)}
-                      className="px-3.5 py-1.5 rounded-lg bg-purple-50 dark:bg-purple-950/80 hover:bg-purple-600 hover:text-white dark:hover:bg-purple-600 text-purple-700 dark:text-purple-300 text-xs font-semibold border border-purple-200 dark:border-purple-800/40 transition-all flex items-center gap-1.5 shrink-0"
-                    >
-                      Apply Now <ArrowRight size={12} />
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => onApply(job, 'details')}
+                        className="px-3.5 py-1.5 rounded-lg bg-slate-100 dark:bg-gray-800 hover:bg-slate-200 dark:hover:bg-gray-700 text-slate-700 dark:text-gray-300 text-xs font-semibold border border-slate-200 dark:border-gray-700 transition-all flex items-center gap-1.5 shrink-0"
+                      >
+                        View Details
+                      </button>
+                      <button
+                        onClick={() => onApply(job, 'apply')}
+                        className="px-3.5 py-1.5 rounded-lg bg-purple-50 dark:bg-purple-950/80 hover:bg-purple-600 hover:text-white dark:hover:bg-purple-600 text-purple-700 dark:text-purple-300 text-xs font-semibold border border-purple-200 dark:border-purple-800/40 transition-all flex items-center gap-1.5 shrink-0"
+                      >
+                        Apply Now <ArrowRight size={12} />
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               );

@@ -123,9 +123,15 @@ async function initializeDatabase() {
       `CREATE TABLE IF NOT EXISTS jobs (
         id INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
+        dept VARCHAR(100),
+        company VARCHAR(255),
         location VARCHAR(255),
         type VARCHAR(100),
+        experience VARCHAR(100),
         description TEXT,
+        responsibilities TEXT,
+        skills TEXT,
+        qualifications TEXT,
         requirements TEXT,
         date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )`,
@@ -137,6 +143,7 @@ async function initializeDatabase() {
         phone VARCHAR(50),
         resume_url VARCHAR(255),
         cover_letter TEXT,
+        details JSON,
         applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE SET NULL
       )`,

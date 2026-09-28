@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   X, User, Briefcase, Calendar, MapPin, Upload, FileText, CheckCircle2,
   ArrowRight, ArrowLeft, Bookmark, ShieldCheck, Mail, Phone, Code2, GraduationCap, Check
@@ -6,10 +6,30 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackJobApply } from '../../utils/analytics';
 
-const JobApplyModal = ({ isOpen, onClose, job }) => {
+const JobApplyModal = ({ isOpen, onClose, job, initialMode = 'apply' }) => {
+  const [mode, setMode] = useState(initialMode);
   const [currentStep, setCurrentStep] = useState(1);
   const [isSaved, setIsSaved] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  // Reset state when opened with a new job or mode
+  useEffect(() => {
+    if (isOpen) {
+      setMode(initialMode);
+      setCurrentStep(1);
+      setIsSubmitted(false);
+      setIsSaved(false);
+      setErrorMsg('');
+      setFormData(prev => ({
+        ...prev,
+        position: job?.title || 'Senior Full Stack Developer',
+        department: job?.dept || 'Engineering',
+        experience: job?.experience || job?.exp || '3-5 Years'
+      }));
+    }
+  }, [isOpen, initialMode, job]);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -55,23 +75,80 @@ const JobApplyModal = ({ isOpen, onClose, job }) => {
     location: job?.location || 'Pune, Maharashtra',
     dept: job?.dept || 'Engineering',
     type: job?.type || 'Full Time',
-    exp: job?.exp || '3 – 5 Years',
+    exp: job?.experience || job?.exp || '3 – 5 Years',
     openings: '3',
-    postedOn: '20 May 2025',
-    jobId: 'COD-ENG-245'
+    postedOn: job?.date_posted ? new Date(job.date_posted).toLocaleDateString() : '20 May 2025',
+    jobId: job?.id || 'COD-ENG-245',
+    description: job?.description || job?.desc || '',
+    responsibilities: job?.responsibilities || '',
+    skills: job?.skills || '',
+    qualifications: job?.qualifications || '',
+    requirements: job?.requirements || ''
   };
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleNext = (e) => {
+  const handleNext = async (e) => {
     e.preventDefault();
     if (currentStep < 4) {
       setCurrentStep(prev => prev + 1);
     } else {
-      trackJobApply(defaultJob.title);
-      setIsSubmitted(true);
+      setIsSubmitting(true);
+      setErrorMsg('');
+      try {
+        const formDataToSend = new FormData();
+        formDataToSend.append('job_id', defaultJob.jobId);
+        formDataToSend.append('name', formData.fullName);
+        formDataToSend.append('email', formData.email);
+        formDataToSend.append('phone', `${formData.phoneCode} ${formData.phone}`);
+        formDataToSend.append('cover_letter', formData.coverNote);
+        if (formData.resumeFile) {
+          formDataToSend.append('resume', formData.resumeFile);
+        }
+        
+        // Add extra details
+        const details = {
+          city: formData.city,
+          state: formData.state,
+          country: formData.country,
+          dob: formData.dob,
+          gender: formData.gender,
+          department: formData.department,
+          experience: formData.experience,
+          currentCompany: formData.currentCompany,
+          currentDesignation: formData.currentDesignation,
+          noticePeriod: formData.noticePeriod,
+          linkedinUrl: formData.linkedinUrl,
+          portfolioUrl: formData.portfolioUrl,
+          keySkills: formData.keySkills,
+          highestQualification: formData.highestQualification,
+          specialization: formData.specialization,
+          university: formData.university,
+          passingYear: formData.passingYear,
+          cgpa: formData.cgpa
+        };
+        formDataToSend.append('details', JSON.stringify(details));
+
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || '/api'}/jobs/apply`, {
+          method: 'POST',
+          body: formDataToSend,
+        });
+
+        if (!response.ok) {
+          const resData = await response.json();
+          throw new Error(resData.error || 'Failed to submit application');
+        }
+
+        trackJobApply(defaultJob.title);
+        setIsSubmitted(true);
+      } catch (err) {
+        console.error(err);
+        setErrorMsg(err.message || 'An error occurred during submission.');
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -147,6 +224,51 @@ const JobApplyModal = ({ isOpen, onClose, job }) => {
                 >
                   Done & Close
                 </button>
+              </div>
+            ) : mode === 'details' ? (
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div className="lg:col-span-8 space-y-6 text-slate-800 dark:text-gray-300 text-sm leading-relaxed">
+                  <div className="bg-slate-50 dark:bg-[#050114] border border-slate-200 dark:border-gray-800/80 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">About the Role</h3>
+                    <p className="whitespace-pre-line mb-6">{defaultJob.description}</p>
+                    
+                    {defaultJob.responsibilities && (
+                      <>
+                        <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-3">Key Responsibilities</h4>
+                        <p className="whitespace-pre-line mb-6">{defaultJob.responsibilities}</p>
+                      </>
+                    )}
+                    
+                    {defaultJob.skills && (
+                      <>
+                        <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-3">Required Skills</h4>
+                        <p className="whitespace-pre-line mb-6">{defaultJob.skills}</p>
+                      </>
+                    )}
+
+                    {(defaultJob.qualifications || defaultJob.requirements) && (
+                      <>
+                        <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-3">Qualifications & Requirements</h4>
+                        <p className="whitespace-pre-line">{defaultJob.qualifications}</p>
+                        <p className="whitespace-pre-line mt-2">{defaultJob.requirements}</p>
+                      </>
+                    )}
+                  </div>
+                  
+                  <div className="flex justify-end pt-4">
+                    <button
+                      onClick={() => setMode('apply')}
+                      className="px-8 py-3 bg-gradient-to-r from-[#7e22ce] to-[#9333ea] hover:from-[#9333ea] hover:to-[#a855f7] text-white text-sm font-semibold rounded-lg shadow-lg transition-all flex items-center gap-2"
+                    >
+                      Apply for this Role <ArrowRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                {/* Right Job Summary Sidebar (4 Cols) */}
+                <div className="lg:col-span-4 space-y-5 text-left">
+                  {/* Reuse the Job Summary Component here or keep it below in apply mode too */}
+                  <JobSummaryCard defaultJob={defaultJob} />
+                </div>
               </div>
             ) : (
               <>
@@ -624,20 +746,23 @@ const JobApplyModal = ({ isOpen, onClose, job }) => {
                         </div>
 
                         <div className="flex items-center gap-3">
+                          {errorMsg && <span className="text-red-500 text-xs font-semibold">{errorMsg}</span>}
                           {currentStep > 1 && (
                             <button
                               type="button"
                               onClick={handlePrev}
-                              className="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 dark:bg-gray-800 dark:hover:bg-gray-700 text-slate-800 dark:text-white text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5"
+                              disabled={isSubmitting}
+                              className="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 dark:bg-gray-800 dark:hover:bg-gray-700 text-slate-800 dark:text-white text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 disabled:opacity-50"
                             >
                               <ArrowLeft size={14} /> Previous
                             </button>
                           )}
                           <button
                             type="submit"
-                            className="px-6 py-2.5 bg-gradient-to-r from-[#7e22ce] to-[#9333ea] hover:from-[#9333ea] hover:to-[#a855f7] text-white text-xs font-semibold rounded-lg shadow-[0_0_20px_rgba(126,34,206,0.3)] dark:shadow-[0_0_20px_rgba(126,34,206,0.5)] transition-all flex items-center gap-2"
+                            disabled={isSubmitting}
+                            className="px-6 py-2.5 bg-gradient-to-r from-[#7e22ce] to-[#9333ea] hover:from-[#9333ea] hover:to-[#a855f7] text-white text-xs font-semibold rounded-lg shadow-[0_0_20px_rgba(126,34,206,0.3)] dark:shadow-[0_0_20px_rgba(126,34,206,0.5)] transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                           >
-                            <span>{currentStep === 4 ? 'Submit Application' : 'Next Step'}</span>
+                            <span>{currentStep === 4 ? (isSubmitting ? 'Submitting...' : 'Submit Application') : 'Next Step'}</span>
                             <ArrowRight size={14} />
                           </button>
                         </div>
@@ -647,69 +772,7 @@ const JobApplyModal = ({ isOpen, onClose, job }) => {
 
                   {/* Right Job Summary Sidebar (4 Cols) */}
                   <div className="lg:col-span-4 space-y-5 text-left">
-                    {/* Job Summary Card */}
-                    <div className="bg-slate-50 dark:bg-[#050114] border border-slate-200 dark:border-gray-800/80 rounded-xl p-5 space-y-4">
-                      <h4 className="text-sm font-bold text-slate-900 dark:text-white tracking-wide">Job Summary</h4>
-
-                      <div className="flex items-start gap-3 pb-4 border-b border-slate-200 dark:border-gray-800">
-                        <div className="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800/40 flex items-center justify-center text-purple-650 dark:text-purple-400 shrink-0">
-                          <Code2 size={20} />
-                        </div>
-                        <div>
-                          <h5 className="text-sm font-bold text-slate-900 dark:text-white leading-snug">{defaultJob.title}</h5>
-                          <p className="text-[11px] text-slate-550 dark:text-gray-400 flex items-center gap-1 mt-0.5">
-                            <MapPin size={10} className="text-purple-650 dark:text-purple-400" />
-                            {defaultJob.location}
-                          </p>
-                          <div className="flex items-center gap-2 text-[10px] text-slate-450 dark:text-gray-500 mt-1">
-                            <span>{defaultJob.dept}</span>
-                            <span>|</span>
-                            <span>{defaultJob.type}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-2.5 text-xs">
-                        <div className="flex justify-between text-slate-600 dark:text-gray-400">
-                          <span className="flex items-center gap-1.5"><Briefcase size={13} className="text-slate-400 dark:text-gray-500" /> Experience</span>
-                          <span className="font-semibold text-slate-900 dark:text-white">{defaultJob.exp}</span>
-                        </div>
-                        <div className="flex justify-between text-slate-600 dark:text-gray-400">
-                          <span className="flex items-center gap-1.5"><User size={13} className="text-slate-400 dark:text-gray-500" /> Openings</span>
-                          <span className="font-semibold text-slate-900 dark:text-white">{defaultJob.openings}</span>
-                        </div>
-                        <div className="flex justify-between text-slate-600 dark:text-gray-400">
-                          <span className="flex items-center gap-1.5"><Calendar size={13} className="text-slate-400 dark:text-gray-500" /> Posted On</span>
-                          <span className="font-semibold text-slate-900 dark:text-white">{defaultJob.postedOn}</span>
-                        </div>
-                        <div className="flex justify-between text-slate-600 dark:text-gray-400">
-                          <span className="flex items-center gap-1.5"><FileText size={13} className="text-slate-400 dark:text-gray-500" /> Job ID</span>
-                          <span className="font-semibold text-slate-900 dark:text-white">{defaultJob.jobId}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Need Help Card */}
-                    <div className="bg-slate-50 dark:bg-[#050114] border border-slate-200 dark:border-gray-800/80 rounded-xl p-5 space-y-3">
-                      <h4 className="text-xs font-bold text-purple-650 dark:text-purple-300">Need Help?</h4>
-                      <p className="text-[11px] text-slate-600 dark:text-gray-400 leading-relaxed">
-                        If you face any issue while applying, reach out to our HR team.
-                      </p>
-
-                      <div className="space-y-2 text-xs pt-1">
-                        <a href="mailto:hr@codigixinfotech.com" className="flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:underline">
-                          <Mail size={14} /> hr@codigixinfotech.com
-                        </a>
-                        <a href="tel:+911234567890" className="flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:underline">
-                          <Phone size={14} /> +91 12345 67890
-                        </a>
-                      </div>
-
-                      <div className="pt-2 flex items-center gap-2 text-[10px] text-slate-450 dark:text-gray-500 border-t border-slate-200 dark:border-gray-800/80">
-                        <ShieldCheck size={14} className="text-purple-600 dark:text-purple-400 shrink-0" />
-                        <span>Your information is secure and confidential.</span>
-                      </div>
-                    </div>
+                    <JobSummaryCard defaultJob={defaultJob} />
                   </div>
 
                 </div>
@@ -721,5 +784,72 @@ const JobApplyModal = ({ isOpen, onClose, job }) => {
     </AnimatePresence>
   );
 };
+
+// Extracted Job Summary Component to avoid duplication
+const JobSummaryCard = ({ defaultJob }) => (
+  <>
+    <div className="bg-slate-50 dark:bg-[#050114] border border-slate-200 dark:border-gray-800/80 rounded-xl p-5 space-y-4">
+      <h4 className="text-sm font-bold text-slate-900 dark:text-white tracking-wide">Job Summary</h4>
+
+      <div className="flex items-start gap-3 pb-4 border-b border-slate-200 dark:border-gray-800">
+        <div className="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800/40 flex items-center justify-center text-purple-650 dark:text-purple-400 shrink-0">
+          <Code2 size={20} />
+        </div>
+        <div>
+          <h5 className="text-sm font-bold text-slate-900 dark:text-white leading-snug">{defaultJob.title}</h5>
+          <p className="text-[11px] text-slate-550 dark:text-gray-400 flex items-center gap-1 mt-0.5">
+            <MapPin size={10} className="text-purple-650 dark:text-purple-400" />
+            {defaultJob.location}
+          </p>
+          <div className="flex items-center gap-2 text-[10px] text-slate-450 dark:text-gray-500 mt-1">
+            <span>{defaultJob.dept}</span>
+            <span>|</span>
+            <span>{defaultJob.type}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-2.5 text-xs">
+        <div className="flex justify-between text-slate-600 dark:text-gray-400">
+          <span className="flex items-center gap-1.5"><Briefcase size={13} className="text-slate-400 dark:text-gray-500" /> Experience</span>
+          <span className="font-semibold text-slate-900 dark:text-white">{defaultJob.exp}</span>
+        </div>
+        <div className="flex justify-between text-slate-600 dark:text-gray-400">
+          <span className="flex items-center gap-1.5"><User size={13} className="text-slate-400 dark:text-gray-500" /> Openings</span>
+          <span className="font-semibold text-slate-900 dark:text-white">{defaultJob.openings}</span>
+        </div>
+        <div className="flex justify-between text-slate-600 dark:text-gray-400">
+          <span className="flex items-center gap-1.5"><Calendar size={13} className="text-slate-400 dark:text-gray-500" /> Posted On</span>
+          <span className="font-semibold text-slate-900 dark:text-white">{defaultJob.postedOn}</span>
+        </div>
+        <div className="flex justify-between text-slate-600 dark:text-gray-400">
+          <span className="flex items-center gap-1.5"><FileText size={13} className="text-slate-400 dark:text-gray-500" /> Job ID</span>
+          <span className="font-semibold text-slate-900 dark:text-white">{defaultJob.jobId}</span>
+        </div>
+      </div>
+    </div>
+
+    <div className="bg-slate-50 dark:bg-[#050114] border border-slate-200 dark:border-gray-800/80 rounded-xl p-5 space-y-3">
+      <h4 className="text-xs font-bold text-purple-650 dark:text-purple-300">Need Help?</h4>
+      <p className="text-[11px] text-slate-600 dark:text-gray-400 leading-relaxed">
+        If you face any issue while applying, reach out to our HR team.
+      </p>
+
+      <div className="space-y-2 text-xs pt-1">
+        <a href="mailto:hr@codigixinfotech.com" className="flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:underline">
+          <Mail size={14} /> hr@codigixinfotech.com
+        </a>
+        <a href="tel:+911234567890" className="flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:underline">
+          <Phone size={14} /> +91 12345 67890
+        </a>
+      </div>
+
+      <div className="pt-2 flex items-center gap-2 text-[10px] text-slate-450 dark:text-gray-500 border-t border-slate-200 dark:border-gray-800/80">
+        <ShieldCheck size={14} className="text-purple-600 dark:text-purple-400 shrink-0" />
+        <span>Your information is secure and confidential.</span>
+      </div>
+    </div>
+  </>
+);
 
 export default JobApplyModal;
