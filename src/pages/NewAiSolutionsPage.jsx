@@ -31,27 +31,72 @@ const NewAiSolutionsPage = () => {
 
   const isDefaultOverview = activeTab === 'AI Overview';
   const pageTitle = isDefaultOverview
-    ? "AI Development Services & Machine Learning Solutions | Codigix Infotech"
+    ? "AI Solutions Company in Pune | AI Development Services"
     : `${activeTab} Services & Engineering Solutions | Codigix Infotech`;
 
-  const metaDescription = `Codigix Infotech provides enterprise AI development services, including ${activeTab}, custom LLM integration, Generative AI agents, computer vision, voice AI, and predictive analytics.`;
+  const metaDescription = isDefaultOverview
+    ? "Codigix is an AI solutions company in Pune offering AI development, Generative AI, AI automation and intelligent business solutions.Call Now."
+    : `Codigix Infotech provides enterprise AI development services, including ${activeTab}, custom LLM integration, Generative AI agents, computer vision, voice AI, and predictive analytics.`;
 
   const canonicalUrl = `https://codigixinfotech.com/ai-solutions${isDefaultOverview ? '' : `?tab=${encodeURIComponent(activeTab)}`}`;
 
   // Structured JSON-LD Data for AI Solutions
-  const aiSchemas = [
-    {
-      "@context": "https://schema.org",
-      "@type": "TechService",
-      "name": `${activeTab} - Enterprise AI Engineering`,
-      "provider": {
-        "@type": "Organization",
-        "name": "Codigix Infotech",
-        "url": "https://codigixinfotech.com/"
-      },
-      "areaServed": "Global",
-      "description": metaDescription
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": "https://codigixinfotech.com/ai-solutions#product",
+    "name": "AI Solutions",
+    "url": "https://codigixinfotech.com/ai-solutions",
+    "description": "AI solutions by Codigix for business automation, intelligent applications, Generative AI, data-driven decision making and enterprise AI transformation.",
+    "category": "AI Software Solutions",
+    "brand": {
+      "@type": "Brand",
+      "name": "Codigix"
     },
+    "manufacturer": {
+      "@type": "Organization",
+      "@id": "https://codigixinfotech.com/#organization",
+      "name": "Codigix Infotech",
+      "url": "https://codigixinfotech.com/"
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Pune"
+      },
+      {
+        "@type": "Place",
+        "name": "PCMC"
+      },
+      {
+        "@type": "Place",
+        "name": "Chakan"
+      },
+      {
+        "@type": "Place",
+        "name": "Bhosari"
+      },
+      {
+        "@type": "Place",
+        "name": "Talegaon"
+      },
+      {
+        "@type": "Place",
+        "name": "Ranjangaon"
+      },
+      {
+        "@type": "Place",
+        "name": "Tathawade"
+      },
+      {
+        "@type": "Place",
+        "name": "Hadapsar"
+      }
+    ]
+  };
+
+  const aiSchemas = [
+    productSchema,
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -94,10 +139,14 @@ const NewAiSolutionsPage = () => {
     <>
       <SEO
         title={pageTitle}
+        exactTitle={isDefaultOverview}
         metaTitle={pageTitle}
         description={metaDescription}
-        keywords={`AI solutions, ${activeTab}, Generative AI, custom LLM integration, AI chatbots, computer vision engineering, voice AI agents, predictive analytics, Codigix Infotech`}
+        keywords={isDefaultOverview ? "AI solutions company Pune, AI development company Pune, AI development services Pune, artificial intelligence company Pune, AI software development Pune, Generative AI company Pune, enterprise AI solutions Pune, AI automation Pune" : `AI solutions, ${activeTab}, Generative AI, custom LLM integration, AI chatbots, computer vision engineering, voice AI agents, predictive analytics, Codigix Infotech`}
         canonical={canonicalUrl}
+        ogTitle={isDefaultOverview ? "AI Solutions Company in Pune | AI Development Services | Codigix" : undefined}
+        ogDescription={isDefaultOverview ? "AI development, Generative AI and business automation solutions for companies in Pune. Talk to Codigix experts and get a free consultation." : undefined}
+        twitterDescription={isDefaultOverview ? "Build intelligent business solutions with Codigix. Explore AI development, Generative AI and AI automation services in Pune." : undefined}
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={aiSchemas}
       />

@@ -62,63 +62,79 @@ const NewHomePage = () => {
     {
       "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": "https://codigixinfotech.com/#organization",
       "name": "Codigix Infotech",
-      "altName": "Codigix",
       "url": "https://codigixinfotech.com/",
-      "logo": "https://codigixinfotech.com/assets/images/logos/logo.webp",
-      "description": "Codigix Infotech delivers cutting-edge AI-powered software, custom Industrial IoT automation, enterprise ERP/CRM systems, and cloud engineering.",
-      "sameAs": [
-        "https://www.linkedin.com/company/135144609/admin/",
-        "https://www.facebook.com/codigix.infotech",
-        "https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==",
-        "https://x.com/CodigixI2994",
-        "https://www.youtube.com/@codigixinfotech"
+      "description": "Software development company in Pune providing AI, ERP, Industrial IoT, CRM, custom software, cloud, DevOps and business automation solutions.",
+      "areaServed": [
+        "Pune",
+        "PCMC",
+        "Chakan",
+        "Bhosari",
+        "Talegaon",
+        "Ranjangaon",
+        "Tathawade",
+        "Hadapsar"
       ]
     },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Codigix Infotech",
+      "@id": "https://codigixinfotech.com/#website",
       "url": "https://codigixinfotech.com/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://codigixinfotech.com/blog?q={search_term_string}",
-        "query-input": "required name=search_term_string"
+      "name": "Codigix Infotech",
+      "publisher": {
+        "@id": "https://codigixinfotech.com/#organization"
       }
     },
     {
       "@context": "https://schema.org",
-      "@type": "TechService",
-      "name": "Custom AI & Industrial IoT Software Engineering",
-      "provider": {
-        "@type": "Organization",
-        "name": "Codigix Infotech"
+      "@type": "WebPage",
+      "@id": "https://codigixinfotech.com/#webpage",
+      "url": "https://codigixinfotech.com/",
+      "name": "Software Development Company in Pune | Codigix",
+      "isPartOf": {
+        "@id": "https://codigixinfotech.com/#website"
       },
-      "areaServed": "Global",
-      "description": "Enterprise software engineering covering Generative AI, Industrial IoT sensor integration, smart ERP development, custom CRM systems, and cloud analytics."
+      "about": {
+        "@id": "https://codigixinfotech.com/#organization"
+      }
     },
     {
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": faqData.map(item => ({
-        "@type": "Question",
-        "name": item.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": item.answer
-        }
-      }))
+      "@type": "Service",
+      "name": "Software Development Services",
+      "provider": {
+        "@id": "https://codigixinfotech.com/#organization"
+      },
+      "areaServed": "Pune, Maharashtra, India",
+      "serviceType": [
+        "AI Solutions",
+        "Industrial IoT Solutions",
+        "ERP Solutions",
+        "CRM Solutions",
+        "Custom Software Development",
+        "Web Development",
+        "Mobile App Development",
+        "Cloud Solutions",
+        "DevOps",
+        "API & System Integration",
+        "Business Automation"
+      ]
     }
   ];
 
   return (
     <>
       <SEO
-        title="Codigix Infotech | AI Solutions, Industrial IoT & Custom Software Engineering"
-        metaTitle="Codigix Infotech | AI Solutions, Industrial IoT & Custom Enterprise Software"
-        description="Transform your business with Codigix Infotech. We build intelligent Generative AI agents, Industrial IoT sensor automation, enterprise ERP/CRM platforms, and custom cloud software."
-        keywords="AI solutions, Industrial IoT, ERP development, CRM development, machine learning, computer vision, predictive analytics, enterprise software, Codigix Infotech"
+        title="Software Development Company in Pune | Codigix"
+        exactTitle={true}
+        description="Codigix is a software development company in Pune offering AI, ERP, Industrial IoT, CRM & custom software solutions. Get a consultation today."
+        keywords="software development company Pune, custom software development Pune, AI development company Pune, AI solutions Pune, Industrial IoT solutions Pune, IoT development company Pune, ERP software development Pune, manufacturing ERP Pune, custom ERP software Pune, Industry 4.0 solutions Pune, business automation Pune, CRM software development Pune"
         canonical="https://codigixinfotech.com/"
+        ogTitle="Software Development Company in Pune | Codigix"
+        ogDescription="AI, ERP, Industrial IoT, CRM and custom software solutions for businesses. Talk to Codigix experts today for a consultation."
+        twitterDescription="AI, ERP, Industrial IoT, CRM and custom software solutions. Get a free consultation from Codigix Infotech."
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={homeSchemas}
       />

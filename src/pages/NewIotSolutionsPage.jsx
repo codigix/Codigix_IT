@@ -31,12 +31,16 @@ const NewIotSolutionsPage = () => {
 
   const isDefaultOverview = activeTab === 'Industrial IoT';
   const pageTitle = isDefaultOverview
-    ? "Industrial IoT Solutions & SCADA Automation Services | Codigix Infotech"
+    ? "IoT Development Company in Pune | Industrial IoT Solutions"
     : `${activeTab} Solutions & SCADA Integration | Codigix Infotech`;
 
-  const metaDescription = `Codigix Infotech delivers enterprise Industrial IoT (IIoT) engineering, including ${activeTab}, PLC integration, Modbus/OPC-UA drivers, OEE monitoring dashboards, and predictive maintenance.`;
+  const metaDescription = isDefaultOverview
+    ? "Codigix is a Pune-based IoT development company delivering Industrial IoT, connected systems, and smart automation solutions. Talk to our experts today!"
+    : `Codigix Infotech delivers enterprise Industrial IoT (IIoT) engineering, including ${activeTab}, PLC integration, Modbus/OPC-UA drivers, OEE monitoring dashboards, and predictive maintenance.`;
 
-  const canonicalUrl = `https://codigixinfotech.com/iot-solutions${isDefaultOverview ? '' : `?tab=${encodeURIComponent(activeTab)}`}`;
+  const canonicalUrl = isDefaultOverview 
+    ? "https://codigixinfotech.com/iot-development" 
+    : `https://codigixinfotech.com/iot-solutions?tab=${encodeURIComponent(activeTab)}`;
 
   // Structured JSON-LD Data for IoT Solutions
   const iotSchemas = [
@@ -66,7 +70,7 @@ const NewIotSolutionsPage = () => {
           "@type": "ListItem",
           "position": 2,
           "name": "IoT Solutions",
-          "item": "https://codigixinfotech.com/iot-solutions"
+          "item": "https://codigixinfotech.com/iot-development"
         },
         {
           "@type": "ListItem",
@@ -94,10 +98,14 @@ const NewIotSolutionsPage = () => {
     <>
       <SEO
         title={pageTitle}
+        exactTitle={isDefaultOverview}
         metaTitle={pageTitle}
         description={metaDescription}
-        keywords={`Industrial IoT, ${activeTab}, PLC integration, SCADA automation, OEE dashboard, predictive maintenance, Modbus TCP, OPC-UA, MQTT, Codigix Infotech`}
+        keywords={isDefaultOverview ? "IoT development company Pune, IoT development services Pune, IoT solutions company Pune, Industrial IoT solutions Pune, IIoT company Pune, Industrial IoT development Pune, IoT software development Pune, IoT application development Pune, smart factory solutions Pune, IoT automation Pune" : `Industrial IoT, ${activeTab}, PLC integration, SCADA automation, OEE dashboard, predictive maintenance, Modbus TCP, OPC-UA, MQTT, Codigix Infotech`}
         canonical={canonicalUrl}
+        ogTitle={isDefaultOverview ? "IoT Development Company in Pune | Industrial IoT Solutions | Codigix" : undefined}
+        ogDescription={isDefaultOverview ? "Build connected and intelligent business systems with Codigix. We deliver IoT, Industrial IoT, IIoT and smart automation solutions in Pune. Get a consultation." : undefined}
+        twitterDescription={isDefaultOverview ? "IoT and Industrial IoT development services for connected operations, smart factories and business automation in Pune. Contact Codigix today." : undefined}
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={iotSchemas}
       />

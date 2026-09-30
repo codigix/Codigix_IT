@@ -31,10 +31,12 @@ const NewCrmSolutionsPage = () => {
 
   const isDefaultOverview = activeTab === 'Sales CRM';
   const pageTitle = isDefaultOverview
-    ? "Custom CRM Software Development & Lead Pipeline Automation | Codigix Infotech"
+    ? "CRM Solutions Company in Pune | Custom CRM Software | Codigix"
     : `${activeTab} Solutions & Custom CRM Software | Codigix Infotech`;
 
-  const metaDescription = `Codigix Infotech engineers custom CRM software solutions, including ${activeTab}, lead scoring automation, sales pipeline tracking, customer support ticketing, WhatsApp integration, and AI deal forecasting.`;
+  const metaDescription = isDefaultOverview
+    ? "Codigix is a CRM solutions company in Pune offering custom CRM software for sales, leads, customer management and business automation. Get a consultation today."
+    : `Codigix Infotech engineers custom CRM software solutions, including ${activeTab}, lead scoring automation, sales pipeline tracking, customer support ticketing, WhatsApp integration, and AI deal forecasting.`;
 
   const canonicalUrl = `https://codigixinfotech.com/crm-solutions${isDefaultOverview ? '' : `?tab=${encodeURIComponent(activeTab)}`}`;
 
@@ -94,10 +96,14 @@ const NewCrmSolutionsPage = () => {
     <>
       <SEO
         title={pageTitle}
+        exactTitle={isDefaultOverview}
         metaTitle={pageTitle}
         description={metaDescription}
-        keywords={`Custom CRM Software, ${activeTab}, lead management system, sales pipeline automation, customer support CRM, WhatsApp CRM integration, AI lead scoring, Codigix Infotech`}
+        keywords={isDefaultOverview ? "CRM solutions company Pune, CRM software company Pune, custom CRM software Pune, CRM development company Pune, CRM software development Pune, CRM solutions Pune, custom CRM development Pune, sales CRM software Pune, customer management software Pune, business CRM software Pune" : `Custom CRM Software, ${activeTab}, lead management system, sales pipeline automation, customer support CRM, WhatsApp CRM integration, AI lead scoring, Codigix Infotech`}
         canonical={canonicalUrl}
+        ogTitle={isDefaultOverview ? "CRM Solutions Company in Pune | Custom CRM Software | Codigix" : undefined}
+        ogDescription={isDefaultOverview ? "Custom CRM software for lead management, sales, customer relationships and business automation. Talk to Codigix experts in Pune for a free consultation." : undefined}
+        twitterDescription={isDefaultOverview ? "Build a custom CRM solution with Codigix for leads, sales, customer management and business automation. Get a free consultation today." : undefined}
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={crmSchemas}
       />

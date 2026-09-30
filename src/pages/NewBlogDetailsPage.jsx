@@ -5,7 +5,7 @@ import { Calendar, User, Clock, ArrowLeft, Share2, MessageSquare, Heart, Bookmar
 import * as Icons from 'lucide-react';
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import config from '../config';
 import { getBlogById, blogPostsData } from '../data/blogData';
 
@@ -464,11 +464,14 @@ const NewBlogDetailsPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{post.seo_title || post.title} | Codigix Blog</title>
-        {post.seo_description && <meta name="description" content={post.seo_description} />}
-        {post.seo_keywords && <meta name="keywords" content={post.seo_keywords} />}
-      </Helmet>
+      <SEO
+        title={`${post.seo_title || post.title} | Codigix Blog`}
+        exactTitle={true}
+        description={post.seo_description || post.excerpt}
+        keywords={post.seo_keywords || "Codigix blog, tech insights"}
+        canonical={`https://codigixinfotech.com/blog/${id}`}
+        ogImage={post.image}
+      />
 
       <div className="bg-white dark:bg-[#030014] min-h-screen font-sans text-slate-900 dark:text-white transition-colors duration-300">
         <NewHomeNav />

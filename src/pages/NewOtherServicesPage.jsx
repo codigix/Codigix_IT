@@ -64,24 +64,145 @@ const NewOtherServicesPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const pageTitle = "Custom Web, Mobile App, Cloud & DevOps Engineering Services | Codigix Infotech";
-  const metaDescription = "Codigix Infotech delivers end-to-end digital engineering services: React/Next.js web app development, iOS & Android mobile apps, Figma UI/UX design systems, AWS/Azure cloud architecture, and DevOps CI/CD automation.";
+  const pageTitle = "Software Development Services in Pune | AI, ERP & IoT";
+  const metaDescription = "Explore Codigix software development services in Pune, including AI, ERP, Industrial IoT, CRM, web & mobile apps, cloud, DevOps and business automation.Call Now.";
   const canonicalUrl = "https://codigixinfotech.com/services";
 
   // Structured JSON-LD Data for Services Page
-  const servicesSchemas = [
-    {
-      "@context": "https://schema.org",
-      "@type": "TechService",
-      "name": "Software Engineering & Digital Transformation Services",
-      "provider": {
-        "@type": "Organization",
-        "name": "Codigix Infotech",
-        "url": "https://codigixinfotech.com/"
+  const customProductsSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": "https://codigixinfotech.com/services#ai-solutions",
+        "name": "AI Solutions",
+        "description": "AI development and artificial intelligence solutions for business automation, analytics, intelligent applications and enterprise operations.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Codigix"
+        },
+        "manufacturer": {
+          "@id": "https://codigixinfotech.com/#organization"
+        },
+        "category": "AI Software Solutions",
+        "areaServed": {
+          "@type": "City",
+          "name": "Pune"
+        }
       },
-      "areaServed": "Global",
-      "description": metaDescription
-    },
+      {
+        "@type": "Product",
+        "@id": "https://codigixinfotech.com/services#industrial-iot",
+        "name": "Industrial IoT Solutions",
+        "description": "Industrial IoT and Industry 4.0 solutions for connected manufacturing, machine monitoring, production visibility and industrial automation.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Codigix"
+        },
+        "manufacturer": {
+          "@id": "https://codigixinfotech.com/#organization"
+        },
+        "category": "Industrial IoT Software",
+        "areaServed": {
+          "@type": "City",
+          "name": "Pune"
+        }
+      },
+      {
+        "@type": "Product",
+        "@id": "https://codigixinfotech.com/services#erp-solutions",
+        "name": "ERP Solutions",
+        "description": "Custom ERP software solutions for manufacturing and business operations, including production, inventory, finance and process management.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Codigix"
+        },
+        "manufacturer": {
+          "@id": "https://codigixinfotech.com/#organization"
+        },
+        "category": "ERP Software",
+        "areaServed": {
+          "@type": "City",
+          "name": "Pune"
+        }
+      },
+      {
+        "@type": "Product",
+        "@id": "https://codigixinfotech.com/services#crm-solutions",
+        "name": "CRM Solutions",
+        "description": "Custom CRM software solutions designed to manage leads, customers, sales processes and business relationships.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Codigix"
+        },
+        "manufacturer": {
+          "@id": "https://codigixinfotech.com/#organization"
+        },
+        "category": "CRM Software",
+        "areaServed": {
+          "@type": "City",
+          "name": "Pune"
+        }
+      },
+      {
+        "@type": "Product",
+        "@id": "https://codigixinfotech.com/services#custom-software",
+        "name": "Custom Software Development",
+        "description": "Custom software development solutions built around specific business processes, workflows, integrations and operational requirements.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Codigix"
+        },
+        "manufacturer": {
+          "@id": "https://codigixinfotech.com/#organization"
+        },
+        "category": "Custom Software",
+        "areaServed": {
+          "@type": "City",
+          "name": "Pune"
+        }
+      },
+      {
+        "@type": "Product",
+        "@id": "https://codigixinfotech.com/services#web-development",
+        "name": "Web Development",
+        "description": "Custom web development solutions for business websites, web applications, portals and enterprise platforms.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Codigix"
+        },
+        "manufacturer": {
+          "@id": "https://codigixinfotech.com/#organization"
+        },
+        "category": "Web Development",
+        "areaServed": {
+          "@type": "City",
+          "name": "Pune"
+        }
+      },
+      {
+        "@type": "Product",
+        "@id": "https://codigixinfotech.com/services#mobile-app-development",
+        "name": "Mobile App Development",
+        "description": "Custom mobile application development for Android, iOS and business applications.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Codigix"
+        },
+        "manufacturer": {
+          "@id": "https://codigixinfotech.com/#organization"
+        },
+        "category": "Mobile Application Development",
+        "areaServed": {
+          "@type": "City",
+          "name": "Pune"
+        }
+      }
+    ]
+  };
+
+  const servicesSchemas = [
+    customProductsSchema,
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -118,10 +239,14 @@ const NewOtherServicesPage = () => {
     <>
       <SEO
         title={pageTitle}
+        exactTitle={true}
         metaTitle={pageTitle}
         description={metaDescription}
-        keywords="Custom Web Development, Mobile App Development, UI UX Design Systems, AWS Cloud Architecture, DevOps CI CD Automation, React Next.js Node.js, Codigix Infotech"
+        keywords="software development services Pune, software development company Pune, AI solutions Pune, AI development services Pune, Industrial IoT solutions Pune, IoT development Pune, ERP solutions Pune, CRM solutions Pune, custom software development Pune, web development Pune, mobile app development Pune, cloud solutions Pune, DevOps services Pune, API integration Pune, business automation Pune"
         canonical={canonicalUrl}
+        ogTitle="Software Development Services in Pune | AI, ERP & IoT | Codigix"
+        ogDescription="From AI and Industrial IoT to ERP, CRM, cloud, mobile apps and business automation, Codigix delivers custom technology solutions. Contact us for a free consultation."
+        twitterDescription="AI, ERP, Industrial IoT, CRM, custom software, cloud, DevOps and automation services from Codigix. Get a free consultation today."
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={servicesSchemas}
       />

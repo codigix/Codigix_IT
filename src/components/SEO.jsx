@@ -6,6 +6,8 @@ const SEO = ({
   title,
   metaTitle,
   ogTitle,
+  ogDescription,
+  twitterDescription,
   description,
   keywords,
   canonical,
@@ -62,7 +64,7 @@ const SEO = ({
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={fullCanonical} />
       <meta property="og:title" content={finalOgTitle} />
-      <meta property="og:description" content={description || defaultDescription} />
+      <meta property="og:description" content={ogDescription || description || defaultDescription} />
       <meta property="og:image" content={finalOgImage} />
       <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content="en_US" />
@@ -71,7 +73,7 @@ const SEO = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={fullCanonical} />
       <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description || defaultDescription} />
+      <meta name="twitter:description" content={twitterDescription || description || defaultDescription} />
       <meta name="twitter:image" content={finalOgImage} />
       {twitterHandle && <meta name="twitter:site" content={twitterHandle} />}
       {twitterHandle && <meta name="twitter:creator" content={twitterHandle} />}

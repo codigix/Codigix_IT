@@ -32,10 +32,12 @@ const NewErpSolutionsPage = () => {
 
   const isDefaultOverview = activeTab === 'Manufacturing ERP';
   const pageTitle = isDefaultOverview
-    ? "Custom ERP Software Development & Enterprise ERP Systems | Codigix Infotech"
+    ? "ERP Software Development Company in Pune | Codigix"
     : `${activeTab} Solutions & Custom ERP Systems | Codigix Infotech`;
 
-  const metaDescription = `Codigix Infotech engineers custom Enterprise Resource Planning (ERP) software, including ${activeTab}, Bill of Materials (BOM) automation, production planning, inventory tracking, financial accounting, and HR management.`;
+  const metaDescription = isDefaultOverview
+    ? "ERP Software Development Company in Pune offering custom ERP solutions to streamline business operations, improve efficiency, and drive growth."
+    : `Codigix Infotech engineers custom Enterprise Resource Planning (ERP) software, including ${activeTab}, Bill of Materials (BOM) automation, production planning, inventory tracking, financial accounting, and HR management.`;
 
   const canonicalUrl = `https://codigixinfotech.com/erp-solutions${isDefaultOverview ? '' : `?tab=${encodeURIComponent(activeTab)}`}`;
 
@@ -95,10 +97,14 @@ const NewErpSolutionsPage = () => {
     <>
       <SEO
         title={pageTitle}
+        exactTitle={isDefaultOverview}
         metaTitle={pageTitle}
         description={metaDescription}
-        keywords={`Custom ERP Software, ${activeTab}, ERP system development, inventory management ERP, production planning software, enterprise ERP, manufacturing ERP, cloud ERP, Codigix Infotech`}
+        keywords={isDefaultOverview ? "ERP software development company Pune, ERP development company Pune, ERP software company Pune, custom ERP software Pune, ERP solutions Pune, manufacturing ERP software Pune, manufacturing ERP development Pune, enterprise ERP solutions Pune, ERP application development Pune, ERP implementation Pune" : `Custom ERP Software, ${activeTab}, ERP system development, inventory management ERP, production planning software, enterprise ERP, manufacturing ERP, cloud ERP, Codigix Infotech`}
         canonical={canonicalUrl}
+        ogTitle={isDefaultOverview ? "ERP Software Development Company in Pune | Custom ERP | Codigix" : undefined}
+        ogDescription={isDefaultOverview ? "Build a custom ERP solution with Codigix. We develop ERP software for manufacturing, inventory, production, finance and business operations. Get a consultation." : undefined}
+        twitterDescription={isDefaultOverview ? "Custom ERP and manufacturing ERP software development for businesses in Pune. Talk to Codigix experts and get a free consultation." : undefined}
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={erpSchemas}
       />

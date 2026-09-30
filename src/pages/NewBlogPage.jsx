@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, User, Clock, ArrowRight, Search, Tag, BookOpen } from 'lucide-react';
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import config from '../config';
 
 const NewBlogPage = () => {
@@ -54,9 +54,13 @@ const NewBlogPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Tech Insights & News | Codigix</title>
-      </Helmet>
+      <SEO
+        title="Tech Insights & News | Codigix Blog"
+        exactTitle={true}
+        description="Read the latest tech insights, news, and deep dives from Codigix engineers on AI, ERP, IoT, and custom software development."
+        keywords="Codigix blog, tech insights, AI blog, ERP development news, IoT trends, software engineering blog, custom software articles"
+        canonical="https://codigixinfotech.com/blog"
+      />
 
       <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white transition-colors duration-300">
 
