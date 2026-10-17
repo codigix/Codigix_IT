@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import React from 'react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import IndustriesSidebar from '../components/new-industries/IndustriesSidebar';
@@ -12,32 +12,19 @@ import IndustriesBottomCta from '../components/new-industries/IndustriesBottomCt
 import IndustriesFaqSection, { industriesFaqData } from '../components/new-industries/IndustriesFaqSection';
 import CaseStudiesTestimonials from '../components/new-case-studies/CaseStudiesTestimonials';
 import SEO from '../components/SEO';
+import { getSectionSeo, getTabPath, getSectionHubPath, toCanonical } from '../utils/seo';
 import '../components/new-industries/industries.css';
 
 const NewIndustriesPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const tabQuery = searchParams.get('tab');
-  const [activeIndustry, setActiveIndustry] = useState(tabQuery || 'Manufacturing');
-
-  useEffect(() => {
-    if (tabQuery) {
-      setActiveIndustry(tabQuery);
-    }
-  }, [tabQuery]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const seo = getSectionSeo('industries', location.pathname);
+  const activeIndustry = seo.tab;
+  const isDefaultOverview = Boolean(seo.overview);
 
   const handleIndustryChange = (name) => {
-    setActiveIndustry(name);
-    setSearchParams({ tab: name });
+    navigate(getTabPath('industries', name));
   };
-
-  const isDefaultOverview = activeIndustry === 'Manufacturing';
-  const pageTitle = isDefaultOverview
-    ? "Industry Solutions & Enterprise Digital Transformation | Codigix Infotech"
-    : `${activeIndustry} Software Solutions & Digital Engineering | Codigix Infotech`;
-
-  const metaDescription = `Codigix Infotech engineers custom software solutions tailored for ${activeIndustry}, Healthcare, Retail & E-Commerce, Financial Services, and Real Estate enterprises.`;
-
-  const canonicalUrl = `https://codigixinfotech.com/industries${isDefaultOverview ? '' : `?tab=${encodeURIComponent(activeIndustry)}`}`;
 
   // Structured JSON-LD Data for Industries Page
   const industriesSchemas = [
@@ -51,7 +38,7 @@ const NewIndustriesPage = () => {
         "url": "https://codigixinfotech.com/"
       },
       "areaServed": "Global",
-      "description": metaDescription
+      "description": seo.description
     },
     {
       "@context": "https://schema.org",
@@ -67,14 +54,14 @@ const NewIndustriesPage = () => {
           "@type": "ListItem",
           "position": 2,
           "name": "Industries",
-          "item": "https://codigixinfotech.com/industries"
+          "item": toCanonical(getSectionHubPath('industries'))
         },
-        {
+        ...(isDefaultOverview ? [] : [{
           "@type": "ListItem",
           "position": 3,
           "name": activeIndustry,
-          "item": canonicalUrl
-        }
+          "item": seo.canonical
+        }])
       ]
     },
     {
@@ -94,11 +81,11 @@ const NewIndustriesPage = () => {
   return (
     <>
       <SEO
-        title={pageTitle}
-        metaTitle={pageTitle}
-        description={metaDescription}
-        keywords={`Industry software solutions, ${activeIndustry} software, manufacturing IoT, healthcare AI, retail ERP, logistics CRM, fintech software, Codigix Infotech`}
-        canonical={canonicalUrl}
+        title={seo.title}
+        exactTitle={true}
+        description={seo.description}
+        keywords={`${seo.keyword}, industry-specific software solutions, manufacturing software, healthcare software, retail software, Codigix Infotech`}
+        canonical={seo.canonical}
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={industriesSchemas}
       />
@@ -123,7 +110,7 @@ const NewIndustriesPage = () => {
                 <span className="mx-1">›</span>
               </li>
               <li>
-                <Link to="/industries" className="text-purple-600 dark:text-purple-400 font-medium hover:text-slate-900 dark:hover:text-white transition-colors">Industries</Link>
+                <Link to={getSectionHubPath('industries')} className="text-purple-600 dark:text-purple-400 font-medium hover:text-slate-900 dark:hover:text-white transition-colors">Industries</Link>
               </li>
               <li>
                 <span className="mx-1">›</span>
@@ -139,7 +126,7 @@ const NewIndustriesPage = () => {
 
             {/* Left Main Content */}
             <main id="main-content" className="flex-1 min-w-0 space-y-12">
-              <IndustriesHero activeIndustry={activeIndustry} />
+              <IndustriesHero activeIndustry={activeIndustry} seo={seo} />
               <IndustriesGrid activeIndustry={activeIndustry} setActiveIndustry={handleIndustryChange} />
               <IndustryHighlight activeIndustry={activeIndustry} />
               <IndustriesApproach activeIndustry={activeIndustry} />

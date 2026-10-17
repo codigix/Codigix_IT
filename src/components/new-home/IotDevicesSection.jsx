@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { getSectionHubPath } from '../../utils/seo';
 
 const devices = [
   { name: 'Temperature Sensors', image: '/assets/images/new-home/iot_temp_sensor.webp' },
@@ -89,7 +90,7 @@ const IotDevicesSection = () => {
             </p>
 
             <div>
-              <Link to="/iot-solutions" aria-label="Explore Industrial IoT Solutions by Codigix Infotech">
+              <Link to={getSectionHubPath('iot')} aria-label="Explore Industrial IoT Solutions by Codigix Infotech">
                 <motion.div
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}

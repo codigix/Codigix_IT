@@ -20,6 +20,10 @@ import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 import { ThemeProvider } from "./context/ThemeContext";
 
+// The server injects per-page meta tags for crawlers (backend/utils/seoMeta.js).
+// Helmet renders its own once React mounts, so drop these to avoid duplicates.
+document.querySelectorAll("[data-seo-prerender]").forEach((el) => el.remove());
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <HelmetProvider>
     <ThemeProvider>

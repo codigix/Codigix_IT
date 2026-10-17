@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Cpu, Activity, ShieldCheck, Zap, Layers, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { aiSolutionsData } from '../../data/aiSolutionsData';
+import SeoHeading from '../common/SeoHeading';
+import { getSectionHubPath } from '../../utils/seo';
 import './ai-solutions.css';
 
 // Chatbot Simulator
@@ -347,7 +349,7 @@ const renderSandboxWidget = (tab) => {
   }
 };
 
-const AiHero = ({ activeTab }) => {
+const AiHero = ({ activeTab, seo }) => {
   const content = aiSolutionsData[activeTab] || aiSolutionsData['AI Overview'];
 
   return (
@@ -371,7 +373,7 @@ const AiHero = ({ activeTab }) => {
                 </li>
                 <li className="text-slate-400 dark:text-gray-600">&gt;</li>
                 <li>
-                  <Link to="/ai-solutions" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">AI Solutions</Link>
+                  <Link to={getSectionHubPath('ai')} className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">AI Solutions</Link>
                 </li>
                 <li className="text-slate-400 dark:text-gray-600">&gt;</li>
                 <li className="text-purple-600 dark:text-purple-400 font-extrabold" aria-current="page">
@@ -383,7 +385,7 @@ const AiHero = ({ activeTab }) => {
             <div>
               <span className="ai-tag mb-4">{activeTab.toUpperCase()}</span>
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-extrabold text-slate-900 dark:text-white mb-2 tracking-tight leading-tight">
-                {content.titlePrefix}<span className="ai-text-gradient">{content.titleGradient}</span>
+                <SeoHeading text={seo.h1} keyword={seo.keyword} gradientClassName="ai-text-gradient" />
               </h1>
               <h2 className="text-lg md:text-xl font-bold text-purple-700 dark:text-purple-300 tracking-wide mt-3">
                 {content.subtitle}

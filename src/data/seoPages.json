@@ -1,0 +1,579 @@
+{
+  "siteUrl": "https://codigixinfotech.com",
+  "pages": {
+    "home": {
+      "path": "/",
+      "title": "AI, IoT, ERP & CRM Solutions | Codigix Infotech",
+      "description": "Codigix Infotech builds AI, industrial IoT, ERP and CRM solutions to automate operations, improve visibility and support growth. Discuss your project with us.",
+      "h1": "Intelligent AI, IoT, ERP and CRM Solutions for Businesses",
+      "keyword": "AI, IoT, ERP and CRM solutions"
+    },
+    "services": {
+      "path": "/services",
+      "title": "Software Development & Digital Solutions | Codigix Infotech",
+      "description": "Explore Codigix Infotech services across AI, industrial IoT, ERP, CRM and custom software development. Find the right technology solution for your business.",
+      "h1": "Technology Services for Connected, Intelligent Businesses",
+      "keyword": "custom software development services"
+    },
+    "about": {
+      "path": "/about",
+      "title": "About Codigix Infotech | Technology & Software Solutions",
+      "description": "Learn about Codigix Infotech, our technology expertise and approach to building AI, IoT, ERP, CRM and custom software solutions for businesses.",
+      "h1": "About Codigix Infotech",
+      "keyword": "Codigix Infotech"
+    },
+    "career": {
+      "path": "/career",
+      "title": "Careers at Codigix Infotech | Explore Job Opportunities",
+      "description": "Explore career opportunities at Codigix Infotech. Discover roles for people interested in software engineering, AI, IoT, ERP, CRM and technology innovation.",
+      "h1": "Build Your Career at Codigix Infotech",
+      "keyword": "careers at Codigix Infotech"
+    },
+    "caseStudies": {
+      "path": "/case-studies",
+      "title": "Software Development Case Studies | Codigix Infotech",
+      "description": "Explore Codigix Infotech case studies across AI, industrial IoT, ERP and business software, covering project challenges, implementation and outcomes.",
+      "h1": "Technology Case Studies and Client Solutions",
+      "keyword": "software development case studies"
+    }
+  },
+  "sections": {
+    "ai": {
+      "name": "AI Solutions",
+      "defaultTab": "AI Overview",
+      "legacyPaths": [],
+      "entries": [
+        {
+          "tab": "AI Overview",
+          "overview": true,
+          "path": "/ai-solutions",
+          "title": "AI Solutions for Business | Artificial Intelligence Services",
+          "description": "Explore AI solutions for automation, analytics, customer experience and smarter decisions. Codigix Infotech helps plan and implement practical AI use cases.",
+          "h1": "AI Solutions for Business Applications and Growth",
+          "keyword": "AI solutions"
+        },
+        {
+          "tab": "AI Chatbots",
+          "path": "/ai-chatbot-for-business",
+          "title": "AI Chatbot for Business | Custom Conversational AI",
+          "description": "Build an AI chatbot for business to answer customer questions, qualify leads and support service teams across channels. Explore custom chatbots by Codigix.",
+          "h1": "AI Chatbot for Business Customer Support and Lead Generation",
+          "keyword": "AI chatbot for business"
+        },
+        {
+          "tab": "AI Voice Agents",
+          "path": "/ai-voice-agent-india",
+          "title": "AI Voice Agent India | Automated Business Calls",
+          "description": "Deploy an AI voice agent in India to handle inbound enquiries, appointment requests and routine calls with natural conversations and system integrations.",
+          "h1": "AI Voice Agent Solutions for Indian Businesses",
+          "keyword": "AI voice agent India"
+        },
+        {
+          "tab": "AI Business Automation",
+          "path": "/ai-automation-services",
+          "title": "AI Automation Services | Intelligent Workflow Automation",
+          "description": "Automate repetitive business workflows with AI automation services for document processing, data handling, approvals and connected business systems.",
+          "h1": "AI Automation Services for Smarter Workflows",
+          "keyword": "AI automation services"
+        },
+        {
+          "tab": "Generative AI",
+          "path": "/generative-ai-development",
+          "title": "Generative AI Development Company | Custom GenAI",
+          "description": "Work with a generative AI development company to build LLM applications, retrieval-augmented generation, AI assistants and tailored generative AI workflows.",
+          "h1": "Generative AI Development for Business Applications",
+          "keyword": "generative AI development company"
+        },
+        {
+          "tab": "Document AI (OCR)",
+          "path": "/ocr-document-automation",
+          "title": "OCR Document Automation | AI Data Extraction",
+          "description": "Reduce manual data entry with OCR document automation for extracting and structuring information from invoices, forms and business documents.",
+          "h1": "OCR Document Automation for Business Documents",
+          "keyword": "OCR document automation"
+        },
+        {
+          "tab": "Computer Vision AI",
+          "path": "/computer-vision-quality-inspection",
+          "title": "Computer Vision Quality Inspection | AI Vision Systems",
+          "description": "Detect defects and inspect products with computer vision quality inspection solutions using image analysis, visual monitoring and AI-assisted quality workflows.",
+          "h1": "Computer Vision Quality Inspection for Manufacturing",
+          "keyword": "computer vision quality inspection"
+        },
+        {
+          "tab": "Predictive Analytics",
+          "path": "/predictive-analytics-services",
+          "title": "Predictive Analytics Services | AI Forecasting",
+          "description": "Turn historical and operational data into forecasts with predictive analytics services for demand, maintenance, risk and business performance planning.",
+          "h1": "Predictive Analytics Services for Better Decisions",
+          "keyword": "predictive analytics services"
+        },
+        {
+          "tab": "AI Recommendation Engine",
+          "path": "/ai-recommendation-engine",
+          "title": "AI Recommendation Engine Development | Codigix",
+          "description": "Personalize product, content or service recommendations with AI recommendation engine development tailored to customer behaviour and business data.",
+          "h1": "AI Recommendation Engine Solutions",
+          "keyword": "AI recommendation engine"
+        },
+        {
+          "tab": "AI Report Generator",
+          "path": "/ai-report-generator",
+          "title": "AI Report Generator Development | Automated Reporting",
+          "description": "Automate recurring reports and turn business data into readable summaries with an AI report generator designed around your workflows and data sources.",
+          "h1": "AI Report Generator for Automated Business Reporting",
+          "keyword": "AI report generator"
+        },
+        {
+          "tab": "AI for Manufacturing",
+          "path": "/ai-for-manufacturing",
+          "title": "AI for Manufacturing | Smart Factory AI Solutions",
+          "description": "Apply AI for manufacturing with predictive maintenance, visual quality inspection and production analytics to improve factory visibility and decision-making.",
+          "h1": "AI for Manufacturing Operations and Quality",
+          "keyword": "AI for manufacturing"
+        },
+        {
+          "tab": "AI for Healthcare",
+          "path": "/ai-in-healthcare-india",
+          "title": "AI in Healthcare India | Healthcare AI Solutions",
+          "description": "Explore AI in healthcare in India, including workflow automation, document processing and analytics, designed around clinical needs, privacy and governance.",
+          "h1": "AI in Healthcare Solutions for Indian Providers",
+          "keyword": "AI in healthcare India"
+        },
+        {
+          "tab": "AI API Integration",
+          "path": "/ai-api-integration",
+          "title": "AI Integration Services | Connect AI to Business Systems",
+          "description": "Connect AI models and applications with your existing software through AI integration services for APIs, ERP, CRM and business workflows.",
+          "h1": "AI Integration Services for Connected Business Systems",
+          "keyword": "AI integration services"
+        }
+      ]
+    },
+    "iot": {
+      "name": "IoT Solutions",
+      "defaultTab": "Industrial IoT",
+      "legacyPaths": [
+        "/iot-solutions",
+        "/iot-development"
+      ],
+      "entries": [
+        {
+          "tab": "Industrial IoT",
+          "overview": true,
+          "path": "/industrial-iot-solutions",
+          "title": "Industrial IoT Solutions | IIoT Company in India",
+          "description": "Connect machines, sensors and business systems with industrial IoT solutions for factory monitoring and operational visibility.",
+          "h1": "Industrial IoT Solutions for Connected Factories",
+          "keyword": "industrial IoT solutions"
+        },
+        {
+          "tab": "Machine Monitoring",
+          "path": "/machine-monitoring-system",
+          "title": "Machine Monitoring System | Real-Time Equipment Visibility",
+          "description": "Track machine status, operating conditions and downtime with a machine monitoring system for timely operational insights.",
+          "h1": "Machine Monitoring System for Factory Operations",
+          "keyword": "machine monitoring system"
+        },
+        {
+          "tab": "Production Monitoring",
+          "path": "/production-monitoring-software",
+          "title": "Production Monitoring Software | Live Factory Insights",
+          "description": "Monitor production output, cycle times and line performance with production monitoring software for manufacturing operations.",
+          "h1": "Production Monitoring Software for Manufacturing Teams",
+          "keyword": "production monitoring software"
+        },
+        {
+          "tab": "OEE Dashboard",
+          "path": "/oee-software",
+          "title": "OEE Software & OEE Calculation Dashboard | Codigix",
+          "description": "Measure availability, performance and quality with OEE software that pinpoints overall equipment effectiveness losses and helps improve shop-floor output.",
+          "h1": "OEE Software for Overall Equipment Effectiveness",
+          "keyword": "OEE software"
+        },
+        {
+          "tab": "PLC Integration",
+          "path": "/plc-integration-services",
+          "title": "PLC Integration Services | Connect Factory Equipment",
+          "description": "Connect PLCs with monitoring platforms and business systems using PLC integration services for data collection and reporting.",
+          "h1": "PLC Integration Services for Industrial Automation",
+          "keyword": "PLC integration services"
+        },
+        {
+          "tab": "SCADA Integration",
+          "path": "/scada-integration",
+          "title": "SCADA Integration Services | Industrial Data Connectivity",
+          "description": "Connect SCADA systems with operational dashboards, ERP and business applications through SCADA integration services for reliable industrial data flow.",
+          "h1": "SCADA Integration for Connected Industrial Systems",
+          "keyword": "SCADA integration"
+        },
+        {
+          "tab": "Sensor Monitoring",
+          "path": "/industrial-iot-sensor-monitoring",
+          "title": "Industrial IoT Sensor Monitoring | Live Equipment Data",
+          "description": "Monitor temperature, pressure, vibration and humidity with industrial IoT sensor monitoring, live dashboards and alerts for better operational awareness.",
+          "h1": "Industrial IoT Sensor Monitoring for Factory Assets",
+          "keyword": "industrial IoT sensors"
+        },
+        {
+          "tab": "RFID Tracking",
+          "path": "/rfid-tracking-system",
+          "title": "RFID Tracking System | Industrial Asset Visibility",
+          "description": "Improve asset and inventory visibility with an RFID tracking system for identification, movement tracking and traceability.",
+          "h1": "RFID Tracking System for Assets and Inventory",
+          "keyword": "RFID tracking system"
+        },
+        {
+          "tab": "Barcode Automation",
+          "path": "/barcode-inventory-system",
+          "title": "Barcode Inventory System | Scan and Track Stock",
+          "description": "Improve stock accuracy with a barcode inventory system connected to warehouse workflows, enabling faster scanning, fewer errors and real-time stock records.",
+          "h1": "Barcode Inventory System for Warehouse Operations",
+          "keyword": "barcode inventory system"
+        },
+        {
+          "tab": "Energy Monitoring",
+          "path": "/factory-energy-monitoring-system",
+          "title": "Factory Energy Monitoring System | Track Energy Use",
+          "description": "Monitor energy consumption, peak demand and usage patterns with an energy monitoring system for factories that helps reduce power costs and wastage.",
+          "h1": "Energy Monitoring System for Factories",
+          "keyword": "energy monitoring system for factories"
+        },
+        {
+          "tab": "Predictive Maintenance",
+          "path": "/predictive-maintenance-software",
+          "title": "Predictive Maintenance Software | Reduce Downtime",
+          "description": "Use equipment data to identify maintenance risks earlier with predictive maintenance software for industrial operations.",
+          "h1": "Predictive Maintenance Software for Industrial Equipment",
+          "keyword": "predictive maintenance software"
+        },
+        {
+          "tab": "Remote Equipment Monitoring",
+          "path": "/remote-equipment-monitoring",
+          "title": "Remote Equipment Monitoring | Industrial IoT",
+          "description": "View equipment status, alarms and performance remotely with industrial IoT monitoring built for distributed assets, field machines and service teams.",
+          "h1": "Remote Equipment Monitoring for Industrial Assets",
+          "keyword": "remote equipment monitoring"
+        },
+        {
+          "tab": "Digital Twin",
+          "path": "/digital-twin-manufacturing",
+          "title": "Digital Twin Manufacturing Solutions | Codigix",
+          "description": "Create digital twins of machines and production processes for simulation, real-time monitoring and planning with digital twin manufacturing solutions.",
+          "h1": "Digital Twin Solutions for Manufacturing",
+          "keyword": "digital twin manufacturing"
+        },
+        {
+          "tab": "Industry 4.0",
+          "path": "/industry-4-0-solutions",
+          "title": "Industry 4.0 Solutions for MSMEs | Smart Factory",
+          "description": "Plan smart factory adoption with Industry 4.0 solutions for MSMEs, combining IoT, analytics and automation to improve productivity step by step.",
+          "h1": "Industry 4.0 Solutions for MSME Manufacturing",
+          "keyword": "Industry 4.0 solutions for MSME"
+        }
+      ]
+    },
+    "erp": {
+      "name": "ERP Solutions",
+      "defaultTab": "Manufacturing ERP",
+      "legacyPaths": [],
+      "entries": [
+        {
+          "tab": "Manufacturing ERP",
+          "overview": true,
+          "path": "/erp-solutions",
+          "title": "ERP Solutions & Custom ERP Software | Codigix Infotech",
+          "description": "Explore ERP solutions and custom ERP software for manufacturing, healthcare, trading, construction, inventory, finance and HR to connect business operations.",
+          "h1": "ERP Solutions for Connected Business Operations",
+          "keyword": "ERP solutions"
+        },
+        {
+          "tab": "Manufacturing ERP",
+          "path": "/manufacturing-erp-software",
+          "title": "ERP Software for Manufacturing | Production & Inventory",
+          "description": "Manage production planning, bills of materials, inventory and shop-floor operations with ERP software for manufacturing.",
+          "h1": "ERP Software for Manufacturing Operations",
+          "keyword": "ERP software for manufacturing"
+        },
+        {
+          "tab": "Healthcare ERP",
+          "path": "/hospital-erp-software",
+          "title": "Hospital ERP Software | Healthcare Operations",
+          "description": "Coordinate hospital administration, patient billing, pharmacy inventory and operational workflows with hospital ERP software.",
+          "h1": "Hospital ERP Software for Healthcare Operations",
+          "keyword": "hospital ERP software"
+        },
+        {
+          "tab": "Trading ERP",
+          "path": "/trading-erp-software",
+          "title": "Trading ERP Software | Inventory, Sales & Purchasing",
+          "description": "Manage orders, purchasing, inventory and billing with trading ERP software built for distributors, wholesalers and multi-location trading businesses.",
+          "h1": "Trading ERP Software for Wholesale and Distribution",
+          "keyword": "trading ERP software"
+        },
+        {
+          "tab": "Construction ERP",
+          "path": "/construction-erp-software",
+          "title": "Construction ERP Software | Project & Cost Control",
+          "description": "Control project costs, procurement, subcontractor billing and site operations with construction ERP software built for contractors and builders.",
+          "h1": "Construction ERP Software for Project Operations",
+          "keyword": "construction ERP software"
+        },
+        {
+          "tab": "Inventory Management",
+          "path": "/inventory-management-software",
+          "title": "Inventory Management Software | Stock Visibility",
+          "description": "Track stock levels, batch movements and warehouse activity in real time with inventory management software that reduces stock-outs and excess stock.",
+          "h1": "Inventory Management Software for Growing Businesses",
+          "keyword": "inventory management software"
+        },
+        {
+          "tab": "Purchase Management",
+          "path": "/purchase-management-software",
+          "title": "Purchase Management Software | Procurement Workflows",
+          "description": "Organize vendor records, purchase requests, RFQs, approvals and purchase orders with purchase management software for faster, controlled procurement.",
+          "h1": "Purchase Management Software for Procurement Teams",
+          "keyword": "purchase management software"
+        },
+        {
+          "tab": "Production Planning",
+          "path": "/production-planning-software",
+          "title": "Production Planning Software | Capacity & Scheduling",
+          "description": "Plan production, schedule capacity and coordinate work orders with production planning software that keeps manufacturing on time and on budget.",
+          "h1": "Production Planning Software for Manufacturers",
+          "keyword": "production planning software"
+        },
+        {
+          "tab": "Quality Management",
+          "path": "/quality-management-software",
+          "title": "Quality Management Software for Manufacturing | Codigix",
+          "description": "Manage inspections, non-conformance records, CAPA and quality workflows with quality management software designed for manufacturing operations.",
+          "h1": "Quality Management Software for Manufacturing Operations",
+          "keyword": "quality management software"
+        },
+        {
+          "tab": "Finance & Accounts",
+          "path": "/erp-finance-accounting",
+          "title": "ERP Finance and Accounting Software | Codigix",
+          "description": "Connect financial records, GST invoicing, ledgers and operational data with ERP finance and accounting software for accurate, real-time reporting.",
+          "h1": "ERP Finance and Accounting Software",
+          "keyword": "ERP finance and accounting software"
+        },
+        {
+          "tab": "HR & Payroll",
+          "path": "/hr-payroll-software-india",
+          "title": "HR and Payroll Software India | ERP HR Module",
+          "description": "Manage employee records, attendance, payroll, PF and ESI compliance and HR reporting with HR and payroll software built for Indian businesses.",
+          "h1": "HR and Payroll Software for Indian Businesses",
+          "keyword": "HR and payroll software India"
+        },
+        {
+          "tab": "Asset Management",
+          "path": "/asset-management-software",
+          "title": "Asset Management Software | Track Business Assets",
+          "description": "Maintain asset records, usage history, depreciation and maintenance schedules with asset management software that keeps business assets productive.",
+          "h1": "Asset Management Software for Business Operations",
+          "keyword": "asset management software"
+        },
+        {
+          "tab": "Warehouse Management",
+          "path": "/warehouse-management-software",
+          "title": "Warehouse Management Software | Inventory Control",
+          "description": "Improve warehouse visibility for stock locations, picking, put-away and barcode workflows with warehouse management software for inventory control.",
+          "h1": "Warehouse Management Software for Inventory Control",
+          "keyword": "warehouse management software"
+        },
+        {
+          "tab": "ERP Integrations",
+          "path": "/erp-integration-services",
+          "title": "ERP Integration Services | Connect Business Systems",
+          "description": "Connect ERP with CRM, Tally, SAP, finance tools, inventory platforms and third-party apps through ERP integration services for connected workflows.",
+          "h1": "ERP Integration Services for Connected Workflows",
+          "keyword": "ERP integration services"
+        }
+      ]
+    },
+    "crm": {
+      "name": "CRM Solutions",
+      "defaultTab": "Sales CRM",
+      "legacyPaths": [
+        "/crm-solutions"
+      ],
+      "entries": [
+        {
+          "tab": "Sales CRM",
+          "overview": true,
+          "path": "/custom-crm-development",
+          "title": "Custom CRM Development Services | Codigix Infotech",
+          "description": "Build a CRM around your sales, marketing and customer service workflows with custom CRM development, automation and integrations from Codigix Infotech.",
+          "h1": "Custom CRM Development for Your Business Workflows",
+          "keyword": "custom CRM development"
+        },
+        {
+          "tab": "Sales CRM",
+          "path": "/sales-crm-software",
+          "title": "Sales CRM Software | Pipeline & Deal Management",
+          "description": "Track deals, manage sales pipelines and forecast revenue with sales CRM software that gives your team clear visibility from first enquiry to closed deal.",
+          "h1": "Sales CRM Software for Pipeline and Deal Management",
+          "keyword": "sales CRM software"
+        },
+        {
+          "tab": "Lead Management",
+          "path": "/lead-management-crm-software",
+          "title": "Lead Management CRM Software | Track Every Enquiry",
+          "description": "Capture, assign, score and track leads across every channel and pipeline stage with lead management CRM software so no enquiry is ever missed.",
+          "h1": "Lead Management CRM Software for Sales Teams",
+          "keyword": "lead management CRM software"
+        },
+        {
+          "tab": "Marketing Automation",
+          "path": "/crm-marketing-automation",
+          "title": "CRM Marketing Automation | Campaign and Lead Workflows",
+          "description": "Connect campaigns, lead records and follow-up workflows with CRM marketing automation for email, WhatsApp and drip campaigns that convert more leads.",
+          "h1": "CRM Marketing Automation for Connected Campaigns",
+          "keyword": "CRM marketing automation"
+        },
+        {
+          "tab": "Customer Support",
+          "path": "/customer-support-crm-software",
+          "title": "Customer Support CRM Software | Service Visibility",
+          "description": "Manage customer requests, SLAs, interaction history and service workflows with customer support CRM software that helps teams resolve issues faster.",
+          "h1": "Customer Support CRM Software for Service Teams",
+          "keyword": "customer support CRM software"
+        },
+        {
+          "tab": "Service Management",
+          "path": "/service-management-crm",
+          "title": "Service Management CRM | Organize Customer Service",
+          "description": "Coordinate service requests, AMC contracts, warranties, schedules and customer communication with service management CRM tools for service teams.",
+          "h1": "Service Management CRM for Customer Operations",
+          "keyword": "service management CRM"
+        },
+        {
+          "tab": "Quotation Management",
+          "path": "/quotation-management-software",
+          "title": "Quotation Management Software | CRM Workflows",
+          "description": "Prepare, send, track and approve customer quotations with quotation management software that applies pricing rules and generates PDF quotes instantly.",
+          "h1": "Quotation Management Software for Sales Teams",
+          "keyword": "quotation management software"
+        },
+        {
+          "tab": "Project Management",
+          "path": "/crm-project-management-software",
+          "title": "CRM Project Management Software | Track Delivery",
+          "description": "Connect customer records with tasks, milestones, timesheets and project status using CRM project management software built for client-facing teams.",
+          "h1": "CRM Project Management Software for Client Work",
+          "keyword": "CRM project management software"
+        },
+        {
+          "tab": "Task Management",
+          "path": "/crm-task-management",
+          "title": "CRM Task Management | Assign and Track Follow-Ups",
+          "description": "Assign responsibilities, set reminders and track customer-related follow-ups with CRM task management tools built for sales and service teams.",
+          "h1": "CRM Task Management for Sales and Service",
+          "keyword": "CRM task management"
+        },
+        {
+          "tab": "Field Service CRM",
+          "path": "/field-service-crm-software",
+          "title": "Field Service CRM Software | Mobile Team Coordination",
+          "description": "Coordinate field visits, engineer dispatch, service schedules and customer records with field service CRM software built for mobile service teams.",
+          "h1": "Field Service CRM Software for Mobile Teams",
+          "keyword": "field service CRM software"
+        },
+        {
+          "tab": "Helpdesk",
+          "path": "/helpdesk-crm-software",
+          "title": "Helpdesk CRM Software | Customer Issue Tracking",
+          "description": "Organize support tickets, SLAs and response workflows across email, chat and phone with helpdesk CRM software connected to customer records.",
+          "h1": "Helpdesk CRM Software for Customer Support",
+          "keyword": "helpdesk CRM software"
+        },
+        {
+          "tab": "Customer Portal",
+          "path": "/customer-portal-software",
+          "title": "Customer Portal Software | Self-Service Access",
+          "description": "Give customers a secure self-service portal to raise requests and view orders, invoices and updates with customer portal software linked to your CRM.",
+          "h1": "Customer Portal Software for Customer Self-Service",
+          "keyword": "customer portal software"
+        },
+        {
+          "tab": "CRM Analytics",
+          "path": "/crm-analytics-software",
+          "title": "CRM Analytics Software | Sales and Customer Insights",
+          "description": "Analyze pipeline activity, customer engagement and sales performance with CRM analytics software and executive dashboards for data-driven decisions.",
+          "h1": "CRM Analytics Software for Sales Insights",
+          "keyword": "CRM analytics software"
+        }
+      ]
+    },
+    "industries": {
+      "name": "Industries",
+      "defaultTab": "Manufacturing",
+      "legacyPaths": [
+        "/industries"
+      ],
+      "entries": [
+        {
+          "tab": "Manufacturing",
+          "overview": true,
+          "path": "/industry-solutions",
+          "title": "Industry-Specific Software Solutions | Codigix",
+          "description": "Explore software solutions for manufacturing, healthcare, retail, finance and real estate tailored to each industry's operational needs.",
+          "h1": "Industry-Specific Software Solutions",
+          "keyword": "industry-specific software solutions"
+        },
+        {
+          "tab": "Manufacturing",
+          "path": "/manufacturing-software-solutions",
+          "title": "Manufacturing Software Solutions | Codigix Infotech",
+          "description": "Digitize manufacturing with connected ERP, industrial IoT, machine monitoring and analytics that give shop-floor visibility and faster decisions.",
+          "h1": "Manufacturing Software, ERP and IIoT Solutions",
+          "keyword": "smart manufacturing software solutions"
+        },
+        {
+          "tab": "Healthcare",
+          "path": "/healthcare-software-development",
+          "title": "Healthcare Software Development | Codigix Infotech",
+          "description": "Build healthcare software for patient workflows, hospital operations, digital records and analytics with attention to privacy and integration.",
+          "h1": "Healthcare Software Solutions for Providers",
+          "keyword": "healthcare software development"
+        },
+        {
+          "tab": "Retail",
+          "path": "/retail-software-solutions",
+          "title": "Retail Software Solutions | POS, Inventory & CRM",
+          "description": "Connect retail operations with software for point of sale, inventory, e-commerce, customer relationships and reporting across stores and channels.",
+          "h1": "Retail Software Solutions for Connected Operations",
+          "keyword": "retail software solutions"
+        },
+        {
+          "tab": "Finance",
+          "path": "/financial-software-development",
+          "title": "Financial Software Development | Codigix Infotech",
+          "description": "Develop secure business software for finance workflows, reporting, operational visibility and system integration for banks, NBFCs and fintech teams.",
+          "h1": "Financial Software Solutions for Business Operations",
+          "keyword": "financial software development"
+        },
+        {
+          "tab": "Real Estate",
+          "path": "/real-estate-crm-software",
+          "title": "Real Estate CRM & Property Software | Codigix",
+          "description": "Support property lead management, site visits, customer communication and project tracking with real estate CRM and property management software.",
+          "h1": "Real Estate CRM and Property Management Solutions",
+          "keyword": "real estate CRM software"
+        }
+      ]
+    }
+  },
+  "redirects": {
+    "/home": "/",
+    "/about-us": "/about",
+    "/careers": "/career",
+    "/projects": "/case-studies",
+    "/other-services": "/services",
+    "/terms": "/terms-conditions",
+    "/privacy": "/privacy-policy",
+    "/blogs": "/blog"
+  }
+}

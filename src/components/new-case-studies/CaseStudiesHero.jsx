@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Download, Rocket, Building2, CheckCircle2, Headphones } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SeoHeading from '../common/SeoHeading';
+import { getPageSeo } from '../../utils/seo';
+
+const caseStudiesSeo = getPageSeo('caseStudies');
 
 const ImpactTelemetrySimulator = () => {
   const [activeMetric, setActiveMetric] = useState(0);
@@ -81,8 +85,7 @@ const CaseStudiesHero = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.15] mb-6"
           >
-            Real Challenges.<br/>
-            <span className="case-studies-text-gradient">Proven Solutions.</span>
+            <SeoHeading text={caseStudiesSeo.h1} keyword={caseStudiesSeo.keyword} gradientClassName="case-studies-text-gradient" />
           </motion.h1>
           
           <motion.p 

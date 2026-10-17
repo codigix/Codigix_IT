@@ -2,17 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronRight } from 'lucide-react';
+import { getSectionHubPath } from '../../utils/seo';
 
 const getSolutionPath = (title) => {
   switch (title) {
     case 'AI Development':
-      return '/ai-solutions';
+      return getSectionHubPath('ai');
     case 'Industrial IoT':
-      return '/iot-solutions';
+      return getSectionHubPath('iot');
     case 'ERP Development':
-      return '/erp-solutions';
+      return getSectionHubPath('erp');
     case 'CRM Development':
-      return '/crm-solutions';
+      return getSectionHubPath('crm');
     default:
       return '/services';
   }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Settings, Cpu, ShieldCheck, TrendingUp, Rocket, Building2, CheckCircle2, Headphones, Sparkles, ArrowRight } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
+import SeoHeading from '../common/SeoHeading';
 
 const heroContentByIndustry = {
   'Manufacturing': {
@@ -113,7 +114,7 @@ const IndustryOperationsSimulator = ({ activeIndustry }) => {
   );
 };
 
-const IndustriesHero = ({ activeIndustry = 'Manufacturing' }) => {
+const IndustriesHero = ({ activeIndustry = 'Manufacturing', seo }) => {
   const navigate = useNavigate();
 
   const heroData = heroContentByIndustry[activeIndustry] || heroContentByIndustry['Manufacturing'];
@@ -136,8 +137,7 @@ const IndustriesHero = ({ activeIndustry = 'Manufacturing' }) => {
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.15] mb-6">
-                {heroData.headline}<br />
-                <span className="industries-text-gradient">{heroData.highlight}</span>
+                <SeoHeading text={seo.h1} keyword={seo.keyword} gradientClassName="industries-text-gradient" />
               </h1>
 
               <p className="text-[13px] text-slate-600 dark:text-gray-300 leading-relaxed mb-6 max-w-lg">

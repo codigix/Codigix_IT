@@ -3,9 +3,11 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const path = require('path');
+const fs = require('fs');
 const { PORT, CLIENT_URL, NODE_ENV } = require('./config/config');
 const apiRoutes = require('./routes/api');
 const db = require('./config/db');
+const { resolveRedirect, renderIndexHtml } = require('./utils/seoMeta');
 
 const app = express();
 
@@ -51,7 +53,20 @@ app.get('/health', (req, res) => {
 // Serve frontend static files in production with optimized cache rules
 if (NODE_ENV === 'production') {
   const distPath = path.join(__dirname, '../dist');
+  const indexHtml = fs.readFileSync(path.join(distPath, 'index.html'), 'utf8');
+
+  // Permanent redirects for old ?tab= URLs, renamed hubs and alias routes
+  app.use((req, res, next) => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+    const queryIndex = req.originalUrl.indexOf('?');
+    const search = queryIndex === -1 ? '' : req.originalUrl.slice(queryIndex);
+    const target = resolveRedirect(req.path, search);
+    if (target) return res.redirect(301, target);
+    next();
+  });
+
   app.use(express.static(distPath, {
+    index: false, // "/" must go through the SEO-aware handler below
     maxAge: '1y',
     immutable: true,
     etag: true,
@@ -64,8 +79,10 @@ if (NODE_ENV === 'production') {
     }
   }));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(distPath, 'index.html'));
+  // Express 5 needs a named wildcard; a bare '*' throws at startup
+  app.get('/{*splat}', (req, res) => {
+    res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+    res.type('html').send(renderIndexHtml(indexHtml, req.path));
   });
 }
 

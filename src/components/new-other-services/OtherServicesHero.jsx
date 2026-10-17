@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, Cpu, ShieldCheck, Zap, TrendingUp, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SeoHeading from '../common/SeoHeading';
+import { getPageSeo } from '../../utils/seo';
+
+const servicesSeo = getPageSeo('services');
 
 const DigitalPipelineSimulator = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -74,7 +78,7 @@ const OtherServicesHero = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-slate-900 dark:text-white leading-[1.15] mb-6"
           >
-            Powering Digital Engineering <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Beyond Boundaries</span>
+            <SeoHeading text={servicesSeo.h1} keyword={servicesSeo.keyword} gradientClassName="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent" />
           </motion.h1>
 
           <motion.p

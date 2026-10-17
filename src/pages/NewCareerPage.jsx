@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { getPageSeo } from '../utils/seo';
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import CareerSidebar from '../components/new-career/CareerSidebar';
@@ -42,13 +43,11 @@ const NewCareerPage = () => {
   };
 
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
-  const canonicalUrl = `${siteUrl}/career${activeDepartment !== 'All Departments' ? `?tab=${activeDepartment}` : ''}`;
-
-  const pageTitle = activeDepartment === 'All Departments'
-    ? "Careers & Job Openings | Join Codigix Infotech Engineering Team"
-    : `${activeDepartment} Jobs & Careers | Codigix Infotech`;
-
-  const metaDescription = "Explore career opportunities at Codigix Infotech. Join our engineering, AI, IoT, design, and sales teams in Pune, India. Enjoy competitive salaries, leadership growth, and hybrid work culture.";
+  // Department filters are views of one page, so they share its canonical and title
+  const seo = getPageSeo('career');
+  const canonicalUrl = seo.canonical;
+  const pageTitle = seo.title;
+  const metaDescription = seo.description;
 
   // JSON-LD Schemas for Google for Jobs and Rich Snippets
   const jobPostingSchemas = fallbackJobs.map(job => ({
@@ -138,9 +137,9 @@ const NewCareerPage = () => {
     <>
       <SEO
         title={pageTitle}
-        metaTitle={pageTitle}
+        exactTitle={true}
         description={metaDescription}
-        keywords={`IT careers Pune, software developer jobs Pune, Full Stack developer job, React developer jobs, UI UX designer job, Codigix Infotech careers, technology jobs India, AI engineering jobs, ${activeDepartment} jobs`}
+        keywords={`${seo.keyword}, IT careers Pune, software developer jobs Pune, Full Stack developer job, React developer jobs, UI UX designer job, Codigix Infotech careers, technology jobs India, AI engineering jobs, ${activeDepartment} jobs`}
         canonical={canonicalUrl}
         ogImage={`${siteUrl}/assets/images/logos/logo.webp`}
         schemaData={[...jobPostingSchemas, breadcrumbSchema, faqSchema, organizationSchema]}

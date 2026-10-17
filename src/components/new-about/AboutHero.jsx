@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { ArrowRight, Users, Lightbulb, Code2, Star, Flag, Rocket, Target, ShieldCheck, HelpCircle, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import SeoHeading from '../common/SeoHeading';
+import { getPageSeo } from '../../utils/seo';
+
+const aboutSeo = getPageSeo('about');
 
 const navPills = [
   { id: 'about-story', label: 'Our Story', icon: Flag },
@@ -64,8 +68,7 @@ const AboutHero = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.15] mb-6"
           >
-            Innovating Today.<br/>
-            <span className="about-text-gradient">Transforming Tomorrow.</span>
+            <SeoHeading text={aboutSeo.h1} keyword={aboutSeo.keyword} gradientClassName="about-text-gradient" />
           </motion.h1>
           
           <motion.p 

@@ -1,7 +1,8 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './index.css';
 import { trackPageView } from './utils/analytics';
+import { getSectionPaths, resolveRedirect } from './utils/seo';
 
 // Lazy load active pages
 const NewHomePage = lazy(() => import('./pages/NewHomePage'));
@@ -70,57 +71,49 @@ function AppRoutes() {
     );
   }
 
+  // Old ?tab= URLs, renamed hubs and alias routes collapse onto one canonical URL
+  const redirectTo = resolveRedirect(location.pathname, location.search);
+  if (redirectTo) {
+    return <Navigate to={redirectTo} replace />;
+  }
+
   return (
     <Routes>
-      {/* Primary Clean SEO Routes */}
       <Route path="/" element={<NewHomePage />} />
-      <Route path="/home" element={<NewHomePage />} />
 
-      {/* AI Solutions */}
-      <Route path="/ai-solutions" element={<NewAiSolutionsPage />} />
+      {/* Solution sections: one clean URL per tab, defined in data/seoPages.json */}
+      {getSectionPaths('ai').map((path) => (
+        <Route key={path} path={path} element={<NewAiSolutionsPage />} />
+      ))}
+      {getSectionPaths('iot').map((path) => (
+        <Route key={path} path={path} element={<NewIotSolutionsPage />} />
+      ))}
+      {getSectionPaths('erp').map((path) => (
+        <Route key={path} path={path} element={<NewErpSolutionsPage />} />
+      ))}
+      {getSectionPaths('crm').map((path) => (
+        <Route key={path} path={path} element={<NewCrmSolutionsPage />} />
+      ))}
+      {getSectionPaths('industries').map((path) => (
+        <Route key={path} path={path} element={<NewIndustriesPage />} />
+      ))}
 
-      {/* IoT Solutions */}
-      <Route path="/iot-solutions" element={<NewIotSolutionsPage />} />
-
-      {/* ERP Solutions */}
-      <Route path="/erp-solutions" element={<NewErpSolutionsPage />} />
-
-      {/* CRM Solutions */}
-      <Route path="/crm-solutions" element={<NewCrmSolutionsPage />} />
-
-      {/* Services */}
       <Route path="/services" element={<NewOtherServicesPage />} />
-      <Route path="/other-services" element={<NewOtherServicesPage />} />
 
-      {/* Industries */}
-      <Route path="/industries" element={<NewIndustriesPage />} />
-
-      {/* Case Studies / Projects */}
       <Route path="/case-studies" element={<NewCaseStudiesPage />} />
-      <Route path="/projects" element={<NewCaseStudiesPage />} />
       <Route path="/case-studies/:id" element={<NewCaseStudyDetailsPage />} />
 
-      {/* Career */}
       <Route path="/career" element={<NewCareerPage />} />
-      <Route path="/careers" element={<NewCareerPage />} />
-
-      {/* About */}
       <Route path="/about" element={<NewAboutPage />} />
-
-      {/* Contact */}
       <Route path="/contact" element={<NewContactPage />} />
 
       {/* Legal Routes */}
       <Route path="/terms-conditions" element={<TermsConditionsPage />} />
-      <Route path="/terms" element={<TermsConditionsPage />} />
       <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-      <Route path="/privacy" element={<PrivacyPolicyPage />} />
 
       {/* Blogs */}
       <Route path="/blog" element={<NewBlogPage />} />
-      <Route path="/blogs" element={<NewBlogPage />} />
       <Route path="/blog/:id" element={<NewBlogDetailsPage />} />
-      <Route path="/blogs/:id" element={<NewBlogDetailsPage />} />
 
       {/* Catch-all 404 */}
       <Route path="*" element={<NotFoundPage />} />

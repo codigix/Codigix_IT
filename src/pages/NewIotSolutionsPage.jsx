@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import IotSidebar from '../components/new-iot-solutions/IotSidebar';
 import IotHero from '../components/new-iot-solutions/IotHero';
 import IotWhyChooseUs from '../components/new-iot-solutions/IotWhyChooseUs';
@@ -11,36 +11,19 @@ import IotFaqSection, { iotFaqData } from '../components/new-iot-solutions/IotFa
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import SEO from '../components/SEO';
+import { getSectionSeo, getTabPath, getSectionHubPath, toCanonical } from '../utils/seo';
 import '../components/new-iot-solutions/iot-solutions.css';
 
 const NewIotSolutionsPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const tabQuery = searchParams.get('tab');
-  const [activeTab, setActiveTab] = useState(tabQuery || 'Industrial IoT');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const seo = getSectionSeo('iot', location.pathname);
+  const activeTab = seo.tab;
+  const isDefaultOverview = Boolean(seo.overview);
 
-  useEffect(() => {
-    if (tabQuery) {
-      setActiveTab(tabQuery);
-    }
-  }, [tabQuery]);
-
-  const handleTabChange = (tabName) => {
-    setActiveTab(tabName);
-    setSearchParams({ tab: tabName });
+  const handleTabChange = (name) => {
+    navigate(getTabPath('iot', name));
   };
-
-  const isDefaultOverview = activeTab === 'Industrial IoT';
-  const pageTitle = isDefaultOverview
-    ? "IoT Development Company in Pune | Industrial IoT Solutions"
-    : `${activeTab} Solutions & SCADA Integration | Codigix Infotech`;
-
-  const metaDescription = isDefaultOverview
-    ? "Codigix is a Pune-based IoT development company delivering Industrial IoT, connected systems, and smart automation solutions. Talk to our experts today!"
-    : `Codigix Infotech delivers enterprise Industrial IoT (IIoT) engineering, including ${activeTab}, PLC integration, Modbus/OPC-UA drivers, OEE monitoring dashboards, and predictive maintenance.`;
-
-  const canonicalUrl = isDefaultOverview 
-    ? "https://codigixinfotech.com/iot-development" 
-    : `https://codigixinfotech.com/iot-solutions?tab=${encodeURIComponent(activeTab)}`;
 
   // Structured JSON-LD Data for IoT Solutions
   const iotSchemas = [
@@ -54,7 +37,7 @@ const NewIotSolutionsPage = () => {
         "url": "https://codigixinfotech.com/"
       },
       "areaServed": "Global",
-      "description": metaDescription
+      "description": seo.description
     },
     {
       "@context": "https://schema.org",
@@ -70,14 +53,14 @@ const NewIotSolutionsPage = () => {
           "@type": "ListItem",
           "position": 2,
           "name": "IoT Solutions",
-          "item": "https://codigixinfotech.com/iot-development"
+          "item": toCanonical(getSectionHubPath('iot'))
         },
-        {
+        ...(isDefaultOverview ? [] : [{
           "@type": "ListItem",
           "position": 3,
           "name": activeTab,
-          "item": canonicalUrl
-        }
+          "item": seo.canonical
+        }])
       ]
     },
     {
@@ -97,15 +80,11 @@ const NewIotSolutionsPage = () => {
   return (
     <>
       <SEO
-        title={pageTitle}
-        exactTitle={isDefaultOverview}
-        metaTitle={pageTitle}
-        description={metaDescription}
-        keywords={isDefaultOverview ? "IoT development company Pune, IoT development services Pune, IoT solutions company Pune, Industrial IoT solutions Pune, IIoT company Pune, Industrial IoT development Pune, IoT software development Pune, IoT application development Pune, smart factory solutions Pune, IoT automation Pune" : `Industrial IoT, ${activeTab}, PLC integration, SCADA automation, OEE dashboard, predictive maintenance, Modbus TCP, OPC-UA, MQTT, Codigix Infotech`}
-        canonical={canonicalUrl}
-        ogTitle={isDefaultOverview ? "IoT Development Company in Pune | Industrial IoT Solutions | Codigix" : undefined}
-        ogDescription={isDefaultOverview ? "Build connected and intelligent business systems with Codigix. We deliver IoT, Industrial IoT, IIoT and smart automation solutions in Pune. Get a consultation." : undefined}
-        twitterDescription={isDefaultOverview ? "IoT and Industrial IoT development services for connected operations, smart factories and business automation in Pune. Contact Codigix today." : undefined}
+        title={seo.title}
+        exactTitle={true}
+        description={seo.description}
+        keywords={`${seo.keyword}, industrial IoT solutions, IIoT, machine monitoring, OEE software, predictive maintenance, Codigix Infotech`}
+        canonical={seo.canonical}
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={iotSchemas}
       />
@@ -122,7 +101,7 @@ const NewIotSolutionsPage = () => {
 
           {/* Main Content Area (Left Side) */}
           <main id="main-content" className="px-4 sm:px-8 lg:px-12 xl:px-16 lg:border-r border-slate-200 dark:border-gray-800/50 py-12">
-            <IotHero activeTab={activeTab} />
+            <IotHero activeTab={activeTab} seo={seo} />
             <IotWhyChooseUs activeTab={activeTab} />
             <IotArchitecture activeTab={activeTab} />
             <IotCapabilitiesAndUseCases activeTab={activeTab} />

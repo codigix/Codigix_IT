@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, PlayCircle, Sparkles, Users, Globe, ShieldCheck, Rocket, Award, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SeoHeading from '../common/SeoHeading';
+import { getPageSeo } from '../../utils/seo';
+
+const careerSeo = getPageSeo('career');
 
 const openRoles = [
   { title: 'AI Research Engineer', applicants: 18, status: 'Interview Stage', code: 'role_ai_res' },
@@ -45,8 +49,7 @@ const CareerHero = ({ onApply }) => {
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.15] mb-6"
           >
-            Build the Future.<br/>
-            Grow With <span className="career-text-gradient">Codigix.</span>
+            <SeoHeading text={careerSeo.h1} keyword={careerSeo.keyword} gradientClassName="career-text-gradient" />
           </motion.h1>
           
           <motion.p 

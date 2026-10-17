@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Calendar, ArrowRight, TrendingUp, Users, ShieldCheck, Zap, Smile } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
+import SeoHeading from '../common/SeoHeading';
+import { getSectionHubPath } from '../../utils/seo';
 import { getDefaultData } from './crmTabData';
 
 // Sales CRM Simulator
@@ -203,7 +205,7 @@ const renderCrmSandboxWidget = (tab) => {
   }
 };
 
-const CrmHero = ({ activeTab }) => {
+const CrmHero = ({ activeTab, seo }) => {
   const navigate = useNavigate();
   const data = getDefaultData(activeTab);
 
@@ -220,7 +222,7 @@ const CrmHero = ({ activeTab }) => {
             <ChevronRight size={12} />
           </li>
           <li>
-            <Link to="/crm-solutions" className="hover:text-slate-900 dark:hover:text-white transition-colors">CRM Solutions</Link>
+            <Link to={getSectionHubPath('crm')} className="hover:text-slate-900 dark:hover:text-white transition-colors">CRM Solutions</Link>
           </li>
           <li>
             <ChevronRight size={12} />
@@ -242,7 +244,7 @@ const CrmHero = ({ activeTab }) => {
             key={activeTab + "title"}
             className="text-4xl sm:text-5xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.1] mb-6"
           >
-            {data.heroTitle} <span className="crm-text-gradient">{data.heroHighlight}</span>
+            <SeoHeading text={seo.h1} keyword={seo.keyword} gradientClassName="crm-text-gradient" />
           </motion.h1>
 
           <motion.p

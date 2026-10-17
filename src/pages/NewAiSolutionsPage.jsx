@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AiSidebar from '../components/new-ai-solutions/AiSidebar';
 import AiHero from '../components/new-ai-solutions/AiHero';
 import AiValueProps from '../components/new-ai-solutions/AiValueProps';
@@ -11,34 +11,19 @@ import AiFaqSection, { aiFaqData } from '../components/new-ai-solutions/AiFaqSec
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import SEO from '../components/SEO';
+import { getSectionSeo, getTabPath, getSectionHubPath, toCanonical } from '../utils/seo';
 import '../components/new-ai-solutions/ai-solutions.css';
 
 const NewAiSolutionsPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const tabQuery = searchParams.get('tab');
-  const [activeTab, setActiveTab] = useState(tabQuery || 'AI Overview');
-
-  useEffect(() => {
-    if (tabQuery) {
-      setActiveTab(tabQuery);
-    }
-  }, [tabQuery]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const seo = getSectionSeo('ai', location.pathname);
+  const activeTab = seo.tab;
+  const isDefaultOverview = Boolean(seo.overview);
 
   const handleTabChange = (tabName) => {
-    setActiveTab(tabName);
-    setSearchParams({ tab: tabName });
+    navigate(getTabPath('ai', tabName));
   };
-
-  const isDefaultOverview = activeTab === 'AI Overview';
-  const pageTitle = isDefaultOverview
-    ? "AI Solutions Company in Pune | AI Development Services"
-    : `${activeTab} Services & Engineering Solutions | Codigix Infotech`;
-
-  const metaDescription = isDefaultOverview
-    ? "Codigix is an AI solutions company in Pune offering AI development, Generative AI, AI automation and intelligent business solutions.Call Now."
-    : `Codigix Infotech provides enterprise AI development services, including ${activeTab}, custom LLM integration, Generative AI agents, computer vision, voice AI, and predictive analytics.`;
-
-  const canonicalUrl = `https://codigixinfotech.com/ai-solutions${isDefaultOverview ? '' : `?tab=${encodeURIComponent(activeTab)}`}`;
 
   // Structured JSON-LD Data for AI Solutions
   const productSchema = {
@@ -111,14 +96,14 @@ const NewAiSolutionsPage = () => {
           "@type": "ListItem",
           "position": 2,
           "name": "AI Solutions",
-          "item": "https://codigixinfotech.com/ai-solutions"
+          "item": toCanonical(getSectionHubPath('ai'))
         },
-        {
+        ...(isDefaultOverview ? [] : [{
           "@type": "ListItem",
           "position": 3,
           "name": activeTab,
-          "item": canonicalUrl
-        }
+          "item": seo.canonical
+        }])
       ]
     },
     {
@@ -138,15 +123,11 @@ const NewAiSolutionsPage = () => {
   return (
     <>
       <SEO
-        title={pageTitle}
-        exactTitle={isDefaultOverview}
-        metaTitle={pageTitle}
-        description={metaDescription}
-        keywords={isDefaultOverview ? "AI solutions company Pune, AI development company Pune, AI development services Pune, artificial intelligence company Pune, AI software development Pune, Generative AI company Pune, enterprise AI solutions Pune, AI automation Pune" : `AI solutions, ${activeTab}, Generative AI, custom LLM integration, AI chatbots, computer vision engineering, voice AI agents, predictive analytics, Codigix Infotech`}
-        canonical={canonicalUrl}
-        ogTitle={isDefaultOverview ? "AI Solutions Company in Pune | AI Development Services | Codigix" : undefined}
-        ogDescription={isDefaultOverview ? "AI development, Generative AI and business automation solutions for companies in Pune. Talk to Codigix experts and get a free consultation." : undefined}
-        twitterDescription={isDefaultOverview ? "Build intelligent business solutions with Codigix. Explore AI development, Generative AI and AI automation services in Pune." : undefined}
+        title={seo.title}
+        exactTitle={true}
+        description={seo.description}
+        keywords={`${seo.keyword}, AI solutions, AI development services, Generative AI, Codigix Infotech`}
+        canonical={seo.canonical}
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={aiSchemas}
       />
@@ -163,7 +144,7 @@ const NewAiSolutionsPage = () => {
 
           {/* Main Content Area (Left Side) */}
           <main id="main-content" className="px-4 sm:px-8 lg:px-12 xl:px-16 lg:border-r border-slate-200 dark:border-gray-800/50 py-12">
-            <AiHero activeTab={activeTab} />
+            <AiHero activeTab={activeTab} seo={seo} />
             <AiValueProps activeTab={activeTab} />
             <AiIndustries activeTab={activeTab} />
             <AiTechnologies activeTab={activeTab} />

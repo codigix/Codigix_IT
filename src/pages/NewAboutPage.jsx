@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { getPageSeo } from '../utils/seo';
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import AboutHero from '../components/new-about/AboutHero';
@@ -18,9 +19,10 @@ import '../components/new-about/about.css';
 
 const NewAboutPage = () => {
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
-  const pageTitle = "About Codigix | Software Development Company in Pune";
-  const metaDescription = "Learn about Codigix, a Pune-based software development company delivering AI, ERP, Industrial IoT, CRM and custom software solutions. Talk to our experts today.";
-  const canonicalUrl = `${siteUrl}/about-us`;
+  const seo = getPageSeo('about');
+  const pageTitle = seo.title;
+  const metaDescription = seo.description;
+  const canonicalUrl = seo.canonical;
 
   // JSON-LD Schemas for Corporate SEO
   const aboutPageSchema = {
@@ -140,13 +142,9 @@ const NewAboutPage = () => {
       <SEO
         title={pageTitle}
         exactTitle={true}
-        metaTitle={pageTitle}
         description={metaDescription}
-        keywords="about Codigix, software development company Pune, IT company Pune, AI company Pune, custom software development Pune, ERP solutions Pune, Industrial IoT company Pune, IoT solutions Pune, software company PCMC"
+        keywords={`${seo.keyword}, about Codigix, software development company Pune, IT company Pune, AI company Pune, custom software development Pune, ERP solutions Pune, Industrial IoT company Pune, IoT solutions Pune, software company PCMC`}
         canonical={canonicalUrl}
-        ogTitle="About Codigix | Software Development Company in Pune"
-        ogDescription="Discover Codigix's expertise in AI, ERP, Industrial IoT, CRM and custom software development. Connect with our Pune team for your next technology project."
-        twitterDescription="Meet Codigix, a Pune-based technology company specializing in AI, ERP, Industrial IoT, CRM and custom software solutions."
         ogImage={`${siteUrl}/assets/images/logos/logo.webp`}
         schemaData={[aboutPageSchema, breadcrumbSchema, faqSchema, organizationSchema]}
       />

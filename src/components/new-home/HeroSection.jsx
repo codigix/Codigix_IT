@@ -5,6 +5,10 @@ import {
   ArrowRight, Play, MonitorPlay, FolderGit, Building2, Globe2, Activity,
   Cpu, Code, Layers, Bot, X
 } from 'lucide-react';
+import SeoHeading from '../common/SeoHeading';
+import { getPageSeo } from '../../utils/seo';
+
+const homeSeo = getPageSeo('home');
 
 const stats = [
   { value: '10+', label: 'Projects Delivered', icon: FolderGit, color: 'text-rose-500' },
@@ -63,8 +67,9 @@ const HeroSection = () => {
                 AI + IoT + Custom Software Experts
               </div>
               <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-                <span className="text-slate-900 dark:text-white">AI-Powered Software. IoT-Driven Automation. </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-600 via-fuchsia-600 to-purple-600 dark:from-rose-400 dark:via-fuchsia-400 dark:to-purple-400">Enterprise Transformation.</span>
+                <span className="text-slate-900 dark:text-white">
+                  <SeoHeading text={homeSeo.h1} keyword={homeSeo.keyword} gradientClassName="text-transparent bg-clip-text bg-gradient-to-r from-rose-600 via-fuchsia-600 to-purple-600 dark:from-rose-400 dark:via-fuchsia-400 dark:to-purple-400" />
+                </span>
               </h1>
               <p className="text-slate-600 dark:text-gray-300 text-base md:text-md max-w-xl leading-relaxed font-normal">
                 We build intelligent ERP, CRM, AI Automation systems, custom IoT platforms, and enterprise software that streamline operations and accelerate growth.

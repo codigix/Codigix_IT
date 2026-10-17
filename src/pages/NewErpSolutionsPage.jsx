@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ErpSidebar from '../components/new-erp-solutions/ErpSidebar';
 import ErpHero from '../components/new-erp-solutions/ErpHero';
 import ErpModules from '../components/new-erp-solutions/ErpModules';
@@ -12,34 +12,19 @@ import ErpFaqSection, { erpFaqData } from '../components/new-erp-solutions/ErpFa
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import SEO from '../components/SEO';
+import { getSectionSeo, getTabPath, getSectionHubPath, toCanonical } from '../utils/seo';
 import '../components/new-erp-solutions/erp-solutions.css';
 
 const NewErpSolutionsPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const tabQuery = searchParams.get('tab');
-  const [activeTab, setActiveTab] = useState(tabQuery || 'Manufacturing ERP');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const seo = getSectionSeo('erp', location.pathname);
+  const activeTab = seo.tab;
+  const isDefaultOverview = Boolean(seo.overview);
 
-  useEffect(() => {
-    if (tabQuery) {
-      setActiveTab(tabQuery);
-    }
-  }, [tabQuery]);
-
-  const handleTabChange = (tabName) => {
-    setActiveTab(tabName);
-    setSearchParams({ tab: tabName });
+  const handleTabChange = (name) => {
+    navigate(getTabPath('erp', name));
   };
-
-  const isDefaultOverview = activeTab === 'Manufacturing ERP';
-  const pageTitle = isDefaultOverview
-    ? "ERP Software Development Company in Pune | Codigix"
-    : `${activeTab} Solutions & Custom ERP Systems | Codigix Infotech`;
-
-  const metaDescription = isDefaultOverview
-    ? "ERP Software Development Company in Pune offering custom ERP solutions to streamline business operations, improve efficiency, and drive growth."
-    : `Codigix Infotech engineers custom Enterprise Resource Planning (ERP) software, including ${activeTab}, Bill of Materials (BOM) automation, production planning, inventory tracking, financial accounting, and HR management.`;
-
-  const canonicalUrl = `https://codigixinfotech.com/erp-solutions${isDefaultOverview ? '' : `?tab=${encodeURIComponent(activeTab)}`}`;
 
   // Structured JSON-LD Data for ERP Solutions Page
   const erpSchemas = [
@@ -53,7 +38,7 @@ const NewErpSolutionsPage = () => {
         "url": "https://codigixinfotech.com/"
       },
       "areaServed": "Global",
-      "description": metaDescription
+      "description": seo.description
     },
     {
       "@context": "https://schema.org",
@@ -69,14 +54,14 @@ const NewErpSolutionsPage = () => {
           "@type": "ListItem",
           "position": 2,
           "name": "ERP Solutions",
-          "item": "https://codigixinfotech.com/erp-solutions"
+          "item": toCanonical(getSectionHubPath('erp'))
         },
-        {
+        ...(isDefaultOverview ? [] : [{
           "@type": "ListItem",
           "position": 3,
           "name": activeTab,
-          "item": canonicalUrl
-        }
+          "item": seo.canonical
+        }])
       ]
     },
     {
@@ -96,15 +81,11 @@ const NewErpSolutionsPage = () => {
   return (
     <>
       <SEO
-        title={pageTitle}
-        exactTitle={isDefaultOverview}
-        metaTitle={pageTitle}
-        description={metaDescription}
-        keywords={isDefaultOverview ? "ERP software development company Pune, ERP development company Pune, ERP software company Pune, custom ERP software Pune, ERP solutions Pune, manufacturing ERP software Pune, manufacturing ERP development Pune, enterprise ERP solutions Pune, ERP application development Pune, ERP implementation Pune" : `Custom ERP Software, ${activeTab}, ERP system development, inventory management ERP, production planning software, enterprise ERP, manufacturing ERP, cloud ERP, Codigix Infotech`}
-        canonical={canonicalUrl}
-        ogTitle={isDefaultOverview ? "ERP Software Development Company in Pune | Custom ERP | Codigix" : undefined}
-        ogDescription={isDefaultOverview ? "Build a custom ERP solution with Codigix. We develop ERP software for manufacturing, inventory, production, finance and business operations. Get a consultation." : undefined}
-        twitterDescription={isDefaultOverview ? "Custom ERP and manufacturing ERP software development for businesses in Pune. Talk to Codigix experts and get a free consultation." : undefined}
+        title={seo.title}
+        exactTitle={true}
+        description={seo.description}
+        keywords={`${seo.keyword}, ERP solutions, custom ERP software, manufacturing ERP, inventory management software, Codigix Infotech`}
+        canonical={seo.canonical}
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={erpSchemas}
       />
@@ -121,7 +102,7 @@ const NewErpSolutionsPage = () => {
 
           {/* Main Content Area (Left Side) */}
           <main id="main-content" className="px-4 sm:px-8 lg:px-12 xl:px-16 py-12 lg:border-r border-slate-200 dark:border-gray-800/50">
-            <ErpHero activeTab={activeTab} />
+            <ErpHero activeTab={activeTab} seo={seo} />
             <ErpModules activeTab={activeTab} setActiveTab={handleTabChange} />
             <ErpIntegrationsBanner activeTab={activeTab} />
             <ErpHowItWorksAndBenefits activeTab={activeTab} />

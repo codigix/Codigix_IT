@@ -1,33 +1,33 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube, FileText } from 'lucide-react';
+import { getTabPath, getSectionHubPath } from '../../utils/seo';
 
 const quickLinks = [
   { name: 'Home', path: '/' },
   { name: 'About Us', path: '/about' },
   { name: 'Services', path: '/services' },
-  { name: 'Industries', path: '/industries' },
+  { name: 'Industries', path: getSectionHubPath('industries') },
   { name: 'Case Studies', path: '/case-studies' },
   { name: 'Careers', path: '/career' },
   { name: 'Blog', path: '/blog' }
 ];
 
 const solutionsLinks = [
-  { name: 'AI Solutions', path: '/ai-solutions' },
-  { name: 'IoT Solutions', path: '/iot-solutions' },
-  { name: 'ERP Solutions', path: '/erp-solutions' },
-  { name: 'CRM Solutions', path: '/crm-solutions' },
+  { name: 'AI Solutions', path: getSectionHubPath('ai') },
+  { name: 'IoT Solutions', path: getSectionHubPath('iot') },
+  { name: 'ERP Solutions', path: getSectionHubPath('erp') },
+  { name: 'CRM Solutions', path: getSectionHubPath('crm') },
   { name: 'Custom Software', path: '/services?tab=Custom+Software' },
   { name: 'Mobile App Development', path: '/services?tab=Mobile+Apps' }
 ];
 
 const industriesLinks = [
-  { name: 'Manufacturing', path: '/industries?tab=Manufacturing' },
-  { name: 'Healthcare', path: '/industries?tab=Healthcare' },
-  { name: 'Automobile', path: '/industries?tab=Automotive' },
-  { name: 'Retail', path: '/industries?tab=Retail' },
-  { name: 'Construction', path: '/industries?tab=Infrastructure' },
-  { name: 'Education', path: '/industries?tab=Education' }
+  { name: 'Manufacturing', path: getTabPath('industries', 'Manufacturing') },
+  { name: 'Healthcare', path: getTabPath('industries', 'Healthcare') },
+  { name: 'Retail', path: getTabPath('industries', 'Retail') },
+  { name: 'Finance', path: getTabPath('industries', 'Finance') },
+  { name: 'Real Estate', path: getTabPath('industries', 'Real Estate') }
 ];
 
 const supportLinks = [

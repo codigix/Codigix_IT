@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Calendar, ArrowRight, Rocket, Building2, ShieldCheck, Users } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
+import SeoHeading from '../common/SeoHeading';
+import { getSectionHubPath } from '../../utils/seo';
 import { getDefaultData } from './erpTabData';
 
 // Manufacturing ERP Simulator
@@ -457,7 +459,7 @@ const renderErpSandboxWidget = (tab) => {
 };
 
 /* --- Main ErpHero Component --- */
-const ErpHero = ({ activeTab }) => {
+const ErpHero = ({ activeTab, seo }) => {
   const navigate = useNavigate();
   const data = getDefaultData(activeTab);
 
@@ -474,7 +476,7 @@ const ErpHero = ({ activeTab }) => {
             <ChevronRight size={12} />
           </li>
           <li>
-            <Link to="/erp-solutions" className="hover:text-slate-900 dark:hover:text-white transition-colors">ERP Solutions</Link>
+            <Link to={getSectionHubPath('erp')} className="hover:text-slate-900 dark:hover:text-white transition-colors">ERP Solutions</Link>
           </li>
           <li>
             <ChevronRight size={12} />
@@ -496,7 +498,7 @@ const ErpHero = ({ activeTab }) => {
             key={activeTab + "title"}
             className="text-4xl sm:text-5xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.1] mb-6"
           >
-            {data.heroTitle} <span className="erp-text-gradient">{data.heroHighlight}</span>
+            <SeoHeading text={seo.h1} keyword={seo.keyword} gradientClassName="erp-text-gradient" />
           </motion.h1>
 
           <motion.p

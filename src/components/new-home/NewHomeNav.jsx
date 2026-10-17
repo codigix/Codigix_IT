@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Menu, X, ChevronDown, ChevronRight, Mail, Phone } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ThemeToggle from '../ThemeToggle';
+import { getTabPath, getSectionHubPath, getSectionForPath } from '../../utils/seo';
 
 const mainNavLinks = [
   { name: 'Home', path: '/', hasDropdown: false },
@@ -16,94 +17,99 @@ const mainNavLinks = [
 const subNavLinks = [
   {
     name: 'AI Solutions',
-    path: '/ai-solutions',
+    path: getSectionHubPath('ai'),
+    section: 'ai',
     hasDropdown: true,
     dropdownItems: [
-      { name: 'AI Overview', path: '/ai-solutions?tab=AI+Overview' },
-      { name: 'AI Chatbots', path: '/ai-solutions?tab=AI+Chatbots' },
-      { name: 'AI Voice Agents', path: '/ai-solutions?tab=AI+Voice+Agents' },
-      { name: 'AI Business Automation', path: '/ai-solutions?tab=AI+Business+Automation' },
-      { name: 'Generative AI', path: '/ai-solutions?tab=Generative+AI' },
-      { name: 'Document AI (OCR)', path: '/ai-solutions?tab=Document+AI+%28OCR%29' },
-      { name: 'Computer Vision AI', path: '/ai-solutions?tab=Computer+Vision+AI' },
-      { name: 'Predictive Analytics', path: '/ai-solutions?tab=Predictive+Analytics' },
-      { name: 'AI Recommendation Engine', path: '/ai-solutions?tab=AI+Recommendation+Engine' },
-      { name: 'AI Report Generator', path: '/ai-solutions?tab=AI+Report+Generator' },
-      { name: 'AI for Manufacturing', path: '/ai-solutions?tab=AI+for+Manufacturing' },
-      { name: 'AI for Healthcare', path: '/ai-solutions?tab=AI+for+Healthcare' },
-      { name: 'AI API Integration', path: '/ai-solutions?tab=AI+API+Integration' }
+      { name: 'AI Overview', path: getTabPath('ai', 'AI Overview') },
+      { name: 'AI Chatbots', path: getTabPath('ai', 'AI Chatbots') },
+      { name: 'AI Voice Agents', path: getTabPath('ai', 'AI Voice Agents') },
+      { name: 'AI Business Automation', path: getTabPath('ai', 'AI Business Automation') },
+      { name: 'Generative AI', path: getTabPath('ai', 'Generative AI') },
+      { name: 'Document AI (OCR)', path: getTabPath('ai', 'Document AI (OCR)') },
+      { name: 'Computer Vision AI', path: getTabPath('ai', 'Computer Vision AI') },
+      { name: 'Predictive Analytics', path: getTabPath('ai', 'Predictive Analytics') },
+      { name: 'AI Recommendation Engine', path: getTabPath('ai', 'AI Recommendation Engine') },
+      { name: 'AI Report Generator', path: getTabPath('ai', 'AI Report Generator') },
+      { name: 'AI for Manufacturing', path: getTabPath('ai', 'AI for Manufacturing') },
+      { name: 'AI for Healthcare', path: getTabPath('ai', 'AI for Healthcare') },
+      { name: 'AI API Integration', path: getTabPath('ai', 'AI API Integration') }
     ]
   },
   {
     name: 'IoT Solutions',
-    path: '/iot-solutions',
+    path: getSectionHubPath('iot'),
+    section: 'iot',
     hasDropdown: true,
     dropdownItems: [
-      { name: 'Industrial IoT', path: '/iot-solutions?tab=Industrial+IoT' },
-      { name: 'Machine Monitoring', path: '/iot-solutions?tab=Machine+Monitoring' },
-      { name: 'Production Monitoring', path: '/iot-solutions?tab=Production+Monitoring' },
-      { name: 'OEE Dashboard', path: '/iot-solutions?tab=OEE+Dashboard' },
-      { name: 'PLC Integration', path: '/iot-solutions?tab=PLC+Integration' },
-      { name: 'SCADA Integration', path: '/iot-solutions?tab=SCADA+Integration' },
-      { name: 'Sensor Monitoring', path: '/iot-solutions?tab=Sensor+Monitoring' },
-      { name: 'RFID Tracking', path: '/iot-solutions?tab=RFID+Tracking' },
-      { name: 'Barcode Automation', path: '/iot-solutions?tab=Barcode+Automation' },
-      { name: 'Energy Monitoring', path: '/iot-solutions?tab=Energy+Monitoring' },
-      { name: 'Predictive Maintenance', path: '/iot-solutions?tab=Predictive+Maintenance' },
-      { name: 'Remote Equipment', path: '/iot-solutions?tab=Remote+Equipment+Monitoring' },
-      { name: 'Digital Twin', path: '/iot-solutions?tab=Digital+Twin' },
-      { name: 'Industry 4.0', path: '/iot-solutions?tab=Industry+4.0' }
+      { name: 'Industrial IoT', path: getTabPath('iot', 'Industrial IoT') },
+      { name: 'Machine Monitoring', path: getTabPath('iot', 'Machine Monitoring') },
+      { name: 'Production Monitoring', path: getTabPath('iot', 'Production Monitoring') },
+      { name: 'OEE Dashboard', path: getTabPath('iot', 'OEE Dashboard') },
+      { name: 'PLC Integration', path: getTabPath('iot', 'PLC Integration') },
+      { name: 'SCADA Integration', path: getTabPath('iot', 'SCADA Integration') },
+      { name: 'Sensor Monitoring', path: getTabPath('iot', 'Sensor Monitoring') },
+      { name: 'RFID Tracking', path: getTabPath('iot', 'RFID Tracking') },
+      { name: 'Barcode Automation', path: getTabPath('iot', 'Barcode Automation') },
+      { name: 'Energy Monitoring', path: getTabPath('iot', 'Energy Monitoring') },
+      { name: 'Predictive Maintenance', path: getTabPath('iot', 'Predictive Maintenance') },
+      { name: 'Remote Equipment', path: getTabPath('iot', 'Remote Equipment Monitoring') },
+      { name: 'Digital Twin', path: getTabPath('iot', 'Digital Twin') },
+      { name: 'Industry 4.0', path: getTabPath('iot', 'Industry 4.0') }
     ]
   },
   {
     name: 'ERP Solutions',
-    path: '/erp-solutions',
+    path: getSectionHubPath('erp'),
+    section: 'erp',
     hasDropdown: true,
     dropdownItems: [
-      { name: 'Manufacturing ERP', path: '/erp-solutions?tab=Manufacturing+ERP' },
-      { name: 'Healthcare ERP', path: '/erp-solutions?tab=Healthcare+ERP' },
-      { name: 'Trading ERP', path: '/erp-solutions?tab=Trading+ERP' },
-      { name: 'Construction ERP', path: '/erp-solutions?tab=Construction+ERP' },
-      { name: 'Inventory Management', path: '/erp-solutions?tab=Inventory+Management' },
-      { name: 'Purchase Management', path: '/erp-solutions?tab=Purchase+Management' },
-      { name: 'Production Planning', path: '/erp-solutions?tab=Production+Planning' },
-      { name: 'Quality Management', path: '/erp-solutions?tab=Quality+Management' },
-      { name: 'Finance & Accounts', path: '/erp-solutions?tab=Finance+%26+Accounts' },
-      { name: 'HR & Payroll', path: '/erp-solutions?tab=HR+%26+Payroll' },
-      { name: 'Asset Management', path: '/erp-solutions?tab=Asset+Management' },
-      { name: 'Warehouse Mgmt', path: '/erp-solutions?tab=Warehouse+Management' },
-      { name: 'ERP Integrations', path: '/erp-solutions?tab=ERP+Integrations' }
+      { name: 'Manufacturing ERP', path: getTabPath('erp', 'Manufacturing ERP') },
+      { name: 'Healthcare ERP', path: getTabPath('erp', 'Healthcare ERP') },
+      { name: 'Trading ERP', path: getTabPath('erp', 'Trading ERP') },
+      { name: 'Construction ERP', path: getTabPath('erp', 'Construction ERP') },
+      { name: 'Inventory Management', path: getTabPath('erp', 'Inventory Management') },
+      { name: 'Purchase Management', path: getTabPath('erp', 'Purchase Management') },
+      { name: 'Production Planning', path: getTabPath('erp', 'Production Planning') },
+      { name: 'Quality Management', path: getTabPath('erp', 'Quality Management') },
+      { name: 'Finance & Accounts', path: getTabPath('erp', 'Finance & Accounts') },
+      { name: 'HR & Payroll', path: getTabPath('erp', 'HR & Payroll') },
+      { name: 'Asset Management', path: getTabPath('erp', 'Asset Management') },
+      { name: 'Warehouse Mgmt', path: getTabPath('erp', 'Warehouse Management') },
+      { name: 'ERP Integrations', path: getTabPath('erp', 'ERP Integrations') }
     ]
   },
   {
     name: 'CRM Solutions',
-    path: '/crm-solutions',
+    path: getSectionHubPath('crm'),
+    section: 'crm',
     hasDropdown: true,
     dropdownItems: [
-      { name: 'Sales CRM', path: '/crm-solutions?tab=Sales+CRM' },
-      { name: 'Lead Management', path: '/crm-solutions?tab=Lead+Management' },
-      { name: 'Marketing Automation', path: '/crm-solutions?tab=Marketing+Automation' },
-      { name: 'Customer Support', path: '/crm-solutions?tab=Customer+Support' },
-      { name: 'Service Management', path: '/crm-solutions?tab=Service+Management' },
-      { name: 'Quotation Mgmt', path: '/crm-solutions?tab=Quotation+Management' },
-      { name: 'Project Management', path: '/crm-solutions?tab=Project+Management' },
-      { name: 'Task Management', path: '/crm-solutions?tab=Task+Management' },
-      { name: 'Field Service CRM', path: '/crm-solutions?tab=Field+Service+CRM' },
-      { name: 'Helpdesk System', path: '/crm-solutions?tab=Helpdesk' },
-      { name: 'Customer Portal', path: '/crm-solutions?tab=Customer+Portal' },
-      { name: 'CRM Analytics', path: '/crm-solutions?tab=CRM+Analytics' }
+      { name: 'Sales CRM', path: getTabPath('crm', 'Sales CRM') },
+      { name: 'Lead Management', path: getTabPath('crm', 'Lead Management') },
+      { name: 'Marketing Automation', path: getTabPath('crm', 'Marketing Automation') },
+      { name: 'Customer Support', path: getTabPath('crm', 'Customer Support') },
+      { name: 'Service Management', path: getTabPath('crm', 'Service Management') },
+      { name: 'Quotation Mgmt', path: getTabPath('crm', 'Quotation Management') },
+      { name: 'Project Management', path: getTabPath('crm', 'Project Management') },
+      { name: 'Task Management', path: getTabPath('crm', 'Task Management') },
+      { name: 'Field Service CRM', path: getTabPath('crm', 'Field Service CRM') },
+      { name: 'Helpdesk System', path: getTabPath('crm', 'Helpdesk') },
+      { name: 'Customer Portal', path: getTabPath('crm', 'Customer Portal') },
+      { name: 'CRM Analytics', path: getTabPath('crm', 'CRM Analytics') }
     ]
   },
   {
     name: 'Industries',
-    path: '/industries',
+    path: getSectionHubPath('industries'),
+    section: 'industries',
     hasDropdown: true,
     dropdownItems: [
-      { name: 'Manufacturing', path: '/industries?tab=Manufacturing' },
-      { name: 'Healthcare', path: '/industries?tab=Healthcare' },
-      { name: 'Retail & E-commerce', path: '/industries?tab=Retail' },
-      { name: 'Finance & Banking', path: '/industries?tab=Finance' },
-      { name: 'Real Estate', path: '/industries?tab=Real+Estate' }
+      { name: 'Manufacturing', path: getTabPath('industries', 'Manufacturing') },
+      { name: 'Healthcare', path: getTabPath('industries', 'Healthcare') },
+      { name: 'Retail & E-commerce', path: getTabPath('industries', 'Retail') },
+      { name: 'Finance & Banking', path: getTabPath('industries', 'Finance') },
+      { name: 'Real Estate', path: getTabPath('industries', 'Real Estate') }
     ]
   }
 ];
@@ -131,7 +137,9 @@ const NewHomeNav = () => {
 
   const renderLinks = (linksArray) => (
     linksArray.map((link, i) => {
-      const isActive = location.pathname === link.path;
+      const isActive = link.section
+        ? getSectionForPath(location.pathname) === link.section
+        : location.pathname === link.path;
       const isLargeGrid = link.dropdownItems && link.dropdownItems.length >= 8;
 
       return (
@@ -233,7 +241,9 @@ const NewHomeNav = () => {
             className="absolute top-full left-0 right-0 bg-[#070320] border-b border-gray-800 shadow-xl py-4 px-4 lg:hidden flex flex-col space-y-4 max-h-[80vh] overflow-y-auto"
           >
             {[...mainNavLinks, ...subNavLinks].map((link, i) => {
-              const isActive = location.pathname === link.path;
+              const isActive = link.section
+                ? getSectionForPath(location.pathname) === link.section
+                : location.pathname === link.path;
               return (
                 <div key={i} className="flex flex-col border-b border-gray-800/50 last:border-0 pb-2">
                   <Link

@@ -9,6 +9,7 @@ import ServicesFaqSection, { servicesFaqData } from '../components/new-other-ser
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import SEO from '../components/SEO';
+import { getPageSeo } from '../utils/seo';
 import '../components/new-other-services/other-services.css';
 
 const NewOtherServicesPage = () => {
@@ -64,9 +65,10 @@ const NewOtherServicesPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const pageTitle = "Software Development Services in Pune | AI, ERP & IoT";
-  const metaDescription = "Explore Codigix software development services in Pune, including AI, ERP, Industrial IoT, CRM, web & mobile apps, cloud, DevOps and business automation.Call Now.";
-  const canonicalUrl = "https://codigixinfotech.com/services";
+  const seo = getPageSeo('services');
+  const pageTitle = seo.title;
+  const metaDescription = seo.description;
+  const canonicalUrl = seo.canonical;
 
   // Structured JSON-LD Data for Services Page
   const customProductsSchema = {
@@ -240,13 +242,9 @@ const NewOtherServicesPage = () => {
       <SEO
         title={pageTitle}
         exactTitle={true}
-        metaTitle={pageTitle}
         description={metaDescription}
-        keywords="software development services Pune, software development company Pune, AI solutions Pune, AI development services Pune, Industrial IoT solutions Pune, IoT development Pune, ERP solutions Pune, CRM solutions Pune, custom software development Pune, web development Pune, mobile app development Pune, cloud solutions Pune, DevOps services Pune, API integration Pune, business automation Pune"
+        keywords={`${seo.keyword}, software development services Pune, software development company Pune, AI solutions Pune, AI development services Pune, Industrial IoT solutions Pune, IoT development Pune, ERP solutions Pune, CRM solutions Pune, custom software development Pune, web development Pune, mobile app development Pune, cloud solutions Pune, DevOps services Pune, API integration Pune, business automation Pune`}
         canonical={canonicalUrl}
-        ogTitle="Software Development Services in Pune | AI, ERP & IoT | Codigix"
-        ogDescription="From AI and Industrial IoT to ERP, CRM, cloud, mobile apps and business automation, Codigix delivers custom technology solutions. Contact us for a free consultation."
-        twitterDescription="AI, ERP, Industrial IoT, CRM, custom software, cloud, DevOps and automation services from Codigix. Get a free consultation today."
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={servicesSchemas}
       />

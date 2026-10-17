@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Calendar, ArrowRight } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
+import SeoHeading from '../common/SeoHeading';
+import { getSectionHubPath } from '../../utils/seo';
 import { getDefaultData } from './iotTabData';
 
 // Industrial IoT & Sensor Monitoring: Live Sensor Matrix
@@ -330,7 +332,7 @@ const renderIotSandboxWidget = (tab) => {
   }
 };
 
-const IotHero = ({ activeTab }) => {
+const IotHero = ({ activeTab, seo }) => {
   const navigate = useNavigate();
   const data = getDefaultData(activeTab);
 
@@ -357,7 +359,7 @@ const IotHero = ({ activeTab }) => {
                   </li>
                   <li className="text-slate-400 dark:text-gray-600">&gt;</li>
                   <li>
-                    <Link to="/iot-solutions" className="hover:text-rose-500 transition-colors">IoT Solutions</Link>
+                    <Link to={getSectionHubPath('iot')} className="hover:text-rose-500 transition-colors">IoT Solutions</Link>
                   </li>
                   <li className="text-slate-400 dark:text-gray-600">&gt;</li>
                   <li className="text-rose-600 dark:text-rose-400 font-extrabold" aria-current="page">
@@ -368,7 +370,7 @@ const IotHero = ({ activeTab }) => {
 
               <span className="ai-tag mb-4">IoT PLATFORM</span>
               <h1 className="text-4xl sm:text-5xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.1] mb-6">
-                {data.heroTitle} <span className="iot-text-gradient">{data.heroHighlight}</span>
+                <SeoHeading text={seo.h1} keyword={seo.keyword} gradientClassName="iot-text-gradient" />
               </h1>
 
               <p className="text-sm text-slate-600 dark:text-gray-300 leading-relaxed mb-10 max-w-lg">

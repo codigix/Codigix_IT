@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { getPageSeo } from '../utils/seo';
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import CaseStudiesSidebar from '../components/new-case-studies/CaseStudiesSidebar';
@@ -31,13 +32,11 @@ const NewCaseStudiesPage = () => {
   };
 
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
-  const canonicalUrl = `${siteUrl}/case-studies${activeCategory !== 'All' ? `?tab=${activeCategory}` : ''}`;
-
-  const pageTitle = activeCategory === 'All'
-    ? "Client Case Studies & Engineering Success Stories | Codigix Infotech"
-    : `${activeCategory} Case Studies & Client Success Stories | Codigix Infotech`;
-
-  const metaDescription = `Explore real-world case studies from Codigix Infotech showcasing enterprise AI solutions, Industrial IoT automation, custom ERP systems, and CRM implementations with proven ROI.`;
+  // Category filters are views of one page, so they share its canonical and title
+  const seo = getPageSeo('caseStudies');
+  const canonicalUrl = seo.canonical;
+  const pageTitle = seo.title;
+  const metaDescription = seo.description;
 
   // JSON-LD Structured Data Schemas
   const collectionSchema = {
@@ -123,9 +122,9 @@ const NewCaseStudiesPage = () => {
     <>
       <SEO
         title={pageTitle}
-        metaTitle={pageTitle}
+        exactTitle={true}
         description={metaDescription}
-        keywords={`IT case studies, AI solutions case studies, Industrial IoT success stories, enterprise ERP case studies, CRM implementation results, custom software engineering, Codigix Infotech, ${activeCategory} case studies`}
+        keywords={`${seo.keyword}, IT case studies, AI solutions case studies, Industrial IoT success stories, enterprise ERP case studies, CRM implementation results, custom software engineering, Codigix Infotech, ${activeCategory} case studies`}
         canonical={canonicalUrl}
         ogImage={`${siteUrl}/assets/images/service/erp_dash.webp`}
         schemaData={[collectionSchema, breadcrumbSchema, faqSchema, organizationSchema]}

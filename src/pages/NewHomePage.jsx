@@ -10,9 +10,12 @@ import FaqSection, { faqData } from '../components/new-home/FaqSection';
 import BlogSection from '../components/new-home/BlogSection';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import SEO from '../components/SEO';
+import { getPageSeo } from '../utils/seo';
 import { ArrowUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../components/new-home/new-home.css';
+
+const homeSeo = getPageSeo('home');
 
 const NewHomePage = () => {
   const [mousePos, setMousePos] = useState({ x: -200, y: -200 });
@@ -127,14 +130,11 @@ const NewHomePage = () => {
   return (
     <>
       <SEO
-        title="Software Development Company in Pune | Codigix"
+        title={homeSeo.title}
         exactTitle={true}
-        description="Codigix is a software development company in Pune offering AI, ERP, Industrial IoT, CRM & custom software solutions. Get a consultation today."
-        keywords="software development company Pune, custom software development Pune, AI development company Pune, AI solutions Pune, Industrial IoT solutions Pune, IoT development company Pune, ERP software development Pune, manufacturing ERP Pune, custom ERP software Pune, Industry 4.0 solutions Pune, business automation Pune, CRM software development Pune"
-        canonical="https://codigixinfotech.com/"
-        ogTitle="Software Development Company in Pune | Codigix"
-        ogDescription="AI, ERP, Industrial IoT, CRM and custom software solutions for businesses. Talk to Codigix experts today for a consultation."
-        twitterDescription="AI, ERP, Industrial IoT, CRM and custom software solutions. Get a free consultation from Codigix Infotech."
+        description={homeSeo.description}
+        keywords={`${homeSeo.keyword}, software development company Pune, custom software development Pune, AI development company Pune, AI solutions Pune, Industrial IoT solutions Pune, IoT development company Pune, ERP software development Pune, manufacturing ERP Pune, custom ERP software Pune, Industry 4.0 solutions Pune, business automation Pune, CRM software development Pune`}
+        canonical={homeSeo.canonical}
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={homeSchemas}
       />

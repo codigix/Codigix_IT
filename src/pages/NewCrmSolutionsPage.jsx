@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import CrmSidebar from '../components/new-crm-solutions/CrmSidebar';
 import CrmHero from '../components/new-crm-solutions/CrmHero';
 import CrmModules from '../components/new-crm-solutions/CrmModules';
@@ -11,34 +11,19 @@ import CrmFaqSection, { crmFaqData } from '../components/new-crm-solutions/CrmFa
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import SEO from '../components/SEO';
+import { getSectionSeo, getTabPath, getSectionHubPath, toCanonical } from '../utils/seo';
 import '../components/new-crm-solutions/crm-solutions.css';
 
 const NewCrmSolutionsPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const tabQuery = searchParams.get('tab');
-  const [activeTab, setActiveTab] = useState(tabQuery || 'Sales CRM');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const seo = getSectionSeo('crm', location.pathname);
+  const activeTab = seo.tab;
+  const isDefaultOverview = Boolean(seo.overview);
 
-  useEffect(() => {
-    if (tabQuery) {
-      setActiveTab(tabQuery);
-    }
-  }, [tabQuery]);
-
-  const handleTabChange = (tabName) => {
-    setActiveTab(tabName);
-    setSearchParams({ tab: tabName });
+  const handleTabChange = (name) => {
+    navigate(getTabPath('crm', name));
   };
-
-  const isDefaultOverview = activeTab === 'Sales CRM';
-  const pageTitle = isDefaultOverview
-    ? "CRM Solutions Company in Pune | Custom CRM Software | Codigix"
-    : `${activeTab} Solutions & Custom CRM Software | Codigix Infotech`;
-
-  const metaDescription = isDefaultOverview
-    ? "Codigix is a CRM solutions company in Pune offering custom CRM software for sales, leads, customer management and business automation. Get a consultation today."
-    : `Codigix Infotech engineers custom CRM software solutions, including ${activeTab}, lead scoring automation, sales pipeline tracking, customer support ticketing, WhatsApp integration, and AI deal forecasting.`;
-
-  const canonicalUrl = `https://codigixinfotech.com/crm-solutions${isDefaultOverview ? '' : `?tab=${encodeURIComponent(activeTab)}`}`;
 
   // Structured JSON-LD Data for CRM Solutions Page
   const crmSchemas = [
@@ -52,7 +37,7 @@ const NewCrmSolutionsPage = () => {
         "url": "https://codigixinfotech.com/"
       },
       "areaServed": "Global",
-      "description": metaDescription
+      "description": seo.description
     },
     {
       "@context": "https://schema.org",
@@ -68,14 +53,14 @@ const NewCrmSolutionsPage = () => {
           "@type": "ListItem",
           "position": 2,
           "name": "CRM Solutions",
-          "item": "https://codigixinfotech.com/crm-solutions"
+          "item": toCanonical(getSectionHubPath('crm'))
         },
-        {
+        ...(isDefaultOverview ? [] : [{
           "@type": "ListItem",
           "position": 3,
           "name": activeTab,
-          "item": canonicalUrl
-        }
+          "item": seo.canonical
+        }])
       ]
     },
     {
@@ -95,15 +80,11 @@ const NewCrmSolutionsPage = () => {
   return (
     <>
       <SEO
-        title={pageTitle}
-        exactTitle={isDefaultOverview}
-        metaTitle={pageTitle}
-        description={metaDescription}
-        keywords={isDefaultOverview ? "CRM solutions company Pune, CRM software company Pune, custom CRM software Pune, CRM development company Pune, CRM software development Pune, CRM solutions Pune, custom CRM development Pune, sales CRM software Pune, customer management software Pune, business CRM software Pune" : `Custom CRM Software, ${activeTab}, lead management system, sales pipeline automation, customer support CRM, WhatsApp CRM integration, AI lead scoring, Codigix Infotech`}
-        canonical={canonicalUrl}
-        ogTitle={isDefaultOverview ? "CRM Solutions Company in Pune | Custom CRM Software | Codigix" : undefined}
-        ogDescription={isDefaultOverview ? "Custom CRM software for lead management, sales, customer relationships and business automation. Talk to Codigix experts in Pune for a free consultation." : undefined}
-        twitterDescription={isDefaultOverview ? "Build a custom CRM solution with Codigix for leads, sales, customer management and business automation. Get a free consultation today." : undefined}
+        title={seo.title}
+        exactTitle={true}
+        description={seo.description}
+        keywords={`${seo.keyword}, custom CRM development, CRM software, lead management CRM, sales CRM software, Codigix Infotech`}
+        canonical={seo.canonical}
         ogImage="https://codigixinfotech.com/assets/images/logos/logo.webp"
         schemaData={crmSchemas}
       />
@@ -120,7 +101,7 @@ const NewCrmSolutionsPage = () => {
 
           {/* Main Content Area (Left Side) */}
           <main id="main-content" className="px-4 sm:px-8 lg:px-12 xl:px-16 py-12 lg:border-r border-slate-200 dark:border-gray-800/50">
-            <CrmHero activeTab={activeTab} />
+            <CrmHero activeTab={activeTab} seo={seo} />
             <CrmModules activeTab={activeTab} setActiveTab={handleTabChange} />
             <CrmHowItWorksAndBenefits activeTab={activeTab} />
             <CrmIndustryTabs activeTab={activeTab} setActiveTab={handleTabChange} />
