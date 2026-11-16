@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, User, Clock, ArrowRight, Search, Tag, BookOpen } from 'lucide-react';
 import NewHomeNav from '../components/new-home/NewHomeNav';
@@ -6,44 +6,27 @@ import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import SEO from '../components/SEO';
 import { getPageSeo } from '../utils/seo';
 
+import { useBlogs, blogPath, blogImage, blogExcerpt, blogDate } from '../utils/blogs';
+
 const blogSeo = getPageSeo('blog');
-import config from '../config';
 
 const NewBlogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [dbPosts, setDbPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchDbBlogs = async () => {
-      try {
-        const response = await fetch(`${config.API_BASE_URL}/blogs`);
-        if (response.ok) {
-          const result = await response.json();
-          if (Array.isArray(result) && result.length > 0) {
-            const formatted = result.map(post => ({
-              id: post.id.toString(),
-              title: post.title,
-              excerpt: post.body ? (post.body.replace(/<[^>]+>/g, '').slice(0, 150) + (post.body.replace(/<[^>]+>/g, '').length > 150 ? '...' : '')) : 'No excerpt provided.',
-              category: post.category,
-              date: post.date,
-              author: post.author || 'Codigix Tech Team',
-              readTime: post.readTime || '5 min read',
-              image: post.image ? (post.image.startsWith('http') || post.image.startsWith('data:') || post.image.startsWith('/') ? post.image : `/assets/images/service/${post.image}${post.image.includes('.') ? '' : '.webp'}`) : '/assets/images/service/web_dev_dashboard.webp',
-              link: `/blog/${post.id}`
-            }));
-            setDbPosts(formatted);
-          }
-        }
-      } catch (err) {
-        console.error("Error loading db blogs:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchDbBlogs();
-  }, []);
+  // Published posts from the admin panel only
+  const { posts, loading } = useBlogs();
+  const dbPosts = posts.map((post) => ({
+    id: String(post.id),
+    title: post.title,
+    excerpt: blogExcerpt(post),
+    category: post.category,
+    date: blogDate(post),
+    author: post.author || 'Codigix Tech Team',
+    readTime: post.readTime || '5 min read',
+    image: blogImage(post),
+    imageAlt: post.image_alt || post.title,
+    link: blogPath(post)
+  }));
 
   const filteredPosts = dbPosts.filter(post => {
     const categoryMatch = selectedCategory === 'All' || post.category === selectedCategory;
@@ -158,7 +141,8 @@ const NewBlogPage = () => {
                     <div className="absolute inset-0 bg-purple-900/5 group-hover:bg-purple-900/0 transition-colors z-10 pointer-events-none" />
                     <img
                       src={post.image}
-                      alt={post.title}
+                      alt={post.imageAlt}
+                      loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
                     />
 
@@ -200,7 +184,7 @@ const NewBlogPage = () => {
 
                     <div className="pt-2 border-t border-slate-100 dark:border-gray-800/80">
                       <a
-                        href={`/blog/${post.id}`}
+                        href={post.link}
                         className="inline-flex items-center gap-1 text-[11.5px] font-bold text-purple-700 dark:text-purple-300 group-hover:gap-2 transition-all"
                       >
                         Read Full Article
@@ -214,7 +198,7 @@ const NewBlogPage = () => {
           </motion.div>
 
           {/* Empty State */}
-          {filteredPosts.length === 0 && (
+          {!loading && filteredPosts.length === 0 && (
             <div data-prerender-omit className="text-center py-20 bg-white dark:bg-[#07041c] rounded-2xl border border-dashed border-slate-200 dark:border-gray-800 mt-6">
               <BookOpen size={40} className="text-slate-400 dark:text-gray-500 mx-auto mb-4" />
               <h2 className="text-base font-bold text-slate-800 dark:text-white mb-2">No Articles Found</h2>

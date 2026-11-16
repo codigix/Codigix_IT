@@ -1,88 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, User, Clock, ArrowRight } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
-import config from '../../config';
-import { blogPostsData } from '../../data/blogData';
+import { useBlogs, blogPath, blogImage, blogExcerpt, blogDate } from '../../utils/blogs';
 
-const blogPosts = [
-  {
-    id: 'industrial-iot',
-    title: 'Unlocking Industrial IoT: Bridging Physical Devices with Cloud Telemetry',
-    excerpt: 'Explore how modern ESP32 and PLC sensors stream industrial data directly to cloud brokers, optimizing predictive maintenance and machinery OEE.',
-    category: 'IoT & Industry 4.0',
-    date: 'Aug 1, 2026',
-    author: 'Suresh Nair',
-    readTime: '5 min read',
-    image: '/assets/images/new-home/blog_iot.webp',
-    link: '/blog/industrial-iot'
-  },
-  {
-    id: 'future-of-erp',
-    title: 'The Future of ERP: Scalable Cloud Architecture and AI-Powered Automation',
-    excerpt: 'Discover the power of serverless cloud functions, automated 3-way match procurement, and real-time machine ledger syncing in modern ERP systems.',
-    category: 'Enterprise SaaS',
-    date: 'Jul 28, 2026',
-    author: 'Deepak Sharma',
-    readTime: '7 min read',
-    image: '/assets/images/new-home/blog_erp.webp',
-    link: '/blog/future-of-erp'
-  },
-  {
-    id: 'crm-conversions',
-    title: 'Unlocking CRM Conversions: Leveraging AI Intent Scoring & Smart Funnels',
-    excerpt: 'Learn how smart round-robin routing engines and dynamic multi-channel lead ingestion maximize deal win-rates and pipeline conversions.',
-    category: 'Sales Tech',
-    date: 'Jul 24, 2026',
-    author: 'Meera Iyer',
-    readTime: '4 min read',
-    image: '/assets/images/new-home/blog_crm.webp',
-    link: '/blog/crm-conversions'
-  }
-];
-
+// The 3 newest published posts from the admin panel
 const BlogSection = () => {
   const navigate = useNavigate();
-  const [dbPosts, setDbPosts] = useState([]);
-
-  useEffect(() => {
-    const fetchDbBlogs = async () => {
-      try {
-        const response = await fetch(`${config.API_BASE_URL}/blogs`);
-        if (response.ok) {
-          const result = await response.json();
-          if (Array.isArray(result) && result.length > 0) {
-            const formatted = result.map(post => ({
-              id: post.id.toString(),
-              title: post.title,
-              excerpt: post.body ? (post.body.slice(0, 150) + (post.body.length > 150 ? '...' : '')) : 'No excerpt provided.',
-              category: post.category,
-              date: post.date,
-              author: post.author || 'Codigix Tech Team',
-              readTime: post.readTime || '5 min read',
-              image: post.image ? (post.image.startsWith('http') || post.image.startsWith('data:') || post.image.startsWith('/') ? post.image : `/assets/images/service/${post.image}${post.image.includes('.') ? '' : '.webp'}`) : '/assets/images/service/web_dev_dashboard.webp',
-              link: `/blog/${post.id}`
-            }));
-            setDbPosts(formatted);
-          }
-        }
-      } catch (err) {
-        console.error("Error loading homepage db blogs:", err);
-      }
-    };
-    fetchDbBlogs();
-  }, []);
-
-  const combinedPosts = dbPosts.length > 0 ? dbPosts.slice(0, 3) : blogPostsData.slice(0, 3).map(p => ({
-    id: p.id,
-    title: p.title,
-    excerpt: p.excerpt,
-    category: p.category,
-    date: p.date,
-    author: p.author,
-    readTime: p.readTime,
-    image: p.image,
-    link: `/blog/${p.id}`
+  const { posts } = useBlogs();
+  const combinedPosts = posts.slice(0, 3).map((post) => ({
+    id: String(post.id),
+    title: post.title,
+    excerpt: blogExcerpt(post),
+    category: post.category,
+    date: blogDate(post),
+    author: post.author || 'Codigix Tech Team',
+    readTime: post.readTime || '5 min read',
+    image: blogImage(post),
+    imageAlt: post.image_alt || post.title,
+    link: blogPath(post)
   }));
 
   return (
@@ -147,7 +83,8 @@ const BlogSection = () => {
                   <div className="absolute inset-0 bg-purple-900/5 group-hover:bg-purple-900/0 transition-colors z-10 pointer-events-none" />
                   <img
                     src={post.image}
-                    alt={post.title}
+                    alt={post.imageAlt}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
                   />
 

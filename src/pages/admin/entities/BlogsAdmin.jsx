@@ -29,20 +29,6 @@ import {
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
-import { blogPostsData } from '../../../data/blogData';
-
-const fallbackBlogPosts = blogPostsData.map((post, idx) => ({
-  id: idx + 1,
-  title: post.title,
-  category: post.category,
-  date: post.date,
-  author: post.author,
-  role: post.role || 'Technical Lead',
-  readTime: post.readTime || '5 min read',
-  image: post.image,
-  body: post.excerpt || (typeof post.content === 'string' ? post.content.replace(/<[^>]+>/g, '').slice(0, 200) + '...' : 'Comprehensive technology insight article.')
-}));
-
 const ImageUploader = ({ label, value, onChange }) => {
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef(null);
@@ -191,17 +177,15 @@ const BlogsAdmin = () => {
       const response = await fetch(`${API_BASE}/blogs`);
       if (response.ok) {
         const data = await response.json();
-        if (Array.isArray(data) && data.length > 0) {
-          setBlogs(data);
-        } else {
-          setBlogs(fallbackBlogPosts);
-        }
+        setBlogs(Array.isArray(data) ? data : []);
       } else {
-        setBlogs(fallbackBlogPosts);
+        setBlogs([]);
+        alert(`Could not load blog posts from the database (error ${response.status}).`);
       }
     } catch (err) {
       console.error('Failed to fetch blogs:', err);
-      setBlogs(fallbackBlogPosts);
+      setBlogs([]);
+      alert('Could not load blog posts: the server is not reachable.');
     } finally {
       setLoading(false);
     }
@@ -249,24 +233,20 @@ const BlogsAdmin = () => {
       fetchBlogs();
     } catch (err) {
       console.error('Error saving blog:', err);
-      // Local optimistic fallback update if database table fails
-      if (editingBlog) {
-        setBlogs(prev => prev.map(b => b.id === editingBlog.id ? { ...b, ...formData } : b));
-      } else {
-        setBlogs(prev => [{ id: Date.now(), ...formData }, ...prev]);
-      }
-      setIsModalOpen(false);
+      // Nothing was saved: keep the form open so the work isn't lost
+      alert('The blog post was NOT saved. Please check your connection or log in again, then retry.');
     }
   };
 
   const handleDeleteBlog = async (id) => {
     if (!window.confirm('Are you sure you want to delete this blog post?')) return;
     try {
-      await fetch(`${API_BASE}/blogs/${id}`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE}/blogs/${id}`, { method: 'DELETE' });
+      if (!response.ok) throw new Error(`Delete failed (${response.status})`);
       setBlogs(prev => prev.filter(b => b.id !== id));
     } catch (err) {
       console.error('Delete error:', err);
-      setBlogs(prev => prev.filter(b => b.id !== id));
+      alert('The blog post was NOT deleted. Please log in again and retry.');
     }
   };
 

@@ -23,14 +23,27 @@
     }
   ],
   "services": [
-    { "id": 1, "num": "01", "title": "Gratafy Web Design", "desc": "Custom dark-themed web experiences with glassmorphism and high-performance animations.", "image": "service-1" },
-    { "id": 2, "num": "02", "title": "AI Integration", "desc": "Seamlessly integrate artificial intelligence into your existing workflow with cyan-highlighted efficiency.", "image": "service-2" },
-    { "id": 3, "num": "03", "title": "Enterprise Solutions", "desc": "Scalable ERP and CRM platforms tailored for the Gratafy ecosystem.", "image": "service-3" }
-  ],
-  "projects": [
-    { "id": 1, "title": "Gratafy Portal", "category": "Web Design", "image": "project-1" },
-    { "id": 2, "title": "Cyan Analytics", "category": "AI Technology", "image": "project-2" },
-    { "id": 3, "title": "Pink Matrix", "category": "Future Tech", "image": "project-3" }
+    {
+      "id": 1,
+      "num": "01",
+      "title": "Gratafy Web Design",
+      "desc": "Custom dark-themed web experiences with glassmorphism and high-performance animations.",
+      "image": "service-1"
+    },
+    {
+      "id": 2,
+      "num": "02",
+      "title": "AI Integration",
+      "desc": "Seamlessly integrate artificial intelligence into your existing workflow with cyan-highlighted efficiency.",
+      "image": "service-2"
+    },
+    {
+      "id": 3,
+      "num": "03",
+      "title": "Enterprise Solutions",
+      "desc": "Scalable ERP and CRM platforms tailored for the Gratafy ecosystem.",
+      "image": "service-3"
+    }
   ],
   "testimonials": [
     {
@@ -41,22 +54,55 @@
       "image": "assets/images/testimonial/testi-1.webp"
     }
   ],
-  "blogs": [
-    { "id": 1, "title": "The Rise of High-Tech Dark Themes", "category": "Design", "date": "Jan 22, 2026", "image": "blog-1" },
-    { "id": 2, "title": "Implementing Cyan Highlights in UI", "category": "Development", "date": "Jan 21, 2026", "image": "blog-2" }
-  ],
-  
   "workingProcess": [
-    { "id": 1, "step": "01", "title": "Discovery & Strategy", "icon": "tji-discovery", "desc": "Understanding client needs, defining goals, and designing tailored our AI solutions. Building, training deploying into existing." },
-    { "id": 2, "step": "02", "title": "Development & Integration", "icon": "tji-development", "desc": "Implementing vibrant accents and dark-mode sophistication." },
-    { "id": 3, "step": "03", "title": "Optimization & Support", "icon": "tji-support", "desc": "Ensuring a smooth launch and continuous optimization." }
+    {
+      "id": 1,
+      "step": "01",
+      "title": "Discovery & Strategy",
+      "icon": "tji-discovery",
+      "desc": "Understanding client needs, defining goals, and designing tailored our AI solutions. Building, training deploying into existing."
+    },
+    {
+      "id": 2,
+      "step": "02",
+      "title": "Development & Integration",
+      "icon": "tji-development",
+      "desc": "Implementing vibrant accents and dark-mode sophistication."
+    },
+    {
+      "id": 3,
+      "step": "03",
+      "title": "Optimization & Support",
+      "icon": "tji-support",
+      "desc": "Ensuring a smooth launch and continuous optimization."
+    }
   ],
   "achievements": [
-    { "id": 1, "num": "01", "title": "Best Tech Redesign 2026", "year": "2026" },
-    { "id": 2, "num": "02", "title": "Excellence in UI/UX Design", "year": "2026" }
+    {
+      "id": 1,
+      "num": "01",
+      "title": "Best Tech Redesign 2026",
+      "year": "2026"
+    },
+    {
+      "id": 2,
+      "num": "02",
+      "title": "Excellence in UI/UX Design",
+      "year": "2026"
+    }
   ],
   "team": [
-    { "id": 1, "num": 1, "name": "Sarah Chen", "position": "Lead Designer" },
-    { "id": 2, "num": 2, "name": "Marcus Vane", "position": "Senior Developer" }
+    {
+      "id": 1,
+      "num": 1,
+      "name": "Sarah Chen",
+      "position": "Lead Designer"
+    },
+    {
+      "id": 2,
+      "num": 2,
+      "name": "Marcus Vane",
+      "position": "Senior Developer"
+    }
   ]
 }

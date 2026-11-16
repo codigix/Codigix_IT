@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import config from '../config';
 import seoData from '../data/seoPages.json';
+import { fitTitle, fitDescription } from './textFit';
 
 const FALLBACK_IMAGE = '/assets/images/service/erp_dash.webp';
 const BRAND = 'Codigix Infotech';
@@ -93,15 +94,6 @@ export const caseStudyResults = (study) =>
     .map((item) => ({ value: item.val || item.value, label: item.title || item.label }))
     .filter((item) => item.value && item.label);
 
-// Shortens at a word boundary; descriptions end at a full sentence when one fits
-const fit = (text, max) => {
-  const clean = String(text || '').replace(/\s+/g, ' ').trim();
-  if (clean.length <= max) return clean;
-  const sentence = clean.slice(0, max).match(/^(.*[.!?])\s/);
-  if (sentence && sentence[1].length >= max * 0.6) return sentence[1];
-  return `${clean.slice(0, max - 1).replace(/\s+\S*$/, '')}…`;
-};
-
 /**
  * Title (max 60 characters) and description (max 160). Hand-written values in
  * seoPages.json → caseStudyDetails (keyed by slug) win; new studies get them
@@ -114,10 +106,10 @@ export const getCaseStudySeo = (study) => {
     [`${study.title} Case Study | ${BRAND}`, `${study.title} | ${BRAND}`, `${study.title} Case Study`, study.title].find(
       (candidate) => candidate.length <= 60
     ) ||
-    fit(study.title, 60);
+    fitTitle(study.title, 60);
   const client = caseStudyClient(study);
   const description =
     written.description ||
-    fit(study.subtitle || study.objective || `How ${BRAND} delivered ${study.title}${client ? ` for ${client}` : ''}.`, 160);
+    fitDescription(study.subtitle || study.objective || `How ${BRAND} delivered ${study.title}${client ? ` for ${client}` : ''}.`, 160);
   return { title, description, canonical: `${seoData.siteUrl}${caseStudyPath(study)}` };
 };

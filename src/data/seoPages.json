@@ -3,15 +3,15 @@
   "pages": {
     "home": {
       "path": "/",
-      "title": "Codigix Infotech Pvt. Ltd. – IT Solutions in PCMC",
-      "description": "Codigix Infotech builds AI, industrial IoT, ERP, CRM and custom software from our Pimpri-Chinchwad office. Talk to our team about the right IT solution for you.",
-      "h1": "Intelligent AI, IoT, ERP and CRM Solutions for Businesses",
-      "keyword": "AI, IoT, ERP and CRM solutions"
+      "title": "IT Solutions in Pimpri-Chinchwad | Codigix Infotech",
+      "description": "Custom software, ERP, CRM, AI and industrial IoT built from our Pimpri-Chinchwad office. Talk to our team about the right IT solution for your business.",
+      "h1": "IT Solutions from Pimpri-Chinchwad: AI, IoT, ERP, CRM and Custom Software",
+      "keyword": "AI, IoT, ERP, CRM and Custom Software"
     },
     "services": {
       "path": "/services",
-      "title": "Software Development & Digital Solutions | Codigix Infotech",
-      "description": "Explore Codigix Infotech services across AI, industrial IoT, ERP, CRM and custom software development. Find the right technology solution for your business.",
+      "title": "IT Services in Pimpri-Chinchwad | Codigix Infotech",
+      "description": "AI, industrial IoT, ERP, CRM and custom software built by Codigix Infotech from Pimpri-Chinchwad. Talk to our team about the right IT solution for you.",
       "h1": "Technology Services for Connected, Intelligent Businesses",
       "keyword": "custom software development services"
     },
@@ -480,40 +480,40 @@
         {
           "tab": "Quotation Management",
           "path": "/quotation-management-software",
-          "title": "Quotation Management Software | CRM Workflows",
-          "description": "Prepare, send, track and approve customer quotations with quotation management software that applies pricing rules and generates PDF quotes instantly.",
+          "title": "Quotation Management Software | Codigix Infotech",
+          "description": "Manage quotations within your CRM workflows, from creation to follow-up. Talk to Codigix Infotech's team to see if it fits how your business works.",
           "h1": "Quotation Management Software for Sales Teams",
           "keyword": "quotation management software"
         },
         {
           "tab": "Project Management",
           "path": "/crm-project-management-software",
-          "title": "CRM Project Management Software | Track Delivery",
-          "description": "Connect customer records with tasks, milestones, timesheets and project status using CRM project management software built for client-facing teams.",
+          "title": "CRM Project Management Software | Codigix Infotech",
+          "description": "Track project delivery alongside your customer records in one CRM. Speak with our Pimpri-Chinchwad team to discuss how it could fit your workflow.",
           "h1": "CRM Project Management Software for Client Work",
           "keyword": "CRM project management software"
         },
         {
           "tab": "Task Management",
           "path": "/crm-task-management",
-          "title": "CRM Task Management | Assign and Track Follow-Ups",
-          "description": "Assign responsibilities, set reminders and track customer-related follow-ups with CRM task management tools built for sales and service teams.",
+          "title": "CRM Task Management Software | Codigix Infotech",
+          "description": "Assign tasks, schedule follow-ups and track progress inside your CRM. Contact Codigix Infotech to learn how task management can work for your team.",
           "h1": "CRM Task Management for Sales and Service",
           "keyword": "CRM task management"
         },
         {
           "tab": "Field Service CRM",
           "path": "/field-service-crm-software",
-          "title": "Field Service CRM Software | Mobile Team Coordination",
-          "description": "Coordinate field visits, engineer dispatch, service schedules and customer records with field service CRM software built for mobile service teams.",
+          "title": "Field Service CRM Software | Codigix Infotech",
+          "description": "Coordinate mobile field teams and customer visits through a CRM built around your operations. Talk to our team about a solution for your field service needs.",
           "h1": "Field Service CRM Software for Mobile Teams",
           "keyword": "field service CRM software"
         },
         {
           "tab": "Helpdesk",
           "path": "/helpdesk-crm-software",
-          "title": "Helpdesk CRM Software | Customer Issue Tracking",
-          "description": "Organize support tickets, SLAs and response workflows across email, chat and phone with helpdesk CRM software connected to customer records.",
+          "title": "Helpdesk CRM Software | Codigix Infotech",
+          "description": "Log, track and resolve customer issues in one helpdesk-enabled CRM. Speak with Codigix Infotech to see how it could support your support team.",
           "h1": "Helpdesk CRM Software for Customer Support",
           "keyword": "helpdesk CRM software"
         },
@@ -625,6 +625,23 @@
     "/case-studies/6": "/case-studies",
     "/case-studies/40": "/case-studies/hr-digital-transformation-platform",
     "/case-studies/46": "/case-studies/smart-manufacturing-erp-iiot",
-    "/case-studies/47": "/case-studies/smart-erp-migration-for-sterling-techno-system"
+    "/case-studies/47": "/case-studies/smart-erp-migration-for-sterling-techno-system",
+    "/blog/ai-solutions-transformation": "/blog",
+    "/blog/industrial-iot-architecture": "/blog",
+    "/blog/enterprise-erp-systems": "/blog",
+    "/blog/nextgen-crm-sales": "/blog",
+    "/blog/custom-web-engineering": "/blog",
+    "/blog/enterprise-mobile-apps": "/blog",
+    "/blog/cloud-devops-security": "/blog",
+    "/blog/smart-manufacturing-industry-40": "/blog",
+    "/blog/healthcare-ai-digital-health": "/blog",
+    "/blog/retail-ecommerce-omnichannel": "/blog",
+    "/blog/fintech-ai-fraud-automation": "/blog",
+    "/blog/construction-erp-fleet-iot": "/blog",
+    "/blog/automotive-smart-factory-qa": "/blog",
+    "/blog/education-edtech-ai-learning": "/blog",
+    "/blog/industrial-iot": "/blog",
+    "/blog/future-of-erp": "/blog",
+    "/blog/crm-conversions": "/blog"
   }
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, Clock, ArrowLeft, Share2, MessageSquare, Heart, Bookmark, ChevronRight, Sparkles, CheckCircle2, Search, Facebook, Linkedin, Twitter, Link as LinkIcon, Eye } from 'lucide-react';
 import * as Icons from 'lucide-react';
@@ -7,82 +7,12 @@ import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import SEO from '../components/SEO';
 import config from '../config';
-import { getBlogById, blogPostsData } from '../data/blogData';
-
-const detailedBlogContent = {
-  'industrial-iot-architecture': {
-    title: 'Unlocking Industrial IoT: Bridging Physical Devices with Cloud Telemetry',
-    category: 'IoT & Industry 4.0',
-    date: 'Aug 1, 2026',
-    author: 'Suresh Nair',
-    role: 'Principal IoT Solutions Architect',
-    readTime: '6 min read',
-    image: '/assets/images/blog/blog_iiot_architecture.webp',
-    body: (
-      <div className="space-y-6 text-slate-700 dark:text-gray-300 text-sm leading-relaxed">
-        <p className="text-[15px] font-medium text-slate-900 dark:text-white leading-relaxed">
-          The convergence of operational technology (OT) and information technology (IT) has unlocked unprecedented efficiencies on the factory shop floor. But how do we securely bridge physical devices with cloud telemetry at scale?
-        </p>
-
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white pt-4">1. Edge Device Ingestion & Firmware Protocols</h3>
-        <p>
-          At the physical layer, industrial ESP32 microcontrollers and PLC terminals interface directly with machinery sensors via Modbus RTU or OPC Unified Architecture (OPC UA). Modbus RTU, operating over RS-485, remains a robust standard for legacy sensors. However, OPC UA provides semantic metadata structures, making it the preferred standard for modern cyber-physical systems.
-        </p>
-
-        <div className="bg-[#0c0828] dark:bg-[#07041a] p-4 rounded-xl border border-purple-900/40 text-emerald-400 font-mono text-xs overflow-x-auto shadow-inner my-4">
-          {`// Sample MQTT Telemetry Payload formatted for AWS IoT Core broker
-{
-  "client_id": "plc_workstation_14B",
-  "timestamp": 1785579600,
-  "telemetry": {
-    "temperature_celsius": 42.85,
-    "vibration_velocity_mms": 2.45,
-    "oee_active_lines": 18,
-    "cycle_count": 14850
-  }
-}`}
-        </div>
-
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white pt-4">2. MQTT Broker Telemetry Pipeline</h3>
-        <p>
-          Once compiled at the edge, telemetry payloads are transmitted over TLS-encrypted TCP sockets to cloud MQTT brokers. Message Queuing Telemetry Transport (MQTT) is highly efficient due to its publisher-subscriber model and lightweight header overhead. We configure Quality of Service (QoS) Level 1 to guarantee at-least-once delivery for critical operational logs.
-        </p>
-
-        <blockquote className="border-l-4 border-purple-600 pl-4 py-2 my-6 bg-purple-50 dark:bg-purple-950/30 text-slate-800 dark:text-gray-200 font-medium italic rounded-r-lg">
-          "By implementing TLS 1.3 client certificate authorization directly at the microcontroller firmware layer, we eliminate the threat of machine spoofing and unauthorized data injection."
-        </blockquote>
-
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white pt-4">3. Cloud Rule Engines & Real-time Dashboards</h3>
-        <p>
-          Upon reaching AWS IoT Core or Azure IoT Hub, payloads are evaluated by SQL-like rule engines. Critical alerts are routed immediately to notification brokers (SNS/SES), while warm telemetry is piped into Timestream databases for real-time OEE dashboard visualizations. Historical aggregates are stored in S3 datalakes to train machinery anomaly detection models.
-        </p>
-      </div>
-    )
-  }
-};
-
-detailedBlogContent['industrial-iot'] = detailedBlogContent['industrial-iot-architecture'];
-
-// Fallback metadata for other blog posts
-const getFallbackPost = (id) => ({
-  title: id ? id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Tech Insights',
-  category: 'Web Engineering',
-  date: 'Jul 15, 2026',
-  author: 'Codigix Tech Team',
-  role: 'Engineering Contributors',
-  readTime: '6 min read',
-  image: '/assets/images/blog/blog_web_engineering.webp',
-  body: (
-    <div className="space-y-6 text-slate-700 dark:text-gray-300 text-sm leading-relaxed">
-      <p>This tech article covers advanced engineering practices, scalable software architecture solutions, database tuning strategies, and DevOps methodologies implemented at Codigix.</p>
-      <p>Learn how our engineering squads design responsive frontends, implement secure REST APIs, deploy containerized Kubernetes environments, and optimize cloud infrastructure costs.</p>
-    </div>
-  )
-});
+import { fetchBlog, useBlogs, blogPath, blogImage, getBlogSeo } from '../utils/blogs';
 
 const NewBlogDetailsPage = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
+  const [loadError, setLoadError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState({ loading: false, message: '', type: '' });
@@ -124,32 +54,15 @@ const NewBlogDetailsPage = () => {
         }
       }
 
-      // 2. Check detailed content or master blog posts data
-      const masterPost = detailedBlogContent[id] || getBlogById(id);
-      if (masterPost) {
-        setPost({
-          title: masterPost.title,
-          category: masterPost.category,
-          sub_category: masterPost.sub_category || '',
-          date: masterPost.date,
-          author: masterPost.author,
-          role: masterPost.role || 'Senior Technical Lead',
-          readTime: masterPost.readTime || '6 min read',
-          image: masterPost.image,
-          excerpt: masterPost.excerpt || '',
-          body: masterPost.body || masterPost.content || masterPost.excerpt,
-          content_blocks: masterPost.content_blocks || []
-        });
-        setLoading(false);
-        return;
-      }
-
-      // 2. Fetch from backend API
+      // 2. Published post from the database (admin → Blogs), by slug or id
+      setLoadError(false);
       try {
-        const response = await fetch(`${config.API_BASE_URL}/blogs/${id}`);
-        if (response.ok) {
-          const data = await response.json();
+        const data = await fetchBlog(id);
+        if (data) {
           setPost({
+            id: data.id,
+            slug: data.slug || '',
+            image_alt: data.image_alt || '',
             title: data.title,
             category: data.category,
             sub_category: data.sub_category || '',
@@ -158,7 +71,7 @@ const NewBlogDetailsPage = () => {
             role: data.role || 'Engineering Contributor',
             readTime: data.readTime || '5 min read',
             publication_time: data.publication_time || '',
-            image: data.image ? (data.image.startsWith('http') || data.image.startsWith('data:') || data.image.startsWith('/') ? data.image : `/assets/images/blog/${data.image}${data.image.includes('.') ? '' : '.webp'}`) : '/assets/images/blog/blog_web_engineering.webp',
+            image: blogImage(data),
             image_caption: data.image_caption || '',
             image_credit: data.image_credit || '',
             excerpt: data.excerpt || '',
@@ -176,19 +89,18 @@ const NewBlogDetailsPage = () => {
             content_blocks: data.content_blocks ? (typeof data.content_blocks === 'string' ? JSON.parse(data.content_blocks) : data.content_blocks) : [],
             seo_title: data.seo_title || '',
             seo_description: data.seo_description || '',
-            seo_keywords: data.seo_keywords || ''
+            seo_keywords: data.seo_keywords || '',
+            social_image: data.social_image || ''
           });
           setLikes(data.likes || 0);
 
           // Track view
-          if (id !== 'preview') {
-            fetch(`${config.API_BASE_URL}/blogs/${id}/view`, { method: 'PUT' }).catch(console.error);
-          }
+          fetch(`${config.API_BASE_URL}/blogs/${data.id}/view`, { method: 'PUT' }).catch(console.error);
 
           // Fetch Comments
-          if (id !== 'preview') {
+          {
             try {
-              const commentRes = await fetch(`${config.API_BASE_URL}/blogs/${id}/comments`);
+              const commentRes = await fetch(`${config.API_BASE_URL}/blogs/${data.id}/comments`);
               if (commentRes.ok) {
                 const commentData = await commentRes.json();
                 setComments(commentData);
@@ -199,33 +111,21 @@ const NewBlogDetailsPage = () => {
           }
 
         } else {
-          setPost(getFallbackPost(id));
+          setPost(null);
         }
       } catch (err) {
         console.error("Error loading blog details:", err);
-        setPost(getFallbackPost(id));
+        setPost(null);
+        setLoadError(true);
       } finally {
         setLoading(false);
       }
     };
 
-    const loadAllBlogs = async () => {
-      try {
-        const response = await fetch(`${config.API_BASE_URL}/blogs`);
-        if (response.ok) {
-          const data = await response.json();
-          setAllBlogs(Array.isArray(data) ? data : []);
-        }
-      } catch (err) {
-        console.error("Error loading all blogs:", err);
-      }
-    };
-
     loadPost();
-    loadAllBlogs();
   }, [id]);
 
-  const [allBlogs, setAllBlogs] = useState([]);
+  const { posts: allBlogs } = useBlogs();
   const [likes, setLikes] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
   const [comments, setComments] = useState([]);
@@ -237,7 +137,7 @@ const NewBlogDetailsPage = () => {
   const handleLike = async () => {
     if (!hasLiked && id !== 'preview') {
       try {
-        await fetch(`${config.API_BASE_URL}/blogs/${id}/like`, { method: 'PUT' });
+        await fetch(`${config.API_BASE_URL}/blogs/${post.id}/like`, { method: 'PUT' });
         setLikes(l => l + 1);
         setHasLiked(true);
       } catch (err) {
@@ -278,7 +178,7 @@ const NewBlogDetailsPage = () => {
     if (!newCommentName.trim() || !newCommentText.trim() || id === 'preview') return;
     setIsSubmittingComment(true);
     try {
-      const response = await fetch(`${config.API_BASE_URL}/blogs/${id}/comments`, {
+      const response = await fetch(`${config.API_BASE_URL}/blogs/${post.id}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: newCommentName, comment: newCommentText })
@@ -334,8 +234,10 @@ const NewBlogDetailsPage = () => {
   if (!post) {
     return (
       <div className="bg-white dark:bg-[#030014] min-h-screen font-sans flex flex-col items-center justify-center text-slate-900 dark:text-white transition-colors duration-300">
+        <SEO title="Article Not Found | Codigix Blog" exactTitle={true} robots="noindex, follow" description="This article is not available." />
         <NewHomeNav />
-        <h2 className="text-2xl font-bold mb-4">Article Not Found</h2>
+        <h1 className="text-2xl font-bold mb-4">{loadError ? 'Article could not be loaded' : 'Article Not Found'}</h1>
+        <p className="text-sm text-slate-500 dark:text-gray-400 mb-6">{loadError ? 'Please try again in a moment.' : 'It may have been moved or removed.'}</p>
         <Link to="/blog" className="px-6 py-3 bg-purple-600 text-white rounded-xl font-bold hover:bg-purple-700 transition-colors">
           Return to Blog
         </Link>
@@ -345,7 +247,10 @@ const NewBlogDetailsPage = () => {
 
   // Use real backend blogs exclusively
   const availableBlogs = allBlogs;
-  const filteredAvailable = availableBlogs.filter(p => String(p.id) !== String(id));
+  // Old numeric URLs (/blog/16) move to the slug URL
+  if (id !== 'preview' && /^\d+$/.test(id) && post.slug) return <Navigate to={blogPath(post)} replace />;
+
+  const filteredAvailable = availableBlogs.filter(p => String(p.id) !== String(post.id));
 
   // Recent 4 posts
   const recentPosts = filteredAvailable.slice(0, 4);
@@ -462,15 +367,25 @@ const NewBlogDetailsPage = () => {
     });
   };
 
+  // Title max 60 / description max 160 characters (admin SEO fields, else title and excerpt)
+  const seo = getBlogSeo(post);
+  // Social previews need an image URL; inline (data:) images can't be shared
+  const shareableImage = [post.social_image, post.image].find((src) => src && !String(src).startsWith('data:'));
+  const ogImage = shareableImage
+    ? (shareableImage.startsWith('http') ? shareableImage : `https://codigixinfotech.com${shareableImage}`)
+    : 'https://codigixinfotech.com/assets/images/service/erp_dash.webp';
+
   return (
     <>
       <SEO
-        title={`${post.seo_title || post.title} | Codigix Blog`}
+        title={seo.title}
         exactTitle={true}
-        description={post.seo_description || post.excerpt}
+        description={seo.description}
         keywords={post.seo_keywords || "Codigix blog, tech insights"}
-        canonical={`https://codigixinfotech.com/blog/${id}`}
-        ogImage={post.image}
+        canonical={seo.canonical}
+        robots={id === 'preview' ? 'noindex, nofollow' : undefined}
+        ogType="article"
+        ogImage={ogImage}
       />
 
       <div className="bg-white dark:bg-[#030014] min-h-screen font-sans text-slate-900 dark:text-white transition-colors duration-300">
@@ -739,9 +654,9 @@ const NewBlogDetailsPage = () => {
                     </div>
                   ) : (
                     recentPosts.map(rp => (
-                      <Link key={rp.id} to={`/blog/${rp.id}`} className="group flex flex-col">
+                      <Link key={rp.id} to={blogPath(rp)} className="group flex flex-col">
                         <div className="w-full aspect-video rounded-lg overflow-hidden mb-3 border border-slate-200 dark:border-gray-800 bg-slate-100">
-                          <img src={rp.image} alt={rp.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <img src={blogImage(rp)} alt={rp.image_alt || rp.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         </div>
                         <span className="text-[9px] font-bold text-purple-600 uppercase tracking-wider mb-1">{rp.category}</span>
                         <h4 className="text-[13px] font-bold text-slate-900 dark:text-white leading-snug group-hover:text-purple-600 transition-colors line-clamp-3 mb-2">{rp.title}</h4>
@@ -783,9 +698,9 @@ const NewBlogDetailsPage = () => {
                     </div>
                   ) : (
                     popularPosts.map((pp, idx) => (
-                      <Link key={idx} to={`/blog/${pp.id}`} className="group flex gap-4 items-center">
+                      <Link key={idx} to={blogPath(pp)} className="group flex gap-4 items-center">
                         <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border border-slate-200 dark:border-gray-800">
-                          <img src={pp.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={pp.title} />
+                          <img src={blogImage(pp)} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={pp.image_alt || pp.title} />
                         </div>
                         <div>
                           <h4 className="text-[12px] font-bold text-slate-800 dark:text-gray-200 leading-snug group-hover:text-purple-600 line-clamp-2 mb-1.5">{pp.title}</h4>
