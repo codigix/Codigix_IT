@@ -150,8 +150,9 @@ const checkUniqueness = (shellHtml) => {
   return problems;
 };
 
-// Fallback for a page that could not be rendered: the shell with the page's own
-// head tags (no body text), or no file when seoPages.json doesn't know the URL
+// The shell with the page's own head tags (no body text), written for every page
+// before rendering and kept when rendering fails; no file (and any stale one
+// removed) when seoPages.json doesn't know the URL
 const writeHeadOnly = (shellHtml, route) => {
   const html = renderIndexHtml(shellHtml, route);
   if (html !== shellHtml || route === '/') writeHtml(routeFile(route), html);
@@ -167,6 +168,11 @@ const main = async () => {
   // Untouched SPA shell for URLs that aren't pre-rendered (blog posts, 404s)
   writeHtml(join(dist, 'app-shell.html'), shellHtml);
 
+  // Every page gets its own title, description and canonical straight away, so a
+  // live site deploying from this dist/ never serves the bare shell for a page
+  // while the slow browser rendering below is still running
+  const headOnlyCount = routes.filter((route) => writeHeadOnly(shellHtml, route)).length;
+
   const browser = await launchBrowser();
   if (!browser) {
     const message =
@@ -174,8 +180,7 @@ const main = async () => {
       '  for crawlers that skip JavaScript. Fix once on this machine: npx playwright install --with-deps chromium\n' +
       launchErrors.map((error) => `  - ${error}`).join('\n');
     if (strict) throw new Error(message);
-    const written = routes.filter((route) => writeHeadOnly(shellHtml, route)).length;
-    console.warn(`\n⚠ ${message}\nprerender: ${written}/${routes.length} head-only pages written\n`);
+    console.warn(`\n⚠ ${message}\nprerender: ${headOnlyCount}/${routes.length} head-only pages written\n`);
     const problems = checkUniqueness(shellHtml);
     if (problems.length) console.warn(`⚠ SEO check: ${problems.length} problems:\n${problems.map((p) => `  - ${p}`).join('\n')}`);
     return;
@@ -183,8 +188,9 @@ const main = async () => {
 
   const server = await preview({ root, logLevel: 'silent', preview: { port: 4179, strictPort: false, open: false } });
   const baseUrl = server.resolvedUrls.local[0].replace(/\/$/, '');
-  // Written only after every route is done: the preview server falls back to
-  // dist/index.html, which the homepage snapshot replaces
+  // Each page is saved as soon as it is rendered. The homepage waits until the
+  // end: the preview server falls back to dist/index.html for URLs without a
+  // file of their own, and a homepage snapshot there would leak into them
   const rendered = new Map();
   const withoutData = [];
   const skipped = [];
@@ -198,6 +204,7 @@ const main = async () => {
           try {
             const { html, note } = await renderRoute(browser, baseUrl, shellHead, route);
             rendered.set(route, html);
+            if (route !== '/') writeHtml(routeFile(route), html);
             if (note) withoutData.push(`${route}: ${note}`);
           } catch (error) {
             const entry = `${route}: ${error.message.split('\n')[0]}`;
@@ -211,9 +218,8 @@ const main = async () => {
     await server.close();
   }
 
-  for (const [route, html] of rendered) writeHtml(routeFile(route), html);
-  // Pages not rendered this run must not keep an older snapshot
-  for (const entry of [...skipped, ...failures]) writeHeadOnly(shellHtml, entry.slice(0, entry.indexOf(': ')));
+  if (rendered.has('/')) writeHtml(routeFile('/'), rendered.get('/'));
+  // Pages that failed keep the head-only version written at the start
 
   console.log(`prerender: ${rendered.size}/${routes.length} pages pre-rendered`);
   const list = (items) => items.map((item) => `  - ${item}`).join('\n');
