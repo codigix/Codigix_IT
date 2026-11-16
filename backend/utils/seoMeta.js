@@ -64,6 +64,7 @@ const renderIndexHtml = (html, pathname) => {
     `<meta property="og:title" content="${title}" data-seo-prerender>`,
     `<meta property="og:description" content="${description}" data-seo-prerender>`,
     `<meta property="og:url" content="${canonical}" data-seo-prerender>`,
+    `<meta property="og:type" content="website" data-seo-prerender>`,
     `<meta name="twitter:title" content="${title}" data-seo-prerender>`,
     `<meta name="twitter:description" content="${description}" data-seo-prerender>`,
   ].join('\n  ');

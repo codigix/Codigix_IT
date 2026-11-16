@@ -12,7 +12,7 @@ export const toCanonical = (path) => `${SITE_URL}${path === '/' ? '/' : path}`;
 
 const withCanonical = (entry) => entry && { ...entry, canonical: toCanonical(entry.path) };
 
-/** SEO for a standalone page: home, services, about, career, caseStudies. */
+/** SEO for a standalone page: home, services, about, career, caseStudies, contact, blog, privacy, terms. */
 export const getPageSeo = (key) => withCanonical(seoData.pages[key]);
 
 const getSection = (section) => seoData.sections[section];

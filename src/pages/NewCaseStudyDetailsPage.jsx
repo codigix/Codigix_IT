@@ -143,7 +143,10 @@ const NewCaseStudyDetailsPage = () => {
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
   // Exact canonical URL for this route
   const canonicalUrl = `${siteUrl}/case-studies/${id}`;
-  const pageTitle = `${activeStudy.title} Case Study | ${specs.client} | Codigix Infotech`;
+  // Skip the client when it is Codigix itself, so the brand isn't repeated
+  const pageTitle = /codigix/i.test(specs.client)
+    ? `${activeStudy.title} Case Study | Codigix Infotech`
+    : `${activeStudy.title} Case Study | ${specs.client} | Codigix Infotech`;
   const metaDescription = activeStudy.subtitle || activeStudy.objective || `Case Study: How Codigix Infotech delivered ${activeStudy.title} for ${specs.client}.`;
 
   const heroImgUrl = activeStudy.heroImage?.startsWith('/uploads')

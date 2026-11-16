@@ -4,6 +4,9 @@ import { Calendar, User, Clock, ArrowRight, Search, Tag, BookOpen } from 'lucide
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import SEO from '../components/SEO';
+import { getPageSeo } from '../utils/seo';
+
+const blogSeo = getPageSeo('blog');
 import config from '../config';
 
 const NewBlogPage = () => {
@@ -55,11 +58,11 @@ const NewBlogPage = () => {
   return (
     <>
       <SEO
-        title="Tech Insights & News | Codigix Blog"
+        title={blogSeo.title}
         exactTitle={true}
-        description="Read the latest tech insights, news, and deep dives from Codigix engineers on AI, ERP, IoT, and custom software development."
+        description={blogSeo.description}
         keywords="Codigix blog, tech insights, AI blog, ERP development news, IoT trends, software engineering blog, custom software articles"
-        canonical="https://codigixinfotech.com/blog"
+        canonical={blogSeo.canonical}
       />
 
       <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white transition-colors duration-300">

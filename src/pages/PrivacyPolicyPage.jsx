@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { getPageSeo } from '../utils/seo';
+
+const pageSeo = getPageSeo('privacy');
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import config from '../config';
@@ -10,8 +13,8 @@ const PrivacyPolicyPage = () => {
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
   const canonicalUrl = `${siteUrl}/privacy-policy`;
 
-  const pageTitle = "Privacy Policy | Codigix Infotech";
-  const metaDescription = "Read the Privacy Policy of Codigix Infotech Pvt. Ltd. Learn how we collect, protect, process, and safeguard your personal data and privacy when using our website and services.";
+  const pageTitle = pageSeo.title;
+  const metaDescription = pageSeo.description;
 
   const privacySchema = {
     "@context": "https://schema.org",
@@ -114,6 +117,7 @@ const PrivacyPolicyPage = () => {
     <>
       <SEO
         title={pageTitle}
+        exactTitle={true}
         metaTitle={pageTitle}
         description={metaDescription}
         keywords="Privacy Policy, Codigix Infotech privacy, data protection, privacy guidelines, user data security, GDPR compliance, privacy commitment"

@@ -3,7 +3,7 @@
   "pages": {
     "home": {
       "path": "/",
-      "title": "AI, IoT, ERP & CRM Solutions | Codigix Infotech",
+      "title": "Codigix Infotech Pvt. Ltd. – IT Solutions | AI, IoT, ERP & CRM",
       "description": "Codigix Infotech is an IT company in Pimpri-Chinchwad, Pune, building AI, industrial IoT, ERP and CRM solutions that automate operations and support growth.",
       "h1": "Intelligent AI, IoT, ERP and CRM Solutions for Businesses",
       "keyword": "AI, IoT, ERP and CRM solutions"
@@ -35,6 +35,34 @@
       "description": "Explore Codigix Infotech case studies across AI, industrial IoT, ERP and business software, covering project challenges, implementation and outcomes.",
       "h1": "Technology Case Studies and Client Solutions",
       "keyword": "software development case studies"
+    },
+    "contact": {
+      "path": "/contact",
+      "title": "Contact Codigix Infotech | Free IT Consultation in Pune",
+      "description": "Contact Codigix Infotech in Pimpri-Chinchwad, Pune for AI, industrial IoT, ERP and CRM projects. Call +91 9112706604 or book a free IT consultation.",
+      "h1": "Let's Build Something Amazing Together!",
+      "keyword": "Contact Codigix Infotech"
+    },
+    "blog": {
+      "path": "/blog",
+      "title": "Tech Insights & News | Codigix Blog",
+      "description": "Read the latest tech insights, news, and deep dives from Codigix engineers on AI, ERP, IoT, and custom software development.",
+      "h1": "Insights from our Digital Engineers",
+      "keyword": "tech insights"
+    },
+    "privacy": {
+      "path": "/privacy-policy",
+      "title": "Privacy Policy | Codigix Infotech",
+      "description": "Read the Privacy Policy of Codigix Infotech Pvt. Ltd. to learn how we collect, use and protect your personal data on our website and services.",
+      "h1": "Privacy Policy",
+      "keyword": "Privacy Policy"
+    },
+    "terms": {
+      "path": "/terms-conditions",
+      "title": "Terms & Conditions | Codigix Infotech",
+      "description": "Read the Terms and Conditions of Codigix Infotech Pvt. Ltd., covering service agreements, intellectual property, user responsibilities and legal terms.",
+      "h1": "Terms & Conditions",
+      "keyword": "Terms & Conditions"
     }
   },
   "sections": {

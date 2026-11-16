@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { getPageSeo } from '../utils/seo';
+
+const pageSeo = getPageSeo('contact');
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import ContactHero from '../components/new-contact/ContactHero';
@@ -15,8 +18,8 @@ const NewContactPage = () => {
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
   const canonicalUrl = `${siteUrl}/contact`;
 
-  const pageTitle = "Contact Codigix Infotech | Free IT Consultation in Pune";
-  const metaDescription = "Get in touch with Codigix Infotech for enterprise AI solutions, Industrial IoT automation, custom ERP/CRM engineering, and IT consulting. Contact our Pune office or schedule a meeting.";
+  const pageTitle = pageSeo.title;
+  const metaDescription = pageSeo.description;
 
   // JSON-LD Schemas for Local Business & Contact Point
   const contactPageSchema = {

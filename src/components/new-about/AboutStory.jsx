@@ -55,7 +55,7 @@ const AboutStory = () => {
           From a visionary team of tech innovators to a full-fledged digital solutions provider, our journey is built on trust, innovation, and a relentless commitment to excellence.
         </p>
         <p className="text-[12px] text-slate-600 dark:text-gray-400 leading-relaxed mb-8">
-          Codigix Infotech Pvt. Ltd. is led by founder and CEO Nitin Kamble and CTO Ashwini Khedekar. Our team of 10+ software engineers, testers, business analysts and CMS specialists works from our office at Brahma Sky Uzuri, MIDC, Pimpri Colony, Pimpri-Chinchwad, Maharashtra.
+          Codigix Infotech Pvt. Ltd. – IT Solutions is based at Office No: 514, 5th Floor, Brahma Sky Uzuri, MIDC, Pimpri Colony, Pimpri-Chinchwad, Maharashtra 411018. The company is led by founder and CEO Nitin Kamble and CTO Ashwini Khedekar, with a team of 10+ software engineers, testers, business analysts and CMS specialists who build AI, industrial IoT, ERP and CRM software for clients.
         </p>
         
         <button className="px-5 py-2.5 bg-transparent border border-slate-350 dark:border-[#EE001C]/40 hover:border-[#EE001C] hover:bg-slate-100 dark:hover:bg-[#EE001C]/10 text-slate-800 dark:text-white text-[12px] font-medium rounded-lg transition-all flex items-center gap-2">

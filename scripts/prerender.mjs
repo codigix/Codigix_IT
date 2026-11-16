@@ -6,7 +6,8 @@
 //
 // Needs a Chromium browser: `npx playwright install chromium` (on Linux servers
 // add --with-deps), or an installed Chrome / Edge. Without one it warns and
-// leaves the plain SPA build in place; set PRERENDER_STRICT=1 to fail instead.
+// writes head-only pages instead (the SPA shell with each page's own title,
+// description and canonical, but no body text); set PRERENDER_STRICT=1 to fail.
 // Run with the backend up (npm run server) so data-driven sections (blog posts,
 // jobs, projects) are included; without it those sections are left out and
 // empty states marked data-prerender-omit are dropped.
@@ -15,8 +16,12 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync, rmSync } from 'node
 import { gzipSync } from 'node:zlib';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 import { preview } from 'vite';
 import { chromium } from 'playwright';
+
+// Same per-page tags the backend injects (data from src/data/seoPages.json)
+const { renderIndexHtml } = createRequire(import.meta.url)('../backend/utils/seoMeta.js');
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const dist = join(root, 'dist');
@@ -145,23 +150,36 @@ const checkUniqueness = (shellHtml) => {
   return problems;
 };
 
-const main = async () => {
-  const browser = await launchBrowser();
-  if (!browser) {
-    const message =
-      'prerender: could not start a browser, pages were NOT pre-rendered. Run `npx playwright install --with-deps chromium`.\n' +
-      launchErrors.map((error) => `  - ${error}`).join('\n');
-    if (strict) throw new Error(message);
-    console.warn(`\n⚠ ${message}\n`);
-    return;
-  }
+// Fallback for a page that could not be rendered: the shell with the page's own
+// head tags (no body text), or no file when seoPages.json doesn't know the URL
+const writeHeadOnly = (shellHtml, route) => {
+  const html = renderIndexHtml(shellHtml, route);
+  if (html !== shellHtml || route === '/') writeHtml(routeFile(route), html);
+  else rmSync(dirname(routeFile(route)), { recursive: true, force: true });
+  return html !== shellHtml;
+};
 
+const main = async () => {
   // On a re-run dist/index.html is already the homepage snapshot; the shell is app-shell.html
   const shellFile = existsSync(join(dist, 'app-shell.html')) ? 'app-shell.html' : 'index.html';
   const shellHtml = readFileSync(join(dist, shellFile), 'utf8');
   const shellHead = shellHtml.slice(shellHtml.indexOf('<head>') + 6, shellHtml.indexOf('</head>'));
   // Untouched SPA shell for URLs that aren't pre-rendered (blog posts, 404s)
   writeHtml(join(dist, 'app-shell.html'), shellHtml);
+
+  const browser = await launchBrowser();
+  if (!browser) {
+    const message =
+      'prerender: could not start a browser, so pages get their own title and description but NO body text\n' +
+      '  for crawlers that skip JavaScript. Fix once on this machine: npx playwright install --with-deps chromium\n' +
+      launchErrors.map((error) => `  - ${error}`).join('\n');
+    if (strict) throw new Error(message);
+    const written = routes.filter((route) => writeHeadOnly(shellHtml, route)).length;
+    console.warn(`\n⚠ ${message}\nprerender: ${written}/${routes.length} head-only pages written\n`);
+    const problems = checkUniqueness(shellHtml);
+    if (problems.length) console.warn(`⚠ SEO check: ${problems.length} problems:\n${problems.map((p) => `  - ${p}`).join('\n')}`);
+    return;
+  }
 
   const server = await preview({ root, logLevel: 'silent', preview: { port: 4179, strictPort: false, open: false } });
   const baseUrl = server.resolvedUrls.local[0].replace(/\/$/, '');
@@ -195,11 +213,7 @@ const main = async () => {
 
   for (const [route, html] of rendered) writeHtml(routeFile(route), html);
   // Pages not rendered this run must not keep an older snapshot
-  for (const entry of [...skipped, ...failures]) {
-    const route = entry.slice(0, entry.indexOf(': '));
-    if (route === '/') writeHtml(routeFile(route), shellHtml);
-    else rmSync(dirname(routeFile(route)), { recursive: true, force: true });
-  }
+  for (const entry of [...skipped, ...failures]) writeHeadOnly(shellHtml, entry.slice(0, entry.indexOf(': ')));
 
   console.log(`prerender: ${rendered.size}/${routes.length} pages pre-rendered`);
   const list = (items) => items.map((item) => `  - ${item}`).join('\n');

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { getPageSeo } from '../utils/seo';
+
+const pageSeo = getPageSeo('terms');
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
 import config from '../config';
@@ -10,8 +13,8 @@ const TermsConditionsPage = () => {
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
   const canonicalUrl = `${siteUrl}/terms-conditions`;
 
-  const pageTitle = "Terms & Conditions | Codigix Infotech";
-  const metaDescription = "Review the official Terms and Conditions of Codigix Infotech Pvt. Ltd. Learn about our service agreements, intellectual property policy, user responsibilities, and legal guidelines.";
+  const pageTitle = pageSeo.title;
+  const metaDescription = pageSeo.description;
 
   const termsSchema = {
     "@context": "https://schema.org",
@@ -104,6 +107,7 @@ const TermsConditionsPage = () => {
     <>
       <SEO
         title={pageTitle}
+        exactTitle={true}
         metaTitle={pageTitle}
         description={metaDescription}
         keywords="Terms and Conditions, Codigix Infotech legal terms, software services agreement, IT consulting terms, client agreement, Codigix terms of service"
