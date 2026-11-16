@@ -72,7 +72,7 @@ const HeroSection = () => {
                 </span>
               </h1>
               <p className="text-slate-600 dark:text-gray-300 text-base md:text-md max-w-xl leading-relaxed font-normal">
-                Codigix Infotech is an IT company in Pimpri-Chinchwad, Pune, founded in July 2023. We build AI, industrial IoT, ERP, CRM and custom software that automates operations and helps businesses grow.
+                Codigix Infotech is an IT company in Pimpri Chinchwad, Pune, founded in July 2023. We build AI, industrial IoT, ERP, CRM and custom software that automates operations and helps businesses grow.
               </p>
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">

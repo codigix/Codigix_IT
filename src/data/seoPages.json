@@ -3,7 +3,7 @@
   "pages": {
     "home": {
       "path": "/",
-      "title": "Codigix Infotech Pvt. Ltd. – IT Solutions in Pimpri-Chinchwad",
+      "title": "Codigix Infotech Pvt. Ltd. – IT Solutions in PCMC",
       "description": "Codigix Infotech builds AI, industrial IoT, ERP, CRM and custom software from our Pimpri-Chinchwad office. Talk to our team about the right IT solution for you.",
       "h1": "Intelligent AI, IoT, ERP and CRM Solutions for Businesses",
       "keyword": "AI, IoT, ERP and CRM solutions"
@@ -39,7 +39,7 @@
     "contact": {
       "path": "/contact",
       "title": "Contact Codigix Infotech | Free IT Consultation in Pune",
-      "description": "Contact Codigix Infotech in Pimpri-Chinchwad, Pune for AI, industrial IoT, ERP and CRM projects. Call +91 9112706604 or book a free IT consultation.",
+      "description": "Contact Codigix Infotech in PCMC, Pune for AI, industrial IoT, ERP and CRM projects. Call +91 9112706604 or book a free IT consultation.",
       "h1": "Let's Build Something Amazing Together!",
       "keyword": "Contact Codigix Infotech"
     },
@@ -100,7 +100,7 @@
           "tab": "AI Business Automation",
           "path": "/ai-automation-services",
           "title": "AI Automation Services | Codigix Infotech",
-          "description": "Reduce repetitive tasks with AI automation services from Codigix Infotech. Based in Pimpri-Chinchwad, we help you map, build and improve your processes.",
+          "description": "Reduce repetitive tasks with AI automation services from Codigix Infotech. Based in PCMC, we help you map, build and improve your processes.",
           "h1": "AI Automation Services for Smarter Workflows",
           "keyword": "AI automation services"
         },
