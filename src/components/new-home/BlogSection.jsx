@@ -126,7 +126,7 @@ const BlogSection = () => {
         </div>
 
         {combinedPosts.length === 0 ? (
-          <div className="text-center py-16 bg-white dark:bg-[#07041c] border border-dashed border-slate-200 dark:border-purple-900/30 rounded-2xl p-8 max-w-md mx-auto shadow-xs">
+          <div data-prerender-omit className="text-center py-16 bg-white dark:bg-[#07041c] border border-dashed border-slate-200 dark:border-purple-900/30 rounded-2xl p-8 max-w-md mx-auto shadow-xs">
             <span className="text-3xl mb-3 block">✍️</span>
             <p className="text-slate-900 dark:text-white text-sm font-bold uppercase tracking-wide">No articles published yet</p>
             <p className="text-[10px] text-slate-500 dark:text-gray-400 mt-2 uppercase tracking-widest leading-relaxed">Check back soon! Our engineering team will be sharing fresh technical articles shortly.</p>
