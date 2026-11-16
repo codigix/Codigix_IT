@@ -28,6 +28,7 @@ jobs:
             npm run build
             npx playwright install chromium
             sudo npx playwright install-deps chromium
+            npm install vite-react-ssg --legacy-peer-deps
             cd backend
             npm install
             pm2 restart codigixinfotech-backend
