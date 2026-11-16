@@ -17,7 +17,7 @@ const IotBottomCta = ({ activeTab }) => {
             <MonitorSmartphone size={20} />
           </div>
           <div>
-            <h4 className="text-[13px] font-bold text-slate-900 dark:text-white">150+</h4>
+            <p className="heading-text text-[13px] font-bold text-slate-900 dark:text-white">150+</p>
             <p className="text-[9px] text-gray-500 uppercase tracking-wide">Connected Devices</p>
           </div>
         </div>
@@ -27,7 +27,7 @@ const IotBottomCta = ({ activeTab }) => {
             <Factory size={20} />
           </div>
           <div>
-            <h4 className="text-[13px] font-bold text-slate-900 dark:text-white">50+</h4>
+            <p className="heading-text text-[13px] font-bold text-slate-900 dark:text-white">50+</p>
             <p className="text-[9px] text-gray-500 uppercase tracking-wide">Factories Powered</p>
           </div>
         </div>
@@ -37,7 +37,7 @@ const IotBottomCta = ({ activeTab }) => {
             <ShieldCheck size={20} />
           </div>
           <div>
-            <h4 className="text-[13px] font-bold text-slate-900 dark:text-white">99.9%</h4>
+            <p className="heading-text text-[13px] font-bold text-slate-900 dark:text-white">99.9%</p>
             <p className="text-[9px] text-gray-500 uppercase tracking-wide">System Uptime</p>
           </div>
         </div>
@@ -47,7 +47,7 @@ const IotBottomCta = ({ activeTab }) => {
             <Clock size={20} />
           </div>
           <div>
-            <h4 className="text-[13px] font-bold text-slate-900 dark:text-white">24/7</h4>
+            <p className="heading-text text-[13px] font-bold text-slate-900 dark:text-white">24/7</p>
             <p className="text-[9px] text-gray-500 uppercase tracking-wide">Live Monitoring</p>
           </div>
         </div>
@@ -57,7 +57,7 @@ const IotBottomCta = ({ activeTab }) => {
             <ThumbsUp size={20} />
           </div>
           <div>
-            <h4 className="text-[13px] font-bold text-slate-900 dark:text-white">100%</h4>
+            <p className="heading-text text-[13px] font-bold text-slate-900 dark:text-white">100%</p>
             <p className="text-[9px] text-gray-500 uppercase tracking-wide">Customer Satisfaction</p>
           </div>
         </div>

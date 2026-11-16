@@ -41,7 +41,7 @@ const CaseStudiesImpact = () => {
               <stat.icon size={20} />
             </div>
             <div>
-              <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{stat.value}</h4>
+              <p className="heading-text text-lg font-bold text-slate-900 dark:text-white mb-1">{stat.value}</p>
               <p className="text-[10px] text-slate-500 dark:text-gray-400 uppercase tracking-widest">{stat.label}</p>
             </div>
           </motion.div>

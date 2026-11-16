@@ -66,7 +66,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.heading-text {
     font-family: var(--tj-ff-heading);
     color: var(--tj-color-heading-primary);
     margin-top: 0;

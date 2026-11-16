@@ -62,12 +62,12 @@ const ContactFormSection = () => {
       
       {/* Left: Form */}
       <div className="lg:w-2/3 bg-white dark:bg-[#050112] border border-slate-200/90 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm dark:shadow-xl flex flex-col text-left">
-        <h3 className="text-xl font-extrabold text-slate-900 dark:text-white mb-8">Send Us a Message</h3>
+        <h2 className="text-xl font-extrabold text-slate-900 dark:text-white mb-8">Send Us a Message</h2>
         
         {submitted ? (
           <div className="p-8 my-auto bg-green-50 dark:bg-green-950/40 border border-green-200 dark:border-green-800/50 rounded-xl text-center flex flex-col items-center justify-center space-y-3">
             <CheckCircle2 size={40} className="text-green-600 dark:text-green-400" />
-            <h4 className="text-lg font-extrabold text-slate-900 dark:text-white">Message Sent Successfully!</h4>
+            <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">Message Sent Successfully!</h3>
             <p className="text-xs text-slate-600 dark:text-gray-300 max-w-md leading-relaxed">
               Thank you for reaching out to Codigix Infotech. Our solution team has received your request and will contact you within 24 hours.
             </p>
@@ -161,7 +161,7 @@ const ContactFormSection = () => {
 
       {/* Right: Contact Details */}
       <div className="lg:w-1/3 bg-white dark:bg-[#050112] border border-slate-200/90 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm dark:shadow-xl flex flex-col text-left">
-        <h3 className="text-xl font-extrabold text-slate-900 dark:text-white mb-8">Get in Touch</h3>
+        <h2 className="text-xl font-extrabold text-slate-900 dark:text-white mb-8">Get in Touch</h2>
         
         <div className="flex flex-col gap-7 flex-1">
           <div className="flex items-start gap-4">
@@ -169,7 +169,7 @@ const ContactFormSection = () => {
               <Phone size={16} className="text-purple-600 dark:text-purple-400" />
             </div>
             <div>
-              <h4 className="text-[11px] font-extrabold text-slate-900 dark:text-white mb-0.5">Phone</h4>
+              <h3 className="text-[11px] font-extrabold text-slate-900 dark:text-white mb-0.5">Phone</h3>
               <p className="text-[12px] font-bold text-slate-800 dark:text-gray-200 mb-0.5">+91 9112706604</p>
               <p className="text-[9px] text-slate-500 dark:text-gray-400 font-medium">Mon - Sat: 9:30 AM - 6:30 PM</p>
             </div>
@@ -180,7 +180,7 @@ const ContactFormSection = () => {
               <Mail size={16} className="text-purple-600 dark:text-purple-400" />
             </div>
             <div>
-              <h4 className="text-[11px] font-extrabold text-slate-900 dark:text-white mb-0.5">Email</h4>
+              <h3 className="text-[11px] font-extrabold text-slate-900 dark:text-white mb-0.5">Email</h3>
               <p className="text-[12px] font-bold text-slate-800 dark:text-gray-200 mb-0.5">info@codigixinfotech.com</p>
               <p className="text-[9px] text-slate-500 dark:text-gray-400 font-medium">We reply within 24 hours</p>
             </div>
@@ -191,7 +191,7 @@ const ContactFormSection = () => {
               <MapPin size={16} className="text-purple-600 dark:text-purple-400" />
             </div>
             <div>
-              <h4 className="text-[11px] font-extrabold text-slate-900 dark:text-white mb-0.5">Address</h4>
+              <h3 className="text-[11px] font-extrabold text-slate-900 dark:text-white mb-0.5">Address</h3>
               <p className="text-[12px] font-bold text-slate-800 dark:text-gray-200 mb-0.5">Office No: 514, 5th Floor, Brahma Sky Uzuri, MIDC, Pimpri-Chinchwad, Maharashtra 411018.</p>
               <p className="text-[9px] text-slate-500 dark:text-gray-400 font-medium">Headquarters</p>
             </div>

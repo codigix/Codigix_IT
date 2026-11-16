@@ -38,7 +38,7 @@ const IndustriesBottomCta = ({ activeIndustry = 'Manufacturing' }) => {
             <CheckSquare size={20} />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-slate-900 dark:text-white">150+</h4>
+            <p className="heading-text text-xs font-bold text-slate-900 dark:text-white">150+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 uppercase tracking-wide font-semibold">Successful Projects</p>
           </div>
         </div>
@@ -48,7 +48,7 @@ const IndustriesBottomCta = ({ activeIndustry = 'Manufacturing' }) => {
             <Users size={20} />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-slate-900 dark:text-white">50+</h4>
+            <p className="heading-text text-xs font-bold text-slate-900 dark:text-white">50+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 uppercase tracking-wide font-semibold">Happy Clients</p>
           </div>
         </div>
@@ -58,7 +58,7 @@ const IndustriesBottomCta = ({ activeIndustry = 'Manufacturing' }) => {
             <Building size={20} />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-slate-900 dark:text-white">10+</h4>
+            <p className="heading-text text-xs font-bold text-slate-900 dark:text-white">10+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 uppercase tracking-wide font-semibold">Industries Served</p>
           </div>
         </div>
@@ -68,7 +68,7 @@ const IndustriesBottomCta = ({ activeIndustry = 'Manufacturing' }) => {
             <Smile size={20} />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-slate-900 dark:text-white">98.5%</h4>
+            <p className="heading-text text-xs font-bold text-slate-900 dark:text-white">98.5%</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 uppercase tracking-wide font-semibold">Client Satisfaction</p>
           </div>
         </div>
@@ -78,7 +78,7 @@ const IndustriesBottomCta = ({ activeIndustry = 'Manufacturing' }) => {
             <Clock size={20} />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-slate-900 dark:text-white">24/7</h4>
+            <p className="heading-text text-xs font-bold text-slate-900 dark:text-white">24/7</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 uppercase tracking-wide font-semibold">Support Available</p>
           </div>
         </div>

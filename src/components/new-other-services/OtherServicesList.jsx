@@ -275,7 +275,7 @@ const OtherServicesList = () => {
                   <div className={`p-2.5 rounded-xl ${service.bg} ${service.color} border border-purple-500/20`}>
                     <service.icon size={20} />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{service.title}</h3>
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{service.title}</h2>
                 </div>
 
                 {/* Strategic Agenda Banner */}

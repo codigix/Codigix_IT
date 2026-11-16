@@ -475,13 +475,13 @@ const CrmIndustryTabs = ({ activeTab: mainActiveTab, setActiveTab: setMainActive
         
         {/* Navigation Arrows */}
         <div className="flex justify-between items-center absolute top-1/2 left-2 right-2 -translate-y-1/2 z-20 pointer-events-none">
-          <button 
+          <button aria-label="Previous" 
             onClick={handlePrevTab}
             className="w-9 h-9 rounded-full bg-white/95 dark:bg-black/60 border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-700 dark:text-gray-300 pointer-events-auto hover:bg-purple-600 hover:text-white transition-all backdrop-blur-sm shadow-md"
           >
              <ChevronLeft size={18} />
           </button>
-          <button 
+          <button aria-label="Next" 
             onClick={handleNextTab}
             className="w-9 h-9 rounded-full bg-white/95 dark:bg-black/60 border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-700 dark:text-gray-300 pointer-events-auto hover:bg-purple-600 hover:text-white transition-all backdrop-blur-sm shadow-md"
           >
@@ -546,7 +546,7 @@ const CrmIndustryTabs = ({ activeTab: mainActiveTab, setActiveTab: setMainActive
                   {data.stats.map((stat, idx) => (
                     <div key={idx} className="bg-white dark:bg-[#0c0830] p-3 rounded-xl border border-slate-200/90 dark:border-gray-800/80 shadow-xs">
                       <p className="text-[9px] text-slate-500 dark:text-gray-400 mb-1 leading-tight uppercase font-bold">{stat.label}</p>
-                      <h5 className={`text-sm md:text-base font-extrabold ${stat.color || 'text-slate-900 dark:text-white'}`}>{stat.value}</h5>
+                      <p className={`heading-text text-sm md:text-base font-extrabold ${stat.color || 'text-slate-900 dark:text-white'}`}>{stat.value}</p>
                       <span className="text-[9px] text-purple-600 dark:text-purple-400 font-bold">{stat.chg}</span>
                     </div>
                   ))}

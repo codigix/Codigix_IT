@@ -587,7 +587,7 @@ const ErpHero = ({ activeTab, seo }) => {
             <Rocket size={24} />
           </div>
           <div>
-            <h3 className="text-[17px] font-bold text-slate-900 dark:text-white">3+</h3>
+            <p className="heading-text text-[17px] font-bold text-slate-900 dark:text-white">3+</p>
             <p className="text-[10px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Successful<br />Implementations</p>
           </div>
         </div>
@@ -597,7 +597,7 @@ const ErpHero = ({ activeTab, seo }) => {
             <Building2 size={24} />
           </div>
           <div>
-            <h3 className="text-[17px] font-bold text-slate-900 dark:text-white">2+</h3>
+            <p className="heading-text text-[17px] font-bold text-slate-900 dark:text-white">2+</p>
             <p className="text-[10px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Industries<br />Served</p>
           </div>
         </div>
@@ -607,7 +607,7 @@ const ErpHero = ({ activeTab, seo }) => {
             <ShieldCheck size={24} />
           </div>
           <div>
-            <h3 className="text-[17px] font-bold text-slate-900 dark:text-white">99.9%</h3>
+            <p className="heading-text text-[17px] font-bold text-slate-900 dark:text-white">99.9%</p>
             <p className="text-[10px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">System<br />Uptime</p>
           </div>
         </div>
@@ -617,7 +617,7 @@ const ErpHero = ({ activeTab, seo }) => {
             <Users size={24} />
           </div>
           <div>
-            <h3 className="text-[17px] font-bold text-slate-900 dark:text-white">10+</h3>
+            <p className="heading-text text-[17px] font-bold text-slate-900 dark:text-white">10+</p>
             <p className="text-[10px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Users<br />Empowered</p>
           </div>
         </div>

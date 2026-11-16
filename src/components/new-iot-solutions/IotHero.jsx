@@ -436,7 +436,7 @@ const IotHero = ({ activeTab, seo }) => {
                 <MetricIcon size={22} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">{metric.value}</h3>
+                <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">{metric.value}</p>
                 <p className="text-[10px] text-slate-500 dark:text-gray-400 uppercase tracking-wide">{metric.label}</p>
               </div>
             </div>

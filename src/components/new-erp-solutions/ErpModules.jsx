@@ -64,9 +64,9 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
                 <div className={`p-2.5 rounded-full ${item.bg} ${item.color} mb-3 border border-purple-500/20 relative z-10`}>
                   <IconComp size={20} className="relative z-10" />
                 </div>
-                <h4 className={`text-[11px] font-bold leading-tight relative z-10 ${isActive ? 'text-purple-600 dark:text-purple-300' : 'text-slate-700 dark:text-gray-200'}`}>
+                <h3 className={`text-[11px] font-bold leading-tight relative z-10 ${isActive ? 'text-purple-600 dark:text-purple-300' : 'text-slate-700 dark:text-gray-200'}`}>
                   {item.title}
-                </h4>
+                </h3>
               </motion.div>
             );
           })}
@@ -84,7 +84,7 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
         >
           <div className="flex items-center gap-2 mb-2">
             <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
-            <h3 className="text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-widest">Active Module Overview</h3>
+            <p className="heading-text text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-widest">Active Module Overview</p>
           </div>
           <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-3">{activeTab} Solution Details</h2>
           <p className="text-xs md:text-sm text-slate-600 dark:text-gray-300 leading-relaxed max-w-4xl">
@@ -122,7 +122,7 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
               {deptDash.kpis?.map((kpi, idx) => (
                 <div key={idx} className="bg-white dark:bg-[#050117] p-4 rounded-xl border border-slate-200 dark:border-gray-800/80 shadow-sm">
                   <p className="text-[10px] text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-1">{kpi.label}</p>
-                  <h4 className={`text-lg font-bold ${kpi.color || 'text-slate-900 dark:text-white'}`}>{kpi.value}</h4>
+                  <p className={`heading-text text-lg font-bold ${kpi.color || 'text-slate-900 dark:text-white'}`}>{kpi.value}</p>
                 </div>
               ))}
             </div>
@@ -236,7 +236,7 @@ const ErpModules = ({ activeTab, setActiveTab }) => {
         >
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-xs font-extrabold text-purple-600 dark:text-purple-400 uppercase tracking-widest">Live Interactive Preview</h3>
+              <p className="heading-text text-xs font-extrabold text-purple-600 dark:text-purple-400 uppercase tracking-widest">Live Interactive Preview</p>
               <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-1">HR Management System</h2>
             </div>
             <a

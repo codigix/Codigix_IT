@@ -72,13 +72,13 @@ const CaseStudiesHero = () => {
         
         {/* Text */}
         <div className="xl:w-1/2 z-10 flex flex-col justify-center text-left">
-          <motion.h3 
+          <motion.p 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[#EE001C] font-bold uppercase tracking-widest text-[11px] mb-4"
+            className="heading-text text-[#EE001C] font-bold uppercase tracking-widest text-[11px] mb-4"
           >
             Case Studies
-          </motion.h3>
+          </motion.p>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -135,28 +135,28 @@ const CaseStudiesHero = () => {
          <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2">
             <Rocket size={24} className="text-purple-500 shrink-0" />
             <div>
-               <h4 className="text-xl font-bold text-slate-900 dark:text-white">150+</h4>
+               <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">150+</p>
                <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Projects Completed</p>
             </div>
          </div>
          <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2">
             <Building2 size={24} className="text-purple-500 shrink-0" />
             <div>
-               <h4 className="text-xl font-bold text-slate-900 dark:text-white">55+</h4>
+               <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">55+</p>
                <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Industries Served</p>
             </div>
          </div>
          <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2">
             <CheckCircle2 size={24} className="text-purple-500 shrink-0" />
             <div>
-               <h4 className="text-xl font-bold text-slate-900 dark:text-white">98.5%</h4>
+               <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">98.5%</p>
                <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Client Satisfaction</p>
             </div>
          </div>
          <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2">
             <Headphones size={24} className="text-orange-500 shrink-0" />
             <div>
-               <h4 className="text-xl font-bold text-slate-900 dark:text-white">July 2023</h4>
+               <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">July 2023</p>
                <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Company Founded</p>
             </div>
          </div>

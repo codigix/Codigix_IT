@@ -68,7 +68,7 @@ const NewBlogPage = () => {
         <NewHomeNav />
 
         {/* Blog Banner Hero */}
-        <div className="pt-32 pb-16 border-b border-slate-200 dark:border-gray-800/40 relative overflow-hidden bg-slate-50/50 dark:bg-black/10">
+        <div id="main-content" className="pt-32 pb-16 border-b border-slate-200 dark:border-gray-800/40 relative overflow-hidden bg-slate-50/50 dark:bg-black/10">
           <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/5 via-transparent to-pink-500/5 pointer-events-none" />
 
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
@@ -214,7 +214,7 @@ const NewBlogPage = () => {
           {filteredPosts.length === 0 && (
             <div className="text-center py-20 bg-white dark:bg-[#07041c] rounded-2xl border border-dashed border-slate-200 dark:border-gray-800 mt-6">
               <BookOpen size={40} className="text-slate-400 dark:text-gray-500 mx-auto mb-4" />
-              <h3 className="text-base font-bold text-slate-800 dark:text-white mb-2">No Articles Found</h3>
+              <h2 className="text-base font-bold text-slate-800 dark:text-white mb-2">No Articles Found</h2>
               <p className="text-xs text-slate-500 dark:text-gray-400 max-w-xs mx-auto">Try refining your search keyword or selecting a different tech category pill.</p>
             </div>
           )}

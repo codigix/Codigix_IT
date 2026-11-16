@@ -64,24 +64,6 @@ const NewHomePage = () => {
   const homeSchemas = [
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "@id": "https://codigixinfotech.com/#organization",
-      "name": "Codigix Infotech",
-      "url": "https://codigixinfotech.com/",
-      "description": "Software development company in Pune providing AI, ERP, Industrial IoT, CRM, custom software, cloud, DevOps and business automation solutions.",
-      "areaServed": [
-        "Pune",
-        "PCMC",
-        "Chakan",
-        "Bhosari",
-        "Talegaon",
-        "Ranjangaon",
-        "Tathawade",
-        "Hadapsar"
-      ]
-    },
-    {
-      "@context": "https://schema.org",
       "@type": "WebSite",
       "@id": "https://codigixinfotech.com/#website",
       "url": "https://codigixinfotech.com/",
@@ -95,7 +77,7 @@ const NewHomePage = () => {
       "@type": "WebPage",
       "@id": "https://codigixinfotech.com/#webpage",
       "url": "https://codigixinfotech.com/",
-      "name": "Software Development Company in Pune | Codigix",
+      "name": homeSeo.title,
       "isPartOf": {
         "@id": "https://codigixinfotech.com/#website"
       },
@@ -124,6 +106,18 @@ const NewHomePage = () => {
         "API & System Integration",
         "Business Automation"
       ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqData.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
     }
   ];
 
@@ -151,9 +145,7 @@ const NewHomePage = () => {
           />
         )}
 
-        <header>
-          <NewHomeNav />
-        </header>
+        <NewHomeNav />
 
         <main id="main-content">
           <HeroSection />

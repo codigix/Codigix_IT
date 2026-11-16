@@ -31,6 +31,18 @@ export const faqData = [
     question: "Can you integrate AI into our existing systems?",
     answer: "Yes, we engineer custom AI models, RAG pipelines, chatbots, voice agents, and computer vision tools that integrate seamlessly via REST APIs or gRPC with your existing software stack."
   },
+  {
+    id: 5,
+    icon: Building2,
+    question: "Where is Codigix Infotech located?",
+    answer: "Our office is at Office No. 514, 5th Floor, Brahma Sky Uzuri, MIDC, Pimpri Colony, Pimpri-Chinchwad, Maharashtra 411018."
+  },
+  {
+    id: 6,
+    icon: MessageSquare,
+    question: "How can I get in touch with Codigix Infotech?",
+    answer: "Call us on +91 9112706604, email info@codigixinfotech.com, or send your requirements through our contact page and our team will arrange a consultation."
+  },
 ];
 
 const FaqSection = () => {

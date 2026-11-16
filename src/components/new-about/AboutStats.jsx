@@ -13,42 +13,42 @@ const AboutStats = () => {
       <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2 min-w-[150px]">
         <Users size={24} className="text-purple-500 shrink-0" />
         <div>
-          <h4 className="text-xl font-bold text-slate-900 dark:text-white">10+</h4>
+          <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">10+</p>
           <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Team Members</p>
         </div>
       </div>
       <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2 min-w-[150px]">
         <Rocket size={24} className="text-purple-500 shrink-0" />
         <div>
-          <h4 className="text-xl font-bold text-slate-900 dark:text-white">10+</h4>
+          <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">10+</p>
           <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Projects Delivered</p>
         </div>
       </div>
       <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2 min-w-[150px]">
         <Building2 size={24} className="text-purple-500 shrink-0" />
         <div>
-          <h4 className="text-xl font-bold text-slate-900 dark:text-white">July 2023</h4>
+          <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">July 2023</p>
           <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Company Founded</p>
         </div>
       </div>
       <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2 min-w-[150px]">
         <ShieldCheck size={24} className="text-purple-500 shrink-0" />
         <div>
-          <h4 className="text-xl font-bold text-slate-900 dark:text-white">100%</h4>
+          <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">100%</p>
           <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Client Retention</p>
         </div>
       </div>
       <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2 min-w-[150px]">
         <Globe2 size={24} className="text-purple-500 shrink-0" />
         <div>
-          <h4 className="text-xl font-bold text-slate-900 dark:text-white">1</h4>
+          <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">1</p>
           <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Countries Served</p>
         </div>
       </div>
       <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2 min-w-[150px]">
         <Smile size={24} className="text-purple-500 shrink-0" />
         <div>
-          <h4 className="text-xl font-bold text-slate-900 dark:text-white">5+</h4>
+          <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">5+</p>
           <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Happy Clients</p>
         </div>
       </div>

@@ -310,7 +310,7 @@ const CrmHero = ({ activeTab, seo }) => {
             <TrendingUp size={20} />
           </div>
           <div>
-            <h3 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">3+</h3>
+            <p className="heading-text text-[16px] font-bold text-slate-900 dark:text-white leading-tight">3+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Happy<br />Customers</p>
           </div>
         </div>
@@ -320,7 +320,7 @@ const CrmHero = ({ activeTab, seo }) => {
             <Users size={20} />
           </div>
           <div>
-            <h3 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">5+</h3>
+            <p className="heading-text text-[16px] font-bold text-slate-900 dark:text-white leading-tight">5+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Users<br />Empowered</p>
           </div>
         </div>
@@ -330,7 +330,7 @@ const CrmHero = ({ activeTab, seo }) => {
             <ShieldCheck size={20} />
           </div>
           <div>
-            <h3 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">97.9%</h3>
+            <p className="heading-text text-[16px] font-bold text-slate-900 dark:text-white leading-tight">97.9%</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">System<br />Uptime</p>
           </div>
         </div>
@@ -340,7 +340,7 @@ const CrmHero = ({ activeTab, seo }) => {
             <Zap size={20} />
           </div>
           <div>
-            <h3 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">30%+</h3>
+            <p className="heading-text text-[16px] font-bold text-slate-900 dark:text-white leading-tight">30%+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Increase in<br />Productivity</p>
           </div>
         </div>
@@ -350,7 +350,7 @@ const CrmHero = ({ activeTab, seo }) => {
             <Smile size={20} />
           </div>
           <div>
-            <h3 className="text-[16px] font-bold text-slate-900 dark:text-white leading-tight">40%+</h3>
+            <p className="heading-text text-[16px] font-bold text-slate-900 dark:text-white leading-tight">40%+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-400 leading-tight tracking-wide">Higher Customer<br />Satisfaction</p>
           </div>
         </div>

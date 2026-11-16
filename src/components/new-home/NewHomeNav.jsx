@@ -182,6 +182,9 @@ const NewHomeNav = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 dark:bg-[#0d0b21]/95 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-gray-800' : 'bg-white dark:bg-[#07041a] border-b border-gray-200 dark:border-gray-800'}`}>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
 
       {/* Top Main Nav */}
       <div className={`transition-all duration-300 px-4 sm:px-6 lg:px-12 ${scrolled ? 'py-2' : 'py-3'}`}>
@@ -190,9 +193,9 @@ const NewHomeNav = () => {
             <img src="/assets/images/logos/logo.webp" alt="Codigix" className={`object-contain transition-all duration-300 ${scrolled ? 'h-10' : 'h-12'}`} />
           </Link>
 
-          <div className="hidden lg:flex items-center gap-5 xl:gap-8 ml-8">
+          <nav aria-label="Main" className="hidden lg:flex items-center gap-5 xl:gap-8 ml-8">
             {renderLinks(mainNavLinks)}
-          </div>
+          </nav>
 
           <div className="flex-1"></div>
 
@@ -213,6 +216,8 @@ const NewHomeNav = () => {
             <button
               className="text-slate-800 dark:text-white p-1"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -222,9 +227,9 @@ const NewHomeNav = () => {
 
       {/* Sub Nav (Dropdowns & Contact) */}
       <div className={`hidden lg:flex justify-between items-center px-4 sm:px-6 lg:px-12 border-t border-gray-100 dark:border-gray-800/80 bg-slate-50/50 dark:bg-black/20 transition-all duration-300 overflow-visible ${scrolled ? 'h-0 opacity-0 pointer-events-none border-transparent' : 'h-12 opacity-100'}`}>
-        <div className="flex items-center gap-4 xl:gap-8 pl-8">
+        <nav aria-label="Solutions" className="flex items-center gap-4 xl:gap-8 pl-8">
           {renderLinks(subNavLinks)}
-        </div>
+        </nav>
         <div className="flex items-center gap-6 text-[11px] font-bold text-slate-500 dark:text-gray-400">
           <span className="flex items-center gap-1.5 hover:text-purple-600 transition-colors cursor-pointer"><Mail size={12} /> info@codigixinfotech.com</span>
           <span className="flex items-center gap-1.5 hover:text-purple-600 transition-colors cursor-pointer"><Phone size={12} /> +91 9112706604</span>
@@ -238,6 +243,8 @@ const NewHomeNav = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
+            role="navigation"
+            aria-label="Mobile"
             className="absolute top-full left-0 right-0 bg-[#070320] border-b border-gray-800 shadow-xl py-4 px-4 lg:hidden flex flex-col space-y-4 max-h-[80vh] overflow-y-auto"
           >
             {[...mainNavLinks, ...subNavLinks].map((link, i) => {

@@ -116,9 +116,9 @@ const TrustedBySection = () => {
       </svg>
 
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <h3 className="text-center text-[11px] font-extrabold tracking-widest text-slate-600 dark:text-gray-300 uppercase mb-12">
+        <h2 className="text-center text-[11px] font-extrabold tracking-widest text-slate-600 dark:text-gray-300 uppercase mb-12">
           Trusted by Industries Worldwide
-        </h3>
+        </h2>
 
         <div className="flex flex-wrap justify-center gap-x-12 gap-y-10 lg:justify-between items-center opacity-90 hover:opacity-100 transition-opacity duration-500">
           {industries.map((industry, index) => (

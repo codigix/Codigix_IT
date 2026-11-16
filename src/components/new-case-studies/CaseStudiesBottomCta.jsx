@@ -12,7 +12,7 @@ const CaseStudiesBottomCta = () => {
         <div className="flex items-start gap-3">
           <Settings size={20} className="text-purple-500 opacity-80 shrink-0 mt-0.5" />
           <div>
-            <h4 className="text-[11px] font-bold text-slate-850 dark:text-gray-300">Industry Expertise</h4>
+            <p className="heading-text text-[11px] font-bold text-slate-850 dark:text-gray-300">Industry Expertise</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500">Deep domain knowledge</p>
           </div>
         </div>
@@ -20,7 +20,7 @@ const CaseStudiesBottomCta = () => {
         <div className="flex items-start gap-3">
           <Cpu size={20} className="text-purple-500 opacity-80 shrink-0 mt-0.5" />
           <div>
-            <h4 className="text-[11px] font-bold text-slate-850 dark:text-gray-300">Customized Solutions</h4>
+            <p className="heading-text text-[11px] font-bold text-slate-850 dark:text-gray-300">Customized Solutions</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500">Tailored for your needs</p>
           </div>
         </div>
@@ -28,7 +28,7 @@ const CaseStudiesBottomCta = () => {
         <div className="flex items-start gap-3">
           <Rocket size={20} className="text-purple-500 opacity-80 shrink-0 mt-0.5" />
           <div>
-            <h4 className="text-[11px] font-bold text-slate-850 dark:text-gray-300">Latest Technologies</h4>
+            <p className="heading-text text-[11px] font-bold text-slate-850 dark:text-gray-300">Latest Technologies</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500">Future-ready approach</p>
           </div>
         </div>
@@ -36,7 +36,7 @@ const CaseStudiesBottomCta = () => {
         <div className="flex items-start gap-3">
           <Clock size={20} className="text-purple-500 opacity-80 shrink-0 mt-0.5" />
           <div>
-            <h4 className="text-[11px] font-bold text-slate-855 dark:text-gray-300">On-Time Delivery</h4>
+            <p className="heading-text text-[11px] font-bold text-slate-855 dark:text-gray-300">On-Time Delivery</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500">Agile & efficient</p>
           </div>
         </div>
@@ -44,7 +44,7 @@ const CaseStudiesBottomCta = () => {
         <div className="flex items-start gap-3">
           <CheckCircle2 size={20} className="text-purple-500 opacity-80 shrink-0 mt-0.5" />
           <div>
-            <h4 className="text-[11px] font-bold text-slate-850 dark:text-gray-300">Quality Assurance</h4>
+            <p className="heading-text text-[11px] font-bold text-slate-850 dark:text-gray-300">Quality Assurance</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500">Tested & proven solutions</p>
           </div>
         </div>
@@ -52,7 +52,7 @@ const CaseStudiesBottomCta = () => {
         <div className="flex items-start gap-3">
           <Headphones size={20} className="text-purple-500 opacity-80 shrink-0 mt-0.5" />
           <div>
-            <h4 className="text-[11px] font-bold text-slate-850 dark:text-gray-300">Long-Term Support</h4>
+            <p className="heading-text text-[11px] font-bold text-slate-850 dark:text-gray-300">Long-Term Support</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500">We're with you always</p>
           </div>
         </div>

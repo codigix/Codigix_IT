@@ -53,7 +53,15 @@ app.get('/health', (req, res) => {
 // Serve frontend static files in production with optimized cache rules
 if (NODE_ENV === 'production') {
   const distPath = path.join(__dirname, '../dist');
-  const indexHtml = fs.readFileSync(path.join(distPath, 'index.html'), 'utf8');
+  // scripts/prerender.mjs writes dist/<route>/index.html for public pages and keeps
+  // the untouched SPA shell as app-shell.html for every other URL
+  const shellFile = fs.existsSync(path.join(distPath, 'app-shell.html')) ? 'app-shell.html' : 'index.html';
+  const shellHtml = fs.readFileSync(path.join(distPath, shellFile), 'utf8');
+  const prerenderedFile = (urlPath) => {
+    const relative = urlPath === '/' ? 'index.html' : path.join(urlPath.replace(/\/+$/, ''), 'index.html');
+    const file = path.join(distPath, relative);
+    return shellFile === 'app-shell.html' && file.startsWith(distPath) && fs.existsSync(file) ? file : null;
+  };
 
   // Permanent redirects for old ?tab= URLs, renamed hubs and alias routes
   app.use((req, res, next) => {
@@ -67,6 +75,7 @@ if (NODE_ENV === 'production') {
 
   app.use(express.static(distPath, {
     index: false, // "/" must go through the SEO-aware handler below
+    redirect: false, // pre-rendered page folders must not get a trailing-slash redirect
     maxAge: '1y',
     immutable: true,
     etag: true,
@@ -82,7 +91,9 @@ if (NODE_ENV === 'production') {
   // Express 5 needs a named wildcard; a bare '*' throws at startup
   app.get('/{*splat}', (req, res) => {
     res.setHeader('Cache-Control', 'no-cache, must-revalidate');
-    res.type('html').send(renderIndexHtml(indexHtml, req.path));
+    const file = prerenderedFile(req.path);
+    if (file) return res.sendFile(file);
+    res.type('html').send(renderIndexHtml(shellHtml, req.path));
   });
 }
 

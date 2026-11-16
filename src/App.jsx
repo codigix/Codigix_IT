@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import './index.css';
 import { trackPageView } from './utils/analytics';
 import { getSectionPaths, resolveRedirect } from './utils/seo';
+import { prerendered } from './utils/prerender';
 
 // Lazy load active pages
 const NewHomePage = lazy(() => import('./pages/NewHomePage'));
@@ -121,10 +122,20 @@ function AppRoutes() {
   );
 }
 
+// While a route's code loads, keep the pre-rendered page on screen for the URL
+// it was rendered for; otherwise show the loading screen.
+function RouteFallback() {
+  const { pathname } = useLocation();
+  if (prerendered && pathname === prerendered.path) {
+    return <div style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: prerendered.html }} />;
+  }
+  return <div className="min-h-screen bg-[#030014] flex items-center justify-center text-white font-mono text-sm">Loading Codigix...</div>;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div className="min-h-screen bg-[#030014] flex items-center justify-center text-white font-mono text-sm">Loading Codigix...</div>}>
+      <Suspense fallback={<RouteFallback />}>
         <AppRoutes />
       </Suspense>
     </BrowserRouter>

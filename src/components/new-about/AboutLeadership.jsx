@@ -72,7 +72,7 @@ const AboutLeadership = () => {
 
       <div className="flex items-center gap-4">
         {/* Left Arrow */}
-        <button className="w-10 h-10 rounded-full bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:border-purple-500 transition-colors shrink-0 shadow-sm hidden sm:flex">
+        <button aria-label="Previous" className="w-10 h-10 rounded-full bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:border-purple-500 transition-colors shrink-0 shadow-sm hidden sm:flex">
           <ChevronLeft size={20} />
         </button>
 
@@ -103,16 +103,24 @@ const AboutLeadership = () => {
                   {member.desc}
                 </p>
                 
+                {/* Profile links render only once a member has real URLs (linkedin / email / twitter) */}
                 <div className="flex items-center gap-3">
-                  <a href="#" className="w-8 h-8 rounded-full bg-slate-100 dark:bg-gray-800/50 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-white hover:bg-purple-600 transition-colors">
-                    <Linkedin size={14} />
-                  </a>
-                  <a href="#" className="w-8 h-8 rounded-full bg-slate-100 dark:bg-gray-800/50 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-white hover:bg-purple-600 transition-colors">
-                    <Mail size={14} />
-                  </a>
-                  <a href="#" className="w-8 h-8 rounded-full bg-slate-100 dark:bg-gray-800/50 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-white hover:bg-purple-600 transition-colors">
-                    <Twitter size={14} />
-                  </a>
+                  {[
+                    { href: member.linkedin, Icon: Linkedin, label: 'LinkedIn' },
+                    { href: member.email && `mailto:${member.email}`, Icon: Mail, label: 'Email' },
+                    { href: member.twitter, Icon: Twitter, label: 'X (Twitter)' }
+                  ].filter((social) => social.href).map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target={social.href.startsWith('mailto:') ? undefined : '_blank'}
+                      rel="noopener noreferrer"
+                      aria-label={`${member.name} on ${social.label}`}
+                      className="w-8 h-8 rounded-full bg-slate-100 dark:bg-gray-800/50 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-white hover:bg-purple-600 transition-colors"
+                    >
+                      <social.Icon size={14} aria-hidden="true" />
+                    </a>
+                  ))}
                 </div>
               </div>
             </motion.div>
@@ -120,7 +128,7 @@ const AboutLeadership = () => {
         </div>
 
         {/* Right Arrow */}
-        <button className="w-10 h-10 rounded-full bg-[#050112] border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500 transition-colors shrink-0 shadow-lg hidden sm:flex">
+        <button aria-label="Next" className="w-10 h-10 rounded-full bg-[#050112] border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500 transition-colors shrink-0 shadow-lg hidden sm:flex">
           <ChevronRight size={20} />
         </button>
       </div>

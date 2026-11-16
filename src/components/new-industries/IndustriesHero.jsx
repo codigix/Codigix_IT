@@ -186,28 +186,28 @@ const IndustriesHero = ({ activeIndustry = 'Manufacturing', seo }) => {
         <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2">
           <Rocket size={24} className="text-blue-500 shrink-0" />
           <div>
-            <h4 className="text-xl font-bold text-slate-900 dark:text-white">150+</h4>
+            <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">150+</p>
             <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Projects Delivered</p>
           </div>
         </div>
         <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2">
           <Building2 size={24} className="text-purple-500 shrink-0" />
           <div>
-            <h4 className="text-xl font-bold text-slate-900 dark:text-white">10+</h4>
+            <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">10+</p>
             <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Industries Served</p>
           </div>
         </div>
         <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2">
           <CheckCircle2 size={24} className="text-green-500 shrink-0" />
           <div>
-            <h4 className="text-xl font-bold text-slate-900 dark:text-white">98.5%</h4>
+            <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">98.5%</p>
             <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Client Satisfaction</p>
           </div>
         </div>
         <div className="flex-1 flex items-center justify-center gap-4 py-4 md:py-0 px-2">
           <Headphones size={24} className="text-orange-500 shrink-0" />
           <div>
-            <h4 className="text-xl font-bold text-slate-900 dark:text-white">24/7</h4>
+            <p className="heading-text text-xl font-bold text-slate-900 dark:text-white">24/7</p>
             <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-widest whitespace-nowrap">Support Available</p>
           </div>
         </div>

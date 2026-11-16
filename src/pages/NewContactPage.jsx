@@ -15,7 +15,7 @@ const NewContactPage = () => {
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
   const canonicalUrl = `${siteUrl}/contact`;
 
-  const pageTitle = "Contact Us | Codigix Infotech - Free Consultation & IT Services Inquiry";
+  const pageTitle = "Contact Codigix Infotech | Free IT Consultation in Pune";
   const metaDescription = "Get in touch with Codigix Infotech for enterprise AI solutions, Industrial IoT automation, custom ERP/CRM engineering, and IT consulting. Contact our Pune office or schedule a meeting.";
 
   // JSON-LD Schemas for Local Business & Contact Point
@@ -89,7 +89,7 @@ const NewContactPage = () => {
     "url": siteUrl,
     "logo": `${siteUrl}/assets/images/logos/logo.webp`,
     "sameAs": [
-      "https://www.linkedin.com/company/135144609/admin/",
+      "https://www.linkedin.com/company/135144609/",
       "https://www.facebook.com/codigix.infotech",
       "https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==",
       "https://x.com/CodigixI2994",
@@ -101,7 +101,7 @@ const NewContactPage = () => {
     <>
       <SEO
         title={pageTitle}
-        metaTitle={pageTitle}
+        exactTitle={true}
         description={metaDescription}
         keywords="Contact Codigix Infotech, IT company Pune contact, software consultation, AI consulting inquiry, Industrial IoT development contact, custom software quote, Codigix email address, Codigix phone number"
         canonical={canonicalUrl}
@@ -112,12 +112,10 @@ const NewContactPage = () => {
       <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white selection:bg-purple-500/30 transition-colors duration-300">
 
         {/* Navigation */}
-        <header>
-          <NewHomeNav />
-        </header>
+        <NewHomeNav />
 
         {/* Main Content Area */}
-        <main className="mx-auto px-4 sm:px-6 lg:px-12 pt-32 lg:pt-36 pb-12">
+        <main id="main-content" className="mx-auto px-4 sm:px-6 lg:px-12 pt-32 lg:pt-36 pb-12">
 
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide uppercase font-bold">

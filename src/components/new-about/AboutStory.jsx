@@ -41,9 +41,9 @@ const AboutStory = () => {
       
       {/* Left: Text */}
       <div className="lg:w-1/3">
-        <h3 className="text-[#EE001C] font-bold uppercase tracking-widest text-[11px] mb-4">
+        <p className="heading-text text-[#EE001C] font-bold uppercase tracking-widest text-[11px] mb-4">
           Our Story
-        </h3>
+        </p>
         <h2 className="text-3xl font-bold text-slate-900 dark:text-white leading-tight mb-6">
           A Journey of Passion,<br/>
           Purpose & Progress
@@ -51,8 +51,11 @@ const AboutStory = () => {
         <p className="text-[12px] text-slate-600 dark:text-gray-400 leading-relaxed mb-6">
           Founded in July 2023 with a vision to bridge the gap between complex business challenges and technology, Codigix has rapidly grown into a trusted partner for organizations across industries.
         </p>
-        <p className="text-[12px] text-slate-600 dark:text-gray-400 leading-relaxed mb-8">
+        <p className="text-[12px] text-slate-600 dark:text-gray-400 leading-relaxed mb-6">
           From a visionary team of tech innovators to a full-fledged digital solutions provider, our journey is built on trust, innovation, and a relentless commitment to excellence.
+        </p>
+        <p className="text-[12px] text-slate-600 dark:text-gray-400 leading-relaxed mb-8">
+          Codigix Infotech Pvt. Ltd. is led by founder and CEO Nitin Kamble and CTO Ashwini Khedekar. Our team of 10+ software engineers, testers, business analysts and CMS specialists works from our office at Brahma Sky Uzuri, MIDC, Pimpri Colony, Pimpri-Chinchwad, Maharashtra.
         </p>
         
         <button className="px-5 py-2.5 bg-transparent border border-slate-350 dark:border-[#EE001C]/40 hover:border-[#EE001C] hover:bg-slate-100 dark:hover:bg-[#EE001C]/10 text-slate-800 dark:text-white text-[12px] font-medium rounded-lg transition-all flex items-center gap-2">
@@ -87,7 +90,7 @@ const AboutStory = () => {
               </div>
               
               <div className="text-[#EE001C] font-bold text-[12px] mb-2 whitespace-nowrap">{item.year}</div>
-              <h4 className="text-slate-900 dark:text-white font-bold text-[12px] mb-2 leading-tight">{item.title}</h4>
+              <h3 className="text-slate-900 dark:text-white font-bold text-[12px] mb-2 leading-tight">{item.title}</h3>
               <p className="text-[10px] text-slate-500 dark:text-gray-500 leading-snug">{item.desc}</p>
             </motion.div>
           ))}

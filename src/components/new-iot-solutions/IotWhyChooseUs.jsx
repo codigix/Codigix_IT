@@ -9,9 +9,9 @@ const IotWhyChooseUs = ({ activeTab }) => {
   return (
     <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-8">
       <div className="text-center mb-10">
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
           Why Choose Our <span className="text-rose-600 dark:text-rose-500">{data.whyTitle || activeTab}?</span>
-        </h3>
+        </h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
@@ -36,7 +36,7 @@ const IotWhyChooseUs = ({ activeTab }) => {
               <div className={`p-4 rounded-full ${item.bg || 'bg-rose-500/10'} ${item.color || 'text-rose-500'} mb-5 shadow-[0_0_15px_currentColor] opacity-90 transition-transform duration-300 group-hover:scale-110 relative z-10`}>
                 <ReasonIcon size={22} className="relative z-10" />
               </div>
-              <h4 className="text-[13px] font-bold text-slate-900 dark:text-white mb-2 leading-tight relative z-10">{item.title}</h4>
+              <h3 className="text-[13px] font-bold text-slate-900 dark:text-white mb-2 leading-tight relative z-10">{item.title}</h3>
               <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-relaxed relative z-10">{item.description}</p>
             </motion.div>
           );

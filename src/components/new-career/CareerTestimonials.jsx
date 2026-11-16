@@ -74,7 +74,7 @@ const CareerTestimonials = () => {
 
       <div className="flex items-center gap-4">
         {/* Left Arrow */}
-        <button 
+        <button aria-label="Previous" 
           onClick={handlePrev}
           className="w-10 h-10 rounded-full border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:border-[#EE001C] dark:hover:border-[#EE001C] bg-white dark:bg-transparent shadow-sm shrink-0 transition-colors"
         >
@@ -112,7 +112,7 @@ const CareerTestimonials = () => {
                       }}
                     />
                     <div>
-                      <h4 className="text-[12px] font-bold text-slate-900 dark:text-white">{test.name}</h4>
+                      <h3 className="text-[12px] font-bold text-slate-900 dark:text-white">{test.name}</h3>
                       <p className="text-[9px] text-slate-550 dark:text-gray-500">{test.title}</p>
                     </div>
                   </div>
@@ -123,7 +123,7 @@ const CareerTestimonials = () => {
         </div>
 
         {/* Right Arrow */}
-        <button 
+        <button aria-label="Next" 
           onClick={handleNext}
           className="w-10 h-10 rounded-full border border-slate-200 dark:border-gray-700 flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:border-[#EE001C] dark:hover:border-[#EE001C] bg-white dark:bg-transparent shadow-sm shrink-0 transition-colors"
         >

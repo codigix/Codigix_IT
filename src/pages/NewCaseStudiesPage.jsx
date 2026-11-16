@@ -110,7 +110,7 @@ const NewCaseStudiesPage = () => {
     "url": siteUrl,
     "logo": `${siteUrl}/assets/images/logos/logo.webp`,
     "sameAs": [
-      "https://www.linkedin.com/company/135144609/admin/",
+      "https://www.linkedin.com/company/135144609/",
       "https://www.facebook.com/codigix.infotech",
       "https://www.instagram.com/codigixerp_crm?igsh=MWIxazRrNmVucmN6dg==",
       "https://x.com/CodigixI2994",
@@ -133,12 +133,10 @@ const NewCaseStudiesPage = () => {
       <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white selection:bg-purple-500/30 transition-colors duration-300">
 
         {/* Navigation */}
-        <header>
-          <NewHomeNav />
-        </header>
+        <NewHomeNav />
 
         {/* Main Layout Container */}
-        <main className="mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 pt-32 pb-12">
+        <main id="main-content" className="mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 pt-32 pb-12">
 
           {/* Breadcrumb (Full Width at Top) */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide uppercase font-bold">

@@ -8,13 +8,13 @@ const ContactHero = () => {
       
       {/* Left: Text Content */}
       <div className="xl:w-1/2 z-10 flex flex-col justify-center text-left">
-        <motion.h3 
+        <motion.p 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-purple-600 dark:text-purple-400 font-extrabold uppercase tracking-widest text-xs mb-3"
+          className="heading-text text-purple-600 dark:text-purple-400 font-extrabold uppercase tracking-widest text-xs mb-3"
         >
           Contact Us
-        </motion.h3>
+        </motion.p>
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,7 +42,7 @@ const ContactHero = () => {
           <div className="flex items-start gap-3">
              <Headphones size={24} className="text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" />
              <div>
-               <h4 className="text-[12px] font-extrabold text-slate-900 dark:text-white mb-0.5">Quick Response</h4>
+               <p className="heading-text text-[12px] font-extrabold text-slate-900 dark:text-white mb-0.5">Quick Response</p>
                <p className="text-[10px] text-slate-500 dark:text-gray-400 font-medium">We reply within 24 hours</p>
              </div>
           </div>
@@ -50,7 +50,7 @@ const ContactHero = () => {
           <div className="flex items-start gap-3">
              <ShieldCheck size={24} className="text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" />
              <div>
-               <h4 className="text-[12px] font-extrabold text-slate-900 dark:text-white mb-0.5">Secure & Confidential</h4>
+               <p className="heading-text text-[12px] font-extrabold text-slate-900 dark:text-white mb-0.5">Secure & Confidential</p>
                <p className="text-[10px] text-slate-500 dark:text-gray-400 font-medium">Your information is safe</p>
              </div>
           </div>
@@ -58,7 +58,7 @@ const ContactHero = () => {
           <div className="flex items-start gap-3">
              <Users size={24} className="text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" />
              <div>
-               <h4 className="text-[12px] font-extrabold text-slate-900 dark:text-white mb-0.5">Expert Support</h4>
+               <p className="heading-text text-[12px] font-extrabold text-slate-900 dark:text-white mb-0.5">Expert Support</p>
                <p className="text-[10px] text-slate-500 dark:text-gray-400 font-medium">Talk to solution experts</p>
              </div>
           </div>

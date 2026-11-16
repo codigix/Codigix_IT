@@ -126,7 +126,7 @@ const SolutionSidebar = ({
             className="w-full pl-9 pr-8 py-2 bg-white dark:bg-[#0c0828] border border-slate-200 dark:border-purple-900/40 rounded-xl text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors shadow-sm"
           />
           {searchQuery && (
-            <button
+            <button aria-label="Close"
               onClick={() => setSearchQuery('')}
               className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500 hover:text-slate-700 dark:hover:text-white"
             >

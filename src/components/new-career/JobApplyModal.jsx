@@ -198,7 +198,7 @@ const JobApplyModal = ({ isOpen, onClose, job, initialMode = 'apply' }) => {
           {/* Header */}
           <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-slate-200 dark:border-gray-800/80 bg-slate-50 dark:bg-[#09051f]">
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-wide">Apply for this Job</h2>
-            <button
+            <button aria-label="Close"
               onClick={onClose}
               className="w-9 h-9 rounded-full bg-slate-200/60 hover:bg-slate-300 dark:bg-gray-800/60 dark:hover:bg-gray-700 flex items-center justify-center text-slate-650 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors"
             >

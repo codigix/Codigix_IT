@@ -12,7 +12,7 @@ const AboutBottomCta = () => {
         <div className="flex items-center gap-3">
           <Users size={20} className="text-[#EE001C] opacity-80 shrink-0" />
           <div>
-            <h4 className="text-[13px] font-bold text-slate-900 dark:text-white mb-0.5">150+</h4>
+            <p className="heading-text text-[13px] font-bold text-slate-900 dark:text-white mb-0.5">150+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-widest">Team Members</p>
           </div>
         </div>
@@ -20,7 +20,7 @@ const AboutBottomCta = () => {
         <div className="flex items-center gap-3">
           <Rocket size={20} className="text-[#EE001C] opacity-80 shrink-0" />
           <div>
-            <h4 className="text-[13px] font-bold text-slate-900 dark:text-white mb-0.5">250+</h4>
+            <p className="heading-text text-[13px] font-bold text-slate-900 dark:text-white mb-0.5">250+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-widest">Projects Delivered</p>
           </div>
         </div>
@@ -28,7 +28,7 @@ const AboutBottomCta = () => {
         <div className="flex items-center gap-3">
           <ShieldCheck size={20} className="text-[#EE001C] opacity-80 shrink-0" />
           <div>
-            <h4 className="text-[13px] font-bold text-slate-900 dark:text-white mb-0.5">98.5%</h4>
+            <p className="heading-text text-[13px] font-bold text-slate-900 dark:text-white mb-0.5">98.5%</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-widest">Client Retention</p>
           </div>
         </div>
@@ -36,7 +36,7 @@ const AboutBottomCta = () => {
         <div className="flex items-center gap-3">
           <Smile size={20} className="text-[#EE001C] opacity-80 shrink-0" />
           <div>
-            <h4 className="text-[13px] font-bold text-slate-900 dark:text-white mb-0.5">500+</h4>
+            <p className="heading-text text-[13px] font-bold text-slate-900 dark:text-white mb-0.5">500+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-widest">Happy Clients</p>
           </div>
         </div>
@@ -44,7 +44,7 @@ const AboutBottomCta = () => {
         <div className="flex items-center gap-3">
           <Clock size={20} className="text-[#EE001C] opacity-80 shrink-0" />
           <div>
-            <h4 className="text-[13px] font-bold text-slate-900 dark:text-white mb-0.5">24/7</h4>
+            <p className="heading-text text-[13px] font-bold text-slate-900 dark:text-white mb-0.5">24/7</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-widest">Support Available</p>
           </div>
         </div>

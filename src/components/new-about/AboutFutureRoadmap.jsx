@@ -136,7 +136,7 @@ const AboutFutureRoadmap = () => {
                   }`}>
                     <IconComp size={18} />
                   </div>
-                  <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-snug line-clamp-2">{phase.title}</h4>
+                  <h3 className="text-xs font-bold text-slate-900 dark:text-white leading-snug line-clamp-2">{phase.title}</h3>
                 </div>
               </div>
 

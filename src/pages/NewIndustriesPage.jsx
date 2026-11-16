@@ -93,9 +93,7 @@ const NewIndustriesPage = () => {
       <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white selection:bg-purple-500/30 transition-colors duration-300">
 
         {/* Navigation Header */}
-        <header>
-          <NewHomeNav />
-        </header>
+        <NewHomeNav />
 
         {/* Main Layout Container */}
         <div className="mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 pt-32 pb-12">

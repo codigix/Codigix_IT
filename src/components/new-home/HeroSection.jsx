@@ -72,7 +72,7 @@ const HeroSection = () => {
                 </span>
               </h1>
               <p className="text-slate-600 dark:text-gray-300 text-base md:text-md max-w-xl leading-relaxed font-normal">
-                We build intelligent ERP, CRM, AI Automation systems, custom IoT platforms, and enterprise software that streamline operations and accelerate growth.
+                Codigix Infotech is an IT company in Pimpri-Chinchwad, Pune, founded in July 2023. We build AI, industrial IoT, ERP, CRM and custom software that automates operations and helps businesses grow.
               </p>
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
@@ -261,7 +261,7 @@ const HeroSection = () => {
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10"
             >
-              <button
+              <button aria-label="Close"
                 onClick={() => setIsVideoModalOpen(false)}
                 className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/80 text-white rounded-full transition-colors"
               >

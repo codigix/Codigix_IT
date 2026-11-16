@@ -125,12 +125,10 @@ const PrivacyPolicyPage = () => {
       <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white selection:bg-purple-500/30 transition-colors duration-300">
 
         {/* Navigation Header */}
-        <header>
-          <NewHomeNav />
-        </header>
+        <NewHomeNav />
 
         {/* Main Content Area */}
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 lg:pt-36 pb-20">
+        <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 lg:pt-36 pb-20">
 
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 mb-8 tracking-wide uppercase font-bold">

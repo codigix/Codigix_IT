@@ -29,7 +29,7 @@ const CaseStudiesSidebar = ({ activeCategory, setActiveCategory }) => {
     <div className="w-full">
       {/* Categories Box */}
       <div className="bg-white dark:bg-[#0a0624]/60 border border-slate-200 dark:border-gray-800/80 rounded-2xl p-4 mb-6 shadow-sm dark:shadow-xl">
-        <h3 className="text-[11px] font-bold text-slate-400 dark:text-gray-550 uppercase tracking-widest mb-4 px-2">Case Study Categories</h3>
+        <h2 className="text-[11px] font-bold text-slate-400 dark:text-gray-550 uppercase tracking-widest mb-4 px-2">Case Study Categories</h2>
         <div className="flex flex-col">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
@@ -51,9 +51,9 @@ const CaseStudiesSidebar = ({ activeCategory, setActiveCategory }) => {
                   <cat.icon size={15} />
                 </div>
                 <div>
-                  <h4 className={`text-[11px] font-medium leading-none transition-colors ${
+                  <p className={`heading-text text-[11px] font-medium leading-none transition-colors ${
                     isActive ? 'font-semibold text-white' : 'text-slate-700 dark:text-gray-300'
-                  }`}>{cat.name}</h4>
+                  }`}>{cat.name}</p>
                 </div>
               </div>
             );
@@ -63,7 +63,7 @@ const CaseStudiesSidebar = ({ activeCategory, setActiveCategory }) => {
 
       {/* Contact Box */}
       <div className="bg-white dark:bg-[#0a0624]/60 border border-slate-200 dark:border-gray-800/80 rounded-2xl p-6 shadow-sm dark:shadow-xl flex flex-col gap-3">
-        <h4 className="text-slate-900 dark:text-white font-bold text-sm">Have a similar challenge?</h4>
+        <h3 className="text-slate-900 dark:text-white font-bold text-sm">Have a similar challenge?</h3>
         <p className="text-slate-550 dark:text-gray-400 text-[12px] leading-relaxed">
           Let's build a solution that works for your business.
         </p>

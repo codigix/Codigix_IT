@@ -55,13 +55,13 @@ const AboutHero = () => {
         
         {/* Left: Text Content */}
         <div className="xl:w-2/5 z-10 flex flex-col justify-center text-left">
-          <motion.h3 
+          <motion.p 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[#EE001C] font-bold uppercase tracking-widest text-[11px] mb-4"
+            className="heading-text text-[#EE001C] font-bold uppercase tracking-widest text-[11px] mb-4"
           >
             About Codigix
-          </motion.h3>
+          </motion.p>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

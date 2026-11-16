@@ -13,7 +13,7 @@ const ErpIntegrationsBanner = () => {
       </div>
 
       <div className="flex-1 z-10 text-center md:text-left">
-        <h4 className="text-[15px] font-bold text-slate-900 dark:text-white mb-2 tracking-wide">ERP Integrations</h4>
+        <h3 className="text-[15px] font-bold text-slate-900 dark:text-white mb-2 tracking-wide">ERP Integrations</h3>
         <p className="text-[12px] text-slate-600 dark:text-gray-400 leading-relaxed max-w-2xl">
           Seamlessly integrate with third-party applications, IoT devices, payment gateways, CRM, eCommerce, and other business-critical systems.
         </p>

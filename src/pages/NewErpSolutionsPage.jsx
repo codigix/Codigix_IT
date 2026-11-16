@@ -93,9 +93,7 @@ const NewErpSolutionsPage = () => {
       <div className="bg-theme-bg min-h-screen font-sans text-slate-900 dark:text-white selection:bg-purple-500/30 transition-colors duration-300">
 
         {/* Navigation */}
-        <header>
-          <NewHomeNav />
-        </header>
+        <NewHomeNav />
 
         {/* Main Layout Container */}
         <div className="erp-layout-container mx-auto pt-32 lg:pt-36">

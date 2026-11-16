@@ -97,7 +97,7 @@ const CtaFooterSection = () => {
                 We build future-ready AI, IoT and software solutions that transform businesses and drive real results.
               </p>
               <div className="flex space-x-2">
-                <a href="https://www.linkedin.com/company/135144609/admin/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="w-7 h-7 rounded-full bg-[#0077b5] flex items-center justify-center text-white hover:opacity-80 transition-opacity">
+                <a href="https://www.linkedin.com/company/135144609/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="w-7 h-7 rounded-full bg-[#0077b5] flex items-center justify-center text-white hover:opacity-80 transition-opacity">
                   <Linkedin size={14} fill="currentColor" />
                 </a>
                 <a href="https://www.facebook.com/codigix.infotech" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile" className="w-7 h-7 rounded-full bg-[#1877f2] flex items-center justify-center text-white hover:opacity-80 transition-opacity">
@@ -117,7 +117,7 @@ const CtaFooterSection = () => {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Quick Links</h4>
+              <h2 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Quick Links</h2>
               <ul className="space-y-3">
                 {quickLinks.map(link => (
                   <li key={link.name}>
@@ -135,7 +135,7 @@ const CtaFooterSection = () => {
 
             {/* Solutions */}
             <div>
-              <h4 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Solutions</h4>
+              <h2 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Solutions</h2>
               <ul className="space-y-3">
                 {solutionsLinks.map(link => (
                   <li key={link.name}>
@@ -153,7 +153,7 @@ const CtaFooterSection = () => {
 
             {/* Industries */}
             <div>
-              <h4 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Industries</h4>
+              <h2 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Industries</h2>
               <ul className="space-y-3">
                 {industriesLinks.map(link => (
                   <li key={link.name}>
@@ -171,7 +171,7 @@ const CtaFooterSection = () => {
 
             {/* Support */}
             <div>
-              <h4 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Support</h4>
+              <h2 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Support</h2>
               <ul className="space-y-3">
                 {supportLinks.map(link => (
                   <li key={link.name}>
@@ -200,7 +200,7 @@ const CtaFooterSection = () => {
 
             {/* Contact Us */}
             <div>
-              <h4 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Contact Us</h4>
+              <h2 className="text-slate-900 dark:text-white text-sm font-semibold mb-6">Contact Us</h2>
               <ul className="space-y-4">
                 <li>
                   <a href="tel:+919112706604" className="flex items-start gap-2 text-[12px] text-slate-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-300 transition-colors">

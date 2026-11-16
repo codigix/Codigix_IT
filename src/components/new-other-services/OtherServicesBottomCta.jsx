@@ -14,7 +14,7 @@ const OtherServicesBottomCta = () => {
             <CheckSquare size={20} />
           </div>
           <div>
-            <h4 className="text-[11px] font-bold text-slate-900 dark:text-white">150+</h4>
+            <p className="heading-text text-[11px] font-bold text-slate-900 dark:text-white">150+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-wide">Successful Projects</p>
           </div>
         </div>
@@ -24,7 +24,7 @@ const OtherServicesBottomCta = () => {
             <Users size={20} />
           </div>
           <div>
-            <h4 className="text-[11px] font-bold text-slate-900 dark:text-white">50+</h4>
+            <p className="heading-text text-[11px] font-bold text-slate-900 dark:text-white">50+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-wide">Happy Clients</p>
           </div>
         </div>
@@ -34,7 +34,7 @@ const OtherServicesBottomCta = () => {
             <Building size={20} />
           </div>
           <div>
-            <h4 className="text-[11px] font-bold text-slate-900 dark:text-white">10+</h4>
+            <p className="heading-text text-[11px] font-bold text-slate-900 dark:text-white">10+</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-wide">Industries Served</p>
           </div>
         </div>
@@ -44,7 +44,7 @@ const OtherServicesBottomCta = () => {
             <Smile size={20} />
           </div>
           <div>
-            <h4 className="text-[11px] font-bold text-slate-900 dark:text-white">99.9%</h4>
+            <p className="heading-text text-[11px] font-bold text-slate-900 dark:text-white">99.9%</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-wide">Client Satisfaction</p>
           </div>
         </div>
@@ -54,7 +54,7 @@ const OtherServicesBottomCta = () => {
             <Clock size={20} />
           </div>
           <div>
-            <h4 className="text-[11px] font-bold text-slate-900 dark:text-white">24/7</h4>
+            <p className="heading-text text-[11px] font-bold text-slate-900 dark:text-white">24/7</p>
             <p className="text-[9px] text-slate-500 dark:text-gray-500 uppercase tracking-wide">Support Available</p>
           </div>
         </div>

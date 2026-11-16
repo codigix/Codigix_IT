@@ -476,7 +476,7 @@ const NewBlogDetailsPage = () => {
       <div className="bg-white dark:bg-[#030014] min-h-screen font-sans text-slate-900 dark:text-white transition-colors duration-300">
         <NewHomeNav />
 
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 lg:pt-36 pb-20">
+        <div id="main-content" className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 lg:pt-36 pb-20">
 
           {/* Top Breadcrumb */}
           <div className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-gray-400 font-bold uppercase tracking-wider mb-8">
@@ -765,7 +765,7 @@ const NewBlogDetailsPage = () => {
                   placeholder="Search blog..."
                   className="w-full pl-4 pr-12 py-3 rounded-xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-[#07041c] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-purple-600 shadow-sm"
                 />
-                <button className="absolute right-1 top-1 bottom-1 w-10 bg-purple-600 text-white flex items-center justify-center rounded-lg hover:bg-purple-700 transition-colors">
+                <button aria-label="Search" className="absolute right-1 top-1 bottom-1 w-10 bg-purple-600 text-white flex items-center justify-center rounded-lg hover:bg-purple-700 transition-colors">
                   <Search size={16} />
                 </button>
               </div>
