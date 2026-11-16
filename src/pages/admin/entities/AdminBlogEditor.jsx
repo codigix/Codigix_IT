@@ -10,10 +10,156 @@ import {
   Plus,
   GripVertical,
   ChevronDown,
-  Sparkles
+  Sparkles,
+  ImagePlus
 } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
+
+// Recommended number of images placed inside the article body
+const MIN_CONTENT_IMAGES = 2;
+
+// --- Content image helpers (images live inside the `body` HTML) ---
+const escapeAttr = (s = '') =>
+  String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+const buildContentImageHtml = ({ url, alt, caption }, withSpacer = true) =>
+  `<figure class="blog-content-image"><img src="${escapeAttr(url)}" alt="${escapeAttr(alt)}" loading="lazy" />` +
+  (caption ? `<figcaption>${escapeAttr(caption)}</figcaption>` : '') +
+  `</figure>` + (withSpacer ? `<p><br></p>` : '');
+
+const parseHtml = (html) => new DOMParser().parseFromString(html || '', 'text/html');
+
+// HTML that was pasted as plain text shows up as "&lt;p&gt;..." in the editor
+const ESCAPED_TAG_RE = /&lt;\/?(?:p|h[1-6]|span|div|ul|ol|li|strong|em|b|i|u|a|img|figure|figcaption|table|tr|td|th|blockquote|br|html|head|body)\b|&lt;!--\s*(?:Start|End)Fragment/gi;
+const DOC_WRAPPER_RE = /<(?:html|head|body|meta|style|script|title)\b|<!--\s*(?:Start|End)Fragment|<span>/i;
+
+/**
+ * Makes the article body clean HTML:
+ * - HTML source pasted as text (tags shown literally) is turned back into HTML
+ * - <html>/<head>/<body> wrappers, <!--StartFragment--> comments, meta/style/script are removed
+ * - empty <span> wrappers (from copy-paste) are unwrapped
+ * Normal editor HTML is returned unchanged.
+ */
+const cleanBodyHtml = (html) => {
+  if (!html || typeof html !== 'string') return html;
+  let source = html;
+  if ((source.match(ESCAPED_TAG_RE) || []).length >= 3) {
+    source = parseHtml(source).body.textContent || '';
+  }
+  if (!DOC_WRAPPER_RE.test(source)) return source;
+
+  const doc = parseHtml(source);
+  doc.body.querySelectorAll('meta, style, script, title, link').forEach(el => el.remove());
+  const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_COMMENT);
+  const comments = [];
+  while (walker.nextNode()) comments.push(walker.currentNode);
+  comments.forEach(c => c.remove());
+  doc.body.querySelectorAll('span').forEach(span => {
+    if (!span.attributes.length) span.replaceWith(...span.childNodes);
+  });
+  return doc.body.innerHTML.trim();
+};
+
+// AI-written image spots, e.g. "[INSERT CONTENT IMAGE 1 HERE – Manufacturing ERP Dashboard]"
+const PLACEHOLDER_RE = /\[\s*INSERT\s+(?:CONTENT\s+)?IMAGE\s*(\d*)\s*(?:HERE)?\s*[–—:-]?\s*([^\]]*)\]/i;
+
+const findPlaceholderNodes = (doc) => {
+  const nodes = [];
+  const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
+  while (walker.nextNode()) {
+    if (PLACEHOLDER_RE.test(walker.currentNode.nodeValue)) nodes.push(walker.currentNode);
+  }
+  return nodes;
+};
+
+/** [{ number, label }] for every image placeholder in the article, in order. */
+const getImagePlaceholders = (html) => {
+  if (!html) return [];
+  return findPlaceholderNodes(parseHtml(html)).map((node, i) => {
+    const m = node.nodeValue.match(PLACEHOLDER_RE);
+    return { number: m[1] || String(i + 1), label: (m[2] || '').trim() };
+  });
+};
+
+/** Replaces the nth placeholder with the image (the whole paragraph when it holds only the placeholder). */
+const replacePlaceholder = (html, index, img) => {
+  const doc = parseHtml(html);
+  const node = findPlaceholderNodes(doc)[index];
+  if (!node) return html;
+  const tpl = doc.createElement('template');
+  tpl.innerHTML = buildContentImageHtml(img, false);
+  const figure = tpl.content.firstChild;
+
+  const block = node.parentElement?.closest('p, div, h1, h2, h3, h4, h5, h6, li') || null;
+  const placeholderText = node.nodeValue.match(PLACEHOLDER_RE)[0];
+  if (block && block.textContent.trim() === placeholderText.trim()) {
+    block.replaceWith(figure);
+  } else {
+    node.nodeValue = node.nodeValue.replace(PLACEHOLDER_RE, '');
+    if (block) block.after(figure);
+    else node.after(figure);
+  }
+  return doc.body.innerHTML;
+};
+
+/** Uploads one file to /api/upload and returns its URL. */
+const uploadImageFile = async (file) => {
+  const fd = new FormData();
+  fd.append('image', file);
+  const res = await fetch(`${API_BASE}/upload`, { method: 'POST', body: fd });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || !data.url) throw new Error(data.error || `Upload failed (${res.status})`);
+  return data.url;
+};
+
+/** "seo-ranking_chart.webp" -> "seo ranking chart" (starting alt text). */
+const altFromFileName = (name = '') =>
+  name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+
+/**
+ * Spreads images through the article: before section headings (h2/h3) when
+ * there are enough, otherwise evenly between paragraphs. Never before the
+ * first block, so the intro stays on top.
+ */
+const distributeImages = (html, images) => {
+  const doc = parseHtml(html);
+  const blocks = [...doc.body.children];
+  const figures = images.map(img => buildContentImageHtml(img, false));
+  if (blocks.length < 2) return (html || '') + figures.join('');
+
+  const afterFirst = blocks.slice(1);
+  const headings = afterFirst.filter(el => /^H[23]$/.test(el.tagName));
+  const anchors = headings.length >= images.length ? headings : afterFirst;
+
+  const n = anchors.length;
+  const k = Math.min(images.length, n);
+  const leftovers = [];
+  figures.forEach((figHtml, j) => {
+    if (j >= k) return leftovers.push(figHtml);
+    const anchor = anchors[Math.floor(((j + 1) * n) / (k + 1))];
+    const tpl = doc.createElement('template');
+    tpl.innerHTML = figHtml;
+    anchor.before(...tpl.content.childNodes);
+  });
+  return doc.body.innerHTML + leftovers.join('');
+};
+
+const getBodyImages = (html) => {
+  if (!html) return [];
+  return [...parseHtml(html).querySelectorAll('img')].map(img => ({
+    src: img.getAttribute('src') || '',
+    alt: img.getAttribute('alt') || ''
+  }));
+};
+
+const removeBodyImage = (html, index) => {
+  const doc = parseHtml(html);
+  const img = doc.querySelectorAll('img')[index];
+  if (!img) return html;
+  (img.closest('figure') || img).remove();
+  return doc.body.innerHTML;
+};
 
 // --- Shared UI Components ---
 const SectionCard = ({ number, title, children }) => (
@@ -213,7 +359,15 @@ const AdminBlogEditor = () => {
   const [pastedText, setPastedText] = useState('');
   const fileInputRef = useRef(null);
   const [services, setServices] = useState([]);
-  
+
+  // Content images (inserted into the article body)
+  const editorRef = useRef(null);
+  const lastRangeRef = useRef(null);
+  const contentFileInputRef = useRef(null);
+  const [pendingImages, setPendingImages] = useState([]); // uploaded, not yet in the article
+  const [uploadingCount, setUploadingCount] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
   // Editor Config
   const editorConfig = useMemo(() => ({
     readonly: false,
@@ -222,7 +376,11 @@ const AdminBlogEditor = () => {
     toolbarSticky: false,
     showCharsCounter: true,
     showWordsCounter: true,
-    showXPathInStatusbar: false
+    showXPathInStatusbar: false,
+    // Pasted HTML (including HTML source copied as text) is inserted as real HTML, not shown as tags
+    askBeforePasteHTML: false,
+    askBeforePasteFromWord: false,
+    defaultActionOnPaste: 'insert_as_html'
   }), []);
 
   // Complex Form State mapping to all requested fields
@@ -293,7 +451,7 @@ const AdminBlogEditor = () => {
           image_alt: data.image_alt || '',
           image_caption: data.image_caption || '',
           image_credit: data.image_credit || '',
-          body: data.body || '',
+          body: cleanBodyHtml(data.body || ''),
           ai_summary: data.ai_summary || '',
           key_takeaways: data.key_takeaways ? (typeof data.key_takeaways === 'string' ? JSON.parse(data.key_takeaways) : data.key_takeaways) : [''],
           faqs: data.faqs ? (typeof data.faqs === 'string' ? JSON.parse(data.faqs) : data.faqs) : [{ question: '', answer: '' }],
@@ -331,6 +489,114 @@ const AdminBlogEditor = () => {
   }, [id, navigate]);
 
   const updateField = (field, value) => setFormData(prev => ({ ...prev, [field]: value }));
+
+  const bodyImages = useMemo(() => getBodyImages(formData.body), [formData.body]);
+  const imagePlaceholders = useMemo(() => getImagePlaceholders(formData.body), [formData.body]);
+  const [slotUploading, setSlotUploading] = useState(null); // index of the placeholder being uploaded
+
+  // Remember where the cursor was in the editor so images go to that spot
+  useEffect(() => {
+    const editor = editorRef.current;
+    if (!editor?.events) return;
+    const saveRange = () => {
+      try {
+        const sel = editor.ew.getSelection();
+        if (sel && sel.rangeCount) lastRangeRef.current = sel.getRangeAt(0).cloneRange();
+      } catch { /* ignore */ }
+    };
+    editor.events.on('keyup mouseup', saveRange);
+    return () => editor.events?.off('keyup mouseup', saveRange);
+  }, [loading]);
+
+  const getCurrentBody = () => editorRef.current?.value ?? formData.body;
+
+  // Upload several images at once; each becomes a pending card
+  const handleContentFiles = async (fileList) => {
+    const files = [...(fileList || [])].filter(f => f.type.startsWith('image/'));
+    if (!files.length) return;
+    setUploadingCount(c => c + files.length);
+    const failed = [];
+    await Promise.all(files.map(async (file) => {
+      try {
+        const url = await uploadImageFile(file);
+        setPendingImages(prev => [...prev, {
+          id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          url,
+          alt: altFromFileName(file.name),
+          caption: ''
+        }]);
+      } catch (err) {
+        failed.push(`${file.name}: ${err.message}`);
+      } finally {
+        setUploadingCount(c => c - 1);
+      }
+    }));
+    if (contentFileInputRef.current) contentFileInputRef.current.value = '';
+    if (failed.length) alert(`Some images could not be uploaded:\n${failed.join('\n')}`);
+  };
+
+  const updatePendingImage = (imgId, key, value) =>
+    setPendingImages(prev => prev.map(img => (img.id === imgId ? { ...img, [key]: value } : img)));
+
+  const removePendingImage = (imgId) => setPendingImages(prev => prev.filter(img => img.id !== imgId));
+
+  const missingAlt = (images) => images.some(img => !img.alt.trim());
+
+  // Insert one image where the cursor was in the editor (end of article if none)
+  const insertImageAtCursor = (img) => {
+    if (missingAlt([img])) return alert('Please enter alt text for the image.');
+    const html = buildContentImageHtml(img);
+    const editor = editorRef.current;
+    let inserted = false;
+    if (editor?.s) {
+      try {
+        if (lastRangeRef.current) editor.s.selectRange(lastRangeRef.current);
+        editor.s.insertHTML(html);
+        updateField('body', editor.value);
+        inserted = true;
+      } catch (err) {
+        console.error('Insert at cursor failed, appending instead', err);
+      }
+    }
+    if (!inserted) updateField('body', (getCurrentBody() || '') + html);
+    lastRangeRef.current = null;
+    removePendingImage(img.id);
+  };
+
+  // Upload an image straight into one AI placeholder; its description becomes the alt text
+  const uploadIntoPlaceholder = async (index, file) => {
+    if (!file || !file.type.startsWith('image/')) return;
+    const slot = imagePlaceholders[index];
+    setSlotUploading(index);
+    try {
+      const url = await uploadImageFile(file);
+      const alt = slot?.label || altFromFileName(file.name) || formData.title || 'Article image';
+      updateField('body', replacePlaceholder(getCurrentBody(), index, { url, alt, caption: '' }));
+    } catch (err) {
+      alert(`Image could not be uploaded: ${err.message}`);
+    } finally {
+      setSlotUploading(null);
+    }
+  };
+
+  // Fill AI placeholders first (in order), then spread the rest between sections
+  const autoPlaceAllImages = () => {
+    if (!pendingImages.length) return;
+    if (missingAlt(pendingImages)) return alert('Please enter alt text for every image first.');
+    let html = getCurrentBody();
+    const rest = [];
+    pendingImages.forEach((img) => {
+      if (getImagePlaceholders(html).length) html = replacePlaceholder(html, 0, img);
+      else rest.push(img);
+    });
+    if (rest.length) html = distributeImages(html, rest);
+    updateField('body', html);
+    setPendingImages([]);
+  };
+
+  const handleRemoveContentImage = (index) => {
+    updateField('body', removeBodyImage(getCurrentBody(), index));
+  };
 
   // Array Handlers
   const handleArrayChange = (field, index, value) => {
@@ -411,7 +677,7 @@ const AdminBlogEditor = () => {
         excerpt: data.excerpt || prev.excerpt,
         category: data.category || prev.category,
         sub_category: data.sub_category || prev.sub_category,
-        body: data.body || prev.body,
+        body: data.body ? cleanBodyHtml(data.body) : prev.body,
         ai_summary: data.ai_summary || prev.ai_summary,
         key_takeaways: data.key_takeaways?.length ? data.key_takeaways : prev.key_takeaways,
         faqs: data.faqs?.length ? data.faqs : prev.faqs,
@@ -454,7 +720,7 @@ const AdminBlogEditor = () => {
         excerpt: data.excerpt || prev.excerpt,
         category: data.category || prev.category,
         sub_category: data.sub_category || prev.sub_category,
-        body: data.body || prev.body,
+        body: data.body ? cleanBodyHtml(data.body) : prev.body,
         ai_summary: data.ai_summary || prev.ai_summary,
         key_takeaways: data.key_takeaways?.length ? data.key_takeaways : prev.key_takeaways,
         faqs: data.faqs?.length ? data.faqs : prev.faqs,
@@ -482,10 +748,24 @@ const AdminBlogEditor = () => {
   const handleSaveBlog = async (saveStatus) => {
     if (!formData.title.trim()) return alert('Please enter a blog title.');
 
+    const imageWarnings = [];
+    if (!formData.image) imageWarnings.push('- No featured image (shown at the top of the article).');
+    if (bodyImages.length < MIN_CONTENT_IMAGES) {
+      imageWarnings.push(`- Only ${bodyImages.length} content image(s) inside the article (${MIN_CONTENT_IMAGES} or more recommended).`);
+    }
+    if (imagePlaceholders.length) {
+      imageWarnings.push(`- ${imagePlaceholders.length} "[INSERT CONTENT IMAGE ...]" spot(s) still have no image (hidden on the website until filled).`);
+    }
+    if (pendingImages.length) {
+      imageWarnings.push(`- ${pendingImages.length} uploaded image(s) are not placed in the article yet (they will not be saved).`);
+    }
+    if (imageWarnings.length && !window.confirm(`Image check:\n${imageWarnings.join('\n')}\n\nSave anyway?`)) return;
+
     setSaving(true);
     try {
-      const payload = { 
+      const payload = {
         ...formData,
+        body: cleanBodyHtml(formData.body),
         status: saveStatus || formData.status,
         key_takeaways: JSON.stringify(formData.key_takeaways.filter(k => k.trim())),
         faqs: JSON.stringify(formData.faqs.filter(f => f.question.trim() || f.answer.trim())),
@@ -659,7 +939,143 @@ const AdminBlogEditor = () => {
 
           <SectionCard number="3" title="CONTENT">
             <div className="rounded-xl border border-slate-200 overflow-hidden mb-2 shadow-inner">
-              <JoditEditor value={formData.body} config={editorConfig} onBlur={newContent => updateField('body', newContent)} onChange={() => {}} />
+              <JoditEditor ref={editorRef} value={formData.body} config={editorConfig} onBlur={newContent => updateField('body', cleanBodyHtml(newContent))} onChange={() => {}} />
+            </div>
+          </SectionCard>
+
+          <SectionCard number="3.1" title="CONTENT IMAGES (INSIDE ARTICLE)">
+            <p className="text-[11px] text-slate-500 mb-5 leading-relaxed">
+              Upload several images at once. Then either click in the article where one should go and press <b>Insert at cursor</b>,
+              or press <b>Auto-place all</b> to spread them between the article's sections. Add {MIN_CONTENT_IMAGES} or more images.
+            </p>
+
+            {/* AI placeholders found in the article: upload straight into each spot */}
+            {imagePlaceholders.length > 0 && (
+              <div className="mb-5 p-4 border border-amber-200 bg-amber-50/60 rounded-xl">
+                <p className="text-xs font-bold text-amber-800 mb-1">
+                  {imagePlaceholders.length} image spot(s) found in the article
+                </p>
+                <p className="text-[11px] text-amber-700 mb-3">
+                  Upload an image for each spot. It replaces the "[INSERT CONTENT IMAGE ...]" text, and the description becomes its alt text.
+                </p>
+                <div className="space-y-2">
+                  {imagePlaceholders.map((slot, idx) => (
+                    <div key={`${idx}-${slot.label}`} className="flex flex-wrap items-center justify-between gap-3 bg-white border border-amber-100 rounded-lg px-3 py-2">
+                      <span className="text-[11px] text-slate-700 min-w-0 flex-1">
+                        <b>Image {slot.number}</b>{slot.label ? ` – ${slot.label}` : ''}
+                      </span>
+                      <label className={`flex items-center gap-1.5 text-[11px] font-bold px-3 py-1.5 rounded-lg cursor-pointer ${slotUploading === idx ? 'bg-slate-100 text-slate-400' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}>
+                        {slotUploading === idx ? <Loader2 size={13} className="animate-spin" /> : <UploadCloud size={13} />}
+                        {slotUploading === idx ? 'Uploading...' : 'Upload image'}
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          disabled={slotUploading !== null}
+                          onChange={(e) => { uploadIntoPlaceholder(idx, e.target.files[0]); e.target.value = ''; }}
+                        />
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Multi-file drop zone */}
+            <div
+              onClick={() => contentFileInputRef.current?.click()}
+              onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+              onDragLeave={() => setIsDragging(false)}
+              onDrop={(e) => { e.preventDefault(); setIsDragging(false); handleContentFiles(e.dataTransfer.files); }}
+              className={`w-full border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-colors flex flex-col items-center justify-center ${isDragging ? 'border-indigo-500 bg-indigo-50' : 'border-slate-300 bg-slate-50 hover:bg-slate-100'}`}
+            >
+              <input
+                type="file"
+                ref={contentFileInputRef}
+                className="hidden"
+                accept="image/*"
+                multiple
+                onChange={(e) => handleContentFiles(e.target.files)}
+              />
+              <div className="w-10 h-10 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center mb-2">
+                {uploadingCount > 0 ? <Loader2 size={20} className="animate-spin text-indigo-600" /> : <ImagePlus size={20} className="text-slate-400" />}
+              </div>
+              <p className="text-xs font-bold text-slate-700">
+                {uploadingCount > 0 ? `Uploading ${uploadingCount} image(s)...` : 'Drag & drop images here, or click to choose several'}
+              </p>
+              <p className="text-[10px] text-slate-400 mt-1">JPG, PNG, WEBP. Recommended width 1200 px.</p>
+            </div>
+
+            {/* Uploaded, waiting to be placed */}
+            {pendingImages.length > 0 && (
+              <div className="mt-5">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <span className="text-xs font-bold text-slate-800">Ready to place ({pendingImages.length})</span>
+                  <button
+                    type="button"
+                    onClick={autoPlaceAllImages}
+                    className="flex items-center gap-2 text-[11px] font-bold bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 shadow-sm"
+                  >
+                    <Sparkles size={14} /> Auto-place all in article
+                  </button>
+                </div>
+                <div className="space-y-3">
+                  {pendingImages.map((img) => (
+                    <div key={img.id} className="flex flex-col sm:flex-row gap-4 p-3 border border-slate-200 rounded-lg bg-white shadow-sm">
+                      <img src={img.url} alt={img.alt} className="w-full sm:w-36 h-24 object-cover rounded-md border border-slate-100 shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <InputField label="Alt Text" required placeholder="Describe the image for SEO" value={img.alt} onChange={v => updatePendingImage(img.id, 'alt', v)} />
+                        <InputField label="Caption" placeholder="Optional caption" value={img.caption} onChange={v => updatePendingImage(img.id, 'caption', v)} />
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => insertImageAtCursor(img)}
+                            className="flex items-center gap-1.5 text-[11px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-100 px-3 py-2 rounded-lg hover:bg-indigo-100"
+                          >
+                            <ImagePlus size={13} /> Insert at cursor
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => removePendingImage(img.id)}
+                            className="flex items-center gap-1.5 text-[11px] font-bold text-rose-600 bg-rose-50 px-3 py-2 rounded-lg hover:bg-rose-100"
+                          >
+                            <Trash2 size={13} /> Discard
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="mt-6 pt-5 border-t border-slate-100">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-bold text-slate-800">Images in this article</span>
+                <span className={`text-[10px] font-bold px-2 py-1 rounded-md ${bodyImages.length >= MIN_CONTENT_IMAGES ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
+                  {bodyImages.length} / {MIN_CONTENT_IMAGES}+ recommended
+                </span>
+              </div>
+              {bodyImages.length === 0 ? (
+                <p className="text-[11px] text-slate-400">No images inside the article yet.</p>
+              ) : (
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {bodyImages.map((img, idx) => (
+                    <div key={`${idx}-${img.src.slice(-24)}`} className="relative group border border-slate-200 rounded-lg overflow-hidden bg-slate-50">
+                      <img src={img.src} alt={img.alt} className="w-full h-24 object-cover" />
+                      <p className="text-[10px] text-slate-500 px-2 py-1 truncate">{idx + 1}. {img.alt || 'No alt text'}</p>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveContentImage(idx)}
+                        className="absolute top-1.5 right-1.5 bg-white/90 text-rose-500 hover:text-rose-700 p-1.5 rounded-md shadow-sm"
+                        title="Remove from article"
+                      >
+                        <Trash2 size={12} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </SectionCard>
 

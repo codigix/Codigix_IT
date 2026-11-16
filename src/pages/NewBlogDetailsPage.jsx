@@ -9,6 +9,17 @@ import SEO from '../components/SEO';
 import config from '../config';
 import { fetchBlog, useBlogs, blogPath, blogImage, getBlogSeo } from '../utils/blogs';
 
+// AI image spots like "[INSERT CONTENT IMAGE 1 HERE – ERP Dashboard]" that were never
+// filled in the admin are hidden from visitors (whole paragraph when that's all it holds).
+const PLACEHOLDER = String.raw`\[\s*INSERT\s+(?:CONTENT\s+)?IMAGE[^\]]*\]`;
+const PLACEHOLDER_BLOCK_RE = new RegExp(
+  String.raw`<(p|div|h[1-6])\b[^>]*>\s*(?:<(?:strong|b|em|i|span|u)\b[^>]*>\s*)*${PLACEHOLDER}\s*(?:<\/(?:strong|b|em|i|span|u)>\s*)*<\/\1>`,
+  'gi'
+);
+const PLACEHOLDER_RE = new RegExp(PLACEHOLDER, 'gi');
+const stripImagePlaceholders = (html) =>
+  typeof html === 'string' ? html.replace(PLACEHOLDER_BLOCK_RE, '').replace(PLACEHOLDER_RE, '') : html;
+
 const NewBlogDetailsPage = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
@@ -35,6 +46,7 @@ const NewBlogDetailsPage = () => {
             role: 'Codigix Tech Team',
             readTime: '0 min read',
             image: data.image || '/assets/images/blog/blog_web_engineering.webp',
+            image_alt: data.image_alt || '',
             image_caption: data.image_caption || '',
             image_credit: data.image_credit || '',
             excerpt: data.excerpt || '',
@@ -413,18 +425,28 @@ const NewBlogDetailsPage = () => {
             {/* ---------------- LEFT COLUMN (MAIN CONTENT) ---------------- */}
             <div className="lg:col-span-8 xl:col-span-9">
 
-              {/* Massive Banner Image */}
-              <div className="w-full h-[350px] md:h-[450px] xl:h-[500px] rounded-2xl overflow-hidden mb-8 border border-slate-200 dark:border-gray-800 shadow-sm bg-slate-100 dark:bg-[#0c0828]">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = '/assets/images/blog/blog_web_engineering.webp';
-                  }}
-                />
-              </div>
+              {/* Featured Image (blogs.image) */}
+              <figure className="mb-8">
+                <div className="w-full h-[350px] md:h-[450px] xl:h-[500px] rounded-2xl overflow-hidden border border-slate-200 dark:border-gray-800 shadow-sm bg-slate-100 dark:bg-[#0c0828]">
+                  <img
+                    src={post.image}
+                    alt={post.image_alt || post.title}
+                    fetchPriority="high"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/assets/images/blog/blog_web_engineering.webp';
+                    }}
+                  />
+                </div>
+                {(post.image_caption || post.image_credit) && (
+                  <figcaption className="mt-2 text-center text-[11px] text-slate-500 dark:text-gray-400">
+                    {post.image_caption}
+                    {post.image_caption && post.image_credit && ' · '}
+                    {post.image_credit && <span className="italic">Image: {post.image_credit}</span>}
+                  </figcaption>
+                )}
+              </figure>
 
               {/* Category Pills */}
               <div className="flex flex-wrap gap-2 mb-4">
@@ -499,8 +521,8 @@ const NewBlogDetailsPage = () => {
               <article className="prose prose-slate dark:prose-invert max-w-none mb-10 text-left">
                 {typeof post.body === 'string' ? (
                   <div
-                    dangerouslySetInnerHTML={{ __html: post.body }}
-                    className="text-slate-700 dark:text-gray-300 text-[15px] leading-relaxed space-y-4 font-normal"
+                    dangerouslySetInnerHTML={{ __html: stripImagePlaceholders(post.body) }}
+                    className="text-slate-700 dark:text-gray-300 text-[15px] leading-relaxed space-y-4 font-normal [&_img]:block [&_img]:mx-auto [&_img]:w-auto [&_img]:max-w-full! [&_img]:h-auto! [&_img]:max-h-[420px] md:[&_img]:max-h-[480px] [&_img]:object-contain [&_img]:rounded-2xl [&_img]:border [&_img]:border-slate-200 dark:[&_img]:border-gray-800 [&_img]:shadow-sm [&_img]:my-8 [&_figure]:my-10 [&_figure_img]:my-0 [&_figcaption]:mt-3 [&_figcaption]:text-center [&_figcaption]:text-xs [&_figcaption]:text-slate-500 dark:[&_figcaption]:text-gray-400"
                   />
                 ) : (
                   post.body
