@@ -10,7 +10,9 @@ import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
-import { caseStudiesData, getCaseStudyById } from '../data/caseStudiesData';
+import { caseStudiesData } from '../data/caseStudiesData';
+
+const findStaticStudy = (id) => caseStudiesData.find((item) => String(item.id) === String(id) || item.slug === String(id));
 import config from '../config';
 
 const iconMap = {
@@ -91,12 +93,12 @@ const NewCaseStudyDetailsPage = () => {
         if (data && data.title) {
           setStudy(data);
         } else {
-          setStudy(getCaseStudyById(id));
+          setStudy(findStaticStudy(id));
         }
         setLoading(false);
       } catch (err) {
         console.error('Error fetching case study from API, falling back to static data:', err);
-        setStudy(getCaseStudyById(id));
+        setStudy(findStaticStudy(id));
         setLoading(false);
       }
     };
@@ -106,7 +108,7 @@ const NewCaseStudyDetailsPage = () => {
   if (loading) return <div className="py-32 text-center text-slate-500">Loading Case Study Details...</div>;
 
   // Final fallback check
-  const activeStudy = study || getCaseStudyById(id);
+  const activeStudy = study || findStaticStudy(id);
   if (!activeStudy) return <div className="py-32 text-center text-red-500">Case Study not found!</div>;
 
   const parseJSONField = (field, fallback = []) => {
@@ -219,7 +221,7 @@ const NewCaseStudyDetailsPage = () => {
     <>
       <SEO
         title={pageTitle}
-        metaTitle={pageTitle}
+        exactTitle={true}
         description={metaDescription}
         keywords={`${activeStudy.title}, ${specs.client}, ${activeStudy.catName}, ${specs.industry}, ${specs.technologies}, IT case study, Codigix Infotech`}
         canonical={canonicalUrl}

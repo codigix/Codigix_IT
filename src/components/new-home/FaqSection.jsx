@@ -35,7 +35,7 @@ export const faqData = [
     id: 5,
     icon: Building2,
     question: "Where is Codigix Infotech located?",
-    answer: "Our office is at Office No. 514, 5th Floor, Brahma Sky Uzuri, MIDC, Pimpri Colony, Pimpri-Chinchwad, Maharashtra 411018."
+    answer: "Our office is at Office No: 514, 5th Floor, Brahma Sky Uzuri, MIDC, Pimpri Colony, Pimpri-Chinchwad, Maharashtra 411018."
   },
   {
     id: 6,

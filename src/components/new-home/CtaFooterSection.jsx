@@ -215,9 +215,9 @@ const CtaFooterSection = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="https://maps.google.com/?q=Office+No:+514,+5th+Floor,+Brahma+Sky+Uzuri,+MIDC,+Pimpri-Chinchwad,+Maharashtra+411018" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 text-[12px] text-slate-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-300 transition-colors">
+                  <a href="https://maps.google.com/?cid=18291760191599608226" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 text-[12px] text-slate-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-300 transition-colors">
                     <MapPin size={14} className="text-purple-500 shrink-0 mt-0.5" />
-                    <span className="leading-tight">Office No: 514, 5th Floor, Brahma Sky Uzuri, MIDC, Pimpri-Chinchwad, Maharashtra 411018.</span>
+                    <span className="leading-tight">Office No: 514, 5th Floor, Brahma Sky Uzuri, MIDC, Pimpri Colony, Pimpri-Chinchwad, Maharashtra 411018</span>
                   </a>
                 </li>
               </ul>

@@ -1,11 +1,13 @@
-// Pre-renders the public pages after `vite build`: loads each route of the
-// built site in a headless browser and saves the rendered HTML as
+// Pre-renders the public pages after `vite build`: loads every sitemap URL of
+// the built site in a headless browser and saves the rendered HTML as
 // dist/<route>/index.html, so crawlers that don't run JavaScript (many search
-// and AI bots) get the real text, title, description and canonical.
+// and AI bots) get the real text plus a unique title, description and canonical.
+// Ends by checking that every sitemap URL has its own title and description.
 //
 // Needs a Chromium browser: `npx playwright install chromium` (on Linux servers
 // add --with-deps), or an installed Chrome / Edge. Without one it warns and
 // leaves the plain SPA build in place; set PRERENDER_STRICT=1 to fail instead.
+// Run with the backend up (npm run server) so data-driven sections are included.
 import { existsSync, readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
 import { dirname, join } from 'node:path';
@@ -15,17 +17,16 @@ import { chromium } from 'playwright';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const dist = join(root, 'dist');
-const seoData = JSON.parse(readFileSync(join(root, 'src/data/seoPages.json'), 'utf8'));
-
-const routes = [
-  ...Object.values(seoData.pages).map((page) => page.path),
-  ...Object.values(seoData.sections).flatMap((section) => section.entries.map((entry) => entry.path)),
-  '/contact',
-  '/blog',
-  '/privacy-policy',
-  '/terms-conditions',
-];
+const strict = process.env.PRERENDER_STRICT === '1';
 const CONCURRENCY = 4;
+
+// Every URL the sitemap advertises, plus pages linked from the footer only
+const sitemapPaths = [...readFileSync(join(dist, 'sitemap.xml'), 'utf8').matchAll(/<loc>https?:\/\/[^/<]+([^<]*)<\/loc>/g)].map(
+  (match) => match[1] || '/'
+);
+const routes = [...new Set([...sitemapPaths, '/privacy-policy', '/terms-conditions'])];
+
+const routeFile = (route) => (route === '/' ? join(dist, 'index.html') : join(dist, route, 'index.html'));
 
 // vite-plugin-compression ships .gz copies for nginx gzip_static; keep them in step
 const writeHtml = (file, html) => {
@@ -47,8 +48,9 @@ const launchBrowser = async () => {
 
 // Runs in the page: tags added to <head> after load are either Helmet's SEO
 // tags (kept, marked so main.jsx swaps them for live ones) or third-party
-// scripts (dropped, they reload on their own).
-const snapshot = (shellHead) => {
+// scripts (dropped, they reload on their own). With headOnly the page body is
+// left empty, for pages whose data could not be loaded.
+const snapshot = ({ shellHead, headOnly }) => {
   const shell = new Set(
     [...new DOMParser().parseFromString(`<head>${shellHead}</head>`, 'text/html').head.children].map((el) => el.outerHTML)
   );
@@ -70,6 +72,7 @@ const snapshot = (shellHead) => {
     else if (tag === 'script' || tag === 'iframe') el.remove();
   }
   document.querySelectorAll('body > script:not([type="module"]), body > iframe').forEach((el) => el.remove());
+  if (headOnly) document.getElementById('root').innerHTML = '';
   return `<!doctype html>\n${document.documentElement.outerHTML}`;
 };
 
@@ -78,8 +81,6 @@ class ApiUnavailableError extends Error {}
 const renderRoute = async (browser, baseUrl, shellHead, route) => {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   await page.route(/googletagmanager\.com|google-analytics\.com|youtube\.com/, (request) => request.abort());
-  // A page whose API calls fail would be saved with empty states ("No articles
-  // published yet"), so it is skipped instead
   const apiFailures = new Set();
   page.on('response', (response) => {
     if (response.url().includes('/api/') && response.status() >= 400) apiFailures.add(new URL(response.url()).pathname);
@@ -87,12 +88,19 @@ const renderRoute = async (browser, baseUrl, shellHead, route) => {
   page.on('requestfailed', (request) => {
     if (request.url().includes('/api/')) apiFailures.add(new URL(request.url()).pathname);
   });
+  const apiNote = () => `API unavailable (${[...apiFailures].join(', ')})`;
   try {
     await page.goto(baseUrl + route, { waitUntil: 'load', timeout: 60000 });
-    await page.waitForFunction(() => document.querySelector('h1') && document.querySelector('link[rel="canonical"]'), null, {
-      polling: 200,
-      timeout: 30000,
-    });
+    try {
+      await page.waitForFunction(() => document.querySelector('h1') && document.querySelector('link[rel="canonical"]'), null, {
+        polling: 200,
+        timeout: 30000,
+      });
+    } catch (error) {
+      // e.g. a case study that only exists in the database shows "not found"
+      if (apiFailures.size) throw new ApiUnavailableError(`${apiNote()}, page did not render`);
+      throw error;
+    }
     // Scroll through so scroll-triggered sections render, then let animations settle
     await page.evaluate(async () => {
       for (let y = 0; y < document.body.scrollHeight; y += 700) {
@@ -106,18 +114,41 @@ const renderRoute = async (browser, baseUrl, shellHead, route) => {
 
     const finalPath = new URL(page.url()).pathname;
     if (finalPath !== route) throw new Error(`redirected to ${finalPath}`);
-    if (apiFailures.size) throw new ApiUnavailableError(`API unavailable (${[...apiFailures].join(', ')})`);
-    return await page.evaluate(snapshot, shellHead);
+    // Without its data a page would be saved with empty states ("No articles
+    // published yet"): keep only its head tags (title, description, canonical)
+    const headOnly = apiFailures.size > 0;
+    return { html: await page.evaluate(snapshot, { shellHead, headOnly }), note: headOnly ? apiNote() : null };
   } finally {
     await page.close();
   }
+};
+
+// Every sitemap URL must have a title and description no other URL uses
+const checkUniqueness = (shellHtml) => {
+  const seen = new Map();
+  const problems = [];
+  for (const route of sitemapPaths) {
+    const file = routeFile(route);
+    const html = existsSync(file) ? readFileSync(file, 'utf8') : shellHtml;
+    const title = (html.match(/<title>([^<]*)<\/title>/) || [])[1];
+    const description = (html.match(/<meta name="description" content="([^"]*)"/) || [])[1];
+    if (!title) problems.push(`${route}: no title`);
+    if (!description) problems.push(`${route}: no meta description`);
+    for (const [kind, value] of [['title', title], ['description', description]]) {
+      if (!value) continue;
+      const key = `${kind}:${value}`;
+      if (seen.has(key)) problems.push(`${route}: same ${kind} as ${seen.get(key)}`);
+      else seen.set(key, route);
+    }
+  }
+  return problems;
 };
 
 const main = async () => {
   const browser = await launchBrowser();
   if (!browser) {
     const message = 'prerender: no Chromium/Chrome/Edge found, run `npx playwright install chromium`. Pages were NOT pre-rendered.';
-    if (process.env.PRERENDER_STRICT === '1') throw new Error(message);
+    if (strict) throw new Error(message);
     console.warn(`\n⚠ ${message}\n`);
     return;
   }
@@ -131,11 +162,12 @@ const main = async () => {
 
   const server = await preview({ root, logLevel: 'silent', preview: { port: 4179, strictPort: false, open: false } });
   const baseUrl = server.resolvedUrls.local[0].replace(/\/$/, '');
-  const failures = [];
-  const skipped = [];
   // Written only after every route is done: the preview server falls back to
   // dist/index.html, which the homepage snapshot replaces
   const rendered = new Map();
+  const headOnly = [];
+  const skipped = [];
+  const failures = [];
   try {
     const queue = [...routes];
     await Promise.all(
@@ -143,9 +175,11 @@ const main = async () => {
         while (queue.length) {
           const route = queue.shift();
           try {
-            rendered.set(route, await renderRoute(browser, baseUrl, shellHead, route));
+            const { html, note } = await renderRoute(browser, baseUrl, shellHead, route);
+            rendered.set(route, html);
+            if (note) headOnly.push(`${route}: ${note}`);
           } catch (error) {
-            const entry = { route, reason: error.message.split('\n')[0] };
+            const entry = `${route}: ${error.message.split('\n')[0]}`;
             (error instanceof ApiUnavailableError ? skipped : failures).push(entry);
           }
         }
@@ -156,27 +190,30 @@ const main = async () => {
     await server.close();
   }
 
-  const routeFile = (route) => (route === '/' ? join(dist, 'index.html') : join(dist, route, 'index.html'));
   for (const [route, html] of rendered) writeHtml(routeFile(route), html);
   // Pages not rendered this run must not keep an older snapshot
-  for (const { route } of [...skipped, ...failures]) {
+  for (const entry of [...skipped, ...failures]) {
+    const route = entry.slice(0, entry.indexOf(': '));
     if (route === '/') writeHtml(routeFile(route), shellHtml);
     else rmSync(dirname(routeFile(route)), { recursive: true, force: true });
   }
 
-  console.log(`prerender: ${rendered.size}/${routes.length} pages written to dist/`);
-  if (skipped.length) {
+  console.log(`prerender: ${rendered.size - headOnly.length}/${routes.length} pages fully pre-rendered`);
+  const list = (items) => items.map((item) => `  - ${item}`).join('\n');
+  if (headOnly.length || skipped.length) {
     console.warn(
-      `⚠ prerender: ${skipped.length} pages left as the plain SPA shell because their API calls failed.\n` +
-        '  Start the backend with its database (npm run server) before building to pre-render them:\n' +
-        skipped.map(({ route, reason }) => `  - ${route}: ${reason}`).join('\n')
+      `⚠ prerender: the backend API was not reachable. Start it with its database (npm run server) and rebuild:\n` +
+        (headOnly.length ? `  ${headOnly.length} pages have their title/description but no body text:\n${list(headOnly)}\n` : '') +
+        (skipped.length ? `  ${skipped.length} pages could not be rendered at all:\n${list(skipped)}` : '')
     );
-    if (process.env.PRERENDER_STRICT === '1') process.exitCode = 1;
   }
-  if (failures.length) {
-    console.error(failures.map(({ route, reason }) => `  ✗ ${route}: ${reason}`).join('\n'));
-    process.exitCode = 1;
-  }
+  if (failures.length) console.error(`✗ prerender failed for:\n${list(failures)}`);
+
+  const problems = checkUniqueness(shellHtml);
+  if (problems.length) console.warn(`⚠ SEO check: ${problems.length} problems across sitemap URLs:\n${list(problems)}`);
+  else console.log(`SEO check: all ${sitemapPaths.length} sitemap URLs have a unique title and description`);
+
+  if (failures.length || (strict && (headOnly.length || skipped.length || problems.length))) process.exitCode = 1;
 };
 
 main().catch((error) => {
