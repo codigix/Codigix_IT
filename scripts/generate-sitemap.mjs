@@ -3,28 +3,26 @@
 // before `vite build`.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { findApiOrigin } from './api-origin.mjs';
 
 const root = new URL('..', import.meta.url);
 const seoData = JSON.parse(readFileSync(new URL('src/data/seoPages.json', root), 'utf8'));
 const lastmod = new Date().toISOString().slice(0, 10);
 
-// Case studies and blog posts live in the database: ask the backend on this
-// machine (running during a VPS deploy), then the live site.
+// Case studies and blog posts live in the database (see scripts/api-origin.mjs
+// for which backend is asked)
 async function fromApi(entity) {
-  const sources = [`http://127.0.0.1:${process.env.PORT || 5000}/api/${entity}`, `${seoData.siteUrl}/api/${entity}`];
-  for (const url of sources) {
-    try {
-      const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
-      if (!res.ok) continue;
-      const rows = await res.json();
-      if (!Array.isArray(rows)) continue;
-      console.log(`sitemap.xml: ${rows.length} ${entity} from ${url}`);
-      return rows;
-    } catch {
-      /* try the next source */
-    }
+  const origin = await findApiOrigin(seoData.siteUrl);
+  if (!origin) return null;
+  try {
+    const res = await fetch(`${origin}/api/${entity}`, { signal: AbortSignal.timeout(8000) });
+    const rows = res.ok ? await res.json() : null;
+    if (!Array.isArray(rows)) return null;
+    console.log(`sitemap.xml: ${rows.length} ${entity} from ${origin}/api`);
+    return rows;
+  } catch {
+    return null;
   }
-  return null;
 }
 
 // If the API is unreachable, fall back to the studies with hand-written meta in seoPages.json

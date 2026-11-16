@@ -19,6 +19,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import { preview } from 'vite';
 import { chromium } from 'playwright';
+import { findApiOrigin } from './api-origin.mjs';
 
 // Same per-page tags the backend injects (data from src/data/seoPages.json)
 const { renderIndexHtml } = createRequire(import.meta.url)('../backend/utils/seoMeta.js');
@@ -123,6 +124,16 @@ const renderRoute = async (browser, baseUrl, shellHead, route) => {
 
     const finalPath = new URL(page.url()).pathname;
     if (finalPath !== route) throw new Error(`redirected to ${finalPath}`);
+    // Error and not-found states (marked data-prerender-skip, or noindex) must
+    // never be published as the page: search engines would drop the URL
+    const blocked = await page.evaluate(() => {
+      const robots = document.querySelector('meta[name="robots"]')?.content || '';
+      return document.querySelector('[data-prerender-skip]') ? 'error / not-found state' : /noindex/i.test(robots) ? 'noindex' : null;
+    });
+    if (blocked) {
+      const reason = `rendered as ${blocked}`;
+      throw apiFailures.size ? new ApiUnavailableError(`${apiNote()}, ${reason}`) : new Error(reason);
+    }
     return { html: await page.evaluate(snapshot, shellHead), note: apiFailures.size ? apiNote() : null };
   } finally {
     await page.close();
@@ -186,7 +197,15 @@ const main = async () => {
     return;
   }
 
-  const server = await preview({ root, logLevel: 'silent', preview: { port: 4179, strictPort: false, open: false } });
+  // Pages that show database content (blog, case studies, jobs) need a backend
+  // that answers: the one on this machine, else the live site (api-origin.mjs)
+  const apiOrigin = await findApiOrigin(JSON.parse(readFileSync(join(root, 'src/data/seoPages.json'), 'utf8')).siteUrl);
+  if (apiOrigin) console.log(`prerender: database content from ${apiOrigin}/api`);
+  else console.warn('⚠ prerender: no backend answered /api; database pages keep only their title and description');
+  const proxy = apiOrigin
+    ? { '/api': { target: apiOrigin, changeOrigin: true }, '/uploads': { target: apiOrigin, changeOrigin: true } }
+    : undefined;
+  const server = await preview({ root, logLevel: 'silent', preview: { port: 4179, strictPort: false, open: false, ...(proxy && { proxy }) } });
   const baseUrl = server.resolvedUrls.local[0].replace(/\/$/, '');
   // Each page is saved as soon as it is rendered. The homepage waits until the
   // end: the preview server falls back to dist/index.html for URLs without a
