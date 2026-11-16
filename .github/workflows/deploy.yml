@@ -26,6 +26,8 @@ jobs:
             git pull origin main
             npm install
             npm run build
+            npx playwright install chromium
+            sudo npx playwright install-deps chromium
             cd backend
             npm install
             pm2 restart codigixinfotech-backend
