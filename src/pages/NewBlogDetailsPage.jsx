@@ -233,7 +233,7 @@ const NewBlogDetailsPage = () => {
 
   if (!post) {
     return (
-      <div className="bg-white dark:bg-[#030014] min-h-screen font-sans flex flex-col items-center justify-center text-slate-900 dark:text-white transition-colors duration-300">
+      <div data-prerender-skip className="bg-white dark:bg-[#030014] min-h-screen font-sans flex flex-col items-center justify-center text-slate-900 dark:text-white transition-colors duration-300">
         <SEO title="Article Not Found | Codigix Blog" exactTitle={true} robots="noindex, follow" description="This article is not available." />
         <NewHomeNav />
         <h1 className="text-2xl font-bold mb-4">{loadError ? 'Article could not be loaded' : 'Article Not Found'}</h1>

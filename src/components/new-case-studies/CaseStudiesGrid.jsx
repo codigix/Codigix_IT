@@ -14,7 +14,7 @@ const CaseStudiesGrid = ({ studies = [], loading, error, activeCategory, setActi
   if (loading) return <div className="py-20 text-center text-slate-500">Loading Case Studies...</div>;
   if (error || !studies.length) {
     return (
-      <div id="case-studies-grid" className="py-20 text-center text-slate-500" data-prerender-omit>
+      <div id="case-studies-grid" className="py-20 text-center text-slate-500" data-prerender-omit {...(error && { 'data-prerender-skip': '' })}>
         Case studies could not be loaded right now. Please try again shortly.
       </div>
     );

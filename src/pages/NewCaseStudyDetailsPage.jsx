@@ -109,7 +109,7 @@ const NewCaseStudyDetailsPage = () => {
       <>
         <SEO title="Case Study Not Found | Codigix Infotech" exactTitle={true} robots="noindex, follow" description="This case study is not available." />
         <NewHomeNav />
-        <main id="main-content" className="py-40 px-4 text-center">
+        <main id="main-content" data-prerender-skip className="py-40 px-4 text-center">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
             {status === 'notFound' ? 'Case study not found' : 'Case study could not be loaded'}
           </h1>

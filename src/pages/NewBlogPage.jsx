@@ -14,7 +14,7 @@ const NewBlogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   // Published posts from the admin panel only
-  const { posts, loading } = useBlogs();
+  const { posts, loading, error } = useBlogs();
   const dbPosts = posts.map((post) => ({
     id: String(post.id),
     title: post.title,
@@ -199,7 +199,7 @@ const NewBlogPage = () => {
 
           {/* Empty State */}
           {!loading && filteredPosts.length === 0 && (
-            <div data-prerender-omit className="text-center py-20 bg-white dark:bg-[#07041c] rounded-2xl border border-dashed border-slate-200 dark:border-gray-800 mt-6">
+            <div data-prerender-omit {...(error && { 'data-prerender-skip': '' })} className="text-center py-20 bg-white dark:bg-[#07041c] rounded-2xl border border-dashed border-slate-200 dark:border-gray-800 mt-6">
               <BookOpen size={40} className="text-slate-400 dark:text-gray-500 mx-auto mb-4" />
               <h2 className="text-base font-bold text-slate-800 dark:text-white mb-2">No Articles Found</h2>
               <p className="text-xs text-slate-500 dark:text-gray-400 max-w-xs mx-auto">Try refining your search keyword or selecting a different tech category pill.</p>
