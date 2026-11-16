@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link, Navigate } from 'react-router-dom';
 import {
   ChevronRight, ArrowRight, CheckCircle2, Clock,
   Building2, Calendar, Layers, ShieldCheck, Cpu,
@@ -10,10 +10,10 @@ import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 import NewHomeNav from '../components/new-home/NewHomeNav';
 import CtaFooterSection from '../components/new-home/CtaFooterSection';
-import { caseStudiesData } from '../data/caseStudiesData';
-
-const findStaticStudy = (id) => caseStudiesData.find((item) => String(item.id) === String(id) || item.slug === String(id));
 import config from '../config';
+import {
+  fetchCaseStudy, useCaseStudies, parseJSONField, caseStudyPath, caseStudyClient, caseStudyImage, caseStudyHeadline, getCaseStudySeo
+} from '../utils/caseStudies';
 
 const iconMap = {
   Clock: Clock,
@@ -81,49 +81,56 @@ const TechLogoIcon = ({ name }) => {
 const NewCaseStudyDetailsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [study, setStudy] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // Result for the id it was loaded for; another id means a new load is in progress
+  const [result, setResult] = useState({ id: null, study: null, status: 'loading' });
+  const { studies: allStudies } = useCaseStudies();
 
+  // Case studies come only from the database (admin → Case Studies)
   useEffect(() => {
-    const fetchStudy = async () => {
-      try {
-        const res = await fetch(`${config.API_BASE_URL}/projects/${id}`);
-        if (!res.ok) throw new Error('Network response was not ok');
-        const data = await res.json();
-        if (data && data.title) {
-          setStudy(data);
-        } else {
-          setStudy(findStaticStudy(id));
-        }
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching case study from API, falling back to static data:', err);
-        setStudy(findStaticStudy(id));
-        setLoading(false);
-      }
+    let active = true;
+    fetchCaseStudy(id)
+      .then((data) => active && setResult({ id, study: data, status: data ? 'ready' : 'notFound' }))
+      .catch((err) => {
+        console.error('Error fetching case study:', err);
+        if (active) setResult({ id, study: null, status: 'error' });
+      });
+    return () => {
+      active = false;
     };
-    fetchStudy();
   }, [id]);
 
-  if (loading) return <div className="py-32 text-center text-slate-500">Loading Case Study Details...</div>;
+  const status = result.id === id ? result.status : 'loading'; // loading | ready | notFound | error
+  const study = result.study;
 
-  // Final fallback check
-  const activeStudy = study || findStaticStudy(id);
-  if (!activeStudy) return <div className="py-32 text-center text-red-500">Case Study not found!</div>;
+  if (status === 'loading') return <div className="py-32 text-center text-slate-500">Loading Case Study Details...</div>;
 
-  const parseJSONField = (field, fallback = []) => {
-    if (!field) return fallback;
-    try {
-      return typeof field === 'string' ? JSON.parse(field) : field;
-    } catch (e) {
-      return fallback;
-    }
-  };
+  if (status !== 'ready') {
+    return (
+      <>
+        <SEO title="Case Study Not Found | Codigix Infotech" exactTitle={true} robots="noindex, follow" description="This case study is not available." />
+        <NewHomeNav />
+        <main id="main-content" className="py-40 px-4 text-center">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            {status === 'notFound' ? 'Case study not found' : 'Case study could not be loaded'}
+          </h1>
+          <p className="text-slate-500 dark:text-gray-400 mb-6">
+            {status === 'notFound' ? 'It may have been moved or removed.' : 'Please try again in a moment.'}
+          </p>
+          <Link to="/case-studies" className="text-purple-600 dark:text-purple-400 font-bold hover:underline">View all case studies</Link>
+        </main>
+      </>
+    );
+  }
+
+  // Old numeric URLs (/case-studies/47) move to the slug URL
+  if (/^\d+$/.test(id) && study.slug) return <Navigate to={caseStudyPath(study)} replace />;
+
+  const activeStudy = study;
 
   const parsedSpecs = parseJSONField(activeStudy.sidebarSpecs, {});
 
   const specs = {
-    client: parsedSpecs.client || activeStudy.client || activeStudy.clientName || 'N/A',
+    client: caseStudyClient(activeStudy) || 'N/A',
     industry: parsedSpecs.industry || activeStudy.category || 'Technology',
     projectType: parsedSpecs.projectType || activeStudy.catName || 'Solution',
     duration: parsedSpecs.duration || 'N/A',
@@ -141,31 +148,22 @@ const NewCaseStudyDetailsPage = () => {
   const testimonial = parseJSONField(activeStudy.testimonial, null);
 
   const siteUrl = config.SITE_URL || "https://codigixinfotech.com";
-  // Exact canonical URL for this route
-  const canonicalUrl = `${siteUrl}/case-studies/${id}`;
-  // Skip the client when it is Codigix itself, so the brand isn't repeated
-  const pageTitle = /codigix/i.test(specs.client)
-    ? `${activeStudy.title} Case Study | Codigix Infotech`
-    : `${activeStudy.title} Case Study | ${specs.client} | Codigix Infotech`;
-  const metaDescription = activeStudy.subtitle || activeStudy.objective || `Case Study: How Codigix Infotech delivered ${activeStudy.title} for ${specs.client}.`;
+  // Title max 60 / description max 160 characters (seoPages.json → caseStudyDetails, or generated)
+  const { title: pageTitle, description: metaDescription, canonical: canonicalUrl } = getCaseStudySeo(activeStudy);
+  const heroImage = caseStudyImage(activeStudy, { hero: true });
+  const heroImgUrl = heroImage.startsWith('http') ? heroImage : `${siteUrl}${heroImage}`;
 
-  const heroImgUrl = activeStudy.heroImage?.startsWith('/uploads')
-    ? `${import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || ''}${activeStudy.heroImage}`
-    : (activeStudy.heroImage?.startsWith('http') ? activeStudy.heroImage : `${siteUrl}${activeStudy.heroImage || '/assets/images/service/erp_dash.webp'}`);
-
-  // Related Case Studies (filter out active)
-  const relatedStudies = caseStudiesData.filter(s => String(s.id) !== String(activeStudy.id)).slice(0, 3);
+  // Related Case Studies (other published ones)
+  const relatedStudies = allStudies.filter(s => String(s.id) !== String(activeStudy.id)).slice(0, 3);
 
   // JSON-LD Schemas for Detail Page
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    "headline": `${activeStudy.title} for ${specs.client}`,
+    "headline": caseStudyHeadline(activeStudy),
     "description": metaDescription,
     "image": heroImgUrl,
     "url": canonicalUrl,
-    "datePublished": "2026-08-01",
-    "dateModified": "2026-08-02",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": canonicalUrl
@@ -214,7 +212,7 @@ const NewCaseStudyDetailsPage = () => {
       {
         "@type": "ListItem",
         "position": 3,
-        "name": `${activeStudy.title} for ${specs.client}`,
+        "name": caseStudyHeadline(activeStudy),
         "item": canonicalUrl
       }
     ]
@@ -247,7 +245,7 @@ const NewCaseStudyDetailsPage = () => {
             <ChevronRight size={12} />
             <Link to="/case-studies" className="hover:text-slate-700 dark:hover:text-white transition-colors">Case Studies</Link>
             <ChevronRight size={12} />
-            <span className="text-purple-600 dark:text-purple-400 font-medium">{activeStudy.title} for {specs.client}</span>
+            <span className="text-purple-600 dark:text-purple-400 font-medium">{caseStudyHeadline(activeStudy)}</span>
           </nav>
 
           {/* 2-COLUMN MAIN LAYOUT */}
@@ -263,7 +261,7 @@ const NewCaseStudyDetailsPage = () => {
                 <div className="absolute inset-0 z-0">
                   <img
                     src={heroImgUrl}
-                    alt={`${activeStudy.title} hero banner case study for ${specs.client}`}
+                    alt={`${caseStudyHeadline(activeStudy)} case study`}
                     className="w-full h-full object-cover object-right"
                   />
                 </div>
@@ -279,7 +277,9 @@ const NewCaseStudyDetailsPage = () => {
 
                   <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white leading-tight mb-4">
                     {activeStudy.title} <br className="hidden sm:block" />
-                    <span className="text-purple-600 dark:text-purple-400">for {specs.client}</span>
+                    {caseStudyHeadline(activeStudy) !== activeStudy.title && (
+                      <span className="text-purple-600 dark:text-purple-400">for {specs.client}</span>
+                    )}
                   </h1>
 
                   <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-200 leading-relaxed mb-8 max-w-2xl">
@@ -666,16 +666,20 @@ const NewCaseStudyDetailsPage = () => {
                     "{testimonial.quote}"
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full overflow-hidden border border-purple-300 dark:border-purple-500/40 shrink-0">
+                    {/\/uploads\//.test(testimonial.avatar || '') ? (
                       <img
-                        src={testimonial.avatar?.startsWith('/uploads') ? `${import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || ''}${testimonial.avatar}` : (testimonial.avatar || "/assets/images/about/team-1.jpg")}
-                        alt={`${testimonial.author} testimonial avatar from ${testimonial.company}`}
-                        className="w-full h-full object-cover"
+                        src={config.getImageUrl(testimonial.avatar)}
+                        alt={`${testimonial.author}, ${testimonial.company || specs.client}`}
+                        className="w-10 h-10 rounded-full object-cover border border-purple-300 dark:border-purple-500/40 shrink-0"
                       />
-                    </div>
+                    ) : (
+                      <span aria-hidden="true" className="w-10 h-10 rounded-full shrink-0 flex items-center justify-center border border-purple-300 dark:border-purple-500/40 bg-white/60 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 text-xs font-bold">
+                        {String(testimonial.author || 'C').trim().split(/\s+/).map((part) => part[0]).slice(0, 2).join('').toUpperCase()}
+                      </span>
+                    )}
                     <div>
                       <h3 className="text-xs font-bold text-slate-900 dark:text-white">{testimonial.author}</h3>
-                      <p className="text-[10px] text-purple-600 dark:text-purple-400 font-medium">{testimonial.title}, {testimonial.company}</p>
+                      <p className="text-[10px] text-purple-600 dark:text-purple-400 font-medium">{[testimonial.title, testimonial.company || specs.client].filter(Boolean).join(', ')}</p>
                     </div>
                   </div>
                 </div>
@@ -709,13 +713,14 @@ const NewCaseStudyDetailsPage = () => {
                 {relatedStudies.map(item => (
                   <Link
                     key={item.id}
-                    to={`/case-studies/${item.id}`}
+                    to={caseStudyPath(item)}
                     className="bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/80 rounded-xl overflow-hidden shadow-sm dark:shadow-md hover:border-purple-500/50 transition-all flex flex-col group"
                   >
                     <div className="h-40 overflow-hidden relative">
                       <img
-                        src={item.heroImage || item.image}
-                        alt={`${item.title} case study for ${item.clientName || item.client}`}
+                        src={caseStudyImage(item)}
+                        alt={`${caseStudyHeadline(item)} case study`}
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>

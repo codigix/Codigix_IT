@@ -11,6 +11,12 @@ const getImageUrl = (image, defaultFolder = "", width = null) => {
       return image.replace('/upload/', `/upload/f_auto,q_auto${widthParam}/`);
     }
 
+    // Admin uploads: older ones were saved as http://localhost:5000/uploads/<file>
+    // (the backend's own address) or /uploads/<file>; the live site serves them
+    // at /api/uploads/<file>
+    const upload = typeof image === 'string' && image.match(/^(?:https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?)?\/uploads\/(.+)$/);
+    if (upload) return `/api/uploads/${upload[1]}`;
+
     if (image.startsWith("http") || image.startsWith("/") || image.startsWith("data:")) {
       return image;
     }

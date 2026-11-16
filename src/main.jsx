@@ -19,6 +19,7 @@ import "./assets/css/ainex-icons.css";
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 import { ThemeProvider } from "./context/ThemeContext";
+import "./utils/adminAuthFetch";
 
 // Pre-rendered pages (scripts/prerender.mjs) and the server (backend/utils/seoMeta.js)
 // put per-page meta tags in the HTML for crawlers. Helmet renders its own once

@@ -1,12 +1,8 @@
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config/config');
 
-const authenticateToken = (req, res, next) => {
-  // Always allow GET requests to proceed without token check
-  if (req.method === 'GET') {
-    return next();
-  }
-
+// Requires a valid admin token (Authorization: Bearer <token>) for every method
+const requireToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
@@ -22,4 +18,11 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
+// Public reads, admin-only writes: GET passes, anything else needs a token
+const authenticateToken = (req, res, next) => {
+  if (req.method === 'GET') return next();
+  return requireToken(req, res, next);
+};
+
 module.exports = authenticateToken;
+module.exports.requireToken = requireToken;

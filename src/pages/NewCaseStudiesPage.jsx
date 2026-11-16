@@ -11,7 +11,7 @@ import CaseStudiesImpact from '../components/new-case-studies/CaseStudiesImpact'
 import CaseStudiesTestimonials from '../components/new-case-studies/CaseStudiesTestimonials';
 import CaseStudiesBottomCta from '../components/new-case-studies/CaseStudiesBottomCta';
 import CaseStudiesFaq, { caseStudyFaqs } from '../components/new-case-studies/CaseStudiesFaq';
-import { caseStudiesData } from '../data/caseStudiesData';
+import { useCaseStudies, caseStudyPath, caseStudyHeadline } from '../utils/caseStudies';
 import config from '../config';
 import '../components/new-case-studies/case-studies.css';
 
@@ -19,6 +19,7 @@ const NewCaseStudiesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const tabQuery = searchParams.get('tab');
   const [activeCategory, setActiveCategory] = useState(tabQuery || 'All');
+  const { studies, loading, error } = useCaseStudies();
 
   useEffect(() => {
     if (tabQuery) {
@@ -51,12 +52,12 @@ const NewCaseStudiesPage = () => {
       "url": siteUrl,
       "logo": `${siteUrl}/assets/images/logos/logo.webp`
     },
-    "hasPart": caseStudiesData.map(study => ({
+    "hasPart": studies.map(study => ({
       "@type": "CreativeWork",
       "name": study.title,
-      "headline": `${study.title} for ${study.clientName}`,
+      "headline": caseStudyHeadline(study),
       "description": study.subtitle,
-      "url": `${siteUrl}/case-studies/${study.id}`,
+      "url": `${siteUrl}${caseStudyPath(study)}`,
       "about": study.catName,
       "provider": {
         "@type": "Organization",
@@ -152,17 +153,17 @@ const NewCaseStudiesPage = () => {
 
             {/* Left Main Content Area */}
             <div className="flex-1 min-w-0 space-y-12">
-              <CaseStudiesHero activeCategory={activeCategory} />
-              <CaseStudiesGrid activeCategory={activeCategory} setActiveCategory={handleCategoryChange} />
-              <CaseStudiesImpact activeCategory={activeCategory} />
-              <CaseStudiesTestimonials activeCategory={activeCategory} />
+              <CaseStudiesHero studies={studies} />
+              <CaseStudiesGrid studies={studies} loading={loading} error={error} activeCategory={activeCategory} setActiveCategory={handleCategoryChange} />
+              <CaseStudiesImpact studies={studies} />
+              <CaseStudiesTestimonials studies={studies} />
               <CaseStudiesBottomCta activeCategory={activeCategory} />
               <CaseStudiesFaq />
             </div>
 
             {/* Right Sticky Sidebar */}
             <aside className="w-full lg:w-[300px] xl:w-[340px] shrink-0 sticky top-28 z-30" aria-label="Case Study Filters & Topics">
-              <CaseStudiesSidebar activeCategory={activeCategory} setActiveCategory={handleCategoryChange} />
+              <CaseStudiesSidebar studies={studies} activeCategory={activeCategory} setActiveCategory={handleCategoryChange} />
             </aside>
 
           </div>

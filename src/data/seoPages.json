@@ -594,6 +594,20 @@
       ]
     }
   },
+  "caseStudyDetails": {
+    "hr-digital-transformation-platform": {
+      "title": "HR & Recruitment Platform Case Study | Codigix Infotech",
+      "description": "How Codigix Infotech built an HR and recruitment platform for Brainlance Solutions LLP, with an ATS, resume database, interview scheduling and onboarding."
+    },
+    "smart-manufacturing-erp-iiot": {
+      "title": "Manufacturing ERP with IIoT Case Study | Codigix Infotech",
+      "description": "How Codigix Infotech built a manufacturing ERP with IIoT machine monitoring for SP Techpioneer, a defence manufacturer, for 45% faster production planning."
+    },
+    "smart-erp-migration-for-sterling-techno-system": {
+      "title": "Sterling Techno System ERP Case Study | Codigix Infotech",
+      "description": "How Codigix Infotech replaced Excel and paper records at Sterling Techno System with a manufacturing ERP that traces every order from client PO to dispatch."
+    }
+  },
   "redirects": {
     "/home": "/",
     "/about-us": "/about",
@@ -602,6 +616,15 @@
     "/other-services": "/services",
     "/terms": "/terms-conditions",
     "/privacy": "/privacy-policy",
-    "/blogs": "/blog"
+    "/blogs": "/blog",
+    "/case-studies/1": "/case-studies/smart-erp-migration-for-sterling-techno-system",
+    "/case-studies/2": "/case-studies",
+    "/case-studies/3": "/case-studies",
+    "/case-studies/4": "/case-studies",
+    "/case-studies/5": "/case-studies",
+    "/case-studies/6": "/case-studies",
+    "/case-studies/40": "/case-studies/hr-digital-transformation-platform",
+    "/case-studies/46": "/case-studies/smart-manufacturing-erp-iiot",
+    "/case-studies/47": "/case-studies/smart-erp-migration-for-sterling-techno-system"
   }
 }

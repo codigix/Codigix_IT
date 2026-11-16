@@ -1,42 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import config from '../../config';
+import { parseJSONField, caseStudyClient } from '../../utils/caseStudies';
 
-const CaseStudiesTestimonials = () => {
-  const [fetchedTestimonials, setFetchedTestimonials] = useState([]);
+// Client quotes saved with each case study (admin → Case Studies → testimonial)
+const CaseStudiesTestimonials = ({ studies = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
-
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const response = await fetch(`${config.API_BASE_URL}/projects`);
-        if (response.ok) {
-          const data = await response.json();
-          const tests = data
-            .map(project => {
-              let t = project.testimonial;
-              if (typeof t === 'string') {
-                try { t = JSON.parse(t); } catch(e) { t = null; }
-              }
-              return t && t.quote ? { ...t, company: t.company || project.client || project.clientName } : null;
-            })
-            .filter(Boolean)
-            .map(t => ({
-              quote: t.quote,
-              author: t.author || 'Client Executive',
-              title: t.title || 'Director',
-              company: t.company || 'Partner Enterprise',
-              avatar: t.avatar || ''
-            }));
-          setFetchedTestimonials(tests);
-        }
-      } catch (error) {
-        console.error('Failed to fetch testimonials:', error);
-      }
-    };
-    fetchTestimonials();
-  }, []);
+  const fetchedTestimonials = studies
+    .map((study) => {
+      const t = parseJSONField(study.testimonial, null);
+      return t && t.quote
+        ? {
+            quote: t.quote,
+            author: (t.author || '').trim() || 'Client',
+            title: t.title || '',
+            company: t.company || caseStudyClient(study),
+            // Only uploaded photos; stock placeholders would show the wrong face
+            avatar: /\/uploads\//.test(t.avatar || '') ? config.getImageUrl(t.avatar) : ''
+          }
+        : null;
+    })
+    .filter(Boolean);
   useEffect(() => {
     const updateCount = () => {
       if (window.innerWidth < 640) {
@@ -111,18 +96,21 @@ const CaseStudiesTestimonials = () => {
 
                 {/* Author Metadata Row */}
                 <div className="flex items-center gap-3 pt-4 border-t border-slate-100 dark:border-gray-800/60 mt-auto">
-                  <img 
-                    src={test.avatar} 
-                    alt={test.author}
-                    className="w-11 h-11 rounded-full object-cover border border-slate-200 dark:border-gray-700 shrink-0"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(test.author || 'User')}&background=random&color=fff&size=150`;
-                    }}
-                  />
+                  {test.avatar ? (
+                    <img
+                      src={test.avatar}
+                      alt={test.author}
+                      loading="lazy"
+                      className="w-11 h-11 rounded-full object-cover border border-slate-200 dark:border-gray-700 shrink-0"
+                    />
+                  ) : (
+                    <span aria-hidden="true" className="w-11 h-11 rounded-full shrink-0 flex items-center justify-center bg-purple-100 dark:bg-purple-500/15 text-purple-700 dark:text-purple-300 text-sm font-bold">
+                      {test.author.split(/\s+/).map((part) => part[0]).slice(0, 2).join('').toUpperCase()}
+                    </span>
+                  )}
                   <div>
                     <h3 className="text-xs font-bold text-slate-900 dark:text-white leading-tight">{test.author}</h3>
-                    <p className="text-[11px] text-slate-500 dark:text-gray-400 font-normal mt-0.5">{test.title}, {test.company}</p>
+                    <p className="text-[11px] text-slate-500 dark:text-gray-400 font-normal mt-0.5">{[test.title, test.company].filter(Boolean).join(', ')}</p>
                   </div>
                 </div>
               </div>

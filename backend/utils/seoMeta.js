@@ -25,6 +25,9 @@ for (const entry of Object.values(seoData.pages)) entriesByPath.set(entry.path, 
 for (const key of sectionKeys) {
   for (const entry of seoData.sections[key].entries) entriesByPath.set(entry.path, entry);
 }
+for (const [slug, entry] of Object.entries(seoData.caseStudyDetails || {})) {
+  entriesByPath.set(`/case-studies/${slug}`, { ...entry, path: `/case-studies/${slug}` });
+}
 
 /** Mirrors resolveRedirect() in src/utils/seo.js. Returns null when no redirect applies. */
 const resolveRedirect = (pathname, search = '') => {

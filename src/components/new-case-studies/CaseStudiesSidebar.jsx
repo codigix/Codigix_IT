@@ -1,20 +1,28 @@
 import React from 'react';
-import { Layers, Building2, Users, Cpu, Code2, Smartphone, Cloud, ArrowRight } from 'lucide-react';
+import { Layers, Building2, Users, Cpu, Code2, Smartphone, Cloud, Briefcase, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { caseStudyCategory, getCategoryTabs } from '../../utils/caseStudies';
 
-export const categories = [
-  { id: 'All', name: 'All Case Studies', icon: Layers },
-  { id: 'ERP', name: 'ERP Solutions', icon: Building2 },
-  { id: 'CRM', name: 'CRM Solutions', icon: Users },
-  { id: 'IoT', name: 'IoT Solutions', icon: Cpu },
-  { id: 'AI', name: 'AI Solutions', icon: Cpu },
-  { id: 'Web', name: 'Web Development', icon: Code2 },
-  { id: 'Mobile', name: 'Mobile Apps', icon: Smartphone },
-  { id: 'Cloud', name: 'Cloud Solutions', icon: Cloud },
-];
+const categoryIcons = {
+  All: Layers,
+  ERP: Building2,
+  CRM: Users,
+  IoT: Cpu,
+  AI: Cpu,
+  Web: Code2,
+  Mobile: Smartphone,
+  Cloud: Cloud,
+};
 
-const CaseStudiesSidebar = ({ activeCategory, setActiveCategory }) => {
+// Only categories that have case studies, each with its count
+const CaseStudiesSidebar = ({ studies = [], activeCategory, setActiveCategory }) => {
   const navigate = useNavigate();
+  const categories = getCategoryTabs(studies).map((id) => ({
+    id,
+    name: id === 'All' ? 'All Case Studies' : id,
+    count: id === 'All' ? studies.length : studies.filter((study) => caseStudyCategory(study) === id).length,
+    icon: categoryIcons[id] || Briefcase,
+  }));
 
   const handleSelect = (catId) => {
     setActiveCategory(catId);
@@ -34,10 +42,12 @@ const CaseStudiesSidebar = ({ activeCategory, setActiveCategory }) => {
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
-              <div 
-                key={cat.id} 
+              <button
+                type="button"
+                key={cat.id}
+                aria-pressed={isActive}
                 onClick={() => handleSelect(cat.id)}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-all duration-200 group mb-1 ${
+                className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-all duration-200 group mb-1 ${
                   isActive 
                     ? 'bg-gradient-to-r from-rose-500 to-purple-600 text-white shadow-md shadow-purple-500/10' 
                     : 'text-slate-655 dark:text-gray-400 hover:bg-slate-200/50 dark:hover:bg-white/5'
@@ -53,9 +63,9 @@ const CaseStudiesSidebar = ({ activeCategory, setActiveCategory }) => {
                 <div>
                   <p className={`heading-text text-[11px] font-medium leading-none transition-colors ${
                     isActive ? 'font-semibold text-white' : 'text-slate-700 dark:text-gray-300'
-                  }`}>{cat.name}</p>
+                  }`}>{cat.name} <span className="opacity-60">({cat.count})</span></p>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>

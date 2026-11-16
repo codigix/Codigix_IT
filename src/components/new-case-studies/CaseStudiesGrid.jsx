@@ -1,44 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { categories } from './CaseStudiesSidebar';
-import config from '../../config';
+import { caseStudyPath, caseStudyImage, caseStudyCategory, caseStudyResults, caseStudyHeadline, getCategoryTabs } from '../../utils/caseStudies';
 
-const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
+const CaseStudiesGrid = ({ studies = [], loading, error, activeCategory, setActiveCategory }) => {
   const navigate = useNavigate();
-  const [caseStudiesData, setCaseStudiesData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch(`${config.API_BASE_URL}/projects`);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
-        if (Array.isArray(data) && data.length > 0) {
-          setCaseStudiesData(data);
-        } else {
-          setCaseStudiesData([]);
-        }
-      } catch (error) {
-        console.error('Error fetching case studies from API:', error);
-        setCaseStudiesData([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProjects();
-  }, []);
-
-  const filteredStudies = activeCategory === 'All' 
-    ? caseStudiesData 
-    : caseStudiesData.filter(study => study.category === activeCategory || study.catName === activeCategory);
-
-  // Top 6 categories for the horizontal filter bar
-  const filterTabs = categories.slice(0, 6);
+  const filterTabs = getCategoryTabs(studies);
+  const filteredStudies = activeCategory === 'All' || !filterTabs.includes(activeCategory)
+    ? studies
+    : studies.filter((study) => caseStudyCategory(study) === activeCategory);
 
   if (loading) return <div className="py-20 text-center text-slate-500">Loading Case Studies...</div>;
+  if (error || !studies.length) {
+    return (
+      <div id="case-studies-grid" className="py-20 text-center text-slate-500" data-prerender-omit>
+        Case studies could not be loaded right now. Please try again shortly.
+      </div>
+    );
+  }
 
   return (
     <section id="case-studies-grid" className="py-8 scroll-mt-24 text-left" aria-label="Case Studies Portfolio Grid">
@@ -48,22 +28,19 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
         <div className="flex gap-2 overflow-x-auto pb-2 w-full hide-scrollbar">
            {filterTabs.map(tab => (
              <button 
-               key={tab.id}
-               onClick={() => setActiveCategory(tab.id)}
+               key={tab}
+               onClick={() => setActiveCategory(tab)}
                className={`px-4 py-2 text-[11px] font-medium rounded-lg border transition-all shrink-0 ${
-                 activeCategory === tab.id 
+                 activeCategory === tab 
                    ? 'bg-purple-600 border-purple-500 text-white shadow-md shadow-purple-500/20 font-semibold' 
                    : 'bg-slate-50 dark:bg-[#050117] border-slate-200 dark:border-gray-800 text-slate-550 dark:text-gray-400 hover:border-slate-400 dark:hover:border-gray-600 hover:text-slate-900 dark:hover:text-gray-250'
                }`}
              >
-               {tab.id === 'All' ? 'All' : tab.name}
+               {tab}
              </button>
            ))}
         </div>
 
-        <div className="shrink-0 flex items-center gap-2 px-4 py-2 border border-slate-250 dark:border-gray-700 rounded-lg text-[11px] text-slate-500 dark:text-gray-400 cursor-pointer hover:border-slate-400 dark:hover:border-gray-500 transition-colors shadow-sm">
-          Sort by: Latest <ChevronDown size={14} />
-        </div>
       </div>
 
       {/* Grid */}
@@ -77,7 +54,7 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
-              onClick={() => navigate(`/case-studies/${study.id}`)}
+              onClick={() => navigate(caseStudyPath(study))}
               className="bg-white dark:bg-[#050112] border border-slate-200 dark:border-gray-800/85 rounded-2xl overflow-hidden shadow-sm dark:shadow-xl flex flex-col group hover:border-purple-500/50 transition-all duration-300 cursor-pointer relative"
             >
               {/* Spotlight background hover */}
@@ -92,8 +69,9 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
               <div className="h-48 overflow-hidden relative">
                  <div className="absolute inset-0 bg-purple-900/10 dark:bg-purple-900/20 mix-blend-overlay group-hover:bg-transparent transition-colors"></div>
                  <img 
-                   src={study.image || study.heroImage} 
-                   alt={`${study.title} - ${study.catName || study.category} case study preview for ${study.clientName || study.client}`} 
+                   src={caseStudyImage(study)} 
+                   alt={`${caseStudyHeadline(study)} case study`} 
+                   loading="lazy"
                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 filter brightness-90 contrast-125"
                  />
               </div>
@@ -104,7 +82,7 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
                    {study.catName || study.category}
                  </span>
                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug group-hover:text-purple-650 dark:group-hover:text-purple-300 transition-colors">
-                   {study.title}
+                   <Link to={caseStudyPath(study)} onClick={(e) => e.stopPropagation()}>{study.title}</Link>
                  </h3>
                  <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-relaxed mb-6 flex-1">
                    {study.subtitle || study.overview || study.desc}
@@ -112,28 +90,15 @@ const CaseStudiesGrid = ({ activeCategory, setActiveCategory }) => {
 
                  {/* Stats */}
                  <div className="grid grid-cols-3 gap-2 border-t border-slate-200 dark:border-gray-800 pt-4 mb-4">
-                    {(() => {
-                       let stats = [];
-                       try {
-                         if (study.results_impact) {
-                           let parsed = typeof study.results_impact === 'string' ? JSON.parse(study.results_impact) : study.results_impact;
-                           stats = parsed.slice(0, 3).map(item => ({ value: item.val || item.value, label: item.title || item.label }));
-                         } else if (study.results) {
-                           stats = study.results.slice(0, 3).map(item => ({ value: item.val || item.value, label: item.title || item.label }));
-                         } else if (study.stats) {
-                           stats = study.stats;
-                         }
-                       } catch(e) {}
-                       return stats.map((stat, idx) => (
-                         <div key={idx} className="flex flex-col">
-                           <span className="text-lg font-bold text-purple-600 dark:text-purple-300 mb-1">{stat.value}</span>
-                           <span className="text-[9px] text-slate-500 dark:text-gray-500 leading-tight">{stat.label}</span>
-                         </div>
-                       ));
-                    })()}
+                    {caseStudyResults(study).slice(0, 3).map((stat, idx) => (
+                      <div key={idx} className="flex flex-col">
+                        <span className="text-lg font-bold text-purple-600 dark:text-purple-300 mb-1">{stat.value}</span>
+                        <span className="text-[9px] text-slate-500 dark:text-gray-500 leading-tight">{stat.label}</span>
+                      </div>
+                    ))}
                  </div>
 
-                 <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 text-[11px] font-medium group-hover:text-purple-500 transition-colors mt-auto">
+                 <div aria-hidden="true" className="flex items-center gap-2 text-purple-600 dark:text-purple-400 text-[11px] font-medium group-hover:text-purple-500 transition-colors mt-auto">
                    View Case Study <ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
                  </div>
               </div>

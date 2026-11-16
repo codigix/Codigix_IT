@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Plus, Trash2, Save, X, Edit, Image as ImageIcon, Briefcase, UploadCloud, Loader2 } from 'lucide-react';
-import { caseStudiesData } from '../../../data/caseStudiesData';
 
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
@@ -368,59 +367,6 @@ const CaseStudiesAdmin = () => {
     const newList = [...formData[field]];
     newList.splice(index, 1);
     setFormData({ ...formData, [field]: newList });
-  };
-
-  const handleAutoPopulate = async () => {
-    if (!window.confirm('This will insert all default case studies into the database. Proceed?')) return;
-    
-    setLoading(true);
-    let successCount = 0;
-    
-    for (const study of caseStudiesData) {
-      try {
-        const payload = {
-          title: study.title,
-          slug: study.slug,
-          category: study.category,
-          catName: study.catName,
-          client: study.clientName,
-          subtitle: study.overview,
-          objective: study.objective || '',
-          heroImage: study.heroImage || study.image,
-          image: study.image,
-          businessChallengeDesc: study.businessChallengeDesc || '',
-          challenges: JSON.stringify(study.challenges || []),
-          solutionDesc: study.solutionDesc || '',
-          solutionPoints: JSON.stringify(study.solutionPoints || []),
-          radialNodes: JSON.stringify(study.radialNodes || []),
-          keyFeatures: JSON.stringify(study.keyFeatures || []),
-          techStack: JSON.stringify(study.techStack || []),
-          results_impact: JSON.stringify(study.results || []),
-          solutionHighlights: JSON.stringify(study.solutionHighlights || []),
-          testimonial: JSON.stringify(study.testimonial || {})
-        };
-
-        const response = await fetch(`${API_BASE}/projects`, {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('adminToken') || ''}`
-          },
-          body: JSON.stringify(payload)
-        });
-        
-        if (response.ok) {
-          successCount++;
-        } else {
-          console.error('Failed to insert:', study.title);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    
-    alert(`Successfully added ${successCount} case studies!`);
-    fetchProjects();
   };
 
   if (loading) return <div className="p-8 text-slate-900">Loading...</div>;

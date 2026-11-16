@@ -1,25 +1,31 @@
 import React from 'react';
-import { Users, Rocket, Network, Target, Globe2, Clock } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { caseStudyClient, caseStudyResults } from '../../utils/caseStudies';
 
-const impactStats = [
-  { icon: Users, value: '250+', label: 'Happy Clients' },
-  { icon: Rocket, value: '350+', label: 'Solutions Delivered' },
-  { icon: Network, value: '500+', label: 'Systems Integrated' },
-  { icon: Target, value: '98.5%', label: 'Project Success Rate' },
-  { icon: Globe2, value: '10M+', label: 'Users Impacted' },
-  { icon: Clock, value: '24/7', label: 'Support & Maintenance' },
-];
+// Results reported in the published case studies, taken round-robin so every
+// client is represented (max 6)
+const pickResults = (studies) => {
+  const lists = studies.map((study) => caseStudyResults(study).map((result) => ({ ...result, client: caseStudyClient(study) })));
+  const picked = [];
+  for (let round = 0; picked.length < 6 && lists.some((list) => list[round]); round++) {
+    for (const list of lists) if (list[round] && picked.length < 6) picked.push(list[round]);
+  }
+  return picked;
+};
 
-const CaseStudiesImpact = () => {
+const CaseStudiesImpact = ({ studies = [] }) => {
+  const impactStats = pickResults(studies);
+  if (!impactStats.length) return null;
+
   return (
     <div className="py-12 border-t border-slate-200 dark:border-gray-800/50 mt-8 text-left">
       <div className="text-center mb-10">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">Business Impact That Matters</h2>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">Results Our Clients Reported</h2>
         <div className="w-12 h-1 bg-purple-500 mx-auto mt-4 rounded-full"></div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
         {impactStats.map((stat, idx) => (
           <motion.div 
             key={idx}
@@ -38,11 +44,12 @@ const CaseStudiesImpact = () => {
             </div>
 
             <div className="w-12 h-12 rounded-full border border-purple-500/20 bg-purple-900/10 flex items-center justify-center text-purple-650 dark:text-purple-400 group-hover:scale-110 transition-transform">
-              <stat.icon size={20} />
+              <TrendingUp size={20} />
             </div>
             <div>
               <p className="heading-text text-lg font-bold text-slate-900 dark:text-white mb-1">{stat.value}</p>
               <p className="text-[10px] text-slate-500 dark:text-gray-400 uppercase tracking-widest">{stat.label}</p>
+              <p className="text-[10px] text-purple-600 dark:text-purple-400 mt-1">{stat.client}</p>
             </div>
           </motion.div>
         ))}

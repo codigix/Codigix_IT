@@ -29,12 +29,15 @@ app.use((req, res, next) => {
   next();
 });
 
-// Serve uploads with cache control (1 year)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
+// Serve uploads with cache control (1 year). Also under /api/uploads: nginx only
+// proxies /api to this server, so that is the path the live site can reach.
+const uploadsStatic = express.static(path.join(__dirname, 'uploads'), {
   maxAge: '1y',
   immutable: true,
   etag: true
-}));
+});
+app.use('/uploads', uploadsStatic);
+app.use('/api/uploads', uploadsStatic);
 
 // Request logger
 app.use((req, res, next) => {

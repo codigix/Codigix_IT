@@ -7,11 +7,20 @@
 //   DB_USER: process.env.DB_USER || 'root',
 //   DB_PASSWORD: process.env.DB_PASSWORD || 'Ruchita@12345',
 //   DB_NAME: process.env.DB_NAME || 'codigix_admin',
-//   JWT_SECRET: process.env.JWT_SECRET || 'codigix_admin_secret_key_2026',
 //   DATA_FILE: path.join(__dirname, '../data/data.json')
 // };
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../.env') });
+const crypto = require('crypto');
+
+// Admin login tokens are signed with JWT_SECRET from backend/.env. This repo is
+// public, so a fallback written here would let anyone forge an admin login.
+// Without JWT_SECRET a random secret is used instead: secure, but admins must
+// log in again after every restart.
+const JWT_SECRET = process.env.JWT_SECRET || (() => {
+  console.warn('JWT_SECRET is not set in backend/.env: using a random secret, admin logins end on every restart.');
+  return crypto.randomBytes(48).toString('hex');
+})();
 
 module.exports = {
   NODE_ENV: process.env.NODE_ENV || 'development',
@@ -21,7 +30,7 @@ module.exports = {
   DB_PASSWORD: process.env.DB_PASSWORD || 'Appuser@123',
   DB_NAME: process.env.DB_NAME || 'codigix_admin',
   DB_PORT: process.env.DB_PORT || 3306,
-  JWT_SECRET: process.env.JWT_SECRET || 'codigix_admin_secret_key_2026',
+  JWT_SECRET,
   CLIENT_URL: [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
