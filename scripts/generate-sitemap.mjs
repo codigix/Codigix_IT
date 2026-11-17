@@ -1,6 +1,6 @@
 // Builds public/sitemap.xml from src/data/seoPages.json plus the pages that
-// live outside it (contact, blog, and the case studies and blog posts from the database). Runs
-// before `vite build`.
+// live outside it (contact, blog, and the case studies and blog posts from the database).
+// `npm run seo:generate` updates public/sitemap.xml; `npm run build` updates dist/.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { findApiOrigin } from './api-origin.mjs';
@@ -80,6 +80,11 @@ ${urls
 </urlset>
 `;
 
-const out = fileURLToPath(new URL('public/sitemap.xml', root));
+// Default: the committed public/sitemap.xml (`npm run seo:generate`).
+// `--out dist/sitemap.xml` (used by `npm run build`) writes only the published
+// copy, so a build on the server never changes a tracked file and never blocks
+// the next `git pull`.
+const outArg = process.argv.indexOf('--out');
+const out = outArg > -1 ? fileURLToPath(new URL(process.argv[outArg + 1], root)) : fileURLToPath(new URL('public/sitemap.xml', root));
 writeFileSync(out, xml);
-console.log(`sitemap.xml: ${urls.length} URLs`);
+console.log(`sitemap.xml: ${urls.length} URLs → ${out}`);

@@ -9,7 +9,7 @@
     "dev:all": "concurrently \"npm run dev\" \"npm run server\"",
     "seo:generate": "node scripts/generate-sitemap.mjs && node scripts/generate-nginx-redirects.mjs",
     "prerender": "node scripts/prerender.mjs",
-    "build": "npm run seo:generate && vite build && npm run purge:css && npm run prerender",
+    "build": "node scripts/generate-nginx-redirects.mjs && vite build && node scripts/generate-sitemap.mjs --out dist/sitemap.xml && npm run purge:css && npm run prerender",
     "purge:css": "purgecss --css dist/assets/css/*.css --content dist/index.html dist/assets/*.js --output dist/assets/css/",
     "lint": "eslint .",
     "preview": "vite preview",
